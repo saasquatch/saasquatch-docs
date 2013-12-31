@@ -1,1 +1,11 @@
-play-2.2.1/
+# Ignores downloaded workspace files from c9.io
+c9-installed-software
+
+# Ignore play framework files
+logs
+project/project
+project/target
+target
+tmp
+dist
+.cache
