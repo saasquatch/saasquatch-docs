@@ -13,6 +13,7 @@ object Application extends Controller {
     slug match {
         case "testing-best-practices"  => Ok(views.html.testingBestPractices())
         case "page-speed-best-practices" => Ok(views.html.pageSpeedBestPractices())
+        case "braintree" => Ok(views.html.braintree())
         case _ => NotFound
     }
   }
