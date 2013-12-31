@@ -1,0 +1,85 @@
+@main("Braintree") {
+
+    <section id="braintree">
+        <div class="page-header">
+            <h1>Braintree Integration</h1>
+        </div>
+            <p class="lead">
+            Referral SaaSquatch’s Braintree integration uses Braintree's API and Braintree's Custom Fields to automatically track subscriptions and give discounts. This guide will walk you through how to set up this integration.
+            </p>
+            
+            <hr/>
+            <h3><span class="label label-success">Step 0</span> Things you need to know before you start</h3>
+            
+            <ul class="unstyled">
+                <li>
+                    <b>Test mode vs. live mode</b> - We let you test your referral program using Braintree Sandbox and fake credit cards before deploying to your production environment. To set up sandbox, follow this guide using your Braintree Sandbox account.
+                </li>
+            </ul>
+
+            <hr/>
+            <h3><span class="label label-success">Step 1</span> Set up a Braintree Custom Field and Discount</h3>
+            
+            <p>
+            We use Braintree's Custom Fields to track when someone uses a referral code and Braintree's Discounts to apply referral discounts. These fields need to be set up in Braintree before turning on the referral program.
+            </p>
+            <ol>
+                <li><a href="https://www.braintreepayments.com/">Login to Braintree</a> and go to Settings -> Processing. 
+                    Add a custom field with the API name <b>saasquatch_coupon</b> with the "store and pass through" option set.</li>
+                <li>Go to Settings -> Recurring Billing and add two discounts.
+                    <ul>
+                        <li>
+                            The 1st discount must be given the id <b>saasquatch_coupon_discount</b>, name "Saasquatch Coupon Discount", and Amount (1.00 ~ though this value isn't really used, it's just a placeholder because the field can't be left 0 or empty).
+                        </li><li>
+                            The 2nd discount must be given the id <b>saasquatch_referral_discount</b>, name "Saasquatch Referral Discount", and Amount (1.00 ~ again a placeholder).
+                        </li>
+                    </ul>
+                </li>
+                <li>Repeat this process for both your <b>test</b> and <b>live</b> accounts.</li>
+            </ol>
+            <p class="muted">
+                <b>Note:</b> It is not required to setup a test environment but it will make testing easier for you.
+            </p>
+            
+            <hr/>
+            <h3><span class="label label-success">Step 2</span> Add your Braintree API Keys in the SaaSquatch Portal</h3>
+            
+            <p>
+            We connect to the Braintree API using your Braintree API keys. This lets us automatically apply discounts to people’s accounts.
+            </p>
+            <ol>
+                <li><a href="https://www.braintreepayments.com/">Login to Braintree</a> and go to “Home”. <b>Copy the “Merchant ID”, "Public Key" and "Private Key"</b>.</li>
+                <li><a href="http://app.referralsaasquatch.com">Login to Referral SaaSquatch</a> and go to “Setup” and click “Authorize”. <b>Paste in the “Merchant ID”, "Public Key" and "Private Key" that you just copied</b>, and press connect.</li>
+                <li>Repeat this process for both your <b>test</b> and <b>live</b> accounts.</li>
+            </ol>
+            
+            <hr/>
+            <h3><span class="label label-success">Step 3</span> Add the custom field to your Braintree payment page</h3>
+            
+            <p>
+            On your payment page, you'll need to add an extra input element for custom field, and make sure it gets passed along to Braintree on account creation.
+            </p>
+            <ol>
+                <li>Add a "referral code" field to your payment page. You can show it to your users so that they can type in their friend's codes, or it can just be a hidden field on the page.</li>
+                <li>Use <a href="#squatchjs-autofill">Squatch.js Autofill</a> to check for a referral cookie and set it the new field.</li>
+                <li>Pass along the referral code in your Braintree API call.
+                 <ul>
+                        <li>
+                             If you are using a server-side solution to create customers, then <a href="https://www.braintreepayments.com/docs/transactions/custom_fields">read this Braintree article</a>.
+                            <code>customField("saasquatch_coupon", submitted_coupon_value)</code>. 
+                        </li><li>
+                            If you are using transparent redirect to create customers, then <a href="https://www.braintreepayments.com/docs/customers/tr_fields#custom_fields">read this Braintree article</a>.
+<code>&lt;input type="text" name="customer[custom_fields][saasquatch_coupon]" value="$coupon_to_be_submitted" /&gt;</code>.
+
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+
+            
+            <hr/>
+            
+            <h4>That's it!</h4>
+
+    </section>
+}
