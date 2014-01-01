@@ -1,0 +1,44 @@
+@main(
+    "Stripe Documentation",
+    "Referral SaaSquatch’s Stripe integration uses Stripe Connect to automatically track subscriptions and give people discounts. This guide will walk you through how to set up this integration."
+) {
+
+<section id="stripe">
+    <div class="page-header">
+        <h1>Stripe Integration</h1>
+    </div>
+    
+    <p class="lead">
+    Referral SaaSquatch’s Stripe integration uses <a href="https://stripe.com/connect">Stripe Connect</a> to automatically track subscriptions and give people discounts. This guide will walk you through how to set up this integration.
+    </p>
+    
+    <hr/>
+    <h3><span class="label label-success">Step 0</span> Things you need to know before you start</h3>
+    
+    <ul class="unstyled">
+        <li>
+            <b>Test mode vs. live mode</b> - We let you test your referral program using <a href="https://stripe.com/docs/testing">Stripe Test Mode</a> and fake credit cards before deploying to your production environment.
+        </li>
+    </ul>
+
+    <hr/>
+    <h3><span class="label label-success">Step 1</span> Authorize Stripe Connect</h3>
+    
+    <p>
+    We use Stripe Connect to connect to the corresponding account type. So, if you authorize your test account with Stripe, we'll connect to that Stripe account's test mode, and if you authorize your live account with Stripe, we'll connect to that Stripe account's live mode.
+    </p>
+    <ol>
+        <li><a href="http://app.referralsaasquatch.com">Login to Referral SaaSquatch</a> and go to “Setup” and click “Authorize”. <b>Click Connect With Stripe</b> and you're done!</li>
+        <li>Repeat this process for both your <b>test</b> and <b>live</b> accounts.</li>
+    </ol>
+    <p class="muted">
+        <b>Note:</b> It is not required to setup a test environment but it will make testing easier for you.
+    </p>
+    
+    <hr/>
+    
+    <h4>That's it!</h4>
+
+</section>
+
+}

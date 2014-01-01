@@ -1,0 +1,80 @@
+@main(
+    "Installation in your app",
+    "You must include the Squatch.js javascript library in your app to finish set up. This guide explains the steps to install squatch.js"
+) {
+
+ <section id="app-integration">
+            <div class="page-header">
+                <h1>Installation in your app</h1>
+            </div>
+             <h3><span class="label label-success">Step 1</span> Install Squatch.js</h3>
+                <p>Add the following JavasSript at the end of your <code>&lt;body&gt;</code> tag on every page in your application, and replace the data fields with information about the logged-in user.</p>
+                <pre class="prettyprint lang-html">&lt;script type="text/javascript"&gt;
+    var _sqh = _sqh || [];
+    
+    // Push user details for a user who is logged in to your system
+    _sqh.push(['init', {
+        tenant_alias: '$tenant_alias', // REPLACE: Your live or test mode tenant_alias. This identifies your app.
+        account_id: '$accountId', // REPLACE: the Stripe/Recurly/Braintree/Zuora id used for payment system integration
+        user_id: '$userId', // REPLACE: A user ID from your system (must be unique for every user)
+        email: '$emailAddress', // REPLACE: The e-mail address of the user
+        first_name: '$firstName', // REPLACE: The user's first name
+        last_name: '$lastName', // (OPTIONAL) REPLACE: The user's last name
+        user_image: '$userImageURL', // (OPTIONAL) REPLACE: Absolute URL to the user's profile image
+        fb_share_image: '$facebookImageURL' // (OPTIONAL) REPLACE: Absolute URL to the image included when users refer on Facebook
+    }]);
+    
+    // Include squatch.js
+    (function(){function l(){var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src=location.protocol+"//d2rcp9ak152ke1.cloudfront.net/assets/javascripts/squatch.min.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(s,t)}if(window.attachEvent){window.attachEvent("onload",l)}else{window.addEventListener("load",l,false)}})();
+    &lt;/script&gt;</pre>
+                <p>See also our <a href="#squatchjs-init">init function reference</a> and our <a href="#bestpractice-speed">Page Speed Best Practice Guide</a>.</p>
+                
+                
+                <hr />
+                
+                <h3><span class="label label-success">Step 2</span> Add a button</h3>
+                
+                <p>
+                Add the <code>squatchpop</code> class to any button on your page that you want to open the referral program widget.
+                </p>
+                
+                <p><i>Examples:</i></p>
+                
+                
+                <pre class="prettyprint lang-html">&lt;button class="squatchpop"&gt;Referral Discount&lt;/button&gt; &lt;!-- Clicking this opens the referral program in a modal popup --&gt;</pre>
+                
+                <pre class="prettyprint lang-html">&lt;a href="#" class="squatchpop"&gt;Invite a Friend&lt;/a&gt; &lt;!-- Clicking this would also open the popup --&gt;</pre>
+                
+                <pre class="prettyprint lang-html">&lt;div class="btn squatchpop"&gt;Love our service? Share the wealth!&lt;/div&gt; &lt;!-- Yep, DIVs work, too. Put 'em everywhere. --&gt;</pre>
+                
+                <p>
+                <strong>You can put lots of buttons and links on a page.</strong> Remember to make these buttons prominent and easy to find, otherwise people might not know you have a referral program. 
+                The referral widget is shown as a JavaScript popup, so it’s safe to include these buttons on every page. See also our <a href="#bestpractice-buttons">Refer-a-friend Buttons Best Practice Guide</a>
+                for ideas on how to boost participation in your program.
+                </p>
+    
+                <hr />
+                
+                <h3><span class="label label-success">Step 3</span> Autofill the Coupon Code</h3>
+                
+                <p>
+                Add a call to autofill the coupon code on your payment page. This reduces the chance of someone not using their 
+                referral discount when they sign up. 
+                </p>
+                
+                <p><i>Example:</i></p>        					
+                
+                <pre class="prettyprint lang-html">&lt;input type="text" name="Coupon" id="my_coupon" value="" /&gt;</pre>
+                
+                <pre class="prettyprint lang-js">_sqh.push(['autofill', '#my_coupon']);</pre>
+                
+                <p>
+                Remember to still let people manually enter their coupon codes on your payment page in case they were referred 
+                face-to-face -- that’s why we create easy-to-remember coupon codes based off of people's names like <em>JESSICAALBA</em> and <em>ISAACNEWTON</em>.
+                </p>
+                
+                <p>
+                    See also our <a href="#squatchjs-autofill">autofill function reference</a> for a more complete example.
+                </p>
+            </section>
+}
