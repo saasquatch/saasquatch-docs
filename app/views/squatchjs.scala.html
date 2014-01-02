@@ -4,20 +4,25 @@
 ) {
 
     <script type="text/javascript">
-        $('#squatchjs-navbar').scrollspy();
+        jQuery('#squatchjs-navbar').scrollspy();
+        jQuery('.dropdown-toggle').dropdown();
     </script>
     <style type="text/css">
         /** Styles that are used when AFFIXED */
         #squatchjs-navbar.affix{
             top: 130px;
             background: #FFF;
-            opacity: 0.7;
+            opacity: 0.9;
             border-radius: 3px;
+            border: 1px solid #CCC;
         }
-        
+         #squatchjs-navbar .nav-pills > li > a {
+            display: block;
+        }
         /** Override the crappy default nav pills from the disillusion theme **/
         #squatchjs-navbar .nav-pills{
             margin-left: 0;
+            padding-top: 15px; /* makes space for funky li > a height animations on hover */
         }
         #squatchjs-navbar .nav-pills > li {
             list-style-type: none;
@@ -45,6 +50,7 @@
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     See also
                     <b class="caret"></b>
+                    &nbsp;
                 </a>
                   <!-- links -->
                   <ul class="dropdown-menu">
