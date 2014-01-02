@@ -7,26 +7,55 @@
         $('#squatchjs-navbar').scrollspy();
     </script>
     <style type="text/css">
+        /** Styles that are used when AFFIXED */
         #squatchjs-navbar.affix{
             top: 130px;
+            background: #FFF;
+            opacity: 0.7;
+            border-radius: 3px;
         }
+        
+        /** Override the crappy default nav pills from the disillusion theme **/
+        #squatchjs-navbar .nav-pills{
+            margin-left: 0;
+        }
+        #squatchjs-navbar .nav-pills > li {
+            list-style-type: none;
+        }
+
     </style>
     <section id="squatchjs-header">
+
+        <div class="page-header">
+            <h1>squatch.js functions</h1>
+        </div>
+            
+        <p class="lead">
+            Below you'll find a complete function reference for Referral SaaSquatch's squatch.js javascript library.
+        </p>
+        
         <div id="squatchjs-navbar" data-spy="affix" data-offset-top="290" data-clampedwidth="#squatchjs-header">
-            <div class="page-header">
-                <h1>squatch.js functions</h1>
-            </div>
             <ul class="nav-pills">
               <li><a href="#init">init</a></li>
               <li><a href="#autofill">autofill</a></li>
               <li><a href="#open">open</a></li>
               <li><a href="#close">close</a></li>
+              <li class="nav-header">squatch.js functions</li>
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    See also
+                    <b class="caret"></b>
+                </a>
+                  <!-- links -->
+                  <ul class="dropdown-menu">
+                      <li><a href="#">Client-side install guide</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">Buttons best practices</a></li>
+                      <li><a href="#">Page Speed best pactices</a></li>
+                    </ul>
+                  </li>
             </ul>
         </div>
-
-        <p class="lead">
-            Below you'll find a complete function reference for Referral SaaSquatch's squatch.js javascript library.
-        </p>
 
     </section>
 
