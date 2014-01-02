@@ -7,7 +7,7 @@ object Global extends GlobalSettings {
 
   override def onHandlerNotFound(request: RequestHeader) = {
     Future.successful(NotFound(
-      views.html.notFoundPage()
+      views.html.notFound()
     ))
   }
 }
