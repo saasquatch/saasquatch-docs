@@ -9,6 +9,15 @@ object Application extends Controller {
     Ok(views.html.index())
   }
   
+  def robots = Action {
+      if(Play.current.configuration.getString("application.robots") equals "true"){
+          Redirect(routes.Assets.at("yes-robots.txt"))
+      }else{
+          Redirect(routes.Assets.at("no-robots.txt"))
+      }
+  }
+
+  
   def page(slug:String) = Action {
     slug match {
         case "how-it-works"  => Ok(views.html.howItWorks())

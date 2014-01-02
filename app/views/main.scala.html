@@ -13,6 +13,12 @@
         
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
+        @if( !(play.api.Play.current.configuration.getString("application.robots") equals "true") ){
+        <META NAME="ROBOTS" CONTENT="NOINDEX, FOLLOW">
+        <META NAME="ROBOTS" CONTENT="INDEX, NOFOLLOW">
+        <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+        }
+        
         <!-- Optimizely -->
         <script src="//cdn.optimizely.com/js/298173276.js"></script>
         
@@ -67,24 +73,12 @@
 
         <link rel="shortcut icon" href="http://www.referralsaasquatch.com/assets/ico.png">
         <style>
-            .text-color, a.link-big:hover, .navbar .nav > li > a:hover, .navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle, .portfolio-image:after, .blog-post h3 a:hover, footer .tweet_list .tweet_text a , .nav-pills > li > a:hover, .accordion-heading a, .home-header .link:hover 
-            { color: ; }
-
-            .navbar .nav > li > a:hover:before,   .navbar .nav li.dropdown.active > .dropdown-toggle, .portfolio-item-detail a.close:hover, .blog-item-detail a.close:hover, .client-testimonials .client:hover:before, .bx-controls-direction a, .slideshow-left-nav a, .flex-direction-nav a, .contact-form button:hover, #commentform #submit:hover, .nav-pills > li.active > a,.nav-pills > li.active > a:hover, .btn-solid, .btn-solid:hover, .btn-solid:link, .btn-solid:visited, .btn-solid:active
-            { background: ; }
-
-            header .dropdown-menu
-            { background-color: ; }
 
             .navbar .nav > li > .dropdown-menu:after
             { border-bottom: 7px solid ; }
 
             .nav-pills > li > a:hover, .nav-pills > li.active > a,.nav-pills > li.active > a:hover
             { border: 1px solid ; }
-
-            .base_color { background-color: ; }
-
-            
 
             a .link {background-color:#fff;}
             
@@ -123,7 +117,7 @@
     </head>
     
 
-    <body class="page page-template-default vc_responsive"> 
+    <body class="page page-template-default vc_responsive" style="padding-bottom: 0"> 
 
         <!-- Begin Header / Nav -->
         <header class="navbar navbar-fixed-top">
@@ -137,12 +131,12 @@
                     <!-- Navigation --> 
                     <div class="nav-collapse collapse" id="navigation">
                         <ul id="menu-primary-navigation" class="nav">
-                        <li id="menu-item-1759" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1759"><a href="/#features">Features</a></li>
-                        <li id="menu-item-1758" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1758"><a href="/#pricing">Pricing</a></li>
+                        <li id="menu-item-1759" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1759"><a href="http://www.referralsaasquatch.com/#features">Features</a></li>
+                        <li id="menu-item-1758" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1758"><a href="http://www.referralsaasquatch.com/#pricing">Pricing</a></li>
                         <li id="menu-item-990" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-952 current_page_item active menu-item-990"><a href="http://docs.referralsaasquatch.com/">Documentation</a></li>
                         <li id="menu-item-68" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-68"><a href="http://www.referralsaasquatch.com/blog/">Blog</a></li>
                         <li id="menu-item-1564" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1564"><a href="https://app.referralsaasquatch.com/">Login</a></li>
-                        <li id="menu-item-1760" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1760"><a href="/#sign-up">Sign Up</a></li>
+                        <li id="menu-item-1760" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1760"><a href="http://www.referralsaasquatch.com/#sign-up">Sign Up</a></li>
                     </ul>                   
                     </div>
                 </div>
@@ -158,7 +152,7 @@
             padding-top: 60px;
         }
         #docs section:first-child {
-            padding-top:0px;
+            padding-top: 0;
         }
         .docs-sidebar{
             padding-top: 31px;
@@ -283,12 +277,11 @@
               </div>
               
             </form>
-    	   
-    	   
+
 	   </div>
 	   </div>
 	  <div class="span12 text-center" style="color: white; margin-left:0px;">
-    <a href="http://womma.org"><img src="/wp-content/themes/disillusion/img/womma-member-logo.png"/ class="span1 offset10 visible-desktop"  alt="Proud member of WOMMA" /></a> 
+    <a href="http://womma.org"><img src="http://www.referralsaasquatch.com/wp-content/themes/disillusion/img/womma-member-logo.png"/ class="span1 offset10 visible-desktop"  alt="Proud member of WOMMA" /></a> 
     <p style="margin-top: 61px; margin-bottom: -46px; opacity:0.7; ">Copyright © 2013 Referral SaaSquatch.com. All rights reserved.</p>
     <p class="hidden-phone" style="margin-top: 45px; margin-bottom: -46px; opacity:0.7; ">1017 Fort St, Victoria, British Columbia,V8V 3K5, Canada</p>
     </div>
