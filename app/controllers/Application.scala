@@ -26,18 +26,21 @@ object Application extends Controller {
         case "recurly"  => Ok(views.html.recurly())
         case "stripe"  => Ok(views.html.stripe())
         case "zuora"  => Ok(views.html.zuora())
-        
+
+        case "app-integration"  => Ok(views.html.appIntegration())
+
         case "squatchjs"  => Ok(views.html.squatchjs())
         
-        case "bestpractice/buttons"  => Ok(views.html.buttonsBestPractices())
-        case "bestpractice/speed"  => Ok(views.html.pageSpeedBestPractices())
-        case "bestpractice/testing"  => Ok(views.html.testingBestPractices())
+        case "bestpractices/buttons"  => Ok(views.html.buttonsBestPractices())
+        case "bestpractices/speed"  => Ok(views.html.pageSpeedBestPractices())
+        case "bestpractices/testing"  => Ok(views.html.testingBestPractices())
         
         case "faq"  => Ok(views.html.faqGeneral())
         case "faq/pricing"  => Ok(views.html.faqPricing())
         
         case "getting-started"  => Redirect("/")
         case "faq/general"  => Redirect("/faq")
+        case "pricing"  => Redirect("/faq/pricing")
 
         case _ => NotFound
     }
