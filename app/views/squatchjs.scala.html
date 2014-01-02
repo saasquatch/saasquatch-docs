@@ -2,15 +2,28 @@
     "squatch.js function reference",
     "Below you'll find a complete function reference for Referral SaaSquatch's squatch.js javascript library."
 ) {
-    <section>
+    <section id="squatchjs-header">
         <div class="page-header">
-            <h1>squatch.js function reference</h1>
+            <h1>squatch.js functions</h1>
         </div>
         
         <p class="lead">
             Below you'll find a complete function reference for Referral SaaSquatch's squatch.js javascript library.
         </p>
 
+        <div class="navbar" data-spy="affix" data-offset-top="290" data-clampedwidth="#squatchjs-header">
+          <div class="navbar-inner">
+            <a class="brand" href="#">Squatch.js functions</a>
+            <ul class="nav">
+              <li><a href="#init">init</a></li>
+              <li><a href="#autofill">autofill</a></li>
+              <li><a href="#open">open</a></li>
+              <li><a href="#close">close</a></li>
+              <li class="divider-vertical"></li>
+              <li><a href="#squatchjs-header">back to top</a></li>
+            </ul>
+          </div>
+        </div>
     </section>
     
         <section id="init">
@@ -75,7 +88,7 @@
             
               <p>
                 <span class="label">Required for Popup</span> - The parameters with this label can be safely ommitted when all you're doing on the page 
-                is <a href="#squatchjs-autofill">coupon autofill</a>, but they are required to show users their referral program popup. Without these 
+                is <a href="#autofill">coupon autofill</a>, but they are required to show users their referral program popup. Without these 
                 paramaters, your "refer-a-friend" buttons won't work.
               </p>
               
@@ -165,14 +178,14 @@ _sqh.push(['autofill', '#my_coupon']);
                 <h1>open <small>squatch.js function reference</small></h1>
             </div>
             
-            <p>You can programatically open the referral program widget on any page of your application where Referral SaaSquatch javascript has been <a href="#squatchjs-init">initialized</a>.</p>
+            <p>You can programatically open the referral program widget on any page of your application where Referral SaaSquatch javascript has been <a href="#init">initialized</a>.</p>
             <h4>Example</h4>
                 <pre class="prettyprint lang-html">&lt;script type="text/javascript"&gt;
     _sqh.push('open');
 &lt;/script&gt;</pre>
 
             <h3>Pre-Opened Widget</h3>
-            <p>The referral program widget can be pre-opened on any page of your application where Referral SaaSquatch javascript has been <a href="#squatchjs-init">initialized</a>. To do this, add the paramter, "squatch_open" to the URL.</p>
+            <p>The referral program widget can be pre-opened on any page of your application where Referral SaaSquatch javascript has been <a href="#init">initialized</a>. To do this, add the paramter, "squatch_open" to the URL.</p>
             <h4>Example</h4>
             <pre> http://example.com/?squatch_open</pre>
             
@@ -184,7 +197,7 @@ _sqh.push(['autofill', '#my_coupon']);
                 <h1>close <small>squatch.js function reference</small></h1>
             </div>
         
-            <p>You can programatically open the referral program widget on any page of your application where Referral SaaSquatch javascript has been <a href="#squatchjs-init">initialized</a>.</p>
+            <p>You can programatically open the referral program widget on any page of your application where Referral SaaSquatch javascript has been <a href="#init">initialized</a>.</p>
             <h4>Example</h4>
                 <pre class="prettyprint lang-html">&lt;script type="text/javascript"&gt;
     _sqh.push('close');
