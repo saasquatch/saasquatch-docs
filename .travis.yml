@@ -1,6 +1,6 @@
 language: scala
 scala:
-  - 2.10
+  - 2.10.2
 jdk:
   #the scala compiler has problems with jdk7 intermittenly
   - openjdk6
