@@ -41,6 +41,9 @@ object Application extends Controller {
         case "getting-started"  => Redirect("/")
         case "faq/general"  => Redirect("/faq")
         case "pricing"  => Redirect("/faq/pricing")
+        
+        case "contact"  => Redirect("http://www.referralsaasquatch.com/contact-us/")
+        case "about"  => Redirect("http://www.referralsaasquatch.com/about-us/")
 
         case _ => NotFound
     }
