@@ -2,7 +2,27 @@
     "squatch.js function reference",
     "Below you'll find a complete function reference for Referral SaaSquatch's squatch.js javascript library."
 ) {
+
+    <script type="text/javascript">
+        $('#squatchjs-navbar').scrollspy();
+    </script>
+    <style type="text/css">
+        #squatchjs-navbar.affix{
+            top: 130px;
+        }
+    </style>
     <section id="squatchjs-header">
+        <div id="squatchjs-navbar" class="navbar" data-spy="affix" data-offset-top="290" data-clampedwidth="#squatchjs-header">
+          <div class="navbar-inner">
+            <ul class="nav" style="float: left;">
+              <li><a href="#init">init</a></li>
+              <li><a href="#autofill">autofill</a></li>
+              <li><a href="#open">open</a></li>
+              <li><a href="#close">close</a></li>
+            </ul>
+          </div>
+        </div>
+        
         <div class="page-header">
             <h1>squatch.js functions</h1>
         </div>
@@ -11,21 +31,8 @@
             Below you'll find a complete function reference for Referral SaaSquatch's squatch.js javascript library.
         </p>
 
-        <div class="navbar" data-spy="affix" data-offset-top="290" data-clampedwidth="#squatchjs-header">
-          <div class="navbar-inner">
-            <a class="brand" href="#">Squatch.js functions</a>
-            <ul class="nav">
-              <li><a href="#init">init</a></li>
-              <li><a href="#autofill">autofill</a></li>
-              <li><a href="#open">open</a></li>
-              <li><a href="#close">close</a></li>
-            </ul>
-          </div>
-        </div>
     </section>
-    <script type="text/javascript">
-        $('#navbar').scrollspy();
-    </script>
+
         <section id="init">
           <div class="page-header">
             <h1>init <small>squatch.js function reference</small></h1>
