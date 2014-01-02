@@ -45,7 +45,7 @@ object Application extends Controller {
         case "contact"  => Redirect("http://www.referralsaasquatch.com/contact-us/")
         case "about"  => Redirect("http://www.referralsaasquatch.com/about-us/")
 
-        case _ => NotFound
+        case _ => NotFound(views.html.notFound())
     }
   }
 
