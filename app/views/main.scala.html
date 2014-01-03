@@ -13,7 +13,7 @@
         
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        @if( !Play.current.configuration.getBoolean("application.robots").getOrElse(false) ){
+        @if( !play.api.Play.current.configuration.getBoolean("application.robots").getOrElse(false) ){
         <META NAME="ROBOTS" CONTENT="NOINDEX, FOLLOW">
         <META NAME="ROBOTS" CONTENT="INDEX, NOFOLLOW">
         <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
