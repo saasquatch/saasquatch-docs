@@ -4,20 +4,21 @@
 ) {
 
     <script type="text/javascript">
-        jQuery('#squatchjs-navbar').scrollspy();
-        jQuery('.dropdown-toggle').dropdown();
+        jQuery.ready(function(){
+            jQuery('.dropdown-toggle').dropdown();
+            jQuery('#squatchjs-navbar').scrollspy();
+        });
     </script>
     <style type="text/css">
         /** Styles that are used when AFFIXED */
         #squatchjs-navbar.affix{
-            top: 130px;
+            top: 100px;
             background: #FFF;
-            opacity: 0.9;
             border-radius: 3px;
             border: 1px solid #CCC;
         }
          #squatchjs-navbar .nav-pills > li > a {
-            display: block;
+            
         }
         /** Override the crappy default nav pills from the disillusion theme **/
         #squatchjs-navbar .nav-pills{
@@ -54,10 +55,10 @@
                 </a>
                   <!-- links -->
                   <ul class="dropdown-menu">
-                      <li><a href="#">Client-side install guide</a></li>
+                      <li><a href="/app-integration">Client-side install guide</a></li>
                       <li class="divider"></li>
-                      <li><a href="#">Buttons best practices</a></li>
-                      <li><a href="#">Page Speed best pactices</a></li>
+                      <li><a href="/bestpractices/buttons">Buttons best practices</a></li>
+                      <li><a href="/bestpractices/speed">Page Speed best pactices</a></li>
                     </ul>
                   </li>
             </ul>
