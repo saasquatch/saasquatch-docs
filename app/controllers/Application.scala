@@ -34,6 +34,7 @@ object Application extends Controller {
         case "bestpractices/buttons"  => Ok(views.html.buttonsBestPractices())
         case "bestpractices/speed"  => Ok(views.html.pageSpeedBestPractices())
         case "bestpractices/testing"  => Ok(views.html.testingBestPractices())
+        case "bestpractices/common-pitfalls"  => Ok(views.html.commonPitfallsBestPractices())
         
         case "faq"  => Ok(views.html.faqGeneral())
         case "faq/pricing"  => Ok(views.html.faqPricing())

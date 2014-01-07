@@ -1,0 +1,72 @@
+@main(
+    "Common Pitfalls",
+    "Many common Referral SaaSquatch integration pitfalls can be easily avoided by reading this guide."
+    ) {
+    <section>
+    
+        <div class="page-header">
+            <h1>Common Pitfalls <small>Best Practice Guide</small></h1>
+            <p class="lead">Many common Referral SaaSquatch integration pitfalls can be easily avoided by reading this guide.</p>
+        </div>
+        
+        
+        <h3>Trouble testing referral links and 'autofill' on localhost or development</h3>
+        
+        <p>
+            By default each user gets a unique referral link (e.g. ssqt.ch/21bnmb12) to share with their friends. When someone clicks on these links, Referral SaaSquatch 
+            sets a cookie to track the referral, and redirects them to the company homepage. Even though a user is redirected to the live website (i.e. http://livesite.com), the cookie can
+            still be read from their development environment (i.e. http://localhost:8080). This is possible because the cookie is tracked on our subdomain (app.referralsaasquatch.com).
+        </p>
+        <p>
+            See also: <a href="/squatchjs#autofill">'autofill' Javascript API reference</a>
+        </p>
+        
+        <h3>Forgetting to set up the coupon code during signup</h3>
+        
+        <p><strong>For Stripe and Recurly</strong> - you must use <code>sqh.push(['autofill', ...]);</code><a href="/squatchjs#autofill">(docs)</a> to grab the referral/coupon code from the cookie and include that in your Recurly or Stripe subscription API calls.</p>
+        <p><strong>For Braintree and Zuora</strong> - you must make a call to the Referral SaaSquatch REST API during checkout to mark the referral as complete.</p> 
+        <p>
+            See also: <a href="/squatchjs#autofill">'autofill' Javascript API reference</a>
+        </p>
+
+        <h3>Forgetting to add a call to action button</h3>
+        
+        <p>Adding squatch.js to your app is not enough. You should also add <code>class="squatchpop"</code> to a button in your app, or use <code>_sqh.push('open');</code> javascript to make sure that your customers can access your referral program.</p> 
+        <p>
+            See also: <a href="/bestpractices/buttons">Refer-a-friend buttons Best Practice Guide</a>
+        </p>
+
+        <h3>Using the wrong account_id</h3>
+        
+        <p>People often pass the wrong <code>account_id</code> to <code>sqh.push(['init', ...]);</code><a href="/squatchjs#init">(docs)</a>. Here are the most common mistakes for account_id</p>
+        
+        <ul>
+            <li>The account_id was left blank</li>
+            <li>The account_id could not be verified using the Braintree/Stripe/Recurly/Zuora API because that account doesn't exist yet</li>
+            <li>An account_id from a live system is being used on a test system</li>
+        </ul>
+        
+        <p>Depending on your payment system, a different account_id should be used. Here is the full reference:</p>
+        <table>
+            <tr>
+                <td>Braintree</td>
+                <td>The <code>id</code> of a Braintree Account object</td>
+            </tr>
+            <tr>
+                <td>Stripe</td>
+                <td>The <code>id</code> of a Stripe Customer object</td>
+            </tr>
+            <tr>
+                <td>Recurly</td>
+                <td>The <code>id</code> of a Recurly Account object</td>
+            </tr>
+            <tr>
+                <td>Zuora</td>
+                <td>The <code>id</code> of a Zuora Account object</td>
+            </tr>
+        </table>
+        <p>
+            See also: <a href="/squatchjs#init">'init' Javascript API reference</a>
+        </p>
+    </section>
+}
