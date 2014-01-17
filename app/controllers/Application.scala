@@ -16,6 +16,11 @@ object Application extends Controller {
           Redirect(routes.Assets.at("no-robots.txt"))
       }
   }
+  
+  // Handles trailing slashes... http://stackoverflow.com/questions/13189095/play-framework2-remove-trailing-slash-from-urls
+  def untrail(path: String) = Action { 
+        MovedPermanently("/" + path)
+  }
 
   
   def page(slug:String) = Action {

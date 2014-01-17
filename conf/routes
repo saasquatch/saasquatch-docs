@@ -12,4 +12,5 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 GET     /robots.txt                 controllers.Application.robots()
 
 # Maps documentation page slugs
+GET     /*slug/                     controllers.Application.untrail(slug: String)
 GET     /*slug                      controllers.Application.page(slug)
