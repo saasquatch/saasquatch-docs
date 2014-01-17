@@ -3,6 +3,42 @@
     "Referral SaaSquatch Documentation is the best way to discover how to use our payment integrations with Braintree, Recurly, Stripe and Zuora. It's also where to find out about our API and Squatch.js"
 ) {
 
+    <script type="text/css">
+        // This javascript redirects the anchor tags from www.referralsaasquatch.com/documentation to the new docs.referralsaasquatch.com formats
+        // Closure-wrapped for security.
+        (function () {
+            var anchorMap = {
+                    "how-it-works": "/how-it-works",
+                    "braintree": "/braintree",
+                    "recurly": "/recurly",
+                    "stripe": "/stripe",
+                    "zuora": "/zuora",
+                    "app-integration": "/app-integration",
+                    "squatchjs-init": "/squatchjs#init",
+                    "squatchjs-autofill": "/squatchjs#autofill",
+                    "squatchjs-open": "/squatchjs#open",
+                    "squatchjs-close": "/squatchjs#close",
+                    "bestpractice-buttons": "/bestpractices/buttons",
+                    "bestpractice-speed": "/bestpractices/speed",
+                    "general": "/faq",
+                    "pricing": "/faq/pricing"
+            }
+            /*
+            Best practice for extracting hashes:
+            http://stackoverflow.com/a/10076097/151365
+            */
+            var hash = window.location.hash.substring(1);
+            if (hash) {
+                /*
+                Best practice for javascript redirects: 
+                http://stackoverflow.com/a/506004/151365
+                */
+                hash = hash.toLowerCase();
+                window.location.replace(anchorMap[hash]);
+            }
+        })();
+    </script>
+
     <section id="getting-started">
         <div class="page-header">
             <h1>Getting Started</h1>
