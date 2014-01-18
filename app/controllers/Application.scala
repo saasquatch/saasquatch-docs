@@ -11,9 +11,9 @@ object Application extends Controller {
   
   def robots = Action {
       if(Play.current.configuration.getBoolean("application.robots").getOrElse(false)){
-          Redirect(routes.Assets.at("yes-robots.txt"))
+          controllers.Assets.at(path="/public", "yes-robots.txt");//Redirect(routes.Assets.at("yes-robots.txt"))
       }else{
-          Redirect(routes.Assets.at("no-robots.txt"))
+          controllers.Assets.at(path="/public", "no-robots.txt")//Redirect(routes.Assets.at("no-robots.txt"))
       }
   }
   
