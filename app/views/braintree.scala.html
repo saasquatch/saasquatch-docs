@@ -29,15 +29,9 @@
             <ol>
                 <li><a href="https://www.braintreepayments.com/">Login to Braintree</a> and go to Settings -> Processing. 
                     Add a custom field with the API name <b>saasquatch_coupon</b> with the "store and pass through" option set.</li>
-                <li>Go to Settings -> Recurring Billing and add two discounts.
-                    <ul>
-                        <li>
-                            The 1st discount must be given the id <b>saasquatch_coupon_discount</b>, name "Saasquatch Coupon Discount", and Amount (1.00 ~ though this value isn't really used, it's just a placeholder because the field can't be left 0 or empty).
-                        </li><li>
-                            The 2nd discount must be given the id <b>saasquatch_referral_discount</b>, name "Saasquatch Referral Discount", and Amount (1.00 ~ again a placeholder).
-                        </li>
-                    </ul>
-                </li>
+                <li>Go to Recurring Billing -> Add-ons / Discounts on the left-hand menu and add a discount with the id <b>saasquatch_discount</b>, 
+                    name "Saasquatch Discount", and amount (1.00 ~ though this value isn't really used, it's just a placeholder because the field can't be left 0 or empty).
+                    Leave the duration as "For Duration of Subscription".</li>
                 <li>Repeat this process for both your <b>test</b> and <b>live</b> accounts.</li>
             </ol>
             <p class="muted">
