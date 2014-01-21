@@ -46,9 +46,25 @@
             </p>
             <ol>
                 <li><a href="https://www.braintreepayments.com/">Login to Braintree</a> and go to Account -> My User then scoll down and open "API Keys" under Authorization. <b>Copy the “Merchant ID”, "Public Key" and "Private Key"</b>.</li>
-                <li><a href="http://app.referralsaasquatch.com">Login to Referral SaaSquatch</a> and go to “Setup” and click “Authorize”. <b>Paste in the “Merchant ID”, "Public Key" and "Private Key" that you just copied</b>, and press connect.</li>
+                <li><a href="http://app.referralsaasquatch.com">Login to Referral SaaSquatch</a> and go to “Install” and click “Authorize”. <b>Paste in the “Merchant ID”, "Public Key" and "Private Key" that you just copied</b>, and press connect.</li>
                 <li>Repeat this process for both your <b>test</b> and <b>live</b> accounts.</li>
             </ol>
+
+            <hr/>
+            <h3><span class="label label-success">Step 3</span> Add SaaSquatch to your Braintree webhooks</h3>
+
+            <p>
+            We use Braintree webhooks to determine when referral discounts should be made, updated, or ended.
+            </p>
+
+            <ol>
+                <li><a href="http://app.referralsaasquatch.com">Login to Referral SaaSquatch</a> and go to “Install” and copy the "Webhook URL”.</li>
+                <li><a href="https://www.braintreepayments.com/">Login to Braintree</a> and go to Settings -> Webhooks. 
+                    Click "Create a webhook" if you have no existing webhooks or "New Webhook" otherwise. Paste the 
+                    SaaSquatch "Webhook URL", check the box for all available Subscription notifications, and click "Create Webhook".</li>
+                <li>Repeat this process for both your <b>test</b> and <b>live</b> accounts.</li>
+            </ol>
+            
             
             <hr/>
             <h3><span class="label label-success">Step 3</span> Add the custom field to your Braintree payment page</h3>
