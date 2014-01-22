@@ -22,7 +22,10 @@
         </ul>
 
         <hr/>
-        <h3><span class="label label-success">Step 1</span> Set up a Braintree Custom Field and Discount</h3>
+        <h3><span class="label label-success">Step 1</span> Configure Braintree</h3>
+        <p>Before installation Referral SaaSquatch there are a few things that need to be configured using <a href="https://www.braintreepayments.com/">Braintree</a> because they can't be set up using the API.</p>
+
+        <h4>Set up a Braintree Custom Field and Discount</h4>
         
         <p>
         We use Braintree's Custom Fields to track when someone uses a referral code and Braintree's Discounts to apply referral discounts. These fields need to be set up in Braintree before turning on the referral program.
@@ -33,14 +36,13 @@
             <li>Go to Recurring Billing -> Add-ons / Discounts on the left-hand menu and add a discount with the id <b>saasquatch_discount</b>, 
                 name "Saasquatch Discount", and amount (1.00 ~ though this value isn't really used, it's just a placeholder because the field can't be left 0 or empty).
                 Leave the duration as "For Duration of Subscription".</li>
-            <li>Repeat this process for both your <b>test</b> and <b>live</b> accounts.</li>
         </ol>
         <p class="muted">
             <b>Note:</b> It is not required to setup a test environment but it will make testing easier for you.
         </p>
-        
+
         <hr/>
-        <h3><span class="label label-success">Step 2</span> Add your Braintree API Keys in the SaaSquatch Portal</h3>
+        <h4>Add your Braintree API Keys in the SaaSquatch Portal</h4>
         
         <p>
         We connect to the Braintree API using your Braintree API keys. This lets us automatically apply discounts to people’s accounts.
@@ -48,11 +50,10 @@
         <ol>
             <li><a href="https://www.braintreepayments.com/">Login to Braintree</a> and go to Account -> My User then scoll down and open "API Keys" under Authorization. <b>Copy the “Merchant ID”, "Public Key" and "Private Key"</b>.</li>
             <li><a href="http://app.referralsaasquatch.com">Login to Referral SaaSquatch</a> and go to “Install” and click “Authorize”. <b>Paste in the “Merchant ID”, "Public Key" and "Private Key" that you just copied</b>, and press connect.</li>
-            <li>Repeat this process for both your <b>test</b> and <b>live</b> accounts.</li>
-        </ol>
-
+        </ol>        
+        
         <hr/>
-        <h3><span class="label label-success">Step 3</span> Add SaaSquatch to your Braintree webhooks</h3>
+        <h4>Add SaaSquatch to your Braintree webhooks</h4>
 
         <p>
         We use Braintree webhooks to determine when referral discounts should be made, updated, or ended.
@@ -63,26 +64,29 @@
             <li><a href="https://www.braintreepayments.com">Login to Braintree</a> and go to Settings -> Webhooks. 
                 Click "Create a webhook" if you have no existing webhooks or "New Webhook" otherwise. Paste the 
                 SaaSquatch "Webhook URL", check the box for all available Subscription notifications, and click "Create Webhook".</li>
-            <li>Repeat this process for both your <b>test</b> and <b>live</b> accounts.</li>
         </ol>
+
+        <p>
+            Repeat this process for both your <b>test</b> and <b>live</b> accounts. <b>Tired of all the clicking?</b> Help us reduce the work here by encouraging Braintree to add Oauth and RestHook support.
+        </p>
         
-        
+
         <hr/>
-        <h3><span class="label label-success">Step 4</span> Connect referrals with the SaaSquatch API</h3>
+        <h3><span class="label label-success">Step 2</span> Connect referrals with the SaaSquatch API</h3>
         
         <p>
-        On your payment page, you'll need to add an extra input element that accepts a <span class="docs-monospace">referral_code</span> and pass it to us via the <a href="/api">REST API</a> after the payment information has been successfully added to your customer in Braintree.
+        On your payment page you'll need to add an extra input element that accepts a <span class="docs-monospace">referral_code</span> and pass it to us via the <a href="/api">REST API</a> after the payment information has been successfully added to your customer in Braintree.
         </p>
         <ol>
             <li>Add a <span class="docs-monospace">referral_code</span> field to your payment form. You can show it to your users so that they can type in their friend's codes, or it can just be a hidden input field on the page.
-                <pre>&lt;input type="hidden" name="referral_code" /&gt;</pre>
+                <pre class="lang-html">&lt;input type="hidden" name="referral_code" /&gt;</pre>
             </li>
             <li>Use <a href="/squatchjs#autofill">Squatch.js Autofill</a> to read the referral cookie and set the value in the form input you just created.
-                <pre>_sqh.push(["autofill", "name=referral_code"]);</pre>
+                <pre class="lang-js">_sqh.push(["autofill", "name=referral_code"]);</pre>
             </li>
             <li>
                 Lookup the coupon information to include in your Braintree Subscription call using our REST API.
-                <pre>GET https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/coupon/{REFERRAL_CODE}</pre>
+                <pre class="lang-curl">GET https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/coupon/{REFERRAL_CODE}</pre>
                 <span class="muted">This step is important because it ensures that new customers will receive their 
                 discount immediately. If this step is left out then the referral discount will be applied as a refund to the first transaction 
                 at a later time. Referrers get credit on their next bill.</span>
@@ -93,25 +97,22 @@
             </li>
         </ol>
 
-        <div class="well">
-            <span class="label">Proration</span>
-            If you're using subscriptions with automatic proration and you change the subscription price, you will need to recalculate the discount during upgrades and downgrades.
+        <p>
+            <strong>For Proration</strong> - If you're using subscriptions with automatic proration and you change the subscription price, you will need to recalculate the discount during upgrades and downgrades.
             You need to apply the result to the subscription before the prorated charges go through. If this step is left out then the prorated charge will have the existing 
             discount subtracted from it and the new discount amount will be applied to the upcoming bill.
             
-            <pre>GET https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/account/{ACCOUNT_ID}</pre>
-        </div>
-        <div class="well">
-            <span class="label">Transparent Redirects</span>
-            <p>
-                Using transparent redirects? Use <span class="docs-monospace">customer[custom_fields][saasquatch_coupon]</span> instead of <span class="docs-monospace">referral_code</span> in your forms
-                and read this <a href="https://www.braintreepayments.com/docs/customers/tr_fields#custom_fields">Braintree article about custom fields</a>.
-            </p>
-        </div>
+            <pre class="lang-curl">GET https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/account/{ACCOUNT_ID}</pre>
+        </p>
+        <p>
+            <strong>For Transparent Redirects</strong> When you're setting up your payment forms use <span class="docs-monospace">customer[custom_fields][saasquatch_coupon]</span> instead 
+            of <span class="docs-monospace">referral_code</span> in your forms and read 
+            this <a href="https://www.braintreepayments.com/docs/customers/tr_fields#custom_fields">Braintree article about custom fields</a>.
+        </p>
         <hr/>
         
         <h4>That's it!</h4>
-        <p>Check out our <a href="/bestpractices/common-pitfalls">Common Pitfalls Guide</a></p>
+        <p>Next: Check out our <a href="/bestpractices/common-pitfalls">Common Pitfalls Guide</a></p>
 
     </section>
 }

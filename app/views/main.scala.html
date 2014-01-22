@@ -280,7 +280,7 @@
     
     <!-- tries to run prettyprint -->
     <script type="text/javascript">
-        jQuery(document).ready(function(){ 
+        jQuery(document).load(function(){ 
             var tryPretty = function(){
                 if(window['prettyPrint']){
                     prettyPrint();
@@ -288,7 +288,7 @@
                     setTimeout(tryPretty, 200);
                 }
             }
-            tryPretty();
+            setTimeout(tryPretty, 200);
         });
     </script>
     
