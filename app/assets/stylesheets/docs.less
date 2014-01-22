@@ -1,0 +1,51 @@
+.docs{
+    /* .docs is applied to the BODY in documentation to differentiate styles in documentation from that in the website */   
+}
+
+
+
+/* OVERRIDES default h2 styling from the website */
+.docs h2{
+    font-size: 52px;
+    font-weight: 600;
+}
+
+.docs section {
+    padding-top: 60px;
+}
+
+.docs section:first-child {
+    padding-top: 0;
+}
+
+
+/**
+    Docs Sidebar 
+**/
+.docs-sidebar{
+    padding-top: 31px;
+}
+
+
+/*
+    Monospace fonts are used for URLs and other pseudo-code like blocks
+*/
+.docs-monospace{
+    font-family: Monaco,Consolas,"Lucida Console",monospace;
+    font-size: 12px;
+    line-height: 1.7em;
+    white-space: pre;
+    white-space: -o-pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/** Styles removed from the body -- were probably piped through by wordpress plugin theming **/
+.navbar .nav > li > .dropdown-menu:after
+{ border-bottom: 7px solid ; }
+
+.nav-pills > li > a:hover, .nav-pills > li.active > a,.nav-pills > li.active > a:hover
+{ border: 1px solid ; }
+
+a .link {background-color:#fff;}

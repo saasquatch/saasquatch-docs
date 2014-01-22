@@ -26,91 +26,93 @@
             to any URLs in your account's webhook settings. You can find a full list of all event types below.
         </p>
 
-        <h4>Retries</h4>
-        
         <p>
-            Rest hooks are delivered immediately after an event is triggered. If the endpoint does not successfully respond to a delivery 
+            <strong>Retry Policy</strong> - Rest hooks are delivered immediately after an event is triggered. If the endpoint does not successfully respond to a delivery 
             attempt (i.e. respond with a status code other than 200), the delivery will be considered as failed. Failed deliveries will be 
             reattempted every hour after the previous failed attempt until either a successful delivery is made or until 72 attempts have 
             been made (approximately 3 days at the rate of 1 retry per hour).
         </p>
 
-        <h4>Multiple Subscriptions</h4>
-        
         <p>
-            Multiple endpoints may be subscribed, in which case each endpoint will be notified using the behavior described above. Duplicate
+            <strong>Multiple Subscriptions</strong> - Multiple endpoints may be subscribed, in which case each endpoint will be notified using the behavior described above. Duplicate
             endpoint urls will simply result in one subscription being created for that url.
         </p>
 
-        <p>
-            <span class="label">Please Note</span> Delivery order of events is not guaranteed and delivery timing is not guaranteed. Avoid building logic that relies on a specific delivery ordering of webhook notifications.
-        </p>
-    
-        <table>
-            <tr>
-                <th>
-                    Method
-                </th>
-                <th>
-                    Route
-                </th>
-                <th>
-                    Description
-                </th>
-            </tr>
-            <tr>
-                <td>
-                    GET
-                </td>
-                <td>
-                    /api/v1/{TENANT_ALIAS}/subscription
-                </td>
-                <td>
-                    List webhook subscriptions
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    POST
-                </td>
-                <td>
-                    /api/v1/{TENANT_ALIAS}/subscription
-                </td>
-                <td>
-                    Create a webhook subscription
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    DELETE
-                </td>
-                <td>
-                    /api/v1/{TENANT_ALIAS}/subscription/{URL}
-                </td>
-                <td>
-                    Delete a webhook subscription
-                </td>
-            </tr>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Method
+                    </th>
+                    <th>
+                        Route
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        GET
+                    </td>
+                    <td class="docs-monospace">
+                        /api/v1/{TENANT_ALIAS}/subscription
+                    </td>
+                    <td>
+                        List webhook subscriptions
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        POST
+                    </td>
+                    <td class="docs-monospace">
+                        /api/v1/{TENANT_ALIAS}/subscription
+                    </td>
+                    <td>
+                        Create a webhook subscription
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        DELETE
+                    </td>
+                    <td class="docs-monospace">
+                        /api/v1/{TENANT_ALIAS}/subscription/{URL}
+                    </td>
+                    <td>
+                        Delete a webhook subscription
+                    </td>
+                </tr>
+            </tbody>
         </table>
         
-        <table>
-            <tr>
-                <th>
-                    Event type
-                </th>
-                <th>
-                    Description
-                </th>
-            </tr>
-            <tr>
-                <td>
-                    coupon.created
-                </td>
-                <td>
-                    Sent in response to a new referral coupon being created.
-                </td>
-            </tr>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Event type
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                </tr>
+            </thead>
+
+                <tr>
+                    <td class="docs-monospace">coupon.created</td>
+                    <td>
+                        Sent in response to a new referral coupon being created.
+                    </td>
+                </tr>
+            </tbody>
         </table>
+        <p class="well">
+            <span class="label">Please Note</span> Delivery order of events is not guaranteed and delivery timing is not guaranteed. Avoid building logic that relies on a specific delivery ordering of webhook notifications.
+        </p>
+
 
         <hr />
         

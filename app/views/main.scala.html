@@ -1,5 +1,4 @@
 @(title: String, descr: String)(content: Html)
-
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -67,19 +66,9 @@
         <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
         
         <link rel="stylesheet" href="http://www.referralsaasquatch.com/wp-content/themes/disillusion/style.css">
+        <link rel="stylesheet" href="@routes.Assets.at("stylesheets/docs.css")">
 
         <link rel="shortcut icon" href="http://www.referralsaasquatch.com/assets/ico.png">
-        <style>
-
-            .navbar .nav > li > .dropdown-menu:after
-            { border-bottom: 7px solid ; }
-
-            .nav-pills > li > a:hover, .nav-pills > li.active > a,.nav-pills > li.active > a:hover
-            { border: 1px solid ; }
-
-            a .link {background-color:#fff;}
-            
-        </style>
 
         
         <!-- SEO Metadata -->
@@ -114,7 +103,7 @@
     </head>
     
 
-    <body class="page page-template-default vc_responsive" style="padding-bottom: 0"> 
+    <body class="page docs" style="padding-bottom: 0"> 
 
         <!-- Begin Header / Nav -->
         <header class="navbar navbar-fixed-top" data-swiftype-index="false">
@@ -145,22 +134,13 @@
     <div class="container">
 
     <style type="text/css">
-        section {
-            padding-top: 60px;
-        }
-        #docs section:first-child {
-            padding-top: 0;
-        }
-        .docs-sidebar{
-            padding-top: 31px;
-        }
 
     </style>
 
     <!-- Docs nav
     ================================================== -->
-    <div class="row" id="docs" style="padding-bottom: 60px;" data-swiftype-index="false">
-      <div class="span3 docs-sidebar">
+    <div class="row" style="padding-bottom: 60px;">
+      <div class="span3 docs-sidebar" data-swiftype-index="false">
         <ul class="nav nav-list docs-sidenav">
           <li><a href="/getting-started"><i class="icon-chevron-right"></i>Getting Started</a></li>
           <li><a href="/how-it-works"><i class="icon-chevron-right"></i>How it works</a></li>
@@ -206,107 +186,113 @@
 
     </div><!-- end of main content .container -->
 
-<!--Start of Zopim Live Chat Script-->
-<script type="text/javascript">
-    window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
-    d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
-    _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
-    $.src='//v2.zopim.com/?1Kt2Mb45MqIqImn4EtgTXm9GLUYtWuUh';z.t=+new Date;$.
-    type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
-</script>
-<!--End of Zopim Live Chat Script-->
-
-<!-- tries to run prettyprint -->
-<script type="text/javascript">
-    jQuery(document).ready(function(){ 
-        var tryPretty = function(){
-            if(window['prettyPrint']){
-                prettyPrint();
-            }else{
-                setTimeout(tryPretty, 200);
-            }
-        }
-        tryPretty();
-    });
-</script>
-    
-<!-- Begin footer -->
-<footer id="footer" data-swiftype-index="false">
-	
-	<section class="copyright">
-	<div class="container">
-	    <div class="row-fluid">
-	    <div class="span7 text-center hidden-phone">
-	        <div class="row-fluid">
-	        <div class="span3" >
-    	        <ul style="list-style-type: none; color:white; font-weight:300;">
-    	            <li>Product</li>
-    	            <li class="active"><a href="http://www.referralsaasquatch.com/#features">Features</a></li>
-    	            <li class="active"><a href="http://www.referralsaasquatch.com/#testimonials">Testimonials</a></li>
-    	            <li><a href="http://www.referralsaasquatch.com/#pricing">Pricing</a></li>
-    	            <li><a href="http://docs.referralsaasquatch.com/">Documentation</a></li>
-    	       </ul>
-	        </div>
-	        <div class="span3" >
-    	        <ul style="list-style-type: none; color:white; font-weight:300;">
-    	            <li>Updates</li>
-    	            <li><a href="http://www.referralsaasquatch.com/blog">Blog</a></li>
-    	            <li><a href="http://www.referralsaasquatch.com/news">News</a></li>
-    	            <li><a href="http://twitter.com/getSaaSquatch">Twitter</a></li>
-    	            <li><a href="http://sightings.referralsaasquatch.com">Sightings</a></li>
-    	       </ul>
-	        </div>
-	        <div class="span3">
-    	        <ul style="list-style-type: none; color:white; font-weight:300;">
-    	            <li>Company</li>
-    	            <li><a href="http://www.referralsaasquatch.com/about">About</a></li>
-    	            <li><a href="http://www.referralsaasquatch.com/contact-us">Contact Us</a></li>
-    	            <li><a href="http://www.referralsaasquatch.com/media">Media</a></li>
-    	            <li><a href="http://www.referralsaasquatch.com/careers">Careers</a></li>
-    	       </ul>
-	        </div>
-	        <div class="span3">
-    	        <ul style="list-style-type: none; color:white; font-weight:300;">
-    	            <li>Legal</li>
-    	            <li><a href="http://www.referralsaasquatch.com/terms-of-service">Terms of Service</a></li>
-    	            <li><a href="http://www.referralsaasquatch.com/privacy-policy">Privacy Policy</a></li>
-    	       </ul>
-	        </div>
-	        </div>
-	   </div>
-	   
-	   <div class="span4 hidden-phone">
-    	   <p style="color:white;">Looking to learn more about <strong>Referral Marketing?</strong>
-    	   Signup for our Crash Email Course and weekly blog articles!</p>
-            <form action="https://www.getdrip.com/6178388/campaigns/68/subscribe" method="post" target="_blank" data-drip-embedded-form="68">
+    <!-- Begin footer -->
+    <footer id="footer" data-swiftype-index="false">
+    	
+    	<section class="copyright">
+    	<div class="container">
+    	    <div class="row-fluid">
+    	    <div class="span7 text-center hidden-phone">
+    	        <div class="row-fluid">
+    	        <div class="span3" >
+        	        <ul style="list-style-type: none; color:white; font-weight:300;">
+        	            <li>Product</li>
+        	            <li class="active"><a href="http://www.referralsaasquatch.com/#features">Features</a></li>
+        	            <li class="active"><a href="http://www.referralsaasquatch.com/#testimonials">Testimonials</a></li>
+        	            <li><a href="http://www.referralsaasquatch.com/#pricing">Pricing</a></li>
+        	            <li><a href="http://docs.referralsaasquatch.com/">Documentation</a></li>
+        	       </ul>
+    	        </div>
+    	        <div class="span3" >
+        	        <ul style="list-style-type: none; color:white; font-weight:300;">
+        	            <li>Updates</li>
+        	            <li><a href="http://www.referralsaasquatch.com/blog">Blog</a></li>
+        	            <li><a href="http://www.referralsaasquatch.com/news">News</a></li>
+        	            <li><a href="http://twitter.com/getSaaSquatch">Twitter</a></li>
+        	            <li><a href="http://sightings.referralsaasquatch.com">Sightings</a></li>
+        	       </ul>
+    	        </div>
+    	        <div class="span3">
+        	        <ul style="list-style-type: none; color:white; font-weight:300;">
+        	            <li>Company</li>
+        	            <li><a href="http://www.referralsaasquatch.com/about">About</a></li>
+        	            <li><a href="http://www.referralsaasquatch.com/contact-us">Contact Us</a></li>
+        	            <li><a href="http://www.referralsaasquatch.com/media">Media</a></li>
+        	            <li><a href="http://www.referralsaasquatch.com/careers">Careers</a></li>
+        	       </ul>
+    	        </div>
+    	        <div class="span3">
+        	        <ul style="list-style-type: none; color:white; font-weight:300;">
+        	            <li>Legal</li>
+        	            <li><a href="http://www.referralsaasquatch.com/terms-of-service">Terms of Service</a></li>
+        	            <li><a href="http://www.referralsaasquatch.com/privacy-policy">Privacy Policy</a></li>
+        	       </ul>
+    	        </div>
+    	        </div>
+    	   </div>
+    	   
+            <div class="span4 hidden-phone">
+                <p style="color:white;">Looking to learn more about <strong>Referral Marketing?</strong>
+                Signup for our Crash Email Course and weekly blog articles!</p>
+                <form action="https://www.getdrip.com/6178388/campaigns/68/subscribe" method="post" target="_blank" data-drip-embedded-form="68">
                 <div>
-                
-                <input style="margin-bottom: 0px;" type="email" name="fields[email]" placeholder="email" value="" />
-                <input class="btn" type="submit" name="submit" value="Sign Up" data-drip-attribute="sign-up-button" />
-              </div>
-              
-            </form>
-
-	   </div>
-	   </div>
-	  <div class="span12 text-center" style="color: white; margin-left:0px;">
-    <a href="http://womma.org"><img src="http://www.referralsaasquatch.com/wp-content/themes/disillusion/img/womma-member-logo.png"/ class="span1 offset10 visible-desktop"  alt="Proud member of WOMMA" /></a> 
-    <p style="margin-top: 61px; margin-bottom: -46px; opacity:0.7; ">Copyright © 2014 Referral SaaSquatch.com. All rights reserved.</p>
-    <p class="hidden-phone" style="margin-top: 45px; margin-bottom: -46px; opacity:0.7; ">1017 Fort St, Victoria, British Columbia,V8V 3K5, Canada</p>
-    </div>
-	  
-	</div>
-	</section>
-
-</footer>
-<!-- End footer -->
+                    <input style="margin-bottom: 0px;" type="email" name="fields[email]" placeholder="email" value="" />
+                    <input class="btn" type="submit" name="submit" value="Sign Up" data-drip-attribute="sign-up-button" />
+                </div>
+                </form>
+                </div>
+            </div>
+            <div class="span12 text-center" style="color: white; margin-left:0px;">
+                <a href="http://womma.org"><img src="http://www.referralsaasquatch.com/wp-content/themes/disillusion/img/womma-member-logo.png"/ class="span1 offset10 visible-desktop"  alt="Proud member of WOMMA" /></a> 
+                <p style="margin-top: 61px; margin-bottom: -46px; opacity:0.7; ">Copyright © 2014 Referral SaaSquatch.com. All rights reserved.</p>
+                <p class="hidden-phone" style="margin-top: 45px; margin-bottom: -46px; opacity:0.7; ">1017 Fort St, Victoria, British Columbia,V8V 3K5, Canada</p>
+            </div>
+    	  
+    	</div>
+    	</section>
+    
+    </footer>
+    <!-- End footer -->
 
     <div id="lightwindow">
     	<div id="lightwindow-content"></div>
     </div>
 
+    <script type='text/javascript' src='http://www.referralsaasquatch.com/wp-content/themes/disillusion/js/plugins.js'></script>
+    <script type='text/javascript'>
+    /* <![CDATA[ */
+    var AjaxHelper = {"blog_url":"http:\/\/www.referralsaasquatch.com\/wp-content\/themes\/disillusion\/template-news.php","portfolio_url":"http:\/\/www.referralsaasquatch.com\/wp-content\/themes\/disillusion\/template-portfolio.php","portfolio2_url":"http:\/\/www.referralsaasquatch.com\/wp-content\/themes\/disillusion\/template-portfolio2.php","ajaxurl":"http:\/\/www.referralsaasquatch.com\/wp-admin\/admin-ajax.php"};
+    var pt_settings = {"base_color":"","google_maps_circle_color":"#fb8047","google_maps_landscape_color":"#ffffff","google_maps_water_color":"#d4d4d4","portfolio_items_page":"5","blog_items_page":"16","pt_google_maps_latitude_1":"33.707126","pt_google_maps_longitude_1":"-4.135499","pt_google_maps_title_popover_1":"","pt_google_maps_text_popover_1":"","pt_google_maps_latitude_2":"38.707126","pt_google_maps_longitude_2":"-4.135499","pt_google_maps_title_popover_2":"","pt_google_maps_text_popover_2":"","pt_google_maps_latitude_3":"33.707126","pt_google_maps_longitude_3":"-4.135499","pt_google_maps_title_popover_3":"","pt_google_maps_text_popover_3":"","pt_google_maps_latitude_4":"33.707126","pt_google_maps_longitude_4":"-4.135499","pt_google_maps_title_popover_4":"","pt_google_maps_text_popover_4":""};
+    /* ]]> */
+    </script>
+    <script type='text/javascript' src='http://www.referralsaasquatch.com/wp-content/themes/disillusion/js/main.js'></script>
+    <script type='text/javascript' src='http://www.referralsaasquatch.com/wp-content/themes/disillusion/js/vendor/google-code-prettify/prettify.js'></script>
+
+    <!--Start of Zopim Live Chat Script-->
+    <script type="text/javascript">
+        window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+        d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+        _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
+        $.src='//v2.zopim.com/?1Kt2Mb45MqIqImn4EtgTXm9GLUYtWuUh';z.t=+new Date;$.
+        type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
+    </script>
+    <!--End of Zopim Live Chat Script-->
+    
+    <!-- tries to run prettyprint -->
+    <script type="text/javascript">
+        jQuery(document).ready(function(){ 
+            var tryPretty = function(){
+                if(window['prettyPrint']){
+                    prettyPrint();
+                }else{
+                    setTimeout(tryPretty, 200);
+                }
+            }
+            tryPretty();
+        });
+    </script>
+    
     <script>
-    	
     	var _gaq = _gaq || [];
     	_gaq.push(['_setAccount', 'UA-39831433-1']);
     	_gaq.push(['_trackPageview']);
@@ -316,10 +302,7 @@
         	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     	})();
-    
     </script>
-
-
 
     <!-- Drip -->
     <script type="text/javascript">
@@ -335,17 +318,6 @@
         s.parentNode.insertBefore(dc, s);
       })();
     </script>
-
- 
-    <script type='text/javascript' src='http://www.referralsaasquatch.com/wp-content/themes/disillusion/js/plugins.js'></script>
-    <script type='text/javascript'>
-    /* <![CDATA[ */
-    var AjaxHelper = {"blog_url":"http:\/\/www.referralsaasquatch.com\/wp-content\/themes\/disillusion\/template-news.php","portfolio_url":"http:\/\/www.referralsaasquatch.com\/wp-content\/themes\/disillusion\/template-portfolio.php","portfolio2_url":"http:\/\/www.referralsaasquatch.com\/wp-content\/themes\/disillusion\/template-portfolio2.php","ajaxurl":"http:\/\/www.referralsaasquatch.com\/wp-admin\/admin-ajax.php"};
-    var pt_settings = {"base_color":"","google_maps_circle_color":"#fb8047","google_maps_landscape_color":"#ffffff","google_maps_water_color":"#d4d4d4","portfolio_items_page":"5","blog_items_page":"16","pt_google_maps_latitude_1":"33.707126","pt_google_maps_longitude_1":"-4.135499","pt_google_maps_title_popover_1":"","pt_google_maps_text_popover_1":"","pt_google_maps_latitude_2":"38.707126","pt_google_maps_longitude_2":"-4.135499","pt_google_maps_title_popover_2":"","pt_google_maps_text_popover_2":"","pt_google_maps_latitude_3":"33.707126","pt_google_maps_longitude_3":"-4.135499","pt_google_maps_title_popover_3":"","pt_google_maps_text_popover_3":"","pt_google_maps_latitude_4":"33.707126","pt_google_maps_longitude_4":"-4.135499","pt_google_maps_title_popover_4":"","pt_google_maps_text_popover_4":""};
-    /* ]]> */
-    </script>
-    <script type='text/javascript' src='http://www.referralsaasquatch.com/wp-content/themes/disillusion/js/main.js'></script>
-    <script type='text/javascript' src='http://www.referralsaasquatch.com/wp-content/themes/disillusion/js/vendor/google-code-prettify/prettify.js'></script>
 
 </body>
 </html>
