@@ -85,15 +85,16 @@
                 <pre class="prettyprint lang-js">_sqh.push(["autofill", "name=referral_code"]);</pre>
             </li>
             <li>
-                Lookup the coupon information to include in your Braintree Subscription call using our REST API.
+                On your server, lookup the coupon information to include in your Braintree Subscription call using the SaaSquatch REST API.
                 <pre class="prettyprint lang-curl">GET https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/coupon/{REFERRAL_CODE}</pre>
                 <span class="muted">This step is important because it ensures that new customers will receive their 
                 discount immediately. If this step is left out then the referral discount will be applied as a refund to the first transaction 
                 at a later time. Referrers get credit on their next bill.</span>
             </li>
-            
             <li>
-                On your server-side, after the Braintree customer has been created, pass the referral code to the corresponding customer id via the SaaSquatch API's <a href="">Coupon Push</a>.
+                On your server, after the Braintree customer has been created, pass the newly created customer id and referral code to the SaaSquatch REST API.
+                <pre class="prettyprint lang-curl">POST https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/coupon</pre>
+                <span class="muted">This step ensures that we can apply referral credit to a new user right away.</span>
             </li>
         </ol>
 
@@ -110,7 +111,7 @@
             this <a href="https://www.braintreepayments.com/docs/customers/tr_fields#custom_fields">Braintree article about custom fields</a>.
         </p>
         <hr/>
-        
+
         <h4>That's it!</h4>
         <p>Next: Check out our <a href="/bestpractices/common-pitfalls">Common Pitfalls Guide</a></p>
 
