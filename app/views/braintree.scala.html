@@ -79,14 +79,14 @@
         </p>
         <ol>
             <li>Add a <span class="docs-monospace">referral_code</span> field to your payment form. You can show it to your users so that they can type in their friend's codes, or it can just be a hidden input field on the page.
-                <pre class="lang-html">&lt;input type="hidden" name="referral_code" /&gt;</pre>
+                <pre class="prettyprint lang-html">&lt;input type="hidden" name="referral_code" /&gt;</pre>
             </li>
             <li>Use <a href="/squatchjs#autofill">Squatch.js Autofill</a> to read the referral cookie and set the value in the form input you just created.
-                <pre class="lang-js">_sqh.push(["autofill", "name=referral_code"]);</pre>
+                <pre class="prettyprint lang-js">_sqh.push(["autofill", "name=referral_code"]);</pre>
             </li>
             <li>
                 Lookup the coupon information to include in your Braintree Subscription call using our REST API.
-                <pre class="lang-curl">GET https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/coupon/{REFERRAL_CODE}</pre>
+                <pre class="prettyprint lang-curl">GET https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/coupon/{REFERRAL_CODE}</pre>
                 <span class="muted">This step is important because it ensures that new customers will receive their 
                 discount immediately. If this step is left out then the referral discount will be applied as a refund to the first transaction 
                 at a later time. Referrers get credit on their next bill.</span>
@@ -102,7 +102,7 @@
             You need to apply the result to the subscription before the prorated charges go through. If this step is left out then the prorated charge will have the existing 
             discount subtracted from it and the new discount amount will be applied to the upcoming bill.
             
-            <pre class="lang-curl">GET https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/account/{ACCOUNT_ID}</pre>
+            <pre class="prettyprint lang-curl">GET https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/account/{ACCOUNT_ID}</pre>
         </p>
         <p>
             <strong>For Transparent Redirects</strong> When you're setting up your payment forms use <span class="docs-monospace">customer[custom_fields][saasquatch_coupon]</span> instead 
