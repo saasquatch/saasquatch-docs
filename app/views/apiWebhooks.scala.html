@@ -1,0 +1,242 @@
+@main(
+    "API Webhooks",
+    "Referral SaaSquatch uses conventional HTTP response codes to indicate success or failure of an API request."
+) {
+    <section>
+        <div class="page-header">
+            <h1>API Errors</h1>
+        </div>
+
+        <p class="lead">
+            The Referral SaaSquatch Webhooks API closely matches that described by the <a href="http://resthooks.org/docs/">RestHooks</a> guidelines.
+        </p>
+        <p>
+            Interacting with third party APIs like Referral SaaSquatch often suffers from two important problems:
+        </p>
+
+        <ul>
+            <li>Services not directly responsible for making an API request may still need to know the response</li>
+            <li>Some events, like coupon created events, are not the result of a direct API request</li>                
+        </ul>
+
+        <p>
+            Webhooks solve these problems by letting you register a URL that we will POST anytime an event happens in your account. When the event 
+            occurs, for example when a successful charge is made in your account, Referral SaaSquatch creates an event object. This object contains all the relevant 
+            information, including the type of event and the data associated with that event. Referral SaaSquatch then sends an HTTP POST request with the event object 
+            to any URLs in your account's webhook settings. You can find a full list of all event types below.
+        </p>
+
+        <h4>Retries</h4>
+        
+        <p>
+            Rest hooks are delivered immediately after an event is triggered. If the endpoint does not successfully respond to a delivery 
+            attempt (i.e. respond with a status code other than 200), the delivery will be considered as failed. Failed deliveries will be 
+            reattempted every hour after the previous failed attempt until either a successful delivery is made or until 72 attempts have 
+            been made (approximately 3 days at the rate of 1 retry per hour).
+        </p>
+
+        <h4>Multiple Subscriptions</h4>
+        
+        <p>
+            Multiple endpoints may be subscribed, in which case each endpoint will be notified using the behavior described above. Duplicate
+            endpoint urls will simply result in one subscription being created for that url.
+        </p>
+
+        <p>
+            <span class="label">Please Note</span> Delivery order of events is not guaranteed and delivery timing is not guaranteed. Avoid building logic that relies on a specific delivery ordering of webhook notifications.
+        </p>
+    
+        <table>
+            <tr>
+                <th>
+                    Method
+                </th>
+                <th>
+                    Route
+                </th>
+                <th>
+                    Description
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    GET
+                </td>
+                <td>
+                    /api/v1/{TENANT_ALIAS}/subscription
+                </td>
+                <td>
+                    List webhook subscriptions
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    POST
+                </td>
+                <td>
+                    /api/v1/{TENANT_ALIAS}/subscription
+                </td>
+                <td>
+                    Create a webhook subscription
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    DELETE
+                </td>
+                <td>
+                    /api/v1/{TENANT_ALIAS}/subscription/{URL}
+                </td>
+                <td>
+                    Delete a webhook subscription
+                </td>
+            </tr>
+        </table>
+        
+        <table>
+            <tr>
+                <th>
+                    Event type
+                </th>
+                <th>
+                    Description
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    coupon.created
+                </td>
+                <td>
+                    Sent in response to a new referral coupon being created.
+                </td>
+            </tr>
+        </table>
+
+        <hr />
+        
+        <h2>Create a webhook subscription</h2>
+
+        <p>Subscribes a URL to receive events via webhooks</p>
+        <h4>Definition</h4>
+        <pre>
+            POST https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/subscription
+        </pre>
+
+        <h4>Arguments</h4>
+        <div>
+            <table class="table table-hover">
+              <tr>
+                <th>endpointUrl</th>
+                <td><span class="label">Required</span></td>
+                <td>
+                    The url of the endpoint to received events
+                </td>
+              </tr>
+            </table>
+        </div>
+    
+        <h4>Returns</h4>
+        <p>HTTP Created Status (Empty Response Body)</p>
+
+        <h4>Example Request</h4>
+        <pre class="lang-curl">
+        $ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/subscription \
+        -u API_KEY: \
+        -H "Content-Type: application/json" \
+        -d '{"endpointUrl":"YOUR_ENDPOINT_URL"}' 
+        </pre>
+
+        <hr />
+        
+        <h2>Payloads</h2>
+        <p>
+            All webhook data conform to the same data format.
+        </p>
+        <div>
+            <table class="table table-hover">
+              <tr>
+                <th>id</th>
+                <td>
+                    String - A unique identifier for this event
+                </td>
+              </tr>
+              <tr>
+                <th>type</th>
+                <td>
+                    String - The type of event
+                </td>
+              </tr>
+              <tr>
+                <th>tenantAlias</th>
+                <td>
+                    String - The tenant used to create this data
+                </td>
+              </tr>
+              <tr>
+                <th>live</th>
+                <td>
+                    Boolean - True for live tenants and false for test tenants
+                </td>
+              </tr>
+              <tr>
+                <th>created</th>
+                <td>
+                    Number - The timestamp when this event was created
+                </td>
+              </tr>
+              <tr>
+                <th>data</th>
+                <td>
+                    An abitrary JSON object containing data related to this event
+                </td>
+              </tr>
+            </table>
+        </div>
+        
+        <h4>Payload Security</h4>
+        <p>
+            Payload's can be verified by checking the request headers. The <code>X-Hook-Signature</code> header is set with a value based upon a HMAC-SHA1 (RFC 2104 compliant) hash 
+            computed from the hook's body contents. The signature used is the tenant's current API key. This can be used to verify the authenticity of hooks upon receipt. Careful! Although 
+            you can verify the hook''s authenticity via the signature, you still may need to verify the state of the 'data' by making an API call. Hook delivery order is not guaranteed. For
+            example, consider the scenario where an object is updated multiple times in quick succession. The related REST hooks may be delivered in a different order than the update events 
+            which generated them, so relying on their contents may lead you to build a different final state.
+        </p>
+        <table class="table table-hover">
+            <tr>
+                <th>X-Hook-Signature</th>
+                <td>A Sha1 hash of the hooks body contents signed by the tenant's API key</td>
+            </tr>
+        </table>
+
+        <h2>
+            Webhooks Event Types
+        </h2>
+        <p>
+            After a webhook subscription is created, it will immediately start receiving webhooks payloads. Each payload has a noted 'type' field which can be used to differentiate between 
+            events. New event types may be added to the API, so avoid building logic that assumes it knows all event types.
+        </p>
+        <p>
+            <b>Ignoring events</b> - Your service is not expected to process any payloads. As long as the endpoint url responds with an HTTP 200 OK response, Referral SaaSquatch will consider the webhook delivered. Failed deliveries will be reattempted.
+        </p>
+
+        <h3>coupon.created</h3>        
+        <p>Sent in response to a new referral coupon being created.</p>
+        
+        <h4>Example Payload Contents</h4>
+        <pre class="lang-json">
+        {
+        	"id": "31049u0194u2105",
+        	"type": "coupon.created",
+        	"tenantAlias": "AAA111BBB222DDD333",
+        	"live": false,
+        	"created": 1337001337,
+        	"data": {
+            	"code": "ABC123ABC",
+            	"discountPercentage": "",
+            	"dateCreated": 1386180000,
+            	"ratePlanId": null
+            }
+        }
+        </pre>
+    </section>
+}

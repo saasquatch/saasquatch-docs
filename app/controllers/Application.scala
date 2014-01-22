@@ -35,7 +35,12 @@ object Application extends Controller {
         case "app-integration"  => Ok(views.html.appIntegration())
 
         case "squatchjs"  => Ok(views.html.squatchjs())
-        
+
+        case "api"  => Ok(views.html.apiIntroduction())
+        case "api/authentication"  => Ok(views.html.apiAuthentication())
+        case "api/errors"  => Ok(views.html.apiErrors())
+        case "api/webhooks"  => Ok(views.html.apiWebhooks())
+
         case "bestpractices/buttons"  => Ok(views.html.buttonsBestPractices())
         case "bestpractices/speed"  => Ok(views.html.pageSpeedBestPractices())
         case "bestpractices/testing"  => Ok(views.html.testingBestPractices())
