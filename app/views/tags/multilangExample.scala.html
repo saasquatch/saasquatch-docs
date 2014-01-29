@@ -35,7 +35,7 @@
 
 <div class="tab-content">
     @for((lang,code) <- map) {
-    <div class="tab-pane active" class="@uniqueName(name, lang)">
+    <div class="tab-pane @uniqueName(name, lang)">
         <pre class="prettyprint lang-@lang">@code</pre>
     </div>
     }

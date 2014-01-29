@@ -84,41 +84,44 @@ _sqh.push(['autofill', '#referralCoupon']);
         missing is the HMAC algorithm’s shared secret: your account’s API key. </p>
         
         <p class="muted">
-            <strong>Don't forget!</strong> You have a both a live and test tenant and each has its own unique API key.
+            <strong>Don't forget!</strong> You have a both a live API key and a test API key.
         </p>
-        
-        <p>To start using secure requests, you simply need to add a checksum. The push parameters that need to be signed, for example, are the following:</p>
+
+
+        <h4>Example -- How To Compute the Checksum</h4>
+                
+        <p>To start using secure requests, you simply need to add a checksum. For example, here is a JSON object of the parameters to be signed:</p>
         
         <pre class="prettyprint lang-json">{
-	tenant_alias: "test_aaaexampleaaa",
+    tenant_alias: "test_aaaexampleaaa",
     account_id: "a5678",
     user_id: "u1234,
-    email: "joe.tester@@example.com,
+    email: "joe.tester@@example.com",
     first_name: "Joe",
     last_name: "Tester"
 }</pre>
 
-        <h4>Example -- How To Compute the Checksum</h4>
-        
         <ul>
             <li>
-                <p><strong>Sort your parameters</strong> according to the alphabetical order of their keys.
+                <p><strong>Sort your parameters</strong> according to the alphabetical order of their keys. Notice how <code>account_id</code> is now first and <code>user_id</code> is now last.
                 </p>
         <pre class="prettyprint lang-json">{
     account_id: "a5678",
-    email: "joe.tester@@example.com,
+    email: "joe.tester@@example.com",
     first_name: "Joe",
     last_name: "Tester",
-	tenant_alias: "test_aaaexampleaaa",
+    tenant_alias: "test_aaaexampleaaa",
     user_id: "u1234
 }</pre>
             </li>
             <li>
-                <p><strong>Concatenate the values.</strong> Starting with an empty string, iterate through all the parameters that you sorted and append each parameter’s value to the end of a string.</p>
-                <pre class="prettyprint">a5678joe.tester@@example.comJoeTestertest_aaaexampleaaau1234</pre>
+                <p><strong>Concatenate the values.</strong> Starting with an empty string, iterate through all the parameters that you sorted and append each parameter's value to the end of a string. Notice 
+                how "a5678", the value for <code>account_id</code>, is at the start, and "u1234", the value for <code>user_id</code>, is at the end.
+                </p>
+                <pre><span style="color:#dd1144;">a5678</span>joe.tester@@example.com<span style="color:#dd1144;">Joe</span>Tester<span style="color:#dd1144;">test_aaaexampleaaa</span>u1234</pre>
             </li>
             <li>
-                <p><strong>Sign the string</strong> using your API key to compute a HMAC-SHA2 checksum</p>
+                <p><strong>Sign the string</strong> using your API key to compute a HMAC-SHA2 checksum. In the code below we use an example API key: <code>TEST_HGO8125ANDFH152HSAS15</code></p>
 
 @tags.multilangExample("calculatehash", Map(
 "java" -> 
@@ -141,19 +144,19 @@ public static String calculateHMACSHA256(String data, String secretKey) throws j
     return result;
 }""",
 "php" -> 
-"""base64_encode(hash_hmac('sha256',’a5678joe.tester@example.comJoeTestertest_aaaexampleaaau1234’, ‘aF3Ddfaf32141SWIFOINRO3o24io213koiajFDA14fdiojo23ji’))""",
+"""base64_encode(hash_hmac('sha256','a5678joe.tester@example.comJoeTestertest_aaaexampleaaau1234', 'TEST_HGO8125ANDFH152HSAS15'))""",
 "rb" -> 
 """require 'openssl'
 require "base64"
 
-hash = Base64.encode64(OpenSSL::HMAC.digest('sha256', "aF3Ddfaf32141SWIFOINRO3o24io213koiajFDA14fdiojo23ji", "a5678joe.tester@example.comJoeTestertest_aaaexampleaaau1234"))""",
+hash = Base64.encode64(OpenSSL::HMAC.digest('sha256', 'TEST_HGO8125ANDFH152HSAS15', 'a5678joe.tester@example.comJoeTestertest_aaaexampleaaau1234'))""",
 "py" -> 
 """import hashlib
 import hmac
 import base64
  
-message = bytes("a5678joe.tester@example.comJoeTestertest_aaaexampleaaau1234").encode('utf-8')
-secret = bytes("aF3Ddfaf32141SWIFOINRO3o24io213koiajFDA14fdiojo23ji").encode('utf-8')
+message = bytes('a5678joe.tester@example.comJoeTestertest_aaaexampleaaau1234').encode('utf-8')
+secret = bytes('TEST_HGO8125ANDFH152HSAS15').encode('utf-8')
 base64.b64encode(hmac.new(secret, message, digestmod=hashlib.sha256).digest())""",
 "cs" -> 
 """using System.Security.Cryptography;
@@ -161,8 +164,8 @@ base64.b64encode(hmac.new(secret, message, digestmod=hashlib.sha256).digest())""
 private string CreateToken(string message, string secret)
 {
     var encoding = new System.Text.ASCIIEncoding();
-    byte[] keyByte = encoding.GetBytes(“aF3Ddfaf32141SWIFOINRO3o24io213koiajFDA14fdiojo23ji”);
-    byte[] messageBytes = encoding.GetBytes(“a5678joe.tester@example.comJoeTestertest_aaaexampleaaau1234”);
+    byte[] keyByte = encoding.GetBytes(secret);
+    byte[] messageBytes = encoding.GetBytes(message);
     using (var hmacsha256 = new HMACSHA256(keyByte))
     {
         byte[] hashmessage = hmacsha256.ComputeHash(messageBytes);
@@ -172,7 +175,7 @@ private string CreateToken(string message, string secret)
 ))
             </li>
             <li>
-                <p><strong>Include the checksum</strong> in your javascript initialization</p>
+                <p><strong>Include the checksum</strong> in your javascript initialization call. Secure mode is enabled for an account as soon as we receive your first valid signed request. Once enabled, non-signed requests will no longer accepted for that account.</p>
                 <pre class="prettyprint lang-js">_sqh.push(['init', {
     tenant_alias: 'test_aaaexampleaaa’,
     account_id: 'a5678',
