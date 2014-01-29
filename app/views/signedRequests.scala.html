@@ -101,7 +101,7 @@ _sqh.push(['autofill', '#referralCoupon']);
     last_name: "Tester"
 }</pre>
 
-        <ul>
+        <ol>
             <li>
                 <p><strong>Sort your parameters</strong> according to the alphabetical order of their keys. Notice how <code>account_id</code> is now first and <code>user_id</code> is now last.
                 </p>
@@ -136,6 +136,7 @@ public static String calculateHMACSHA256(String data, String secretKey) throws j
         Mac mac = Mac.getInstance("HmacSHA256");
         SecretKeySpec key = new SecretKeySpec(secretKey.getBytes(), "HmacSHA256");
         mac.init(key);
+        byte[] authentication = mac.doFinal(data.getBytes());
         result = new String(org.apache.commons.codec.binary.Base64.encodeBase64(authentication));
 
     } catch (Exception e) {
@@ -147,7 +148,7 @@ public static String calculateHMACSHA256(String data, String secretKey) throws j
 """base64_encode(hash_hmac('sha256','a5678joe.tester@example.comJoeTestertest_aaaexampleaaau1234', 'TEST_HGO8125ANDFH152HSAS15'))""",
 "rb" -> 
 """require 'openssl'
-require "base64"
+require base64'
 
 hash = Base64.encode64(OpenSSL::HMAC.digest('sha256', 'TEST_HGO8125ANDFH152HSAS15', 'a5678joe.tester@example.comJoeTestertest_aaaexampleaaau1234'))""",
 "py" -> 
@@ -175,7 +176,7 @@ private string CreateToken(string message, string secret)
 ))
             </li>
             <li>
-                <p><strong>Include the checksum</strong> in your javascript initialization call. Secure mode is enabled for an account as soon as we receive your first valid signed request. Once enabled, non-signed requests will no longer accepted for that account.</p>
+                <p><strong>Include the checksum</strong> in your javascript initialization call. Secure mode is enabled for an account as soon as we receive your first valid signed request. Once enabled, non-signed requests will no longer be accepted for that account.</p>
                 <pre class="prettyprint lang-js">_sqh.push(['init', {
     tenant_alias: 'test_aaaexampleaaa’,
     account_id: 'a5678',
@@ -186,7 +187,7 @@ private string CreateToken(string message, string secret)
     <span class="nocode"><strong>checksum: 'arbPDAcedO38Qw/qdJLCqd2tlRQ='</strong></span>
 }]);</pre>       
             </li>
-        </ul>
+        </ol>
 
 
 
