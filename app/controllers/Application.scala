@@ -34,6 +34,7 @@ object Application extends Controller {
 
         case "app-integration"  => Ok(views.html.appIntegration())
 
+        case "squatchjs/signed-requests"  => Ok(views.html.signedRequests())
         case "squatchjs"  => Ok(views.html.squatchjs())
 
         case "api"  => Ok(views.html.apiIntroduction())
