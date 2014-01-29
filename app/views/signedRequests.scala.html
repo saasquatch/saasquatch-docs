@@ -1,0 +1,192 @@
+@main(
+    "Signed Requests",
+    "Signed Requests provide an extra layer of security on Referral SaaSquatch's javascript library."
+) {
+    <section>
+        <div class="page-header">
+            <h1>Signed Requests <small>squatch.js javascript</small></h1>
+        </div>
+        
+        <p class="lead">
+        Signed Requests provide an extra layer of security on top of the squatch.js javascript library. A signed request
+        uses a cryptographic signature (or checksum) to validate that the data we receive in javascript API calls originated from your servers. 
+        We recommend that all sites use Signed Requests to secure their client-side code.
+        </p>
+
+        <hr/>
+        <h3>How do I use signed requests?</h3>
+        <p>
+            To use signed requests, your server must generate a checksum using your tenant's API key, and pass that to the <a href="/squatchjs#init">squatch.js init function</a>.
+        </p>
+
+        <table class="table">
+            <tr>
+                <td></td>
+                <th>
+                    <strong>Without</strong> Signed Requests
+                </th>
+                <th>
+                    <strong>With</strong> Signed Requests
+                </th>
+            </tr>
+            <tr>
+                <th>In your app</th>
+                <td>
+                    <pre class="prettyprint lang-js">_sqh.push(['init', {
+    tenant_alias: 'test_aaaexampleaaa’,
+    account_id: 'a5678',
+    user_id: 'u1234',
+    email: 'joe.tester@@example.com',
+    first_name: 'Joe',
+    last_name: 'Tester'
+}]);</pre>
+                </td>
+                <td>
+                    <pre class="prettyprint lang-js">_sqh.push(['init', {
+    tenant_alias: 'test_aaaexampleaaa’,
+    account_id: 'a5678',
+    user_id: 'u1234',
+    email: 'joe.tester@@example.com',
+    first_name: 'Joe',
+    last_name: 'Tester',
+    <span class="nocode"><strong>checksum: 'arbPDAcedO38Qw/qdJLCqd2tlRQ='</strong></span>
+}]);</pre>       
+                </td>
+            </tr>
+            <tr>
+                <th>On your homepage</th>
+                <td>
+                    <pre class="prettyprint lang-js">_sqh.push(['init', {
+    tenant_alias: 'test_aaaexampleaaa’
+}]);
+    
+_sqh.push(['autofill', '#referralCoupon']);
+</pre>
+                </td>
+                <td>
+                    <pre class="prettyprint lang-js">_sqh.push(['init', {
+    tenant_alias: 'test_aaaexampleaaa’
+}]);
+
+_sqh.push(['autofill', '#referralCoupon']);
+</pre>       
+                </td>
+            </tr>
+        </table>
+
+        
+        <hr/>
+        <h3>How is the checksum generated?</h3>
+        
+        <p>The param checksum is computed using a HMAC-SHA2 algorithm. The signed value is a concatenated string assembled 
+        from the <a href="/squatchjs#init">squatch.js init</a> parameter map. As a simple convention, the values are concatenated 
+        based on an alphabetical ordering of the parameter names. This will become more clear in an example below. The final piece 
+        missing is the HMAC algorithm’s shared secret: your account’s API key. </p>
+        
+        <p class="muted">
+            <strong>Don't forget!</strong> You have a both a live and test tenant and each has its own unique API key.
+        </p>
+        
+        <p>To start using secure requests, you simply need to add a checksum. The push parameters that need to be signed, for example, are the following:</p>
+        
+        <pre class="prettyprint lang-json">{
+	tenant_alias: "test_aaaexampleaaa",
+    account_id: "a5678",
+    user_id: "u1234,
+    email: "joe.tester@@example.com,
+    first_name: "Joe",
+    last_name: "Tester"
+}</pre>
+
+        <h4>Example -- How To Compute the Checksum</h4>
+        
+        <ul>
+            <li>
+                <p><strong>Sort your parameters</strong> according to the alphabetical order of their keys.
+                </p>
+        <pre class="prettyprint lang-json">{
+    account_id: "a5678",
+    email: "joe.tester@@example.com,
+    first_name: "Joe",
+    last_name: "Tester",
+	tenant_alias: "test_aaaexampleaaa",
+    user_id: "u1234
+}</pre>
+            </li>
+            <li>
+                <p><strong>Concatenate the values.</strong> Starting with an empty string, iterate through all the parameters that you sorted and append each parameter’s value to the end of a string.</p>
+                <pre class="prettyprint">a5678joe.tester@@example.comJoeTestertest_aaaexampleaaau1234</pre>
+            </li>
+            <li>
+                <p><strong>Sign the string</strong> using your API key to compute a HMAC-SHA2 checksum</p>
+
+@tags.multilangExample("calculatehash", Map(
+"java" -> 
+"""import java.security.SignatureException;
+
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+
+public static String calculateHMACSHA256(String data, String secretKey) throws java.security.SignatureException {
+    String result;
+    try {
+        Mac mac = Mac.getInstance("HmacSHA256");
+        SecretKeySpec key = new SecretKeySpec(secretKey.getBytes(), "HmacSHA256");
+        mac.init(key);
+        result = new String(org.apache.commons.codec.binary.Base64.encodeBase64(authentication));
+
+    } catch (Exception e) {
+        throw new SignatureException("Failed to generate HMAC : " + e.getMessage());
+    }
+    return result;
+}""",
+"php" -> 
+"""base64_encode(hash_hmac('sha256',’a5678joe.tester@example.comJoeTestertest_aaaexampleaaau1234’, ‘aF3Ddfaf32141SWIFOINRO3o24io213koiajFDA14fdiojo23ji’))""",
+"rb" -> 
+"""require 'openssl'
+require "base64"
+
+hash = Base64.encode64(OpenSSL::HMAC.digest('sha256', "aF3Ddfaf32141SWIFOINRO3o24io213koiajFDA14fdiojo23ji", "a5678joe.tester@example.comJoeTestertest_aaaexampleaaau1234"))""",
+"py" -> 
+"""import hashlib
+import hmac
+import base64
+ 
+message = bytes("a5678joe.tester@example.comJoeTestertest_aaaexampleaaau1234").encode('utf-8')
+secret = bytes("aF3Ddfaf32141SWIFOINRO3o24io213koiajFDA14fdiojo23ji").encode('utf-8')
+base64.b64encode(hmac.new(secret, message, digestmod=hashlib.sha256).digest())""",
+"cs" -> 
+"""using System.Security.Cryptography;
+ 
+private string CreateToken(string message, string secret)
+{
+    var encoding = new System.Text.ASCIIEncoding();
+    byte[] keyByte = encoding.GetBytes(“aF3Ddfaf32141SWIFOINRO3o24io213koiajFDA14fdiojo23ji”);
+    byte[] messageBytes = encoding.GetBytes(“a5678joe.tester@example.comJoeTestertest_aaaexampleaaau1234”);
+    using (var hmacsha256 = new HMACSHA256(keyByte))
+    {
+        byte[] hashmessage = hmacsha256.ComputeHash(messageBytes);
+        return Convert.ToBase64String(hashmessage);
+    }
+}"""
+))
+            </li>
+            <li>
+                <p><strong>Include the checksum</strong> in your javascript initialization</p>
+                <pre class="prettyprint lang-js">_sqh.push(['init', {
+    tenant_alias: 'test_aaaexampleaaa’,
+    account_id: 'a5678',
+    user_id: 'u1234',
+    email: 'joe.tester@@example.com',
+    first_name: 'Joe',
+    last_name: 'Tester',
+    <span class="nocode"><strong>checksum: 'arbPDAcedO38Qw/qdJLCqd2tlRQ='</strong></span>
+}]);</pre>       
+            </li>
+        </ul>
+
+
+
+
+    </section>
+}

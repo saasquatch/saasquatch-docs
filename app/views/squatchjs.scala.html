@@ -109,7 +109,12 @@
                     <td><span class="label">Optional</span></td>
                     <td>Defaults to no image for Facebook referrals. If you provide an absolute URL an image it will be used when a referral is made on Facebook. Minimum image size is 114px tall or 155px wide.</td>
                   </tr>
-              </table>
+                  <tr>
+                    <th>checksum</th>
+                    <td><span class="label">Optional</span></td>
+                    <td>A HMAC-SHA2 checksum of the other parameter values used to validate that data originated from your servers. For details, see the <a href="/squatchjs/signed-requests">Signed Requests documentation</a>.</td>
+                  </tr>
+            </table>
             
               <p>
                 <span class="label">Required for Popup</span> - The parameters with this label can be safely ommitted when all you're doing on the page 

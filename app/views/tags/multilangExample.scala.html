@@ -1,0 +1,42 @@
+@*
+ * Displays a multi-language code example
+ *                                   
+ * @name something to uniquely identify this example in the dom
+ * @map a key-value map of language names, and their code examples
+ *  
+ *************************************@
+@(name:String, map:Map[String,String])
+    
+
+@* 
+*   Calculates a unique identifier for a language example
+*@
+@uniqueName(name:String, lang:String) = @{  name + "-example-" + lang.toLowerCase  }
+
+@* 
+*   Gets the human-readable name of a language
+*@
+@readableName(lang:String) = @{  
+    lang match {
+        case "java" => "Java"
+        case "js" => "Javascript"
+        case "php" => "PHP"
+        case "rb" => "Ruby"
+        case "py" => "Python"
+        case "cs" => "C#"
+    }
+}
+
+<ul class="nav nav-tabs">
+    @for((lang,code) <- map) {
+    <li><a href="#" data-toggle="tab" data-target=".@uniqueName(name, lang)">@readableName(lang)</a></li>
+    }
+</ul>
+
+<div class="tab-content">
+    @for((lang,code) <- map) {
+    <div class="tab-pane active" class="@uniqueName(name, lang)">
+        <pre class="prettyprint lang-@lang">@code</pre>
+    </div>
+    }
+</div>
