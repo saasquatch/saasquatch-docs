@@ -26,6 +26,8 @@ object Application extends Controller {
   def page(slug:String) = Action {
     slug match {
         case "how-it-works"  => Ok(views.html.howItWorks())
+        case "free-trials"  => Ok(views.html.freetrials())
+        case "theming"  => Ok(views.html.theming())
         
         case "braintree"  => Ok(views.html.braintree())
         case "recurly"  => Ok(views.html.recurly())
