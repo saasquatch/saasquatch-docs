@@ -1,0 +1,355 @@
+@main(
+    "Rest API Reference",
+    "Our Rest API let's you build your own custom logic on top of your referral program. This API reference includes a guide to using all the methods of the Referral SaaSquatch Rest API."
+) {
+    <section>
+        <div class="page-header">
+            <h1>Rest API Reference</h1>
+        </div>
+
+        <p class="lead">
+            Our Rest API let's you build your own custom logic on top of your referral program. This API reference includes a guide to using all the methods of the Referral SaaSquatch Rest API
+        </p>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Method
+                    </th>
+                    <th>
+                        Route
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        GET
+                    </td>
+                    <td class="docs-monospace">
+                        /api/v1/{TENANT_ALIAS}/coupon
+                    </td>
+                    <td>
+                        <a href="#set_coupon">Set coupon/referral code on an account</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        POST
+                    </td>
+                    <td class="docs-monospace">
+                        /api/v1/{TENANT_ALIAS}/coupon/{CODE}
+                    </td>
+                    <td>
+                        <a href="#get_coupon">Lookup a coupon/referral code</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        GET
+                    </td>
+                    <td class="docs-monospace">
+                        /api/v1/{TENANT_ALIAS}/account/{ACCOUNT_ID}/reward
+                    </td>
+                    <td>
+                        <a href="#get_account_reward">Lookup an account's referral credit</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        GET
+                    </td>
+                    <td class="docs-monospace">
+                        /api/v1/{TENANT_ALIAS}/subscription
+                    </td>
+                    <td>
+                        List webhook subscriptions
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        POST
+                    </td>
+                    <td class="docs-monospace">
+                        /api/v1/{TENANT_ALIAS}/subscription
+                    </td>
+                    <td>
+                        Create a webhook subscription
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        DELETE
+                    </td>
+                    <td class="docs-monospace">
+                        /api/v1/{TENANT_ALIAS}/subscription/{URL}
+                    </td>
+                    <td>
+                        Delete a webhook subscription
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        
+        <h2>Set coupon/referral code on an account</h2>
+        <a id="set_coupon" name="set_coupon" class="section-anchor">&nbsp;</a>
+
+        <p>This method associates a new account with their referrer. Use this method when someone signs up for a paid account to set the coupon code used for them.  For Stripe and Recurly do not use this call. Instead
+            during sign-up, just pass the coupon/referral code in your subcribe call.
+        </p>
+        <h4>Definition</h4>
+        <pre class="prettyprint lang-curl">POST https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/coupon</pre>
+
+        <h4>Arguments</h4>
+        <div>
+            <table class="table table-hover">
+              <tr>
+                <th class="docs-monospace">couponCode</th>
+                <td><span class="label">Required</span></td>
+                <td>
+                    The coupon/referral code of the user that referred this user. Can be obtained from the referral-tracking cookie using <a href="#autofill">squatch.js coupon autofill</a>.
+                </td>
+              </tr>
+              <tr>
+                <th class="docs-monospace">paymentProviderId</th>
+                <td><span class="label">Required</span></td>
+                <td>
+                    The payment provider ID of the newly created account from Braintree or Zuora. This will be the Braintree Account ID or the Zuora Account ID.
+                </td>
+              </tr>
+            </table>
+        </div>
+    
+        <h4>Returns</h4>
+        <p>HTTP Status with an Empty Response Body</p>
+        <table class="table table-hover">
+            <tr>
+            <th>Braintree</th>
+            <td>
+                HTTP 201 on success
+            </td>
+            <td>
+                Sets the value of the <code>saasquatch_coupon</code> custom field in Braintree and triggers an update to the referrer's account.
+            </td>
+            </tr>
+            <tr>
+            <th>Recurly</th>
+            <td>
+                HTTP 400 not implemented
+            </td>
+            <td>
+                Pass the coupon code to <a href="http://docs.recurly.com/api/subscriptions#create-subscription">Recurly Create Subscription</a> instead.
+            </td>
+            </tr>
+            <tr>
+            <th>Stripe</th>
+            <td>
+                HTTP 400 not implemented
+            </td>
+            <td>
+                 Pass the coupon code to <a href="https://stripe.com/docs/api#create_customer">Stripe Create Customer</a> instead.
+            </td>
+            </tr>
+            <tr>
+            <th>Zuora</th>
+            <td>
+                HTTP 201 on success
+            </td>
+            <td>
+                Sets the value of the <code>saasquatchCoupon</code> custom field in Zuora and triggers an update to the referrer's account.
+            </td>
+            </tr>
+        </table>
+            
+
+        <h4>Example Request</h4>
+<pre class="prettyprint lang-curl">$ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/coupon \
+-u API_KEY: \
+-H "Content-Type: application/json" \
+-d '{"couponCode" : "BOBTESTERSON", "paymentProviderId" : "cus_123" }'</pre>
+
+        <hr />
+        
+        <h2>Lookup a coupon/referral code</h2>
+        <a id="get_coupon" name="get_coupon" class="section-anchor">&nbsp;</a>
+
+        <p>This method associates a new account with their referrer. Use this method when someone signs up for a paid account to set the coupon code used for them.</p>
+        <h4>Definition</h4>
+        <pre class="prettyprint lang-curl">GET https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/coupon/{CODE}</pre>
+
+        <h4>Arguments</h4>
+        <div>
+            <table class="table table-hover">
+              <tr>
+                <th class="docs-monospace">code</th>
+                <td><span class="label">Required</span></td>
+                <td>
+                    The coupon/referral code to look up
+                </td>
+              </tr>
+            </table>
+        </div>
+    
+        <h4>Returns</h4>
+        <p>Information about the coupon, or an HTTP 404 if the coupon code is not found.</p>
+        <table class="table table-hover">
+            <tr>
+                <th class="docs-monospace">couponCode</th>
+                <td>String</td>
+                <td>
+                    The coupon/referral code
+                </td>
+            </tr>
+            <tr>
+                <th class="docs-monospace">discountPercentage</th>
+                <td>Number</td>
+                <td>
+                    A integer representing the discount percentage. e.g. For 10% would return the number 10.
+                </td>
+            </tr>
+            <tr>
+                <th class="docs-monospace">dateCreated</th>
+                <td>Timestamp</td>
+                <td>
+                    The coupon/referral code to look up
+                </td>
+            </tr>
+            <tr>
+                <th class="docs-monospace">ratePlanId</th>
+                <td>String</td>
+                <td>
+                    <span class="label">Zuora only</span>
+                    The Zuora rate plan ID used to apply this coupon.
+                </td>
+            </tr>
+            <tr>
+                <th class="docs-monospace">discountId</th>
+                <td>String</td>
+                <td>
+                    <span class="label">Braintree only</span>
+                    The Braintree discount ID used to apply this coupon.
+                </td>
+            </tr>
+        </table>
+        
+        <h4>Example Request</h4>
+<pre class="prettyprint lang-curl">$ curl https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/code/JOHNDOE \
+-u API_KEY: \
+-H "Content-Type: application/json"</pre>
+
+        <h4>Example Response</h4>
+<pre class="prettyprint lang-json">{
+    "couponCode" : "JOHNDOE", 
+    "discountPercentage" : 20, 
+    "dateCreated" : 1377727546528,
+    "discountId" : "saasquatch_discount"
+}</pre>
+
+        <hr />
+
+        <h2>Lookup an account's reward</h2>
+        <a id="get_account_reward" name="get_account_reward" class="section-anchor">&nbsp;</a>
+
+        <p>This method associates a new account with their referrer. Use this method when someone signs up for a paid account to set the coupon code used for them.</p>
+        <h4>Definition</h4>
+        <pre class="prettyprint lang-curl">GET https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/account/{ACCOUNT_ID}</pre>
+
+        <h4>Arguments</h4>
+        <div>
+            <table class="table table-hover">
+              <tr>
+                <th class="docs-monospace">accountId</th>
+                <td><span class="label">Required</span></td>
+                <td>
+                    The account to look up
+                </td>
+              </tr>
+              <tr>
+                <th class="docs-monospace">couponCode</th>
+                <td><span class="label">Optional</span></td>
+                <td>
+                    When included, will return a total reward available including any coupon code.
+                </td>
+              </tr>
+              </table>
+        </div>
+    
+        <h4>Returns</h4>
+        <p>Information about the account's reward, if any, or an HTTP 404 if the account doesn't exist in SaaSquatch yet.</p>
+        <table class="table table-hover">
+            <tr>
+                <th class="docs-monospace">accountId</th>
+                <td>String</td>
+                <td>
+                    The coupon/referral code
+                </td>
+            </tr>
+            <tr>
+                <th class="docs-monospace">discountPercentage</th>
+                <td>Number</td>
+                <td>
+                    A integer representing the total discount percentage from the referral program. e.g. For 10% would return the number 10. <code>discountPercentage = referredDiscountPercent + referrerDiscountPercent</code>
+                </td>
+            </tr>
+            <tr>
+                <th class="docs-monospace">referredDiscountPercent</th>
+                <td>Number</td>
+                <td>
+                    A integer representing the discount percentage from being referred. This will only have a value if the account has a coupon/referral code 
+                    already associated with it, or if <code>couponCode</code> was passed as an argument.
+                </td>
+            </tr>
+            <tr>
+                <th class="docs-monospace">referrerDiscountPercent</th>
+                <td>Number</td>
+                <td>
+                    A integer representing the discount earned from referring other accounts.
+                </td>
+            </tr>
+            <tr>
+                <th class="docs-monospace">ratePlanId</th>
+                <td>String</td>
+                <td>
+                    <span class="label">Zuora only</span>
+                    The Zuora rate plan ID used to apply the discount.
+                </td>
+            </tr>
+            <tr>
+                <th class="docs-monospace">discountId</th>
+                <td>String</td>
+                <td>
+                    <span class="label">Braintree only</span>
+                    The Braintree discount ID used to apply the discount.
+                </td>
+            </tr>
+        </table>
+        
+        <h4>Example Request</h4>
+<pre class="prettyprint lang-curl">$ curl https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/account/SV0TYE5OWI11120144/reward \
+-u API_KEY: \
+-H "Content-Type: application/json"</pre>
+
+        <h4>Example Response</h4>
+<pre class="prettyprint lang-json">{
+    "accountId":"SV0TYE5OWI11120144",
+    "discountPercentage":10,
+    "referrerDiscountPercent":0,
+    "referredDiscountPercent":10,
+    "discountId":"saasquatch_discount"
+}</pre>
+
+        <hr />
+
+        @* 
+            Includes the webhook method reference here
+        *@
+        @tags.webhookMethods()
+
+
+    </section>
+}

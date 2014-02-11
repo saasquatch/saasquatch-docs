@@ -1,3 +1,5 @@
+@cdnDomain = "http://www.referralsaasquat.netdna-cdn.com";
+
 @(title: String, descr: String)(content: Html)
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -65,10 +67,10 @@
         <script type="text/javascript" src="//use.typekit.net/hqf0oje.js"></script>
         <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
         
-        <link rel="stylesheet" href="http://www.referralsaasquatch.com/wp-content/themes/disillusion/style.css">
+        <link rel="stylesheet" href="@cdnDomain/wp-content/themes/disillusion/style.css">
         <link rel="stylesheet" href="@routes.Assets.at("stylesheets/docs.css")">
 
-        <link rel="shortcut icon" href="http://www.referralsaasquatch.com/assets/ico.png">
+        <link rel="shortcut icon" href="@cdnDomain/assets/ico.png">
 
         
         <!-- SEO Metadata -->
@@ -93,13 +95,13 @@
         <!-- / Swiftype Metadata -->
         
         <link rel='stylesheet' id='Open Sans:300,300italic,regular,italic,600,600italic,700,700italic,800,800italic-css'  href='http://fonts.googleapis.com/css?family=Open+Sans%3A300%2C300italic%2Cregular%2Citalic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic&#038;ver=3.8' type='text/css' media='all' />
-        <link rel='stylesheet' id='pt-mediaqueries-css'  href='http://www.referralsaasquatch.com/wp-content/themes/disillusion/css/mediaqueries.css' type='text/css' media='all' />
+        <link rel='stylesheet' id='pt-mediaqueries-css'  href='@cdnDomain/wp-content/themes/disillusion/css/mediaqueries.css' type='text/css' media='all' />
 
-        <script type='text/javascript' src='http://www.referralsaasquatch.com/wp-includes/js/jquery/jquery.js?ver=1.10.2'></script>
-        <script type='text/javascript' src='http://www.referralsaasquatch.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
-        <script type='text/javascript' src='http://www.referralsaasquatch.com/wp-includes/js/swfobject.js?ver=2.2-20120417'></script>
-        <script type='text/javascript' src='http://www.referralsaasquatch.com/wp-content/themes/disillusion/js/vendor/modernizr-2.6.2.min.js'></script>
-        <script type='text/javascript' src='http://www.referralsaasquatch.com/wp-content/themes/disillusion/js/vendor/bootstrap.min.js'></script>
+        <script type='text/javascript' src='@cdnDomain/wp-includes/js/jquery/jquery.js?ver=1.10.2'></script>
+        <script type='text/javascript' src='@cdnDomain/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+        <script type='text/javascript' src='@cdnDomain/wp-includes/js/swfobject.js?ver=2.2-20120417'></script>
+        <script type='text/javascript' src='@cdnDomain/wp-content/themes/disillusion/js/vendor/modernizr-2.6.2.min.js'></script>
+        <script type='text/javascript' src='@cdnDomain/wp-content/themes/disillusion/js/vendor/bootstrap.min.js'></script>
         
     </head>
     
@@ -206,9 +208,9 @@
         	        <ul style="list-style-type: none; color:white; font-weight:300;">
         	            <li>Product</li>
         	            <li class="active"><a href="http://www.referralsaasquatch.com/#features">Features</a></li>
-        	            <li class="active"><a href="http://www.referralsaasquatch.com/#testimonials">Testimonials</a></li>
         	            <li><a href="http://www.referralsaasquatch.com/#pricing">Pricing</a></li>
         	            <li><a href="http://docs.referralsaasquatch.com/">Documentation</a></li>
+        	            <li><a href="http://docs.referralsaasquatch.com/api/">API</a></li>
         	       </ul>
     	        </div>
     	        <div class="span3" >
@@ -251,7 +253,7 @@
                 </div>
             </div>
             <div class="span12 text-center" style="color: white; margin-left:0px;">
-                <a href="http://womma.org"><img src="http://www.referralsaasquatch.com/wp-content/themes/disillusion/img/womma-member-logo.png"/ class="span1 offset10 visible-desktop"  alt="Proud member of WOMMA" /></a> 
+                <a href="http://womma.org"><img src="@cdnDomain/wp-content/themes/disillusion/img/womma-member-logo.png"/ class="span1 offset10 visible-desktop"  alt="Proud member of WOMMA" /></a> 
                 <p style="margin-top: 61px; margin-bottom: -46px; opacity:0.7; ">Copyright © 2014 Referral SaaSquatch.com. All rights reserved.</p>
                 <p class="hidden-phone" style="margin-top: 45px; margin-bottom: -46px; opacity:0.7; ">1017 Fort St, Victoria, British Columbia,V8V 3K5, Canada</p>
             </div>
@@ -266,14 +268,18 @@
     	<div id="lightwindow-content"></div>
     </div>
 
-    <script type='text/javascript' src='http://www.referralsaasquatch.com/wp-content/themes/disillusion/js/plugins.js'></script>
+    @*
+     * TODO: Clean up this JS from docs. They were from the website, and aren't useful here.
+     *
+     *********************@  
+    <script type='text/javascript' src='@cdnDomain/wp-content/themes/disillusion/js/plugins.js'></script>
     <script type='text/javascript'>
     /* <![CDATA[ */
     var AjaxHelper = {"blog_url":"http:\/\/www.referralsaasquatch.com\/wp-content\/themes\/disillusion\/template-news.php","portfolio_url":"http:\/\/www.referralsaasquatch.com\/wp-content\/themes\/disillusion\/template-portfolio.php","portfolio2_url":"http:\/\/www.referralsaasquatch.com\/wp-content\/themes\/disillusion\/template-portfolio2.php","ajaxurl":"http:\/\/www.referralsaasquatch.com\/wp-admin\/admin-ajax.php"};
     var pt_settings = {"base_color":"","google_maps_circle_color":"#fb8047","google_maps_landscape_color":"#ffffff","google_maps_water_color":"#d4d4d4","portfolio_items_page":"5","blog_items_page":"16","pt_google_maps_latitude_1":"33.707126","pt_google_maps_longitude_1":"-4.135499","pt_google_maps_title_popover_1":"","pt_google_maps_text_popover_1":"","pt_google_maps_latitude_2":"38.707126","pt_google_maps_longitude_2":"-4.135499","pt_google_maps_title_popover_2":"","pt_google_maps_text_popover_2":"","pt_google_maps_latitude_3":"33.707126","pt_google_maps_longitude_3":"-4.135499","pt_google_maps_title_popover_3":"","pt_google_maps_text_popover_3":"","pt_google_maps_latitude_4":"33.707126","pt_google_maps_longitude_4":"-4.135499","pt_google_maps_title_popover_4":"","pt_google_maps_text_popover_4":""};
     /* ]]> */
     </script>
-    <script type='text/javascript' src='http://www.referralsaasquatch.com/wp-content/themes/disillusion/js/main.js'></script>
+    <script type='text/javascript' src='@cdnDomain/wp-content/themes/disillusion/js/main.js'></script>
 
     <!--Start of Zopim Live Chat Script-->
     <script type="text/javascript">
@@ -298,7 +304,7 @@
             tryPretty();
         });
     </script>
-    <script type='text/javascript' src='http://www.referralsaasquatch.com/wp-content/themes/disillusion/js/vendor/google-code-prettify/prettify.js'></script>
+    <script type='text/javascript' src='@cdnDomain/wp-content/themes/disillusion/js/vendor/google-code-prettify/prettify.js'></script>
     
     <script type="text/javascript">
         var Swiftype = window.Swiftype || {};
