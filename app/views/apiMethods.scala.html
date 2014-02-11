@@ -28,7 +28,7 @@
             <tbody>
                 <tr>
                     <td>
-                        GET
+                        POST
                     </td>
                     <td class="docs-monospace">
                         /api/v1/{TENANT_ALIAS}/coupon
@@ -39,7 +39,7 @@
                 </tr>
                 <tr>
                     <td>
-                        POST
+                        GET
                     </td>
                     <td class="docs-monospace">
                         /api/v1/{TENANT_ALIAS}/coupon/{CODE}
@@ -116,7 +116,7 @@
                 </td>
               </tr>
               <tr>
-                <th class="docs-monospace">paymentProviderId</th>
+                <th class="docs-monospace">accountId</th>
                 <td><span class="label">Required</span></td>
                 <td>
                     The payment provider ID of the newly created account from Braintree or Zuora. This will be the Braintree Account ID or the Zuora Account ID.
@@ -171,7 +171,7 @@
 <pre class="prettyprint lang-curl">$ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/coupon \
 -u API_KEY: \
 -H "Content-Type: application/json" \
--d '{"couponCode" : "BOBTESTERSON", "paymentProviderId" : "cus_123" }'</pre>
+-d '{"couponCode" : "BOBTESTERSON", "accountId" : "cus_123" }'</pre>
 
         <hr />
         
@@ -209,7 +209,7 @@
                 <th class="docs-monospace">discountPercentage</th>
                 <td>Number</td>
                 <td>
-                    A integer representing the discount percentage. e.g. For 10% would return the number 10.
+                    An integer representing the discount percentage. e.g. For 10% would return the number 10.
                 </td>
             </tr>
             <tr>
@@ -286,21 +286,21 @@
                 <th class="docs-monospace">accountId</th>
                 <td>String</td>
                 <td>
-                    The coupon/referral code
+                    The account id
                 </td>
             </tr>
             <tr>
                 <th class="docs-monospace">discountPercentage</th>
                 <td>Number</td>
                 <td>
-                    A integer representing the total discount percentage from the referral program. e.g. For 10% would return the number 10. <code>discountPercentage = referredDiscountPercent + referrerDiscountPercent</code>
+                    An integer representing the total discount percentage from the referral program. e.g. For 10% would return the number 10. <code>discountPercentage = referredDiscountPercent + referrerDiscountPercent</code>
                 </td>
             </tr>
             <tr>
                 <th class="docs-monospace">referredDiscountPercent</th>
                 <td>Number</td>
                 <td>
-                    A integer representing the discount percentage from being referred. This will only have a value if the account has a coupon/referral code 
+                    An integer representing the discount percentage from being referred. This will only have a value if the account has a coupon/referral code 
                     already associated with it, or if <code>couponCode</code> was passed as an argument.
                 </td>
             </tr>
@@ -308,7 +308,7 @@
                 <th class="docs-monospace">referrerDiscountPercent</th>
                 <td>Number</td>
                 <td>
-                    A integer representing the discount earned from referring other accounts.
+                    An integer representing the discount earned from referring other accounts.
                 </td>
             </tr>
             <tr>
