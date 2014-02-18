@@ -145,7 +145,7 @@ public static String calculateHMACSHA256(String data, String secretKey) throws j
     return result;
 }""",
 "php" -> 
-"""base64_encode(hash_hmac('sha256','a5678joe.tester@example.comJoeTestertest_aaaexampleaaau1234', 'TEST_HGO8125ANDFH152HSAS15'))""",
+"""base64_encode(hash_hmac('sha256','a5678joe.tester@example.comJoeTestertest_aaaexampleaaau1234', 'TEST_HGO8125ANDFH152HSAS15', true))""",
 "rb" -> 
 """require 'openssl'
 require base64'
