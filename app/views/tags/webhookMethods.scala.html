@@ -1,7 +1,7 @@
 @()
 
-<h2>Create a webhook subscription</h2>
 <a id="create_webhook" name="create_webhook" class="section-anchor">&nbsp;</a>
+<h2>Create a webhook subscription</h2>
 
 <p>Subscribes a URL to receive events via webhooks</p>
 <h4>Definition</h4>
@@ -36,8 +36,8 @@
 
 
 
-<h2>Delete a webhook subscription</h2>
 <a id="delete_webhook" name="delete_webhook" class="section-anchor">&nbsp;</a>
+<h2>Delete a webhook subscription</h2>
 
 <p>Removes a URL from receiving events via webhooks</p>
 <h4>Definition</h4>
@@ -57,14 +57,12 @@
 </div>
 
 <h4>Returns</h4>
-<p>HTTP Created Status (Empty Response Body)</p>
+<p>HTTP 204 - No response (Empty Response Body)</p>
 
 <h4>Example Request</h4>
-<pre class="prettyprint lang-curl">$ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/subscription \
+<pre class="prettyprint lang-curl">$ curl -X DELETE https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/subscription/{URL} \
 -u API_KEY: \
--H "Content-Type: application/json" \
--d '{"endpointUrl":"YOUR_ENDPOINT_URL"}'</pre>
-
+-H "Content-Type: application/json"</pre>
 <hr/>
 
 
@@ -76,28 +74,18 @@
 
 
 
-<h2>Create a webhook subscription</h2>
-<a id="create_webhook" name="create_webhook" class="section-anchor">&nbsp;</a>
+<a id="list_webhooks" name="list_webhooks" class="section-anchor">&nbsp;</a>
+<h2>List webhook subscriptions</h2>
 
-<p>Subscribes a URL to receive events via webhooks</p>
+<p>List all the URLs that are currently subscribed to receive events via webhooks</p>
 <h4>Definition</h4>
-<pre class="prettyprint lang-curl">POST https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/subscription</pre>
+<pre class="prettyprint lang-curl">GET https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/subscription</pre>
 
 <h4>Arguments</h4>
-<div>
-    <table class="table table-hover">
-      <tr>
-        <th class="docs-monospace">endpointUrl</th>
-        <td><span class="label">Required</span></td>
-        <td>
-            The url of the endpoint to receive events
-        </td>
-      </tr>
-    </table>
-</div>
+<p>No arguments required.</p>
 
 <h4>Returns</h4>
-<p>HTTP Created Status (Empty Response Body)</p>
+<p>A list of endpoints urls</p>
 
 <h4>Example Request</h4>
 <pre class="prettyprint lang-curl">$ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/subscription \
@@ -105,5 +93,11 @@
 -H "Content-Type: application/json" \
 -d '{"endpointUrl":"YOUR_ENDPOINT_URL"}'</pre>
 
+<h4>Example Response</h4>
+<pre class="prettyprint lang-json">[
+    {"endpointUrl": "https://example.com/hook"},
+    {"endpointUrl": "https://another.example.com/hook"},
+    ...
+]</pre>
 <hr/>
 @** TODO: Add documentation about looking up and removing webhook subscriptions **@
