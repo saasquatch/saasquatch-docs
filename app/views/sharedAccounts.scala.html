@@ -1,6 +1,6 @@
 @main(
     "Shared vs. Solo Accounts",
-    "SaaSquatch supports companies with accounts that are shared between users (B2B apps) and solo accounts (B2C apps) out of the box."
+    "We support both companies with accounts that are shared between users and solo accounts. In other words we support both B2B and B2C."
 ) {
     <section>
         <div class="page-header">
@@ -8,18 +8,18 @@
         </div>
         
         <p class="lead">
-        We support both companies with accounts that are shared between users and solo accounts. In other words we support both B2B and B2C.
+        We support both companies with accounts that are shared between users and solo accounts. In other words we support both B2B and B2C. This 
+        guide explains how to set <code>account_id</code> for both of those cases.
         </p>
 
         <hr/>
         <h3>What is the difference between Shared and Solo accounts?</h3>
         <p>
-            Shared accounts have many users using the same billing and solo accounts don't. Most B2B apps have multiple users that access the 
+            Shared accounts have many users using the same billing information... solo accounts don't. Most B2B apps have multiple users that access the 
             same account, but there is only one bill paid for all of those users. Some examples of apps with shared accounts would be Helpdesk, CRM or collaboration. 
         </p>
         <p>
-            Most B2C apps are solo accounts because even though people might collaborate, they still each pay for their own service. Some examples of solo user account 
-            are services like Netflix, Rdio or LinkedIn.
+            Most B2C apps are solo accounts because everyone pay for their own service. Some examples of solo user account are services like Netflix, Rdio or LinkedIn.
         </p>
 
         <table class="table">
@@ -45,8 +45,8 @@
         <h3>How does referral credit work with Shared accounts?</h3>
         
         <p>
-            Every user in a shared account works towards the same goals. For example, if each referral is worth 10% off, then Google can get a free account if
-            Will makes 5 referrals, Jane makes 3 referrals, and Frank makes 2 referrals.
+            Every user in a shared account works towards the same goals. For example, if each referral is worth 10% off, then a shared account can get 100% with 10 referrals from different users;
+            Will makes 5 referrals, Jane makes 3 referrals, and Frank makes 2 referrals, for a total of 10.
         </p>
         
         <hr/>
@@ -69,19 +69,23 @@
         <h3>Can users be part of multiple groups / accounts?</h3>
         
         <p>
-            Yes, but don't tell us about it. We require that every user is part of at most one account. This is how we know which account deserves referral credit. If a user is identified as being
-            part of multiple accounts, Referral SaaSquatch will count that user as two separate users: one in each account.
+            Yes, but don't tell us about it. We require that every user is part of at most one account. This is how we know which account deserves referral credit.
+        </p>
+        
+        <p>
+            When you identify a user in <a href="/squatchjs#init">squatch.js init</a> just always set the same <code>account_id</code> for that user. If a user is identified as being
+            part of multiple accounts, Referral SaaSquatch create two separate users: one in each account.
         </p>
 
         <hr/>
-        <h3>What if I'm a B2C app and only have Solo accounts</h3>
+        <h3>What if I'm a B2C app and only have Solo accounts?</h3>
         
         <p>
             When you identify users in <a href="/squatchjs#init">squatch.js init</a> you can just set <code>account_id = user_id</code>.
         </p>
         
         <hr/>
-        <h3>How are is account_id different than payment_provider_id</h3>
+        <h3>How is <span class="monospace">account_id</span> different than <span class="monospace">payment_provider_id</span>?</h3>
         <p>
             Both <code>account_id</code> and <code>payment_provider_id</code> are properties of an account, not a user. <code>account_id</code> is 
             your internal identifier and code>payment_provider_id</code> is used to look up an account in your payment system. If you're using the API 
@@ -111,7 +115,7 @@
         
         <h3>Shared Account Example</h3>
 
-        <p>If you're using shared accounts, then you can just set <code>payment_provider_id: null</code> for those accounts.</p>
+        <p>If you're using shared accounts, use the same <code>account_id</code> for all users in the same group. If an account doesn't exist in your payment system yet, then set <code>payment_provider_id: null</code> for that account.</p>
 
         <img src="/assets/images/shared_account_example.png" />
 
@@ -132,7 +136,7 @@
     account_id: "derf",
     payment_provider_id: null,
     email: "valerie@@example.com",
-    first_name: "Will"
+    first_name: "Valerie"
     user_id: "4" }</pre>
 </td>
             </tr>

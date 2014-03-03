@@ -12,15 +12,23 @@
         
         <h3>Using the wrong account_id</h3>
         
-        <p>People often pass the wrong <code>account_id</code> to <code>_sqh.push(['init', ...])</code>. Here are the most common mistakes for account_id</p>
+        <p>
+            If you haven't already, take a minute to read <a href="/shared-vs-solo-accounts">Shared vs Solo Accounts</a>. This will clarify most questions about account_id.
+        </p>
+        
+
+        <h3>Using the wrong payment_provider_id</h3>
+
+        <p>People often pass the wrong <code>payment_provider_id</code> to <code>_sqh.push(['init', ...])</code>. Here are the most common mistakes for payment_provider_id</p>
         
         <ul>
-            <li>The account_id was left blank</li>
-            <li>The account_id could not be verified using the Braintree/Stripe/Recurly/Zuora API because that account doesn't exist yet</li>
-            <li>An account_id from a live system is being used on a test system</li>
+            <li>The payment_provider_id was omitted instead of being set as null</li>
+            <li>The payment_provider_id could not be verified using the Braintree/Stripe/Recurly/Zuora API because that account doesn't exist yet</li>
+            <li>An payment_provider_id from a live system is being used on a test system</li>
+            <li>The payment_provider_id was set as null, but <a href="/squatchjs/signed-requests">Signed Requests</a> aren't being used</li>
         </ul>
         
-        <p>Depending on your payment system, a different account_id should be used. Here is the full reference:</p>
+        <p>Depending on your payment system, a different payment_provider_id should be used. Here is the full reference:</p>
         <table class="table">
             <tr>
                 <td>Braintree</td>
