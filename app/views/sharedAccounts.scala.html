@@ -8,13 +8,18 @@
         </div>
         
         <p class="lead">
-        SaaSquatch supports companies with accounts that are shared between users (B2B apps) and solo accounts (B2C apps) out of the box.
+        We support both companies with accounts that are shared between users and solo accounts. In other words we support both B2B and B2C.
         </p>
 
         <hr/>
         <h3>What is the difference between Shared and Solo accounts?</h3>
         <p>
-            Shared accounts have many users using the same billing and solo accounts don't.
+            Shared accounts have many users using the same billing and solo accounts don't. Most B2B apps have multiple users that access the 
+            same account, but there is only one bill paid for all of those users. Some examples of apps with shared accounts would be Helpdesk, CRM or collaboration. 
+        </p>
+        <p>
+            Most B2C apps are solo accounts because even though people might collaborate, they still each pay for their own service. Some examples of solo user account 
+            are services like Netflix, Rdio or LinkedIn.
         </p>
 
         <table class="table">
@@ -22,14 +27,14 @@
                 <th>
                     <strong>Shared</strong> Account
                 </th>
-                <th>
-                    <strong>Solo</strong> Account
-                </th>
-            </tr>
-            <tr>
                 <td>
                     Multiple users share the same billing information
                 </td>
+            </tr>
+            <tr>
+                <th>
+                    <strong>Solo</strong> Account
+                </th>
                 <td>
                     Every user has their own billing
                 </td>
@@ -37,10 +42,12 @@
         </table>
 
         <hr/>
-        <h3>account_id vs. payment_provider_id</h3>
+        <h3>How are is account_id different than payment_provider_id</h3>
         
         <p>
-            <code>account_id</code> is your internal identifier, whuke <code>payment_provider_id</code>
+            Both <code>account_id</code> and <code>payment_provider_id</code> are used to identify who is charge of billing. The former is 
+            your internal identifier, the later is the identifier from your payment system. If you're using the API integration, then you
+            don't need to worry about <code>payment_provider_id</code>.
         </p>
 
         <table class="table">
@@ -48,81 +55,80 @@
                 <th>
                     <code>account_id</code>
                 </th>
-                <th>
-                    <code>payment_provider_id</code>
-                </th>
-            </tr>
-            <tr>
                 <td>
                     Used to groups users into a single account
                 </td>
+            </tr>
+            <tr>
+                <th>
+                    <code>payment_provider_id</code>
+                </th>
                 <td>
                     Used to lookup an account in the payment system. E.g. Stripe customer id or Recurly account id
                 </td>
             </tr>
         </table>
 
-        <h3>Free or trial users aren't in my payment system</h3>
+        <hr/>
+        
+        <h3>Big Ol' Example</h3>
+
+        <p>We find that the best way to explain things is with example. Here </p>
 
         <p>If you're using shared accounts, then you can just set <code>payment_provider_id: null</code> for those accounts.</p>
 
-        <img src="/assets/img/shared_account_example.png" />
+        <img src="/assets/images/shared_account_example.png" />
 
+<table class="table">
+            <tr>
+                <th>Will</th>
+                <td><pre class="prettyprint lang-json">{tenant_alias: "test_aaaexampleaaa",
+    account_id: "abc",
+    payment_provider_id: "cus_f5h"
+    email: "will@@example.com",
+    first_name: "Will"
+    user_id: "1" }</pre>
+</td>
+            </tr>
+            <tr>
+                <th>Valerie</th>
+                <td><pre class="prettyprint lang-json">{tenant_alias: "test_aaaexampleaaa",
+    account_id: "derf",
+    payment_provider_id: null,
+    email: "valerie@@example.com",
+    first_name: "Will"
+    user_id: "4" }</pre>
+</td>
+            </tr>
+       </table>
+       
         <p>
            If you're using shared accounts, then you can just set <code>payment_provider_id: null</code> for those accounts. 
            If you don't have a separate <code>account_id</code> for your user's account, just set <code>account_id == user_id</code>
         </p>
         
-        <img src="/assets/img/solo_user_example.png" />
+        <img src="/assets/images/solo_user_example.png" />
 
         <p>The code to identify these users:</p>
 
         <table class="table">
             <tr>
-                <th>Will</th>
-                <td><pre class="prettyprint lang-json">{
-    tenant_alias: "test_aaaexampleaaa",
-    account_id: "abc",
-    payment_provider_id: "cus_f5h"
-    email: "will@@example.com",
-    first_name: "Will"
-    user_id: "1"
-}</pre>
-</td>
-            </tr>
-            <tr>
-                <th>Valerie</th>
-                <td><pre class="prettyprint lang-json">{
-    tenant_alias: "test_aaaexampleaaa",
-    account_id: "derf",
-    payment_provider_id: null,
-    email: "valerie@@example.com",
-    first_name: "Will"
-    user_id: "4"
-}</pre>
-</td>
-            </tr>
-            <tr>
                 <th>Frank</th>
-                <td><pre class="prettyprint lang-json">{
-    tenant_alias: "test_aaaexampleaaa",
+                <td><pre class="prettyprint lang-json">{tenant_alias: "test_aaaexampleaaa",
     account_id: "1",
     email: "frank@@example.com",
     first_name: "Frank"
-    user_id: "1"
-}</pre>
+    user_id: "1" }</pre>
 </td>
             </tr>
             <tr>
                 <th>Antoine</th>
-                <td><pre class="prettyprint lang-json">{
-    tenant_alias: "test_aaaexampleaaa",
+                <td><pre class="prettyprint lang-json">{tenant_alias: "test_aaaexampleaaa",
     account_id: "4",
     payment_provider_id: null,
     email: "antoine@@example.com",
     first_name: "Antoine"
-    user_id: "4"
-}</pre>
+    user_id: "4" }</pre>
 </td>
             </tr>
        </table>

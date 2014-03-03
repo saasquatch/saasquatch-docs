@@ -76,7 +76,15 @@
                     <th>account_id</th>
                     <td><span class="label">Required for Popup</span></td>
                     <td>
-                        We use this to link an account with your payment system. The account_id is either the Stripe Customer ID, the Recurly Account ID, the Braintree Account ID or the Zuora Account ID.
+                        We use this ID to link a group of users together. See <a href="/shared-vs-solo-accounts">Shared vs Solo Accounts</a> to see what you should use here.
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>payment_provider_id</th>
+                    <td><span class="label">Required for Popup</span></td>
+                    <td>
+                        The payment_provider_id is either the Stripe Customer ID, the Recurly Account ID, the Braintree Account ID or the Zuora Account ID. Can be <code>null</code>
+                        for <a href="/free-trials">free trials or freemium accounts</a>.
                     </td>
                   </tr>
                   <tr>
@@ -134,12 +142,13 @@ var _sqh = _sqh || [];
 // Push user details for a user who is logged in to your system
 _sqh.push(['init', {
    tenant_alias: 'test_bpinhag9yagag',
-   account_id: 'cus_1234',
+   account_id: 'abc',
+   payment_provider_id: 'cus_1234',
    user_id: '5678',
    email: 'bob@@example.com',
    first_name: 'Bob',
    last_name: 'Testerson',
-   user_image: 'http://myapp.example.com/img/cus_1234.jpg'
+   user_image: 'http://myapp.example.com/img/user_5678.jpg'
 }]);
 
 // Include squatch.js
