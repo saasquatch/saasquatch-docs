@@ -17,13 +17,11 @@
     // Push user details for a user who is logged in to your system
     _sqh.push(['init', {
         tenant_alias: '$tenant_alias', // REPLACE: Your live or test mode tenant_alias. This identifies your app.
-        account_id: '$accountId', // REPLACE: the Stripe/Recurly/Braintree/Zuora id used for payment system integration
+        account_id: '$accountId', // REPLACE: A company or group ID used to group users together
+        payment_provider_id: '$paymentId', // REPLACE: the Stripe/Recurly/Braintree/Zuora id used for payment system integration (or null)
         user_id: '$userId', // REPLACE: A user ID from your system (must be unique for every user)
         email: '$emailAddress', // REPLACE: The e-mail address of the user
-        first_name: '$firstName', // REPLACE: The user's first name
-        last_name: '$lastName', // (OPTIONAL) REPLACE: The user's last name
-        user_image: '$userImageURL', // (OPTIONAL) REPLACE: Absolute URL to the user's profile image
-        fb_share_image: '$facebookImageURL' // (OPTIONAL) REPLACE: Absolute URL to the image included when users refer on Facebook
+        first_name: '$firstName' // REPLACE: The user's first name
     }]);
     
     // Include squatch.js

@@ -35,7 +35,7 @@
                     <pre class="prettyprint lang-js">_sqh.push(['init', {
     tenant_alias: 'test_aaaexampleaaa’,
     account_id: 'a5678',
-    payment_provider_id: 'cus_a2f',
+    payment_provider_id: null,
     user_id: 'u1234',
     email: 'joe.tester@@example.com',
     first_name: 'Joe',
@@ -46,7 +46,7 @@
                     <pre class="prettyprint lang-js">_sqh.push(['init', {
     tenant_alias: 'test_aaaexampleaaa’,
     account_id: 'a5678',
-    payment_provider_id: 'cus_a2f',
+    payment_provider_id: null,
     user_id: 'u1234',
     email: 'joe.tester@@example.com',
     first_name: 'Joe',
@@ -120,9 +120,10 @@ _sqh.push(['autofill', '#referralCoupon']);
             </li>
             <li>
                 <p><strong>Concatenate the values.</strong> Starting with an empty string, iterate through all the parameters that you sorted and append each parameter's value to the end of a string. Notice 
-                how "a5678", the value for <code>account_id</code>, is at the start, and "u1234", the value for <code>user_id</code>, is at the end.
+                how "a5678", the value for <code>account_id</code>, is at the start, and "u1234", the value for <code>user_id</code>, is at the end. Also, any optional parameters or null parameters can be
+                omitted. In this example <code>payment_provider_id</code> is set to null and isn't included in the concatenated string.
                 </p>
-                <pre><span style="color:#dd1144;">a5678</span>joe.tester@@example.com<span style="color:#dd1144;">Joe</span>Tester<span style="color:#dd1144;">null</span>test_aaaexampleaaa<span style="color:#dd1144;">u1234</span></pre>
+                <pre><span style="color:#dd1144;">a5678</span>joe.tester@@example.com<span style="color:#dd1144;">Joe</span>Tester<span style="color:#dd1144;">est_aaaexampleaaa</span>u1234</pre>
             </li>
             <li>
                 <p><strong>Sign the string</strong> using your API key to compute a HMAC-SHA2 checksum. In the code below we use an example API key: <code>TEST_HGO8125ANDFH152HSAS15</code></p>
@@ -184,6 +185,7 @@ private string CreateToken(string message, string secret)
                 <pre class="prettyprint lang-js">_sqh.push(['init', {
     tenant_alias: 'test_aaaexampleaaa’,
     account_id: 'a5678',
+    payment_provider_id: null,
     user_id: 'u1234',
     email: 'joe.tester@@example.com',
     first_name: 'Joe',
