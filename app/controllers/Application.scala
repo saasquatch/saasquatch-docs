@@ -26,8 +26,11 @@ object Application extends Controller {
   def page(slug:String) = Action {
     slug match {
         case "how-it-works"  => Ok(views.html.howItWorks())
+
         case "free-trials"  => Ok(views.html.freetrials())
         case "theming"  => Ok(views.html.theming())
+        case "shared-vs-solo-accounts"  => Ok(views.html.sharedAccounts())
+        case "testing"  => Ok(views.html.testingBestPractices())
         
         case "braintree"  => Ok(views.html.braintree())
         case "recurly"  => Ok(views.html.recurly())
@@ -47,7 +50,6 @@ object Application extends Controller {
 
         case "bestpractices/buttons"  => Ok(views.html.buttonsBestPractices())
         case "bestpractices/speed"  => Ok(views.html.pageSpeedBestPractices())
-        case "bestpractices/testing"  => Ok(views.html.testingBestPractices())
         case "bestpractices/common-pitfalls"  => Ok(views.html.commonPitfallsBestPractices())
         
         case "faq"  => Ok(views.html.faqGeneral())
