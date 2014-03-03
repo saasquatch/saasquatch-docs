@@ -42,12 +42,50 @@
         </table>
 
         <hr/>
-        <h3>How are is account_id different than payment_provider_id</h3>
+        <h3>How does referral credit work with Shared accounts?</h3>
         
         <p>
-            Both <code>account_id</code> and <code>payment_provider_id</code> are used to identify who is charge of billing. The former is 
-            your internal identifier, the later is the identifier from your payment system. If you're using the API integration, then you
-            don't need to worry about <code>payment_provider_id</code>.
+            Every user in a shared account works towards the same goals. For example, if each referral is worth 10% off, then Google can get a free account if
+            Will makes 5 referrals, Jane makes 3 referrals, and Frank makes 2 referrals.
+        </p>
+        
+        <hr/>
+        <h3>How are referral tracked in Shared accounts?</h3>
+        
+        <p>
+            Each user gets their own referral link. Even though Will and Jane both access the same shared account, the referrals they make are tracked seperately. When a new account signs up,
+            Referral SaaSquatch links the referral to the first person to sign in.
+        </p>
+
+        <hr/>
+        <h3>How do I group users into the same account?</h3>
+        
+        <p>
+            When you identify users in <a href="/squatchjs#init">squatch.js init</a> just set the same <code>account_id</code> for all
+            users that are part of the same group.
+        </p>
+        
+        <hr/>
+        <h3>Can users be part of multiple groups / accounts?</h3>
+        
+        <p>
+            Yes, but don't tell us about it. We require that every user is part of at most one account. This is how we know which account deserves referral credit. If a user is identified as being
+            part of multiple accounts, Referral SaaSquatch will count that user as two separate users: one in each account.
+        </p>
+
+        <hr/>
+        <h3>What if I'm a B2C app and only have Solo accounts</h3>
+        
+        <p>
+            When you identify users in <a href="/squatchjs#init">squatch.js init</a> you can just set <code>account_id = user_id</code>.
+        </p>
+        
+        <hr/>
+        <h3>How are is account_id different than payment_provider_id</h3>
+        <p>
+            Both <code>account_id</code> and <code>payment_provider_id</code> are properties of an account, not a user. <code>account_id</code> is 
+            your internal identifier and code>payment_provider_id</code> is used to look up an account in your payment system. If you're using the API 
+            integration, then you don't need to worry about <code>payment_provider_id</code>.
         </p>
 
         <table class="table">
@@ -71,9 +109,7 @@
 
         <hr/>
         
-        <h3>Big Ol' Example</h3>
-
-        <p>We find that the best way to explain things is with example. Here </p>
+        <h3>Shared Account Example</h3>
 
         <p>If you're using shared accounts, then you can just set <code>payment_provider_id: null</code> for those accounts.</p>
 
@@ -82,7 +118,7 @@
 <table class="table">
             <tr>
                 <th>Will</th>
-                <td><pre class="prettyprint lang-json">{tenant_alias: "test_aaaexampleaaa",
+                <td><pre class="prettyprint lang-json">{   tenant_alias: "test_aaaexampleaaa",
     account_id: "abc",
     payment_provider_id: "cus_f5h"
     email: "will@@example.com",
@@ -92,7 +128,7 @@
             </tr>
             <tr>
                 <th>Valerie</th>
-                <td><pre class="prettyprint lang-json">{tenant_alias: "test_aaaexampleaaa",
+                <td><pre class="prettyprint lang-json">{   tenant_alias: "test_aaaexampleaaa",
     account_id: "derf",
     payment_provider_id: null,
     email: "valerie@@example.com",
@@ -102,8 +138,10 @@
             </tr>
        </table>
        
+
+        <h3>Solo Account Example</h3>
+
         <p>
-           If you're using shared accounts, then you can just set <code>payment_provider_id: null</code> for those accounts. 
            If you don't have a separate <code>account_id</code> for your user's account, just set <code>account_id == user_id</code>
         </p>
         
@@ -114,7 +152,7 @@
         <table class="table">
             <tr>
                 <th>Frank</th>
-                <td><pre class="prettyprint lang-json">{tenant_alias: "test_aaaexampleaaa",
+                <td><pre class="prettyprint lang-json">{   tenant_alias: "test_aaaexampleaaa",
     account_id: "1",
     email: "frank@@example.com",
     first_name: "Frank"
@@ -123,7 +161,7 @@
             </tr>
             <tr>
                 <th>Antoine</th>
-                <td><pre class="prettyprint lang-json">{tenant_alias: "test_aaaexampleaaa",
+                <td><pre class="prettyprint lang-json">{   tenant_alias: "test_aaaexampleaaa",
     account_id: "4",
     payment_provider_id: null,
     email: "antoine@@example.com",
