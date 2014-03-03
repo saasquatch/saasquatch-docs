@@ -16,7 +16,7 @@
         <h3>What is the difference between Shared and Solo accounts?</h3>
         <p>
             Shared accounts have many users using the same billing information... solo accounts don't. Most B2B apps have multiple users that access the 
-            same account, but there is only one bill paid for all of those users. Some examples of apps with shared accounts would be Helpdesk, CRM or collaboration. 
+            same account, but there is only one bill paid for all of those users. Some examples of apps with shared accounts would be Helpdesk, CRM or collaboration software. 
         </p>
         <p>
             Most B2C apps are solo accounts because everyone pay for their own service. Some examples of solo user account are services like Netflix, Rdio or LinkedIn.
@@ -70,9 +70,6 @@
         
         <p>
             Yes, but don't tell us about it. We require that every user is part of at most one account. This is how we know which account deserves referral credit.
-        </p>
-        
-        <p>
             When you identify a user in <a href="/squatchjs#init">squatch.js init</a> just always set the same <code>account_id</code> for that user. If a user is identified as being
             part of multiple accounts, Referral SaaSquatch create two separate users: one in each account.
         </p>
@@ -88,7 +85,7 @@
         <h3>How is <span class="monospace">account_id</span> different than <span class="monospace">payment_provider_id</span>?</h3>
         <p>
             Both <code>account_id</code> and <code>payment_provider_id</code> are properties of an account, not a user. <code>account_id</code> is 
-            your internal identifier and code>payment_provider_id</code> is used to look up an account in your payment system. If you're using the API 
+            your internal identifier and <code>payment_provider_id</code> is used to look up an account in your payment system. If you're using the API 
             integration, then you don't need to worry about <code>payment_provider_id</code>.
         </p>
 
