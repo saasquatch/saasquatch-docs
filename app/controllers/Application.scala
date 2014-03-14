@@ -41,6 +41,8 @@ object Application extends Controller {
 
         case "squatchjs/signed-requests"  => Ok(views.html.signedRequests())
         case "squatchjs"  => Ok(views.html.squatchjs())
+        case "segment-io"  => Ok(views.html.squatchjs())
+
 
         case "api"  => Ok(views.html.apiIntroduction())
         case "api/authentication"  => Ok(views.html.apiAuthentication())
