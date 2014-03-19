@@ -31,6 +31,7 @@ object Application extends Controller {
         case "theming"  => Ok(views.html.theming())
         case "shared-vs-solo-accounts"  => Ok(views.html.sharedAccounts())
         case "testing"  => Ok(views.html.testingBestPractices())
+        case "mobile"  => Ok(views.html.mobile())
         
         case "braintree"  => Ok(views.html.braintree())
         case "recurly"  => Ok(views.html.recurly())
