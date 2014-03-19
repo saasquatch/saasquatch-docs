@@ -10,14 +10,14 @@
     
         <p class="lead">
             SaaSquatch help you engage your mobile users by providing a mobile-optimized referral dashboard. The 
-            mobile widget is an alternative to <a href="http://docs.referralsaasquatch.com/squatchjs">squatch.js</a> for engaging your users.
+            mobile widget is an alternative to <a href="/squatchjs">squatch.js</a> for engaging your users.
         </p>
         
         <hr/>
         
         <h3>Getting started with Mobile</h3>
         <p>
-            Your mobile users can access the mobile widget here:
+            Your mobile users can access the mobile widget at this URL. Your can load this in a WebView, email this link to your users, or provide a button in your app that loads this page.
             
             <pre>
 app.referralsaasquatch.com/a/:tenantAlias/widgets/mobilewidget
@@ -26,11 +26,21 @@ app.referralsaasquatch.com/a/:tenantAlias/widgets/mobilewidget
         
         <h4>Example</h4>
         <pre>
-            http://app.referralsaasquatch.com/a/test_ag9iazepi0u2d/widgets/mobilewidget?checksum=1KOCYrvKuQWKeyEUmoWCMaY8pmQCPNs%2Ft3a%2BZT0SLAM%3D&accountId=F1WCOPT6L0QAHKMQ&paymentProviderId=H35W1RTAZQ945ISK&userId=5320fb2ee4b0376bf64d5af0&email=misterd%2Bmuser001%40example.com&firstName=Manual%20Code&lastName=Test%20User%20One&userImage=&fbShareImage=http://www.referralsaasquat.netdna-cdn.com/wp-content/themes/disillusion/img/headerimac3x.png
-        </pre>
+http://app.referralsaasquatch.com/a/test_ag9iazepi0u2d/widgets/mobilewidget?checksum=1KOCYrvKuQWKeyEUmoWCMaY8pmQCPNs%2Ft3a%2BZT0SLAM%3D&accountId=F1WCOPT6L0QAHKMQ&paymentProviderId=NULL&userId=5320fb2ee4b0376bf64d5af0&email=misterd%2Bmuser001%40example.com&firstName=Manual%20Code&lastName=Test%20User%20One&userImage=&fbShareImage=http://www.example.com/headerimac3x.png
         
-          <h4>Parameters</h4>
-            <p><code>init</code> needs a tenant_alias to identify your account, and information about the currently logged-in user</p>
+    /** For readability **/
+    checksum=1KOCYrvKuQWKeyEUmoWCMaY8pmQCPNs%2Ft3a%2BZT0SLAM%3D
+    &accountId=F1WCOPT6L0QAHKMQ
+    &paymentProviderId=NULL
+    &userId=5320fb2ee4b0376bf64d5af0
+    &email=misterd%2Bmuser001%40example.com
+    &firstName=Manual%20Code
+    &lastName=Test%20User%20One
+    &userImage=
+    &fbShareImage=http://www.example.com/headerimac3x.png</pre>
+
+    <h4>Parameters</h4>
+            <p>Send information about the currently logged-in user. These parameters should be the same as for <a href="/squatchjs#init">squatch.js init</a>.</p>
             <div>
         <table class="table table-hover">
             <tr>
@@ -43,33 +53,33 @@ app.referralsaasquatch.com/a/:tenantAlias/widgets/mobilewidget
             </tr>
             <tr>
                 <th>accountId</th>
-                <td><span class="label">Required for Popup</span></td>
+                <td><span class="label">Required</span></td>
                 <td>
-                    We use this ID to link a group of users together. See <a href="/shared-vs-solo-accounts">Shared vs Solo Accounts</a> to see what you should use here.
+                    We use accountId to link a group of users together. See <a href="/shared-vs-solo-accounts">Shared vs Solo Accounts</a> to see what you should use here.
                 </td>
             </tr>
             <tr>
                 <th>paymentProviderId</th>
-                <td><span class="label">Required for Popup</span></td>
+                <td><span class="label">Required</span></td>
                 <td>
-                    The payment_provider_id is either the Stripe Customer ID, the Recurly Account ID, the Braintree Account ID or the Zuora Account ID. Can be <code>null</code>
-                    for <a href="/free-trials">free trials or freemium accounts</a>. You must use <a href="/squatchjs/signed-requests">Signed Requests</a> to set payment_provider_id 
-                    to null.
+                    The paymentProviderId is either the Stripe Customer ID, the Recurly Account ID, the Braintree Account ID or the Zuora Account ID. Can be <code>null</code>
+                    for <a href="/free-trials">free trials or freemium accounts</a>. You must use <a href="/squatchjs/signed-requests">Signed Requests</a> to set paymentProviderId 
+                    to "NULL".
                 </td>
             </tr>
             <tr>
                 <th>userId</th>
-                <td><span class="label">Required for Popup</span></td>
+                <td><span class="label">Required</span></td>
                 <td>A user ID from your system (must be unique for every user). We use this to uniquely track users, and lets us handle accounts that are shared between users.</td>
             </tr>
             <tr>
                 <th>email</th>
-                <td><span class="label">Required for Popup</span></td>
+                <td><span class="label">Required</span></td>
                 <td>The e-mail address of the user. We use this to contact someone when they have a successful referral.</td>
             </tr>
             <tr>
                 <th>firstName</th>
-                <td><span class="label">Required for Popup</span></td>
+                <td><span class="label">Required</span></td>
                 <td>The user's first name</td>
             </tr>
             <tr>
