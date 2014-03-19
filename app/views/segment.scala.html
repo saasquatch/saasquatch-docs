@@ -16,6 +16,9 @@
         <p>
             Use <a href="https://segment.io/docs/methods/identify"><code>identify</code> from Segment.io</a> instead of <a href="/squatchjs#init">squatch.js init</a> to identify the currently logged in user and set up SaaSquatch.
         </p>
+        <p>
+            Some of the parameters are different. For example, to add an image for a user changed from <code>user_image</code> to <code>avatar</code>.
+        </p>
 
         <table class="table">
             <tr>
@@ -25,6 +28,14 @@
                 <th>
                     Segment.io / analytics.js
                 </th>
+            </tr>
+            <tr>
+                <td>
+                    Use <a href="/squatchjs#init">squatch.js init</a>
+                </td>
+                <td>
+                    Use <a href="https://segment.io/docs/methods/identify">analytics.js identify</a>
+                </td>
             </tr>
             <tr>
                 <td>
@@ -46,8 +57,8 @@
                 </td>
                 <td>
                     <pre class="prettyprint lang-js">analytics.initialize({
-    'SaaSquatch' : { tenantAlias : 'test_aaaexampleaaa' }
-});
+ 'SaaSquatch': { tenantAlias: 'test_aaaexampleaaa'
+}});
 
 analytics.identify( 'u1234', {
     
@@ -59,11 +70,23 @@ analytics.identify( 'u1234', {
     lastName: 'Tester',
     referralImage: 'http://www.example.com/logo.png',
     checksum: 'arbPDAcedO38Qw/qdJLCqd2tlRQ='
-});</pre>       
+});</pre>
                 </td>
             </tr>
 
         </table>
+
+        <hr/>
+        <h3>How do I use Signed Requests with Segment.io?</h3>
+        <p>
+            You can still use <a href="/squatchjs/signed-requests">Signed Requests</a> with Segment.io, keeping in mind a few things:
+            <ul>
+                <li>Include <code>tenant_alias</code> in the checksum</li>
+                <li>Omit other analytics.js traits from the checksum, such as Google Analytics ids</li>
+                <li>Ordering is based upon <a href="/squatchjs#init">squatch.js init</a> parameters names -- not the analytics.js parameter names! For example, <code>avatar</code> should still be sorted with "u" for <code>user_image</code>.</li>
+            </ul>
+        </p>
+
 
         <hr/>
         <h3>What features are supported with Segment.io?</h3>
