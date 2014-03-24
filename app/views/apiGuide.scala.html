@@ -8,9 +8,60 @@
         </div>
         
         <p class="lead">
-        The Referral SaaSquatch REST API lets you integrate a referral program into any payment system.
+        The Referral SaaSquatch REST API lets you integrate a referral program into any payment system. This guide will walk you through how to set up this integration.
         </p>
         
+        <hr/>
+        <h3>Installation checklist</h3>
+        
+        <ul class="checklist">
+            <li><input type="checkbox"> <a href="http://www.referralsaasquatch.com/#sign-up">Sign Up</a> for a SaaSquatch account<br>
+                <ol>
+                    <li><input type="checkbox"> Talk to the customer success Squatch who emails you</li>
+                    <li><input type="checkbox"> <a href="https://app.referralsaasquatch.com/">Login</a> to your new SaaSquatch account</li>
+                </ol>
+            </li>
+            <li><input type="checkbox"> Install squatch.js<br>
+                <ol>
+                    <li><input type="checkbox"> Install squatch.js on your page</li>
+                    <li><input type="checkbox"> Replace the <a href="/squatchjs#init">init</a> variables with real user data</li>
+                    <li><input type="checkbox"> Add a button to your page with <code>class="squatchpop"</code></li>
+                    <li><input type="checkbox"> <span class="label">Test it</span> Click the button. Make sure the popup shows. (Make sure you are using the right <code>account_id</code> and <code>user_id</code>)</li>
+                </ol>
+            </li>
+            <li><input type="checkbox"> Connect the API at signup<br>
+                <ol>
+                    <li><input type="checkbox"> Add a hidden input to your checkout page</li>
+                    <li><input type="checkbox"> Use <a href="/squatchjs#autofill">squatch.js autofill</a> to read the tracking cookie and set the active referral code in your form</li>
+                    <li><input type="checkbox"> <a href="/api/methods#get_coupon">Validate the referral code</a> to ensure the discount is valid</li>
+                    <li><input type="checkbox"> Apply a discount or credit to the first bill</li>
+                    <li><input type="checkbox"> Use <a href="/api/methods#account_sync">accountsync REST endpoint</a> to update SaaSquatch about the new account</li>
+                    <li><input type="checkbox"> <span class="label">Test it</span> Click a referral link and signup for a new account. <a href="https://app.referralsaasquatch.com/">Login</a> to your SaaSquatch account
+                        to see the new referral in the news feed.
+                    </li> 
+                </ol>
+            </li>
+            <li><input type="checkbox"> Connect the API during billing runs<br>
+                <ol>
+                    <li><input type="checkbox"> <a href="/api/methods#get_account_reward">Lookup an account's reward</a></li>
+                    <li><input type="checkbox"> Apply a discount or credit to the invoice</li>
+                    <li><input type="checkbox"> Use <a href="/squatchjs#autofill">squatch.js autofill</a> to read the tracking cookie and set the active referral code in your form</li>
+                    <li><input type="checkbox"> <span class="label">Test it</span> Run a billing run, 
+                        make sure that a user gets a discount that matches what's in <a href="https://app.referralsaasquatch.com/">your SaaSquatch account</a>
+                    </li>
+                </ol>
+            </li>
+            <li><input type="checkbox"> Connect the API for upgrades, downgrades and cancels<br>
+                <ol>
+                    <li><input type="checkbox"> Use the <a href="/api/methods#account_sync">accountsync REST endpoint</a> to update SaaSquatch about cancels, upgrades or cancels</li>
+                    <li><input type="checkbox"> <a href="/api/methods#get_account_reward">Lookup an account's reward</a> if you need to apply any proration during upgrades or downgrades</li>
+                    <li><input type="checkbox"> <span class="label">Test it</span> Cancel an account that was referred. <a href="https://app.referralsaasquatch.com/">Login</a> to your SaaSquatch account
+                        to see that the person that referred that account is no longer earning credit for the cancelled account.
+                    </li>
+                </ol>
+            </li>
+        </ul>
+
         <hr/>
         <h3><span class="label label-success">Step 0</span> Things you need to know before you start</h3>
         

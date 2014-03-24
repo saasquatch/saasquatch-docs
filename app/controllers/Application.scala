@@ -37,6 +37,7 @@ object Application extends Controller {
         case "recurly"  => Ok(views.html.recurly())
         case "stripe"  => Ok(views.html.stripe())
         case "zuora"  => Ok(views.html.zuora())
+        case "api-guide" => Ok(views.html.apiGuide())
 
         case "app-integration"  => Ok(views.html.appIntegration())
 

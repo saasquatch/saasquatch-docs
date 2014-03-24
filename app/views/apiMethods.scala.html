@@ -212,9 +212,15 @@
                             <th class="docs-monospace">billingIntervalValue</th>
                             <td>
                                 The number of <code>billingIntervalType</code>. Required when <code>status: PAID</code>.<br/>
-                                <b>Monthly billing:</b> <code>billingIntervalValue: 1</code> and <code>billingIntervalType: MONTH</code> <br>
-                                <b>Yearly billing:</b> <code>billingIntervalValue: 1</code> and <code>billingIntervalType: YEAR</code> <br>
-                                <b>4 Month billing:</b> <code>billingIntervalValue: 4</code> and <code>billingIntervalType: MONTH</code> 
+                                
+                                <table class="table">
+                                    <caption>Example billing intervals</caption>
+                                    <tr><td></td><td>billingIntervalValue</td><td>billingIntervalType</td></tr>
+                                    <tr><td>Monthly billing</td><td>1</td><td>MONTH</td></tr>
+                                    <tr><td>Yearly billing</td><td>1</td><td>YEAR</td></tr>
+                                    <tr><td>4 Month billing</td><td>4</td><td>MONTH</td></tr>
+                                </table>
+
                             </td>
                           </tr>
                           <tr>
