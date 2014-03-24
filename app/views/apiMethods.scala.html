@@ -185,36 +185,33 @@
                 <th class="docs-monospace">id</th>
                 <td><span class="label">Required</span></td>
                 <td>
-                    The accountId of the account.
+                    The id of the account. This should be the same <code>account_id</code> used for <a href="/app-integration">squatch.js</a>. Not sure what to use here? See <a href="/shared-vs-solo-accounts">Shared vs. Solo accounts</a>
                 </td>
               </tr>
               <tr>
                 <th class="docs-monospace">subscription</th>
                 <td><span class="label">Required</span></td>
                 <td>
-                    An object describing the current subscription for this account.
+                    An object describing the current subscription for this account.<br><br>
                     
                     <table class="table table-hover">
                           <tr>
                             <th class="docs-monospace">status</th>
-                            <td><span class="label">Required</span></td>
                             <td>
                                 The status of the subscription. One of <code>PAID</code>, <code>TRAIL</code>, <code>FREE</code> or <code>CANCELLED</code>, 
                             </td>
                           </tr>
                           <tr>
                             <th class="docs-monospace">billingIntervalType</th>
-                            <td><span class="label">Optional</span></td>
                             <td>
                                 The unit type for <code>billingIntervalValue</code>. One of <code>DAY</code>, <code>WEEK</code>, <code>MONTH</code>,  <code>QUARTER</code>, <code>SEMI_ANNUAL</code> or <code>YEAR</code>.
-                                Required when <code>status</code> is <code>PAID</code>.
+                                Required when <code>status: PAID</code>.
                             </td>
                           </tr>
                           <tr>
                             <th class="docs-monospace">billingIntervalValue</th>
-                            <td><span class="label">Optional</span></td>
                             <td>
-                                The number of <code>billingIntervalType</code>. Required when <code>status</code> is <code>PAID</code>.<br/>
+                                The number of <code>billingIntervalType</code>. Required when <code>status: PAID</code>.<br/>
                                 <b>Monthly billing:</b> <code>billingIntervalValue: 1</code> and <code>billingIntervalType: MONTH</code> <br>
                                 <b>Yearly billing:</b> <code>billingIntervalValue: 1</code> and <code>billingIntervalType: YEAR</code> <br>
                                 <b>4 Month billing:</b> <code>billingIntervalValue: 4</code> and <code>billingIntervalType: MONTH</code> 
@@ -222,29 +219,27 @@
                           </tr>
                           <tr>
                             <th class="docs-monospace">value</th>
-                            <td><span class="label">Optional</span></td>
                             <td>
-                                Dollar value of the subscription per renewal. Required when <code>status</code> is <code>PAID</code>.
+                                Dollar value of the subscription per renewal. Required when <code>status: PAID</code>.
                             </td>
                           </tr>
-                    <</table>
+                    </table>
                 </td>
               </tr>
               <tr>
                 <th class="docs-monospace">referral</th>
                 <td><span class="label">Optional</span></td>
                 <td>
-                    Info about who referred this account.
+                    Info about who referred this account.<br><br>
                     
                     <table class="table table-hover">
                           <tr>
                             <th class="docs-monospace">code</th>
-                            <td><span class="label">Required</span></td>
                             <td>
-                                The referral code of the person that referred this account. Use <a href="/squatchjs#autofill">squatch.js autofill</a> to retrieve this from a cookie on your checkout form.
+                                The referral code of the person that referred this account. Use <a href="/squatchjs#autofill">squatch.js autofill</a> to retrieve this value from the tracking cookie on your checkout form.
                             </td>
                           </tr>
-                    <</table>
+                    </table>
                 </td>
               </tr>
               <tr>
@@ -258,67 +253,38 @@
         </div>
     
         <h4>Returns</h4>
-        <p>Information about the account's reward, if any, or an HTTP 404 if the account doesn't exist in SaaSquatch yet.</p>
-        <table class="table table-hover">
-            <tr>
-                <th class="docs-monospace">accountId</th>
-                <td>String</td>
-                <td>
-                    The account id
-                </td>
-            </tr>
-            <tr>
-                <th class="docs-monospace">discountPercentage</th>
-                <td>Number</td>
-                <td>
-                    An integer representing the total discount percentage from the referral program. e.g. For 10% would return the number 10. <code>discountPercentage = referredDiscountPercent + referrerDiscountPercent</code>
-                </td>
-            </tr>
-            <tr>
-                <th class="docs-monospace">referredDiscountPercent</th>
-                <td>Number</td>
-                <td>
-                    An integer representing the discount percentage from being referred. This will only have a value if the account has a coupon/referral code 
-                    already associated with it, or if <code>couponCode</code> was passed as an argument.
-                </td>
-            </tr>
-            <tr>
-                <th class="docs-monospace">referrerDiscountPercent</th>
-                <td>Number</td>
-                <td>
-                    An integer representing the discount earned from referring other accounts.
-                </td>
-            </tr>
-            <tr>
-                <th class="docs-monospace">ratePlanId</th>
-                <td>String</td>
-                <td>
-                    <span class="label">Zuora only</span>
-                    The Zuora rate plan ID used to apply the discount.
-                </td>
-            </tr>
-            <tr>
-                <th class="docs-monospace">discountId</th>
-                <td>String</td>
-                <td>
-                    <span class="label">Braintree only</span>
-                    The Braintree discount ID used to apply the discount.
-                </td>
-            </tr>
-        </table>
+        <p>The current status of the account, mirroring the input, or an HTTP Error code on error./p>
+
         
         <h4>Example Request</h4>
-<pre class="prettyprint lang-curl">$ curl https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/account/SV0TYE5OWI11120144/reward \
+<pre class="prettyprint lang-curl">$ curl https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/accountsync \
 -u API_KEY: \
--H "Content-Type: application/json"</pre>
+-H "Content-Type: application/json" \
+-d '{ id: "a1234",
+currency: "USD",
+subscription: {
+    status: PAID,
+    value: 99.99,
+    billingIntervalType: "DAY",
+    billingIntervalValue: 30
+  },
+referral: {
+    code: "3j033r"
+  }
+}'</pre>
 
         <h4>Example Response</h4>
-<pre class="prettyprint lang-json">{
-    "accountId":"SV0TYE5OWI11120144",
-    "discountPercentage":10,
-    "referrerDiscountPercent":0,
-    "referredDiscountPercent":10,
-    "discountId":"saasquatch_discount"
+<pre class="prettyprint lang-json">{ id: "a1234",
+  currency: "USD",
+  subscription: {
+    status: PAID,
+    value: 99.99,
+    billingIntervalType: "DAY",
+    billingIntervalValue: 30
+  },
+  referral: {
+    code: "3j033r"
+  }
 }</pre>
 
         <hr />
