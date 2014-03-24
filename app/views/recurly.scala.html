@@ -12,15 +12,10 @@
         </p>
         
         <hr/>
-        <h3>Installation checklist</h3>
-        
         <div class="install-guide-checklist">
-            
-            <p>Make sure that you <a href="http://www.referralsaasquatch.com/#sign-up">Sign Up</a> for a SaaSquatch account, talk to the customer success Squatch who emails you 
-                and <a href="https://app.referralsaasquatch.com/">login</a> to your new SaaSquatch account before starting this guide.</p>
-    
+
             <h5 data-toggle="collapse" data-target=".install-step1">Configure Recurly</h5>
-            <div class="install-step1 collapse in">
+            <div class="install-step1 collapse">
                 <p>The first step is granting SaaSquatch access to your Recurly accounts by providing your API key.</p>
                 <ul class="unstyled">
                     <li><label class="checkbox"><input type="checkbox"> Add your Recurly API key to SaaSquatch</label></li>
@@ -30,18 +25,20 @@
     
             <h5 data-toggle="collapse" data-target=".install-step2">Install squatch.js</h5>
             <div class="install-step2 collapse">
-                <p>squatch.js will show a gorgeously rendered popup in your app which will lets your customers seamlessly refer their friends.</p>
+                <p><a href="/app-integration">squatch.js</a> will show a gorgeously rendered popup in your app which will lets your customers seamlessly refer their friends.</p>
                 <ul class="unstyled">
-                    <li><label class="checkbox"><input type="checkbox"> Install squatch.js on your page</label></li>
-                    <li><label class="checkbox"><input type="checkbox"> Replace the <a href="/squatchjs#init">init</a> variables with real user data</label></li>
+                    <li><label class="checkbox"><input type="checkbox"> Install <a href="/app-integration">squatch.js</a> on your page</label></li>
+                    <li><label class="checkbox"><input type="checkbox"> Replace the <a href="/squatchjs#init">squatch.js init</a> variables with real user data</label></li>
                     <li><label class="checkbox"><input type="checkbox"> Add a button to your page with <code>class="squatchpop"</code></label></li>
                     <li><label class="checkbox"><input type="checkbox"> <span class="label">Testing</span> Click the button. Make sure the popup shows. (Make sure you are using the right <code>account_id</code> and <code>user_id</code>)</label></li>
                 </ul>
             </div>
             
-            <h5 data-toggle="collapse" data-target=".install-step2">Setup referral coupons on your subscription form</h5>
-            <div class="install-step2 collapse">
-                <p>When new friends click through on a referral link and signup, you're in charge of making sure that any a coupon code is applied on their new subscription.</p>
+            <h5 data-toggle="collapse" data-target=".install-step3">Setup coupons for new subscriptions</h5>
+            <div class="install-step3 collapse">
+                <p>When new friends click through on a referral link and signup, you're in charge of making sure that any a coupon code is applied on their new subscription. You <b>only</b> need to add
+                    referral coupons for new customer's new subscriptions. Referrers will get credit for inviting their friends as line-items automatically applied to their invoices.
+                </p>
                 <ul class="unstyled">
                     <li><label class="checkbox"><input type="checkbox"> Add a hidden input to your checkout page</label></li>
                     <li><label class="checkbox"><input type="checkbox"> Use <a href="/squatchjs#autofill">squatch.js autofill</a> to read the tracking cookie and set the active referral code in your form</label></li>
@@ -57,11 +54,15 @@
         <hr/>
         <div>
             <b>Test mode vs. live mode</b> - We let you test your referral program using a Recurly Sandbox account and fake credit cards before deploying to your production environment. To set up test mode, just follow this guide using 1) your Recurly Sandbox account and 2) your test mode tenant_alias (it starts with “test_”)
+            <p class="muted">
+                <b>Note:</b> It is not required to setup a test environment but it will make testing easier for you.
+            </p>
         </div>
         
         <hr/>
-        <h3>Add your Recurly API Key in the SaaSquatch Portal</h3>
+        <h3>How to Configure Recurly</h3>
         
+        <h5>Add your Recurly API Key in the SaaSquatch Portal</h5>
         <p>
         We connect to the Recurly API using your Recurly API key. This lets us automatically apply discounts to people’s accounts.
         </p>
@@ -70,12 +71,9 @@
             <li><a href="http://app.referralsaasquatch.com">Login to Referral SaaSquatch</a> and go to “Setup” and click “Authorize”. <b>Paste in your Recurly API key that you just copied</b>, and press connect.</li>
             <li>Repeat this process for both your <b>test</b> and <b>live</b> accounts.</li>
         </ol>
-        <p class="muted">
-            <b>Note:</b> It is not required to setup a test environment but it will make testing easier for you.
-        </p>
-        
-        <hr/>
-        <h3>Set up Recurly to forward Push Notifications to SaaSquatch</h3>
+
+
+        <h5>Set up Recurly to forward Push Notifications to SaaSquatch</h5>
         
         <p>
         Referral SaaSquatch uses Recurly push notifications as triggers to know when accounts need to be updated. If you’re already using push 
