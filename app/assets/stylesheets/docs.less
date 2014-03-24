@@ -49,3 +49,26 @@
 { border: 1px solid ; }
 
 a .link {background-color:#fff;}
+
+
+/**
+    Install checklist style for collapsable todo list
+    
+    used on page: /api-guide
+**/
+.install-guide-checklist{
+  counter-reset: install-guide-checklist;
+}
+.install-guide-checklist h5{
+  cursor: pointer;
+}
+.install-guide-checklist h5:before {
+	content: "Step " + counter(my-badass-counter) + " - ";
+	counter-increment: install-guide-checklist;
+}
+.install-guide-checklist h5:after{
+    content: "(click to expand)";
+    font-weight: normal;
+    font-size: 12px;
+    margin-left: 12px;
+}
