@@ -12,25 +12,21 @@
         </p>
         
         <hr/>
-        <h3>Installation checklist</h3>
-        
+
         <div class="install-guide-checklist">
             
-            <p>Make sure that you <a href="http://www.referralsaasquatch.com/#sign-up">Sign Up</a> for a SaaSquatch account, talk to the customer success Squatch who emails you 
-                and <a href="https://app.referralsaasquatch.com/">login</a> to your new SaaSquatch account before starting this guide.</p>
-    
             <h5 data-toggle="collapse" data-target=".install-step1">Install squatch.js</h5>
             <div class="install-step1 collapse in">
-                <p>squatch.js will show a gorgeously rendered popup in your app which will lets your customers seamlessly refer their friends.</p>
+                <p><a href="/app-integration">squatch.js</a> will show a gorgeously rendered popup in your app which will lets your customers seamlessly refer their friends.</p>
                 <ul class="unstyled">
-                    <li><label class="checkbox"><input type="checkbox"> Install squatch.js on your page</label></li>
+                    <li><label class="checkbox"><input type="checkbox"> Install <a href="/app-integration">squatch.js</a> on your page</label></li>
                     <li><label class="checkbox"><input type="checkbox"> Replace the <a href="/squatchjs#init">init</a> variables with real user data</label></li>
                     <li><label class="checkbox"><input type="checkbox"> Add a button to your page with <code>class="squatchpop"</code></label></li>
                     <li><label class="checkbox"><input type="checkbox"> <span class="label">Testing</span> Click the button. Make sure the popup shows. (Make sure you are using the right <code>account_id</code> and <code>user_id</code>)</label></li>
                 </ul>
             </div>
             
-            <h5 data-toggle="collapse" data-target=".install-step2">Connect the API at signup</h5>
+            <h5 data-toggle="collapse" data-target=".install-step2">Connect the REST API at signup</h5>
             <div class="install-step2 collapse">
                 <p>When new friends click through on a referral link and signup, you're in charge of making sure that any discount is applied on their first bill.</p>
                 <ul class="unstyled">
@@ -45,7 +41,7 @@
                 </ul>
             </div>
     
-            <h5 data-toggle="collapse" data-target=".install-step3">Connect the API during billing runs</h5>
+            <h5 data-toggle="collapse" data-target=".install-step3">Connect the REST API during billing runs</h5>
             <div class="install-step3 collapse">
                 <p>Referral credit can increase and decrease as people refer more friends, so make sure to lookup the latest referral information during bill runs.</p>
                 <ul class="unstyled">
@@ -59,7 +55,7 @@
             </div>
     
     
-            <h5 data-toggle="collapse" data-target=".install-step4">Connect the API for upgrades, downgrades and cancels</h5>
+            <h5 data-toggle="collapse" data-target=".install-step4">Connect the REST API for upgrades, downgrades and cancels</h5>
             <div class="install-step4 collapse">
                 <p>When someone upgrades or downgrades, you might need to look up referral information again. Make to send us the new state of an account anytime it changes.</p>
                 <ul class="unstyled">
@@ -76,87 +72,188 @@
 
 
         <hr/>
-        <h3><span class="label label-success">Step 0</span> Things you need to know before you start</h3>
-        
-        <ul class="unstyled">
-            <li>
-                <b>Test mode vs. live mode</b> - We let you test your referral program using a Recurly Sandbox account and fake credit cards before deploying to your production environment. To set up test mode, just follow this guide using 1) your Recurly Sandbox account and 2) your test mode tenant_alias (it starts with “test_”)
-            </li>
-        </ul>
-
-        <hr/>
-        <h3><span class="label label-success">Step 1</span> Add your Recurly API Key in the SaaSquatch Portal</h3>
-        
-        <p>
-        We connect to the Recurly API using your Recurly API key. This lets us automatically apply discounts to people’s accounts.
-        </p>
-        <ol>
-            <li><a href="https://app.recurly.com/login">Login to Recurly</a> and click on “Developer-> API Credentials”. <b>Copy the “API key”</b>.</li>
-            <li><a href="http://app.referralsaasquatch.com">Login to Referral SaaSquatch</a> and go to “Setup” and click “Authorize”. <b>Paste in your Recurly API key that you just copied</b>, and press connect.</li>
-            <li>Repeat this process for both your <b>test</b> and <b>live</b> accounts.</li>
-        </ol>
-        <p class="muted">
-            <b>Note:</b> It is not required to setup a test environment but it will make testing easier for you.
-        </p>
-        
-        <hr/>
-        <h3><span class="label label-success">Step 2</span> Set up Recurly to forward Push Notifications to SaaSquatch</h3>
-        
-        <p>
-        Referral SaaSquatch uses Recurly push notifications as triggers to know when accounts need to be updated. If you’re already using push 
-        notifications then you’ll have to set up push notification forwarding. To set up Recurly to forward Push Notifications to us, you just need to 
-        set our Push Notification URL as the endpoint in the Recurly portal.
-        </p>
-        <ol>
-            <li><a href="http://app.referralsaasquatch.com">Login to Referral SaaSquatch</a> and go to “Setup”. <b>Copy the URL labelled Push Notification URL</b>. (it should look like https://app.referralsaasquatch.com/recurly/{tenant_alias}/webhook)</li>
-            <li><a href="https://app.recurly.com/login">Login to Recurly</a> and go to Developer -> Push Notifications -> Configure. <b>Paste the URL you just copied</b> it into the field labeled Push Notification URL in Recurly. Press Update Configuration to save the URL and complete this step.</li>
-            <li>Repeat this process for both your <b>test</b> and <b>live</b> accounts.</li>
-        </ol>
-        
-        <hr/>
-        
-        <div class="well">
-            
-            <h5><span class="label">Optional</span> Referral SaaSquatch forwards to you</h5>
-            
-            <p>
-            If you are already using push notifications in your app, then you will want to set up push notifications to get forwarded from Referral SaaSquatch to you.
-            </p>
-            <ul>
-                <li><a href="http://app.referralsaasquatch.com">Login to Referral SaaSquatch</a>, go to “setup” and under “Push Notification Forwarding URL” press the button labeled Reset.</li>
-                <li>Paste the URL you would like Referral SaaSquatch to forward push notifications to into the URL field.</li>
-                <li>Press the button labeled reset to complete.</li>
-            </ul>
-            <p>
-            When we forward push notifications to you, we act as a transparent proxy so any errors from your app will bubble up to Recurly and trigger Recurly’s webhook retry policies.
-            </p>
-        </div>
-        <div class="well">
-            <h5><span class="label">Optional</span> Alternative integration - Forward to Referral SaaSquatch</h5>
-                 
-            <p>
-            If you are currently use push notifications, then you can forward push notification to us instead of us forwarding to you. When you receive Recurly Push Notifications you will need to build a solution that forwards all incoming Push Notifications to our endpoint.
-            </p>
-            
-            <ul>
-                <li>Push notifications that you forward do not need to be guaranteed. The next time we get a push notification from you, we’ll fully sync the info from the related accounts.</li>
-                <li>Push notifications that you forward can be duplicated. If you send us the same notification twice, our system will just look at the current state of things and act accordingly.</li>
-            </ul>
-            
-            <p>
-            Please feel free to contact support@@saasquat.ch to talk to a developer about how to build this yourself.
-            </p>
+        <div>
+            <b>Test mode vs. live mode</b> - We let you test your referral program using a test account and before deploying to your production environment. You will not be charged for any users or referrals 
+            made using your test account.
         </div>
 
         <hr/>
+        <h3>How to use the REST API at signup</h3>
         
-        <h4>More information </h4>
+        <p>When new friends click through on a referral link and signup, you're in charge of making sure that any discount is applied on their first bill.</p>
 
-        <ul>
-            <li><b>Recurly API Keys</b> - We connect to the Recurly API using your Recurly API key. This lets us automatically apply discounts to people’s accounts. While this makes setting up our integration extremely powerful, easy and fast, sharing API keys is not officially supported by Recurly.</li>
-        </ul>
+        <h5>Validate the discount</h5>
+        <p>To get the coupon/referral code value from the tracking cookie, use the <a href="/squatchjs#autofill">squatch.js autofill</a> function and include the value during payment submission. Use the <a href="/api/methods#get_account_reward">Get Account Reward</a> method to look up the discount percentage for the new paying user. If a <code>couponCode</code> doesn't exist or is invalid, we will return an HTTP 404 status.</p>
         
-        <p>Check out our <a href="/bestpractices/common-pitfalls">Common Pitfalls Guide</a></p>
+        <p>Looking up discount value does not change the state of an account, so you can also use this call to update the price of plans on the payment page. For example, 
+          using the example response below, you could include a message on your checkout page that says "You’ve got 20% off, 10% off from being referred, and 10% off from referring one of your friends"</p>
+    
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Example Request</th>
+                    <th>Example Response</th>                
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><pre class="prettyprint">$ curl https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/account/{ACCOUNTID}/reward?couponCode={CODE} \
+-u {API_KEY}: \
+-H "Content-Type: application/json"</pre></td>
+                    <td><pre class="prettyprint">{
+    "accountId":"SV0TYE5OWI11120144",
+    "discountPercentage":20,
+    "referrerDiscountPercent":10,
+    "referredDiscountPercent":10
+}</pre></td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <h5>Apply the Discount</h5>
+
+        <p>You can use any method to apply the discount, but we recommend line items so that your customers can clearly see the referral discount on their 
+        invoices. When you create your first invoice, create an invoice line item for the discount.</p>
+
+        <h5>Notify SaaSquatch of the new account</h5>
+
+        <p>You can use any method to apply the discount, but we recommend line items so that your customers can clearly see the referral discount on their 
+        invoices. When you create your first invoice, create an invoice line item for the discount.</p>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Example Request</th>
+                    <th>Example Response</th>                
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><pre class="prettyprint">$ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/accountsync \
+-u API_KEY: \
+-H "Content-Type: application/json" \
+-d '{ id: "SV0TYE5OWI11120144",
+  currency: USD",
+  subscription: {
+    status: PAID, 
+    value: 99.99,
+    billingIntervalType: "DAY",
+    billingIntervalValue: 30
+  },
+  referral: {
+    code: "3j033r"
+  }
+}'</pre></td>
+                    <td><pre class="prettyprint">{
+  id: "SV0TYE5OWI11120144",
+  currency: USD",
+  subscription: {
+    status: PAID, 
+    value: 99.99,
+    billingIntervalType: "DAY",
+    billingIntervalValue: 30
+  },
+  referral: {
+    code: "3j033r"
+  }
+}</pre></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr />
+        <h3>How to use the REST API during billing runs</h3>
+        
+        <p>Referral credit can increase and decrease as people refer more friends, so make sure to lookup the latest referral information during bill runs.</p>
+                
+        <h5>Lookup referral credit</h5>
+        
+        <p>Use the <a href="/api/methods#get_account_reward">Get Account Reward</a> to look up the discount percentage. 
+           You don’t need to set <code>coupon_code</code> every time you make this call, you only need to do this during first signup. 
+           After signup, the referral/coupon code is added to the new account when it was first POST-ed to the account sync endpoint.
+        </p>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Example Request</th>
+                    <th>Example Response</th>                
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><pre class="prettyprint">$ curl https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/account/{ACCOUNTID}/reward \
+-u {API_KEY}: \
+-H "Content-Type: application/json"
+</pre></td>
+                    <td><pre class="prettyprint">{
+    "accountId":"SV0TYE5OWI11120144",
+    "discountPercentage":20,
+    "referrerDiscountPercent":10,
+    "referredDiscountPercent":10
+}</pre></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h5>Apply the Discount</h5>
+
+        <p>Whenever an invoice is created for your customers, make sure that you are applying the referral discount. As previously described for new signups, you can use
+        any method to apply the discount, but we recommend invoice line items so that your customers can clearly see the referral discount on their invoices.</p>
+
+
+        <hr/>
+        
+        <h3>How to use the REST API for upgrades, downgrades and cancels</h3>
+
+        <p>When someone upgrades or downgrades, you might need to look up referral information again. Make to send us the new state of an account anytime it changes.</p>
+
+        <h5>Notify SaaSquatch of the account change</h5>
+        
+        <p>When someone cancels,  notify SaaSquatch of the change so we can automatically reduce the referral discount for the person that referred them.</p>
+
+<table class="table">
+            <thead>
+                <tr>
+                    <th>Example Request</th>
+                    <th>Example Response</th>                
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><pre class="prettyprint">$ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/accountsync \
+-u API_KEY: \
+-H "Content-Type: application/json" \
+-d '{ id: "SV0TYE5OWI11120144",
+  currency: USD",
+  subscription: {
+    <span class="nocode"><strong>status: CANCELLED,</strong></span>
+    value: 99.99,
+    billingIntervalType: "DAY",
+    billingIntervalValue: 30
+  },
+  referral: {
+    code: "3j033r"
+  }
+}'</pre></td>
+                    <td><pre class="prettyprint">{
+  id: "SV0TYE5OWI11120144",
+  currency: USD",
+  subscription: {
+    <span class="nocode"><strong>status: CANCELLED,</strong></span>
+    value: 99.99,
+    billingIntervalType: "DAY",
+    billingIntervalValue: 30
+  },
+  referral: {
+    code: "3j033r"
+  }
+}</pre></td>
+                </tr>
+            </tbody>
+        </table>
+
 
 
     </section>
