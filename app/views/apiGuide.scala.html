@@ -118,9 +118,6 @@
 
         <h5>Notify SaaSquatch of the new account</h5>
 
-        <p>You can use any method to apply the discount, but we recommend line items so that your customers can clearly see the referral discount on their 
-        invoices. When you create your first invoice, create an invoice line item for the discount.</p>
-
         <table class="table">
             <thead>
                 <tr>
@@ -134,9 +131,9 @@
 -u API_KEY: \
 -H "Content-Type: application/json" \
 -d '{ id: "SV0TYE5OWI11120144",
-  currency: USD",
+  currency: "USD",
   subscription: {
-    status: PAID, 
+    status: "PAID", 
     value: 99.99,
     billingIntervalType: "DAY",
     billingIntervalValue: 30
@@ -147,9 +144,9 @@
 }'</pre></td>
                     <td><pre class="prettyprint">{
   id: "SV0TYE5OWI11120144",
-  currency: USD",
+  currency: "USD",
   subscription: {
-    status: PAID, 
+    status: "PAID", 
     value: 99.99,
     billingIntervalType: "DAY",
     billingIntervalValue: 30
@@ -170,7 +167,7 @@
         <h5>Lookup referral credit</h5>
         
         <p>Use the <a href="/api/methods#get_account_reward">Get Account Reward</a> to look up the discount percentage. 
-           You don’t need to set <code>coupon_code</code> every time you make this call, you only need to do this during first signup. 
+           You don't need to set <code>coupon_code</code> every time you make this call, you only need to do this during first signup. 
            After signup, the referral/coupon code is added to the new account when it was first POST-ed to the account sync endpoint.
         </p>
 
@@ -226,9 +223,9 @@
 -u API_KEY: \
 -H "Content-Type: application/json" \
 -d '{ id: "SV0TYE5OWI11120144",
-  currency: USD",
+  currency: "USD",
   subscription: {
-    <span class="nocode"><strong>status: CANCELLED,</strong></span>
+    <span class="nocode"><strong>status: "CANCELLED",</strong></span>
     value: 99.99,
     billingIntervalType: "DAY",
     billingIntervalValue: 30
@@ -239,9 +236,9 @@
 }'</pre></td>
                     <td><pre class="prettyprint">{
   id: "SV0TYE5OWI11120144",
-  currency: USD",
+  currency: "USD",
   subscription: {
-    <span class="nocode"><strong>status: CANCELLED,</strong></span>
+    <span class="nocode"><strong>status: "CANCELLED",</strong></span>
     value: 99.99,
     billingIntervalType: "DAY",
     billingIntervalValue: 30
