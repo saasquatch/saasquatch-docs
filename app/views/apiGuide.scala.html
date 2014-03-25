@@ -43,7 +43,7 @@
     
             <h5 data-toggle="collapse" data-target=".install-step3">Connect the REST API during billing runs</h5>
             <div class="install-step3 collapse">
-                <p>Referral credit can increase and decrease as people refer more friends, so make sure to lookup the latest referral information during bill runs.</p>
+                <p>Referral credit can increase and decrease as people refer more friends, so make sure you lookup referral information during bill runs.</p>
                 <ul class="unstyled">
                     <li><label class="checkbox"><input type="checkbox"> <a href="/api/methods#get_account_reward">Lookup an account's reward</a></label></li>
                     <li><label class="checkbox"><input type="checkbox"> Apply a discount or credit to the invoice</label></li>
@@ -57,12 +57,12 @@
     
             <h5 data-toggle="collapse" data-target=".install-step4">Connect the REST API for upgrades, downgrades and cancels</h5>
             <div class="install-step4 collapse">
-                <p>When someone upgrades or downgrades, you might need to look up referral information again. Make to send us the new state of an account anytime it changes.</p>
+                <p>When someone upgrades or downgrades, you might need to look up referral information again. Make sure you send us the <b>new</b> state of an account anytime it changes.</p>
                 <ul class="unstyled">
-                    <li><label class="checkbox"><input type="checkbox"> Use the <a href="/api/methods#account_sync">accountsync REST endpoint</a> to update SaaSquatch about cancels, upgrades or cancels</label></li>
+                    <li><label class="checkbox"><input type="checkbox"> Use the <a href="/api/methods#account_sync">accountsync REST endpoint</a> to update SaaSquatch about upgrades, downgrades or cancels</label></li>
                     <li><label class="checkbox"><input type="checkbox"> <a href="/api/methods#get_account_reward">Lookup an account's reward</a> if you need to apply any proration during upgrades or downgrades</label></li>
-                    <li><label class="checkbox"><input type="checkbox"> <span class="label">Testing</span> Cancel an account that was referred. <a href="https://app.referralsaasquatch.com/">Login</a> to your SaaSquatch account
-                        to see that the person that referred that account is no longer earning credit for the cancelled account.
+                    <li><label class="checkbox"><input type="checkbox"> <span class="label">Testing</span> Cancel an account that was previously referred. <a href="https://app.referralsaasquatch.com/">Login</a> to 
+                        your SaaSquatch account to verify that referral credit was properly adjusted.
                     </label></li>
                 </ul>
             </div>
@@ -91,7 +91,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Example Request</th>
+                    <th style="width: 50%;">Example Request</th>
                     <th>Example Response</th>                
                 </tr>
             </thead>
@@ -124,7 +124,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Example Request</th>
+                    <th style="width: 50%;">Example Request</th>
                     <th>Example Response</th>                
                 </tr>
             </thead>
@@ -177,7 +177,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Example Request</th>
+                    <th style="width: 50%;">Example Request</th>
                     <th>Example Response</th>                
                 </tr>
             </thead>
@@ -216,7 +216,7 @@
 <table class="table">
             <thead>
                 <tr>
-                    <th>Example Request</th>
+                    <th style="width: 50%;">Example Request</th>
                     <th>Example Response</th>                
                 </tr>
             </thead>
