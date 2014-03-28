@@ -17,7 +17,7 @@
 
             <h5 data-toggle="collapse" data-target=".install-step1">Configure Braintree</h5>
             <div class="install-step1 collapse in">
-                <p>The first step is granting SaaSquatch access to your Recurly accounts by providing your API key.</p>
+                <p>The first step is granting SaaSquatch access to your Braintree accounts by providing your API key.</p>
                 <ul class="unstyled">
                     <li><label class="checkbox"><input type="checkbox"> Create the <code>saasquatch_coupon</code> custom field in Braintree</label></li>
                     <li><label class="checkbox"><input type="checkbox"> Create the <code>saasquatch_discount</code> discount in Braintree</label></li>
@@ -74,7 +74,7 @@
         </p>
         <ol>
             <li><a href="https://www.braintreepayments.com/">Login to Braintree</a> and go to Settings -> Processing. 
-                Add a custom field with the API name <code>saasquatch_coupon</code> set "store and pass through" to true.</li>
+                Add a custom field with the API name <code>saasquatch_coupon</code> set "Store and Pass Back" to true.</li>
             <li>Go to Recurring Billing -> Add-ons / Discounts on the left-hand menu and add a discount with the id <code>saasquatch_discount</code>, 
                 name "Saasquatch Discount", and amount (1.00 ~ though this value isn't really used, it's just a placeholder because the field can't be left 0 or empty).
                 Leave the duration as "For Duration of Subscription".</li>
