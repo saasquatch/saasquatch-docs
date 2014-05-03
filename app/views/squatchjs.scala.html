@@ -233,7 +233,7 @@ _sqh.push(['autofill', '#my_coupon']);
                   <tr>
                     <th>fn</th>
                     <td>
-                        <p>A callback function</p>
+                        <p>A callback function with a single argument <code>reward</code> with the following fields</p>
                         
                         <table class="table table-hover">
                           <tr>
@@ -244,7 +244,7 @@ _sqh.push(['autofill', '#my_coupon']);
                                   <tr>
                                     <th>discountPercentage</th>
                                     <td>
-                                        <p>An object of reward details</p>
+                                        <p>The total discount percentage both from referring and being referred</p>
                                     </td>
                                   </tr>
                                   <tr>
@@ -288,20 +288,17 @@ _sqh.push(['init', {
    user_id: '5678',
    email: 'bob@@example.com',
    first_name: 'Bob',
-   last_name: 'Testerson',
-   user_image: 'http://myapp.example.com/img/user_5678.jpg'
+   last_name: 'Testerson'
 }]);
 
 _sqh.push(['getReward', function(reward){ 
+    // Gets the current user's (e.g. Bob Testerson) reward
     // e.g. show this on the My Account page to show the current user's info
-    // In this example, return's Bob Testersons reward details
 }]);
 
 // Include squatch.js
 (function(){function l(){var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src=location.protocol+"//d2rcp9ak152ke1.cloudfront.net/assets/javascripts/squatch.min.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(s,t)}if(window.attachEvent){window.attachEvent("onload",l)}else{window.addEventListener("load",l,false)}})();
 &lt;/script&gt;
-
-&lt;input type="text" name="Coupon" id="my_coupon" value="" /&gt; &lt;!-- This input box will get autofilled --&gt; </pre>
         </section>
         
         <section id="open">
