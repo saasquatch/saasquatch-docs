@@ -248,13 +248,13 @@ _sqh.push(['autofill', '#my_coupon']);
                                     </td>
                                   </tr>
                                   <tr>
-                                    <th>referrerDiscountPercentage</th>
+                                    <th>referrerDiscountPercent</th>
                                     <td>
                                         <p>Earned from referring friends</p>
                                     </td>
                                   </tr>
                                   <tr>
-                                    <th>referredDiscountPercentage</th>
+                                    <th>referredDiscountPercent</th>
                                     <td>
                                         <p>Earned by being referred by friends</p>
                                     </td>
@@ -280,20 +280,22 @@ _sqh.push(['autofill', '#my_coupon']);
             <pre class="prettyprint lang-html">&lt;script type="text/javascript"&gt;
 var _sqh = _sqh || [];
 
-// squatch.js must be initialized to call autofill, but user information is not required
+// Push user details for a user who is logged in to your system
 _sqh.push(['init', {
-   tenant_alias: 'test_bpinhag9yagag'
+   tenant_alias: 'test_bpinhag9yagag',
+   account_id: 'abc',
+   payment_provider_id: 'cus_1234',
+   user_id: '5678',
+   email: 'bob@@example.com',
+   first_name: 'Bob',
+   last_name: 'Testerson',
+   user_image: 'http://myapp.example.com/img/user_5678.jpg'
 }]);
 
-// Example 1 -- use a callback function
-var autofillCb = function(code){
-    window.alert('The coupon code of the person that referred you is: ' + code);
-};
-
-_sqh.push(['autofill',  autofillCb]);
-
-// Example 2 -- use a jQuery selector
-_sqh.push(['autofill', '#my_coupon']);
+_sqh.push(['getReward', function(reward){ 
+    // e.g. show this on the My Account page to show the current user's info
+    // In this example, return's Bob Testersons reward details
+}]);
 
 // Include squatch.js
 (function(){function l(){var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src=location.protocol+"//d2rcp9ak152ke1.cloudfront.net/assets/javascripts/squatch.min.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(s,t)}if(window.attachEvent){window.attachEvent("onload",l)}else{window.addEventListener("load",l,false)}})();
