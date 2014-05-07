@@ -34,6 +34,13 @@
                 </td>
               </tr>
               <tr>
+                <th class="docs-monospace">accountId</th>
+                <td><span class="label">Required</span></td>
+                <td>
+                    We use this ID to link a group of users together. See <a href="/shared-vs-solo-accounts">Shared vs Solo Accounts</a> to see what you should use here.
+                </td>
+              </tr>
+              <tr>
                 <th class="docs-monospace">paymentProviderId</th>
                 <td><span class="label">Required</span></td>
                 <td>
@@ -89,7 +96,7 @@
 <pre class="prettyprint lang-curl">$ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/coupon \
 -u API_KEY: \
 -H "Content-Type: application/json" \
--d '{"couponCode" : "BOBTESTERSON", "paymentProviderId" : "cus_123" }'</pre>
+-d '{"couponCode" : "BOBTESTERSON", "accountId" : "abc", "paymentProviderId" : "cus_123" }'</pre>
 
         <hr />
         
