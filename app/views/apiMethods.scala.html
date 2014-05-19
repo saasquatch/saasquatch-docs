@@ -280,13 +280,13 @@
 <pre class="prettyprint lang-curl">$ curl https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/accountsync \
 -u API_KEY: \
 -H "Content-Type: application/json" \
--d '{ id: "a1234",
-currency: "USD",
-subscription: {
-    status: PAID,
-    value: 99.99,
-    billingIntervalType: "DAY",
-    billingIntervalValue: 30
+-d '{ "id": "a1234",
+"currency": "USD",
+"subscription": {
+    "status": "PAID",
+    "value": 99.99,
+    "billingIntervalType": "DAY",
+    "billingIntervalValue": 30
   },
 referral: {
     code: "3j033r"
@@ -294,16 +294,16 @@ referral: {
 }'</pre>
 
         <h4>Example Response</h4>
-<pre class="prettyprint lang-json">{ id: "a1234",
-  currency: "USD",
-  subscription: {
-    status: PAID,
-    value: 99.99,
-    billingIntervalType: "DAY",
-    billingIntervalValue: 30
+<pre class="prettyprint lang-json">{ "id": "a1234",
+    "currency": "USD",
+    "subscription": {
+    "status": "PAID",
+    "value": 99.99,
+    "billingIntervalType": "DAY",
+    "billingIntervalValue": 30
   },
-  referral: {
-    code: "3j033r"
+  "referral": {
+    "code": "3j033r"
   }
 }</pre>
 
