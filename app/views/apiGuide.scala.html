@@ -130,29 +130,29 @@
                     <td><pre class="prettyprint">$ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/accountsync \
 -u API_KEY: \
 -H "Content-Type: application/json" \
--d '{ id: "SV0TYE5OWI11120144",
-  currency: "USD",
-  subscription: {
-    status: "PAID", 
-    value: 99.99,
-    billingIntervalType: "DAY",
-    billingIntervalValue: 30
+-d '{ "id": "SV0TYE5OWI11120144",
+  "currency": "USD",
+  "subscription": {
+    "status": "PAID", 
+    "value": 99.99,
+    "billingIntervalType": "DAY",
+    "billingIntervalValue"": 30
   },
-  referral: {
-    code: "3j033r"
+  "referral": {
+    "code": "3j033r"
   }
 }'</pre></td>
                     <td><pre class="prettyprint">{
-  id: "SV0TYE5OWI11120144",
-  currency: "USD",
-  subscription: {
-    status: "PAID", 
-    value: 99.99,
-    billingIntervalType: "DAY",
-    billingIntervalValue: 30
+  "id": "SV0TYE5OWI11120144",
+  "currency": "USD",
+  "subscription": {
+    "status": "PAID", 
+    "value"": 99.99,
+    "billingIntervalType": "DAY",
+    "billingIntervalValue"": 30
   },
-  referral: {
-    code: "3j033r"
+  "referral": {
+    "code": "3j033r"
   }
 }</pre></td>
                 </tr>
@@ -222,29 +222,29 @@
                     <td><pre class="prettyprint">$ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/accountsync \
 -u API_KEY: \
 -H "Content-Type: application/json" \
--d '{ id: "SV0TYE5OWI11120144",
-  currency: "USD",
-  subscription: {
-    <span class="nocode"><strong>status: "CANCELLED",</strong></span>
-    value: 99.99,
-    billingIntervalType: "DAY",
-    billingIntervalValue: 30
+-d '{ "id": "SV0TYE5OWI11120144",
+  "currency": "USD",
+  "subscription": {
+    <span class="nocode"><strong>"status": "CANCELLED",</strong></span>
+    "value": 99.99,
+    "billingIntervalType": "DAY",
+    "billingIntervalValue": 30
   },
-  referral: {
-    code: "3j033r"
+  "referral": {
+    "code": "3j033r"
   }
 }'</pre></td>
                     <td><pre class="prettyprint">{
-  id: "SV0TYE5OWI11120144",
-  currency: "USD",
-  subscription: {
-    <span class="nocode"><strong>status: "CANCELLED",</strong></span>
-    value: 99.99,
-    billingIntervalType: "DAY",
-    billingIntervalValue: 30
+  "id": "SV0TYE5OWI11120144",
+  "currency": "USD",
+  "subscription": {
+    <span class="nocode"><strong>"status": "CANCELLED",</strong></span>
+    "value": 99.99,
+    "billingIntervalType": "DAY",
+    "billingIntervalValue": 30
   },
-  referral: {
-    code: "3j033r"
+  "referral": {
+    "code": "3j033r"
   }
 }</pre></td>
                 </tr>
