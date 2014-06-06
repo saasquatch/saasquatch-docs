@@ -39,7 +39,8 @@
     user_id: 'u1234',
     email: 'joe.tester@@example.com',
     first_name: 'Joe',
-    last_name: 'Tester'
+    last_name: 'Tester',
+    fb_share_image: "http://example.com/foo.png"
 }]);</pre>
                 </td>
                 <td>
@@ -51,6 +52,7 @@
     email: 'joe.tester@@example.com',
     first_name: 'Joe',
     last_name: 'Tester',
+    fb_share_image: "http://example.com/foo.png",
     <span class="nocode"><strong>checksum: 'arbPDAcedO38Qw/qdJLCqd2tlRQ='</strong></span>
 }]);</pre>       
                 </td>
@@ -101,21 +103,36 @@ _sqh.push(['autofill', '#referralCoupon']);
     user_id: "u1234",
     email: "joe.tester@@example.com",
     first_name: "Joe",
-    last_name: "Tester"
+    last_name: "Tester",
+    fb_share_image: "http://example.com/foo.png"
 }</pre>
 
         <ol>
             <li>
+                <p><strong>Ignore client-only parameters</strong> that don't need to be signed. The <code>mode</code>, <code>fbShareImage</code> and <code>autofill</code> parameters should be ignored.
+                </p>
+        <pre class="prettyprint lang-json">{
+    tenant_alias: "test_aaaexampleaaa",
+    account_id: "a5678",
+    payment_provider_id: null,
+    user_id: "u1234",
+    email: "joe.tester@@example.com",
+    first_name: "Joe",
+    last_name: "Tester"
+    // fb_share_image: "http://example.com/foo.png" &lt;-- This one is ignored for checksum purposes
+}</pre>
+            </li>        
+            <li>
                 <p><strong>Sort your parameters</strong> according to the alphabetical order of their keys. Notice how <code>account_id</code> is now first and <code>user_id</code> is now last.
                 </p>
         <pre class="prettyprint lang-json">{
-    account_id: "a5678",
+    account_id: "a5678", // &lt;-- "a" is sorted to first
     email: "joe.tester@@example.com",
     first_name: "Joe",
     last_name: "Tester",
     payment_provider_id: null,
     tenant_alias: "test_aaaexampleaaa",
-    user_id: "u1234"
+    user_id: "u1234" // &lt;-- "u" is sorted to last
 }</pre>
             </li>
             <li>
@@ -123,7 +140,8 @@ _sqh.push(['autofill', '#referralCoupon']);
                 how "a5678", the value for <code>account_id</code>, is at the start, and "u1234", the value for <code>user_id</code>, is at the end. Also, any optional parameters or null parameters can be
                 omitted. In this example <code>payment_provider_id</code> is set to null and isn't included in the concatenated string.
                 </p>
-                <pre><span style="color:#dd1144;">a5678</span>joe.tester@@example.com<span style="color:#dd1144;">Joe</span>Tester<span style="color:#dd1144;">est_aaaexampleaaa</span>u1234</pre>
+                <pre><span style="color:#dd1144;">a5678</span>joe.tester@@example.com<span style="color:#dd1144;">Joe</span>Tester<span style="color:#dd1144;">est_aaaexampleaaa</span>u1234
+ ^^^ the value for accountId is first</pre>
             </li>
             <li>
                 <p><strong>Sign the string</strong> using your API key to compute a HMAC-SHA2 checksum. In the code below we use an example API key: <code>TEST_HGO8125ANDFH152HSAS15</code></p>
