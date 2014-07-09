@@ -173,7 +173,7 @@ public static String calculateHMACSHA256(String data, String secretKey) throws j
 """require 'openssl'
 require base64'
 
-hash = Base64.encode64(OpenSSL::HMAC.digest('sha256', 'TEST_HGO8125ANDFH152HSAS15', 'a5678joe.tester@example.comJoeTestertest_aaaexampleaaau1234'))""",
+hash = Base64.strict_encode64(OpenSSL::HMAC.digest('sha256', 'TEST_HGO8125ANDFH152HSAS15', 'a5678joe.tester@example.comJoeTestertest_aaaexampleaaau1234'))""",
 "py" -> 
 """import hashlib
 import hmac
