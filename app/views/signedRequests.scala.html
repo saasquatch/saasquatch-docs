@@ -181,7 +181,7 @@ import base64
  
 message = bytes('a5678joe.tester@example.comJoeTestertest_aaaexampleaaau1234').encode('utf-8')
 secret = bytes('TEST_HGO8125ANDFH152HSAS15').encode('utf-8')
-base64.strict_encode64(hmac.new(secret, message, digestmod=hashlib.sha256).digest())""",
+base64.standard_b64encode(hmac.new(secret, message, digestmod=hashlib.sha256).digest())""",
 "cs" -> 
 """using System.Security.Cryptography;
  
