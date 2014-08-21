@@ -1,5 +1,6 @@
 # Ignores downloaded workspace files from c9.io
 c9-installed-software
+.c9
 
 # Ignore play framework files
 logs
