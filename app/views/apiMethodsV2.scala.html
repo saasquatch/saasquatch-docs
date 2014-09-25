@@ -56,82 +56,8 @@
         </div>
     
         <h4>Returns</h4>
-        <p>A list of RewardAggregateDto</p>
-        <pre>
-            public static abstract class RewardV2 {
-        public String id;
-        public RewardType type;
-        public Date dateGiven;
-        public Date dateExpires;
-        public Date dateCancelled;
-        public String accountId;
-        public String userId;
-        public boolean cancellable;
-        public RewardSourceType rewardSource;
-        public abstract<T> T acceptVisitor(RewardVisitor<T> visitor);
-        public RewardV2(RewardType type) {
-        	this.type = type;
-        }
-        public String asJson() {
-        	return Json.toJson(this).toString();
-        }
-    }
-    
-    public static class DiscountRewardV2 extends RewardV2 {
-    	public Integer discountPct;
-    	DiscountRewardV2() {
-    		super(RewardType.PCT_DISCOUNT);
-    	}
-		@Override
-		public <T> T acceptVisitor(RewardVisitor<T> visitor) {
-			return visitor.accept(this);
-		}
-    }
-    
-    public static class FeatureRewardV2 extends RewardV2 {
-        public String featureType; // 1 DNS, 100MB Storage, etc...
-        public String name;
-        public String description;
-        public int quantity;
-        public String unit;
-        FeatureRewardV2() {
-        	super(RewardType.FEATURE);
-        }
-		@Override
-		public <T> T acceptVisitor(RewardVisitor<T> visitor) {
-			return visitor.accept(this);
-		}
-    }
-    
-    public static class CreditRewardV2 extends RewardV2 {
-    	public String unit;
-    	public Integer assignedCredit;
-    	public Integer redeemedCredit;
-    	CreditRewardV2() {
-    		super(RewardType.CREDIT);
-    	}
-    	CreditRewardV2(RewardType rewardType) {
-    		super(rewardType);
-    	}
-		@Override
-		public <T> T acceptVisitor(RewardVisitor<T> visitor) {
-			return visitor.accept(this);
-		}
-		public boolean isRedeemable() {
-			return assignedCredit - redeemedCredit > 0;
-		}
-    }
-    
-    public static class TimeCreditRewardV2 extends CreditRewardV2 {
-    	TimeCreditRewardV2() {
-    		super(RewardType.TIME_CREDIT);
-    	}
-    	@Override
-    	public <T> T acceptVisitor(RewardVisitor<T> visitor) {
-    		return visitor.accept(this);
-    	}
-    }
-        </pre>
+        <p>A list of rewards</p>
+
         <table class="table table-hover">
             <tr>
                 <th class="docs-monospace">id</th>

@@ -45,7 +45,6 @@ object Application extends Controller {
         case "squatchjs"  => Ok(views.html.squatchjs())
         case "segment-io"  => Ok(views.html.segment())
 
-
         case "api"  => Ok(views.html.apiIntroduction())
         case "api/authentication"  => Ok(views.html.apiAuthentication())
         case "api/errors"  => Ok(views.html.apiErrors())
