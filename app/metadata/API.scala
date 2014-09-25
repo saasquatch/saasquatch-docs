@@ -3,7 +3,7 @@ package metadata
 
 object API {
  
-    val v1methodList:List = List(
+    val v1methodList = List(
         ("GET",    "/api/v1/{TENANT_ALIAS}/coupon/{CODE}", "get_coupon", "Lookup a referral code"),
         ("POST",    "/api/v1/{TENANT_ALIAS}/coupon", "set_coupon", "Set a referral code"),
 
@@ -15,7 +15,7 @@ object API {
         ("GET",    "/api/v1/{TENANT_ALIAS}/subscription",       "list_webhooks",  "List webhook subscriptions")
     );
     
-    val v2methodList:List = List(
+    val v2methodList = List(
         ("GET",    "/api/v2/{TENANT_ALIAS}/reward/balance", "list_balances", "List reward balances"),
         ("POST",   "/api/v2/{TENANT_ALIAS}/reward/bulkredeem", "debit_balance", "Debit a reward balance"),
         
