@@ -1,4 +1,4 @@
-@(type: String, title: String, descr: String, cdnDomain:String = "http://www.referralsaasquat.netdna-cdn.com")(content: Html)(navbar: Html)
+@(sectionType: String, title: String, descr: String, cdnDomain:String = "http://www.referralsaasquat.netdna-cdn.com")(content: Html)(navbar: Html)
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -137,7 +137,7 @@
         <div class="span12">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#">Getting Started</a></li>
-              <li><a href="#" @if(type == "guide"){class="active"}>Guides</a></li>
+              <li><a href="#" @if(sectionType == "guide"){class="active"}>Guides</a></li>
               <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Reference <b class="caret"></b></a>
                 <ul class="dropdown-menu">
