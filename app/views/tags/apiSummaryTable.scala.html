@@ -1,5 +1,32 @@
 @()
 
+
+@{
+    val v1methodList = List(
+        ("GET",    "/api/v1/{TENANT_ALIAS}/coupon/{CODE}", "get_coupon", "Lookup a referral code"),
+        ("POST",    "/api/v1/{TENANT_ALIAS}/coupon", "set_coupon", "Set a referral code"),
+
+        ("POST",    "/api/v1/{TENANT_ALIAS}/accountsync",             "account_sync", "Update an account"),
+        ("GET",    "/api/v1/{TENANT_ALIAS}/account/{ACCOUNT_ID}/reward", "get_account_reward", "Lookup an account credit"),
+
+        ("POST",   "/api/v1/{TENANT_ALIAS}/subscription",       "create_webhook", "Create a webhook subscription"),
+        ("DELETE", "/api/v1/{TENANT_ALIAS}/subscription/{URL}", "delete_webhook", "Delete a webhook subscription"),
+        ("GET",    "/api/v1/{TENANT_ALIAS}/subscription",       "list_webhooks",  "List webhook subscriptions")
+    );
+
+    val v2methodList = List(
+        ("GET",    "/api/v2/{TENANT_ALIAS}/reward/balance", "list_balances", "List reward balances"),
+        ("POST",   "/api/v2/{TENANT_ALIAS}/reward/bulkredeem", "debit_balance", "Debit a reward balance"),
+        
+        ("GET",    "/api/v2/{TENANT_ALIAS}/reward", "get_reward", "Lookup a single reward"),
+        ("POST",   "/api/v2/{TENANT_ALIAS}/reward/{ID}/redeem", "debit_reward", "Redeem a single reward"),
+
+        ("GET",    "/api/v2/{TENANT_ALIAS}/code/{CODE}", "get_code", "Lookup a referral code")
+    );
+   "" // Ensure nothing is printed
+}
+
+<h3>API V1 Methods</h3>
 <table class="table">
     <thead>
         <tr>
@@ -15,84 +42,50 @@
         </tr>
     </thead>
     <tbody>
-    
-        <tr>
-            <td>
-                GET
-            </td>
-            <td class="docs-monospace">
-                /api/v1/{TENANT_ALIAS}/coupon/{CODE}
-            </td>
-            <td>
-                <a href="/api/methods#get_coupon">Lookup a coupon code</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                POST
-            </td>
-            <td class="docs-monospace">
-                /api/v1/{TENANT_ALIAS}/coupon
-            </td>
-            <td>
-                <a href="/api/methods#set_coupon">Set a referral code</a>
-            </td>
-        </tr>
+        @for(m <- v1methodList) {
+            <tr>
+                <td>
+                    @m._1
+                </td>
+                <td class="docs-monospace">
+                    @m._2
+                </td>
+                <td>
+                    <a href="/api/methods#@m._3">@m._4</a>
+                </td>
+            </tr>
+        } 
+    </tbody>
+</table>
 
+<h3>API V2 Methods</h3>
+<table class="table">
+    <thead>
         <tr>
-            <td>
-                POST
-            </td>
-            <td class="docs-monospace">
-                /api/v1/{TENANT_ALIAS}/accountsync
-            </td>
-            <td>
-                <a href="/api/methods#account_sync">Update an account</a>
-            </td>
+            <th>
+                Method
+            </th>
+            <th>
+                Route
+            </th>
+            <th>
+                Description
+            </th>
         </tr>
-        <tr>
-            <td>
-                GET
-            </td>
-            <td class="docs-monospace">
-                /api/v1/{TENANT_ALIAS}/account/{ACCOUNT_ID}/reward
-            </td>
-            <td>
-                <a href="/api/methods#get_account_reward">Lookup an account credit</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                POST
-            </td>
-            <td class="docs-monospace">
-                /api/v1/{TENANT_ALIAS}/subscription
-            </td>
-            <td>
-                <a href="/api/methods#create_webhook">Create a webhook subscription</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                DELETE
-            </td>
-            <td class="docs-monospace">
-                /api/v1/{TENANT_ALIAS}/subscription/{URL}
-            </td>
-            <td>
-                <a href="/api/methods#delete_webhook">Delete a webhook subscription</a
-            </td>
-        </tr>
-        <tr>
-            <td>
-                GET
-            </td>
-            <td class="docs-monospace">
-                /api/v1/{TENANT_ALIAS}/subscription
-            </td>
-            <td>
-                <a href="/api/methods#list_webhooks">List webhook subscriptions</a>
-            </td>
-        </tr>
+    </thead>
+    <tbody>
+        @for(m <- v2methodList) {
+            <tr>
+                <td>
+                    @m._1
+                </td>
+                <td class="docs-monospace">
+                    @m._2
+                </td>
+                <td>
+                    <a href="/api/methods#@m._3">@m._4</a>
+                </td>
+            </tr>
+        } 
     </tbody>
 </table>
