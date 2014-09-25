@@ -53,15 +53,6 @@
             window.analytics.page();
         </script>
 
-        <!-- Start Wistia -->
-        <script src="//fast.wistia.com/static/embed_shepherd-v1.js"></script>
-        <script>
-        wistiaEmbeds.onFind(function(video) {
-          video.videoFoam(true);
-        });
-        </script>
-        <!-- End Wistia -->
-        
         <!-- These next two lines include our TypeKit fonts -->
         <script type="text/javascript" src="//use.typekit.net/hqf0oje.js"></script>
         <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
@@ -90,7 +81,7 @@
         <!-- Swiftype Metadata -->
         <meta class="swiftype" name="title" data-type="string" content="@title" />
         <meta class="swiftype" name="body" data-type="text" content="@descr" />
-        <meta class='swiftype' name='type' data-type='enum' content='documentation' />
+        <meta class='swiftype' name='type' data-type='enum' content='@sectionType' />
         <!-- / Swiftype Metadata -->
         
         <link rel='stylesheet' id='Open Sans:300,300italic,regular,italic,600,600italic,700,700italic,800,800italic-css'  href='http://fonts.googleapis.com/css?family=Open+Sans%3A300%2C300italic%2Cregular%2Citalic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic&#038;ver=3.8' type='text/css' media='all' />
@@ -98,7 +89,6 @@
 
         <script type='text/javascript' src='@cdnDomain/wp-includes/js/jquery/jquery.js?ver=1.10.2'></script>
         <script type='text/javascript' src='@cdnDomain/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
-        <script type='text/javascript' src='@cdnDomain/wp-includes/js/swfobject.js?ver=2.2-20120417'></script>
         <script type='text/javascript' src='@cdnDomain/wp-content/themes/disillusion/js/vendor/modernizr-2.6.2.min.js'></script>
         <script type='text/javascript' src='@cdnDomain/wp-content/themes/disillusion/js/vendor/bootstrap.min.js'></script>
         
@@ -136,8 +126,8 @@
     <div class="row-fluid">
         <div class="span12">
             <ul class="nav nav-tabs">
-              <li @if(sectionType == "getttingStarted"){class="active"}><a href="/">Getting Started</a></li>
-              <li @if(sectionType == "guide"){class="active"}><a href="/guides">Guides</a></li>
+              <li @if(sectionType == "gettingStarted"){class="active"}><a href="/">Getting Started</a></li>
+              <li @if(sectionType == "guide"){class="active"}><a href="/faq">Guides</a></li>
               <li @if(sectionType == "apiReference"){class="active"}><a href="/api">API Reference</a></li>
               <li @if(sectionType == "jsReference"){class="active"}><a href="/squatchjs">Squatch.js Reference</a></li>
             </ul>
@@ -229,23 +219,6 @@
     
     </footer>
     <!-- End footer -->
-
-    <div id="lightwindow">
-    	<div id="lightwindow-content"></div>
-    </div>
-
-    @*
-     * TODO: Clean up this JS from docs. They were from the website, and aren't useful here.
-     *
-     *********************@  
-    <script type='text/javascript' src='@cdnDomain/wp-content/themes/disillusion/js/plugins.js'></script>
-    <script type='text/javascript'>
-    /* <![CDATA[ */
-    var AjaxHelper = {"blog_url":"http:\/\/www.referralsaasquatch.com\/wp-content\/themes\/disillusion\/template-news.php","portfolio_url":"http:\/\/www.referralsaasquatch.com\/wp-content\/themes\/disillusion\/template-portfolio.php","portfolio2_url":"http:\/\/www.referralsaasquatch.com\/wp-content\/themes\/disillusion\/template-portfolio2.php","ajaxurl":"http:\/\/www.referralsaasquatch.com\/wp-admin\/admin-ajax.php"};
-    var pt_settings = {"base_color":"","google_maps_circle_color":"#fb8047","google_maps_landscape_color":"#ffffff","google_maps_water_color":"#d4d4d4","portfolio_items_page":"5","blog_items_page":"16","pt_google_maps_latitude_1":"33.707126","pt_google_maps_longitude_1":"-4.135499","pt_google_maps_title_popover_1":"","pt_google_maps_text_popover_1":"","pt_google_maps_latitude_2":"38.707126","pt_google_maps_longitude_2":"-4.135499","pt_google_maps_title_popover_2":"","pt_google_maps_text_popover_2":"","pt_google_maps_latitude_3":"33.707126","pt_google_maps_longitude_3":"-4.135499","pt_google_maps_title_popover_3":"","pt_google_maps_text_popover_3":"","pt_google_maps_latitude_4":"33.707126","pt_google_maps_longitude_4":"-4.135499","pt_google_maps_title_popover_4":"","pt_google_maps_text_popover_4":""};
-    /* ]]> */
-    </script>
-    <script type='text/javascript' src='@cdnDomain/wp-content/themes/disillusion/js/main.js'></script>
 
     <!--Start of Zopim Live Chat Script-->
     <script type="text/javascript">
