@@ -18,26 +18,27 @@
     
         <tr>
             <td>
-                POST
-            </td>
-            <td class="docs-monospace">
-                /api/v1/{TENANT_ALIAS}/coupon
-            </td>
-            <td>
-                <a href="/api/methods#set_coupon">Set coupon/referral code on an account</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
                 GET
             </td>
             <td class="docs-monospace">
                 /api/v1/{TENANT_ALIAS}/coupon/{CODE}
             </td>
             <td>
-                <a href="/api/methods#get_coupon">Lookup a coupon/referral code</a>
+                <a href="/api/methods#get_coupon">Lookup a coupon code</a>
             </td>
         </tr>
+        <tr>
+            <td>
+                POST
+            </td>
+            <td class="docs-monospace">
+                /api/v1/{TENANT_ALIAS}/coupon
+            </td>
+            <td>
+                <a href="/api/methods#set_coupon">Set a referral code</a>
+            </td>
+        </tr>
+
         <tr>
             <td>
                 POST
@@ -46,7 +47,7 @@
                 /api/v1/{TENANT_ALIAS}/accountsync
             </td>
             <td>
-                <a href="/api/methods#account_sync">Update an account's status</a>
+                <a href="/api/methods#account_sync">Update an account</a>
             </td>
         </tr>
         <tr>
@@ -57,7 +58,7 @@
                 /api/v1/{TENANT_ALIAS}/account/{ACCOUNT_ID}/reward
             </td>
             <td>
-                <a href="/api/methods#get_account_reward">Lookup an account's referral credit</a>
+                <a href="/api/methods#get_account_reward">Lookup an account credit</a>
             </td>
         </tr>
         <tr>
