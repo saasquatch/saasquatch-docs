@@ -1,4 +1,4 @@
-@(sectionType: String, title: String, descr: String, cdnDomain:String = "http://www.referralsaasquat.netdna-cdn.com")(content: Html)(navbar: Html)
+@(sectionType: String, title: String, descr: String, cdnDomain:String = "http://www.referralsaasquat.netdna-cdn.com")(content: Html)(navbar: Html = null)
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -136,15 +136,10 @@
     <div class="row-fluid">
         <div class="span12">
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#">Getting Started</a></li>
-              <li><a href="#" @if(sectionType == "guide"){class="active"}>Guides</a></li>
-              <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Reference <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">REST API</a></li>
-                  <li><a href="#">Javascript (squatch.js)</a></li>
-                </ul>
-              </li>
+              <li @if(sectionType == "getttingStarted"){class="active"}><a href="/">Getting Started</a></li>
+              <li @if(sectionType == "guide"){class="active"}><a href="/guides">Guides</a></li>
+              <li @if(sectionType == "apiReference"){class="active"}><a href="/api">API Reference</a></li>
+              <li @if(sectionType == "jsReference"){class="active"}><a href="/squatchjs">Squatch.js Reference</a></li>
             </ul>
         </div>
     </div>
