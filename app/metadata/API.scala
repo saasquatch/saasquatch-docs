@@ -5,9 +5,9 @@ object API {
  
     val v1methodList = List(
         ("GET",    "/api/v1/{TENANT_ALIAS}/coupon/{CODE}", "get_coupon", "Lookup a referral code"),
-        ("POST",    "/api/v1/{TENANT_ALIAS}/coupon", "set_coupon", "Set a referral code"),
+        ("POST",   "/api/v1/{TENANT_ALIAS}/coupon", "set_coupon", "Set a referral code"),
 
-        ("POST",    "/api/v1/{TENANT_ALIAS}/accountsync",             "account_sync", "Update an account"),
+        ("POST",   "/api/v1/{TENANT_ALIAS}/accountsync",             "account_sync", "Update an account"),
         ("GET",    "/api/v1/{TENANT_ALIAS}/account/{ACCOUNT_ID}/reward", "get_account_reward", "Lookup an account credit"),
 
         ("POST",   "/api/v1/{TENANT_ALIAS}/subscription",       "create_webhook", "Create a webhook subscription"),
