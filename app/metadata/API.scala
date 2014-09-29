@@ -1,7 +1,5 @@
 package metadata
 
-import play.api._
-
 object API {
  
     val v1methodList = List(
@@ -26,9 +24,9 @@ object API {
         ("GET",    "/api/v2/{TENANT_ALIAS}/code/{CODE}", "get_code", "Lookup a referral code")
     );
     
-    val discount = Html("""<span class="label"><i class="fa fa-dollar"></i> Discount</span>""");
-    val freeTime = Html("""<span class="label"><i class="fa fa-calendar"></i> Free Time</span>""");
-    val feature = Html("""<span class="label"><i class="fa fa-cogs"></i> Feature</span>""");
-    val credit =  Html("""<span class="label"><i class="fa fa-credit"></i> Credit</span>""");
+    val discount = play.api.templates.Html("""<span class="label"><i class="fa fa-dollar"></i> Discount</span>""");
+    val freeTime = play.api.templates.Html("""<span class="label"><i class="fa fa-calendar"></i> Free Time</span>""");
+    val feature = play.api.templates.Html("""<span class="label"><i class="fa fa-cogs"></i> Feature</span>""");
+    val credit =  play.api.templates.Html("""<span class="label"><i class="fa fa-credit"></i> Credit</span>""");
 
 }
