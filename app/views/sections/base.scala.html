@@ -87,6 +87,8 @@
         <link rel='stylesheet' id='Open Sans:300,300italic,regular,italic,600,600italic,700,700italic,800,800italic-css'  href='http://fonts.googleapis.com/css?family=Open+Sans%3A300%2C300italic%2Cregular%2Citalic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic&#038;ver=3.8' type='text/css' media='all' />
         <link rel='stylesheet' id='pt-mediaqueries-css'  href='@cdnDomain/wp-content/themes/disillusion/css/mediaqueries.css' type='text/css' media='all' />
 
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
         <script type='text/javascript' src='@cdnDomain/wp-includes/js/jquery/jquery.js?ver=1.10.2'></script>
         <script type='text/javascript' src='@cdnDomain/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
         <script type='text/javascript' src='@cdnDomain/wp-content/themes/disillusion/js/vendor/modernizr-2.6.2.min.js'></script>
@@ -248,7 +250,10 @@
     <script>
     	var _gaq = _gaq || [];
     	_gaq.push(['_setAccount', 'UA-39831433-1']);
-    	_gaq.push(['_trackPageview']);
+        //_gaq.push(['_trackPageview']);
+
+    	// LV: This prefixes all paths with "docs", which helps with google analytics page tracking
+        _gaq.push(['_trackPageview', '/docs/' + document.location.pathname]);
     
     	(function() {
         	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;

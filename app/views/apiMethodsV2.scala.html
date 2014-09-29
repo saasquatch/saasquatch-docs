@@ -26,6 +26,7 @@
                <tr>
                 <th class="docs-monospace">accountId</th>
                 <td><span class="label">Required</span></td>
+
                 <td>
                     The ID of the account to look up.
                 </td>
@@ -41,6 +42,9 @@
               <tr>
                 <th class="docs-monospace">featureTypeFilter</th>
                 <td><span class="label">Optional</span></td>
+                <td>
+                    
+                </td>
                 <td>
                     Filters rewards by feature type.
                 </td>
@@ -70,7 +74,25 @@
                 <th class="docs-monospace">type</th>
                 <td>Enum</td>
                 <td>
-                    The type of reward. One of either <code>PCT_DISCOUNT</code>, <code>FEATURE</code>, <code>TIME_CREDIT</code> or <code>CREDIT</code>.
+                    The type of reward. One of either the following:
+                    <table class="table">
+                        <tr>
+                            <td>@metadata.API.discount</td>
+                            <td><code>PCT_DISCOUNT</code></td>
+                        </tr>
+                        <tr>
+                            <td>@metadata.API.feature</td>
+                            <td><code>FEATURE</code></td>
+                        </tr>
+                        <tr>
+                            <td>@metadata.API.freeTime</td>
+                            <td><code>TIME_CREDIT</code></td>
+                        </tr>
+                        <tr>
+                            <td>@metadata.API.credit</td>
+                            <td><code>CREDIT</code></td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
             <tr>
@@ -95,142 +117,103 @@
                 </td>
             </tr>
             <tr>
+                <th class="docs-monospace">cancellable</th>
+                <td>Boolean</td>
+                <td>
+                    If a reward is <code>cancellable</code> then it may be revoked. If it has been cancelled then <code>dateCancelled</code> will be non-null.
+                </td>
+            </tr>
+            <tr>
                 <th class="docs-monospace">rewardSource</th>
                 <td>Enum</td>
                 <td>
                     The type of the source of the reward. One of either <code>FRIEND_SIGNUP</code> or <code>REFERRED</code>.
                 </td>
             </tr>
+            <tr>
+                <th class="docs-monospace">unit</th>
+                <td>Enum</td>
+                <td>
+                    The type of the source of the reward. One of either <code>FRIEND_SIGNUP</code> or <code>REFERRED</code>.
+                </td>
+                <td>
+                    Not available in @metadata.API.discount
+                </td>
+            </tr>
             
             <tr>
-                <th class="docs-monospace"></th>
-                <td></td>
+                <th class="docs-monospace">discountPct</th>
+                <td>Integer</td>
                 <td>
-                    <h3>Rewards can have subtypes</h3>
-                    <table class="table">
-                        <tr>
-                            <th>Reward Type</th>
-                            <td>Additional object details</td>
-                        </tr>
-                        <tr>
-                            <th class="docs-monospace">PCT_DISCOUNT</th>
-                            <td>
-                                <table class="table table-hover">
-                                    <tr>
-                                        <th class="docs-monospace">discountPct</th>
-                                        <td>Integer</td>
-                                        <td>
-                                            The percent discount. e.g. <code>10</code> means 10%
-                                        </td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="docs-monospace">FEATURE</th>
-                            <td>
-                                <table class="table table-hover">
-                                    <tr>
-                                        <th class="docs-monospace">featureType</th>
-                                        <td>String</td>
-                                        <td>
-                                            A unique identifier for the type of feature. E.g. "freeSeats" or "freeMb".
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="docs-monospace">unit</th>
-                                        <td>String</td>
-                                        <td>
-                                            The description of the unit of measure. e.g. "Seats" or "Megabytes". 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="docs-monospace">name</th>
-                                        <td>String</td>
-                                        <td>
-                                            The name of the feature. e.g. "Free Seats" or "Free Storage"
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="docs-monospace">description</th>
-                                        <td>String</td>
-                                        <td>
-                                            The feature description. e.g. "Bonus user seats for your account" or "Extra megabytes of free storage"
-                                        </td>
-                                    </tr>
+                    The percent discount. e.g. <code>10</code> means 10%
+                </td>
+                <td>
+                    Only for @metadata.API.discount
+                </td>
+            </tr>
+            <tr>
+                <th class="docs-monospace">featureType</th>
+                <td>String</td>
+                <td>
+                    A unique identifier for the type of feature. E.g. "freeSeats" or "freeMb".
+                </td>
+                <td>
+                    Only for @metadata.API.feature
+                </td>
+            </tr>
+            <tr>
+                <th class="docs-monospace">name</th>
+                <td>String</td>
+                <td>
+                    The name of the feature. e.g. "Free Seats" or "Free Storage"
+                </td>
+                <td>
+                    Only for @metadata.API.feature
+                </td>
+            </tr>
+            <tr>
+                <th class="docs-monospace">description</th>
+                <td>String</td>
+                <td>
+                    The feature description. e.g. "Bonus user seats for your account" or "Extra megabytes of free storage"
+                </td>
+                <td>
+                    Only for @metadata.API.feature
+                </td>
+            </tr>
 
-                                    <tr>
-                                        <th class="docs-monospace">quantity</th>
-                                        <td>Integer</td>
-                                        <td>
-                                            The earned quantity of the feature
-                                        </td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="docs-monospace">CREDIT</th>
-                            <td>
-                                <table class="table table-hover">
-                                    <tr>
-                                        <th class="docs-monospace">unit</th>
-                                        <td>String</td>
-                                        <td>
-                                            The description of the unit of measure. e.g. "Seats" or "Megabytes". 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="docs-monospace">assignedCredit</th>
-                                        <td>Integer</td>
-                                        <td>
-                                            The earned quantity of the feature
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="docs-monospace">redeemedCredit</th>
-                                        <td>Integer</td>
-                                        <td>
-                                            The redeemed quantity of the feature
-                                        </td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="docs-monospace">TIME_CREDIT</th>
-                            <td>
-                                <table class="table table-hover">
-                                    <tr>
-                                        <th class="docs-monospace">unit</th>
-                                        <td>String</td>
-                                        <td>
-                                            The description of the unit of measure. e.g. "Seats" or "Megabytes". 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="docs-monospace">assignedCredit</th>
-                                        <td>Integer</td>
-                                        <td>
-                                            The earned quantity of the feature
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="docs-monospace">redeemedCredit</th>
-                                        <td>Integer</td>
-                                        <td>
-                                            The redeemed quantity of the feature
-                                        </td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                    </table>
-                    The type of the source of the reward. One of either <code>FRIEND_SIGNUP</code> or <code>REFERRED</code>.
+            <tr>
+                <th class="docs-monospace">quantity</th>
+                <td>Integer</td>
+                <td>
+                    The earned quantity of the feature
+                </td>
+                <td>
+                    Only for @metadata.API.feature
+                </td>
+            </tr>
+            <tr>
+                <th class="docs-monospace">assignedCredit</th>
+                <td>Integer</td>
+                <td>
+                    The earned quantity of the feature
+                </td>
+                <td>
+                    Only for @metadata.API.freeTime and @metadata.API.credit
+                </td>
+            </tr>
+            <tr>
+                <th class="docs-monospace">redeemedCredit</th>
+                <td>Integer</td>
+                <td>
+                    The redeemed quantity of the feature
+                </td>
+                <td>
+                    Only for @metadata.API.freeTime and @metadata.API.credit
                 </td>
             </tr>
         </table>
-            
+
 
         <h4>Example Request</h4>
 <pre class="prettyprint lang-curl">$ curl https://app.referralsaasquatch.com/api/v2/{TENANT_ALIAS}/reward?accountId=1 \
