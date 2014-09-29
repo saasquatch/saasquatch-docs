@@ -31,35 +31,3 @@
         } 
     </tbody>
 </table>
-
-<h3>API V2 Methods</h3>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Method
-            </th>
-            <th>
-                Route
-            </th>
-            <th>
-                Description
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @for(m <- metadata.API.v2methodList) {
-            <tr>
-                <td>
-                    @m._1
-                </td>
-                <td class="docs-monospace">
-                    @m._2
-                </td>
-                <td>
-                    <a href="/api/methodsv2#@m._3">@m._4</a>
-                </td>
-            </tr>
-        } 
-    </tbody>
-</table>

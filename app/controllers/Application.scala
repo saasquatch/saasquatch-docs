@@ -49,7 +49,6 @@ object Application extends Controller {
         case "api/authentication"  => Ok(views.html.apiAuthentication())
         case "api/errors"  => Ok(views.html.apiErrors())
         case "api/methods"  => Ok(views.html.apiMethods())
-        case "api/methodsv2"  => Ok(views.html.apiMethodsV2())
         case "api/webhooks"  => Ok(views.html.apiWebhooks())
 
         case "bestpractices/buttons"  => Ok(views.html.buttonsBestPractices())
