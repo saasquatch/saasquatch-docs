@@ -22,27 +22,6 @@
         <h4>Definition</h4>
         <pre class="prettyprint lang-curl">POST https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/accountsync</pre>
 
-
-        <ul class="nav nav-tabs">
-          <li class="active"><a href="#home" data-toggle="tab">Example Request</a></li>
-          <li class=""><a href="#profile" data-toggle="tab">Example Response</a></li>
-        </ul>
-        <div id="myTabContent" class="tab-content">
-          <div class="tab-pane fade active in" id="home">
-            <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
-          </div>
-          <div class="tab-pane fade" id="profile">
-            <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
-          </div>
-          <div class="tab-pane fade" id="dropdown1">
-            <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</p>
-          </div>
-          <div class="tab-pane fade" id="dropdown2">
-            <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral, mustache readymade thundercats keffiyeh craft beer marfa ethical. Wolf salvia freegan, sartorial keffiyeh echo park vegan.</p>
-          </div>
-        </div>
-
-          
         <h4>Arguments</h4>
         <div>
             <table class="table table-hover apidocs-args">
@@ -130,38 +109,40 @@
 $ curl https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/accountsync \
 -u API_KEY: \
 -H "Content-Type: application/json" \
--d '{ "id": "a1234",
-"currency": "USD",
-"subscription": {
-    "status": "PAID",
-    "value": 99.99,
-    "billingIntervalType": "DAY",
-    "billingIntervalValue": 30
-  },
-"referral": {
-    "code": "3j033r"
-  }
+-d '{
+    "id": "a1234",
+    "currency": "USD",
+    "subscription": {
+        "status": "PAID",
+        "value": 99.99,
+        "billingIntervalType": "DAY",
+        "billingIntervalValue": 30
+    },
+    "referral": {
+        "code": "3j033r"
+    }
 }'
 """,
 """
-{ "id": "a1234",
+{
+    "id": "a1234",
     "currency": "USD",
     "subscription": {
-    "status": "PAID",
-    "value": 99.99,
-    "billingIntervalType": "DAY",
-    "billingIntervalValue": 30
-  },
-  "referral": {
-    "code": "3j033r"
-  }
+        "status": "PAID",
+        "value": 99.99,
+        "billingIntervalType": "DAY",
+        "billingIntervalValue": 30
+    },
+    "referral": {
+        "code": "3j033r"
+    }
 }
 """)
 
         <hr />
         
         <h2>List an account's rewards</h2>
-        <a id="get_reward" name="get_reward" class="section-anchor">&nbsp;</a>
+        <a id="list_rewards" name="list_rewards" class="section-anchor">&nbsp;</a>
 
         <p>Looks up a single reward. Works with: @metadata.API.discount @metadata.API.feature @metadata.API.freeTime @metadata.API.credit</p>
         <h4>Definition</h4>
@@ -361,11 +342,57 @@ $ curl https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/accountsync \
             </tr>
         </table>
 
-
-        <h4>Example Request</h4>
-<pre class="prettyprint lang-curl">$ curl https://app.referralsaasquatch.com/api/v2/{TENANT_ALIAS}/reward?accountId=1 \
+@tags.exampleCurl("list_rewards",
+"""
+$ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/coupon?accountId=XYZ[&userId=123][&rewardTypeFilter=FEATURE|CREDIT|PCT_DISCOUNT][&featureTypeFilter=megaAddon] \
 -u API_KEY: \
--H "Content-Type: application/json"</pre>
+-H "Content-Type: application/json"
+""",
+"""
+[{
+    "type":"FEATURE",
+    "id":"5423508fe4b05184a716a08b",
+    "dateGiven":1411600527094,
+    "dateExpires":null,
+    "dateCancelled":null,
+    "accountId":"F3BNA0HOKJR17656",
+    "userId":"5423508ee4b059bbbadf48e1",
+    "cancellable":false,
+    "rewardSource":"REFERRED",
+    "featureType":"storage",
+    "name":"100 MB Storage",
+    "description":"100 MB Free Storage",
+    "quantity":100,
+    "unit":"MB"
+},
+{
+    "type":"PCT_DISCOUNT",
+    "id":"54235160e4b05184a716a0b2",
+    "dateGiven":1411600736220,
+    "dateExpires":1443136736220,
+    "dateCancelled":null,
+    "accountId":"GUYRP0T2F6F3Y6PN",
+    "userId":"54235132e4b059bbbadf4903",
+    "cancellable":true,
+    "rewardSource":"FRIEND_SIGNUP",
+    "discountPct":10
+},
+{
+    "type":"CREDIT",
+    "id":"542351e4e4b05184a716a0c5",
+    "dateGiven":1411600868797,
+    "dateExpires":null,
+    "dateCancelled":null,
+    "accountId":"85W7A2F1QZS9NGI8",
+    "userId":"542351e4e4b059bbbadf496d",
+    "cancellable":false,
+    "rewardSource":"FRIEND_SIGNUP",
+    "unit":"cents",
+    "assignedCredit":10000,
+    "redeemedCredit":0,
+    "redeemable":true
+}]
+""")
 
         <hr />
         
@@ -456,11 +483,16 @@ $ curl https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/accountsync \
         </table>
             
 
-        <h4>Example Request</h4>
-<pre class="prettyprint lang-curl">$ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/coupon \
+@tags.exampleCurl("set_coupon",
+"""
+$ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/coupon \
 -u API_KEY: \
 -H "Content-Type: application/json" \
--d '{"couponCode" : "BOBTESTERSON", "accountId" : "abc", "paymentProviderId" : "cus_123" }'</pre>
+-d '{"couponCode" : "BOBTESTERSON", "accountId" : "abc", "paymentProviderId" : "cus_123" }'
+""",
+"""
+HTTP 201 Success (No response body)
+""")
 
         <hr />
         
@@ -533,19 +565,20 @@ $ curl https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/accountsync \
             </tr>
         </table>
         
-        <h4>Example Request</h4>
-<pre class="prettyprint lang-curl">$ curl https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/coupon/JOHNDOE \
+@tags.exampleCurl("get_coupon",
+"""
+$ curl https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/coupon/JOHNDOE \
 -u API_KEY: \
--H "Content-Type: application/json"</pre>
-
-        <h4>Example Response</h4>
-<pre class="prettyprint lang-json">{
+-H "Content-Type: application/json"
+""",
+"""
+{
     "couponCode" : "JOHNDOE", 
     "discountPercentage" : 20, 
     "dateCreated" : 1377727546528,
     "discountId" : "saasquatch_discount"
-}</pre>
-
+}
+""")
         <hr />
         
         <h2>Lookup an account's discount</h2>
@@ -632,19 +665,21 @@ $ curl https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/accountsync \
             </tr>
         </table>
         
-        <h4>Example Request</h4>
-<pre class="prettyprint lang-curl">$ curl https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/account/SV0TYE5OWI11120144/reward \
+@tags.exampleCurl("get_account_reward",
+"""
+$ curl https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/account/SV0TYE5OWI11120144/reward \
 -u API_KEY: \
--H "Content-Type: application/json"</pre>
-
-        <h4>Example Response</h4>
-<pre class="prettyprint lang-json">{
+-H "Content-Type: application/json"
+""",
+"""
+{
     "accountId":"SV0TYE5OWI11120144",
     "discountPercentage":10,
     "referrerDiscountPercent":0,
     "referredDiscountPercent":10,
     "discountId":"saasquatch_discount"
-}</pre>
+}
+""")
 
         <hr />
 

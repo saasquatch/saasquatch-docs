@@ -23,11 +23,16 @@
 <h4>Returns</h4>
 <p>HTTP Created Status (Empty Response Body)</p>
 
-<h4>Example Request</h4>
-<pre class="prettyprint lang-curl">$ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/subscription \
+@tags.exampleCurl("create_webhook",
+"""
+$ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/subscription \
 -u API_KEY: \
 -H "Content-Type: application/json" \
--d '{"endpointUrl":"YOUR_ENDPOINT_URL"}'</pre>
+-d '{"endpointUrl":"YOUR_ENDPOINT_URL"}'
+""",
+"""
+Http Status 201 (No response body)
+""")
 
 <hr/>
 
@@ -59,15 +64,18 @@
 <h4>Returns</h4>
 <p>HTTP 204 - No response (Empty Response Body)</p>
 
-<h4>Example Request</h4>
-<pre class="prettyprint lang-curl">$ curl -X DELETE https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/subscription/{URL} \
+
+@tags.exampleCurl("delete_webhook",
+"""
+$ curl -X DELETE https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/subscription/{URL} \
 -u API_KEY: \
--H "Content-Type: application/json"</pre>
-<hr/>
+-H "Content-Type: application/json"
+""",
+"""
+HTTP 204 - No response (Empty Response Body)
+""")
 
-
-
-
+<hr>
 
 
 
@@ -87,15 +95,19 @@
 <h4>Returns</h4>
 <p>A list of endpoints urls</p>
 
-<h4>Example Request</h4>
-<pre class="prettyprint lang-curl">$ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/subscription \
--u API_KEY: \
--H "Content-Type: application/json"</pre>
 
-<h4>Example Response</h4>
-<pre class="prettyprint lang-json">[
+@tags.exampleCurl("list_webhooks",
+"""
+$ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/subscription \
+-u API_KEY: \
+-H "Content-Type: application/json"
+""",
+"""
+[
     {"endpointUrl": "https://example.com/hook"},
     {"endpointUrl": "https://another.example.com/hook"},
     ...
-]</pre>
+]
+""")
+
 <hr/>
