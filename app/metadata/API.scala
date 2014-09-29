@@ -23,9 +23,11 @@ object API {
 
     );
     
-    val discount = play.api.templates.Html("""<span class="label"><i class="fa fa-fw fa-dollar"></i> Discount</span>""");
-    val freeTime = play.api.templates.Html("""<span class="label"><i class="fa fa-fw fa-calendar"></i> Free Time</span>""");
-    val feature = play.api.templates.Html("""<span class="label"><i class="fa fa-fw fa-cogs"></i> Feature</span>""");
-    val credit =  play.api.templates.Html("""<span class="label"><i class="fa fa-fw fa-bank"></i> Credit</span>""");
+    val discount = play.api.templates.Html("""<span class="label program-type-label"><i class="fa fa-fw fa-dollar"></i> Discount</span>""");
+    val freeTime = play.api.templates.Html("""<span class="label program-type-label"><i class="fa fa-fw fa-calendar"></i> Free Time</span>""");
+    val feature = play.api.templates.Html("""<span class="label program-type-label"><i class="fa fa-fw fa-cogs"></i> Feature</span>""");
+    val credit =  play.api.templates.Html("""<span class="label program-type-label"><i class="fa fa-fw fa-bank"></i> Credit</span>""");
 
+
+    val sectionBreak = play.api.templates.Html("""<div class="apidocs-section-break">&nbsp;</div>""");
 }
