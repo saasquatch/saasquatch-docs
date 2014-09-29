@@ -14,7 +14,153 @@
         @tags.apiSummaryTable()
         
         
-                <h2>List an account's rewards</h2>
+        <h2>Update an account</h2>
+        <a id="account_sync" name="account_sync" class="section-anchor">&nbsp;</a>
+
+        <p>Use this method to update SaaSquatch when the status of an account changes or when a new account is created. 
+            If you're using a payment system connector, such as the Recurly connector, then you won't need to use this method. We automatically track account status for Braintree, Stripe, Reculy and Zuora.</p>
+        <h4>Definition</h4>
+        <pre class="prettyprint lang-curl">POST https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/accountsync</pre>
+
+
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#home" data-toggle="tab">Example Request</a></li>
+          <li class=""><a href="#profile" data-toggle="tab">Example Response</a></li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+          <div class="tab-pane fade active in" id="home">
+            <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+          </div>
+          <div class="tab-pane fade" id="profile">
+            <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+          </div>
+          <div class="tab-pane fade" id="dropdown1">
+            <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</p>
+          </div>
+          <div class="tab-pane fade" id="dropdown2">
+            <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral, mustache readymade thundercats keffiyeh craft beer marfa ethical. Wolf salvia freegan, sartorial keffiyeh echo park vegan.</p>
+          </div>
+        </div>
+
+          
+        <h4>Arguments</h4>
+        <div>
+            <table class="table table-hover apidocs-args">
+              <tr>
+                <th class="docs-monospace">id</th>
+                <td><span class="label">Required</span><br/>
+                    The id of the account. This should be the same <code>account_id</code> used for <a href="/app-integration">squatch.js</a>. Not sure what to use here? See <a href="/shared-vs-solo-accounts">Shared vs. Solo accounts</a>
+                </td>
+              </tr>
+              <tr>
+                <th class="docs-monospace">subscription</th>
+                <td><span class="label">Required</span></td>
+                <td>
+                    An object describing the current subscription for this account.<br><br>
+
+                    <table class="table table-hover">
+                          <tr>
+                            <th class="docs-monospace">status</th>
+                            <td>
+                                The status of the subscription. One of <code>PAID</code>, <code>TRAIL</code>, <code>FREE</code> or <code>CANCELLED</code>, 
+                            </td>
+                          </tr>
+                          <tr>
+                            <th class="docs-monospace">billingIntervalType</th>
+                            <td>
+                                The unit type for <code>billingIntervalValue</code>. One of <code>DAY</code>, <code>WEEK</code>, <code>MONTH</code>,  <code>QUARTER</code>, <code>SEMI_ANNUAL</code> or <code>YEAR</code>.
+                                Required when <code>status: PAID</code>.
+                            </td>
+                          </tr>
+                          <tr>
+                            <th class="docs-monospace">billingIntervalValue</th>
+                            <td>
+                                The number of <code>billingIntervalType</code>. Required when <code>status: PAID</code>.<br/>
+                                
+                                <table class="table">
+                                    <caption>Example billing intervals</caption>
+                                    <tr><td></td><td>billingIntervalValue</td><td>billingIntervalType</td></tr>
+                                    <tr><td>Monthly billing</td><td>1</td><td>MONTH</td></tr>
+                                    <tr><td>Yearly billing</td><td>1</td><td>YEAR</td></tr>
+                                    <tr><td>4 Month billing</td><td>4</td><td>MONTH</td></tr>
+                                </table>
+
+                            </td>
+                          </tr>
+                          <tr>
+                            <th class="docs-monospace">value</th>
+                            <td>
+                                Dollar value of the subscription per renewal. Required when <code>status: PAID</code>.
+                            </td>
+                          </tr>
+                    </table>
+                </td>
+              </tr>
+              <tr>
+                <th class="docs-monospace">referral</th>
+                <td><span class="label">Optional</span></td>
+                <td>
+                    Info about who referred this account. Use this on first signup.<br><br>
+                    
+                    <table class="table table-hover">
+                          <tr>
+                            <th class="docs-monospace">code</th>
+                            <td>
+                                The referral code of the person that referred this account. Use <a href="/squatchjs#autofill">squatch.js autofill</a> to retrieve this value from the tracking cookie on your checkout form.
+                            </td>
+                          </tr>
+                    </table>
+                </td>
+              </tr>
+              <tr>
+                <th class="docs-monospace">currency</th>
+                <td><span class="label">Optional</span></td>
+                <td>
+                    Default is "USD". Otherwise use a ISO 4217 Standard currency code in uppercase.
+                </td>
+              </tr>
+              </table>
+        </div>
+    
+        <h4>Returns</h4>
+        <p>The current status of the account, mirroring the input, or an HTTP Error code on error.</p>
+
+        @tags.exampleCurl("",
+"""
+$ curl https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/accountsync \
+-u API_KEY: \
+-H "Content-Type: application/json" \
+-d '{ "id": "a1234",
+"currency": "USD",
+"subscription": {
+    "status": "PAID",
+    "value": 99.99,
+    "billingIntervalType": "DAY",
+    "billingIntervalValue": 30
+  },
+"referral": {
+    "code": "3j033r"
+  }
+}'
+""",
+"""
+{ "id": "a1234",
+    "currency": "USD",
+    "subscription": {
+    "status": "PAID",
+    "value": 99.99,
+    "billingIntervalType": "DAY",
+    "billingIntervalValue": 30
+  },
+  "referral": {
+    "code": "3j033r"
+  }
+}
+""")
+
+        <hr />
+        
+        <h2>List an account's rewards</h2>
         <a id="get_reward" name="get_reward" class="section-anchor">&nbsp;</a>
 
         <p>Looks up a single reward. Works with: @metadata.API.discount @metadata.API.feature @metadata.API.freeTime @metadata.API.credit</p>
@@ -43,9 +189,6 @@
               <tr>
                 <th class="docs-monospace">featureTypeFilter</th>
                 <td><span class="label">Optional</span></td>
-                <td>
-                    
-                </td>
                 <td>
                     Filters rewards by feature type.
                 </td>
@@ -133,9 +276,9 @@
             </tr>
             <tr>
                 <th class="docs-monospace">unit</th>
-                <td>Enum</td>
+                <td>String</td>
                 <td>
-                    The type of the source of the reward. One of either <code>FRIEND_SIGNUP</code> or <code>REFERRED</code>.
+                    An identifier for the unit of the reward. E.g. "credit-in-cents", "freemb", "giftcard20", "tshirt", "freemonth"
                 </td>
                 <td>
                     Works with: <br/>
@@ -149,7 +292,7 @@
                 <th class="docs-monospace">discountPct</th>
                 <td>Integer</td>
                 <td>
-                    The percent discount. e.g. <code>10</code> means 10%
+                    The percent discount. E.g. <code>10</code> means 10%
                 </td>
                 <td>
                     Works with: <br/> @metadata.API.discount
@@ -401,131 +544,6 @@
     "discountPercentage" : 20, 
     "dateCreated" : 1377727546528,
     "discountId" : "saasquatch_discount"
-}</pre>
-
-        <hr />
-
-        <h2>Update an account's status</h2>
-        <a id="account_sync" name="account_sync" class="section-anchor">&nbsp;</a>
-
-        <p>Use this method to update SaaSquatch when the status of an account changes or when a new account is created. 
-            If you're using a payment system connector, such as the Recurly connector, then you won't need to use this method. We automatically track account status for Braintree, Stripe, Reculy and Zuora.</p>
-        <h4>Definition</h4>
-        <pre class="prettyprint lang-curl">POST https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/accountsync</pre>
-
-        <h4>Arguments</h4>
-        <div>
-            <table class="table table-hover">
-              <tr>
-                <th class="docs-monospace">id</th>
-                <td><span class="label">Required</span></td>
-                <td>
-                    The id of the account. This should be the same <code>account_id</code> used for <a href="/app-integration">squatch.js</a>. Not sure what to use here? See <a href="/shared-vs-solo-accounts">Shared vs. Solo accounts</a>
-                </td>
-              </tr>
-              <tr>
-                <th class="docs-monospace">subscription</th>
-                <td><span class="label">Required</span></td>
-                <td>
-                    An object describing the current subscription for this account.<br><br>
-                    
-                    <table class="table table-hover">
-                          <tr>
-                            <th class="docs-monospace">status</th>
-                            <td>
-                                The status of the subscription. One of <code>PAID</code>, <code>TRAIL</code>, <code>FREE</code> or <code>CANCELLED</code>, 
-                            </td>
-                          </tr>
-                          <tr>
-                            <th class="docs-monospace">billingIntervalType</th>
-                            <td>
-                                The unit type for <code>billingIntervalValue</code>. One of <code>DAY</code>, <code>WEEK</code>, <code>MONTH</code>,  <code>QUARTER</code>, <code>SEMI_ANNUAL</code> or <code>YEAR</code>.
-                                Required when <code>status: PAID</code>.
-                            </td>
-                          </tr>
-                          <tr>
-                            <th class="docs-monospace">billingIntervalValue</th>
-                            <td>
-                                The number of <code>billingIntervalType</code>. Required when <code>status: PAID</code>.<br/>
-                                
-                                <table class="table">
-                                    <caption>Example billing intervals</caption>
-                                    <tr><td></td><td>billingIntervalValue</td><td>billingIntervalType</td></tr>
-                                    <tr><td>Monthly billing</td><td>1</td><td>MONTH</td></tr>
-                                    <tr><td>Yearly billing</td><td>1</td><td>YEAR</td></tr>
-                                    <tr><td>4 Month billing</td><td>4</td><td>MONTH</td></tr>
-                                </table>
-
-                            </td>
-                          </tr>
-                          <tr>
-                            <th class="docs-monospace">value</th>
-                            <td>
-                                Dollar value of the subscription per renewal. Required when <code>status: PAID</code>.
-                            </td>
-                          </tr>
-                    </table>
-                </td>
-              </tr>
-              <tr>
-                <th class="docs-monospace">referral</th>
-                <td><span class="label">Optional</span></td>
-                <td>
-                    Info about who referred this account. Use this on first signup.<br><br>
-                    
-                    <table class="table table-hover">
-                          <tr>
-                            <th class="docs-monospace">code</th>
-                            <td>
-                                The referral code of the person that referred this account. Use <a href="/squatchjs#autofill">squatch.js autofill</a> to retrieve this value from the tracking cookie on your checkout form.
-                            </td>
-                          </tr>
-                    </table>
-                </td>
-              </tr>
-              <tr>
-                <th class="docs-monospace">currency</th>
-                <td><span class="label">Optional</span></td>
-                <td>
-                    Default is "USD". Otherwise use a ISO 4217 Standard currency code in uppercase.
-                </td>
-              </tr>
-              </table>
-        </div>
-    
-        <h4>Returns</h4>
-        <p>The current status of the account, mirroring the input, or an HTTP Error code on error.</p>
-
-        
-        <h4>Example Request</h4>
-<pre class="prettyprint lang-curl">$ curl https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/accountsync \
--u API_KEY: \
--H "Content-Type: application/json" \
--d '{ "id": "a1234",
-"currency": "USD",
-"subscription": {
-    "status": "PAID",
-    "value": 99.99,
-    "billingIntervalType": "DAY",
-    "billingIntervalValue": 30
-  },
-"referral": {
-    "code": "3j033r"
-  }
-}'</pre>
-
-        <h4>Example Response</h4>
-<pre class="prettyprint lang-json">{ "id": "a1234",
-    "currency": "USD",
-    "subscription": {
-    "status": "PAID",
-    "value": 99.99,
-    "billingIntervalType": "DAY",
-    "billingIntervalValue": 30
-  },
-  "referral": {
-    "code": "3j033r"
-  }
 }</pre>
 
         <hr />

@@ -8,10 +8,10 @@ object API {
         ("POST",   "/api/v1/{TENANT_ALIAS}/accountsync", "account_sync", "Update an account "),
 
         ("GET",    "/api/v1/{TENANT_ALIAS}/reward/balance", "list_balances", "List reward balances"),
-        ("POST",   "/api/v1/{TENANT_ALIAS}/reward/bulkredeem", "debit_balance", "Debit a reward balance"),
+        ("POST",   "/api/v1/{TENANT_ALIAS}/credit/bulkredeem", "debit_balance", "Debit a reward balance"),
         
         ("GET",    "/api/v1/{TENANT_ALIAS}/reward", "list_rewards", "List an account's rewards"),
-        ("POST",   "/api/v1/{TENANT_ALIAS}/reward/{ID}/redeem", "debit_reward", "Redeem a single reward"),
+        ("POST",   "/api/v1/{TENANT_ALIAS}/credit/{ID}/redeem", "debit_reward", "Redeem a single reward"),
 
         ("GET",    "/api/v1/{TENANT_ALIAS}/discount/{CODE}", "get_coupon", "Lookup a discount code"),
         ("POST",   "/api/v1/{TENANT_ALIAS}/discount", "set_coupon", "Set a discount code"),
@@ -23,9 +23,9 @@ object API {
 
     );
     
-    val discount = play.api.templates.Html("""<span class="label"><i class="fa fa-dollar"></i> Discount</span>""");
-    val freeTime = play.api.templates.Html("""<span class="label"><i class="fa fa-calendar"></i> Free Time</span>""");
-    val feature = play.api.templates.Html("""<span class="label"><i class="fa fa-cogs"></i> Feature</span>""");
-    val credit =  play.api.templates.Html("""<span class="label"><i class="fa fa-bank"></i> Credit</span>""");
+    val discount = play.api.templates.Html("""<span class="label"><i class="fa fa-fw fa-dollar"></i> Discount</span>""");
+    val freeTime = play.api.templates.Html("""<span class="label"><i class="fa fa-fw fa-calendar"></i> Free Time</span>""");
+    val feature = play.api.templates.Html("""<span class="label"><i class="fa fa-fw fa-cogs"></i> Feature</span>""");
+    val credit =  play.api.templates.Html("""<span class="label"><i class="fa fa-fw fa-bank"></i> Credit</span>""");
 
 }
