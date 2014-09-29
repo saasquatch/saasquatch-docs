@@ -1,0 +1,21 @@
+@*
+ * Displays an example request / response for REST API methods
+ *  
+ *************************************@
+@(name:String, exampleRequest: String, exampleResponse: String)
+
+
+
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#" data-toggle="tab" data-target=".curl-example-request-@name">Example Request</a></li>
+    <li><a href="#" data-toggle="tab" data-target=".curl-example-response-@name">Example Response</a></li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane active curl-example-request-@name">
+        <pre class="prettyprint lang-curl">@exampleRequest</pre>
+    </div>
+    <div class="tab-pane curl-example-response-@name">
+        <pre class="prettyprint lang-json">@exampleResponse</pre>
+    </div>
+</div>
