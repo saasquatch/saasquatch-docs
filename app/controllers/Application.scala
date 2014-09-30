@@ -37,9 +37,9 @@ object Application extends Controller {
         case "recurly"  => Ok(views.html.recurly())
         case "stripe"  => Ok(views.html.stripe())
         case "zuora"  => Ok(views.html.zuora())
-        case "api-guide" => Ok(views.html.apiGuide())
 
         case "guides/dollar-credit" => Ok(views.html.dollarCreditGuide())
+        case "guides/percent-discount" => Ok(views.html.pctDiscountGuide())
 
         case "app-integration"  => Ok(views.html.appIntegration())
 
@@ -60,6 +60,7 @@ object Application extends Controller {
         case "faq"  => Ok(views.html.faqGeneral())
         case "faq/pricing"  => Ok(views.html.faqPricing())
         
+        case "api-guide" => Redirect("/faq/pricing")
         case "getting-started"  => Redirect("/")
         case "faq/general"  => Redirect("/faq")
         case "pricing"  => Redirect("/faq/pricing")
