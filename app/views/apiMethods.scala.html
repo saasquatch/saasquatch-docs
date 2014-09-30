@@ -333,7 +333,7 @@ $ curl https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/code/BOBTESTERSO
 	"dateCreated": 1411600868797,
 	"referrerName": "Bob Testerson",
 	"reward": {
-		"type": "DISCOUNT_PCT",
+		"type": "PCT_DISCOUNT",
 		"discountPercent": 10,
 		"monthsDiscountIsValid": 12
 	}
@@ -854,7 +854,7 @@ $ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/credit/bulkredeem 
             </tr>
             
             <tr>
-                <th class="docs-monospace">discountPct</th>
+                <th class="docs-monospace">discountPercent</th>
                 <td>Integer</td>
                 <td>
                     The percent discount. E.g. <code>10</code> means 10%
@@ -959,7 +959,7 @@ $ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/coupon?accountId=X
     "userId": "54235132e4b059bbbadf4903",
     "cancellable": true,
     "rewardSource": "FRIEND_SIGNUP",
-    "discountPct": 10
+    "discountPercent": 10
 },
 {
     "type": "CREDIT",

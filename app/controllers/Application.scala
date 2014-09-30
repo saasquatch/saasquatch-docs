@@ -39,6 +39,8 @@ object Application extends Controller {
         case "zuora"  => Ok(views.html.zuora())
         case "api-guide" => Ok(views.html.apiGuide())
 
+        case "guides/dollar-credit" => Ok(views.html.dollarCreditGuide())
+
         case "app-integration"  => Ok(views.html.appIntegration())
 
         case "squatchjs/signed-requests"  => Ok(views.html.signedRequests())
