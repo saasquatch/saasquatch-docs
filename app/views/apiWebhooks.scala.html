@@ -43,24 +43,24 @@
             <tbody>
                 <tr>
                     <td>
-                        GET
-                    </td>
-                    <td class="docs-monospace">
-                        /api/v1/{TENANT_ALIAS}/subscription
-                    </td>
-                    <td>
-                        List webhook subscriptions
-                    </td>
-                </tr>
-                <tr>
-                    <td>
                         POST
                     </td>
                     <td class="docs-monospace">
                         /api/v1/{TENANT_ALIAS}/subscription
                     </td>
                     <td>
-                        Create a webhook subscription
+                        <a href="/api/methods#create_webhook">Create a webhook subscription</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        GET
+                    </td>
+                    <td class="docs-monospace">
+                        /api/v1/{TENANT_ALIAS}/subscription
+                    </td>
+                    <td>
+                        <a href="/api/methods#list_webhooks">List webhook subscriptions</a>
                     </td>
                 </tr>
                 <tr>
@@ -71,7 +71,7 @@
                         /api/v1/{TENANT_ALIAS}/subscription/{URL}
                     </td>
                     <td>
-                        Delete a webhook subscription
+                        <a href="/api/methods#delete_webhook">Delete a webhook subscription</a>
                     </td>
                 </tr>
             </tbody>
@@ -117,12 +117,6 @@
 
         <hr />
 
-        @* 
-            Includes the webhook method reference here
-        *@
-        @tags.webhookMethods()
-
-        
         <h2>Payloads</h2>
         <p>
             All webhook data conform to the same data format.
