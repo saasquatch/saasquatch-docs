@@ -40,6 +40,10 @@ object Application extends Controller {
 
         case "guides/dollar-credit" => Ok(views.html.dollarCreditGuide())
         case "guides/percent-discount" => Ok(views.html.pctDiscountGuide())
+        case "guides/feature-upgrade" => Ok(views.html.featureUpgradeGuide())
+        case "guides/free-time" => Ok(views.html.freeTimeGuide())
+        case "guides/in-app-credit" => Ok(views.html.inAppCreditGuide())
+        case "guides/point-reward" => Ok(views.html.pointsGuide())
 
         case "app-integration"  => Ok(views.html.appIntegration())
 
