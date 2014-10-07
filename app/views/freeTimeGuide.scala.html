@@ -29,36 +29,59 @@
                 </ul>
             </div>
             
-            <h5 data-toggle="collapse" data-target=".install-step2">Redeem free time at checkout</h5>
+            <h5 data-toggle="collapse" data-target=".install-step2">Connect the REST API at signup</h5>
             <div class="install-step2 collapse">
-                <p>When someone makes a purchase, you're in charge of ensuring their bill is adjusted for the free time they've earned.</p>
+                <p>When new friends click through on a referral link and signup, you're in charge of making sure that any free time is applied on their first bill.</p>
                 <ul class="unstyled">
-                    <li><label class="checkbox"><input type="checkbox"> Make sure a user has been identified to Squatch.js before checkout</label></li>
-                    <li><label class="checkbox"><input type="checkbox"> <a href="/api/methods#list_balances">Lookup remaining free time</a> during checkout</label></li>
-                    <li><label class="checkbox"><input type="checkbox"> Adjust a user's bill according to the amount of free time they've earned and the preiod they are being billed for.</label></li>
-                    <li><label class="checkbox"><input type="checkbox"> Mark free time as redeemed by <a href="/api/methods#debit_reward">redeeming a reward</a></label></li>
-                    <li><label class="checkbox"><input type="checkbox"> <a href="/api/methods#account_sync">Update the account status</a> for new accounts</label></li>
-                    <li><label class="checkbox"><input type="checkbox"> <span class="label">Testing</span> Click a referral link and make your first purchase. Your bill should be adjusted accordingly. <a href="https://app.referralsaasquatch.com/">Login</a> to your SaaSquatch account
+                    <li><label class="checkbox"><input type="checkbox"> Add a hidden input to your checkout page</label></li>
+                    <li><label class="checkbox"><input type="checkbox"> Use <a href="/squatchjs#autofill">squatch.js autofill</a> to read the tracking cookie and set the active referral code in your form</label></li>
+                    <li><label class="checkbox"><input type="checkbox"> <a href="/api/methods#get_coupon">Validate the referral code</a> to ensure it is valid</label></li>
+                    <li><label class="checkbox"><input type="checkbox"> Adjust the user's bill according to the amoount of free time provided</label></li>
+                    <li><label class="checkbox"><input type="checkbox"> Use <a href="/api/methods#account_sync">accountsync REST endpoint</a> to update SaaSquatch about the new account</label></li>
+                    <li><label class="checkbox"><input type="checkbox"> <span class="label">Testing</span> Click a referral link and signup for a new account. <a href="https://app.referralsaasquatch.com/">Login</a> to your SaaSquatch account
                         to see the new referral in the news feed.
                     </label></li>
                 </ul>
             </div>
+    
+            <h5 data-toggle="collapse" data-target=".install-step3">Connect the REST API during billing runs</h5>
+            <div class="install-step3 collapse">
+                <p>Earned free time changes as people refer more friends, so make sure you lookup referral information during bill runs.</p>
+                <ul class="unstyled">
+                    <li><label class="checkbox"><input type="checkbox"> <a href="/api/methods#get_account_reward">Lookup an account's reward</a></label></li>
+                    <li><label class="checkbox"><input type="checkbox"> Adjust the invoice accordingly</label></li>
+                    <li><label class="checkbox"><input type="checkbox"> <span class="label">Testing</span> Run a billing run, 
+                        make sure the user's bill is adjusted according to what's in <a href="https://app.referralsaasquatch.com/">your SaaSquatch account</a>
+                    </label></li>
+                </ul>
+            </div>
+    
+    
+            <h5 data-toggle="collapse" data-target=".install-step4">Connect the REST API for upgrades, downgrades and cancels</h5>
+            <div class="install-step4 collapse">
+                <p>When someone upgrades or downgrades, you might need to look up referral information again. Make sure you send us the <b>new</b> state of an account anytime it changes.</p>
+                <ul class="unstyled">
+                    <li><label class="checkbox"><input type="checkbox"> Use the <a href="/api/methods#account_sync">accountsync REST endpoint</a> to update SaaSquatch about upgrades, downgrades or cancels</label></li>
+                    <li><label class="checkbox"><input type="checkbox"> <a href="/api/methods#get_account_reward">Lookup an account's reward</a> if you need to apply any proration during upgrades or downgrades</label></li>
+                    <li><label class="checkbox"><input type="checkbox"> <span class="label">Testing</span> Cancel an account that was previously referred. <a href="https://app.referralsaasquatch.com/">Login</a> to 
+                        your SaaSquatch account to verify that referral credit was properly adjusted.
+                    </label></li>
+                </ul>
+            </div>
+            
         </div>
         
-        <hr/>
-        <h3>How to use the REST API at checkout</h3>
+ 	<hr/>v
+        <h3>How to use the REST API at signup</h3>
         
-        <p>When your customers checkout, use the SaaSquatch API to lookup their earned free time, adjust their bill internally, then update SaaSquatch about the reward usage.</p>
+        <p>When new friends click through on a referral link and signup, you're in charge of making sure that any free time is applied on their first bill.</p>
 
-        <h5>Step 1 - Lookup referral credit</h5>
-        <p>When a new user creates an account in your app, make sure they get identified in a call to <a href="/squatchjs#init">squatch.js init</a>. This will complete the referral tracking by SaaSquatch to automatically link them to the account that refered them and to give them free time to be applied to their bill.</p>
+        <h5>Validate the Referral Code</h5>
+        <p>To get the coupon/referral code value from the tracking cookie, use the <a href="/squatchjs#autofill">squatch.js autofill</a> function and include the value during payment submission. Use the <a href="/api/methods#get_code">Lookup Referral Code</a> method to look up the amount of free time for the new paying user. If a <code>Code</code> doesn't exist or is invalid, we will return an HTTP 404 status.</p>
         
-        <p>Lookup credits by checking the <a href="/api/methods#list_balances">balance on an account</a>. This will include both credit from being referred, and from referring friends. 
-        It is possible to explore the individual credits that has been earned by an account (see <a href="/api/methods#list_rewards">List Rewards</a>), but for most cases it is simpler during checkout to just lookup the full reward balance.</p>
-        
-        <p>Looking up the credit value does not change the state of an account, so you can also use this call to update the price of plans on the checkout page. For example, 
-          using the example response below, you could include a message on your checkout page that says "You have $20 of referral credit"</p>
-
+        <p>Looking up a referral code value does not change the state of an account, so you can also use this call to update the price of plans on the payment page. For example, 
+          using the example response below, you could include a message on your checkout page that says "You’ve got one month free from being referred"</p>
+    
         <table class="table">
             <thead>
                 <tr>
@@ -68,65 +91,30 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><pre class="prettyprint">$ curl https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/reward/balance?accountId=SV0TYE5OWI11120144 \
--u API_KEY: \
+                    <td><pre class="prettyprint">$ curl https://app.referralsaasquatch.com/api/v2/{TENANT_ALIAS}/code/{CODE}\
+-u {API_KEY}: \
 -H "Content-Type: application/json"</pre></td>
-                    <td><pre class="prettyprint">[
-    {
-    	"type": "CREDIT",
-    	"count": 1,
-    	"totalAssignedCredit": 2000,
-    	"totalRedeemedCredit" : 0,
-    	"unit": "cents"
-    }
-]</pre></td>
-                </tr>
-            </tbody>
-        </table>
-        
-        <h5>Step 2 - Apply the Credit Internally</h5>
-
-        <p>You can use any method to apply the credit, but we recommend line items so that your customers can clearly see the referral credit on their 
-        invoices. Add a line item to the invoice for the discount or use an internal code to identify the referral credit.</p>
-
-        
-        <h5>Step 3 - Mark credit as used</h5>
-        
-        <p>Update the account's balance in SaaSquatch once credit has been used. This lets SaaSquatch display a user's up-to-date account balance and lets us track referral credit usage.
-
-        Use the <a href="/api/methods#debit_balance">Debit Account Balance</a> endpoint to mark the credit as used.</p>
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th style="width: 50%;">Example Request</th>
-                    <th>Example Response</th>                
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><pre class="prettyprint">$ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/credit/bulkredeem \
--u API_KEY: \
--H "Content-Type: application/json" \
--d '{
-	"accountId" : "SV0TYE5OWI11120144",
-	"amount" : 2000, 
-	"unit" : "cents"
-}'
-</pre></td>
                     <td><pre class="prettyprint">{
-	"creditRedeemed": 2000,
-	"creditAvailable": 0,
-	"unit": "cents"
+	"code": "BOBTESTERSON",
+	"dateCreated": 1411600868797,
+	"referrerName": "Bob Testerson",
+	"reward": {
+		"type": "freemonth",
+		"unit": "months",
+		"credit": 1
+	}
 }</pre></td>
                 </tr>
             </tbody>
         </table>
 
 
-        <h5>Step 4 - Notify SaaSquatch of the new account status</h5>
-        
-        <p>If this is the first purchase that a customer has made, use this API call to notify SaaSquatch about the new account status. In particular, make sure to set <code>status: PAID</code>. You should update this status for all accounts. If a valid referral has been made, and someone has paid their first bill, then SaaSquatch will automatically add a referral credit into the account of the friend that referred them.</p>
+        <h5>Apply the Free Time</h5>
+
+        <p>You can use any method to apply the free time, but we recommend line items so that your customers can clearly see the free time on their 
+        invoices. When you create your first invoice, create an invoice line item for the free time.</p>
+
+        <h5>Notify SaaSquatch of the new account</h5>
 
         <table class="table">
             <thead>
@@ -146,7 +134,10 @@
     "status": "PAID", 
     "value": 99.99,
     "billingIntervalType": "DAY",
-    "billingIntervalValue": 30
+    "billingIntervalValue"": 30
+  },
+  "referral": {
+    "code": "3j033r"
   }
 }'</pre></td>
                     <td><pre class="prettyprint">{
@@ -156,15 +147,111 @@
     "status": "PAID", 
     "value"": 99.99,
     "billingIntervalType": "DAY",
-    "billingIntervalValue": 30
+    "billingIntervalValue"": 30
   },
   "referral": {
-    "code": "BOBTESTERSON"
+    "code": "3j033r"
   }
 }</pre></td>
                 </tr>
             </tbody>
         </table>
+
+        <hr />
+        <h3>How to use the REST API during billing runs</h3>
+        
+        <p>Referral credit can increase and decrease as people refer more friends, so make sure to lookup the latest referral information during bill runs.</p>
+                
+        <h5>Lookup referral credit</h5>
+        
+        <p>Use the <a href="/api/methods#list_balances">Get Reward Balance</a> to look up the amount free time a user has earned. 
+           You don't need to set <code>coupon_code</code> every time you make this call, you only need to do this during first signup and we'll 
+           keep track of it from then on.
+        </p>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="width: 50%;">Example Request</th>
+                    <th>Example Response</th>                
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><pre class="prettyprint">$ $ curl https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/reward/balance?accountId=XYZ[&userId=123][&rewardTypeFilter=FEATURE|CREDIT|PCT_DISCOUNT][&featureTypeFilter=megaAddon] \
+-u {API_KEY}: \
+-H "Content-Type: application/json"
+</pre></td>
+                    <td><pre class="prettyprint">[
+    {
+    	"type": "TIME_CREDIT",
+    	"unit": "month",
+    	"count": 2,
+    	"totalAssignedCredit": 2,
+    	"totalRedeemedCredit": 0
+    }
+]</pre></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h5>Apply the Free Time</h5>
+
+        <p>Whenever an invoice is created for your customers, make sure that you are applying any earned free time. As previously described for new signups, you can use
+        any method to apply the free time, but we recommend invoice line items so that your customers can clearly see the free time being applied to their invoices.</p>
+
+
+        <hr/>
+        
+        <h3>How to use the REST API for upgrades, downgrades and cancels</h3>
+
+        <p>When someone upgrades or downgrades, you might need to look up referral information again. Make sure to send us the new state of an account anytime it changes.</p>
+
+        <h5>Notify SaaSquatch of the account change</h5>
+        
+        <p>When someone cancels, notify SaaSquatch to include this information in your analytics.</p>
+
+	<table class="table">
+	            <thead>
+	                <tr>
+	                    <th style="width: 50%;">Example Request</th>
+	                    <th>Example Response</th>                
+	                </tr>
+	            </thead>
+	            <tbody>
+	                <tr>
+	                    <td><pre class="prettyprint">$ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/accountsync \
+	-u API_KEY: \
+	-H "Content-Type: application/json" \
+	-d '{ "id": "SV0TYE5OWI11120144",
+	  "currency": "USD",
+	  "subscription": {
+	    <span class="nocode"><strong>"status": "CANCELLED",</strong></span>
+	    "value": 99.99,
+	    "billingIntervalType": "DAY",
+	    "billingIntervalValue": 30
+	  },
+	  "referral": {
+	    "code": "3j033r"
+	  }
+	}'</pre></td>
+	                    <td><pre class="prettyprint">{
+	  "id": "SV0TYE5OWI11120144",
+	  "currency": "USD",
+	  "subscription": {
+	    <span class="nocode"><strong>"status": "CANCELLED",</strong></span>
+	    "value": 99.99,
+	    "billingIntervalType": "DAY",
+	    "billingIntervalValue": 30
+	  },
+	  "referral": {
+	    "code": "3j033r"
+	  }
+	}</pre></td>
+                </tr>
+            </tbody>
+        </table>
+
 
 
     </section>
