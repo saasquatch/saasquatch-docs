@@ -109,10 +109,10 @@
         </table>
 
 
-        <h5>Apply the Discount</h5>
+        <h5>Apply the Free Time</h5>
 
-        <p>You can use any method to apply the discount, but we recommend line items so that your customers can clearly see the referral discount on their 
-        invoices. When you create your first invoice, create an invoice line item for the discount.</p>
+        <p>You can use any method to apply the free time, but we recommend line items so that your customers can clearly see the free time on their 
+        invoices. When you create your first invoice, create an invoice line item for the free time.</p>
 
         <h5>Notify SaaSquatch of the new account</h5>
 
@@ -164,7 +164,7 @@
                 
         <h5>Lookup referral credit</h5>
         
-        <p>Use the <a href="/api/methods#get_account_reward">Get Account Reward</a> to look up the discount percentage. 
+        <p>Use the <a href="/api/methods#list_balances">Get Reward Balance</a> to look up the amount free time a user has earned. 
            You don't need to set <code>coupon_code</code> every time you make this call, you only need to do this during first signup and we'll 
            keep track of it from then on.
         </p>
@@ -178,24 +178,27 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><pre class="prettyprint">$ curl https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/account/{ACCOUNTID}/reward \
+                    <td><pre class="prettyprint">$ $ curl https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/reward/balance?accountId=XYZ[&userId=123][&rewardTypeFilter=FEATURE|CREDIT|PCT_DISCOUNT][&featureTypeFilter=megaAddon] \
 -u {API_KEY}: \
 -H "Content-Type: application/json"
 </pre></td>
-                    <td><pre class="prettyprint">{
-    "accountId":"SV0TYE5OWI11120144",
-    "discountPercentage":20,
-    "referrerDiscountPercent":10,
-    "referredDiscountPercent":10
-}</pre></td>
+                    <td><pre class="prettyprint">[
+    {
+    	"type": "TIME_CREDIT",
+    	"unit": "month",
+    	"count": 2,
+    	"totalAssignedCredit": 2,
+    	"totalRedeemedCredit": 0
+    }
+]</pre></td>
                 </tr>
             </tbody>
         </table>
 
-        <h5>Apply the Discount</h5>
+        <h5>Apply the Free Time</h5>
 
-        <p>Whenever an invoice is created for your customers, make sure that you are applying the referral discount. As previously described for new signups, you can use
-        any method to apply the discount, but we recommend invoice line items so that your customers can clearly see the referral discount on their invoices.</p>
+        <p>Whenever an invoice is created for your customers, make sure that you are applying any earned free time. As previously described for new signups, you can use
+        any method to apply the free time, but we recommend invoice line items so that your customers can clearly see the free time being applied to their invoices.</p>
 
 
         <hr/>
