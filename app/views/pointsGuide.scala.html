@@ -3,15 +3,13 @@
     "Let your app's users give friends points."
 ) {
 
-
-
     <section>
         <div class="page-header">
             <h1>Points Integration Guide</h1>
         </div>
     
         <p class="lead">
-            Give your users 200 points for referring a friend. Follow this guide to setup a "Give 200 points to a friend, and get 200 points when they sign up" referral program using the SaaSquatch REST API and Squatch.js
+            Follow this guide to setup a "Give 50 points to a friend, and get 50 points when they sign up" referral program using the SaaSquatch REST API and Squatch.js
         </p>
         
         <hr/>
@@ -29,16 +27,24 @@
                 </ul>
             </div>
             
-            <h5 data-toggle="collapse" data-target=".install-step2">Apply credit at checkout</h5>
+            <h5 data-toggle="collapse" data-target=".install-step2">Track Conversions</h5>
             <div class="install-step2 collapse">
-                <p>When someone makes a purchase, you're in charge of making sure that credit is applied on their bill.</p>
+                <p>When a referred user converts, typically to paid, notify Referral SaaSquatch so their rewards can be distributed.</p>
                 <ul class="unstyled">
-                    <li><label class="checkbox"><input type="checkbox"> Make sure a user has been identified to Squatch.js before checkout</label></li>
-                    <li><label class="checkbox"><input type="checkbox"> <a href="/api/methods#list_balances">Lookup remaining referral credit</a> during checkout</label></li>
-                    <li><label class="checkbox"><input type="checkbox"> Apply referral credit to their order</label></li>
-                    <li><label class="checkbox"><input type="checkbox"> Mark credit as redeemed by <a href="/api/methods#debit_balance">debitting the account's balance</a></label></li>
-                    <li><label class="checkbox"><input type="checkbox"> <a href="/api/methods#account_sync">Update the account status</a> for new accounts</label></li>
-                    <li><label class="checkbox"><input type="checkbox"> <span class="label">Testing</span> Click a referral link and make your first purchase. Your credit should have been applied. <a href="https://app.referralsaasquatch.com/">Login</a> to your SaaSquatch account
+                    <li><label class="checkbox"><input type="checkbox"> <a href="/api/methods#account_sync">Update the account status</a> for new paid accounts</label></li>
+                    <li><label class="checkbox"><input type="checkbox"> <span class="label">Testing</span> Click a referral link and make your first purchase. Rewards points should be distributed. <a href="https://app.referralsaasquatch.com/">Login</a> to your SaaSquatch account.
+                </ul>
+            </div>
+            
+            
+            <h5 data-toggle="collapse" data-target=".install-step3">Redeem points</h5>
+            <div class="install-step3 collapse">
+                <p>When someone wants to redeem their points, adjust their point balance and provide them their prize.</p>
+                <ul class="unstyled">
+                    <li><label class="checkbox"><input type="checkbox"> Make sure a user has been identified to Squatch.js before they redeem points</label></li>
+                    <li><label class="checkbox"><input type="checkbox"> <a href="/api/methods#list_balances">Lookup remaining points balance</a> on the points redemption page</label></li>
+                    <li><label class="checkbox"><input type="checkbox"> Mark points as redeemed by <a href="/api/methods#debit_balance">debitting the account's point balance</a></label></li>
+                    <li><label class="checkbox"><input type="checkbox"> <span class="label">Testing</span>Refer a new user who converts then redeem points on the points redemption page. Your should have been adjusted properly. <a href="https://app.referralsaasquatch.com/">Login</a> to your SaaSquatch account
                         to see the new referral in the news feed.
                     </label></li>
                 </ul>
@@ -46,18 +52,60 @@
         </div>
         
         <hr/>
-        <h3>How to use the REST API at checkout</h3>
+        <h3>How to use the REST API to track conversion</h3>
         
-        <p>When your customers checkout, use the SaaSquatch API to lookup referral credit, apply the credit it internally, then update SaaSquatch about the new account balance.</p>
+        <h5>Step 1 - Notify SaaSquatch of the new account status</h5>
+        
+        <p>If this is the first purchase that a customer has made, use this API call to notify SaaSquatch about the new account status. In particular, make sure to set <code>status: PAID</code>. You should update this status for all accounts. If a valid referral has been made, and someone has paid their first bill, then SaaSquatch will automatically add points to the account of the friend that referred them.</p>
 
-        <h5>Step 1 - Lookup referral credit</h5>
-        <p>When a new user creates an account in your app, make sure they get identified in a call to <a href="/squatchjs#init">squatch.js init</a>. This will complete the referral tracking by SaaSquatch to automatically link them to the account that refered them and to give them a credit to be redeemed off their first order.</p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="width: 50%;">Example Request</th>
+                    <th>Example Response</th>                
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><pre class="prettyprint">$ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/accountsync \
+		-u API_KEY: \
+		-H "Content-Type: application/json" \
+		-d '{ "id": "SV0TYE5OWI11120144",
+		  "currency": "USD",
+		  "subscription": {
+		    "status": "PAID", 
+		    "value": 99.99,
+		    "billingIntervalType": "DAY",
+		    "billingIntervalValue": 30
+		  }
+		}'</pre></td>
+		                    <td><pre class="prettyprint">{
+		  "id": "SV0TYE5OWI11120144",
+		  "currency": "USD",
+		  "subscription": {
+		    "status": "PAID", 
+		    "value"": 99.99,
+		    "billingIntervalType": "DAY",
+		    "billingIntervalValue": 30
+		  },
+		  "referral": {
+		    "code": "BOBTESTERSON"
+		  }
+		}</pre></td>
+                </tr>
+            </tbody>
+        </table>
         
-        <p>Lookup credits by checking the <a href="/api/methods#list_balances">balance on an account</a>. This will include both credit from being referred, and from referring friends. 
-        It is possible to explore the individual credits that has been earned by an account (see <a href="/api/methods#list_rewards">List Rewards</a>), but for most cases it is simpler during checkout to just lookup the full reward balance.</p>
+        <hr/>
+        <h3>How to redeem points</h3>
         
-        <p>Looking up the credit value does not change the state of an account, so you can also use this call to update the price of plans on the checkout page. For example, 
-          using the example response below, you could include a message on your checkout page that says "You have $20 of referral credit"</p>
+        <h5>Step 1 - Lookup points balance</h5>
+        
+        <p>Lookup a user's points balance by checking the <a href="/api/methods#list_balances">balance of an account</a>. This will include both points from being referred, and from referring friends. 
+        It is possible to explore the individual points that has been earned by an account (see <a href="/api/methods#list_rewards">List Rewards</a>), but for most cases it is simpler to just lookup the full reward balance.</p>
+        
+        <p>Looking up the points balance does not change the state of an account, so you can also use this call to display a user's point balance on any page. For example, 
+          using the example response below, you could include a message in your app head "You've earned 50 points. Make more referrals to earn more."</p>
 
         <table class="table">
             <thead>
@@ -75,26 +123,25 @@
     {
     	"type": "CREDIT",
     	"count": 1,
-    	"totalAssignedCredit": 2000,
+    	"totalAssignedCredit": 50,
     	"totalRedeemedCredit" : 0,
-    	"unit": "cents"
+    	"unit": "points"
     }
 ]</pre></td>
                 </tr>
             </tbody>
         </table>
         
-        <h5>Step 2 - Apply the Credit Internally</h5>
+        <h5>Step 2 - Fulfill Prize </h5>
 
-        <p>You can use any method to apply the credit, but we recommend line items so that your customers can clearly see the referral credit on their 
-        invoices. Add a line item to the invoice for the discount or use an internal code to identify the referral credit.</p>
+        <p>You are responsible for fulfilling the prizes you offer through your prize program. </p>
 
         
-        <h5>Step 3 - Mark credit as used</h5>
+        <h5>Step 3 - Redeem Points with Referral SaaSquatch</h5>
         
-        <p>Update the account's balance in SaaSquatch once credit has been used. This lets SaaSquatch display a user's up-to-date account balance and lets us track referral credit usage.
+        <p>Update the account's balance in SaaSquatch once points have been used. This lets SaaSquatch display a user's up-to-date point balance and lets us track points usage.
 
-        Use the <a href="/api/methods#debit_balance">Debit Account Balance</a> endpoint to mark the credit as used.</p>
+        Use the <a href="/api/methods#debit_balance">Debit Account Balance</a> endpoint to mark the points as used.</p>
 
         <table class="table">
             <thead>
@@ -110,61 +157,21 @@
 -H "Content-Type: application/json" \
 -d '{
 	"accountId" : "SV0TYE5OWI11120144",
-	"amount" : 2000, 
-	"unit" : "cents"
+	"amount" : 20, 
+	"unit" : "points"
 }'
 </pre></td>
                     <td><pre class="prettyprint">{
-	"creditRedeemed": 2000,
+	"creditRedeemed": 20,
 	"creditAvailable": 0,
-	"unit": "cents"
+	"unit": "points"
 }</pre></td>
                 </tr>
             </tbody>
         </table>
 
 
-        <h5>Step 4 - Notify SaaSquatch of the new account status</h5>
-        
-        <p>If this is the first purchase that a customer has made, use this API call to notify SaaSquatch about the new account status. In particular, make sure to set <code>status: PAID</code>. You should update this status for all accounts. If a valid referral has been made, and someone has paid their first bill, then SaaSquatch will automatically add a referral credit into the account of the friend that referred them.</p>
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th style="width: 50%;">Example Request</th>
-                    <th>Example Response</th>                
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><pre class="prettyprint">$ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/accountsync \
--u API_KEY: \
--H "Content-Type: application/json" \
--d '{ "id": "SV0TYE5OWI11120144",
-  "currency": "USD",
-  "subscription": {
-    "status": "PAID", 
-    "value": 99.99,
-    "billingIntervalType": "DAY",
-    "billingIntervalValue": 30
-  }
-}'</pre></td>
-                    <td><pre class="prettyprint">{
-  "id": "SV0TYE5OWI11120144",
-  "currency": "USD",
-  "subscription": {
-    "status": "PAID", 
-    "value"": 99.99,
-    "billingIntervalType": "DAY",
-    "billingIntervalValue": 30
-  },
-  "referral": {
-    "code": "BOBTESTERSON"
-  }
-}</pre></td>
-                </tr>
-            </tbody>
-        </table>
+	
 
 
     </section>
