@@ -1,6 +1,6 @@
 @sections.guide(
     "Points Integration Guide",
-    "Let your app's users give friends points."
+    "Let your apps' users give friends points."
 ) {
 
     <section>
@@ -9,7 +9,7 @@
         </div>
     
         <p class="lead">
-            Follow this guide to setup a "Give 50 points to a friend, and get 50 points when they sign up" referral program using the SaaSquatch REST API and Squatch.js
+            Follow this guide to setup a "Give 50, Get 50 Points Referral Program" using the SaaSquatch REST API and Squatch.js
         </p>
         
         <hr/>
@@ -32,19 +32,19 @@
                 <p>When a referred user converts, typically to paid, notify Referral SaaSquatch so their rewards can be distributed.</p>
                 <ul class="unstyled">
                     <li><label class="checkbox"><input type="checkbox"> <a href="/api/methods#account_sync">Update the account status</a> for new paid accounts</label></li>
-                    <li><label class="checkbox"><input type="checkbox"> <span class="label">Testing</span> Click a referral link and make your first purchase. Rewards points should be distributed. <a href="https://app.referralsaasquatch.com/">Login</a> to your SaaSquatch account.
+                    <li><label class="checkbox"><input type="checkbox"> <span class="label">Testing</span> Click a referral link and make your first purchase.<a href="https://app.referralsaasquatch.com/">Login</a> to your SaaSquatch account to check if reward points are being distributed.
                 </ul>
             </div>
             
             
             <h5 data-toggle="collapse" data-target=".install-step3">Redeem points</h5>
             <div class="install-step3 collapse">
-                <p>When someone wants to redeem their points, adjust their point balance and provide them their prize.</p>
+                <p>When someone wants to redeem their points, adjust their point balance and give them their prize.</p>
                 <ul class="unstyled">
                     <li><label class="checkbox"><input type="checkbox"> Make sure a user has been identified to Squatch.js before they redeem points</label></li>
                     <li><label class="checkbox"><input type="checkbox"> <a href="/api/methods#list_balances">Lookup remaining points balance</a> on the points redemption page</label></li>
-                    <li><label class="checkbox"><input type="checkbox"> Mark points as redeemed by <a href="/api/methods#debit_balance">debitting the account's point balance</a></label></li>
-                    <li><label class="checkbox"><input type="checkbox"> <span class="label">Testing</span>Refer a new user who converts then redeem points on the points redemption page. Your should have been adjusted properly. <a href="https://app.referralsaasquatch.com/">Login</a> to your SaaSquatch account
+                    <li><label class="checkbox"><input type="checkbox"> Mark points as redeemed by <a href="/api/methods#debit_balance">debiting the account's point balance</a></label></li>
+                    <li><label class="checkbox"><input type="checkbox"> <span class="label">Testing</span>Refer a new user who converts, then redeem points on the points redemption page. Your should have been adjusted properly. <a href="https://app.referralsaasquatch.com/">Login</a> to your SaaSquatch account
                         to see the new referral in the news feed.
                     </label></li>
                 </ul>
@@ -52,7 +52,7 @@
         </div>
         
         <hr/>
-        <h3>How to use the REST API to track conversion</h3>
+        <h3>How to use the REST API to track conversions</h3>
         
         <h5>Step 1 - Notify SaaSquatch of the new account status</h5>
         
@@ -101,10 +101,10 @@
         
         <h5>Step 1 - Lookup points balance</h5>
         
-        <p>Lookup a user's points balance by checking the <a href="/api/methods#list_balances">balance of an account</a>. This will include both points from being referred, and from referring friends. 
+        <p>Lookup a users' points balance by checking the <a href="/api/methods#list_balances">balance of an account</a>. This will include both points from being referred and points from referring friends. 
         It is possible to explore the individual points that has been earned by an account (see <a href="/api/methods#list_rewards">List Rewards</a>), but for most cases it is simpler to just lookup the full reward balance.</p>
         
-        <p>Looking up the points balance does not change the state of an account, so you can also use this call to display a user's point balance on any page. For example, 
+        <p>Looking up the points balance does not change the state of an account, so you can also use this call to display a users' point balance on any page. For example, 
           using the example response below, you could include a message in your app head "You've earned 50 points. Make more referrals to earn more."</p>
 
         <table class="table">
@@ -139,7 +139,7 @@
         
         <h5>Step 3 - Redeem Points with Referral SaaSquatch</h5>
         
-        <p>Update the account's balance in SaaSquatch once points have been used. This lets SaaSquatch display a user's up-to-date point balance and lets us track points usage.
+        <p>Update the accounts' balance in SaaSquatch once points have been used. This lets SaaSquatch display a users' up-to-date point balance and lets us track points usage.
 
         Use the <a href="/api/methods#debit_balance">Debit Account Balance</a> endpoint to mark the points as used.</p>
 
