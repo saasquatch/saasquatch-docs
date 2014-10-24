@@ -204,5 +204,30 @@
     }
 }</pre>
 
+
+        <h3>reward.created</h3>        
+        <p>Sent whenever a new reward is created. Data is a single <a href="/api/methods#list_rewards">Reward Object</a> that is returned from the <a href="/api/methods#list_rewards">List Rewards REST API Endpoint</a></p>
+        
+        <h4>Example Payload Contents</h4>
+<pre class="prettyprint lang-json">{
+    "id": "31049u0194u2105",
+    "type": "reward.created",
+    "tenantAlias": "AAA111BBB222DDD333",
+    "live": false,
+    "created": 1337001337,
+    "data": {
+        "type": "PCT_DISCOUNT",
+        "id": "54235160e4b05184a716a0b2",
+        "dateGiven": 1411600736220,
+        "dateExpires": 1443136736220,
+        "dateCancelled": null,
+        "accountId": "GUYRP0T2F6F3Y6PN",
+        "userId": "54235132e4b059bbbadf4903",
+        "cancellable": true,
+        "rewardSource": "FRIEND_SIGNUP",
+        "discountPercent": 10
+    }
+}</pre>
+
     </section>
 }
