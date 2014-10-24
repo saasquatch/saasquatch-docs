@@ -96,14 +96,20 @@
                     <p>
                         The status of the account identified by <code>account_id</code>.
                     </p>
-                    <p>
-                        Defaults to being automatically looked up in your payment system using <code>payment_provider_id</code>. 
-                        If <code>payment_provider_id</code> is null, then defaults to the last value set or <code>TRIAL</code>.
-                    </p>
-                    <p>
-                        Possible values are <code>PAID</code>, <code>TRAIL</code>, <code>FREE</code> or <code>CANCELLED</code>.
-                        Account status can also be <a href="/api/methods#account_sync">updated using the REST API</a>.
-                    </p>
+                    <ul>
+                        <li>
+                            Automatically calculated when <code>payment_provider_id</code> exists
+                        </li>
+                        <li>
+                            Defaults to <code>TRIAL</code>
+                        </li>
+                        <li>
+                            Possible values are <code>PAID</code>, <code>TRAIL</code>, <code>FREE</code> or <code>CANCELLED</code>
+                        </li>
+                        <li>
+                            Can also be <a href="/api/methods#account_sync">updated using the REST API</a>.
+                        </li>
+                    </ul>
                     </td>
                   </tr>
                   <tr>
@@ -113,14 +119,26 @@
                         <p>
                             The referral code of the account that referred this <code>account_id</code> (i.e. if BOB referred you, this value would be BOB)
                         </p>
-                        <p>
-                            Defaults to being automatically grabbed from your payment system using <code>payment_provider_id</code> to lookup the referral code or the referral coupon set on the account.
-                            If a referral cookie is detected, it will be used to automatically set this value for <code>FREE</code> or <code>TRIAL</code> accounts. Note that a referral cookie is 
-                            only dropped when someone clicks a referral link. If someone uses a referral code during checkout and <code>payment_provider_id</code> is null, then that code should be set here after checkout.
-                        </p>
-                        <p>
-                            Referral code can also be <a href="/api/methods#account_sync">set using the REST API</a>. This is also the value that will be used for <a href="/squatchjs#autofill">Coupon Autofill</a> on your checkout form.
-                        </p>
+                        <ul>
+                            <li>
+                                Automatically calculated when <code>payment_provider_id</code> exists
+                            </li>
+                            <li>
+                                Defaults to the first referral cookie value detected for <code>FREE</code> or <code>TRIAL</code> accounts.
+                            </li>
+                            <li>
+                                If someone uses a new or different referral code during checkout, set that value here.
+                            </li>
+                            <li>
+                                Will not update a value inside of a payment provider. Do not use when <code>payment_provider_id</code> exists.
+                            </li>
+                            <li>
+                                Provides the value used in <a href="/squatchjs#autofill">Coupon Autofill</a>
+                            </li>
+                            <li>
+                                Can also be <a href="/api/methods#account_sync">set using the REST API</a>.
+                            </li>
+                        </ul>
                     </td>
                   </tr>
                   <tr>
