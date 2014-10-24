@@ -90,6 +90,40 @@
                     </td>
                   </tr>
                   <tr>
+                    <th>account_status</th>
+                    <td><span class="label">Optional</span></td>
+                    <td>
+                    <p>
+                        The status of the account identified by <code>account_id</code>.
+                    </p>
+                    <p>
+                        Defaults to being automatically looked up in your payment system using <code>payment_provider_id</code>. 
+                        If <code>payment_provider_id</code> is null, then defaults to the last value set or <code>TRIAL</code>.
+                    </p>
+                    <p>
+                        Possible values are <code>PAID</code>, <code>TRAIL</code>, <code>FREE</code> or <code>CANCELLED</code>.
+                        Account status can also be <a href="/api/methods#account_sync">updated using the REST API</a>.
+                    </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>referral_code</th>
+                    <td><span class="label">Optional</span></td>
+                    <td>
+                        <p>
+                            The referral code of the account that referred this <code>account_id</code> (i.e. if BOB referred you, this value would be BOB)
+                        </p>
+                        <p>
+                            Defaults to being automatically grabbed from your payment system using <code>payment_provider_id</code> to lookup the referral code or the referral coupon set on the account.
+                            If a referral cookie is detected, it will be used to automatically set this value for <code>FREE</code> or <code>TRIAL</code> accounts. Note that a referral cookie is 
+                            only dropped when someone clicks a referral link. If someone uses a referral code during checkout and <code>payment_provider_id</code> is null, then that code should be set here after checkout.
+                        </p>
+                        <p>
+                            Referral code can also be <a href="/api/methods#account_sync">set using the REST API</a>. This is also the value that will be used for <a href="/squatchjs#autofill">Coupon Autofill</a> on your checkout form.
+                        </p>
+                    </td>
+                  </tr>
+                  <tr>
                     <th>user_id</th>
                     <td><span class="label">Required for Popup</span></td>
                     <td>A user ID from your system (must be unique for every user). We use this to uniquely track users, and lets us handle accounts that are shared between users.</td>
