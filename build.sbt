@@ -5,7 +5,8 @@ version := "1.0-SNAPSHOT"
 libraryDependencies ++= Seq(
   jdbc,
   anorm,
-  cache
+  cache,
+  "org.pegdown" % "pegdown" % "1.4.2"
 )     
 
 play.Project.playScalaSettings

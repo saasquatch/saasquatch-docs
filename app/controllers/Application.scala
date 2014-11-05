@@ -54,6 +54,7 @@ object Application extends Controller {
         case "app-integration"  => Ok(views.html.appIntegration())
 
         case "squatchjs/signed-requests"  => Ok(views.html.signedRequests())
+        case "squatchjs/issue"  => Ok(views.html.issueList())
         case "squatchjs"  => Ok(views.html.squatchjs())
         case "segment-io"  => Ok(views.html.segment())
 
@@ -70,6 +71,8 @@ object Application extends Controller {
         case "faq"  => Ok(views.html.faqGeneral())
         case "faq/pricing"  => Ok(views.html.faqPricing())
         
+        // Migrated pages
+        
         case "api-guide" => Redirect("/faq/pricing")
         case "getting-started"  => Redirect("/")
         case "faq/general"  => Redirect("/faq")
@@ -77,6 +80,10 @@ object Application extends Controller {
         
         case "contact"  => Redirect("http://www.referralsaasquatch.com/contact-us/")
         case "about"  => Redirect("http://www.referralsaasquatch.com/about-us/")
+        
+        // General mis-spelling support
+        case "squatchjs/issues"  => Redirect("/squatchjs/issue")
+
 
         case _ => NotFound(views.html.notFound())
     }
