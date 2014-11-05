@@ -10,13 +10,13 @@
     <div class="page-header">
         <h1>@issue.code <span class="muted">Issue Number</span></h1>
     </div>
-    <p class="lead">@issue.message</p>
+    <p class="lead">@util.Convert.markdownToHtml(issue.message)</p>
     <hr/>
 
     <h3>Tips To Fix This</h3>
 
     <div>
-        @issue.howToFixHtml
+        @util.Convert.markdownToHtml(issue.howToFix)
     </div>
 
 </section>
