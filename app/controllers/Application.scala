@@ -54,7 +54,7 @@ object Application extends Controller {
         case "app-integration"  => Ok(views.html.appIntegration())
 
         case "squatchjs/signed-requests"  => Ok(views.html.signedRequests())
-        case "squatchjs/issue"  => Ok(views.html.issues.issueTemplate())
+        case "squatchjs/issue"  => Ok(views.html.issues.issueList())
         case "squatchjs"  => Ok(views.html.squatchjs())
         case "segment-io"  => Ok(views.html.segment())
 
