@@ -1,0 +1,39 @@
+@()
+
+@sections.jsReference(
+    "Squatch.js Issue Code List",
+    "During implementation of Squatch.js you might run into one of these issue codes."
+){
+ <section>
+    <div class="page-header">
+        <h1>Squatch.js Issue Code List</h1>
+    </div>
+    <p class="lead">During implementation of Squatch.js you might run into one of these issue codes</p>
+    <hr/>
+
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Message</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(i <- metadata.Issues.all ) {
+                    <tr>
+                        <td>
+                            <a href="/squatchjs/issue/@i.code">@i.code</a>
+                        </td>
+                        <td>
+                            @i.message
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</section>
+    
+}
