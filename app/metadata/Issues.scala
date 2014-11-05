@@ -265,7 +265,25 @@ If you continue to see this error, then please get in touch.
 """,
 """
  - Please contact us and include the details being used for this user (e.g. tenant_alias, user_id, account_id)
+"""),
+Issue(
+"RS022",
+"`account_status: {{accountStatus}}` is not a valid value. Possible values are `PAID`, `TRAIL`, `FREE` or `CANCELLED`.",
+"""
+There are only a few values for `account_status` that are valid: `PAID`, `TRAIL`, `FREE` or `CANCELLED`. Make sure that you
+don't have a type-o and that you're using one of these values in your code.
+
+Also it's important to remember that `account_status` is an optional field and can be left out.
+If you don't set a value it will keep whatever value was last set.
+If you have never set a value then it will default to `TRIAL`. 
+""",
+"""
+ - Use a valid value for `account_status` (one of `PAID`, `TRAIL`, `FREE` or `CANCELLED`)
+ - `account_status` is optional and can be left out
 """)
+
+
+	The
             
     ) // end of `all` issue list
 
