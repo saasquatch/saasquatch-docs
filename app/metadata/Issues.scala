@@ -1,7 +1,5 @@
 package metadata
 
-// Local pegdown instance cached for performance
-val pegdown = new org.pegdown.PegDownProcessor()
 
 /**
  * Represents a single issue
@@ -10,6 +8,8 @@ val pegdown = new org.pegdown.PegDownProcessor()
 case class Issue(code: String, message: String, howToFix: String){
     
     def howToFixHtml() = {
+        // TODO: Cache pegdown instance for better cold-start performance
+        val pegdown = new org.pegdown.PegDownProcessor()
         val htmlStr = pegdown.markdownToHtml(howToFix)
         play.api.templates.Html(htmlStr)
     }
