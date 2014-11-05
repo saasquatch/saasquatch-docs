@@ -1,0 +1,16 @@
+@(issue: metadata.Issue)
+
+@sections.jsReference(
+    @issue.code + " - " + @issue.message,
+    @issue.code + " - " + @issue.message
+) {
+
+
+    <h3>How To Fix This</h3>
+
+    <div>
+        @issue.howToFix
+    </div>
+    
+    
+}
