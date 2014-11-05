@@ -7,6 +7,11 @@ package metadata
  */
 case class Issue(code: String, message: String, why:String, howToFix: String){ }
 
+/**
+ * List of all issues codes
+ * 
+ * Original list of codes: https://docs.google.com/a/referralsaasquatch.com/spreadsheets/d/1R5gqU5EVfbGShopzIVsu4rRoKn3uWknBA2FsGl3uufw/edit#gid=0
+ */
 object Issues {
 
     val all = List(
