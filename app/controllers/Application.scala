@@ -24,7 +24,7 @@ object Application extends Controller {
 
 
   def issue(issueCode:String) = Action {
-    val issue = metadata.Issues.all.filter(x => x.code.equalsIgnoreCase(issueCode))[0]
+    val issue = metadata.Issues.all.filter(x => x.code.equalsIgnoreCase(issueCode) ).head
 
     Ok(views.html.issues.issueTemplate(issue))
   }

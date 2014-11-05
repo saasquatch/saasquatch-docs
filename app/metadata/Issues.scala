@@ -115,7 +115,6 @@ object Issues {
         Issue(
             "RS018",
             "An unexpected error occurred while communicating with your payment system. This could be due to some unexpected downtime by the company who hosts your payment system or invalidated access credentials. ",
-            ""
             """
             
             """),
@@ -138,6 +137,6 @@ object Issues {
             
             """)
             
-    ); // end of `all` issue list
+    ) // end of `all` issue list
 
 }
