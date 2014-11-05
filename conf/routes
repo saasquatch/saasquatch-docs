@@ -11,6 +11,11 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 # Maps the robots.txt file to a dynamic controller to make sure some sites don't get crawled
 GET     /robots.txt                 controllers.Application.robots()
 
-# Maps documentation page slugs
+# Removes trailing slashes
 GET     /*slug/                     controllers.Application.untrail(slug: String)
+
+# Maps documentation page slugs
+GET     /squatchjs/issue/*issueCode controllers.Application.issue(issueCode: String)
+
+# Maps documentation page slugs
 GET     /*slug                      controllers.Application.page(slug)

@@ -22,6 +22,12 @@ object Application extends Controller {
         MovedPermanently("/" + path)
   }
 
+
+  def issue(issueCode:String) = Action {
+    val issue = metadata.Issues.all.filter(x => x.code.equalsIgnoreCase(issueCode))[0]
+
+    Ok(views.html.issues.issueTemplate(issue))
+  }
   
   def page(slug:String) = Action {
     slug match {
