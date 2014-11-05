@@ -120,7 +120,7 @@ object Issues {
             """),
         Issue(
             "RS019",
-            "The value of `payment_provider_id` can be set but it can't be updated. The account with `account_id={{accountId}}` already has `payment_provider_id={{payment_provider_id}}` and it can NOT be updated to `{{new payment_provider_id}}`", ,
+            "The value of `payment_provider_id` can be set but it can't be updated. The account with `account_id={{accountId}}` already has `payment_provider_id={{payment_provider_id}}` and it can NOT be updated to `{{new payment_provider_id}}`",
             """
             
             """),
