@@ -6,11 +6,11 @@
 ) {
 
 
- <section>
+ <section style="min-height: 400px">
     <div class="page-header">
         <h1>@issue.code <span class="muted">Issue Number</span></h1>
     </div>
-    <p class="lead">@util.Convert.markdownToHtml(issue.message)</p>
+    <div class="lead">@util.Convert.markdownToHtml(issue.message)</div>
     <hr/>
 
     <h3>Tips To Fix This</h3>
