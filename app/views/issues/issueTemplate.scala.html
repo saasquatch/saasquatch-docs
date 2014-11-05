@@ -13,10 +13,18 @@
     <div class="lead">@util.Convert.markdownToHtml(issue.message)</div>
     <hr/>
 
+
     <h3>Tips To Fix This</h3>
 
     <div>
         @util.Convert.markdownToHtml(issue.howToFix)
+    </div>
+
+
+    <h3>Why is This Happening?</h3>
+
+    <div>
+        @util.Convert.markdownToHtml(issue.why)
     </div>
 
 </section>
