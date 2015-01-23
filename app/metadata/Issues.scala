@@ -281,10 +281,8 @@ If you have never set a value then it will default to `TRIAL`.
  - Use a valid value for `account_status` (one of `PAID`, `TRAIL`, `FREE` or `CANCELLED`)
  - `account_status` is optional and can be left out
 """)
+)
 
-
-	The
-            
-    ) // end of `all` issue list
+ // end of `all` issue list
 
 }
