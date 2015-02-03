@@ -235,5 +235,44 @@
     }
 }</pre>
 
+        <h3>email.referral.started</h3>        
+        <p>Sent whenever a new referred user signs up for a new (trial) account.</p>
+        
+        <h4>Example Payload Contents</h4>
+        <pre class="prettyprint lang-json">{
+            "id": "1337049u0194u2105",
+            "type": "email.referral.started",
+            "tenantAlias": "AAA111BBB222DDD333",
+            "live": false,
+            "created": 1337001337,
+            "data": {
+                “recipientUserId”: “u1234”,
+                “recipientAccountId”: “a1234”,
+                “subject”: “Congratulations! Susy Example signed up for trial account.”,
+                “message”: “<p>This is rendered HTML content.</p>”
+            }
+        }</pre>
+        
+        <h3>email.referral.paid</h3>        
+        <p>Sent whenever a new referred user upgrades to a paid sucscription.</p>
+        
+        <h4>Example Payload Contents</h4>
+        <pre class="prettyprint lang-json">{
+            "id": "1337049u0194u2105",
+            "type": "email.referral.paid",
+            "tenantAlias": "AAA111BBB222DDD333",
+            "live": false,
+            "created": 1337001337,   
+            "data": {
+                “recipientUserId”: “u1234”,
+                “recipientAccountId”: “a1234”,
+                “subject”: “Congratulations! Susy Example signed up for a paid subscription.”,
+                “message”: “<p>This is rendered HTML content.</p>”
+            }
+        }</pre>
+
+
+
+
     </section>
 }
