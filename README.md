@@ -17,5 +17,5 @@ To make sure that everything is good, run the tests.
 
     sbt test
     
-    
+
 When you're done with edits, just submit a pull request, and we'll roll it in once the [Travis CI build](https://travis-ci.org/saasquatch/saasquatch-docs) passes and someone finishes code review.
