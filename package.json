@@ -1,0 +1,17 @@
+{
+  "name": "docs",
+  "description": "A static documentation site",
+  "version": "0.0.1",
+  "license": "APACHE",
+  "dependencies": {
+    "metalsmith-templates": "^0.6.0",
+    "metalsmith-markdown": "^0.2.1",
+    "metalsmith-collections": "^0.7.0",
+    "metalsmith-serve": "^0.0.3",
+    "metalsmith-watch": "^0.2.0",
+    "metalsmith": "^1.0.0",
+    "swig": "1.4.2",
+    "metalsmith-define": "1.0.0",
+    "metalsmith-less": "1.0.3"
+  }
+}

@@ -1,0 +1,39 @@
+{% extends '../squatchjs.html' %}
+
+{% block content %}
+
+ <section>
+    <div class="page-header">
+        <h1>Squatch.js Issue Code List</h1>
+    </div>
+    <p class="lead">During implementation of Squatch.js you might run into one of these issue codes</p>
+    <hr/>
+    
+    <div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Message</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+          {% for issue in collections.issues %}
+            <tr>
+                <td>
+                     
+                    <a href="/squatchjs/issue/{{ issue.title }}">{{ issue.title }}</a>
+                </td>
+                <td>
+                    {{ issue.highlights }}
+                </td>
+            </tr>
+           {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</section>
+
+{% endblock content %}

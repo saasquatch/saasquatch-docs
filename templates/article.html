@@ -1,0 +1,19 @@
+{% extends './twoColumns.html' %}
+{% block content %}
+<section>
+  <div class="page-header">
+      <h1>{{title}}</h1>
+  </div>
+  
+  {% if highlights %}
+  <p class="lead">
+    {{ highlights }}
+  </p>
+  
+  <hr/>
+  {% endif %}
+  
+  {{ contents | safe }}
+  
+</section>
+{% endblock content %}

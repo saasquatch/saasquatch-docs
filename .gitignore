@@ -2,6 +2,10 @@
 c9-installed-software
 .c9
 
+#Ignore Node
+node_modules
+build
+
 # Ignore play framework files
 logs
 project/project
