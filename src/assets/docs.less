@@ -1,0 +1,154 @@
+@colorForRewardTypes: #3a87ad;
+@portalBlue: rgb(48,160,235);
+
+.hero-unit h1,
+.hero-unit p{
+    text-align: center;
+}
+
+.hero-unit .docs-sections .span4{
+    margin-top: 60px;
+    text-align: center;
+}
+
+.hero-unit a{
+    display: block;
+}
+.hero-unit a .fa{
+    background: @portalBlue;
+    border-radius: 50%;
+    color: #FFF;
+    display: block;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    margin: 0 auto;
+}
+
+.hero-unit a .fa ~ div{
+    font-size: 18px;
+    line-height: 36px;
+}
+
+.hero-unit a:hover{
+    text-decoration: none;
+}
+
+.hero-unit a:hover .fa{
+    background: #005580;
+}
+
+.docs{
+    /* .docs is applied to the BODY in documentation to differentiate styles in documentation from that in the website */  
+    
+    padding-top: 180px;
+}
+
+
+
+/* OVERRIDES default h2 styling from the website */
+.docs h2{
+    font-size: 36px;
+    font-weight: 600;
+}
+
+/** HIDES the border around code blocks for both PRE and CODE tags, which removes some jarringness */
+.docs pre,
+.docs code{
+    border: none;
+}
+
+.docs .container section {
+    padding-top: 60px;
+}
+
+.docs .container section:first-child {
+    padding-top: 0;
+}
+
+
+/**
+    Docs Sidebar 
+**/
+.docs-sidebar{
+    padding-top: 31px;
+}
+
+
+/*
+    Monospace fonts are used for URLs and other pseudo-code like blocks
+*/
+.docs-monospace{
+    font-family: Monaco,Consolas,"Lucida Console",monospace;
+    font-size: 12px;
+}
+
+/** Styles removed from the body -- were probably piped through by wordpress plugin theming **/
+.navbar .nav > li > .dropdown-menu:after
+{ border-bottom: 7px solid ; }
+
+.nav-pills > li > a:hover, .nav-pills > li.active > a,.nav-pills > li.active > a:hover
+{ border: 1px solid ; }
+
+a .link {background-color:#fff;}
+
+
+/**
+    Install checklist style for collapsable todo list
+    
+    Used in integration guides
+**/
+
+.install-guide-checklist h5{
+  cursor: pointer;
+  color: #08c; /** Links color **/
+}
+.install-guide-checklist h5:before {
+  content: "> ";
+  color: #2a1e1c;
+}
+.install-guide-checklist h5:after{
+  content: "(click to expand)";
+  font-weight: normal;
+  font-size: 12px;
+  margin-left: 12px;
+  color: #2a1e1c;
+}
+
+
+/** Makes the argument names right-aligned for easier skimability (stolen from Stripe's API reference) **/
+.apidocs-args th{
+    text-align: right;
+}
+
+/** Color-coding for reward types **/
+.label.program-type-label{
+    background-color: @colorForRewardTypes;
+}
+
+/** Makes the API reference more easy to scroll **/
+.apidocs-section{
+    padding-bottom: 200px;
+    border-bottom: 1px solid #CCC;
+    margin-bottom: 200px;
+}
+
+
+/** Styles that are used when AFFIXED */
+#squatchjs-navbar.affix{
+    top: 100px;
+    background: #FFF;
+    border-radius: 3px;
+    border: 1px solid #CCC;
+}
+ #squatchjs-navbar .nav-pills > li > a {
+    
+}
+/** Override the crappy default nav pills from the disillusion theme **/
+#squatchjs-navbar .nav-pills{
+    margin-left: 0;
+    padding-top: 15px; /* makes space for funky li > a height animations on hover */
+}
+#squatchjs-navbar .nav-pills > li {
+    list-style-type: none;
+}

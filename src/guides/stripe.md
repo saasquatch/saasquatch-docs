@@ -1,0 +1,67 @@
+---
+title: Stripe Integration
+highlights: Referral SaaSquatch's Stripe integration uses Stripe Connect to automatically track subscriptions and give people discounts. This guide will walk you through how to set up this integration.
+slug: stripe
+template: guides.html
+---
+
+<div class="install-guide-checklist">
+
+<h5 data-toggle="collapse" data-target=".install-step1">Connect with Stripe</h5>
+<div class="install-step1 collapse in">
+    <p>The first step is granting SaaSquatch access to your Stripe test account using Stripe Connect.</p>
+    <ul class="unstyled">
+        <li><label class="checkbox"><input type="checkbox"> Authorize Stripe Connect</label></li>
+    </ul>
+</div>
+
+<h5 data-toggle="collapse" data-target=".install-step2">Install squatch.js</h5>
+<div class="install-step2 collapse">
+    <p><a href="/app-integration">squatch.js</a> will show a gorgeously rendered popup in your app so your customers can seamlessly refer their friends.</p>
+    <ul class="unstyled">
+        <li><label class="checkbox"><input type="checkbox"> Install <a href="/app-integration">squatch.js</a> on your page</label></li>
+        <li><label class="checkbox"><input type="checkbox"> Replace the <a href="/squatchjs#init">squatch.js init</a> variables with real user data</label></li>
+        <li><label class="checkbox"><input type="checkbox"> Add a button to your page with <code>class="squatchpop"</code></label></li>
+        <li><label class="checkbox"><input type="checkbox"> <span class="label">Testing</span> Click the button. Make sure the popup shows. (Make sure you are using the right <code>account_id</code> and <code>user_id</code>)</label></li>
+    </ul>
+</div>
+
+<h5 data-toggle="collapse" data-target=".install-step3">Setup coupons for new subscriptions</h5>
+<div class="install-step3 collapse">
+    <p>When new friends click through on a referral link and signs up, you're in charge of making sure that the referral coupon code is applied on their new subscription. You <b>only</b> need to add
+        referral coupons for new customer's new subscriptions. Referrers will get credit for inviting their friends as line-items automatically applied to their invoices every month.
+    </p>
+    <ul class="unstyled">
+        <li><label class="checkbox"><input type="checkbox"> Add a hidden input to your checkout page</label></li>
+        <li><label class="checkbox"><input type="checkbox"> Use <a href="/squatchjs#autofill">squatch.js autofill</a> to read the tracking cookie and set the active referral code in your form</label></li>
+        <li><label class="checkbox"><input type="checkbox"> Set the coupon in your <a href="https://stripe.com/docs/api#create_customer">Stripe Create Subscription</a> API call</label></li>
+        <li><label class="checkbox"><input type="checkbox"> <span class="label">Testing</span> Click a referral link and signup for a new account. <a href="https://app.referralsaasquatch.com/">Login</a> to your SaaSquatch account
+            to see the new referral in the news feed.
+        </label></li>
+    </ul>
+</div>
+
+</div>
+
+<hr/>
+<div class="well pull-right span3">
+<b>Test mode vs. live mode</b> - We let you test your referral program using <a href="https://stripe.com/docs/testing">Stripe Test Mode</a> and fake credit cards before deploying to your production environment.
+<p class="muted">
+    <b>Note:</b> It is not required to setup a test environment but it will make testing easier for you.
+</p>
+</div>
+
+<h3>How to authorize Stripe Connect</h3>
+
+<p>
+We use Stripe Connect to connect to the corresponding account type. So, if you authorize your test account with Stripe, we'll connect to that Stripe account's test mode, and if you authorize your live account with Stripe, we'll connect to that Stripe account's live mode.
+</p>
+<ol>
+<li><a href="http://app.referralsaasquatch.com">Login to Referral SaaSquatch</a> and go to "Setup" and click "Authorize". <b>Click Connect With Stripe</b> and you're done!</li>
+<li>Repeat this process for both your <b>test</b> and <b>live</b> accounts.</li>
+</ol>
+
+<hr/>
+
+<h4>That's it!</h4>
+<p>Check out our <a href="/bestpractices/common-pitfalls">Common Pitfalls Guide</a></p>

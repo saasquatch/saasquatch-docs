@@ -2,46 +2,7 @@
 c9-installed-software
 .c9
 
-#Ignore Node
+#Ignore Node / Metalsmith
+
 node_modules
 build
-
-# Ignore play framework files
-logs
-project/project
-project/target
-target
-tmp
-src
-pkg
-dist
-.cache
-
-*target*
-*.jar
-*.war
-*.ear
-*.class
-
-# eclipse specific git ignore
-*.pydevproject
-.project
-.metadata
-bin/**
-tmp/**
-tmp/**/*
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
-.classpath
-.settings/
-.loadpath
-
-# External tool builders
-.externalToolBuilders/
-
-# Locally stored "Eclipse launch configurations"
-*.launch
-
