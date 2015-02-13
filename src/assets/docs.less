@@ -205,3 +205,21 @@ a .link {background-color:#fff;}
       margin-bottom: 0;
     }
 }
+
+.js-docs-collapse-toggle{
+    font-family: Monaco, Consolas, "Lucida Console", monospace;
+    font-size: 12px;
+
+    &:before{
+        content: "[+] Expand Details";
+    }
+    
+    &.active:before{
+        content: "[-] Collapse Details";
+    }
+    
+}
+
+.js-docs-collapse{
+    display: none;
+}

@@ -16,7 +16,8 @@ template: themes.html
             <th class="docs-monospace">user</th>
             <td>
                 The currently logged in user details
-                <table class="table">
+
+                <table class="table js-docs-collapse">
                     <tbody>
                         <tr>
                             <th class="docs-monospace">id</th>
@@ -60,7 +61,132 @@ template: themes.html
         </tr>
         <tr>
             <th class="docs-monospace">rewardBalances</th>
-            <td>An array of reward balances for this user</td>
+            <td>An array of reward balances for this user
+                <table class="table js-docs-collapse">
+                    <tr>
+                        <th class="docs-monospace">type</th>
+                        <td>Enum</td>
+                        <td>
+                            The type of reward. One of either the following:
+                            <table class="table">
+                                <tr>
+                                    <td><code>PCT_DISCOUNT</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>FEATURE</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>TIME_CREDIT</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>CREDIT</code></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="docs-monospace">unit</th>
+                        <td>String</td>
+                        <td>
+                            An identifier for the unit of the reward. E.g. "credit-in-cents", "freemb", "giftcard20", "tshirt", "freemonth"
+                        </td>
+                        <td>
+                            Works with: <br/>
+                            <code>FEATURE</code>
+                            <code>TIME_CREDIT</code>
+                            <code>CREDIT</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="docs-monospace">count</th>
+                        <td>Integer</td>
+                        <td>
+                            The number of rewards earned. Usually is equal to the number of successful referrals made. E.g. An account has $80 of credit due to the referral program. $60 from making referrals, $20 from being referred. The <code>count</code> would be <strong>4</strong> rewards, each worth $20.
+                        </td>
+                        <td>
+                            Works with: <br/>
+                            <code>FEATURE</code>
+                            <code>TIME_CREDIT</code>
+                            <code>CREDIT</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="docs-monospace">totalQuantity</th>
+                        <td>Integer</td>
+                        <td>
+                            The total <code>quantity</code> for all features of the same <code>featureType</code>.
+                        </td>
+                        <td>
+                            Works with: <br/>
+                            <code>FEATURE</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="docs-monospace">featureType</th>
+                        <td>String</td>
+                        <td>
+                            A unique identifier for the type of feature. E.g. "freeSeats" or "freeMb".
+                        </td>
+                        <td>
+                            Works with: <br/>  <code>FEATURE</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="docs-monospace">totalAssignedCredit</th>
+                        <td>Integer</td>
+                        <td>
+                            The total <code>assignedCredit</code> for all reward credits of the same <code>unit</code> type.
+                        </td>
+                        <td>
+                            Works with: <br/>
+                            <code>CREDIT</code>
+                            <code>TIME_CREDIT</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="docs-monospace">totalRedeemedCredit</th>
+                        <td>Integer</td>
+                        <td>
+                            The total <code>redeemedCredit</code> for all reward credits of the same <code>unit</code> type.
+                        </td>
+                        <td>
+                            Works with: <br/>
+                            <code>CREDIT</code>
+                            <code>TIME_CREDIT</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="docs-monospace">totalDiscountPercent</th>
+                        <td>Integer</td>
+                        <td>
+                            The total <code>discountPercent</code> from all rewards
+                        </td>
+                        <td>
+                            Works with: <br/> <code>PCT_DISCOUNT</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="docs-monospace">referredDiscountPercent</th>
+                        <td>Integer</td>
+                        <td>
+                            The total <code>discountPercent</code> from rewards with <code>rewardSource = REFERRED</code>
+                        </td>
+                        <td>
+                            Works with: <br/> <code>PCT_DISCOUNT</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="docs-monospace">referrerDiscountPercent</th>
+                        <td>Integer</td>
+                        <td>
+                            The total <code>discountPercent</code> from rewards with <code>rewardSource = FRIEND_SIGNUP</code>
+                        </td>
+                        <td>
+                            Works with: <br/> <code>PCT_DISCOUNT</code>
+                        </td>
+                    </tr>
+            </table>
+            </td>
         </tr>
         <tr>
             <th class="docs-monospace">shareLinks</th>

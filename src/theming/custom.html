@@ -5,5 +5,42 @@ slug: themes/custom
 template: themes.html
 ---
 
+<h3>Getting Started</h3>
+<ul>
+    <li>Custom themes are only available on <b>Pro</b> and <b>Enterprise</b> plans</li>
+    <li>A custom theme is just a <b>Git repository</b></li>
+    <li>To get started email <a href="mailto:support@saasquat.ch">support@saasquat.ch</a> or your account manager</li>
+</ul>
 
+<hr/>
 
+<h3>Customizing your theme</h3>
+
+<p>Every theme is a git repository containing templates and assets. Changes to themes simply
+involve changing those files, and pushing those changes into your test or live tenant</p>
+
+<p>To start checkout your git repository and start making changes to the files in that repo. 
+Reads the docs on using <a href="/themes/assets">assets</a> to upload CSS, Images and Javascript and read
+the handlebars guide on creatings <code>.hbs</code> files.
+</p>
+
+<pre>git clone http://gitorigin.com/repo</pre>
+
+<p>
+    Once you've made changes that you'd like to preview in your test account, start by pushing those changes
+    to the configured git remote.
+</p>
+
+<pre>git commit
+git push origin</pre>
+
+<p>
+    After changes have been pushed to the git repo, they can be pulled into 
+    your test tenant or live tenant using the theme publish tool. The ideal workflow would be:
+    <br><br>
+    1) Publish your theme to your test tenant<br>
+    2) Preview in your development environment<br>
+    3) Publish your theme to your live tenant<br>
+</p>
+
+<pre>deploy.sh -t test_a081lut1vm7nu -k TEST_nFnurmR978SrzNrdlbTheNAbtPCdYAyd</pre>
