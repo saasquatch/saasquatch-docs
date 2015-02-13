@@ -1,0 +1,19 @@
+{% set sectionType = 'themes' %}
+
+{% extends './article.html' %}
+
+{% block navbar %}
+    <li><a href="/themes"><i class="icon-chevron-right"></i>Overview</a></li>
+    
+    <li class="nav-header">Tutorials</li>
+    <li><a href="/themes/canned"><i class="icon-chevron-right"></i>Canned Themes</a></li>
+    <li><a href="/themes/custom"><i class="icon-chevron-right"></i>Custom Themes</a></li>
+
+    <li class="nav-header">Reference Manual</li>
+
+    <li><a href="/themes/workflow"><i class="icon-chevron-right"></i>Publish Workflow</a></li>
+    <li><a href="/themes/fields"><i class="icon-chevron-right"></i>Fields</a></li>
+    <li><a href="/themes/helpers"><i class="icon-chevron-right"></i>Helpers</a></li>
+    <li><a href="/themes/assets"><i class="icon-chevron-right"></i>Assets</a></li>
+
+{% endblock navbar %}

@@ -1,0 +1,127 @@
+---
+title: Theme Field Reference
+highlights: Your handlebar template files are provided with variables called a "context". This reference explains each of these fields.
+slug: themes/fields
+template: themes.html
+---
+
+<h3>Fields</h3>
+<table class="table table-hover apidocs-args">
+    <tbody>
+        <tr>
+            <th class="docs-monospace">tenantAlias</th>
+            <td>The active tenant</td>
+        </tr>
+        <tr>
+            <th class="docs-monospace">user</th>
+            <td>
+                The currently logged in user details
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th class="docs-monospace">id</th>
+                            <td>A unique identifier</td>
+                        </tr>
+                        <tr>
+                            <th class="docs-monospace">accountId</th>
+                            <td>The account this user is part of</td>
+                        </tr>
+                        <tr>
+                            <th class="docs-monospace">referralCode</th>
+                            <td>The referral code for sharing</td>
+                        </tr>
+                        <tr>
+                            <th class="docs-monospace">email</th>
+                            <td>A contact email (or null)</td>
+                        </tr>
+                        <tr>
+                            <th class="docs-monospace">imageUrl</th>
+                            <td>An href URL for the use (or null)</td>
+                        </tr>
+                        <tr>
+                            <th class="docs-monospace">firstName</th>
+                            <td>The user's first name</td>
+                        </tr>
+                        <tr>
+                            <th class="docs-monospace">lastName</th>
+                            <td>The user's last name (or null)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <th class="docs-monospace">referrals</th>
+            <td>An array of referrals for this user</td>
+        </tr>
+        <tr>
+            <th class="docs-monospace">referralsLength</th>
+            <td>An integer length of the <code>referrals</code> array</td>
+        </tr>
+        <tr>
+            <th class="docs-monospace">rewardBalances</th>
+            <td>An array of reward balances for this user</td>
+        </tr>
+        <tr>
+            <th class="docs-monospace">shareLinks</th>
+            <td>A map of share links with various tags</td>
+        </tr>
+        <tr>
+            <th class="docs-monospace">mode</th>
+            <td>The mode the widget has been loaded in</td>
+        </tr>
+        <tr>
+            <th class="docs-monospace">programDetails</th>
+            <td>An object describing the configured program</td>
+        </tr>
+    </tbody>
+    
+</table>
+
+
+<h3>Example</h3>
+<pre class="prettyprint lang-json">
+{
+  "tenantAlias": "test_a7fprfjx7tzxh",
+  "user": {
+    "id": "219065",
+    "accountId": "219065",
+    "referralCode": "LOGANVOLKERS",
+    "email": "logan@example.com",
+    "imageUrl": "",
+    "firstName": "Logan",
+    "lastName": "Volkers"
+  },
+  "referrals":
+  ],
+  "referralsLength": 14,
+  "rewardBalances": [
+    {
+      "totalDiscountPercent": 60,
+      "referrerDiscountPercent": 30,
+      "referredDiscountPercent": 30,
+      "type": "PCT_DISCOUNT"
+    }
+  ],
+  "isSecureUrl": false,
+  "segmentApiKey": "ysufztt1rq",
+  "shareLinks": {
+    "shareLink": "http://ssqt.ch/1oNcJTy",
+    "facebookShareLink": "http://ssqt.ch/1oNcLee",
+    "twitterShareLink": "http://ssqt.ch/1oNcLed",
+    "emailShareLink": "http://ssqt.ch/1oNcJDj",
+    "mobileShareLink": "http://ssqt.ch/1oNcJTB",
+    "mobileFacebookShareLink": "http://ssqt.ch/1oNcJTz",
+    "mobileTwitterShareLink": "http://ssqt.ch/1oNcLef",
+    "mobileEmailShareLink": "http://ssqt.ch/1oNcJDl"
+  },
+  "mode": "EMBED",
+  "assetVersion": "jFEOk5Lz",
+  "headerVersion": "1",
+  "programDetails": {
+    "referredRewardDetails": {
+      "discountPercent": 10
+    }
+  }
+}
+</pre>
