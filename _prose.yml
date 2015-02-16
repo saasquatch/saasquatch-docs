@@ -1,7 +1,7 @@
 prose:
     rooturl: "src"
     metadata:
-    _src:
+    "src":
         - name: "title"
           field:
             element: "text"
