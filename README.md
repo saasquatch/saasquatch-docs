@@ -3,29 +3,29 @@ Referral SaaSquatch Documentation
 
 [![Build Status](https://api.travis-ci.org/saasquatch/saasquatch-docs.png)](https://travis-ci.org/saasquatch/saasquatch-docs)
 
-We decided to make the [Referral SaaSquatch documentation](http://docs.referralsaasquatch.com/) site an open source project so that we could get help from all of the lovely people out there. Contributing is easy because the documentation is 99% plain HTML.
+We decided to make the [Referral SaaSquatch documentation](http://docs.referralsaasquatch.com/) site an open source project so that we could get help from all of the lovely people out there. Contributing is easy because the documentation is either vanilla HTML or Markdown.
 
 
 Contributing
 -------------
 
-The site is a simple [Play Framework 2.0](http://www.playframework.com/) application. The only gotcha is that the `@` character is a reserved character, so you need to use `@@` to escape it in any scala.html files.
+The site is a simple [Metalsmith](http://www.metalsmith.io/) static site hosted on [Divshot](http://divshot.io).
 
-    play run
-    
-To make sure that everything is good, run the tests.
+To contribute:
 
-    sbt test
-    
+ 1. Clone this repo
+ 2. Add or edit an article in the `src` folder
+ 3. Run `npm install` followed by `node app.js` to run locally and verify your changes
+ 4. Submit a pull request to the `staging` branch.
 
-When you're done with edits, just submit a pull request, and we'll roll it in once the [Travis CI build](https://travis-ci.org/saasquatch/saasquatch-docs) passes and someone finishes code review.
+We'll roll in changes once the [Travis CI build](https://travis-ci.org/saasquatch/saasquatch-docs) passes and someone finishes code review.
 
 
 Pre-Release Checklist
 -------------
  
- [_] Implement a 404 page. (Branch the Metalsmith-Serve plugin? Or change deploy to use Php/S3/etc?
- [_] Implement redirects for moved pages
+ [x] Implement a 404 page
+ [x] Implement redirects for moved pages
 
 
 Wishlist
@@ -33,3 +33,4 @@ Wishlist
 
  [_] Get the LiveReload browser extension working
  [_] Support markdown fields in Yaml front-matter for e.g. RS-001 issue descriptions (custom swig tag?)
+ [_] Look into Metalsmith-templates usage of `in-place` for easier mixed templates
