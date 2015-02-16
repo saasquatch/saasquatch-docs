@@ -26,6 +26,10 @@
     height: 100px;
     line-height: 100px;
     margin: 0 auto;
+    
+    // Custom center-of-weight balancing
+    &.fa-desktop{line-height: 110px;}
+    &.fa-html5{line-height: 105px;}
 }
 
 .hero-unit a .fa ~ div{
@@ -33,13 +37,18 @@
     line-height: 36px;
 }
 
-.hero-unit a:hover{
-    text-decoration: none;
+.hero-unit a{
+    &:hover,
+    &:active,
+    &:focus{
+        text-decoration: none;
+    }
+    
+    &:hover .fa{
+        background: #005580;
+    }
 }
 
-.hero-unit a:hover .fa{
-    background: #005580;
-}
 
 .docs{
     /* .docs is applied to the BODY in documentation to differentiate styles in documentation from that in the website */  
