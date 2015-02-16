@@ -21,16 +21,10 @@ To contribute:
 We'll roll in changes once the [Travis CI build](https://travis-ci.org/saasquatch/saasquatch-docs) passes and someone finishes code review.
 
 
-Pre-Release Checklist
--------------
- 
- [x] Implement a 404 page
- [x] Implement redirects for moved pages
-
-
 Wishlist
 -------------
 
- [ ] Get the LiveReload browser extension working
- [ ] Support markdown fields in Yaml front-matter for e.g. RS-001 issue descriptions (custom swig tag?)
- [ ] Look into Metalsmith-templates usage of `in-place` for easier mixed templates
+ - [ ] Get the LiveReload browser extension working with C9
+ - [ ] Support markdown fields in Yaml front-matter for e.g. RS-001 issue descriptions (custom swig tag?)
+ - [ ] Look into Metalsmith-templates usage of `in-place` for easier mixed templates (like for robot.txt)
+ - [ ] Get the _prose.yml fields for `metadata` to work with files in sub-directories
