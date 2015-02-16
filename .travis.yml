@@ -1,7 +1,17 @@
 sudo: false
 language: node_js
 node_js:
-  - '0.10'
-  - '0.11'
-after_script:
-  - npm run-script coveralls
+- '0.10'
+- '0.11'
+before_script:
+- npm install
+script:
+- node build.js
+deploy:
+  provider: divshot
+  environment:
+    staging: staging
+    production: production
+  skip_cleanup: true
+  api_key:
+    secure: S7kydE3GdlauZVkNTJ+KTKefgsURnxb+GBlL5RnllzRo+bk6SkbU9N2q5LvQEGt3VKBFncRTvDBfRx/gmmWx+KZMfWoW+sWe5arBm/MLOd71NMuKmMnj8+DCTZFSSbKwqMFhIBbmBGw0qv5qwCupZBOpkaO66mR4F7xFq2H/yDQ=

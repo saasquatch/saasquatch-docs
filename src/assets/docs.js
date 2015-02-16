@@ -8,6 +8,20 @@ jQuery(document).ready(function() {
         });
         content.before(toggler);
     });
+    
+    jQuery('.jsonview').each(function() {
+        var each = jQuery(this);
+        
+        var json = JSON.parse(each.text());
+        
+        var keys = Object.keys(json),
+        i, len = keys.length;
+    
+        keys.sort();
+        
+        each.JSONView(json, { collapsed: true });
+        
+    });
 
     var tryPretty = function() {
         if (window['prettyPrint']) {

@@ -19,3 +19,17 @@ To make sure that everything is good, run the tests.
     
 
 When you're done with edits, just submit a pull request, and we'll roll it in once the [Travis CI build](https://travis-ci.org/saasquatch/saasquatch-docs) passes and someone finishes code review.
+
+
+Pre-Release Checklist
+-------------
+ 
+ [_] Implement a 404 page. (Branch the Metalsmith-Serve plugin? Or change deploy to use Php/S3/etc?
+ [_] Implement redirects for moved pages
+
+
+Wishlist
+-------------
+
+ [_] Get the LiveReload browser extension working
+ [_] Support markdown fields in Yaml front-matter for e.g. RS-001 issue descriptions (custom swig tag?)
