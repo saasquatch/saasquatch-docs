@@ -26,10 +26,13 @@ jQuery(document).ready(function() {
     var tryPretty = function() {
         if (window['prettyPrint']) {
             prettyPrint();
-        }
-        else {
+        }else {
             setTimeout(tryPretty, 200);
         }
     }
     tryPretty();
+    
+    jQuery("#js-location-path").text(document.location.pathname);
+
+
 });

@@ -5,10 +5,17 @@ template: fullpage.html
 
 <section class="page">
 
-    <h1>Page Not Found</h1>
-    <p class="lead">We couldn't find any documentation page for <b><span id="js-location-path"></span></b>.</p>
-    <script type="text/javascript">
-        document.getElementById("js-location-path").innerHTML = document.location.pathname;
-    </script>
-   
+    <div class="text-center">
+        <h1>Page Not Found</h1>
+        <h3 class="visible-desktop" style="padding-top:43px">Looks like you found the missing link!</h3>
+        <h3 class="hidden-desktop">Looks like you found the missing link!</h3>
+        <p class="lead">We couldn't find any documentation page for <b><span id="js-location-path"></span></b>.</p>
+
+        <img src="http://d2vi0firws6omr.cloudfront.net/img/http-404.jpg" style="max-width: 500px; margin: 0 auto" alt="The Missing Link 404 Page">
+        
+        <p class="text-center"><a href="/">Return to Documentation Home</a> or <a href="mailto:webproblem@saasquat.ch?Subject=Website%20Problem" target="_top"> contact us to report a problem.</a></p>
+    
+    </div>
+    
+
 </section>

@@ -5,39 +5,6 @@ slug: theming
 template: guides.html
 ---
 
-<div class="row-fluid">
-
-<div class="span6 well">
-<div class="align-center">
-<i class="fa fa-cube fa-3x"></i>
-<h3>Canned Themes</h3>
-</div>
-<ul>
-<li>Supports programs on the <b>Basic</b> plans</li>
-<li>Support <b>basic customizations</b></li>
-<li>Quick to setup and launch</li>
-<li>Responsive by default</li>
-</ul>
-<a href="/theming/canned/" class="btn">Learn More</a>
-</div>
-
-<div class="span6 well">
-<div class="align-center">
-<i class="fa fa-cogs fa-3x"></i>
-<h3>Custom Themes</h3>
-</div>
-<ul>
-<li>Only available for <b>Pro &amp; Enterprise</b> plans</li>
-<li>Total control over <b>HTML, CSS &amp; JS</b></li>
-<li>Inspired by Ghost &amp; Wordpress themes</li>
-<li>Powered by Git (Heroku-like deploys)</li>
-</ul>
-<a href="/theming/custom/" class="btn">Learn More</a>
-</div>
-
-
-</div>
-
 ### How does theming work?
 
 Behind the scenes Referral SaaSquatch theming engine is powered by CSS and HTML templates. We take advantage of a lot of great built-in features to provide

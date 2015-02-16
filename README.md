@@ -31,6 +31,6 @@ Pre-Release Checklist
 Wishlist
 -------------
 
- [_] Get the LiveReload browser extension working
- [_] Support markdown fields in Yaml front-matter for e.g. RS-001 issue descriptions (custom swig tag?)
- [_] Look into Metalsmith-templates usage of `in-place` for easier mixed templates
+ [ ] Get the LiveReload browser extension working
+ [ ] Support markdown fields in Yaml front-matter for e.g. RS-001 issue descriptions (custom swig tag?)
+ [ ] Look into Metalsmith-templates usage of `in-place` for easier mixed templates
