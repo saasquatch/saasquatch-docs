@@ -4,6 +4,7 @@
   "clean_urls": true,
   "error_page": "error/index.html",
   "redirects": {
+    "/theming": "/themes",
     "/api-guide": "/faq/pricing",
     "/faq/general": "/faq",
     "/pricing": "/faq/pricing",
