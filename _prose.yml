@@ -1,12 +1,12 @@
 prose:
-    rooturl: "src"
+    media: "src/assets"
     metadata:
-    "src":
-        - name: "title"
-          field:
-            element: "text"
-            label: "title"
-        - name: "highlights"
-          field:
-            element: "textarea"
-            label: "Highlights / main article description"
+        "src":
+            - name: "title"
+              field:
+                element: "text"
+                label: "title"
+            - name: "highlights"
+              field:
+                element: "textarea"
+                label: "Highlights / main article description"
