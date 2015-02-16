@@ -1,4 +1,5 @@
 prose:
+    rooturl: "src"
     media: "src/assets"
     metadata:
         "src":
