@@ -3,12 +3,12 @@ permalinks: false
 template: fullpage.html
 ---
 
-<script type="text/javascript">
-    document.getElementById("js-location-path").innerHTML = document.location.pathname;
-</script>
 <section class="page">
 
-   <h1>Page Not Found</h1>
-   <p class="lead">We couldn't find any documentation page for <b><span id="js-location-path"></span></b>.</p>
+    <h1>Page Not Found</h1>
+    <p class="lead">We couldn't find any documentation page for <b><span id="js-location-path"></span></b>.</p>
+    <script type="text/javascript">
+        document.getElementById("js-location-path").innerHTML = document.location.pathname;
+    </script>
    
 </section>
