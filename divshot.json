@@ -1,0 +1,14 @@
+{
+  "name": "saasquatch-docs",
+  "root": "build",
+  "clean_urls": true,
+  "error_page": "error/index.html",
+  "redirects": {
+    "/api-guide": "/faq/pricing",
+    "/faq/general": "/faq",
+    "/pricing": "/faq/pricing",
+    "/contact": "http://www.referralsaasquatch.com/contact-us/",
+    "/about": "http://www.referralsaasquatch.com/about-us/",
+    "squatchjs/issues": "/squatchjs/issue"
+  }
+}
