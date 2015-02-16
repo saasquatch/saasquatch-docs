@@ -12,7 +12,7 @@ prose:
               field:
                 element: "textarea"
                 label: "Highlights / main article description"
-        "/src/guides/"
+        "src/guides/"
             - name: "title"
               field:
                 element: "text"
