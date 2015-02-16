@@ -3,7 +3,7 @@ prose:
     media: "src/assets"
     siteurl: "staging.saasquatch-docs.divshot.io"
     metadata:
-        "/":
+        "src":
             - name: "title"
               field:
                 element: "text"
