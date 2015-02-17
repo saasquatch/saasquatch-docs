@@ -39,5 +39,8 @@ template: guides.html
 
 <p><strong>Have enterprise needs?</strong> Don't worry, you're not too big. We work with major tech companies every day and can find a solution that fits your needs. Whether you need a custom feature, style or integration partner, we can help you out. Just contact <a href="mailto:sales@saasquat.ch?Subject=Enterprise%20Questions">sales@saasquat.ch</a> if you want to know more.</p>
 
+<h3>What browsers does Referral SaaSquatch support?</h3>
+<p>Our <a href="/squatchjs/">squatch.js</a> will run in any browser that supports Javascript. To make sure that our referral widget gives a great user experience, we support our themes on Internet Explorer 8 - 11, and modern versions of Chrome, Firefox and Safari.</p>
+
 <h3>I have more questions, what should I do?</h3>
 <p>We know that you may still have questions and we want to hear from you. Email us at <a href="mailto:hello@saasquat.ch?Subject=More%20Questions">hello@saasquat.ch</a> and we will get back to you just as fast as we can.</p>  
