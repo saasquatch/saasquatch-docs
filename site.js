@@ -27,7 +27,7 @@ function site(){
 
   var ms = Metalsmith(__dirname)
   .use(define({
-      "robots": process.env.ROBOTS || false,
+      "robots": process.env.ROBOTS || "true",
       "dotComCdn": "http://saasquatch.wpengine.netdna-cdn.com"
   }))
   .use(markdown())
