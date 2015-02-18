@@ -42,7 +42,7 @@ function plugin(opts){
         var data = parse(str);
     } catch (e) {
         return done(new Error('malformed data in "' + file + '"'));
-    }   
+    }
 
     parser.parse(data, function(err, api, swaggerMetaD) {
         if(err){

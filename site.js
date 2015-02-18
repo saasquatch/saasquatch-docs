@@ -31,6 +31,34 @@ function site(){
   // Does this approach work here? Yes it does. http://quabr.com/26160954/set-swig-options-with-consolidate
   extras.useFilter(swig, 'markdown');
 
+  swig.setFilter('exampleSwaggerSchema', function (baseSchema) {
+    var myOutput = {};
+    
+    // TODO: Add Array support
+    // Doesn't support creating example objects that include Arrays yet....
+    
+    function extractProperties(schema, output){
+      var props = schema.properties;
+      Object.keys(props).forEach(function(field) {
+        var item = props[field];
+        if(item['example']){
+          // This is a raw field
+          output[field] = item['example'];
+        }else if(item['properties']){
+          // This is an expanded object / schema and should recusively explore it
+          output[field] = {};
+          extractProperties(item, output[field]);
+        }
+      });
+    }
+    
+    // Appends any `Field` with `example` set.
+    // Recursively explores all `properties` if a `field` happens to also be a `schema`
+    extractProperties(baseSchema, myOutput);
+    
+    return myOutput;
+  });
+
   var ms = Metalsmith(__dirname)
   .use(define({
       "robots": process.env.ROBOTS || "true",
