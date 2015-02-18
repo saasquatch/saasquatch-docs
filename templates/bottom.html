@@ -60,12 +60,12 @@
         <link rel="shortcut icon" href="{{dotComCdn}}/assets/ico.png">
 
         <!-- SEO Metadata -->
-        <meta name="description" content="{{highlights}}"/>
+        <meta name="description" content="{{highlights | markdown | striptags }}"/>
 
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="{{title}} | Referral SaaSquatch Documentation" />
-        <meta property="og:description" content="{{highlights}}" />
+        <meta property="og:description" content="{{highlights | markdown | striptags }}" />
         <meta property="og:url" content="http://docs.referralsaasquatch.com/" />
         <meta property="og:site_name" content="Referral SaaSquatch" />
         <meta name="twitter:card" content="summary"/>
@@ -76,7 +76,7 @@
         
         <!-- Swiftype Metadata -->
         <meta class="swiftype" name="title" data-type="string" content="{{title}}" />
-        <meta class="swiftype" name="body" data-type="text" content="{{highlights}}" />
+        <meta class="swiftype" name="body" data-type="text" content="{{highlights | markdown | striptags }}" />
         <meta class='swiftype' name='type' data-type='enum' content='{{sectionType}}' />
         <!-- / Swiftype Metadata -->
         
