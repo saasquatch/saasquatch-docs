@@ -63,6 +63,13 @@
                       </tr>
                     {% endfor %}
                 </table>
+                
+<p><b>Example Curl Request</b></p>
+<pre class="prettyprint lang-curl">$curl -X {{httpMethod|upper}} {{swagger.schemes[0]}}://{{swagger.host}}{{swagger.basePath}}{{methodPath}} \
+-u API_KEY: \
+-H "Content-Type: application/json" \
+{% if httpMethod == "post" %}-d "{% for param in method.parameters %}{% if param.in == "body" %}{{ param.schema | exampleSwaggerSchema | json(4) | replace('"', "'", 'g') }}{%- endif %}{% endfor %}"{%- endif %}
+</pre>
             </div>
 
             <h4 style="margin-top: 40px;">Returns</h4>
@@ -85,41 +92,18 @@
                     {% if loop.key != "default" %}
                         <div class="tab-pane {% if loop.first %}active{% endif %} {{swaggerMacros.responseId(method,loop.key)}}">
                             {{swaggerMacros.outputProperties(response.schema)}}
+                            
+                            <p><b>Example Response</b></p>
+                            <pre>HTTP {{loop.key}}</pre>
+                            {% for example in response.examples %}
+                                <pre class="prettyprint lang-json">{{example | json(4) }}</pre>
+                            {% endfor %}
                         </div>
                     {% endif %}
                     {% endfor %}
                 </div>
             </div>
-            
-            <h4 style="margin-top: 40px;">Examples</h4>
-            <div class="tabbable">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#" data-toggle="tab" data-target=".curl-example-request-{{method.operationId}}">Example Request</a></li>
-                    <li><a href="#" data-toggle="tab" data-target=".curl-example-response-{{method.operationId}}">Example Response</a></li>
-                </ul>
-                
-                <div class="tab-content">
-                    <div class="tab-pane active curl-example-request-{{method.operationId}}">
-
-<pre class="prettyprint lang-curl">$curl {{swagger.schemes[0]}}://{{swagger.host}}{{swagger.basePath}}{{methodPath}} \
--u API_KEY: \
--H "Content-Type: application/json" \
-{% if httpMethod == "post" %}-d "{% for param in method.parameters %}{% if param.in == "body" %}{{ param.schema | exampleSwaggerSchema | json(4) | ('"', "'", 'g') }}{%- endif %}{% endfor %}"{%- endif %}
-</pre>
-                    </div>
-                    <div class="tab-pane curl-example-response-{{method.operationId}}">
-                        {% for response in method.responses %}
-                            {% if loop.key != "default" %}
-                            <pre>HTTP {{loop.key}}</pre>
-                            {% for example in response.examples %}
-                                <pre class="prettyprint lang-json">{{example | json(4) }}</pre>
-                            {% endfor %}
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-            <!-- TODO: Example requests and responses -->
+        
             
         </div><!-- // .apidocs-section -->
                     

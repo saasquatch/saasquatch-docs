@@ -19,9 +19,8 @@ securityDefinitions:
   basic: 
     type: basic
     description: Authorize your requests using your apiKey as the HTTP Basic password
-security: 
-  - 
-    basic: []
+security:
+  - basic: []
 parameters: 
   tenant_alias: 
     name: tenant_alias
@@ -30,7 +29,47 @@ parameters:
       Tenant being referenced. E.g. `"aboih12h16t"` or `"test_abo912126tastastt"`
     type: string
     required: true
-paths: 
+paths:
+  "/{tenant_alias}/accountsync": 
+    post: 
+      operationId: account_sync
+      summary: Update an account
+      description: |
+        Use this method to update SaaSquatch when the status of an account changes or when a new account is created. If you're using 
+        a payment system connector, such as the Recurly connector, then you won't need to use this method. We automatically track account status for Braintree, Stripe, Reculy and Zuora.
+      parameters: 
+        - 
+          name: account
+          in: body
+          description: Account details of the account to be created or updated
+          schema: 
+            $ref: "#/definitions/Account"
+        - $ref: "#/parameters/tenant_alias"
+      tags: 
+        - PCT_DISCOUNT
+        - FEATURE
+        - CREDIT
+        - TIME_CREDIT
+      responses: 
+        200: 
+          description: Account created or updated
+          examples: 
+            "application/json": 
+              id: a1234
+              currency: USD
+              subscription: 
+                status: PAID
+                value: 99.99
+                billingIntervalType: DAY
+                billingIntervalValue: 30
+              referral: 
+                code: 3j033r
+          schema: 
+            $ref: "#/definitions/Account"
+        default: 
+          description: Unexpected error
+          schema: 
+            $ref: "#/definitions/Error"
   "/{tenant_alias}/code/{code}": 
     get: 
       operationId: get_code
@@ -72,50 +111,10 @@ paths:
           description: Unexpected error
           schema: 
             $ref: "#/definitions/Error"
-  "/{tenant_alias}/accountsync": 
-    post: 
-      operationId: account_sync
-      summary: Update an account
-      description: |
-        Use this method to update SaaSquatch when the status of an account changes or when a new account is created. If you're using 
-        a payment system connector, such as the Recurly connector, then you won't need to use this method. We automatically track account status for Braintree, Stripe, Reculy and Zuora.
-      parameters: 
-        - 
-          name: account
-          in: body
-          description: Account details of the account to be created or updated
-          schema: 
-            $ref: "#/definitions/Account"
-        - $ref: "#/parameters/tenant_alias"
-      tags: 
-        - PCT_DISCOUNT
-        - FEATURE
-        - CREDIT
-        - TIME_CREDIT
-      responses: 
-        200: 
-          description: Account created or updated
-          examples: 
-            "application/json": 
-              id: a1234
-              currency: USD
-              subscription: 
-                status: PAID
-                value: 99.99
-                billingIntervalType: DAY
-                billingIntervalValue: 30
-              referral: 
-                code: 3j033r
-          schema: 
-            $ref: "#/definitions/Account"
-        default: 
-          description: Unexpected error
-          schema: 
-            $ref: "#/definitions/Error"
   "/{tenant_alias}/reward/balance": 
     get: 
       operationId: list_balances
-      summary: List Reward Balances
+      summary: List reward balances
       description: |
         Looks up the balance for all rewards of the same type and units.
       parameters: 
@@ -265,7 +264,7 @@ paths:
           description: Unexpected error
           schema: 
             $ref: "#/definitions/Error"
-definitions: 
+definitions:
   Account: 
     required: 
       - id
