@@ -1,0 +1,322 @@
+# This is a swagger.io definition for the Referral SaaSquatch Rest API
+swagger: "2.0"
+info: 
+  title: Referral SaaSquatch
+  description: Build your own custom refer a friend program.
+  version: 1.0.0
+# the domain of the service
+host: app.referralsaasquatch.com
+# array of all schemes that your API supports
+schemes: 
+  - https
+# will be prefixed to all paths
+basePath: /api/v1
+consumes: 
+  - application/json
+produces: 
+  - application/json
+securityDefinitions: 
+  basic: 
+    type: basic
+    description: Authorize your requests using your apiKey as the HTTP Basic password
+security: 
+  - 
+    basic: []
+parameters: 
+  tenant_alias: 
+    name: tenant_alias
+    in: path
+    description: Tenant resource to be modified
+    type: string
+    required: true
+paths: 
+  "/{tenant_alias}/code/{code}": 
+    get: 
+      operationId: get_code
+      summary: Lookup a referral code
+      description: |
+        Looks up a referral code and the attached details
+      parameters: 
+        - 
+          name: code
+          in: path
+          description: The referral code to look up. E.g. "BOBTESTERSON"
+          required: true
+          type: integer
+        - $ref: "#/parameters/tenant_alias"
+      tags: 
+        - PCT_DISCOUNT
+        - FEATURE
+        - CREDIT
+        - TIME_CREDIT
+      responses: 
+        200: 
+          description: Referral code found
+          schema: 
+            $ref: "#/definitions/Code"
+        404: 
+          description: Referral code NOT found
+          schema: 
+            $ref: "#/definitions/Error"
+        default: 
+          description: Unexpected error
+          schema: 
+            $ref: "#/definitions/Error"
+  "/{tenant_alias}/accountsync": 
+    post: 
+      operationId: account_sync
+      summary: Update an account
+      description: |
+        Use this method to update SaaSquatch when the status of an account changes or when a new account is created. If you're using 
+        a payment system connector, such as the Recurly connector, then you won't need to use this method. We automatically track account status for Braintree, Stripe, Reculy and Zuora.
+      parameters: 
+        - 
+          name: account
+          in: body
+          description: Account details of the account to be created or updated
+          schema: 
+            $ref: "#/definitions/Account"
+        - $ref: "#/parameters/tenant_alias"
+      tags: 
+        - PCT_DISCOUNT
+        - FEATURE
+        - CREDIT
+        - TIME_CREDIT
+      responses: 
+        200: 
+          description: Account created or updated
+          examples: 
+            "application/json": 
+              id: a1234
+              currency: USD
+              subscription: 
+                status: PAID
+                value: 99.99
+                billingIntervalType: DAY
+                billingIntervalValue: 30
+              referral: 
+                code: 3j033r
+          schema: 
+            $ref: "#/definitions/Account"
+        default: 
+          description: Unexpected error
+          schema: 
+            $ref: "#/definitions/Error"
+  "/{tenant_alias}/reward/balance": 
+    get: 
+      operationId: list_balances
+      summary: List Reward Balances
+      description: |
+        Looks up the balance for all rewards of the same type and units.
+      parameters: 
+        - 
+          name: accountId
+          in: query
+          description: The ID of the account to look up
+          required: true
+          type: string
+        - 
+          name: userId
+          in: query
+          description: Filters rewards by `user.id`.
+          type: string
+        - 
+          name: rewardTypeFilter
+          in: query
+          description: Filters rewards by `type`.
+          type: string
+        - 
+          name: featureTypeFilter
+          in: query
+          description: Filters rewards by feature type. Works with `FEATURE` types.
+          type: string
+        - $ref: "#/parameters/tenant_alias"
+      tags: 
+        - PCT_DISCOUNT
+        - FEATURE
+        - CREDIT
+        - TIME_CREDIT
+      responses: 
+        200: 
+          description: A list of reward balances
+          schema: 
+            type: array
+            items: 
+              $ref: "#/definitions/RewardBalance"
+          examples: 
+            "application/json": 
+              - 
+                type: FEATURE
+                featureType: storage
+                count: 8
+                totalQuantity: 500
+                unit: MB
+              - 
+                type: CREDIT
+                count: 4
+                totalAssignedCredit: 10000
+                totalRedeemedCredit: 0
+                unit: cents
+              - 
+                type: PCT_DISCOUNT
+                totalDiscountPercent: 30
+                referredDiscountPercent: 10
+                referrerDiscountPercent: 20
+        default: 
+          description: Unexpected error
+          schema: 
+            $ref: "#/definitions/Error"
+definitions: 
+  Account: 
+    required: 
+      - id
+      - subscription
+    properties: 
+      id: 
+        type: string
+        description: Unique identifier for the account
+        example: abc123
+      currency: 
+        type: string
+        example: USD
+        description: |
+          Default is "USD". Otherwise use a ISO 4217 Standard currency code in uppercase.
+      subscription: 
+        $ref: "#/definitions/AccountSubscription"
+      referral: 
+        $ref: "#/definitions/AccountReferral"
+  AccountSubscription: 
+    description: An object describing the current subscription for this account
+    required: 
+      - status
+    properties: 
+      status: 
+        type: string
+        description: The status of the subscription. One of `PAID`, `TRIAL`, `FREE` or `CANCELLED`
+        example: PAID
+      billingIntervalType: 
+        type: string
+        description: "Type of billing interval. One of `DAY`, `WEEK`, `MONTH`, `QUARTER`, `SEMI_ANNUAL` or `YEAR`. Required when `status: 'PAID'`."
+      billingIntervalValue: 
+        type: integer
+        description: "The value of billing interval. Required when `status: PAID`. Example billing intervals"
+      value: 
+        type: number
+        format: double
+        example: 99.99
+        description: "Dollar value of the subscription per renewal. Required when `status: PAID`"
+  AccountReferral: 
+    description: Info about who referred this account. Use this on first signup.
+    properties: 
+      code: 
+        type: string
+        example: BOBTESTERSON
+        description: |
+          The referral code of the person that referred this account. Use squatch.js autofill to retrieve this value from the tracking cookie on your checkout form.
+  Code: 
+    description: A referral code, details of the person who it belongs to, and details of the reward it unlocks
+    properties: 
+      code: 
+        type: string
+        example: BOBTESTERSON
+        description: |
+          The unique identifier for the code. E.g. "BOBTESTERSON"
+      dateCreated: 
+        type: integer
+        example: 1411600868797
+        description: The date the code was created.
+      referrerName: 
+        type: string
+        example: Bob Testerson
+        description: |
+          The name of the owner of this code. E.g. "Bob Testerson"
+      reward: 
+        $ref: "#/definitions/RewardTemplate"
+  RewardTemplate: 
+    description: "Details of the reward that could be earned -- but *is not yet earned*."
+    properties: 
+      type: 
+        type: string
+        example: CREDIT
+        description: "The type of reward. One of either the following: `PCT_DISCOUNT`, `FEATURE`, `TIME_CREDIT`, `CREDIT`"
+      unit: 
+        type: string
+        example: cents
+        description: |
+          An identifier for the unit of the reward. E.g. "credit-in-cents", "freemb", "giftcard20", "tshirt", "freemonth". Only works with types `FEATURE`, `TIME_CREDIT`, `CREDIT`
+      credit: 
+        type: integer
+        example: 2000
+        description: |
+          The amount of credit that this referral code is valid for. e.g. for $20 this
+          object would have credit=2000, unit="cents". Only works for `TIME_CREDIT`, `CREDIT`
+      discountPercent: 
+        type: integer
+        description: |
+          The percent discount that the referral code is valid for. E.g. "10" for "10%". Only works with `PCT_DISCOUNT`
+      monthsDiscountIsValid: 
+        type: integer
+        description: When this reward is set to expire.
+      featureType: 
+        type: string
+        description: A unique identifier for the type of feature. Only works with types `FEATURE`
+      name: 
+        type: string
+        description: The human readable name of the feature. Only works with types `FEATURE`
+      description: 
+        type: string
+        description: The human readable description of the feature. Only works with types `FEATURE`
+      quantity: 
+        type: integer
+        description: The quantity of feature that this referral code is valid for.  Only works with types `FEATURE`
+  RewardBalance: 
+    description: Details of the balance of several individual rewards.
+    properties: 
+      type: 
+        type: string
+        example: CREDIT
+        description: "The type of reward. One of either the following: `PCT_DISCOUNT`, `FEATURE`, `TIME_CREDIT`, `CREDIT`"
+      unit: 
+        type: string
+        example: cents
+        description: |
+          An identifier for the unit of the reward. E.g. "credit-in-cents", "freemb", "giftcard20", "tshirt", "freemonth". Only works with types `FEATURE`, `TIME_CREDIT`, `CREDIT`
+      count: 
+        type: integer
+        description: |
+          The number of rewards earned. Usually is equal to the number of successful referrals made. 
+          E.g. An account has $80 of credit due to the referral program. $60 from making referrals, $20 from being referred. 
+          The count would be 4 rewards, each worth $20. Only works for `FEATURE`, `TIME_CREDIT`, `CREDIT`"
+      featureType: 
+        type: string
+        description: A unique identifier for the type of feature. Only works with types `FEATURE`
+      totalAssignedCredit: 
+        type: integer
+        example: 4000
+        description: "The total assignedCredit for all reward credits of the same unit type. Only works with types: `TIME_CREDIT`, `CREDIT`"
+      totalRedeemedCredit: 
+        type: integer
+        example: 1490
+        description: "The total redeemedCredit for all reward credits of the same unit type. Only works with types: `TIME_CREDIT`, `CREDIT`"
+      totalDiscountPercent: 
+        type: integer
+        description: "The total discountPercent from all rewards. Only works with types: `PCT_DISCOUNT`"
+      referredDiscountPercent: 
+        type: integer
+        description: "The total discountPercent from rewards with `rewardSource = REFERRED` Only works with types: `PCT_DISCOUNT`"
+      referrerDiscountPercent: 
+        type: integer
+        description: "The total discountPercent from rewards with `rewardSource = FRIEND_SIGNUP` Only works with types: `PCT_DISCOUNT`"
+  Error: 
+    properties: 
+      statusCode: 
+        description: The HTTP status code of the error
+        type: integer
+        format: int32
+        example: 404
+      message: 
+        description: The human-readable description of what went wrong. Use this to help you debug.
+        type: string
+      apiErrorCode: 
+        description: A machine error code
+        type: string
