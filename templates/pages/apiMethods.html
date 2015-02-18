@@ -16,8 +16,6 @@
   </p>
   {% endif %}
   
-        <pre class="jsonview">{{ swagger|json(4) }}</pre>
-        
         {% include "./apiNavigationTable.html" %}
 
         {% for path in swagger.paths %}
@@ -50,7 +48,8 @@
                         <td>{% if param.required or param.in == "body" %}<span class="label">Required</span>{% endif %}</td>
                         <th class="docs-monospace">
                             {% if param.in == "body" %}
-                                JSON Body
+                                {{param.name}}<br>
+                                <span class="muted">JSON&nbsp;Body</span>
                             {% else %}
                                 {{param.name}}<br>
                                 <span class="muted">{{param.type | default("object") }}</span>
@@ -126,6 +125,13 @@
                     
             {% endfor %}
         {% endfor %}
+
+
+        
+        <h2>Swagger Spec</h2>
+        <p>The Referral SaaSquatch documentation is generated from this Swagger.io specification.</p>
+        <pre class="jsonview">{{ swagger|json(4) }}</pre>
+        
 
 </section>
 

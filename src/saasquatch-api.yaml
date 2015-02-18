@@ -53,6 +53,15 @@ paths:
       responses: 
         200: 
           description: Referral code found
+          examples: 
+            "application/json":
+              code: "BOBTESTERSON"
+              dateCreated: 1411600868797
+              referrerName: "Bob Testerson"
+              reward:
+                type: "PCT_DISCOUNT"
+                discountPercent: 10
+                monthsDiscountIsValid: 12
           schema: 
             $ref: "#/definitions/Code"
         404: 
@@ -163,6 +172,32 @@ paths:
                 totalDiscountPercent: 30
                 referredDiscountPercent: 10
                 referrerDiscountPercent: 20
+        default: 
+          description: Unexpected error
+          schema: 
+            $ref: "#/definitions/Error"
+  "/{tenant_alias}/credit/bulkredeem": 
+    post: 
+      operationId: debit_balance
+      summary: Debit a reward balance
+      description: "Used to redeem the credit earned from a referral program. Permanently debits an account balance. Works with: `Free Time` and `Credit`"
+      parameters: 
+        - name: debit
+          in: body
+          description: Details of the debit
+          schema: 
+            $ref: "#/definitions/RewardBalanceDebitRequest"
+        - $ref: "#/parameters/tenant_alias"
+      responses: 
+        201: 
+          description: Balance debitted
+          examples: 
+            "application/json":
+              creditRedeemed: 200
+              creditAvailable: 0
+              unit: "cents"
+          schema: 
+            $ref: "#/definitions/RewardBalanceDebit"
         default: 
           description: Unexpected error
           schema: 
@@ -371,11 +406,47 @@ definitions:
       referrerDiscountPercent: 
         type: integer
         description: "The total discountPercent from rewards with `rewardSource = FRIEND_SIGNUP` Only works with types: `PCT_DISCOUNT`"
+  RewardBalanceDebitRequest:
+    description: A request to debit a Reward Balance
+    required:
+      - accountId
+      - unit
+      - amount
+    properties: 
+      accountId:
+        type: string
+        description: The ID of the account to be debitted.
+        example: abc123
+      unit:
+        type: string
+        example: cents
+        description: |
+          The type of credit to be debitted. E.g. "free-months" or "cents"
+      amount:
+        type: integer
+        example: 200
+        description: The amount of credit to be debitted.
+  RewardBalanceDebit:
+    description: Details about a successful Reward Balance Debit transaction.
+    properties: 
+      creditRedeemed:
+        type: integer
+        example: 200
+        description: The amount of credit that was just debitted.
+      unit:
+        type: string
+        example: cents
+        description: The type of credit that was just debitted.
+      creditAvailable:
+        type: integer
+        example: 1800
+        description: The remaining credit in this account of the same unit type.
   WebhookEndpoint:
     description: An endpoint to receive events
     properties:
       endpointUrl:
         type: string
+        example: "http://app.example.com/endpoint/sqtch"
         description: The url of the endpoint that receives events
   Error: 
     properties: 
