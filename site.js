@@ -4,6 +4,8 @@ var templates = require('metalsmith-templates');
 var collections = require('metalsmith-collections');
 var define = require('metalsmith-define');
 var less = require('metalsmith-less');
+var swig = require('swig');
+var extras = require('swig-extras');
 
 var permalinks = require('./plugins/rawpaths.js');
 
@@ -24,6 +26,9 @@ module.exports = site;
  * @author loganv
  */
 function site(){
+
+  // Does this approach work here? Yes it does. http://quabr.com/26160954/set-swig-options-with-consolidate
+  extras.useFilter(swig, 'markdown');
 
   var ms = Metalsmith(__dirname)
   .use(define({
