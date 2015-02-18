@@ -8,6 +8,7 @@ var swig = require('swig');
 var extras = require('swig-extras');
 
 var permalinks = require('./plugins/rawpaths.js');
+var swagger = require('./plugins/swagger.js');
 
 module.exports = site;
 
@@ -35,6 +36,9 @@ function site(){
       "robots": process.env.ROBOTS || "true",
       "dotComCdn": "http://saasquatch.wpengine.netdna-cdn.com"
   }))
+  .use(swagger({
+      path: "swagger.yaml"
+    }))
   .use(markdown())
   .use(collections({
     "issues": {

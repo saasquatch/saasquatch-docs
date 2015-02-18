@@ -15,6 +15,15 @@
   </p>
   {% endif %}
 
+        <pre class="jsonview">{{ swagger|json(4) }}</pre>
+
+        {% for path in swagger.paths %}
+            {% set parentPath = loop.key %}
+            {% for method in path %}
+                <p><span class="label">{{loop.key}}</span> {{parentPath}}</p>
+            {% endfor %}
+        {% endfor %}
+      
         {{ API.apiSummaryTable() }}
 
         <div class="apidocs-section">
