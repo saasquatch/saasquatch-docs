@@ -39,6 +39,7 @@ function site(){
     
     function extractProperties(schema, output){
       var props = schema.properties;
+      if(!props){ return }
       Object.keys(props).forEach(function(field) {
         var item = props[field];
         if(item['example']){
@@ -65,7 +66,7 @@ function site(){
       "dotComCdn": "http://saasquatch.wpengine.netdna-cdn.com"
   }))
   .use(swagger({
-      path: "swagger.yaml"
+      path: "saasquatch-api.yaml"
     }))
   .use(markdown())
   .use(collections({

@@ -26,7 +26,8 @@ parameters:
   tenant_alias: 
     name: tenant_alias
     in: path
-    description: Tenant resource to be modified
+    description: |
+      Tenant being referenced. E.g. `"aboih12h16t"` or `"test_abo912126tastastt"`
     type: string
     required: true
 paths: 
@@ -166,6 +167,69 @@ paths:
           description: Unexpected error
           schema: 
             $ref: "#/definitions/Error"
+  "/{tenant_alias}/subscription": 
+    post: 
+      operationId: create_webhook
+      summary: Create a webhook subscription
+      description: |
+        Subscribes a URL to receive events via webhooks
+      parameters: 
+        - name: endpoint
+          in: body
+          description: Details of the endpoint to be created
+          schema: 
+            $ref: "#/definitions/WebhookEndpoint"
+        - $ref: "#/parameters/tenant_alias"
+      responses: 
+        201: 
+          description: Webhook endpoint created
+        default: 
+          description: Unexpected error
+          schema: 
+            $ref: "#/definitions/Error"
+    get: 
+      operationId: list_webhooks
+      summary: List webhook subscriptions
+      description: |
+        Lists all the URLs that are currently subscribed to receive events via webhooks
+      parameters: 
+        - $ref: "#/parameters/tenant_alias"
+      responses: 
+        200: 
+          description: A list of endpoints urls
+          schema: 
+            type: array
+            items:
+              $ref: "#/definitions/WebhookEndpoint"
+          examples: 
+            "application/json": 
+              - endpointUrl: "https://example.com/hook"
+              - endpointUrl: "https://another.example.com/hook"
+        default: 
+          description: Unexpected error
+          schema: 
+            $ref: "#/definitions/Error"
+  "/{tenant_alias}/subscription/{url}": 
+    delete:
+      operationId: delete_webhook
+      summary: Delete a webhook subscription
+      description: |
+        Removes a URL from receiving events via webhooks
+      parameters: 
+        - name: url
+          in: path
+          description: |
+            The url of the endpoint that will be removed. *Remember to URL-encoded this field*
+          required: true
+          type: string
+        - $ref: "#/parameters/tenant_alias"
+      responses: 
+        204: 
+          description: Endpoint deleted
+        default: 
+          description: Unexpected error
+          schema: 
+            $ref: "#/definitions/Error"
 definitions: 
   Account: 
     required: 
@@ -176,15 +240,15 @@ definitions:
         type: string
         description: Unique identifier for the account
         example: abc123
-      currency: 
-        type: string
-        example: USD
-        description: |
-          Default is "USD". Otherwise use a ISO 4217 Standard currency code in uppercase.
       subscription: 
         $ref: "#/definitions/AccountSubscription"
       referral: 
         $ref: "#/definitions/AccountReferral"
+      currency: 
+        type: string
+        example: USD
+        description: |
+          Default is `"USD"`. Otherwise use an ISO 4217 Standard currency code in uppercase.
   AccountSubscription: 
     description: An object describing the current subscription for this account
     required: 
@@ -307,6 +371,12 @@ definitions:
       referrerDiscountPercent: 
         type: integer
         description: "The total discountPercent from rewards with `rewardSource = FRIEND_SIGNUP` Only works with types: `PCT_DISCOUNT`"
+  WebhookEndpoint:
+    description: An endpoint to receive events
+    properties:
+      endpointUrl:
+        type: string
+        description: The url of the endpoint that receives events
   Error: 
     properties: 
       statusCode: 

@@ -1,0 +1,34 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Method
+            </th>
+            <th>
+                Route
+            </th>
+            <th>
+                Description
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for path in swagger.paths %}
+            {% set methodPath = loop.key %}
+            {% for method in path %}
+            {% set httpMethod = loop.key %}
+                <tr>
+                    <td>
+                        {{httpMethod | upper}}
+                    </td>
+                    <td class="docs-monospace">
+                        {{swagger.basePath}}{{methodPath}}
+                    </td>
+                    <td>
+                        <a href="/api/methods#{{method.operationId}}">{{method.summary}}</a>
+                    </td>
+                </tr>
+           {% endfor %}
+       {% endfor %}
+    </tbody>
+</table>

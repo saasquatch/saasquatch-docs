@@ -1,6 +1,7 @@
 {% extends '../api.html' %}
 
 {% import "../tags/API.html" as API %}
+{% import "./swaggerMacros.html" as swaggerMacros %}
 
 {% block content %}
 
@@ -15,66 +16,9 @@
   </p>
   {% endif %}
   
-{% macro responseId(method, responseKey) %}{{method.summary | lower | replace('\s','-', 'g')}}-{{responseKey}}{% endmacro %}    
-{% macro outputProperties(schema, collapse) %}
-    {%if schema.type == "array" %}
-        <p>{{schema.items.description | markdown}}</p>
-    {% endif %}
-    
-    <table class="table table-hover apidocs-args {%if collapse %}js-docs-collapse{% endif %}">
-    {% for prop in schema.properties | default(schema.items.properties) %}
-         <tr>
-            <th class="docs-monospace">
-                {{loop.key}}<br>
-                <span class="muted">{{prop.type | default("object") }}</span>
-            </th>
-            <td>{% if schema.required and (loop.key in schema.required) %}<span class="label">Required</span>{% endif %}</td>
-            <td>
-                {{prop.description | markdown}}
-                
-                {% if prop.properties %}{{outputProperties(prop, true)}}{% endif %}
-            </td>
-          </tr>
-    {% endfor %}
-    </table>
-{% endmacro %}
-
         <pre class="jsonview">{{ swagger|json(4) }}</pre>
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        Method
-                    </th>
-                    <th>
-                        Route
-                    </th>
-                    <th>
-                        Description
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for path in swagger.paths %}
-                    {% set methodPath = loop.key %}
-                    {% for method in path %}
-                    {% set httpMethod = loop.key %}
-                        <tr>
-                            <td>
-                                {{httpMethod | upper}}
-                            </td>
-                            <td class="docs-monospace">
-                                {{swagger.basePath}}{{methodPath}}
-                            </td>
-                            <td>
-                                <a href="/api/methods#{{method.operationId}}">{{method.summary}}</a>
-                            </td>
-                        </tr>
-                   {% endfor %}
-               {% endfor %}
-            </tbody>
-        </table>
+        
+        {% include "./apiNavigationTable.html" %}
 
         {% for path in swagger.paths %}
             {% set methodPath = loop.key %}
@@ -83,24 +27,27 @@
 
             <div class="apidocs-section">
             
-            <h2>{{method.summary}}</h2>
             <a id="{{method.operationId}}" name="{{method.operationId}}" class="section-anchor">&nbsp;</a>
+            
+            <h2>
+                {{method.summary}}
+                <code>{{httpMethod | upper}} {{swagger.basePath}}{{methodPath}}</code>
+            </h2>
 
-            <p>{{method.description | markdown}}</p>
-            <p>Works with: 
+            {{method.description | markdown}} 
+
+            <p style="display: none;">Works with: 
                 {% for tag in method.tags %}
-                    <span class="label program-type-label program-type-{{tag | lower}}">{{tag}}</span>
+                    <span class="label program-type-label program-type-{{tag | lower}}">{{tag | lower | title}}</span>
                 {% endfor %}
             </p>
-            <h4>Definition</h4>
-            
-            <pre class="prettyprint lang-curl">{{loop.key | upper}} {{swagger.schemes[0]}}://{{swagger.host}}{{swagger.basePath}}{{methodPath}}</pre>
 
-            <h4>Arguments</h4>
+            <h4 style="margin-top: 40px;">Arguments</h4>
             <div>
                 <table class="table table-hover apidocs-args">
                     {% for param in method.parameters %}
                       <tr>
+                        <td>{% if param.required or param.in == "body" %}<span class="label">Required</span>{% endif %}</td>
                         <th class="docs-monospace">
                             {% if param.in == "body" %}
                                 JSON Body
@@ -109,27 +56,26 @@
                                 <span class="muted">{{param.type | default("object") }}</span>
                             {% endif %}
                         </th>
-                        <td>{% if param.required or param.in == "body" %}<span class="label">Required</span>{% endif %}</td>
                         <td>
                             {{param.description | markdown}}
                             
-                            {% if param.schema %}{{outputProperties(param.schema)}}{% endif %}
+                            {% if param.schema %}{{swaggerMacros.outputProperties(param.schema)}}{% endif %}
                         </td>
                       </tr>
                     {% endfor %}
                 </table>
             </div>
 
-            <h4>Response Types</h4>
+            <h4 style="margin-top: 40px;">Returns</h4>
 
-            <div class="tabbable tabs-left">
+            <div class="tabbable">
                 <ul class="nav nav-tabs">
 
                     
                     {% for response in method.responses %}
                     {% if loop.key != "default" %}
                     <li {% if loop.first %}class="active"{% endif %}>
-                        <a href="#" data-toggle="tab" data-target=".{{responseId(method,loop.key)}}">HTTP {{loop.key}}</a>
+                        <a href="#" data-toggle="tab" data-target=".{{swaggerMacros.responseId(method,loop.key)}}"><span class="label">HTTP {{loop.key}}</span> {{response.description}}</a>
                     </li>
                     {% endif %}
                     {% endfor %}
@@ -138,17 +84,16 @@
                 <div class="tab-content">
                     {% for response in method.responses %}
                     {% if loop.key != "default" %}
-                        <div class="tab-pane {% if loop.first %}active{% endif %} {{responseId(method,loop.key)}}">
-                            <h5 class="align-center">{{response.description}} &nbsp;<small><span class="label">HTTP {{loop.key}}</span></small></h4>
-                            {{outputProperties(response.schema)}}
+                        <div class="tab-pane {% if loop.first %}active{% endif %} {{swaggerMacros.responseId(method,loop.key)}}">
+                            {{swaggerMacros.outputProperties(response.schema)}}
                         </div>
                     {% endif %}
                     {% endfor %}
                 </div>
             </div>
             
-            
-            <div class="tabbable tabs-left">
+            <h4 style="margin-top: 40px;">Examples</h4>
+            <div class="tabbable">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#" data-toggle="tab" data-target=".curl-example-request-{{method.operationId}}">Example Request</a></li>
                     <li><a href="#" data-toggle="tab" data-target=".curl-example-response-{{method.operationId}}">Example Response</a></li>
@@ -160,11 +105,7 @@
 <pre class="prettyprint lang-curl">$curl {{swagger.schemes[0]}}://{{swagger.host}}{{swagger.basePath}}{{methodPath}} \
 -u API_KEY: \
 -H "Content-Type: application/json" \
-{% if httpMethod == "post" %}-d "
-{% for param in method.parameters %}
-{% if param.in == "body" %}{{ param.schema | exampleSwaggerSchema | json(4) | ('"', "'", 'g') }}
-{%- endif %}{% endfor %}
-{%- endif %}
+{% if httpMethod == "post" %}-d "{% for param in method.parameters %}{% if param.in == "body" %}{{ param.schema | exampleSwaggerSchema | json(4) | ('"', "'", 'g') }}{%- endif %}{% endfor %}"{%- endif %}
 </pre>
                     </div>
                     <div class="tab-pane curl-example-response-{{method.operationId}}">
