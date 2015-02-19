@@ -377,7 +377,7 @@ paths:
   "/{tenant_alias}/account/{accountId}/discount":
     get:
       operationId: get_account_reward
-      summary: Lookup an account's discount
+      summary: Lookup an account discount
       description: |
         This method information about an account's discount, if any, and what that discount would look like with a `couponCode` applied. Works with `PCT_DISCOUNT`
       parameters: 

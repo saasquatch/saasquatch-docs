@@ -1,5 +1,5 @@
 
-{% macro responseId(method, responseKey) %}{{method.summary | lower | replace('\s','-', 'g')}}-{{responseKey}}{% endmacro %}
+{% macro responseId(method, responseKey) %}{{method.operationId}}-{{responseKey}}{% endmacro %}
 
 {% macro outputProperties(schema, collapse) %}
     {%if schema.type == "array" %}
