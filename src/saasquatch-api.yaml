@@ -185,7 +185,7 @@ paths:
             $ref: "#/definitions/RewardBalanceDebitRequest"
         - $ref: "#/parameters/tenant_alias"
       responses: 
-        201: 
+        200: 
           description: Balance debitted
           examples: 
             "application/json":
@@ -299,7 +299,7 @@ paths:
             $ref: "#/definitions/RewardDebitRequest"
         - $ref: "#/parameters/tenant_alias"
       responses: 
-        201: 
+        200: 
           description: Reward debitted
           examples: 
             "application/json":
@@ -366,7 +366,7 @@ paths:
       tags: 
         - PCT_DISCOUNT
       responses: 
-        201:
+        200:
           description: Account updated
         400:
           description: Not implemented
