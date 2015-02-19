@@ -315,37 +315,32 @@ paths:
 
   "/{tenant_alias}/discount/{code}":
     get:
-      operationId: get_account_reward
-      summary: Lookup an account's discount
+      operationId: get_coupon
+      summary: Lookup a discount code
       description: |
-        This method associates a new account with their referrer. Use this method when someone signs up for a paid account to set the coupon code used for them. Works with `PCT_DISCOUNT`
+        This method lets you look up the details of a referral code and to ensure that it is valid. Works with `PCT_DISCOUNT`
       parameters: 
-        - name: accountId
+        - name: code
           in: path
-          description: The account to look up
+          description: The coupon/referral code to look up. Eg. BOBTESTERSON
           required: true
-          type: string
-        - name: couponCode
-          in: query
-          description: When included, will return a total reward available including any coupon code.
           type: string
         - $ref: "#/parameters/tenant_alias"
       tags: 
         - PCT_DISCOUNT
       responses:
-        200: 
-          description: Information about the account discount
+        200:
+          description: Information about the coupon/referral code
           examples: 
             "application/json":
-              "accountId": "SV0TYE5OWI11120144"
-              "discountPercentage": 10
-              "referrerDiscountPercent": 0
-              "referredDiscountPercent": 10
-              "discountId": "saasquatch_discount"
+              "couponCode" : "BOBTESTERSON"
+              "discountPercentage" : 20
+              "dateCreated" : 1377727546528
+              "discountId" : "saasquatch_discount" 
           schema:
-            $ref: "#/definitions/AccountDiscount"
-        404: 
-          description: Account not found
+            $ref: "#/definitions/DiscountCode"
+        404:
+          description: Coupon/referral code not found
           schema: 
             $ref: "#/definitions/Error"
         default: 
@@ -379,7 +374,45 @@ paths:
           description: Unexpected error
           schema: 
             $ref: "#/definitions/Error"
-#  "/{tenant_alias}/account/{account_id}/discount":
+  "/{tenant_alias}/account/{accountId}/discount":
+    get:
+      operationId: get_account_reward
+      summary: Lookup an account's discount
+      description: |
+        This method information about an account's discount, if any, and what that discount would look like with a `couponCode` applied. Works with `PCT_DISCOUNT`
+      parameters: 
+        - name: accountId
+          in: path
+          description: The account to look up
+          required: true
+          type: string
+        - name: couponCode
+          in: query
+          description: When included, will return a total reward available including any coupon code.
+          type: string
+        - $ref: "#/parameters/tenant_alias"
+      tags: 
+        - PCT_DISCOUNT
+      responses:
+        200: 
+          description: Information about the account discount
+          examples: 
+            "application/json":
+              "accountId": "SV0TYE5OWI11120144"
+              "discountPercentage": 10
+              "referrerDiscountPercent": 0
+              "referredDiscountPercent": 10
+              "discountId": "saasquatch_discount"
+          schema:
+            $ref: "#/definitions/AccountDiscount"
+        404: 
+          description: Account not found
+          schema: 
+            $ref: "#/definitions/Error"
+        default: 
+          description: Unexpected error
+          schema: 
+            $ref: "#/definitions/Error"
 
   "/{tenant_alias}/subscription": 
     post: 

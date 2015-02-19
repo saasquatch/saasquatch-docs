@@ -67,8 +67,8 @@
 <p><b>Example Curl Request</b></p>
 <pre class="prettyprint lang-curl">$curl -X {{httpMethod|upper}} {{swagger.schemes[0]}}://{{swagger.host}}{{swagger.basePath}}{{methodPath}} \
 -u API_KEY: \
--H "Content-Type: application/json" \
-{% if httpMethod == "post" %}-d "{% for param in method.parameters %}{% if param.in == "body" %}{{ param.schema | exampleSwaggerSchema | json(4) | replace('"', "'", 'g') }}{%- endif %}{% endfor %}"{%- endif %}
+{% if httpMethod == "post" %}-H "Content-Type: application/json" \
+-d '{% for param in method.parameters %}{% if param.in == "body" %}{{ param.schema | exampleSwaggerSchema | json(4) }}{%- endif %}{% endfor %}'{%- endif %}
 </pre>
             </div>
 
