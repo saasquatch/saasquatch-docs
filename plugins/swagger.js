@@ -29,8 +29,8 @@ function plugin(opts){
 
     var file = opts.path;
     var ext = extname(file);
-    if (!~exts.indexOf(ext)) throw new Error('unsupported metadata type "' + ext + '"');
-    if (!files[file]) throw new Error('file "' + file + '" not found');
+    if (!~exts.indexOf(ext)) return done(new Error('unsupported metadata type "' + ext + '"'));
+    if (!files[file]) return done(new Error('file "' + file + '" not found'));
     
     var parse = parsers[ext];
     var str = files[file].contents.toString();
