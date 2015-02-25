@@ -1,9 +1,11 @@
 Referral SaaSquatch Documentation
 =============
 
-[![Build Status](https://api.travis-ci.org/saasquatch/saasquatch-docs.png)](https://travis-ci.org/saasquatch/saasquatch-docs)
+[![Build Status](https://api.travis-ci.org/saasquatch/saasquatch-docs.png)](https://travis-ci.org/saasquatch/saasquatch-docs) [![Dependency Status](https://david-dm.org/saasquatch/saasquatch-docs.svg)](https://david-dm.org/saasquatch/saasquatch-docs)
 
 We decided to make the [Referral SaaSquatch documentation](http://docs.referralsaasquatch.com/) site an open source project so that we could get help from all of the lovely people out there. Contributing is easy because the documentation is either vanilla HTML or Markdown.
+
+ - [Live Referral SaaSquatch documentation](http://docs.referralsaasquatch.com/)
 
 
 Contributing
@@ -25,6 +27,5 @@ Wishlist
 -------------
 
  - [ ] Get the LiveReload browser extension working with C9
- - [ ] Support markdown fields in Yaml front-matter for e.g. RS-001 issue descriptions (custom swig tag?)
  - [ ] Look into Metalsmith-templates usage of `in-place` for easier mixed templates (like for robot.txt)
  - [ ] Get the _prose.yml fields for `metadata` to work with files in sub-directories
