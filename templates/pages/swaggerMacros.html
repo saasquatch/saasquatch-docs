@@ -1,0 +1,25 @@
+
+{% macro responseId(method, responseKey) %}{{method.operationId}}-{{responseKey}}{% endmacro %}
+
+{% macro outputProperties(schema, collapse) %}
+    {%if schema.type == "array" %}
+        <p>{{schema.items.description | markdown}}</p>
+    {% endif %}
+    
+    <table class="table table-hover apidocs-args {%if collapse %}js-docs-collapse{% endif %}">
+    {% for prop in schema.properties | default(schema.items.properties) %}
+         <tr>
+            <th class="docs-monospace">
+                {{loop.key}}<br>
+                <span class="muted">{{prop.type | default("object") }}</span>
+            </th>
+            <td>{% if schema.required and (loop.key in schema.required) %}<span class="label">Required</span>{% endif %}</td>
+            <td>
+                {{prop.description | markdown}}
+                
+                {% if prop.properties %}{{outputProperties(prop, true)}}{% endif %}
+            </td>
+          </tr>
+    {% endfor %}
+    </table>
+{% endmacro %}
