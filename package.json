@@ -3,7 +3,10 @@
   "description": "Referral SaaSquatch public documentation",
   "version": "0.0.1",
   "license": "APACHE",
-  "repositories": "https://github.com/saasquatch/saasquatch-docs",
+  "repository": {
+      "type" : "git",
+      "url" : "http://github.com/saasquatch/saasquatch-docs.git"
+  },
   "dependencies": {
     "metalsmith-templates": "^0.6.0",
     "metalsmith-markdown": "^0.2.1",
