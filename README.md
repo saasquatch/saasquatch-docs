@@ -26,6 +26,6 @@ We'll roll in changes once the [Travis CI build](https://travis-ci.org/saasquatc
 Wishlist
 -------------
 
- - [ ] Get the LiveReload browser extension working with C9
+ - [ ] Get the LiveReload browser extension working with C9. [Use gulp?](https://github.com/FWeinb/metalsmith-watch/issues/4#issuecomment-58769378)
  - [ ] Look into Metalsmith-templates usage of `in-place` for easier mixed templates (like for robot.txt)
  - [ ] Get the _prose.yml fields for `metadata` to work with files in sub-directories

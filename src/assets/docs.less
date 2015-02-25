@@ -1,57 +1,9 @@
 @import (css) "./jquery.jsonview.css";
+@import (css) "./lightbox/css/lightbox.css";
 @import (css) "http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css";
 
 @colorForRewardTypes: #3a87ad;
 @portalBlue: rgb(48,160,235);
-
-
-.hero-unit{
-    background: #EEE;
-}
-.hero-unit h1,
-.hero-unit p{
-    text-align: center;
-}
-
-.hero-unit .docs-sections .span3{
-    margin-top: 60px;
-    text-align: center;
-}
-
-.hero-unit a{
-    display: block;
-}
-.hero-unit a .fa{
-    background: @portalBlue;
-    border-radius: 50%;
-    color: #FFF;
-    display: block;
-    width: 100px;
-    height: 100px;
-    line-height: 100px;
-    margin: 0 auto;
-    
-    // Custom center-of-weight balancing
-    &.fa-desktop{line-height: 110px;}
-    &.fa-html5{line-height: 105px;}
-}
-
-.hero-unit a .fa ~ div{
-    font-size: 18px;
-    line-height: 36px;
-}
-
-.hero-unit a{
-    &:hover,
-    &:active,
-    &:focus{
-        text-decoration: none;
-    }
-    
-    &:hover .fa{
-        background: #005580;
-    }
-}
 
 
 .docs{
@@ -108,6 +60,54 @@
 
 a .link {background-color:#fff;}
 
+
+.hero-unit{
+    background: #EEE;
+}
+.hero-unit h1,
+.hero-unit p{
+    text-align: center;
+}
+
+.hero-unit .docs-sections .span3{
+    margin-top: 60px;
+    text-align: center;
+}
+
+.hero-unit a{
+    display: block;
+}
+.hero-unit a .fa{
+    background: @portalBlue;
+    border-radius: 50%;
+    color: #FFF;
+    display: block;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    margin: 0 auto;
+    
+    // Custom center-of-weight balancing
+    &.fa-desktop{line-height: 110px;}
+    &.fa-html5{line-height: 105px;}
+}
+
+.hero-unit a .fa ~ div{
+    font-size: 18px;
+    line-height: 36px;
+}
+
+.hero-unit a{
+    &:hover,
+    &:active,
+    &:focus{
+        text-decoration: none;
+    }
+    
+    &:hover .fa{
+        background: #005580;
+    }
+}
 
 /**
     Install checklist style for collapsable todo list
@@ -170,58 +170,6 @@ a .link {background-color:#fff;}
 }
 
 
-#cannedThemeCarousel {
-    
-    .carousel-indicators {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      z-index: 5;
-      margin: 0;
-      list-style: none;
-    }
-    
-    .carousel-indicators li {
-      display: block;
-      float: left;
-      width: 10px;
-      height: 10px;
-      margin-left: 5px;
-      text-indent: -999px;
-      background-color: #ccc;
-      background-color: rgba(255, 255, 255, 0.25);
-      border-radius: 5px;
-    }
-    
-    .carousel-indicators .active {
-      background-color: #fff;
-    }
-    
-    .carousel-caption {
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      padding: 15px;
-      background: #333333;
-      background: rgba(0, 0, 0, 0.75);
-    }
-    
-    .carousel-caption h4,
-    .carousel-caption p {
-      line-height: 20px;
-      color: #ffffff;
-    }
-    
-    .carousel-caption h4 {
-      margin: 0 0 5px;
-    }
-    
-    .carousel-caption p {
-      margin-bottom: 0;
-    }
-}
-
 .js-docs-collapse-toggle{
     font-family: Monaco, Consolas, "Lucida Console", monospace;
     font-size: 12px;
@@ -240,6 +188,8 @@ a .link {background-color:#fff;}
     display: none;
 }
 
+
+
 .docs-theme-types{
     a:hover {
         cursor: pointer;
@@ -248,6 +198,7 @@ a .link {background-color:#fff;}
         }
     }
 }
+
 .themes-icon .fa{
     background: #CCC;//@portalBlue;
     text-align: center;
@@ -258,4 +209,31 @@ a .link {background-color:#fff;}
     height: 100px;
     line-height: 100px;
     margin: 0 auto;
+}
+
+
+.docs-lightbox{
+
+    position: relative;
+    
+    div{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0,0,0,0.5);
+        text-align: center;
+        padding: 10px 0;
+        color: #FFF;
+        height: 30px;
+    }
+    
+    &:hover div{
+        background: rgba(0,0,0,0.7);
+    }
+    
+    img {
+        height: 200px;
+    }
+
 }

@@ -30,7 +30,11 @@ function plugin(opts){
     var file = opts.path;
     var ext = extname(file);
     if (!~exts.indexOf(ext)) return done(new Error('unsupported metadata type "' + ext + '"'));
-    if (!files[file]) return done(new Error('file "' + file + '" not found'));
+    
+    if (!files[file]){
+      // TODO: Fix or replace metalsmith-watch. It doesn't live-reload all files, and doesn't cache our Swagger.yaml contents
+      return done(new Error('file "' + file + '" not found'));
+    }
     
     var parse = parsers[ext];
     var str = files[file].contents.toString();

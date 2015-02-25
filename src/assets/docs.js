@@ -34,5 +34,4 @@ jQuery(document).ready(function() {
     
     jQuery("#js-location-path").text(document.location.pathname);
 
-
 });
