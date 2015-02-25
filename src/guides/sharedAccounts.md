@@ -5,14 +5,12 @@ slug: shared-vs-solo-accounts
 template: guides.html
 ---
 
-<h3>What is the difference between Shared and Solo accounts?</h3>
-<p>
-    Shared accounts have many users using the same billing information... solo accounts don't. Most B2B apps have multiple users that access the 
-    same account, but there is only one bill paid for all of those users. Some examples of apps with shared accounts would be Helpdesk, CRM or collaboration software. 
-</p>
-<p>
-    Most B2C apps are solo accounts because everyone pay for their own service. Some examples of solo user account are services like Netflix, Rdio or LinkedIn.
-</p>
+### What is the difference between Shared and Solo accounts?
+
+Shared accounts have many users using the same billing information... solo accounts don't. Most B2B apps have multiple users that access the 
+same account, but there is only one bill paid for all of those users. Some examples of apps with shared accounts would be Helpdesk, CRM or collaboration software. 
+
+Most B2C apps are solo accounts because everyone pay for their own service. Some examples of solo user account are services like Netflix, Rdio or LinkedIn.
 
 <table class="table">
     <tr>
@@ -20,7 +18,7 @@ template: guides.html
             <strong>Shared</strong> Account
         </th>
         <td>
-            Multiple users share the same billing information
+            <i class="fa fa-users"></i> Multiple users share the same billing information
         </td>
     </tr>
     <tr>
@@ -28,58 +26,48 @@ template: guides.html
             <strong>Solo</strong> Account
         </th>
         <td>
-            Every user has their own billing
+            <i class="fa fa-user"></i> Every user has their own billing information
         </td>
     </tr>
 </table>
 
 <hr/>
-<h3>How does referral credit work with Shared accounts?</h3>
 
-<p>
-    Every user in a shared account works towards the same goals. For example, if each referral is worth 10% off, then a shared account can get 100% with 10 referrals from different users;
-    Will makes 5 referrals, Jane makes 3 referrals, and Frank makes 2 referrals, for a total of 10.
-</p>
+### How does referral credit work with Shared accounts?
 
-<hr/>
-<h3>How are referral tracked in Shared accounts?</h3>
+Every user in a shared account works towards the same goals. For example, if each referral is worth 10% off, then a shared account can get 100% with 10 referrals from different users;
+Will makes 5 referrals, Jane makes 3 referrals, and Frank makes 2 referrals, for a total of 10.
 
-<p>
-    Each user gets their own referral link. Even though Will and Jane both access the same shared account, the referrals they make are tracked seperately. When a new account signs up,
-    Referral SaaSquatch links the referral to the first person to sign in.
-</p>
 
-<hr/>
-<h3>How do I group users into the same account?</h3>
+### How are referral tracked in Shared accounts?
 
-<p>
-    When you identify users in <a href="/squatchjs#init">squatch.js init</a> just set the same <code>account_id</code> for all
-    users that are part of the same group.
-</p>
+Each user gets their own referral link. Even though Will and Jane both access the same shared account, the referrals they make are tracked seperately. When a new account signs up,
+Referral SaaSquatch links the referral to the first person to sign in.
 
-<hr/>
-<h3>Can users be part of multiple groups / accounts?</h3>
 
-<p>
-    Yes, but don't tell us about it. We require that every user is part of at most one account. This is how we know which account deserves referral credit.
-    When you identify a user in <a href="/squatchjs#init">squatch.js init</a> just always set the same <code>account_id</code> for that user. If a user is identified as being
-    part of multiple accounts, Referral SaaSquatch create two separate users: one in each account.
-</p>
+### How do I group users into the same account?
 
-<hr/>
-<h3>What if I'm a B2C app and only have Solo accounts?</h3>
+When you identify users in <a href="/squatchjs#init">squatch.js init</a> just set the same <code>account_id</code> for all
+users that are part of the same group.
 
-<p>
-    When you identify users in <a href="/squatchjs#init">squatch.js init</a> you can just set <code>account_id = user_id</code>.
-</p>
 
-<hr/>
-<h3>How is <span class="monospace">account_id</span> different than <span class="monospace">payment_provider_id</span>?</h3>
-<p>
-    Both <code>account_id</code> and <code>payment_provider_id</code> are properties of an account, not a user. <code>account_id</code> is 
-    your internal identifier and <code>payment_provider_id</code> is used to look up an account in your payment system. If you're using the API 
-    integration, then you don't need to worry about <code>payment_provider_id</code>.
-</p>
+### Can users be part of multiple groups / accounts?
+
+Yes, but don't tell us about it. We require that every user is part of at most one account. This is how we know which account deserves referral credit.
+When you identify a user in <a href="/squatchjs#init">squatch.js init</a> just always set the same <code>account_id</code> for that user. If a user is identified as being
+part of multiple accounts, Referral SaaSquatch create two separate users: one in each account.
+
+
+### What if I'm a B2C app and only have Solo accounts?
+
+When you identify users in <a href="/squatchjs#init">squatch.js init</a> you can just set <code>account_id = user_id</code>.
+
+
+### How is <span class="monospace">account_id</span> different than <span class="monospace">payment_provider_id</span>?
+
+Both `account_id` and `payment_provider_id` are properties of an account, not a user. `account_id` is 
+your internal identifier and `payment_provider_id` is used to look up an account in your payment system. If you're using the API 
+integration, then you don't need to worry about `payment_provider_id`.
 
 <table class="table">
     <tr>
@@ -102,9 +90,11 @@ template: guides.html
 
 <hr/>
 
-<h3>Shared Account Example</h3>
 
-<p>If you're using shared accounts, use the same <code>account_id</code> for all users in the same group. If an account doesn't exist in your payment system yet, then set <code>payment_provider_id: null</code> for that account.</p>
+### Shared Account Example
+
+If you're using shared accounts, use the same `account_id` for all users in the same group. If an account doesn't exist in your payment system yet, 
+then set `payment_provider_id: null` for that account.
 
 <img src="/assets/images/shared_account_example.png" />
 
@@ -132,11 +122,10 @@ user_id: "4" }</pre>
 </table>
 
 
-<h3>Solo Account Example</h3>
+### Solo Account Example
 
-<p>
-   If you don't have a separate <code>account_id</code> for your user's account, just set <code>account_id == user_id</code>
-</p>
+If you don't have a separate `account_id` for your user's account, just set `account_id == user_id`
+
 
 <img src="/assets/images/solo_user_example.png" />
 
