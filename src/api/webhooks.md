@@ -1,6 +1,6 @@
 ---
 title: API Webhooks
-highlights: The Referral SaaSquatch Webhooks API closely matches that described by the [RestHooks](http://resthooks.org/docs/">) guidelines.
+highlights: The Referral SaaSquatch Webhooks API closely matches that described by the [RestHooks](http://resthooks.org/docs/) guidelines.
 slug: 'api/webhooks'
 template: api.html
 ---
