@@ -7,7 +7,7 @@ template: themes.html
 
 ### What is a helper?
 
-A helper is a block that helps you provide some logic in your templates.
+A helper is a block that helps you provide some logic in your <a href="/themes/templates/">templates</a>.
 
 ```
 {{#if user.imageUrl}}
@@ -36,16 +36,4 @@ The Referral SaaSquatch template system also includes a few custom helpers built
 
  * **[assets](/themes/assets/)** - a custom helper for serving [assets](/themes/assets/)
  * **squatchHead** - includes basic Javascript and CSS to make your theme function with [squatch](/squatchjs/)
-
-<hr/>
-
-### Partials
-
-Building your theme using pieces (called template "partials") can be easily rolled in using the `>` sign.
-
-```
-{{>myPartial}}
-```
-
-This example will find and load the `myPartial.hbs` file.
 

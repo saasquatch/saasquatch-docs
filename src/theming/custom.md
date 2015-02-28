@@ -1,28 +1,44 @@
 ---
 title: Custom Themes
-highlights: The Referral SaaSquatch theme engine lets you build a custom widget to exactly match your brand
+highlights: The Referral SaaSquatch theme engine lets you build a custom widget to exactly match your brand. Change layout, wording, colors, fonts and styles to white-label your program. Upload custom images, CSS and Javascript to power A/B testing, interactive new widgets and new sharing experiences. Work with your Referral SaaSquatch account manager to have the Referral SaaSquatch enterprise team design and implement something new for you, or bring in your own UI/UX team to do the work.
 slug: themes/custom
 template: themes.html
 ---
 
-### Getting Started
+<div class="row-fluid">
+<div class="span4 well" style="min-height: 150px">
 
- - Custom themes are only available on <b>Pro</b> and <b>Enterprise</b> plans</li>
- - A custom theme is just a <b>Git repository</b>
- - To get started email <a href="mailto:support@saasquat.ch">support@saasquat.ch</a> or your account manager
+<h3><span class="badge badge-inherit">1</span> Set up</h3>
 
+Sign up for **Pro** or **Enterprise** and [open a support ticket](mailto:support@saasquat.ch) to get set up with a base custom theme [Git repo](/themes/git).
 
-<hr/>
+</div>
+<div class="span4 well" style="min-height: 150px">
+
+<h3><span class="badge badge-inherit">2</span> Modify</h3>
+
+Make changes [templates](/themes/templates), add dymanic [fields](/themes/fields) and upload [assets](/themes/assets).
+
+</div>
+<div class="span4 well" style="min-height: 150px">
+
+<h3><span class="badge badge-inherit">3</span> Publish</h3>
+
+Commit changes to your [Git repo](/themes/git) and then [publish](/themes/publish) those changes to your test or live account
+
+</div>
 
 ### Customizing your theme
 
-Every theme is a git repository containing templates and assets. Changes to themes simply
-involve changing those files, and pushing those changes into your test or live tenant. To start checkout your git repository and start making changes to the files in that repo. 
+Every theme is a git repository containing [templates](/themes/templates) and [assets](/themes/assets). Changes to themes simply
+involve changing those files, committing them to your custom theme's [Git repo](/themes/git) and then [publishing](/themes/publish) those changes into your test or live tenant. 
+
+To start clone your custom theme's git repository and start making changes to the files in that repo.
 Reads the docs on using [assets](/themes/assets) to upload CSS, Images and Javascript and read
-the handlebars guide on creatings `.hbs` files.
+the [templates](/themes/templates) guide on creatings `.hbs` files.
 
 ```
-git clone http://gitorigin.com/repo
+git clone https://github.com/saasquatch/custom-theme
 ```
 
 Once you've made changes that you'd like to preview in your test account, start by pushing those changes
@@ -31,12 +47,9 @@ to the configured git remote.
 After changes have been pushed to the git repo, they can be pulled into 
 your test tenant or live tenant using the theme publish tool. The ideal workflow would be:
 
-  1. Publish your theme to your test tenant
-  2. Preview in your development environment
-  3. Publish your theme to your live tenant
-
-```
-git commit
-git push origin
-deploy.sh -t test_a081lut1vm7nu -k TEST_nFnurmR978SrzNrdlbTheNAbtPCdYAyd
-```
+  1. Clone your [Git repo](/themes/git)
+  2. Modify the [templates](/themes/templates) and [assets](/themes/assets)
+  3. Commit changes to your [Git repo](/themes/git)
+  4. [Publish](/themes/publish) your theme to your test tenant
+  5. Preview in your development environment
+  6. [Publish](/themes/publish) your theme to your live tenant

@@ -1,18 +1,16 @@
 ---
 title: API Errors
+highlights: |
+    Referral SaaSquatch uses conventional HTTP response codes to indicate success or failure of an API request. In general, codes in the 2xx range indicate 
+    success, codes in the 4xx range indicate an error that resulted from the provided information (e.g. a required parameter was missing, a 
+    coupon code doesn't exist, etc.), and codes in the 5xx range indicate an error with Referral SaaSquatch's servers.
 slug: api/errors
 template: api.html
 ---
 
-<p>
-    Referral SaaSquatch uses conventional HTTP response codes to indicate success or failure of an API request. In general, codes in the 2xx range indicate 
-    success, codes in the 4xx range indicate an error that resulted from the provided information (e.g. a required parameter was missing, a 
-    coupon code doesn't exist, etc.), and codes in the 5xx range indicate an error with Referral SaaSquatch's servers.
-</p>
 
-<hr/>
+### HTTP Status Code Summary
 
-<h3>HTTP Status Code Summary</h3>
 <ul class="unstyled docs-monospace">
     <li><strong>200</strong> OK - Everything worked as expected.</li>
     <li><strong>400</strong> Bad Request - Often missing a required parameter.</li>

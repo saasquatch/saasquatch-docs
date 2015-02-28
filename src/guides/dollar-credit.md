@@ -57,18 +57,18 @@ It is possible to explore the individual credits that have been earned by an acc
     </thead>
     <tbody>
         <tr>
-            <td><pre class="prettyprint">$ curl https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/reward/balance?accountId=SV0TYE5OWI11120144 \
+            <td><pre><code>$ curl https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/reward/balance?accountId=SV0TYE5OWI11120144 \
 -u API_KEY: \
--H "Content-Type: application/json"</pre></td>
-            <td><pre class="prettyprint">[
-{
-"type": "CREDIT",
-"count": 1,
-"totalAssignedCredit": 2000,
-"totalRedeemedCredit" : 0,
-"unit": "cents"
-}
-]</pre></td>
+-H "Content-Type: application/json"</code></pre></td>
+            <td><pre><code>[
+    {
+        "type": "CREDIT",
+        "count": 1,
+        "totalAssignedCredit": 2000,
+        "totalRedeemedCredit" : 0,
+        "unit": "cents"
+    }
+]</code></pre></td>
         </tr>
     </tbody>
 </table>
@@ -94,20 +94,20 @@ Use the <a href="/api/methods#debit_balance">Debit Account Balance</a> endpoint 
     </thead>
     <tbody>
         <tr>
-            <td><pre class="prettyprint">$ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/credit/bulkredeem \
+            <td><pre><code>$ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/credit/bulkredeem \
 -u API_KEY: \
 -H "Content-Type: application/json" \
 -d '{
-"accountId" : "SV0TYE5OWI11120144",
-"amount" : 2000, 
-"unit" : "cents"
+    "accountId" : "SV0TYE5OWI11120144",
+    "amount" : 2000, 
+    "unit" : "cents"
 }'
-</pre></td>
-            <td><pre class="prettyprint">{
-"creditRedeemed": 2000,
-"creditAvailable": 0,
-"unit": "cents"
-}</pre></td>
+</code></pre></td>
+            <td><pre><code>{
+    "creditRedeemed": 2000,
+    "creditAvailable": 0,
+    "unit": "cents"
+}</code></pre></td>
         </tr>
     </tbody>
 </table>
@@ -126,31 +126,31 @@ Use the <a href="/api/methods#debit_balance">Debit Account Balance</a> endpoint 
     </thead>
     <tbody>
         <tr>
-            <td><pre class="prettyprint">$ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/accountsync \
+            <td><pre><code>$ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/accountsync \
 -u API_KEY: \
 -H "Content-Type: application/json" \
 -d '{ "id": "SV0TYE5OWI11120144",
-"currency": "USD",
-"subscription": {
-"status": "PAID", 
-"value": 99.99,
-"billingIntervalType": "DAY",
-"billingIntervalValue": 30
-}
-}'</pre></td>
-            <td><pre class="prettyprint">{
-"id": "SV0TYE5OWI11120144",
-"currency": "USD",
-"subscription": {
-"status": "PAID", 
-"value": 99.99,
-"billingIntervalType": "DAY",
-"billingIntervalValue": 30
-},
-"referral": {
-"code": "BOBTESTERSON"
-}
-}</pre></td>
+    "currency": "USD",
+    "subscription": {
+        "status": "PAID", 
+        "value": 99.99,
+        "billingIntervalType": "DAY",
+        "billingIntervalValue": 30
+    }
+}'</code></pre></td>
+            <td><pre><code>{
+    "id": "SV0TYE5OWI11120144",
+    "currency": "USD",
+    "subscription": {
+        "status": "PAID", 
+        "value": 99.99,
+        "billingIntervalType": "DAY",
+        "billingIntervalValue": 30
+    },
+    "referral": {
+        "code": "BOBTESTERSON"
+    }
+}</code></pre></td>
         </tr>
     </tbody>
 </table>

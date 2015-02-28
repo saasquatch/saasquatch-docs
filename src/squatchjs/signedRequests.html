@@ -26,8 +26,8 @@ template: squatchjs.html
             <tr>
                 <th>In your app</th>
                 <td>
-                    <pre class="prettyprint lang-js">_sqh.push(['init', {
-    tenant_alias: 'test_aaaexampleaaa’,
+                    <pre><code class="lang-js">_sqh.push(['init', {
+    tenant_alias: 'test_aaaexampleaaa',
     account_id: 'a5678',
     payment_provider_id: null,
     user_id: 'u1234',
@@ -35,11 +35,11 @@ template: squatchjs.html
     first_name: 'Joe',
     last_name: 'Tester',
     fb_share_image: "http://example.com/f.png"
-}]);</pre>
+}]);</code></pre>
                 </td>
                 <td>
-                    <pre class="prettyprint lang-js">_sqh.push(['init', {
-    tenant_alias: 'test_aaaexampleaaa’,
+                    <pre><code class="lang-js">_sqh.push(['init', {
+    tenant_alias: 'test_aaaexampleaaa',
     account_id: 'a5678',
     payment_provider_id: null,
     user_id: 'u1234',
@@ -48,26 +48,26 @@ template: squatchjs.html
     last_name: 'Tester',
     fb_share_image: "http://example.com/f.png",
     <span class="nocode"><strong>checksum: 'arbPDAcedO38Qw/qdJLCqd2tlRQ='</strong></span>
-}]);</pre>       
+}]);</code></pre>       
                 </td>
             </tr>
             <tr>
                 <th>On your homepage</th>
                 <td>
-                    <pre class="prettyprint lang-js">_sqh.push(['init', {
-    tenant_alias: 'test_aaaexampleaaa’
+                    <pre><code class="lang-js">_sqh.push(['init', {
+    tenant_alias: 'test_aaaexampleaaa'
 }]);
     
 _sqh.push(['autofill', '#referralCoupon']);
-</pre>
+</code></pre>
                 </td>
                 <td>
-                    <pre class="prettyprint lang-js">_sqh.push(['init', {
-    tenant_alias: 'test_aaaexampleaaa’
+                    <pre><code class="lang-js">_sqh.push(['init', {
+    tenant_alias: 'test_aaaexampleaaa'
 }]);
 
 _sqh.push(['autofill', '#referralCoupon']);
-</pre>       
+</code></pre>       
                 </td>
             </tr>
         </table>
@@ -90,52 +90,52 @@ _sqh.push(['autofill', '#referralCoupon']);
                 
         <p>To start using secure requests, you simply need to add a checksum. For example, here is a JSON object of the parameters to be signed:</p>
         
-        <pre class="prettyprint lang-json">{
-    tenant_alias: "test_aaaexampleaaa",
-    account_id: "a5678",
-    payment_provider_id: null,
-    user_id: "u1234",
-    email: "joe.tester@example.com",
-    first_name: "Joe",
-    last_name: "Tester",
-    fb_share_image: "http://example.com/f.png",
-}</pre>
+        <pre><code class="lang-json">{
+    "tenant_alias": "test_aaaexampleaaa",
+    "account_id": "a5678",
+    "payment_provider_id": null,
+    "user_id": "u1234",
+    "email": "joe.tester@example.com",
+    "first_name": "Joe",
+    "last_name": "Tester",
+    "fb_share_image": "http://example.com/f.png",
+}</code></pre>
 
         <ol>
             <li>
                 <p><strong>Ignore client-only parameters</strong> that don't need to be signed. The <code>mode</code>, <code>fbShareImage</code> and <code>autofill</code> parameters should be ignored.
                 </p>
-        <pre class="prettyprint lang-json">{
-    tenant_alias: "test_aaaexampleaaa",
-    account_id: "a5678",
-    payment_provider_id: null,
-    user_id: "u1234",
-    email: "joe.tester@example.com",
-    first_name: "Joe",
-    last_name: "Tester"
-    // fb_share_image: "http://example.com/f.png" &lt;-- This one is ignored for checksum purposes
-}</pre>
+        <pre><code class="lang-json">{
+    "tenant_alias": "test_aaaexampleaaa",
+    "account_id": "a5678",
+    "payment_provider_id": null,
+    "user_id": "u1234",
+    "email": "joe.tester@example.com",
+    "first_name": "Joe",
+    "last_name": "Tester",
+    // "fb_share_image": "http://example.com/f.png", &lt;-- This one is ignored for checksum purposes
+}</code></pre>
             </li>        
             <li>
                 <p><strong>Sort your parameters</strong> according to the alphabetical order of their keys. Notice how <code>account_id</code> is now first and <code>user_id</code> is now last.
                 </p>
-        <pre class="prettyprint lang-json">{
-    account_id: "a5678", // &lt;-- "a" is sorted to first
-    email: "joe.tester@example.com",
-    first_name: "Joe",
-    last_name: "Tester",
-    payment_provider_id: null,
-    tenant_alias: "test_aaaexampleaaa",
-    user_id: "u1234" // &lt;-- "u" is sorted to last
-}</pre>
+        <pre><code class="lang-json">{
+    "account_id": "a5678", // &lt;-- "a" is sorted to first
+    "email": "joe.tester@example.com",
+    "first_name": "Joe",
+    "last_name": "Tester",
+    "payment_provider_id": null,
+    "tenant_alias": "test_aaaexampleaaa",
+    "user_id": "u1234" // &lt;-- "u" is sorted to last
+}</code></pre>
             </li>
             <li>
-                <p><strong>Concatenate the values.</strong> Starting with an empty string, iterate through all the parameters that you sorted and append each parameter's value to the end of a string. Notice 
+                <p><strong>Concatenate the <em>sorted</em> values.</strong> Starting with an empty string, iterate through all the parameters that you sorted and append each parameter's value to the end of a string. Notice 
                 how "a5678", the value for <code>account_id</code>, is at the start, and "u1234", the value for <code>user_id</code>, is at the end. Also, any optional parameters or null parameters can be
                 omitted. In this example <code>payment_provider_id</code> is set to null and isn't included in the concatenated string.
                 </p>
                 <pre><span style="color:#dd1144;">a5678</span>joe.tester@example.com<span style="color:#dd1144;">Joe</span>Tester<span style="color:#dd1144;">test_aaaexampleaaa</span>u1234
- ^^^ the value for accountId is first</pre>
+ ^^^ the value for accountId is first</code></pre>
             </li>
             <li>
                 <p><strong>Sign the string</strong> using your API key to compute a HMAC-SHA2 checksum. In the code below we use an example API key: <code>TEST_HGO8125ANDFH152HSAS15</code></p>
@@ -150,7 +150,7 @@ _sqh.push(['autofill', '#referralCoupon']);
 <div class="tab-content">
     
     <div class="tab-pane calculatehash-example-cs">
-        <pre class="prettyprint lang-cs">using System.Security.Cryptography;
+        <pre><code class="lang-cs">using System.Security.Cryptography;
  
 private string CreateToken(string message, string secret)
 {
@@ -162,18 +162,18 @@ private string CreateToken(string message, string secret)
         byte[] hashmessage = hmacsha256.ComputeHash(messageBytes);
         return Convert.ToBase64String(hashmessage);
     }
-}</pre>
+}</code></pre>
     </div>
     
     <div class="tab-pane calculatehash-example-rb">
-        <pre class="prettyprint lang-rb">require &#x27;openssl&#x27;
+        <pre><code class="lang-rb">require &#x27;openssl&#x27;
 require base64&#x27;
 
-hash = Base64.strict_encode64(OpenSSL::HMAC.digest(&#x27;sha256&#x27;, &#x27;TEST_HGO8125ANDFH152HSAS15&#x27;, &#x27;a5678joe.tester@example.comJoeTestertest_aaaexampleaaau1234&#x27;))</pre>
+hash = Base64.strict_encode64(OpenSSL::HMAC.digest(&#x27;sha256&#x27;, &#x27;TEST_HGO8125ANDFH152HSAS15&#x27;, &#x27;a5678joe.tester@example.comJoeTestertest_aaaexampleaaau1234&#x27;))</code></pre>
     </div>
     
     <div class="tab-pane calculatehash-example-java">
-        <pre class="prettyprint lang-java">import java.security.SignatureException;
+        <pre><code class="lang-java">import java.security.SignatureException;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -191,21 +191,21 @@ public static String calculateHMACSHA256(String data, String secretKey) throws j
         throw new SignatureException(&quot;Failed to generate HMAC : &quot; + e.getMessage());
     }
     return result;
-}</pre>
+}</code></pre>
     </div>
     
     <div class="tab-pane calculatehash-example-php">
-        <pre class="prettyprint lang-php">base64_encode(hash_hmac(&#x27;sha256&#x27;,&#x27;a5678joe.tester@example.comJoeTestertest_aaaexampleaaau1234&#x27;, &#x27;TEST_HGO8125ANDFH152HSAS15&#x27;, true))</pre>
+        <pre><code class="lang-php">base64_encode(hash_hmac(&#x27;sha256&#x27;,&#x27;a5678joe.tester@example.comJoeTestertest_aaaexampleaaau1234&#x27;, &#x27;TEST_HGO8125ANDFH152HSAS15&#x27;, true))</code></pre>
     </div>
     
     <div class="tab-pane calculatehash-example-py active">
-        <pre class="prettyprint lang-py">import hashlib
+        <pre><code class="lang-py">import hashlib
 import hmac
 import base64
  
 message = bytes(&#x27;a5678joe.tester@example.comJoeTestertest_aaaexampleaaau1234&#x27;).encode(&#x27;utf-8&#x27;)
 secret = bytes(&#x27;TEST_HGO8125ANDFH152HSAS15&#x27;).encode(&#x27;utf-8&#x27;)
-base64.standard_b64encode(hmac.new(secret, message, digestmod=hashlib.sha256).digest())</pre>
+base64.standard_b64encode(hmac.new(secret, message, digestmod=hashlib.sha256).digest())</code></pre>
     </div>
     
 </div>
@@ -213,8 +213,8 @@ base64.standard_b64encode(hmac.new(secret, message, digestmod=hashlib.sha256).di
             </li>
             <li>
                 <p><strong>Include the checksum</strong> in your javascript initialization call. Secure mode is enabled for an account as soon as we receive your first valid signed request. Once enabled, non-signed requests will no longer be accepted for that account.</p>
-                <pre class="prettyprint lang-js">_sqh.push(['init', {
-    tenant_alias: 'test_aaaexampleaaa’,
+                <pre><code class="lang-js">_sqh.push(['init', {
+    tenant_alias: 'test_aaaexampleaaa',
     account_id: 'a5678',
     payment_provider_id: null,
     user_id: 'u1234',
@@ -223,6 +223,6 @@ base64.standard_b64encode(hmac.new(secret, message, digestmod=hashlib.sha256).di
     last_name: 'Tester',
     fb_share_image: "http://example.com/f.png",
     <span class="nocode"><strong>checksum: 'TFs5pf1zQUgaerOVvLSIiCfrty/GXHdXU5AK5rCmbYU='</strong></span> // &lt;-- Add the checksum to your init call
-}]);</pre>       
+}]);</code></pre>       
             </li>
         </ol>

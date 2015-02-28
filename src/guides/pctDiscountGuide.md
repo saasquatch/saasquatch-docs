@@ -92,15 +92,15 @@ template: guides.html
     </thead>
     <tbody>
         <tr>
-            <td><pre class="prettyprint">$ curl https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/account/{ACCOUNTID}/reward?couponCode={CODE} \
+            <td><pre><code>$ curl https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/account/{ACCOUNTID}/reward?couponCode={CODE} \
 -u {API_KEY}: \
--H "Content-Type: application/json"</pre></td>
-            <td><pre class="prettyprint">{
-"accountId":"SV0TYE5OWI11120144",
-"discountPercentage":20,
-"referrerDiscountPercent":10,
-"referredDiscountPercent":10
-}</pre></td>
+-H "Content-Type: application/json"</code></pre></td>
+            <td><pre><code>{
+    "accountId":"SV0TYE5OWI11120144",
+    "discountPercentage":20,
+    "referrerDiscountPercent":10,
+    "referredDiscountPercent":10
+}</code></pre></td>
         </tr>
     </tbody>
 </table>
@@ -122,34 +122,34 @@ invoices. When you create your first invoice, create an invoice line item for th
     </thead>
     <tbody>
         <tr>
-            <td><pre class="prettyprint">$ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/accountsync \
+            <td><pre><code>$ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/accountsync \
 -u API_KEY: \
 -H "Content-Type: application/json" \
 -d '{ "id": "SV0TYE5OWI11120144",
-"currency": "USD",
-"subscription": {
-"status": "PAID", 
-"value": 99.99,
-"billingIntervalType": "DAY",
-"billingIntervalValue": 30
-},
-"referral": {
-"code": "3j033r"
-}
-}'</pre></td>
-            <td><pre class="prettyprint">{
-"id": "SV0TYE5OWI11120144",
-"currency": "USD",
-"subscription": {
-"status": "PAID", 
-"value"": 99.99,
-"billingIntervalType": "DAY",
-"billingIntervalValue": 30
-},
-"referral": {
-"code": "3j033r"
-}
-}</pre></td>
+    "currency": "USD",
+    "subscription": {
+        "status": "PAID", 
+        "value": 99.99,
+        "billingIntervalType": "DAY",
+        "billingIntervalValue": 30
+    },
+    "referral": {
+        "code": "3j033r"
+    }
+}'</code></pre></td>
+            <td><pre><code>{
+    "id": "SV0TYE5OWI11120144",
+    "currency": "USD",
+    "subscription": {
+        "status": "PAID", 
+        "value"": 99.99,
+        "billingIntervalType": "DAY",
+        "billingIntervalValue": 30
+    },
+    "referral": {
+        "code": "3j033r"
+    }
+}</code></pre></td>
         </tr>
     </tbody>
 </table>
@@ -175,16 +175,16 @@ invoices. When you create your first invoice, create an invoice line item for th
     </thead>
     <tbody>
         <tr>
-            <td><pre class="prettyprint">$ curl https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/account/{ACCOUNTID}/reward \
+            <td><pre><code>$ curl https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/account/{ACCOUNTID}/reward \
 -u {API_KEY}: \
 -H "Content-Type: application/json"
-</pre></td>
-            <td><pre class="prettyprint">{
-"accountId":"SV0TYE5OWI11120144",
-"discountPercentage":20,
-"referrerDiscountPercent":10,
-"referredDiscountPercent":10
-}</pre></td>
+</code></pre></td>
+            <td><pre><code>{
+    "accountId":"SV0TYE5OWI11120144",
+    "discountPercentage":20,
+    "referrerDiscountPercent":10,
+    "referredDiscountPercent":10
+}</code></pre></td>
         </tr>
     </tbody>
 </table>
@@ -214,34 +214,34 @@ any method to apply the discount, but we recommend invoice line items so that yo
     </thead>
     <tbody>
         <tr>
-            <td><pre class="prettyprint">$ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/accountsync \
+            <td><pre><code>$ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/accountsync \
 -u API_KEY: \
 -H "Content-Type: application/json" \
 -d '{ "id": "SV0TYE5OWI11120144",
-"currency": "USD",
-"subscription": {
-<span class="nocode"><strong>"status": "CANCELLED",</strong></span>
-"value": 99.99,
-"billingIntervalType": "DAY",
-"billingIntervalValue": 30
-},
-"referral": {
-"code": "3j033r"
-}
-}'</pre></td>
-            <td><pre class="prettyprint">{
-"id": "SV0TYE5OWI11120144",
-"currency": "USD",
-"subscription": {
-<span class="nocode"><strong>"status": "CANCELLED",</strong></span>
-"value": 99.99,
-"billingIntervalType": "DAY",
-"billingIntervalValue": 30
-},
-"referral": {
-"code": "3j033r"
-}
-}</pre></td>
+    "currency": "USD",
+    "subscription": {
+        <span class="nocode"><strong>"status": "CANCELLED",</strong></span>
+        "value": 99.99,
+        "billingIntervalType": "DAY",
+        "billingIntervalValue": 30
+    },
+    "referral": {
+        "code": "3j033r"
+    }
+}'</code></pre></td>
+            <td><pre><code>{
+    "id": "SV0TYE5OWI11120144",
+    "currency": "USD",
+    "subscription": {
+        <span class="nocode"><strong>"status": "CANCELLED",</strong></span>
+        "value": 99.99,
+        "billingIntervalType": "DAY",
+        "billingIntervalValue": 30
+    },
+    "referral": {
+        "code": "3j033r"
+    }
+}</code></pre></td>
         </tr>
     </tbody>
 </table>

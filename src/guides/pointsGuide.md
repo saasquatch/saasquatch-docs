@@ -58,7 +58,7 @@ template: guides.html
     </thead>
     <tbody>
         <tr>
-            <td><pre class="prettyprint">$ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/accountsync \
+            <td><pre><code>$ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/accountsync \
 -u API_KEY: \
 -H "Content-Type: application/json" \
 -d '{ "id": "SV0TYE5OWI11120144",
@@ -69,8 +69,8 @@ template: guides.html
     "billingIntervalType": "DAY",
     "billingIntervalValue": 30
   }
-}'</pre></td>
-                    <td><pre class="prettyprint">{
+}'</code></pre></td>
+                    <td><pre><code>{
   "id": "SV0TYE5OWI11120144",
   "currency": "USD",
   "subscription": {
@@ -82,7 +82,7 @@ template: guides.html
   "referral": {
     "code": "BOBTESTERSON"
   }
-}</pre></td>
+}</code></pre></td>
         </tr>
     </tbody>
 </table>
@@ -107,18 +107,18 @@ It is possible to explore the individual points that has been earned by an accou
     </thead>
     <tbody>
         <tr>
-            <td><pre class="prettyprint">$ curl https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/reward/balance?accountId=SV0TYE5OWI11120144 \
+            <td><pre><code>$ curl https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/reward/balance?accountId=SV0TYE5OWI11120144 \
 -u API_KEY: \
--H "Content-Type: application/json"</pre></td>
-            <td><pre class="prettyprint">[
-{
-"type": "CREDIT",
-"count": 1,
-"totalAssignedCredit": 50,
-"totalRedeemedCredit" : 0,
-"unit": "points"
-}
-]</pre></td>
+-H "Content-Type: application/json"</code></pre></td>
+            <td><pre><code>[
+    {
+        "type": "CREDIT",
+        "count": 1,
+        "totalAssignedCredit": 50,
+        "totalRedeemedCredit" : 0,
+        "unit": "points"
+    }
+]</code></pre></td>
         </tr>
     </tbody>
 </table>
@@ -143,20 +143,20 @@ Use the <a href="/api/methods#debit_balance">Debit Account Balance</a> endpoint 
     </thead>
     <tbody>
         <tr>
-            <td><pre class="prettyprint">$ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/credit/bulkredeem \
+            <td><pre><code>$ curl https://app.referralsaasquatch.com/api/v1/TENANT_ALIAS/credit/bulkredeem \
 -u API_KEY: \
 -H "Content-Type: application/json" \
 -d '{
-"accountId" : "SV0TYE5OWI11120144",
-"amount" : 20, 
-"unit" : "points"
+    "accountId" : "SV0TYE5OWI11120144",
+    "amount" : 20, 
+    "unit" : "points"
 }'
-</pre></td>
-            <td><pre class="prettyprint">{
-"creditRedeemed": 20,
-"creditAvailable": 0,
-"unit": "points"
-}</pre></td>
+</code></pre></td>
+            <td><pre><code>{
+    "creditRedeemed": 20,
+    "creditAvailable": 0,
+    "unit": "points"
+}</code></pre></td>
         </tr>
     </tbody>
 </table>

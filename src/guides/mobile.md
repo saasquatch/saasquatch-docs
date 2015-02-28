@@ -16,7 +16,7 @@ app.referralsaasquatch.com/a/:tenantAlias/widgets/mobilewidget
 
 #### Example
 
-```
+```nohighlight
 http://app.referralsaasquatch.com/a/test_ag9iazepi0u2d/widgets/mobilewidget?checksum=1KOCYrvKuQWKeyEUmoWCMaY8pmQCPNs%2Ft3a%2BZT0SLAM%3D&accountId=F1WCOPT6L0QAHKMQ&paymentProviderId=NULL&userId=5320fb2ee4b0376bf64d5af0&email=misterd%2Bmuser001%40example.com&firstName=Manual%20Code&lastName=Test%20User%20One&userImage=&fbShareImage=http://www.example.com/headerimac3x.png
         
     /** For readability **/

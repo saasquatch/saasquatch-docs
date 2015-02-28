@@ -65,11 +65,11 @@
                 </table>
                 
 <p><b>Example Curl Request</b></p>
-<pre class="prettyprint lang-curl">$curl -X {{httpMethod|upper}} {{swagger.schemes[0]}}://{{swagger.host}}{{swagger.basePath}}{{methodPath}} \
+<pre><code class="lang-curl">curl -X {{httpMethod|upper}} {{swagger.schemes[0]}}://{{swagger.host}}{{swagger.basePath}}{{methodPath}} \
 -u API_KEY: \
 {% if httpMethod == "post" %}-H "Content-Type: application/json" \
 -d '{% for param in method.parameters %}{% if param.in == "body" %}{{ param.schema | exampleSwaggerSchema | json(4) }}{%- endif %}{% endfor %}'{%- endif %}
-</pre>
+</code></pre>
             </div>
 
             <h4 style="margin-top: 40px;">Returns</h4>
@@ -96,7 +96,7 @@
                             <p><b>Example Response</b></p>
                             <pre>HTTP {{loop.key}}</pre>
                             {% for example in response.examples %}
-                                <pre class="prettyprint lang-json">{{example | json(4) }}</pre>
+                                <pre><code class="lang-json">{{example | json(4) }}</code></pre>
                             {% endfor %}
                         </div>
                     {% endif %}

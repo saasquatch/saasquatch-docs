@@ -33,38 +33,32 @@ template: squatchjs.html
     </tr>
     <tr>
         <td>
-            <pre class="prettyprint lang-js">_sqh.push(['init', {
-    tenant_alias: 'test_aaaexampleaaa’,
-
-
-    user_id: 'u1234',
-
-    account_id: 'a5678',
-
-    email: 'joe.tester@example.com',
-    user_image: 'http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50',
-    first_name: 'Joe',
-    last_name: 'Tester',
-    fb_share_image: 'http://www.example.com/logo.png',
-    checksum: 'arbPDAcedO38Qw/qdJLCqd2tlRQ='
-}]);</pre>
+<pre><code class="lang-js">_sqh.push(["init", {
+    tenant_alias: "test_aaaexampleaaa",
+    user_id: "u1234",
+    account_id: "a5678",
+    email: "joe.tester@example.com",
+    user_image: "http://example.com/avatar/205e460b479e2e",
+    first_name: "Joe",
+    last_name: "Tester",
+    fb_share_image: "http://www.example.com/logo.png",
+    checksum: "arbPDAcedO38Qw/qdJLCqd2tlRQ="
+}]);</code></pre>
                 </td>
                 <td>
-                    <pre class="prettyprint lang-js">analytics.initialize({
- 'SaaSquatch': { tenantAlias: 'test_aaaexampleaaa'
+<pre><code class="lang-js">analytics.initialize({
+ "SaaSquatch": { tenantAlias: "test_aaaexampleaaa"
 }});
 
-analytics.identify( 'u1234', {
-    
-    accountId: 'a5678',
-
-    email: 'joe.tester@example.com',
-    avatar: 'http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50',
-    firstName: 'Joe',
-    lastName: 'Tester',
-    referralImage: 'http://www.example.com/logo.png',
-    checksum: 'arbPDAcedO38Qw/qdJLCqd2tlRQ='
-});</pre>
+analytics.identify( "u1234", {
+    accountId: "a5678",
+    email: "joe.tester@example.com",
+    avatar: "http://example.com/avatar/205e460b479e2e",
+    firstName: "Joe",
+    lastName: "Tester",
+    referralImage: "http://www.example.com/logo.png",
+    checksum: "arbPDAcedO38Qw/qdJLCqd2tlRQ="
+});</code></pre>
         </td>
     </tr>
 

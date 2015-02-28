@@ -6,9 +6,9 @@ template: themes.html
 ---
 
 <div class="row-fluid">
-    <div class="span4 well" style="min-height: 100px"><b>Step 1</b><br> Place files into the <code>/assets/</code> folder</div>
-    <div class="span4 well" style="min-height: 100px"><b>Step 2</b><br> Use the <code>{{assets "file.ext"}}</code> helper in your templates</div>
-    <div class="span4 well" style="min-height: 100px"><b>Step 3</b><br> Your assets will be automatically versioned and loaded into a CDN</div>
+    <div class="span4 well" style="min-height: 150px"><b>Step 1</b><br> Place static asset files like CSS and images into the <code>/assets/</code> folder</div>
+    <div class="span4 well" style="min-height: 150px"><b>Step 2</b><br> Use the <code>{{assets "file.ext"}}</code> <a href="/themes/helpers/">helper</a> to reference those files in your <a href="/themes/templates/">templates</a></div>
+    <div class="span4 well" style="min-height: 150px"><b>Step 3</b><br> Your assets will be automatically versioned, compiled and loaded into a CDN</div>
 </div>
 
 
@@ -16,19 +16,24 @@ template: themes.html
 
 <table class="table">
     <tr>
+        <td>LESS Files</td>
+        <td><code>.less</code></td>
+        <td><a href="http://lesscss.org/">Less</a> files will be <b>compiled and minified with the less compiler</b></td>
+    </tr>
+    <tr>
         <td>Stylesheets</td>
-        <td><code>.css</code> <code>.less</code></td>
-        <td>Css files will be served raw without any minifcations or modifications. Less files will be run through a less compiler</td>
+        <td><code>.less</code></td>
+        <td>Css files will be served with appropriate content-type headers but without any minifcations or modifications.</td>
     </tr>
     <tr>
         <td>Javascript</td>
         <td><code>.js</code></td>
-        <td>Js files will be served raw. Error checking and linting should be done prior to upload.</td>
+        <td>Js files will be served raw with appropriate content-type headers. Error checking and linting should be done prior to upload.</td>
     </tr>
     <tr>
         <td>Images</td>
         <td><code>.png</code> <code>.jpg</code> <code>.gif</code></td>
-        <td>Image files will be served raw without any minifications. Uploaded images should be optimized for web prior to including them as assets.</td>
+        <td>Image files will be served zwith appropriate content-type headers but without any minifications. Uploaded images should be optimized for web prior to including them as assets.</td>
     </tr>
 </table>
 
@@ -36,15 +41,16 @@ template: themes.html
 <div class="row-fluid">
     <div class="span8 well">
         
-<b>Sourcet: widget.hbs</b>
-<pre>&lt;head&gt;
+<b>Source: widget.hbs</b>
+<pre><code class="lang-hbs">&lt;head&gt;
     &lt;link rel="stylesheet" href="{{assets 'css/plaincss.css'}}"&gt;
     &lt;link rel="stylesheet" href="{{assets 'css/lesscss.css'}}"&gt;
     &lt;script src="{{assets 'js/myscript.js'}}"&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
     &lt;img src="{{assets 'images/logo.png'}}"&gt;
-&lt;/body&gt;</pre>
+&lt;/body&gt;</code></pre>
+
     </div>
     <div class="span4 well">
 <b>File Layout</b>
@@ -64,13 +70,13 @@ template: themes.html
 </div>
 
 <div class="well">
-<b>Output: widget.hbs</b>
-<pre>&lt;head&gt;
-    &lt;link rel="stylesheet" href="http://eg.cloudfront.net/assets/css/plaincss.css"&gt;
-    &lt;link rel="stylesheet" href="http://eg.cloudfront.net/assets/css/lesscss.css"&gt;
-    &lt;script src="http://eg.cloudfront.net/assets/js/myscript.js"&gt;&lt;/script&gt;
+<b>Output: widget.hbs (html)</b>
+<pre><code class="lang-html">&lt;head&gt;
+    &lt;link rel="stylesheet" href="http://eg.cloudfront.net/assets/c3256hbac/css/plaincss.css"&gt;
+    &lt;link rel="stylesheet" href="http://eg.cloudfront.net/assets/c3256hbac/css/lesscss.css"&gt;
+    &lt;script src="http://eg.cloudfront.net/assets/c3256hbac/js/myscript.js"&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
-    &lt;img src="http://eg.cloudfront.net/assets/images/logo.png"&gt;
-&lt;/body&gt;</pre>
+    &lt;img src="http://eg.cloudfront.net/assets/c3256hbac/images/logo.png"&gt;
+&lt;/body&gt;</code></pre>
 </div>

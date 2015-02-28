@@ -23,14 +23,8 @@ jQuery(document).ready(function() {
         
     });
 
-    var tryPretty = function() {
-        if (window['prettyPrint']) {
-            prettyPrint();
-        }else {
-            setTimeout(tryPretty, 200);
-        }
-    }
-    tryPretty();
+
+    hljs.initHighlighting();
     
     jQuery("#js-location-path").text(document.location.pathname);
 
