@@ -42,5 +42,8 @@ template: guides.html
 <h3>What browsers does Referral SaaSquatch support?</h3>
 <p>Our <a href="/squatchjs/">squatch.js</a> will run in any browser that supports Javascript. To make sure that our referral widget gives a great user experience, we support our themes on Internet Explorer 8 - 11, and modern versions of Chrome, Firefox and Safari.</p>
 
+<h3>What happens when a user clicks on a sharelink?</h3>
+<p>The sharelink sends the user to our servers on which we place a cookie with their referral code before forwarding them to your landing page. We store this cookie for 365 days. This means that if a user follows the sharelink but not signs up immediately, we can still track the referral later. Please bare in mind that if the user clears their cache, switches browser or anything like that we might not be able to track the referral.</p> 
+
 <h3>I have more questions, what should I do?</h3>
 <p>We know that you may still have questions and we want to hear from you. Email us at <a href="mailto:hello@saasquat.ch?Subject=More%20Questions">hello@saasquat.ch</a> and we will get back to you just as fast as we can.</p>  
