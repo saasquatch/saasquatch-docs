@@ -281,3 +281,53 @@ a .link {background-color:#fff;}
 .fa-grey{
     color: #CCC;
 }
+
+/** Google Custom Search **/
+.docs{ // .docs provide selector specificity to override built-in google styles
+    .gsc-clear-button{
+        display: none;
+    }
+    .cse table.gsc-search-box td.gsc-input, table.gsc-search-box td.gsc-input{
+        padding-top: 2px;
+    }
+    table.gsc-search-box td{
+        padding: 0;
+        vertical-align: top;
+    }
+}
+
+.search-results{
+    .search-results-item a{
+        
+        display: block;
+        text-decoration: none;
+        margin-bottom: 20px;
+        
+        .search-results-title{
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        .search-results-body{
+            color: #333;
+        }
+        .search-results-link{
+            color: #999;
+        }
+        
+        &:hover{
+            background: #eee;
+        }
+        
+        .search-results-type{
+
+            &.guide:before {  content: "\f02d"; }
+            &.jsReference:before {  content: "\f13b"; }
+            &.apiReference:before {  content: "\f108"; }
+            &.themes:before {  content: "\f1fc"; }
+        }
+        
+        
+        .search-results-none{}
+    }
+    
+}
