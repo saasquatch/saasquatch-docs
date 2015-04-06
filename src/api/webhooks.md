@@ -132,9 +132,9 @@ An abitrary JSON object containing data related to this event
 </table>
 
 
-**Payload Security** - Payload's can be verified by checking the request headers. The `X-Hook-Signature` header is set with a value based upon a HMAC-SHA1 (RFC 2104 compliant) hash 
+**Payload Security** - Payloads can be verified by checking the request headers. The `X-Hook-Signature` header is set with a value based upon a HMAC-SHA1 (RFC 2104 compliant) hash 
 computed from the hook's body contents. The signature used is the tenant's current API key. This can be used to verify the authenticity of hooks upon receipt. Careful! Although 
-you can verify the hook''s authenticity via the signature, you still may need to verify the state of the 'data' by making an API call. Hook delivery order is not guaranteed. For
+you can verify the hook's authenticity via the signature, you still may need to verify the state of the 'data' by making an API call. Hook delivery order is not guaranteed. For
 example, consider the scenario where an object is updated multiple times in quick succession. The related REST hooks may be delivered in a different order than the update events 
 which generated them, so relying on their contents may lead you to build a different final state.
 
@@ -217,7 +217,7 @@ Sent whenever a new referred user signs up for a new (trial) account.
     "data": {
         "recipientUserId": "u1234",
         "recipientAccountId": "a1234",
-        "subject": "Congratulations! Susy Example signed up for trial account.",
+        "subject": "Congratulations! Susy Example signed up for a trial account.",
         "message": "&lt;p&gt;This is rendered HTML content.&lt;/p&gt;"
     }
 }
@@ -226,7 +226,7 @@ Sent whenever a new referred user signs up for a new (trial) account.
 
 ### email.referral.paid
 
-Sent whenever a new referred user upgrades to a paid sucscription.
+Sent whenever a new referred user upgrades to a paid subscription.
 
 ```json
 {
