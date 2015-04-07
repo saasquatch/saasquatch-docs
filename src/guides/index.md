@@ -61,7 +61,7 @@ This incentive is used in the referral programs of companies like <a href="http:
 <td><strong>Loyalty Points</strong> <span class="muted"> - Give 50 points</span>
 <div class="muted">This incentive is used in the referral programs of companies like <a href="https://www.dropbox.com/">Dropbox</a> &amp; <a href="https://muut.com/">Muut</a></div>
 </td>
-<td><a href="/guides/points"><i class="fa fa-3x fa-book"></i> Start Here</a></td>
+<td><a href="/guides/point-reward"><i class="fa fa-3x fa-book"></i> Start Here</a></td>
 <td><i class="fa fa-2x fa-circle"></i></td>
 <td><i class="fa fa-2x fa-circle"></i></td>
 <td><i class="fa fa-2x fa-circle"></i></td>
