@@ -414,6 +414,40 @@ paths:
           schema: 
             $ref: "#/definitions/Error"
 
+  "/{tenant_alias}/referrals":
+    get:
+      operationId: list_referrals
+      summary: List referrals
+      description: |
+        List or queries a set of referrals
+      parameters: 
+        - name: limit
+          in: query
+          type: integer
+          description: "A limit on the number of reslts returned. Defaults to `10`."
+        - name: offset
+          in: query
+          type: integer
+          description: "When included offsets the first referral used in the list. Use this to paginate through a long list of referrals."
+        - name: referringAccountId
+          in: query
+          type: string
+          description: "When included, filters the results to only referrals that were referred users with this `AccountId`"
+        - name: referringUserId
+          in: query
+          type: string
+          description: "When included, filters the results to only referrals that were referred users with this `UserId`"
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        200: 
+          description: A list of referrals
+          schema:
+            $ref: "#/definitions/ReferralList"
+        default: 
+          description: Unexpected error
+          schema: 
+            $ref: "#/definitions/Error"
+
   "/{tenant_alias}/subscription": 
     post: 
       operationId: create_webhook
@@ -690,6 +724,44 @@ definitions:
       redeemedCredit:
         type: integer
         description: "The redeemed quantity of the feature. Works with: `TIME_CREDIT` or `CREDIT`"
+  User: 
+    description: An object describing an individual user
+    required:
+      - id
+      - accountId
+      - firstName
+    properties: 
+      id:
+        type: string
+        example: "219065"
+        description: The unique identifier provided for this user.
+      accountId:
+        type: string
+        example: "accc9065"
+        description: The unique identifier of the Account that this user belongs to.
+      referralCode:
+        type: string
+        example: "BOBTESTERSON"
+        description: The referral code *used for sharing by this user*
+      email:
+        type: string
+        example: "bob@example.com"
+        description: The email address provided for the user. SaaSquatch uses this to notify someone when they have a successful referral.
+      imageUrl:
+        type: string
+        example: "https://www.example.com/profiled/ab5111251125"
+        description: |
+          Optionally used in widgets, emails, and themes. If you provide a absolute profile image URL the minimum image size is 80px x 80px.
+      firstName:
+        type: string
+        example: "Bob"
+        description: |
+          The user's first name
+      lastName:
+        type: string
+        example: "Testerson"
+        description: |
+          The user's last name
   RewardBalance: 
     description: Details of the balance of several individual rewards.
     properties: 
@@ -728,6 +800,50 @@ definitions:
       referrerDiscountPercent: 
         type: integer
         description: "The total discountPercent from rewards with `rewardSource = FRIEND_SIGNUP` Only works with types: `PCT_DISCOUNT`"
+
+  Referral:
+    description: A link between the user/account of the referrer and the new referred user/account. The authoritative source of who has referred whom. Not all referrals result in a Reward or a RewardBalance being created, such as in-progress referrals.
+    properties:
+      id:
+        type: string
+        example: abdsds5124abewet
+        description: Unique identifier for the Referral object
+      referredUser:
+        $ref: "#/definitions/User"
+      referrerUser:
+        $ref: "#/definitions/User"
+      referredRewardDto:
+        $ref: "#/definitions/Reward"
+      referrerRewardDto:
+        $ref: "#/definitions/Reward"
+      moderationStatus:
+        type: string
+        example: PENDING
+        description: |
+          "One of `PENDING` or `ACTIONED`. When referrals are manually managed, each referral has a `PENDING` state until it is explicitly moderated."
+      referredModeratedStatus:
+        type: string
+        example: PENDING
+        description: |
+          "One of `PENDING`, `APPROVED` or `DENIED`. Used to identify the *referred* user's moderation status and affect Reward cancellation."
+      referrerModeratedStatus:
+        type: string
+        example: PENDING
+        description: |
+          "One of `PENDING`, `APPROVED` or `DENIED`. Used to identify the *referrer* user's moderation status and affect Reward cancellation."
+      dateReferralStarted:
+        type: integer
+        description: "Timestamp	of when this referral was started."
+      dateReferralPaid:
+        type: integer
+        description: "Timestamp	of when this referral was marked as `PAID`."
+      dateReferralEnded:
+        type: integer
+        description: "Timestamp	of when this referral was ended."
+      dateModerated:
+        type: integer
+        description: "Timestamp	of when this referral was last moderated."
+        
   WebhookEndpoint:
     description: An endpoint to receive events
     properties:
@@ -735,8 +851,34 @@ definitions:
         type: string
         example: "http://app.example.com/endpoint/sqtch"
         description: The url of the endpoint that receives events
+  
+  
+  
+	#
+  # ========== Response / Envelope Types ==============
+  #
+  # Only REST response envelopers included in this section.
+  #
+  
+  ReferralList:
+    properties:
+      count:
+        type: integer
+        description: The number of referrals returned in this response
+      totalCount:
+        type: integer
+        description: The total number of referrals available in this tenant
+      referrals:
+        type: array
+        description: A list of Referral objects
+        items: 
+          $ref: "#/definitions/Referral"
 
-  # Request Types
+	#
+  # ========== Request Types ==============
+  #
+  # Only REST request objects included in this section.
+  #
   AccountDiscountRequest:
     required:
       - accountId
