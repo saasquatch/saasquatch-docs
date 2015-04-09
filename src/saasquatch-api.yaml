@@ -77,7 +77,7 @@ paths:
       summary: Create or Update a User
       description: |
         This method creates or updates a User object by performing an atomic upsert operation. Using this method will either replace the information stored about a given user, or 
-        create a new user if a no User with a matching `id` is found. This method is helpful for synchronizing user information from your database into Referral SaaSquatch.
+        create a new user if no User with a matching `id` is found. This method is helpful for synchronizing user information from your database into Referral SaaSquatch.
         This method will not create or update the Account linked by `accountId`. When creating users for the first time ensure that the Account already exists or create it before using this call.
         See the article on [Shared vs Solo Accounts](/shared-vs-solo-accounts/) for more information on Users and Accounts and how they relate.
       parameters: 
