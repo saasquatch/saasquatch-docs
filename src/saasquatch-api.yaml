@@ -776,7 +776,7 @@ paths:
         - name: url
           in: path
           description: |
-            The url of the endpoint that will be removed. *Remember to URL-encoded this field*
+            The url of the endpoint that will be removed. *Remember to URL-encode this field*
           required: true
           type: string
         - $ref: "#/parameters/tenant_alias"
@@ -969,7 +969,7 @@ definitions:
         description: "Timestamp of when this reward is set to expire."
       dateCancelled:
         type: integer
-        description: "Timestamp if the reward is cancellable and has been cnacelled, the date it was cancelled on. Null if not never cancelled."
+        description: "Timestamp if the reward is cancellable and has been cancelled, the date it was cancelled on. Null if not never cancelled."
       cancellable:
         type: boolean
         description: "If a reward is cancellable then it may be revoked. If it has been cancelled then dateCancelled will be non-null."
@@ -1053,7 +1053,7 @@ definitions:
       count: 
         type: integer
         description: |
-          The number of rewards earned. Usually is equal to the number of successful referrals made. 
+          "The number of rewards earned. Usually is equal to the number of successful referrals made. 
           E.g. An account has $80 of credit due to the referral program. $60 from making referrals, $20 from being referred. 
           The count would be 4 rewards, each worth $20. Only works for `FEATURE`, `TIME_CREDIT`, `CREDIT`"
       featureType: 
