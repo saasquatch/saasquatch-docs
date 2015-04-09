@@ -505,7 +505,7 @@ paths:
         - name: limit
           in: query
           type: integer
-          description: "A limit on the number of reslts returned. Defaults to `10`."
+          description: "A limit on the number of results returned. Defaults to `10`."
         - name: offset
           in: query
           type: integer
