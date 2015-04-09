@@ -76,9 +76,10 @@ paths:
       operationId: create_user
       summary: Create or Update a User
       description: |
-        This method creates or updates a User object by performing an atomic upsert operation. It either replaces the information stored about a given user, or 
-        if a no User with a matching `id` is found, it will create a new user. This method is helpful for synchronizing user information from your database into Referral SaaSquatch.
-        This method will not create or update the linked `accountId`, so when creating users for the first time ensure that or create an Account first.
+        This method creates or updates a User object by performing an atomic upsert operation. Using this method will either replace the information stored about a given user, or 
+        create a new user if a no User with a matching `id` is found. This method is helpful for synchronizing user information from your database into Referral SaaSquatch.
+        This method will not create or update the Account linked by `accountId`. When creating users for the first time ensure that the Account already exists or create it before using this call.
+        See the article on [Shared vs Solo Accounts](/shared-vs-solo-accounts/) for more information on Users and Accounts and how they relate.
       parameters: 
         - name: user
           in: body
@@ -110,7 +111,7 @@ paths:
       operationId: get_user
       summary: Lookup a user
       description: |
-        Looks up a user based upon their ID and returns their personal information.
+        Looks up a user based upon their `id` and returns their personal information.
         This method just returns the details of the user in question, and not all associated properties like Rewards, ShareLinks, Balances or Referrals.
       parameters: 
         - name: accountId
@@ -497,9 +498,9 @@ paths:
       operationId: list_referrals
       summary: List referrals
       description: |
-        List all of the referrals in your Referral SaaSquatch tenant. This method is the primary way of getting a full list of everyone that has made a referral and everyone that has been referred. 
-        You can use the parameters for `referringAccountId` and `referringUserId` to look up the referrals for only one user. 
-        This method also supports pagination using the parameters for `limit` and `offset`.
+        List all of the referrals in your Referral SaaSquatch tenant. This method is the primary way of getting a full list of everyone that has made a referral and everyone that has been referred,
+        and supports pagination using the parameters for `limit` and `offset` to iterate through a very large list of records.
+        You can also use the query parameters for `referringAccountId` and `referringUserId` to filters this list of referrals to only include those made by a given user.
       parameters: 
         - name: limit
           in: query
@@ -625,8 +626,8 @@ paths:
       operationId: get_referral
       summary: Lookup a Referral
       description: |
-        Looks up a single Referral object by it's associated `id`. This method is helpful for looking in on a particular referral of interest. Since it requires the `id` of the referral to
-        be specified, it isn't applicable for querying all referrals to find those made by a particular user or account. To query for referrals use the [list referrals](#list_referrals) endpoint instead
+        Looks up a single Referral object by it's associated `id`. This method is helpful for looking into a particular referral of interest. Since it requires the `id` of the referral to
+        be specified, it isn't applicable for querying all referrals to find those made by a particular user or account. To query for those referrals use the [list referrals](#list_referrals) endpoint instead
         with query parameters specified.
       parameters: 
         - name: referralId
@@ -708,8 +709,7 @@ paths:
         When a referral is denied, the associated reward will be "cancelled". 
         A referral can be moderated several times, subsequently cancelling and un-cancelling the associated reward or rewards, and can be done as long as the associated reward is `cancellable`. 
         Once a reward has been consumed by a debit request or sync with a third party system it will no longer be `cancellable` and request to change the moderation will error.
-      parameters: 
-      parameters: 
+      parameters:
         - name: moderationBulkRequest
           in: body
           description: Details of the referrals to be moderated
