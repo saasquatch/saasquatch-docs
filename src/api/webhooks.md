@@ -165,7 +165,7 @@ widget or a batch upload process. Only fires when a new user is created, not for
 ```json
 {
     "id": "31049u0194u2105",
-    "type": "coupon.created",
+    "type": "user.created",
     "tenantAlias": "AAA111BBB222DDD333",
     "live": false,
     "created": 1337001337,
