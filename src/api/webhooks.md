@@ -48,9 +48,15 @@ endpoint urls will simply result in one subscription being created for that url.
 </thead>
 <tbody>
 <tr>
+    <td class="docs-monospace">user.created</td>
+    <td>
+        Sent whenever a new User is created.
+    </td>
+</tr>
+<tr>
     <td class="docs-monospace">coupon.created</td>
     <td>
-        Sent in response to a new referral coupon being created.
+        Sent whenever a new coupon is created.
     </td>
 </tr>
 <tr>
@@ -150,6 +156,29 @@ which generated them, so relying on their contents may lead you to build a diffe
 
 After a webhook subscription is created, it will immediately start receiving webhooks payloads. Each payload has a noted 'type' field which can be used to differentiate between 
 events. New event types may be added to the API, so avoid building logic that assumes it knows all event types.
+
+###user.created
+
+Sent whenever a new User is created. Note that this will not fire if a 
+
+```json
+{
+    "id": "31049u0194u2105",
+    "type": "coupon.created",
+    "tenantAlias": "AAA111BBB222DDD333",
+    "live": false,
+    "created": 1337001337,
+    "data": {
+        "id": "876343",
+        "accountId": "613611",
+        "email": "bob@example.com",
+        "firstName": "Bob",
+        "lastName": "Testerson",
+        "referralCode": "BOBTESTERSON",
+        "imageUrl": ""
+    }
+}
+```
 
 
 ###coupon.created

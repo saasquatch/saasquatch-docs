@@ -33,7 +33,7 @@ paths:
   "/{tenant_alias}/accountsync": 
     post: 
       operationId: account_sync
-      summary: Update an account
+      summary: Create or Update an account
       description: |
         Use this method to update SaaSquatch when the status of an account changes or when a new account is created. If you're using 
         a payment system connector, such as the Recurly connector, then you won't need to use this method. We automatically track account status for Braintree, Stripe, Reculy and Zuora.
@@ -70,6 +70,84 @@ paths:
           description: Unexpected error
           schema: 
             $ref: "#/definitions/Error"
+
+  "/{tenant_alias}/user": 
+    post: 
+      operationId: create_user
+      summary: Create or Update a User
+      description: |
+        This method creates or updates a User object by performing an atomic upsert operation. It either replaces the information stored about a given user, or 
+        if a no User with a matching `id` is found, it will create a new user. This method is helpful for synchronizing user information from your database into Referral SaaSquatch.
+        This method will not create or update the linked `accountId`, so when creating users for the first time ensure that or create an Account first.
+      parameters: 
+        - name: user
+          in: body
+          description: Details of the User to be created or updated
+          schema: 
+            $ref: "#/definitions/User"
+        - $ref: "#/parameters/tenant_alias"
+      responses: 
+        200: 
+          description: User Created or Updated
+          examples: 
+            "application/json": 
+              id: "876343"
+              accountId: "613611"
+              email: "bob@example.com"
+              firstName: "Bob"
+              lastName: "Testerson"
+              referralCode: "BOBTESTERSON"
+              imageUrl: ""
+          schema: 
+            $ref: "#/definitions/User"
+        default: 
+          description: Unexpected error
+          schema: 
+            $ref: "#/definitions/Error"
+
+  "/{tenant_alias}/account/{accountId}/user/{userId}": 
+    get: 
+      operationId: get_user
+      summary: Lookup a user
+      description: |
+        Looks up a user based upon their ID and returns their personal information.
+        This method just returns the details of the user in question, and not all associated properties like Rewards, ShareLinks, Balances or Referrals.
+      parameters: 
+        - name: accountId
+          in: path
+          description: "The `id` of the Account that this user is a member of. See [Shared vs. Solo accounts](/shared-vs-solo-accounts/) for more info."
+          required: true
+          type: string
+        - name: userId
+          in: path
+          description: "The `id` of the User to find"
+          required: true
+          type: string
+        - $ref: "#/parameters/tenant_alias"
+      responses: 
+        200: 
+          description: User found
+          examples: 
+            "application/json":
+              id: "876343"
+              accountId: "613611"
+              email: "bob@example.com"
+              firstName: "Bob"
+              lastName: "Testerson"
+              referralCode: "BOBTESTERSON"
+              imageUrl: ""
+          schema: 
+            $ref: "#/definitions/User"
+        404: 
+          description: User NOT found
+          schema: 
+            $ref: "#/definitions/Error"
+        default: 
+          description: Unexpected error
+          schema: 
+            $ref: "#/definitions/Error"
+
+
   "/{tenant_alias}/code/{code}": 
     get: 
       operationId: get_code
@@ -419,7 +497,9 @@ paths:
       operationId: list_referrals
       summary: List referrals
       description: |
-        List or queries a set of referrals
+        List all of the referrals in your Referral SaaSquatch tenant. This method is the primary way of getting a full list of everyone that has made a referral and everyone that has been referred. 
+        You can use the parameters for `referringAccountId` and `referringUserId` to look up the referrals for only one user. 
+        This method also supports pagination using the parameters for `limit` and `offset`.
       parameters: 
         - name: limit
           in: query
@@ -540,16 +620,94 @@ paths:
           description: Unexpected error
           schema: 
             $ref: "#/definitions/Error"
+  "/{tenant_alias}/referrals/{referralId}":
+    get:
+      operationId: get_referral
+      summary: Lookup a Referral
+      description: |
+        Looks up a single Referral object by it's associated `id`. This method is helpful for looking in on a particular referral of interest. Since it requires the `id` of the referral to
+        be specified, it isn't applicable for querying all referrals to find those made by a particular user or account. To query for referrals use the [list referrals](#list_referrals) endpoint instead
+        with query parameters specified.
+      parameters: 
+        - name: referralId
+          in: path
+          type: string
+          description: "The `id` of the referral to look up"
+          required: true
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        200: 
+          description: Referral found
+          schema:
+            $ref: "#/definitions/Referral"
+          examples: 
+            "application/json":
+              id: "546270a6e4b0c1871186a920"
+              referredUser: 
+                id: "898746321"
+                accountId: "987321"
+                email: "hello@example.com"
+                firstName: "Henk"
+                lastName: "Thompson"
+                referralCode: "HENKTHOMPSON"
+                imageUrl: ""
+              referrerUser: 
+                id: "14125"
+                accountId: "89842"
+                email: "mark@example.com"
+                firstName: "Mark"
+                lastName: "Smellerson"
+                referralCode: "MARKSMELLERSON"
+                imageUrl: ""
+              referredReward: 
+                type: "PCT_DISCOUNT"
+                id: "546270a6e4b0c1871186a926"
+                dateGiven: 1415737510458
+                dateExpires: null
+                dateCancelled: null
+                accountId: "987321"
+                userId: "898746321"
+                cancellable: true
+                rewardSource: "REFERRED"
+                discountPercent: 20
+                unit: "%"
+              referrerReward: 
+                type: "PCT_DISCOUNT"
+                id: "546270d5e4b0c1871186a93a"
+                dateGiven: 1415737557271
+                dateExpires: null
+                dateCancelled: null
+                accountId: "89842"
+                userId: "14125"
+                cancellable: true
+                rewardSource: "FRIEND_SIGNUP"
+                discountPercent: 20
+                unit: "%"
+              moderationStatus: "ACTIONED"
+              dateReferralStarted: 1415737510411
+              dateReferralPaid: 1415737557217
+              dateReferralEnded: null
+              dateModerated: 1427410131029
+              referredModerationStatus: "APPROVED"
+              referrerModerationStatus: "APPROVED"
+        404: 
+          description: Referral NOT found
+          schema: 
+            $ref: "#/definitions/Error"
+        default: 
+          description: Unexpected error
+          schema: 
+            $ref: "#/definitions/Error"
   "/{tenant_alias}/referrals/moderate":
     post:
       operationId: moderate_referrals
       summary: Moderate referrals
       description: |
-        Moderates one or several referrals by either approving or denying a referral.
+        Moderates one or several referrals by either approving or denying.
         Moderation can apply to one side of a referral, the other side, or both sides (Referrer and Referred).
         When a referral is denied, the associated reward will be "cancelled". 
         A referral can be moderated several times, subsequently cancelling and un-cancelling the associated reward or rewards, and can be done as long as the associated reward is `cancellable`. 
-        Once a reward has been consumed by a Debit Request or sync with a third party system it will no longer be `cancellable` and request to change the moderation will error.
+        Once a reward has been consumed by a debit request or sync with a third party system it will no longer be `cancellable` and request to change the moderation will error.
       parameters: 
       parameters: 
         - name: moderationBulkRequest
@@ -560,7 +718,7 @@ paths:
         - $ref: "#/parameters/tenant_alias"
       responses:
         200: 
-          description: A list of referrals
+          description: Success
         default: 
           description: Unexpected error
           schema: 
