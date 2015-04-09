@@ -3,7 +3,8 @@
 
 {% macro outputProperties(schema, collapse) %}
 
-    <table class="table table-hover apidocs-args {%if collapse %}js-docs-collapse{% endif %}">
+    <div class="{%if collapse %}js-docs-collapsabletable js-docs-collapsabletable-hidden{% endif %}">
+    <table class="table table-hover apidocs-args">
     {% for prop in schema.properties | default(schema.items.properties) %}
          <tr>
             <th class="docs-monospace">
@@ -21,4 +22,5 @@
           </tr>
     {% endfor %}
     </table>
+    </div>
 {% endmacro %}

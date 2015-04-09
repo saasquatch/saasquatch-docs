@@ -9,6 +9,18 @@ jQuery(document).ready(function() {
         content.before(toggler);
     });
     
+    
+    
+    jQuery('.js-docs-collapsabletable').each(function() {
+        var content = jQuery(this);
+        var toggler = jQuery("<a class='js-docs-collapse-toggle'>&nbsp;</a>").click(function(){
+            jQuery(this).toggleClass("active");
+            content.toggleClass("js-docs-collapsabletable-hidden");
+        });
+        content.before(toggler);
+    });
+    
+    
     jQuery('.jsonview').each(function() {
         var each = jQuery(this);
         

@@ -304,3 +304,19 @@ a .link {background-color:#fff;}
       content: "\f054";
     }
 }
+
+
+.js-docs-collapsabletable{
+// TODO: Animating to auto height is hard. May not be 100% do-able with CSS3
+//     -webkit-transition: max-height 0.8s;
+// 	-moz-transition: max-height 0.8s;
+// 	transition: max-height 0.8s;
+
+// 	// Obscenely large max-height to trigger height animation: http://css3.bradshawenterprises.com/animating_height/
+// 	max-height: 1000px;
+	
+    &.js-docs-collapsabletable-hidden{
+      height: 0;
+      overflow: hidden;
+    }
+}
