@@ -21,6 +21,9 @@ securityDefinitions:
     description: Authorize your requests using your apiKey as the HTTP Basic password
 security:
   - basic: []
+externalDocs:
+  description: "Official Referral SaaSquatch documentation"
+  url: "http://docs.referralsaasquatch.com/"
 parameters: 
   tenant_alias: 
     name: tenant_alias
@@ -38,8 +41,7 @@ paths:
         Use this method to update SaaSquatch when the status of an account changes or when a new account is created. If you're using 
         a payment system connector, such as the Recurly connector, then you won't need to use this method. We automatically track account status for Braintree, Stripe, Reculy and Zuora.
       parameters: 
-        - 
-          name: account
+        - name: account
           in: body
           description: Account details of the account to be created or updated
           schema: 
@@ -67,9 +69,7 @@ paths:
           schema: 
             $ref: "#/definitions/Account"
         default: 
-          description: Unexpected error
-          schema: 
-            $ref: "#/definitions/Error"
+          $ref: "#/responses/GeneralError"
 
   "/{tenant_alias}/user": 
     post: 
@@ -84,6 +84,7 @@ paths:
         - name: user
           in: body
           description: Details of the User to be created or updated
+          required: true
           schema: 
             $ref: "#/definitions/User"
         - $ref: "#/parameters/tenant_alias"
@@ -102,9 +103,7 @@ paths:
           schema: 
             $ref: "#/definitions/User"
         default: 
-          description: Unexpected error
-          schema: 
-            $ref: "#/definitions/Error"
+          $ref: "#/responses/GeneralError"
 
   "/{tenant_alias}/account/{accountId}/user/{userId}": 
     get: 
@@ -144,9 +143,7 @@ paths:
           schema: 
             $ref: "#/definitions/Error"
         default: 
-          description: Unexpected error
-          schema: 
-            $ref: "#/definitions/Error"
+          $ref: "#/responses/GeneralError"
 
 
   "/{tenant_alias}/code/{code}": 
@@ -187,9 +184,7 @@ paths:
           schema: 
             $ref: "#/definitions/Error"
         default: 
-          description: Unexpected error
-          schema: 
-            $ref: "#/definitions/Error"
+          $ref: "#/responses/GeneralError"
 
   "/{tenant_alias}/reward/balance": 
     get: 
@@ -248,9 +243,7 @@ paths:
                 referredDiscountPercent: 10
                 referrerDiscountPercent: 20
         default: 
-          description: Unexpected error
-          schema: 
-            $ref: "#/definitions/Error"
+          $ref: "#/responses/GeneralError"
   "/{tenant_alias}/credit/bulkredeem": 
     post: 
       operationId: debit_balance
@@ -260,6 +253,7 @@ paths:
         - name: debit
           in: body
           description: Details of the debit
+          required: true
           schema: 
             $ref: "#/definitions/RewardBalanceDebitRequest"
         - $ref: "#/parameters/tenant_alias"
@@ -274,9 +268,7 @@ paths:
           schema: 
             $ref: "#/definitions/RewardDebitResponse"
         default: 
-          description: Unexpected error
-          schema: 
-            $ref: "#/definitions/Error"
+          $ref: "#/responses/GeneralError"
 
   "/{tenant_alias}/reward":
     get: 
@@ -357,9 +349,7 @@ paths:
                 "redeemedCredit": 0
                 "redeemable": true
         default: 
-          description: Unexpected error
-          schema: 
-            $ref: "#/definitions/Error"  
+          $ref: "#/responses/GeneralError"
   "/{tenant_alias}/credit/{id}/redeem":
     post: 
       operationId: debit_reward
@@ -388,9 +378,7 @@ paths:
           schema: 
             $ref: "#/definitions/RewardDebitResponse"
         default: 
-          description: Unexpected error
-          schema: 
-            $ref: "#/definitions/Error"
+          $ref: "#/responses/GeneralError"
 
   "/{tenant_alias}/discount/{code}":
     get:
@@ -423,9 +411,7 @@ paths:
           schema: 
             $ref: "#/definitions/Error"
         default: 
-          description: Unexpected error
-          schema: 
-            $ref: "#/definitions/Error"
+          $ref: "#/responses/GeneralError"
   "/{tenant_alias}/discount":
     post: 
       operationId: set_coupon
@@ -435,8 +421,7 @@ paths:
         someone signs up for a paid account to set the coupon code used for them. For Stripe and Recurly do not use this call.
         Instead during sign-up, just pass the coupon/referral code in your subcribe call. Works with `PCT_DISCOUNT`
       parameters:
-        - 
-          name: accountDiscount
+        - name: accountDiscount
           in: body
           description: Account discount details to be updated
           schema: 
@@ -450,9 +435,7 @@ paths:
         400:
           description: Not implemented
         default: 
-          description: Unexpected error
-          schema: 
-            $ref: "#/definitions/Error"
+          $ref: "#/responses/GeneralError"
   "/{tenant_alias}/account/{accountId}/discount":
     get:
       operationId: get_account_reward
@@ -489,9 +472,7 @@ paths:
           schema: 
             $ref: "#/definitions/Error"
         default: 
-          description: Unexpected error
-          schema: 
-            $ref: "#/definitions/Error"
+          $ref: "#/responses/GeneralError"
 
   "/{tenant_alias}/referrals":
     get:
@@ -506,6 +487,7 @@ paths:
           in: query
           type: integer
           description: "A limit on the number of results returned. Defaults to `10`."
+          default: 10
         - name: offset
           in: query
           type: integer
@@ -618,9 +600,7 @@ paths:
                   referrerModerationStatus: "APPROVED"
 
         default: 
-          description: Unexpected error
-          schema: 
-            $ref: "#/definitions/Error"
+          $ref: "#/responses/GeneralError"
   "/{tenant_alias}/referrals/{referralId}":
     get:
       operationId: get_referral
@@ -696,9 +676,7 @@ paths:
           schema: 
             $ref: "#/definitions/Error"
         default: 
-          description: Unexpected error
-          schema: 
-            $ref: "#/definitions/Error"
+          $ref: "#/responses/GeneralError"
   "/{tenant_alias}/referrals/moderate":
     post:
       operationId: moderate_referrals
@@ -741,9 +719,7 @@ paths:
         201: 
           description: Webhook endpoint created
         default: 
-          description: Unexpected error
-          schema: 
-            $ref: "#/definitions/Error"
+          $ref: "#/responses/GeneralError"
     get: 
       operationId: list_webhooks
       summary: List webhook subscriptions
@@ -763,9 +739,7 @@ paths:
               - endpointUrl: "https://example.com/hook"
               - endpointUrl: "https://another.example.com/hook"
         default: 
-          description: Unexpected error
-          schema: 
-            $ref: "#/definitions/Error"
+          $ref: "#/responses/GeneralError"
   "/{tenant_alias}/subscription/{url}": 
     delete:
       operationId: delete_webhook
@@ -784,9 +758,7 @@ paths:
         204: 
           description: Endpoint deleted
         default: 
-          description: Unexpected error
-          schema: 
-            $ref: "#/definitions/Error"
+          $ref: "#/responses/GeneralError"
 definitions:
   ## General object details
   Account: 
@@ -850,9 +822,22 @@ definitions:
         type: string
         description: The status of the subscription. One of `PAID`, `TRIAL`, `FREE` or `CANCELLED`
         example: PAID
+        enum:
+          - PAID
+          - TRIAL
+          - FREE
+          - CANCELLED
       billingIntervalType: 
         type: string
         description: "Type of billing interval. One of `DAY`, `WEEK`, `MONTH`, `QUARTER`, `SEMI_ANNUAL` or `YEAR`. Required when `status: 'PAID'`."
+        example: DAY
+        enum:
+          - DAY
+          - WEEK
+          - MONTH
+          - QUARTER
+          - SEMI_ANNUAL
+          - YEAR
       billingIntervalValue: 
         type: integer
         description: "The value of billing interval. Required when `status: PAID`. Example billing intervals"
@@ -922,6 +907,11 @@ definitions:
         type: string
         example: CREDIT
         description: "The type of reward. One of either the following: `PCT_DISCOUNT`, `FEATURE`, `TIME_CREDIT`, `CREDIT`"
+        enum:
+          - PCT_DISCOUNT
+          - FEATURE
+          - TIME_CREDIT
+          - CREDIT
       unit: 
         type: string
         example: cents
@@ -961,6 +951,11 @@ definitions:
       type:
         type: string
         description: "The type of reward. One of either the following: `PCT_DISCOUNT` `FEATURE` `TIME_CREDIT` or `CREDIT`"
+        enum:
+          - PCT_DISCOUNT
+          - FEATURE
+          - TIME_CREDIT
+          - CREDIT
       dateGiven:
         type: integer
         description: "Timestamp	of when this reward was earned."
@@ -976,6 +971,9 @@ definitions:
       rewardSource:
         type: string
         description: "The type of the source of the reward. One of either `FRIEND_SIGNUP` or `REFERRED`."
+        enum:
+          - FRIEND_SIGNUP
+          - REFERRED
       unit:
         type: string
         description: "An identifier for the unit of the reward. E.g. `'credit-in-cents'`, `'freemb'`, `'giftcard20'`, `'tshirt'`, `'freemonth'` or `'%'`"
@@ -1045,6 +1043,11 @@ definitions:
         type: string
         example: CREDIT
         description: "The type of reward. One of either the following: `PCT_DISCOUNT`, `FEATURE`, `TIME_CREDIT`, `CREDIT`"
+        enum:
+          - PCT_DISCOUNT
+          - FEATURE
+          - TIME_CREDIT
+          - CREDIT
       unit: 
         type: string
         example: cents
@@ -1097,16 +1100,27 @@ definitions:
         example: PENDING
         description: |
           "One of `PENDING` or `ACTIONED`. When referrals are manually managed, each referral has a `PENDING` state until it is explicitly moderated."
+        enum:
+          - PENDING
+          - ACTIONED
       referredModerationStatus:
         type: string
         example: PENDING
         description: |
           "One of `PENDING`, `APPROVED` or `DENIED`. Used to identify the *referred* user's moderation status and affect Reward cancellation."
+        enum:
+          - PENDING
+          - APPROVED
+          - DENIED
       referrerModerationStatus:
         type: string
         example: PENDING
         description: |
           "One of `PENDING`, `APPROVED` or `DENIED`. Used to identify the *referrer* user's moderation status and affect Reward cancellation."
+        enum:
+          - PENDING
+          - APPROVED
+          - DENIED
       dateReferralStarted:
         type: integer
         description: "Timestamp	of when this referral was started."
@@ -1234,13 +1248,15 @@ definitions:
       actions:
         type: array
         description: "A list of individual moderation actions for specific referrals. Limited to a maximum of 100 actions per request"
+        minItems: 1
+        maxItems: 100
         items: 
           $ref: "#/definitions/ReferralModerationRequest"
   ReferralModerationRequest:
     description: A request to moderate a single referral
     required:
       - referralId
-      - moderationAction
+      - action
     properties:
       referralId:
         type: string
@@ -1250,6 +1266,13 @@ definitions:
         type: string
         example: REFERRED_DENIED
         description: "The type of moderation action. One of `APPROVED`, `DENIED`, `REFERRER_DENIED`, `REFERRED_DENIED`, `REFERRER_APPROVED`, `REFERRED_APPROVED`"
+        enum:
+          - APPROVED
+          - DENIED
+          - REFERRER_APPROVED
+          - REFERRED_APPROVED
+          - REFERRER_DENIED
+          - REFERRED_DENIED
 
   # Response Types
   Error: 
@@ -1265,3 +1288,8 @@ definitions:
       apiErrorCode: 
         description: A machine error code
         type: string
+responses:
+  GeneralError:
+    description: Unexpected Error
+    schema:
+      $ref: '#/definitions/Error'
