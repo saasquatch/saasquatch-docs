@@ -159,7 +159,8 @@ events. New event types may be added to the API, so avoid building logic that as
 
 ###user.created
 
-Sent whenever a new User is created. Note that this will not fire if a 
+Sent whenever a new User is created. Note: Users can be created via the REST Api, the Squatch.js javascript library, loading the referral
+widget or a batch upload process. Only fires when a new user is created, not for updates or deletes.
 
 ```json
 {
