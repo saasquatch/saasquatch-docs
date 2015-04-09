@@ -19,6 +19,6 @@
     "metalsmith-define": "1.0.0",
     "metalsmith-less": "1.0.3",
     "js-yaml": "^3.0.2",
-    "swagger-parser": "2.1.1"
+    "swagger-parser": "2.3.2"
   }
 }

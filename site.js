@@ -48,7 +48,13 @@ function site(){
         }else if(item['properties']){
           // This is an expanded object / schema and should recusively explore it
           output[field] = {};
+          // Recurses. Loops through all child props.
           extractProperties(item, output[field]);
+        }else if(item['items']){
+          var innerObj = {};
+          output[field] = [innerObj];
+          // Resurses into arrays. Builds a single-item array with the schema of the "ref'd" type
+          extractProperties(item['items'], innerObj);
         }
       });
     }

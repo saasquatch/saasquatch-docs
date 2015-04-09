@@ -443,6 +443,124 @@ paths:
           description: A list of referrals
           schema:
             $ref: "#/definitions/ReferralList"
+          examples: 
+            "application/json": 
+              count: 2
+              totalCount: 4
+              referrals: 
+                - 
+                  id: "5462600de4b09b1c41108f28"
+                  referredUser: 
+                    id: "876343"
+                    accountId: "613611"
+                    email: "logan@example.com"
+                    firstName: "Logan"
+                    lastName: "Volker"
+                    referralCode: "LOGANVOLKER"
+                    imageUrl: ""
+                  referrerUser: 
+                    id: "14125"
+                    accountId: "89842"
+                    email: "mark@example.com"
+                    firstName: "Mark"
+                    lastName: "Smellerson"
+                    referralCode: "MARKSMELLERSON"
+                    imageUrl: ""
+                  referredReward: 
+                    type: "PCT_DISCOUNT"
+                    id: "5462600de4b09b1c41108f2e"
+                    dateGiven: 1415733261275
+                    dateExpires: null
+                    dateCancelled: null
+                    accountId: "613611"
+                    userId: "876343"
+                    cancellable: true
+                    rewardSource: "REFERRED"
+                    discountPercent: 20
+                    unit: "%"
+                  referrerReward: null
+                  moderationStatus: "ACTIONED"
+                  dateReferralStarted: 1415733261238
+                  dateReferralPaid: null
+                  dateReferralEnded: null
+                  dateModerated: 1427410131006
+                  referredModerationStatus: "APPROVED"
+                  referrerModerationStatus: "APPROVED"
+                - 
+                  id: "546270a6e4b0c1871186a920"
+                  referredUser: 
+                    id: "898746321"
+                    accountId: "987321"
+                    email: "hello@example.com"
+                    firstName: "Henk"
+                    lastName: "Thompson"
+                    referralCode: "HENKTHOMPSON"
+                    imageUrl: ""
+                  referrerUser: 
+                    id: "14125"
+                    accountId: "89842"
+                    email: "mark@example.com"
+                    firstName: "Mark"
+                    lastName: "Smellerson"
+                    referralCode: "MARKSMELLERSON"
+                    imageUrl: ""
+                  referredReward: 
+                    type: "PCT_DISCOUNT"
+                    id: "546270a6e4b0c1871186a926"
+                    dateGiven: 1415737510458
+                    dateExpires: null
+                    dateCancelled: null
+                    accountId: "987321"
+                    userId: "898746321"
+                    cancellable: true
+                    rewardSource: "REFERRED"
+                    discountPercent: 20
+                    unit: "%"
+                  referrerReward: 
+                    type: "PCT_DISCOUNT"
+                    id: "546270d5e4b0c1871186a93a"
+                    dateGiven: 1415737557271
+                    dateExpires: null
+                    dateCancelled: null
+                    accountId: "89842"
+                    userId: "14125"
+                    cancellable: true
+                    rewardSource: "FRIEND_SIGNUP"
+                    discountPercent: 20
+                    unit: "%"
+                  moderationStatus: "ACTIONED"
+                  dateReferralStarted: 1415737510411
+                  dateReferralPaid: 1415737557217
+                  dateReferralEnded: null
+                  dateModerated: 1427410131029
+                  referredModerationStatus: "APPROVED"
+                  referrerModerationStatus: "APPROVED"
+
+        default: 
+          description: Unexpected error
+          schema: 
+            $ref: "#/definitions/Error"
+  "/{tenant_alias}/referrals/moderate":
+    post:
+      operationId: moderate_referrals
+      summary: Moderate referrals
+      description: |
+        Moderates one or several referrals by either approving or denying a referral.
+        Moderation can apply to one side of a referral, the other side, or both sides (Referrer and Referred).
+        When a referral is denied, the associated reward will be "cancelled". 
+        A referral can be moderated several times, subsequently cancelling and un-cancelling the associated reward or rewards, and can be done as long as the associated reward is `cancellable`. 
+        Once a reward has been consumed by a Debit Request or sync with a third party system it will no longer be `cancellable` and request to change the moderation will error.
+      parameters: 
+      parameters: 
+        - name: moderationBulkRequest
+          in: body
+          description: Details of the referrals to be moderated
+          schema: 
+            $ref: "#/definitions/ReferralModerationBulkRequest"
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        200: 
+          description: A list of referrals
         default: 
           description: Unexpected error
           schema: 
@@ -702,7 +820,7 @@ definitions:
         description: "The type of the source of the reward. One of either `FRIEND_SIGNUP` or `REFERRED`."
       unit:
         type: string
-        description: "An identifier for the unit of the reward. E.g. `'credit-in-cents'`, `'freemb'`, `'giftcard20'`, `'tshirt'`, `'freemonth'`	Works with: `FEATURE` `TIME_CREDIT` or `CREDIT`"
+        description: "An identifier for the unit of the reward. E.g. `'credit-in-cents'`, `'freemb'`, `'giftcard20'`, `'tshirt'`, `'freemonth'` or `'%'`"
       discountPercent:
         type: integer
         description: "The percent discount. E.g. 10 means 10%	Works with: `PCT_DISCOUNT`"
@@ -812,21 +930,21 @@ definitions:
         $ref: "#/definitions/User"
       referrerUser:
         $ref: "#/definitions/User"
-      referredRewardDto:
+      referredReward:
         $ref: "#/definitions/Reward"
-      referrerRewardDto:
+      referrerReward:
         $ref: "#/definitions/Reward"
       moderationStatus:
         type: string
         example: PENDING
         description: |
           "One of `PENDING` or `ACTIONED`. When referrals are manually managed, each referral has a `PENDING` state until it is explicitly moderated."
-      referredModeratedStatus:
+      referredModerationStatus:
         type: string
         example: PENDING
         description: |
           "One of `PENDING`, `APPROVED` or `DENIED`. Used to identify the *referred* user's moderation status and affect Reward cancellation."
-      referrerModeratedStatus:
+      referrerModerationStatus:
         type: string
         example: PENDING
         description: |
@@ -873,6 +991,21 @@ definitions:
         description: A list of Referral objects
         items: 
           $ref: "#/definitions/Referral"
+  RewardDebitResponse:
+    description: Details about a successful Reward Balance Debit transaction.
+    properties: 
+      creditRedeemed:
+        type: integer
+        example: 200
+        description: The amount of credit that was just debitted.
+      creditAvailable:
+        type: integer
+        example: 1800
+        description: The remaining credit in this account of the same unit type.
+      unit:
+        type: string
+        example: cents
+        description: The type of credit that was just debitted.
 
 	#
   # ========== Request Types ==============
@@ -935,23 +1068,32 @@ definitions:
         type: integer
         example: 200
         description: The amount of credit to be debitted.
+  ReferralModerationBulkRequest:
+    description: A request to perform one or several moderation actions
+    required:
+      - actions
+    properties:
+      actions:
+        type: array
+        description: A list of individual moderation actions for specific referrals
+        items: 
+          $ref: "#/definitions/ReferralModerationRequest"
+  ReferralModerationRequest:
+    description: A request to moderate a single referral
+    required:
+      - referralId
+      - moderationAction
+    properties:
+      referralId:
+        type: string
+        example: "546270a6e4b0c1871186a920"
+        description: "The `id` of the Referral to be moderated"
+      action:
+        type: string
+        example: REFERRED_DENIED
+        description: "The type of moderation action. One of `APPROVED`, `DENIED`, `REFERRER_DENIED`, `REFERRED_DENIED`, `REFERRER_APPROVED`, `REFERRED_APPROVED`"
 
   # Response Types
-  RewardDebitResponse:
-    description: Details about a successful Reward Balance Debit transaction.
-    properties: 
-      creditRedeemed:
-        type: integer
-        example: 200
-        description: The amount of credit that was just debitted.
-      creditAvailable:
-        type: integer
-        example: 1800
-        description: The remaining credit in this account of the same unit type.
-      unit:
-        type: string
-        example: cents
-        description: The type of credit that was just debitted.
   Error: 
     properties: 
       statusCode: 

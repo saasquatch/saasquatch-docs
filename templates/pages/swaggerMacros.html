@@ -2,10 +2,7 @@
 {% macro responseId(method, responseKey) %}{{method.operationId}}-{{responseKey}}{% endmacro %}
 
 {% macro outputProperties(schema, collapse) %}
-    {%if schema.type == "array" %}
-        <p>{{schema.items.description | markdown}}</p>
-    {% endif %}
-    
+
     <table class="table table-hover apidocs-args {%if collapse %}js-docs-collapse{% endif %}">
     {% for prop in schema.properties | default(schema.items.properties) %}
          <tr>
@@ -18,6 +15,8 @@
                 {{prop.description | markdown}}
                 
                 {% if prop.properties %}{{outputProperties(prop, true)}}{% endif %}
+                {% if prop.items %}{{outputProperties(prop.items, true)}}{% endif %}
+
             </td>
           </tr>
     {% endfor %}
