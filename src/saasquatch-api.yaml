@@ -145,7 +145,64 @@ paths:
         default: 
           $ref: "#/responses/GeneralError"
 
-
+  "/{tenant_alias}/account/{accountId}/user/{userId}/sharelinks":
+    get: 
+      operationId: get_sharelinks
+      summary: Lookup a user's share links
+      description: |
+        Gets the share links for a user. Share links are the links that people use to refer their friends and are the same links used in the Referral SaaSquatch widgets. The main 
+        use case for this method is to look up share links to include in other channels like email marketing, CRM and product integration when a widget or mobile webview can't be
+        easily used. For example, one could write "Share this link with your friends, and get rewarded when they sign up" and include the share link looked up using this method.
+        
+        All share links work by dropping a tracking cookie when someone clicks the link and redirecting the new user to a landing page. This cookie includes the value of the 
+        referral code of the person that shared it. The cookie
+        can be read using the `autofill` function of Squatch.js and is also passed along as the `rsCode` parameter in the redirect.
+        For example `http://ssqt.co/pZVp` redirects to `https://www.google.ca/?rsCode=THIRDUSER`.
+        
+        There are many share links for each user, each one tagged with additional metadata for tracking the effectiveness of sharing channels. For example the `facebookShareLink` is used in the 
+        share on Facebook functionality of the widget. When people share on facebook using the widget that `facebookShareLink` will be posted on their wall so that when new people click on that
+        link they will be tracked as a referral and attributed back to Facebook. Note that this does not necessarily guarantee tracking; the generic `shareLink` could simply be copied 
+        and pasted on to Facebook, and due to limitation on http referer information passed on by browsers, it may not be possible to determine which share medium a new sign up came from.
+        
+        In some cases it is preferable to have users share their referral code with friends instead of sharing their referral link. For example mobile apps and cookie blocking may prevent
+        a share link from successfully tracking a referral, and having an input box for "Referral Code" on your product sign up form gets around these limitations and will ensure that more
+        types of referrals can be tracked.
+      parameters: 
+        - $ref: "#/parameters/tenant_alias"
+        - name: accountId
+          in: path
+          description: The ID of the account to look up
+          required: true
+          type: string
+        - name: userId
+          in: path
+          description: Filters share links by `user.id`.
+          required: true
+          type: string
+      tags: 
+        - SHARELINKS
+      responses: 
+        200: 
+          description: A list of share links
+          schema: 
+            $ref: "#/definitions/Sharelink"
+          examples: 
+            "application/json": 
+              "shareLink": "http://ssqt.co/pZVp"
+              "facebookShareLink": "http://ssqt.co/pZVq"
+              "twitterShareLink": "http://ssqt.co/pZVr"
+              "emailShareLink": "http://ssqt.co/pZVs"
+              "mobileShareLink": "http://ssqt.co/pZVt"
+              "mobileFacebookShareLink": "http://ssqt.co/pZVu"
+              "mobileTwitterShareLink": "http://ssqt.co/pZVv"
+              "mobileEmailShareLink": "http://ssqt.co/pZVw"
+        404: 
+          description: User/Account not found
+          schema: 
+            $ref: "#/definitions/Error"  
+        default:
+          $ref: "#/responses/GeneralError"
+            
   "/{tenant_alias}/code/{code}": 
     get: 
       operationId: get_code
@@ -1133,6 +1190,34 @@ definitions:
       dateModerated:
         type: integer
         description: "Timestamp	of when this referral was last moderated."
+  
+  Sharelink:
+    description: Share link for an individual user.
+    properties: 
+      shareLink:
+        type: string
+        description: The unique share link the user can refer their friends with. The Share Link contains the Referral Code for making referrals and a source for Analytics purposes. 
+      facebookShareLink:
+        type: string
+        description: "The Share Link for Facebook."
+      twitterShareLink:
+        type: string
+        description: "The Share Link for Twitter."
+      emailShareLink:
+        type: string
+        description: "The Share Link for Email."
+      mobileShareLink:
+        type: string
+        description: "The Share Link for mobile devices."
+      mobileFacebookShareLink:
+        type: string
+        description: "The Share Link for Facebook on mobile devices."
+      mobileTwitterSharelink:
+        type: string
+        description: "The Share Link for Twitter on mobile devices."
+      mobileEmailShareLink:
+        type: string
+        description: "The Share Link for Email on mobile devices."
         
   WebhookEndpoint:
     description: An endpoint to receive events
@@ -1194,7 +1279,7 @@ definitions:
         type: string
         example: abc123
         description: |
-          Unique identifier for the account. We use this ID to link a group of users together. See Shared vs Solo Accounts to see what you should use here.
+          Unique identifier for the account. We use this ID to link a group of users together. See [Shared vs Solo Accounts](/shared-vs-solo-accounts/) to see what you should use here.
       paymentProviderId:
         type: string
         example: cus_123
