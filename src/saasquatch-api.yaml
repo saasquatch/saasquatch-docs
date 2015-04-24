@@ -166,7 +166,7 @@ paths:
         
         In some cases it is preferable to have users share their referral code with friends instead of sharing their referral link. For example mobile apps and cookie blocking may prevent
         a share link from successfully tracking a referral, and having an input box for "Referral Code" on your product sign up form gets around these limitations and will ensure that more
-        types of referrals can be tracked.
+        types of referrals can be tracked. Use the [Lookup a user API call](#get_user) to find a user's referral code.
       parameters: 
         - $ref: "#/parameters/tenant_alias"
         - name: accountId
