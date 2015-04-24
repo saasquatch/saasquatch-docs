@@ -1,7 +1,7 @@
 ---
 title: Percent Discount Integration Guide (No JS)
 highlights: |
-    Give your users 10% for a year for referring a friend. Follow this guide to setup a 'Give 10%, Get 10% Referral Program' using only the SaaSquatch REST API and no javascript. 
+    Give your users 10% off their bill for a year for referring a friend. Follow this guide to setup a 'Give 10%, Get 10% Referral Program' using only the SaaSquatch REST API and no javascript. 
     Most companies will use [Squatch.js](/guides/percent-discount/) but this provides an example of implementing when javascript is either not desired or
     can't be used.
 slug: guides/percent-discount-nojs
@@ -19,7 +19,7 @@ template: guides.html
     
 <h5 data-toggle="collapse" data-target=".install-step1">1. Identify the user</h5>
 <div class="install-step1 collapse in">
-    <p>After users log into your portal/website, we identify the users so we can enroll them into the referral program.</p>
+    <p>After users log into your app, we identify the users so we can enroll them into the referral program.</p>
     <ul class="unstyled">
         <li><label class="checkbox"><input type="checkbox"> Create an account using the <a href="/api/methods/#account_sync">Update an Account API call</a></label></li>
         <li><label class="checkbox"><input type="checkbox"> Create a user using the <a href="/api/methods/#create_user">Create or Update a User API call</a></label></li>
