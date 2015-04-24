@@ -1015,7 +1015,7 @@ definitions:
           - CREDIT
       dateGiven:
         type: integer
-        description: "Timestamp	of when this reward was earned."
+        description: "Timestamp of when this reward was earned."
       dateExpires:
         type: integer
         description: "Timestamp of when this reward is set to expire."
@@ -1036,19 +1036,19 @@ definitions:
         description: "An identifier for the unit of the reward. E.g. `'credit-in-cents'`, `'freemb'`, `'giftcard20'`, `'tshirt'`, `'freemonth'` or `'%'`"
       discountPercent:
         type: integer
-        description: "The percent discount. E.g. 10 means 10%	Works with: `PCT_DISCOUNT`"
+        description: "The percent discount. E.g. 10 means 10% Works with: `PCT_DISCOUNT`"
       featureType:
         type: string 
-        description: "A unique identifier for the type of feature. E.g. `'freeSeats'` or `'freeMb'`.	Works with: `FEATURE`"
+        description: "A unique identifier for the type of feature. E.g. `'freeSeats'` or `'freeMb'`. Works with: `FEATURE`"
       name:
         type: string
-        description: "The name of the feature. e.g. `'Free Seats'` or `'Free Storage'`	Works with: `FEATURE`"
+        description: "The name of the feature. e.g. `'Free Seats'` or `'Free Storage'` Works with: `FEATURE`"
       description:
         type: string
-        description: "The feature description. e.g. 'Bonus user seats for your account' or 'Extra megabytes of free storage'	Works with: `FEATURE`"
+        description: "The feature description. e.g. 'Bonus user seats for your account' or 'Extra megabytes of free storage' Works with: `FEATURE`"
       quantity:
         type: integer
-        description: "The earned quantity of the feature	Works with:`FEATURE`"
+        description: "The earned quantity of the feature Works with:`FEATURE`"
       assignedCredit:
         type: integer
         description: "The earned quantity of the feature. Works with: `TIME_CREDIT` or `CREDIT`"
@@ -1180,16 +1180,16 @@ definitions:
           - DENIED
       dateReferralStarted:
         type: integer
-        description: "Timestamp	of when this referral was started."
+        description: "Timestamp of when this referral was started."
       dateReferralPaid:
         type: integer
-        description: "Timestamp	of when this referral was marked as `PAID`."
+        description: "Timestamp of when this referral was marked as `PAID`."
       dateReferralEnded:
         type: integer
-        description: "Timestamp	of when this referral was ended."
+        description: "Timestamp of when this referral was ended."
       dateModerated:
         type: integer
-        description: "Timestamp	of when this referral was last moderated."
+        description: "Timestamp of when this referral was last moderated."
   
   Sharelink:
     description: Share link for an individual user.
@@ -1218,7 +1218,7 @@ definitions:
       mobileEmailShareLink:
         type: string
         description: "The Share Link for Email on mobile devices."
-        
+
   WebhookEndpoint:
     description: An endpoint to receive events
     properties:
@@ -1229,7 +1229,7 @@ definitions:
   
   
   
-	#
+ #
   # ========== Response / Envelope Types ==============
   #
   # Only REST response envelopers included in this section.
@@ -1264,7 +1264,7 @@ definitions:
         example: cents
         description: The type of credit that was just debitted.
 
-	#
+ #
   # ========== Request Types ==============
   #
   # Only REST request objects included in this section.
