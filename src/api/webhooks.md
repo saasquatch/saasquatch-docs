@@ -194,7 +194,7 @@ Sent in response to a new referral coupon being created.
     "live": false,
     "created": 1337001337,
     "data": {
-        "code": "ABC123ABC",
+        "codeString": "ABC123ABC",
         "discountPercentage": "10",
         "dateCreated": 1386180000,
         "ratePlanId": null
