@@ -157,14 +157,15 @@ which generated them, so relying on their contents may lead you to build a diffe
 After a webhook subscription is created, it will immediately start receiving webhooks payloads. Each payload has a noted 'type' field which can be used to differentiate between 
 events. New event types may be added to the API, so avoid building logic that assumes it knows all event types.
 
-###user.created
+### user.created
 
-Sent whenever a new User is created. Note that this will not fire if a 
+Sent whenever a new User is created. Note: Users can be created via the REST Api, the Squatch.js javascript library, loading the referral
+widget or a batch upload process. Only fires when a new user is created, not for updates or deletes.
 
 ```json
 {
     "id": "31049u0194u2105",
-    "type": "coupon.created",
+    "type": "user.created",
     "tenantAlias": "AAA111BBB222DDD333",
     "live": false,
     "created": 1337001337,
@@ -181,7 +182,7 @@ Sent whenever a new User is created. Note that this will not fire if a
 ```
 
 
-###coupon.created
+### coupon.created
 
 Sent in response to a new referral coupon being created.
 
@@ -203,7 +204,7 @@ Sent in response to a new referral coupon being created.
 
 
 
-### reward.created</h3>        
+### reward.created
 
 Sent whenever a new reward is created. Data is a single <a href="/api/methods#list_rewards">Reward Object</a> that is returned 
 from the <a href="/api/methods#list_rewards">List Rewards REST API Endpoint</a>

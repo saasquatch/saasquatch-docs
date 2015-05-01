@@ -1,0 +1,77 @@
+---
+slug: search
+template: fullpage.html
+---
+
+<section class="page" id="js-docs-search-results">
+   
+   
+<script id="search-template" type="text/x-handlebars-template">
+   
+    {{#if items}}
+        {{#each items}}
+            <div class="search-results-item">
+                <a href="{{link}}" class="clearfix">
+                    <div class="search-results-title">{{pagemap.metatags.0.title}} <i class="search-results-type fa {{pagemap.metatags.0.type}}"></i></div>
+                    <div class="search-results-body">{{{htmlSnippet}}}</div>
+                    <div class="search-results-link">{{formattedUrl}}</div>
+                </a>
+            </div>
+        {{/each}}
+        
+        <p>{{searchInformation.totalResults}} total results found in {{searchInformation.formattedSearchTime}} seconds</p>
+
+        <div class="docs-search-pager">
+        {{#if queries.previousPage}}
+            <a href="#" class="btn js-search-pager" data-start="{{queries.previousPage.0.startIndex}}" data-q="{{queries.previousPage.0.searchTerms}}">Previous</a>
+        {{/if}}
+        
+        {{#if queries.nextPage}}
+            <a href="#" class="btn js-search-pager" data-start="{{queries.nextPage.0.startIndex}}" data-q="{{queries.nextPage.0.searchTerms}}">Next</a>
+        {{/if}}
+        </div>
+    {{/if}}
+   
+    {{#unless items}}
+    <div class="search-results-none text-center">
+   
+    <h3 class="visible-desktop" style="padding-top:43px">No matching Docs!</h3>
+    <p class="lead">Looks like we couldn't find any documentation page that matches your search term <strong>"{{queries.request.0.searchTerms}}"</strong></p>
+   
+    </div>
+    {{/unless}}
+
+       
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
+
+   
+<div class="well search-page">
+    <div class="row-fluid text-center">
+        <h3>Documentation Search</h3>
+        <form class="js-search-form form-search">
+          <div class="input-append">
+            <input type="text" class="search-query">
+            <button type="submit" class="btn">Search Docs</button>
+          </div>
+        </form>
+        
+        <a href="/" class="">Back to docs</a>
+    </div>
+    
+    <div class="row-fluid">
+    
+    
+        <div id="pretty-results" class="search-results">
+            <div class="text-center search-spinner">
+                <h3>Searching docs...</h3>
+                <i class="fa fa-spinner fa-spin fa-5x"></i>
+            </div>
+       
+        </div>
+        
+        <pre id="results" style="display:none"></pre>
+    </div>
+</div>
+
+</section>

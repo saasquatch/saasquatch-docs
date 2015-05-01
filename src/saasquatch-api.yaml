@@ -21,6 +21,9 @@ securityDefinitions:
     description: Authorize your requests using your apiKey as the HTTP Basic password
 security:
   - basic: []
+externalDocs:
+  description: "Official Referral SaaSquatch documentation"
+  url: "http://docs.referralsaasquatch.com/"
 parameters: 
   tenant_alias: 
     name: tenant_alias
@@ -38,8 +41,7 @@ paths:
         Use this method to update SaaSquatch when the status of an account changes or when a new account is created. If you're using 
         a payment system connector, such as the Recurly connector, then you won't need to use this method. We automatically track account status for Braintree, Stripe, Reculy and Zuora.
       parameters: 
-        - 
-          name: account
+        - name: account
           in: body
           description: Account details of the account to be created or updated
           schema: 
@@ -67,9 +69,7 @@ paths:
           schema: 
             $ref: "#/definitions/Account"
         default: 
-          description: Unexpected error
-          schema: 
-            $ref: "#/definitions/Error"
+          $ref: "#/responses/GeneralError"
 
   "/{tenant_alias}/user": 
     post: 
@@ -77,13 +77,14 @@ paths:
       summary: Create or Update a User
       description: |
         This method creates or updates a User object by performing an atomic upsert operation. Using this method will either replace the information stored about a given user, or 
-        create a new user if a no User with a matching `id` is found. This method is helpful for synchronizing user information from your database into Referral SaaSquatch.
+        create a new user if no User with a matching `id` is found. This method is helpful for synchronizing user information from your database into Referral SaaSquatch.
         This method will not create or update the Account linked by `accountId`. When creating users for the first time ensure that the Account already exists or create it before using this call.
         See the article on [Shared vs Solo Accounts](/shared-vs-solo-accounts/) for more information on Users and Accounts and how they relate.
       parameters: 
         - name: user
           in: body
           description: Details of the User to be created or updated
+          required: true
           schema: 
             $ref: "#/definitions/User"
         - $ref: "#/parameters/tenant_alias"
@@ -102,9 +103,7 @@ paths:
           schema: 
             $ref: "#/definitions/User"
         default: 
-          description: Unexpected error
-          schema: 
-            $ref: "#/definitions/Error"
+          $ref: "#/responses/GeneralError"
 
   "/{tenant_alias}/account/{accountId}/user/{userId}": 
     get: 
@@ -144,11 +143,66 @@ paths:
           schema: 
             $ref: "#/definitions/Error"
         default: 
-          description: Unexpected error
+          $ref: "#/responses/GeneralError"
+
+  "/{tenant_alias}/account/{accountId}/user/{userId}/sharelinks":
+    get: 
+      operationId: get_sharelinks
+      summary: Lookup a user's share links
+      description: |
+        Gets the share links for a user. Share links are the links that people use to refer their friends and are the same links used in the Referral SaaSquatch widgets. The main 
+        use case for this method is to look up share links to include in other channels like email marketing, CRM and product integration when a widget or mobile webview can't be
+        easily used. For example, one could write "Share this link with your friends, and get rewarded when they sign up" and include the share link looked up using this method.
+        
+        All share links work by dropping a tracking cookie when someone clicks the link and redirecting the new user to a landing page. This cookie includes the value of the 
+        referral code of the person that shared it. The cookie
+        can be read using the `autofill` function of Squatch.js and is also passed along as the `rsCode` parameter in the redirect.
+        For example `http://ssqt.co/pZVp` redirects to `https://www.google.ca/?rsCode=THIRDUSER`.
+        
+        There are many share links for each user, each one tagged with additional metadata for tracking the effectiveness of sharing channels. For example the `facebookShareLink` is used in the 
+        share on Facebook functionality of the widget. When people share on facebook using the widget that `facebookShareLink` will be posted on their wall so that when new people click on that
+        link they will be tracked as a referral and attributed back to Facebook. Note that this does not necessarily guarantee tracking; the generic `shareLink` could simply be copied 
+        and pasted on to Facebook, and due to limitation on http referer information passed on by browsers, it may not be possible to determine which share medium a new sign up came from.
+        
+        In some cases it is preferable to have users share their referral code with friends instead of sharing their referral link. For example mobile apps and cookie blocking may prevent
+        a share link from successfully tracking a referral, and having an input box for "Referral Code" on your product sign up form gets around these limitations and will ensure that more
+        types of referrals can be tracked. Use the [Lookup a user API call](#get_user) to find a user's referral code.
+      parameters: 
+        - $ref: "#/parameters/tenant_alias"
+        - name: accountId
+          in: path
+          description: The ID of the account to look up
+          required: true
+          type: string
+        - name: userId
+          in: path
+          description: Filters share links by `user.id`.
+          required: true
+          type: string
+      tags: 
+        - SHARELINKS
+      responses: 
+        200: 
+          description: A list of share links
           schema: 
-            $ref: "#/definitions/Error"
-
-
+            $ref: "#/definitions/Sharelink"
+          examples: 
+            "application/json": 
+              "shareLink": "http://ssqt.co/pZVp"
+              "facebookShareLink": "http://ssqt.co/pZVq"
+              "twitterShareLink": "http://ssqt.co/pZVr"
+              "emailShareLink": "http://ssqt.co/pZVs"
+              "mobileShareLink": "http://ssqt.co/pZVt"
+              "mobileFacebookShareLink": "http://ssqt.co/pZVu"
+              "mobileTwitterShareLink": "http://ssqt.co/pZVv"
+              "mobileEmailShareLink": "http://ssqt.co/pZVw"
+        404: 
+          description: User/Account not found
+          schema: 
+            $ref: "#/definitions/Error"  
+        default:
+          $ref: "#/responses/GeneralError"
+            
   "/{tenant_alias}/code/{code}": 
     get: 
       operationId: get_code
@@ -187,9 +241,7 @@ paths:
           schema: 
             $ref: "#/definitions/Error"
         default: 
-          description: Unexpected error
-          schema: 
-            $ref: "#/definitions/Error"
+          $ref: "#/responses/GeneralError"
 
   "/{tenant_alias}/reward/balance": 
     get: 
@@ -248,9 +300,7 @@ paths:
                 referredDiscountPercent: 10
                 referrerDiscountPercent: 20
         default: 
-          description: Unexpected error
-          schema: 
-            $ref: "#/definitions/Error"
+          $ref: "#/responses/GeneralError"
   "/{tenant_alias}/credit/bulkredeem": 
     post: 
       operationId: debit_balance
@@ -260,6 +310,7 @@ paths:
         - name: debit
           in: body
           description: Details of the debit
+          required: true
           schema: 
             $ref: "#/definitions/RewardBalanceDebitRequest"
         - $ref: "#/parameters/tenant_alias"
@@ -274,9 +325,7 @@ paths:
           schema: 
             $ref: "#/definitions/RewardDebitResponse"
         default: 
-          description: Unexpected error
-          schema: 
-            $ref: "#/definitions/Error"
+          $ref: "#/responses/GeneralError"
 
   "/{tenant_alias}/reward":
     get: 
@@ -357,9 +406,7 @@ paths:
                 "redeemedCredit": 0
                 "redeemable": true
         default: 
-          description: Unexpected error
-          schema: 
-            $ref: "#/definitions/Error"  
+          $ref: "#/responses/GeneralError"
   "/{tenant_alias}/credit/{id}/redeem":
     post: 
       operationId: debit_reward
@@ -388,9 +435,7 @@ paths:
           schema: 
             $ref: "#/definitions/RewardDebitResponse"
         default: 
-          description: Unexpected error
-          schema: 
-            $ref: "#/definitions/Error"
+          $ref: "#/responses/GeneralError"
 
   "/{tenant_alias}/discount/{code}":
     get:
@@ -423,9 +468,7 @@ paths:
           schema: 
             $ref: "#/definitions/Error"
         default: 
-          description: Unexpected error
-          schema: 
-            $ref: "#/definitions/Error"
+          $ref: "#/responses/GeneralError"
   "/{tenant_alias}/discount":
     post: 
       operationId: set_coupon
@@ -435,8 +478,7 @@ paths:
         someone signs up for a paid account to set the coupon code used for them. For Stripe and Recurly do not use this call.
         Instead during sign-up, just pass the coupon/referral code in your subcribe call. Works with `PCT_DISCOUNT`
       parameters:
-        - 
-          name: accountDiscount
+        - name: accountDiscount
           in: body
           description: Account discount details to be updated
           schema: 
@@ -450,9 +492,7 @@ paths:
         400:
           description: Not implemented
         default: 
-          description: Unexpected error
-          schema: 
-            $ref: "#/definitions/Error"
+          $ref: "#/responses/GeneralError"
   "/{tenant_alias}/account/{accountId}/discount":
     get:
       operationId: get_account_reward
@@ -489,9 +529,7 @@ paths:
           schema: 
             $ref: "#/definitions/Error"
         default: 
-          description: Unexpected error
-          schema: 
-            $ref: "#/definitions/Error"
+          $ref: "#/responses/GeneralError"
 
   "/{tenant_alias}/referrals":
     get:
@@ -505,7 +543,8 @@ paths:
         - name: limit
           in: query
           type: integer
-          description: "A limit on the number of reslts returned. Defaults to `10`."
+          description: "A limit on the number of results returned. Defaults to `10`."
+          default: 10
         - name: offset
           in: query
           type: integer
@@ -618,9 +657,7 @@ paths:
                   referrerModerationStatus: "APPROVED"
 
         default: 
-          description: Unexpected error
-          schema: 
-            $ref: "#/definitions/Error"
+          $ref: "#/responses/GeneralError"
   "/{tenant_alias}/referrals/{referralId}":
     get:
       operationId: get_referral
@@ -696,9 +733,7 @@ paths:
           schema: 
             $ref: "#/definitions/Error"
         default: 
-          description: Unexpected error
-          schema: 
-            $ref: "#/definitions/Error"
+          $ref: "#/responses/GeneralError"
   "/{tenant_alias}/referrals/moderate":
     post:
       operationId: moderate_referrals
@@ -708,7 +743,7 @@ paths:
         Moderation can apply to one side of a referral, the other side, or both sides (Referrer and Referred).
         When a referral is denied, the associated reward will be "cancelled". 
         A referral can be moderated several times, subsequently cancelling and un-cancelling the associated reward or rewards, and can be done as long as the associated reward is `cancellable`. 
-        Once a reward has been consumed by a debit request or sync with a third party system it will no longer be `cancellable` and request to change the moderation will error.
+        Some rewards such as the coupons automatically generated by Referral SaaSquatch into Stripe and Recurly are not `cancellable` and requests to change the moderation will error.
       parameters:
         - name: moderationBulkRequest
           in: body
@@ -741,9 +776,7 @@ paths:
         201: 
           description: Webhook endpoint created
         default: 
-          description: Unexpected error
-          schema: 
-            $ref: "#/definitions/Error"
+          $ref: "#/responses/GeneralError"
     get: 
       operationId: list_webhooks
       summary: List webhook subscriptions
@@ -763,9 +796,7 @@ paths:
               - endpointUrl: "https://example.com/hook"
               - endpointUrl: "https://another.example.com/hook"
         default: 
-          description: Unexpected error
-          schema: 
-            $ref: "#/definitions/Error"
+          $ref: "#/responses/GeneralError"
   "/{tenant_alias}/subscription/{url}": 
     delete:
       operationId: delete_webhook
@@ -784,9 +815,7 @@ paths:
         204: 
           description: Endpoint deleted
         default: 
-          description: Unexpected error
-          schema: 
-            $ref: "#/definitions/Error"
+          $ref: "#/responses/GeneralError"
 definitions:
   ## General object details
   Account: 
@@ -850,9 +879,22 @@ definitions:
         type: string
         description: The status of the subscription. One of `PAID`, `TRIAL`, `FREE` or `CANCELLED`
         example: PAID
+        enum:
+          - PAID
+          - TRIAL
+          - FREE
+          - CANCELLED
       billingIntervalType: 
         type: string
         description: "Type of billing interval. One of `DAY`, `WEEK`, `MONTH`, `QUARTER`, `SEMI_ANNUAL` or `YEAR`. Required when `status: 'PAID'`."
+        example: DAY
+        enum:
+          - DAY
+          - WEEK
+          - MONTH
+          - QUARTER
+          - SEMI_ANNUAL
+          - YEAR
       billingIntervalValue: 
         type: integer
         description: "The value of billing interval. Required when `status: PAID`. Example billing intervals"
@@ -922,6 +964,11 @@ definitions:
         type: string
         example: CREDIT
         description: "The type of reward. One of either the following: `PCT_DISCOUNT`, `FEATURE`, `TIME_CREDIT`, `CREDIT`"
+        enum:
+          - PCT_DISCOUNT
+          - FEATURE
+          - TIME_CREDIT
+          - CREDIT
       unit: 
         type: string
         example: cents
@@ -961,9 +1008,14 @@ definitions:
       type:
         type: string
         description: "The type of reward. One of either the following: `PCT_DISCOUNT` `FEATURE` `TIME_CREDIT` or `CREDIT`"
+        enum:
+          - PCT_DISCOUNT
+          - FEATURE
+          - TIME_CREDIT
+          - CREDIT
       dateGiven:
         type: integer
-        description: "Timestamp	of when this reward was earned."
+        description: "Timestamp of when this reward was earned."
       dateExpires:
         type: integer
         description: "Timestamp of when this reward is set to expire."
@@ -976,24 +1028,27 @@ definitions:
       rewardSource:
         type: string
         description: "The type of the source of the reward. One of either `FRIEND_SIGNUP` or `REFERRED`."
+        enum:
+          - FRIEND_SIGNUP
+          - REFERRED
       unit:
         type: string
         description: "An identifier for the unit of the reward. E.g. `'credit-in-cents'`, `'freemb'`, `'giftcard20'`, `'tshirt'`, `'freemonth'` or `'%'`"
       discountPercent:
         type: integer
-        description: "The percent discount. E.g. 10 means 10%	Works with: `PCT_DISCOUNT`"
+        description: "The percent discount. E.g. 10 means 10% Works with: `PCT_DISCOUNT`"
       featureType:
         type: string 
-        description: "A unique identifier for the type of feature. E.g. `'freeSeats'` or `'freeMb'`.	Works with: `FEATURE`"
+        description: "A unique identifier for the type of feature. E.g. `'freeSeats'` or `'freeMb'`. Works with: `FEATURE`"
       name:
         type: string
-        description: "The name of the feature. e.g. `'Free Seats'` or `'Free Storage'`	Works with: `FEATURE`"
+        description: "The name of the feature. e.g. `'Free Seats'` or `'Free Storage'` Works with: `FEATURE`"
       description:
         type: string
-        description: "The feature description. e.g. 'Bonus user seats for your account' or 'Extra megabytes of free storage'	Works with: `FEATURE`"
+        description: "The feature description. e.g. 'Bonus user seats for your account' or 'Extra megabytes of free storage' Works with: `FEATURE`"
       quantity:
         type: integer
-        description: "The earned quantity of the feature	Works with:`FEATURE`"
+        description: "The earned quantity of the feature Works with:`FEATURE`"
       assignedCredit:
         type: integer
         description: "The earned quantity of the feature. Works with: `TIME_CREDIT` or `CREDIT`"
@@ -1045,6 +1100,11 @@ definitions:
         type: string
         example: CREDIT
         description: "The type of reward. One of either the following: `PCT_DISCOUNT`, `FEATURE`, `TIME_CREDIT`, `CREDIT`"
+        enum:
+          - PCT_DISCOUNT
+          - FEATURE
+          - TIME_CREDIT
+          - CREDIT
       unit: 
         type: string
         example: cents
@@ -1097,29 +1157,68 @@ definitions:
         example: PENDING
         description: |
           "One of `PENDING` or `ACTIONED`. When referrals are manually managed, each referral has a `PENDING` state until it is explicitly moderated."
+        enum:
+          - PENDING
+          - ACTIONED
       referredModerationStatus:
         type: string
         example: PENDING
         description: |
           "One of `PENDING`, `APPROVED` or `DENIED`. Used to identify the *referred* user's moderation status and affect Reward cancellation."
+        enum:
+          - PENDING
+          - APPROVED
+          - DENIED
       referrerModerationStatus:
         type: string
         example: PENDING
         description: |
           "One of `PENDING`, `APPROVED` or `DENIED`. Used to identify the *referrer* user's moderation status and affect Reward cancellation."
+        enum:
+          - PENDING
+          - APPROVED
+          - DENIED
       dateReferralStarted:
         type: integer
-        description: "Timestamp	of when this referral was started."
+        description: "Timestamp of when this referral was started."
       dateReferralPaid:
         type: integer
-        description: "Timestamp	of when this referral was marked as `PAID`."
+        description: "Timestamp of when this referral was marked as `PAID`."
       dateReferralEnded:
         type: integer
-        description: "Timestamp	of when this referral was ended."
+        description: "Timestamp of when this referral was ended."
       dateModerated:
         type: integer
-        description: "Timestamp	of when this referral was last moderated."
-        
+        description: "Timestamp of when this referral was last moderated."
+  
+  Sharelink:
+    description: Share link for an individual user.
+    properties: 
+      shareLink:
+        type: string
+        description: The unique share link the user can refer their friends with. The Share Link contains the Referral Code for making referrals and a source for Analytics purposes. 
+      facebookShareLink:
+        type: string
+        description: "The Share Link for Facebook."
+      twitterShareLink:
+        type: string
+        description: "The Share Link for Twitter."
+      emailShareLink:
+        type: string
+        description: "The Share Link for Email."
+      mobileShareLink:
+        type: string
+        description: "The Share Link for mobile devices."
+      mobileFacebookShareLink:
+        type: string
+        description: "The Share Link for Facebook on mobile devices."
+      mobileTwitterSharelink:
+        type: string
+        description: "The Share Link for Twitter on mobile devices."
+      mobileEmailShareLink:
+        type: string
+        description: "The Share Link for Email on mobile devices."
+
   WebhookEndpoint:
     description: An endpoint to receive events
     properties:
@@ -1130,7 +1229,7 @@ definitions:
   
   
   
-	#
+ #
   # ========== Response / Envelope Types ==============
   #
   # Only REST response envelopers included in this section.
@@ -1165,7 +1264,7 @@ definitions:
         example: cents
         description: The type of credit that was just debitted.
 
-	#
+ #
   # ========== Request Types ==============
   #
   # Only REST request objects included in this section.
@@ -1180,7 +1279,7 @@ definitions:
         type: string
         example: abc123
         description: |
-          Unique identifier for the account. We use this ID to link a group of users together. See Shared vs Solo Accounts to see what you should use here.
+          Unique identifier for the account. We use this ID to link a group of users together. See [Shared vs Solo Accounts](/shared-vs-solo-accounts/) to see what you should use here.
       paymentProviderId:
         type: string
         example: cus_123
@@ -1233,14 +1332,16 @@ definitions:
     properties:
       actions:
         type: array
-        description: A list of individual moderation actions for specific referrals
+        description: "A list of individual moderation actions for specific referrals. Limited to a maximum of 100 actions per request"
+        minItems: 1
+        maxItems: 100
         items: 
           $ref: "#/definitions/ReferralModerationRequest"
   ReferralModerationRequest:
     description: A request to moderate a single referral
     required:
       - referralId
-      - moderationAction
+      - action
     properties:
       referralId:
         type: string
@@ -1250,6 +1351,13 @@ definitions:
         type: string
         example: REFERRED_DENIED
         description: "The type of moderation action. One of `APPROVED`, `DENIED`, `REFERRER_DENIED`, `REFERRED_DENIED`, `REFERRER_APPROVED`, `REFERRED_APPROVED`"
+        enum:
+          - APPROVED
+          - DENIED
+          - REFERRER_APPROVED
+          - REFERRED_APPROVED
+          - REFERRER_DENIED
+          - REFERRED_DENIED
 
   # Response Types
   Error: 
@@ -1265,3 +1373,8 @@ definitions:
       apiErrorCode: 
         description: A machine error code
         type: string
+responses:
+  GeneralError:
+    description: Unexpected Error
+    schema:
+      $ref: '#/definitions/Error'
