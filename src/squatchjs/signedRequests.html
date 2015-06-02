@@ -226,3 +226,13 @@ base64.standard_b64encode(hmac.new(secret, message, digestmod=hashlib.sha256).di
 }]);</code></pre>       
             </li>
         </ol>
+
+<h3>How do I turn off Signed Requests?</h3>
+<p>We highly recommend using Signed Requests to prevent users from simulating referrals through the javascript. When turning off Signed Requests, it's advisable to turn off auto moderation on the security page and manually review & approve referrals instead as an additional security layer.</p>
+<p>Signed Requests can be turned off through the Referral SaaSquatch app. Navigate to the Install page and locate the <i>Secure Mode</i> header under which the current status of Signed Requests is displayed. By clicking disable, the Signed Requests will no longer be required.</p>
+
+<p><i>Note: Signed Requests can only be turned off for API integrations.</i></p>
+
+<h3>How do I turn on Signed Requests?</h3>
+
+<p>Signed Requests are turned on by default. If you are running an API implementation and have manually turned off Signed Requests, you can easily turn Secure Mode back on by sending a valid Signed Request with the <a href="/squatchjs#init">squatch.js init function</a>.</p>
