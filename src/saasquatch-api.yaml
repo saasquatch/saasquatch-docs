@@ -794,11 +794,13 @@ paths:
           examples: 
             "application/json": 
               - endpointUrl: "https://example.com/hook"
+                name: "Zapier"
               - endpointUrl: "https://another.example.com/hook"
+                name: "Example"
         default: 
           $ref: "#/responses/GeneralError"
-  "/{tenant_alias}/subscription/{url}": 
-    delete:
+  "/{tenant_alias}/subscription/{url}":
+    delete: 
       operationId: delete_webhook
       summary: Delete a webhook subscription
       description: |
@@ -814,6 +816,25 @@ paths:
       responses: 
         204: 
           description: Endpoint deleted
+        default: 
+          $ref: "#/responses/GeneralError"
+  "/{tenant_alias}/subscription/{url}/test": 
+    post: 
+      operationId: test_webhook
+      summary: Test a webhook subscription
+      description: |
+        Sends a test event a to the specified webhook
+      parameters: 
+        - name: url
+          in: path
+          description: |
+            The url of the endpoint to send a test message to. *Remember to URL-encode this field*
+          required: true
+          type: string
+        - $ref: "#/parameters/tenant_alias"
+      responses: 
+        204: 
+          description: Test message sent
         default: 
           $ref: "#/responses/GeneralError"
 definitions:
@@ -1226,6 +1247,10 @@ definitions:
         type: string
         example: "http://app.example.com/endpoint/sqtch"
         description: The url of the endpoint that receives events
+      name:
+        type: string
+        example: "Zapier"
+        description: Optional name of the endpoint that receives events  
   
   
   

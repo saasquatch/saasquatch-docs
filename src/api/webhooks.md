@@ -74,7 +74,13 @@ endpoint urls will simply result in one subscription being created for that url.
 <tr>
     <td class="docs-monospace">email.referral.paid</td>
     <td>
-        Sent whenever a new referred user upgrades to a paid sucscription.
+        Sent whenever a new referred user upgrades to a paid subscription.
+    </td>
+</tr>
+<tr>
+<td class="docs-monospace">test</td>
+    <td>
+        Sent to test a subscription.
     </td>
 </tr>
 </tbody>
@@ -90,6 +96,7 @@ These methods can be used to create and manage the endpoints that will receive w
  - [Create a webhook subscription](/api/methods#create_webhook)
  - [List webhook subscriptions](/api/methods#list_webhooks)
  - [Delete a webhook subscription](/api/methods#delete_webhook)
+ - [Test a webhook subscription](/api/methods#test_webhook)
 
 <hr/>
 
@@ -270,6 +277,24 @@ Sent whenever a new referred user upgrades to a paid subscription.
         "recipientAccountId": "a1234",
         "subject": "Congratulations! Susy Example signed up for a paid subscription.",
         "message": "&lt;p&gt;This is rendered HTML content.&lt;/p&gt;"
+    }
+}
+```
+
+### test
+
+Sent to test a subscription.
+
+```json
+{
+    "id": "1337049u0194u2105",
+    "type": "test",
+    "tenantAlias": "AAA111BBB222DDD333",
+    "live": false,
+    "created": 1337001337,   
+    "data": {
+        "endpointUrl": "http://example.com/hook",
+        "name": "Example"
     }
 }
 ```
