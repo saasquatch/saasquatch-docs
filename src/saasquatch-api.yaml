@@ -786,7 +786,7 @@ paths:
         - $ref: "#/parameters/tenant_alias"
       responses: 
         200: 
-          description: A list of endpoints urls
+          description: A list of endpoints
           schema: 
             type: array
             items:
@@ -823,7 +823,7 @@ paths:
       operationId: test_webhook
       summary: Test a webhook subscription
       description: |
-        Sends a test event a to the specified webhook
+        Sends a test event to the specified webhook
       parameters: 
         - name: url
           in: path
