@@ -144,6 +144,42 @@ paths:
             $ref: "#/definitions/Error"
         default: 
           $ref: "#/responses/GeneralError"
+          
+  "/{tenant_alias}/user?referralCode={code}":
+    get:
+      operationId: get_user_by_referralcode
+      summary: Lookup a user by Referral Code
+      description: |
+        Looks up a user based upon their `ReferralCode` and returns their personal information.
+        This method is useful for retrieving the user when only the Referral Code is available. For example when a referred user enters a Referral Code during checkout and you want to find out who this Referral Code belongs to.
+      parameters:
+        - name: code
+          in: path
+          description: "The `referralCode` of the user you want to retrieve. For example BOBTESTERSON."
+          required: true
+          type: string
+        - $ref: "#/parameters/tenant_alias"
+      responses: 
+        200: 
+          description: User found
+          examples: 
+            "application/json":
+              id: "876343"
+              accountId: "613611"
+              email: "bob@example.com"
+              firstName: "Bob"
+              lastName: "Testerson"
+              referralCode: "BOBTESTERSON"
+              imageUrl: ""
+          schema: 
+            $ref: "#/definitions/User"
+        404: 
+          description: User NOT found
+          schema: 
+            $ref: "#/definitions/Error"
+        default: 
+          $ref: "#/responses/GeneralError"
+
 
   "/{tenant_alias}/account/{accountId}/user/{userId}/sharelinks":
     get: 
