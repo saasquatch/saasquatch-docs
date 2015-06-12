@@ -145,6 +145,41 @@ paths:
         default: 
           $ref: "#/responses/GeneralError"
 
+  "/{tenant_alias}/user/{code}":
+    get:
+      operationId: get_user_by_referralcode
+      summary: Lookup a user by Referral Code
+      description: |
+        Looks up a user based upon their `ReferralCode` and returns their personal information.
+        This method is useful for retrieving the user when only the Referral Code is available. For example when a referred user enters a Referral Code during checkout and you want to find out who this Referral Code belongs to.
+      parameters:
+        - name: code
+          in: path
+          description: "The `referralCode` of the user you want to retrieve. For example BOBTESTERSON."
+          required: true
+          type: string
+        - $ref: "#/parameters/tenant_alias"
+      responses: 
+        200: 
+          description: User found
+          examples: 
+            "application/json":
+              id: "876343"
+              accountId: "613611"
+              email: "bob@example.com"
+              firstName: "Bob"
+              lastName: "Testerson"
+              referralCode: "BOBTESTERSON"
+              imageUrl: ""
+          schema: 
+            $ref: "#/definitions/User"
+        404: 
+          description: User NOT found
+          schema: 
+            $ref: "#/definitions/Error"
+        default: 
+          $ref: "#/responses/GeneralError"
+
   "/{tenant_alias}/account/{accountId}/user/{userId}/sharelinks":
     get: 
       operationId: get_sharelinks
@@ -155,7 +190,7 @@ paths:
         easily used. For example, one could write "Share this link with your friends, and get rewarded when they sign up" and include the share link looked up using this method.
         
         All share links work by dropping a tracking cookie when someone clicks the link and redirecting the new user to a landing page. This cookie includes the value of the 
-        referral code of the person that shared it. The cookie
+         of the person that shared it. The cookie
         can be read using the `autofill` function of Squatch.js and is also passed along as the `rsCode` parameter in the redirect.
         For example `http://ssqt.co/pZVp` redirects to `https://www.google.ca/?rsCode=THIRDUSER`.
         
@@ -164,9 +199,9 @@ paths:
         link they will be tracked as a referral and attributed back to Facebook. Note that this does not necessarily guarantee tracking; the generic `shareLink` could simply be copied 
         and pasted on to Facebook, and due to limitation on http referer information passed on by browsers, it may not be possible to determine which share medium a new sign up came from.
         
-        In some cases it is preferable to have users share their referral code with friends instead of sharing their referral link. For example mobile apps and cookie blocking may prevent
-        a share link from successfully tracking a referral, and having an input box for "Referral Code" on your product sign up form gets around these limitations and will ensure that more
-        types of referrals can be tracked. Use the [Lookup a user API call](#get_user) to find a user's referral code.
+        In some cases it is preferable to have users share their  with friends instead of sharing their referral link. For example mobile apps and cookie blocking may prevent
+        a share link from successfully tracking a referral, and having an input box for "" on your product sign up form gets around these limitations and will ensure that more
+        types of referrals can be tracked. Use the [Lookup a user API call](#get_user) to find a user's .
       parameters: 
         - $ref: "#/parameters/tenant_alias"
         - name: accountId
@@ -206,14 +241,14 @@ paths:
   "/{tenant_alias}/code/{code}": 
     get: 
       operationId: get_code
-      summary: Lookup a referral code
+      summary: Lookup a 
       description: |
-        Looks up a referral code and the attached details
+        Looks up a  and the attached details
       parameters: 
         - 
           name: code
           in: path
-          description: The referral code to look up. E.g. "BOBTESTERSON"
+          description: The  to look up. E.g. "BOBTESTERSON"
           required: true
           type: string
         - $ref: "#/parameters/tenant_alias"
@@ -224,7 +259,7 @@ paths:
         - TIME_CREDIT
       responses: 
         200: 
-          description: Referral code found
+          description:  found
           examples: 
             "application/json":
               code: "BOBTESTERSON"
@@ -237,7 +272,7 @@ paths:
           schema: 
             $ref: "#/definitions/Code"
         404: 
-          description: Referral code NOT found
+          description:  NOT found
           schema: 
             $ref: "#/definitions/Error"
         default: 
@@ -442,11 +477,11 @@ paths:
       operationId: get_coupon
       summary: Lookup a discount code
       description: |
-        This method lets you look up the details of a referral code and to ensure that it is valid. Works with `PCT_DISCOUNT`
+        This method lets you look up the details of a  and to ensure that it is valid. Works with `PCT_DISCOUNT`
       parameters: 
         - name: code
           in: path
-          description: The coupon/referral code to look up. Eg. BOBTESTERSON
+          description: The coupon/ to look up. Eg. BOBTESTERSON
           required: true
           type: string
         - $ref: "#/parameters/tenant_alias"
@@ -454,7 +489,7 @@ paths:
         - PCT_DISCOUNT
       responses:
         200:
-          description: Information about the coupon/referral code
+          description: Information about the coupon/
           examples: 
             "application/json":
               "couponCode" : "BOBTESTERSON"
@@ -464,7 +499,7 @@ paths:
           schema:
             $ref: "#/definitions/DiscountCode"
         404:
-          description: Coupon/referral code not found
+          description: Coupon/ not found
           schema: 
             $ref: "#/definitions/Error"
         default: 
@@ -476,7 +511,7 @@ paths:
       description: |
         This method associates a new account with their referrer. Use this method when 
         someone signs up for a paid account to set the coupon code used for them. For Stripe and Recurly do not use this call.
-        Instead during sign-up, just pass the coupon/referral code in your subcribe call. Works with `PCT_DISCOUNT`
+        Instead during sign-up, just pass the coupon/ in your subcribe call. Works with `PCT_DISCOUNT`
       parameters:
         - name: accountDiscount
           in: body
@@ -874,7 +909,7 @@ definitions:
         type: integer
         description: |
           An integer representing the discount percentage from being referred. 
-          This will only have a value if the account has a coupon/referral code already associated with it, or if `couponCode` was passed as an argument.
+          This will only have a value if the account has a coupon/ already associated with it, or if `couponCode` was passed as an argument.
       referrerDiscountPercent:
         type: integer
         description: An integer representing the discount earned from referring other accounts.
@@ -931,9 +966,9 @@ definitions:
         type: string
         example: BOBTESTERSON
         description: |
-          The referral code of the person that referred this account. Use squatch.js autofill to retrieve this value from the tracking cookie on your checkout form.
+          The  of the person that referred this account. Use squatch.js autofill to retrieve this value from the tracking cookie on your checkout form.
   Code: 
-    description: A referral code, details of the person who it belongs to, and details of the reward it unlocks
+    description: A , details of the person who it belongs to, and details of the reward it unlocks
     properties: 
       code: 
         type: string
@@ -952,11 +987,11 @@ definitions:
       reward: 
         $ref: "#/definitions/RewardTemplate"
   DiscountCode:
-    description: Information about the coupon/referral code
+    description: Information about the coupon/
     properties:
       couponCode:
         type: string
-        description: The coupon/referral code
+        description: The coupon/
         example: "BOBTESTERSON"
       referrerName:
         type: string
@@ -970,7 +1005,7 @@ definitions:
       dateCreated:
         type: integer
         example: 1377727546528
-        description: "Timestamp - The coupon/referral code to look up"
+        description: "Timestamp - The coupon/ to look up"
       ratePlanId:
         type: string
         description: Zuora only The Zuora rate plan ID used to apply this coupon.
@@ -999,12 +1034,12 @@ definitions:
         type: integer
         example: 2000
         description: |
-          The amount of credit that this referral code is valid for. e.g. for $20 this
+          The amount of credit that this  is valid for. e.g. for $20 this
           object would have credit=2000, unit="cents". Only works for `TIME_CREDIT`, `CREDIT`
       discountPercent: 
         type: integer
         description: |
-          The percent discount that the referral code is valid for. E.g. "10" for "10%". Only works with `PCT_DISCOUNT`
+          The percent discount that the  is valid for. E.g. "10" for "10%". Only works with `PCT_DISCOUNT`
       monthsDiscountIsValid: 
         type: integer
         description: When this reward is set to expire.
@@ -1019,7 +1054,7 @@ definitions:
         description: The human readable description of the feature. Only works with types `FEATURE`
       quantity: 
         type: integer
-        description: The quantity of feature that this referral code is valid for.  Only works with types `FEATURE`
+        description: The quantity of feature that this  is valid for.  Only works with types `FEATURE`
   Reward:
     description: Details of an individual reward.
     properties: 
@@ -1094,7 +1129,7 @@ definitions:
       referralCode:
         type: string
         example: "BOBTESTERSON"
-        description: The referral code *used for sharing by this user*
+        description: The  *used for sharing by this user*
       email:
         type: string
         example: "bob@example.com"
@@ -1217,7 +1252,7 @@ definitions:
     properties: 
       shareLink:
         type: string
-        description: The unique share link the user can refer their friends with. The Share Link contains the Referral Code for making referrals and a source for Analytics purposes. 
+        description: The unique share link the user can refer their friends with. The Share Link contains the  for making referrals and a source for Analytics purposes. 
       facebookShareLink:
         type: string
         description: "The Share Link for Facebook."
@@ -1257,7 +1292,7 @@ definitions:
  #
   # ========== Response / Envelope Types ==============
   #
-  # Only REST response envelopers included in this section.
+  # Only REST response envelopers included in thilookups section.
   #
   
   ReferralList:
@@ -1314,7 +1349,7 @@ definitions:
         type: string
         example: BOBTESTERSON
         description: |
-          The coupon/referral code of the user that referred this user. Can be obtained from the referral-tracking cookie using squatch.js coupon autofill.
+          The coupon/ of the user that referred this user. Can be obtained from the referral-tracking cookie using squatch.js coupon autofill.
   RewardDebitRequest:
     description: A request to debit a single reward
     required:
