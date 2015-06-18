@@ -68,8 +68,7 @@ function site(){
 
   var ms = Metalsmith(__dirname)
   .use(define({
-      "robots": process.env.ROBOTS || "true",
-      "dotComCdn": "http://saasquatch.wpengine.netdna-cdn.com"
+      "robots": process.env.ROBOTS || "true"
   }))
   .use(swagger({
       path: "saasquatch-api.yaml"
