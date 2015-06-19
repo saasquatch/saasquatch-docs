@@ -15,9 +15,10 @@ jQuery.ready(function(){
     <ul class="nav-pills">
       <li><a href="#init">init</a></li>
       <li><a href="#autofill">autofill</a></li>
-      <li><a href="#getReward">getReward</a></li>
       <li><a href="#open">open</a></li>
       <li><a href="#close">close</a></li>
+      <li><a href="#getRewardBalance">getRewardBalance</a></li>
+      <li><a href="#getReward">getReward <span class="label">deprecated</span></a></li>
       <li class="nav-header">squatch.js functions</li>
     </ul>
 </div>
@@ -46,14 +47,14 @@ jQuery.ready(function(){
           </tr>
           <tr>
             <th>account_id</th>
-            <td><span class="label">Required for Popup</span></td>
+            <td><span class="label">Required for Widget</span></td>
             <td>
                 We use this ID to link a group of users together. See <a href="/shared-vs-solo-accounts">Shared vs Solo Accounts</a> to see what you should use here.
             </td>
           </tr>
           <tr>
             <th>payment_provider_id</th>
-            <td><span class="label">Required for Popup</span></td>
+            <td><span class="label">Required for Widget</span></td>
             <td>
                 The payment_provider_id is either the Stripe Customer ID, the Recurly Account ID, the Braintree Account ID or the Zuora Account ID. Can be <code>null</code>
                 for <a href="/free-trials">free trials or freemium accounts</a>. You must use <a href="/squatchjs/signed-requests">Signed Requests</a> to set payment_provider_id 
@@ -88,23 +89,23 @@ jQuery.ready(function(){
             <td><span class="label">Optional</span></td>
             <td>
                 <p>
-                    The referral code of the account that referred this <code>account_id</code> (i.e. if BOB referred you, this value would be BOB)
+                    The referral code of the person that referred this <code>account_id</code> (i.e. if Bob referred you, this value would be BOB)
                 </p>
                 <ul>
-                    <li>
-                        Automatically calculated when <code>payment_provider_id</code> exists
-                    </li>
                     <li>
                         Defaults to the first referral cookie value detected for <code>FREE</code> or <code>TRIAL</code> accounts.
                     </li>
                     <li>
-                        If someone uses a new or different referral code during checkout, set that value here.
+                        Stores the value that is looked up with <a href="/squatchjs#autofill">Coupon Autofill</a>
+                    </li>
+                    <li>
+                        If someone uses a referral code during checkout, set that value here.
+                    </li>
+                    <li>
+                        Automatically calculated from integrations that use <code>payment_provider_id</code>
                     </li>
                     <li>
                         Will not update a value inside of a payment provider. Do not use when <code>payment_provider_id</code> exists.
-                    </li>
-                    <li>
-                        Provides the value used in <a href="/squatchjs#autofill">Coupon Autofill</a>
                     </li>
                     <li>
                         Can also be <a href="/api/methods#account_sync">set using the REST API</a>.
@@ -114,17 +115,17 @@ jQuery.ready(function(){
           </tr>
           <tr>
             <th>user_id</th>
-            <td><span class="label">Required for Popup</span></td>
+            <td><span class="label">Required for Widget</span></td>
             <td>A user ID from your system (must be unique for every user). We use this to uniquely track users, and lets us handle accounts that are shared between users.</td>
           </tr>
           <tr>
             <th>email</th>
-            <td><span class="label">Required for Popup</span></td>
+            <td><span class="label">Required for Widget</span></td>
             <td>The e-mail address of the user. We use this to contact someone when they have a successful referral.</td>
           </tr>
           <tr>
             <th>first_name</th>
-            <td><span class="label">Required for Popup</span></td>
+            <td><span class="label">Required for Widget</span></td>
             <td>The user's first name</td>
           </tr>
           <tr>
@@ -143,23 +144,40 @@ jQuery.ready(function(){
             <td>A HMAC-SHA2 checksum of the other parameter values. Used to validate that data originated from your servers. For details, see the <a href="/squatchjs/signed-requests">Signed Requests documentation</a>.</td>
           </tr>
           <tr>
-            <th>fb_share_image</th>
+            <th>fb_share_image †</th>
             <td><span class="label">Optional</span></td>
             <td>Defaults to no image for Facebook referrals. If you provide an absolute URL an image it will be used when a referral is made on Facebook. Minimum image size is 114px tall or 155px wide. Not signed in the checksum.</td>
           </tr>
           <tr>
-            <th>mode</th>
+            <th>mode †</th>
             <td><span class="label">Optional</span></td>
-            <td>Sets the mode the squatch widget is operating in on the page it's being loaded on. Defaults to popup mode. Can be set to 'popup' or 'embedded'. Not signed in the checksum.</td>
+            <td>
+                <p>Sets the mode the widget is operating in on the page it's being loaded on. Valid options are <code>POPUP</code> (default), <code>EMBED</code> and <code>NOCONTENT</code>. Not signed in the checksum.</p>
+                <ul>
+                    <li>
+                        <b>Popup mode</b> (<code>POPUP</code>) requires an element with <code>class="squatchpop"</code> applied to trigger the popup to show or can be shown with the <a href="/squatchjs/#open">open method</a>
+                    </li>
+                    <li>
+                        <b>Embed mode</b> (<code>EMBED</code>) requires a div with <code>id="squatchembed"</code> to control where the widget is embedded
+                    </li>
+                    <li>
+                        <b>No content mode</b> (<code>NOCONTENT</code>) allows user tracking and does not load any widget
+                    </li>
+                </ul>            
+            </td>
           </tr>
     </table>
-    
-      <p>
-        <span class="label">Required for Popup</span> - The parameters with this label can be safely ommitted when all you're doing on the page 
-        is <a href="#autofill">coupon autofill</a>, but they are required to show users their referral program popup. Without these 
-        paramaters, your "refer-a-friend" buttons won't work.
-      </p>
-      
+    <div class="bs-callout bs-callout-warning">
+      <h4>Required for Widget</h4>
+        The parameters with the label <span class="label">Required for Widget</span> are not required when all you're doing on the page
+        is <a href="#autofill">coupon autofill</a>, but they are required to show users their referral program widget as a popup or embedded in your page. Without these 
+        paramaters, your "refer-a-friend" buttons won't work and your widget will show a <a href="/squatchjs/issue/">RS0XX issue code</a>.
+    </div>
+    <div class="bs-callout bs-callout-warning">
+      <h4><sup>†</sup> not included in checksum</h4>
+      These fields should not be included when generating a <code>checksum</code> for <a href="/squatchjs/signed-requests">Signed Requests</a>.
+    </div>
+
     </div>
     
     
@@ -242,11 +260,98 @@ _sqh.push(['autofill', '#my_coupon']);
 &lt;input type="text" name="Coupon" id="my_coupon" value="" /&gt; &lt;!-- This input box will get autofilled --&gt; </code></pre>
 </section>
 
-<section id="getReward">
+<section id="open">
     <div class="page-header">
-        <h1>getReward <small>squatch.js function reference</small></h1>
+        <h1>open <small>squatch.js function reference</small></h1>
+    </div>
+    
+    <p>You can programatically open the referral program widget on any page of your application where Referral SaaSquatch javascript has been <a href="#init">initialized</a>.</p>
+    <h4>Example</h4>
+        <pre><code class="lang-html">&lt;script type="text/javascript"&gt;
+    _sqh.push('open');
+&lt;/script&gt;</code></pre>
+
+    <h3>Pre-Opened Widget</h3>
+    <p>The referral program widget can be pre-opened on any page of your application where Referral SaaSquatch javascript has been <a href="#init">initialized</a>. To do this, add the paramter, "squatch_open" to the URL.</p>
+    <h4>Example</h4>
+    <pre> http://example.com/?squatch_open</code></pre>
+    
+    
+</section>
+
+<section id="close">
+    <div class="page-header">
+        <h1>close <small>squatch.js function reference</small></h1>
     </div>
 
+    <p>You can programatically open the referral program widget on any page of your application where Referral SaaSquatch javascript has been <a href="#init">initialized</a>.</p>
+    <h4>Example</h4>
+        <pre><code class="lang-html">&lt;script type="text/javascript"&gt;
+    _sqh.push('close');
+&lt;/script&gt;</code></pre>
+</section>
+
+<section id="getRewardBalance">
+    <div class="page-header">
+        <h1>getRewardBalance <small>squatch.js function reference</small></h1>
+    </div>
+
+    <p>Looks up the Reward Balance reward for the currently logged in user. (this is the user identified in ‘init’)</p>
+    <pre><code class="lang-js">_sqh.push(['getRewardBalance', function(rewardBalance){ ... }]);</code></pre>
+  
+    <h4>Parameters</h4>
+    <div>
+        <table class="table table-hover">
+          <tr>
+            <th>fn</th>
+            <td>
+                <p>A callback function with a single argument <code>rewardBalance</code>. Returns the same <a href="/api/methods/#list_balances">Reward Balance object
+                as the REST API</a></p>
+          </td>
+          </tr>
+      </table>
+    </div>
+
+    <hr />
+    
+    <h4>Example</h4>
+    <pre><code class="lang-html">&lt;script type="text/javascript"&gt;
+var _sqh = _sqh || [];
+
+// Push user details for a user who is logged in to your system
+_sqh.push(['init', {
+   tenant_alias: 'test_bpinhag9yagag',
+   account_id: 'abc',
+   payment_provider_id: 'cus_1234',
+   user_id: '5678',
+   email: 'bob@example.com',
+   first_name: 'Bob',
+   last_name: 'Testerson'
+}]);
+
+_sqh.push(['getRewardBalance', function(rewardBalance){ 
+    // Gets the current user's (e.g. Bob Testerson) reward balance
+    // e.g. show this on the My Account page to show the current user's info
+    console.log(rewardBalance.0.totalAssignedCredit);
+}]);
+
+// Include squatch.js
+(function(){function l(){var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src=location.protocol+"//d2rcp9ak152ke1.cloudfront.net/assets/javascripts/squatch.min.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(s,t)}if(window.attachEvent){window.attachEvent("onload",l)}else{window.addEventListener("load",l,false)}})();
+&lt;/script&gt;</code></pre>
+</section>
+
+
+
+<section id="getReward">
+    <div class="page-header">
+        <h1>getReward <span class="label">DEPRECATED</span></h1>
+    </div>
+
+    <div class="bs-callout bs-callout-danger">
+      <h4>Deprecated</h4>
+      Only works with PCT_DISCOUNT reward. Prefer to use the newer <a href="#getRewardBalance">getRewardBalance</a> method.
+    </div>
+  
     <p>Looks up the referral reward for the currently logged in user. (this is the user identified in ‘init’)</p>
     <pre><code class="lang-js">_sqh.push(['getReward', function(reward){ ... }]);</code></pre>
   
@@ -324,33 +429,3 @@ _sqh.push(['getReward', function(reward){
 &lt;/script&gt;</code></pre>
 </section>
 
-<section id="open">
-    <div class="page-header">
-        <h1>open <small>squatch.js function reference</small></h1>
-    </div>
-    
-    <p>You can programatically open the referral program widget on any page of your application where Referral SaaSquatch javascript has been <a href="#init">initialized</a>.</p>
-    <h4>Example</h4>
-        <pre><code class="lang-html">&lt;script type="text/javascript"&gt;
-    _sqh.push('open');
-&lt;/script&gt;</code></pre>
-
-    <h3>Pre-Opened Widget</h3>
-    <p>The referral program widget can be pre-opened on any page of your application where Referral SaaSquatch javascript has been <a href="#init">initialized</a>. To do this, add the paramter, "squatch_open" to the URL.</p>
-    <h4>Example</h4>
-    <pre> http://example.com/?squatch_open</code></pre>
-    
-    
-</section>
-
-<section id="close">
-    <div class="page-header">
-        <h1>close <small>squatch.js function reference</small></h1>
-    </div>
-
-    <p>You can programatically open the referral program widget on any page of your application where Referral SaaSquatch javascript has been <a href="#init">initialized</a>.</p>
-    <h4>Example</h4>
-        <pre><code class="lang-html">&lt;script type="text/javascript"&gt;
-    _sqh.push('close');
-&lt;/script&gt;</code></pre>
-</section>

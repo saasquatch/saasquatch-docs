@@ -9,7 +9,7 @@ Once you've made changes to a theme and pushed those changes to you remote git r
 use the saasquatch-cli. The [saasquatch-cli](https://github.com/saasquatch/saasquatch-cli) is a command-line tool for interacting with your Referral SaaSquatch account. It 
 is distributed as a [node.js](http://nodejs.org/) package via [npm](https://www.npmjs.com/package/saasquatch-cli).
 
-<div class="bs-callout bs-callout-default">
+<div class="bs-callout bs-callout-info">
   <h4>Node.js and NPM required</h4>
   The only requirement for installing the saasquatch-cli is that you have Node.js and NPM installed on your computer. The fastest way to install Node is to 
   [download and install one of the node.js pre-packaged installers](https://nodejs.org/).
@@ -45,6 +45,6 @@ squatch publish -t test_alu125hh1si9w -k TEST_BHASKh5125Las5hL125oh3VbLmPxUSs
 
 <div class="bs-callout bs-callout-warning">
   <h4>squatch renamed</h4>
-  As of v1.0.0 the executable was renamed to `squatch` from `saasquatch-cli`. To make sure you're always using the latest version, you can update
+  As of v1.0.0 the executable was renamed from `saasquatch-cli` to `squatch`. To make sure you're always using the latest version, you can update
   the installed version with `npm update -g saasquatch-cli`. The node package and github repo names and core functionality are unchanged.
 </div>
