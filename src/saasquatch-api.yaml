@@ -593,6 +593,22 @@ paths:
           in: query
           type: string
           description: "When included, filters the results to only referrals that were referred users with this `UserId`"
+        - name: dateReferralPaid
+          in: query
+          type: string
+          description: "When included, filters the results either to the exact timestamp if only one value is given, or a range if devided by a comma. I.E. 0,123412451 gives all referrals that converted between 0 and 123412451."
+        - name: dateReferralEnded
+          in: query
+          type: string
+          description: "When included, filters the results either to the exact timestamp if only one value is given, or a range if devided by a comma. I.E. 0,123412451 gives all referrals that ended between 0 and 123412451."
+        - name: referredModerationStatus
+          in: query
+          type: string
+          description: "When included, filters the result to only include referred users with that status. Statuses that are accepted: PENDING, APPROVED or DENIED."
+        - name: referrerModerationStatus
+          in: query
+          type: string
+          description: "When included, filters the result to only include referrers with that status. Statuses that are accepted: PENDING, APPROVED or DENIED."
         - $ref: "#/parameters/tenant_alias"
       responses:
         200: 
