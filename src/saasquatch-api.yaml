@@ -604,11 +604,11 @@ paths:
         - name: referredModerationStatus
           in: query
           type: string
-          description: "When included, filters the result to only include referred users with that status. Statuses that are accepted: PENDING, APPROVED or DENIED."
+          description: "When included, filters the result to only include referred users with that status. Statuses that are accepted: `PENDING`, `APPROVED` or `DENIED`."
         - name: referrerModerationStatus
           in: query
           type: string
-          description: "When included, filters the result to only include referrers with that status. Statuses that are accepted: PENDING, APPROVED or DENIED."
+          description: "When included, filters the result to only include referrers with that status. Statuses that are accepted: `PENDING`, `APPROVED` or `DENIED`."
         - $ref: "#/parameters/tenant_alias"
       responses:
         200: 
