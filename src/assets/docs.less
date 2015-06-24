@@ -120,6 +120,17 @@ a .link {background-color:#fff;}
 }
 
 /**
+    Disables the "Affix" bootstrap plugin for mobile
+    
+    Taken from: http://stackoverflow.com/questions/17394854/how-can-i-disable-bootstraps-affix-on-smaller-screens
+*/
+@media (max-width: 768px) {
+    .affix {
+        position: static;
+    }
+}
+
+/**
     Install checklist style for collapsable todo list
     
     Used in integration guides

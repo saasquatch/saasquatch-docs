@@ -11,50 +11,161 @@
     <li><a href="/api/errors">Errors</a></li>
     <li><a href="/api/webhooks">Webhooks</a></li>
 
-    
-    <li class="nav-header">Accounts</li>
+    <li class="nav-header">Methods</li>
 
-    <li><a href="/api/methods#account_sync"><i class="fa fa-docs-chevron"></i>Create or update an account</a></li>
+</ul>
+<style type="text/css">
+  #accordion-scroller.affix{
+    top: 100px;
+    background: #FFF;
+    border-radius: 3px;
+  }
+</style>
 
-    <li class="nav-header">Users</li>
+<div id="accordion-holder">
+  <div id="accordion-scroller" data-spy="affix" data-offset-top="290" data-clampedwidth="#accordion-holder">
+    <div class="accordion" id="apiAccordion">
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#apiAccordion" href="#apinav-accounts">
+                    Accounts
+                  </a>
+        </div>
+        <div id="apinav-accounts" class="accordion-body collapse">
+          <div class="accordion-inner">
+            <ul>
+              <li><a href="/api/methods#account_sync"><i class="fa fa-docs-chevron"></i>Create or update an account</a></li>
+              <li><a href="/api/methods#get_account"><i class="fa fa-docs-chevron"></i>Lookup an account</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
-    <li><a href="/api/methods#create_user"><i class="fa fa-docs-chevron"></i>Create or update a user</a></li>
-    <li><a href="/api/methods#get_user"><i class="fa fa-docs-chevron"></i>Lookup a user</a></li>
-    <li><a href="/api/methods#get_user_by_referralcode"><i class="fa fa-docs-chevron"></i>Lookup a user by Referral Code</a></li>
-    <li><a href="/api/methods#get_sharelinks"><i class="fa fa-docs-chevron"></i>Lookup a user's share links</a></li>
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#apiAccordion" href="#apinav-users">
+        Users
+      </a>
+        </div>
+        <div id="apinav-users" class="accordion-body collapse">
+          <div class="accordion-inner">
+            <ul>
+              <li><a href="/api/methods#list_users"><i class="fa fa-docs-chevron"></i>List users</a></li>
+              <li><a href="/api/methods#create_user"><i class="fa fa-docs-chevron"></i>Create or update a user</a></li>
+              <li><a href="/api/methods#get_user"><i class="fa fa-docs-chevron"></i>Lookup a user</a></li>
+              <li><a href="/api/methods#get_user_by_referralcode"><i class="fa fa-docs-chevron"></i>Lookup a user by referral code</a></li>
+              <li><a href="/api/methods#get_sharelinks"><i class="fa fa-docs-chevron"></i>Lookup a user's share links</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#apiAccordion" href="#apinav-referral-codes">
+        Referral Codes
+      </a>
+        </div>
+        <div id="apinav-referral-codes" class="accordion-body collapse">
+          <div class="accordion-inner">
+            <ul>
+              <li><a href="/api/methods#get_code"><i class="fa fa-docs-chevron"></i>Lookup a referral code</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#apiAccordion" href="#apinav-referrals">
+        Referrals
+      </a>
+        </div>
+        <div id="apinav-referrals" class="accordion-body collapse">
+          <div class="accordion-inner">
+            <ul>
+              <li><a href="/api/methods#list_referrals"><i class="fa fa-docs-chevron"></i>List referrals</a></li>
+              <li><a href="/api/methods#get_referral"><i class="fa fa-docs-chevron"></i>Lookup a referral</a></li>
+              <li><a href="/api/methods#moderate_referrals"><i class="fa fa-docs-chevron"></i>Moderate referrals</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
 
-    <li class="nav-header">Referral Codes</li>
 
-    <li><a href="/api/methods#get_code"><i class="fa fa-docs-chevron"></i>Lookup a referral code</a></li>
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#apiAccordion" href="#apinav-reward-balances">
+        Reward Balances
+      </a>
+        </div>
+        <div id="apinav-reward-balances" class="accordion-body collapse">
+          <div class="accordion-inner">
+            <ul>
+              <li><a href="/api/methods#list_balances"><i class="fa fa-docs-chevron"></i>List reward balances</a></li>
+              <li><a href="/api/methods#debit_balance"><i class="fa fa-docs-chevron"></i>Debit a reward balance</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
-    <li class="nav-header">Referrals</li>
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#apiAccordion" href="#apinav-rewards">
+        Rewards
+      </a>
+        </div>
+        <div id="apinav-rewards" class="accordion-body collapse">
+          <div class="accordion-inner">
+            <ul>
+              <li><a href="/api/methods#list_rewards"><i class="fa fa-docs-chevron"></i>List an account's rewards</a></li>
+              <li><a href="/api/methods#debit_reward"><i class="fa fa-docs-chevron"></i>Redeem a single reward</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
-    <li><a href="/api/methods#list_referrals"><i class="fa fa-docs-chevron"></i>List referrals</a></li>
-    <li><a href="/api/methods#get_referral"><i class="fa fa-docs-chevron"></i>Lookup a referral</a></li>
-    <li><a href="/api/methods#moderate_referrals"><i class="fa fa-docs-chevron"></i>Moderate referrals</a></li>
 
-    <li class="nav-header">Balances</li>
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#apiAccordion" href="#apinav-webhooks">
+        Webhooks
+      </a>
+        </div>
+        <div id="apinav-webhooks" class="accordion-body collapse">
+          <div class="accordion-inner">
+            <ul>
+              <li><a href="/api/methods#create_webhook"><i class="fa fa-docs-chevron"></i>Create a webhook subscription</a></li>
+              <li><a href="/api/methods#list_webhooks"><i class="fa fa-docs-chevron"></i>List webhook subscriptions</a></li>
+              <li><a href="/api/methods#delete_webhook"><i class="fa fa-docs-chevron"></i>Delete a webhook subscription</a></li>
+              <li><a href="/api/methods#test_webhook"><i class="fa fa-docs-chevron"></i>Test a webhook subscription</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
-    <li><a href="/api/methods#list_balances"><i class="fa fa-docs-chevron"></i>List reward balances</a></li>
-    <li><a href="/api/methods#debit_balance"><i class="fa fa-docs-chevron"></i>Debit a reward balance</a></li>
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#apiAccordion" href="#apinav-discounts">
+        Discounts
+      </a>
+        </div>
+        <div id="apinav-discounts" class="accordion-body collapse">
+          <div class="accordion-inner">
+            <ul>
+              <li><a href="/api/methods#get_coupon"><i class="fa fa-docs-chevron"></i>Lookup a discount code</a></li>
+              <li><a href="/api/methods#set_coupon"><i class="fa fa-docs-chevron"></i>Set a discount code</a></li>
+              <li><a href="/api/methods#get_account_reward"><i class="fa fa-docs-chevron"></i>Lookup an account's discount</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
-    <li class="nav-header">Rewards</li>
-
-    <li><a href="/api/methods#list_rewards"><i class="fa fa-docs-chevron"></i>List an account's rewards</a></li>
-    <li><a href="/api/methods#debit_reward"><i class="fa fa-docs-chevron"></i>Redeem a single reward</a></li>
-
-    <li class="nav-header">Discounts</li>
-    
-    <li><a href="/api/methods#set_coupon"><i class="fa fa-docs-chevron"></i>Set a discount code</a></li>
-    <li><a href="/api/methods#get_coupon"><i class="fa fa-docs-chevron"></i>Lookup a discount code</a></li>
-    <li><a href="/api/methods#get_account_reward"><i class="fa fa-docs-chevron"></i>Lookup an account's discount</a></li>
-
-    <li class="nav-header">Webhooks</li>
-
-    <li><a href="/api/methods#create_webhook"><i class="fa fa-docs-chevron"></i>Create a webhook subscription</a></li>
-    <li><a href="/api/methods#list_webhooks"><i class="fa fa-docs-chevron"></i>List webhook subscriptions</a></li>
-    <li><a href="/api/methods#delete_webhook"><i class="fa fa-docs-chevron"></i>Delete a webhook subscription</a></li>
-    <li><a href="/api/methods#test_webhook"><i class="fa fa-docs-chevron"></i>Test a webhook subscription</a></li>
+    </div>
+  </div>
+  <!-- /.accordion-scroller -->
+</div>
+<!-- /.accordion-holder -->
 
 {% endblock navbar %}

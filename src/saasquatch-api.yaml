@@ -32,6 +32,19 @@ parameters:
       Tenant being referenced. E.g. `"aboih12h16t"` or `"test_abo912126tastastt"`
     type: string
     required: true
+  limit:
+    name: limit
+    in: query
+    type: integer
+    description: "A limit on the number of results returned. Defaults to `10`."
+    default: 10
+  offset:
+    name: offset
+    in: query
+    type: integer
+    description: "When included offsets the first result returns in the list. Use this to paginate through a long list of results. Defaults to `0`"
+    default: 0
+
 paths:
   "/{tenant_alias}/accountsync": 
     post: 
@@ -70,7 +83,79 @@ paths:
             $ref: "#/definitions/Account"
         default: 
           $ref: "#/responses/GeneralError"
+  "/{tenant_alias}/account/{accountId}": 
+    get: 
+      operationId: get_account
+      summary: Lookup an account
+      description: |
+        Looks up an Account based upon `id` and returns the stored account information.
+        This method just returns the details of the account in question, and not all associated properties like Rewards, ShareLinks, Balances or Referrals.
+      parameters: 
+        - name: accountId
+          in: path
+          description: "The `id` of the Account to look up."
+          required: true
+          type: string
+        - $ref: "#/parameters/tenant_alias"
+      responses: 
+        200: 
+          description: Account found
+          examples: 
+            "application/json":
+              id: "89842"
+              currency: "USD"
+              subscription: null
+              referral: 
+                code: "WILLSANDERSON2"
+          schema: 
+            $ref: "#/definitions/Account"
+        404: 
+          description: Account NOT found
+          schema: 
+            $ref: "#/definitions/Error"
+        default: 
+          $ref: "#/responses/GeneralError"
 
+
+  "/{tenant_alias}/users": 
+    get:
+      operationId: list_users
+      summary: List users
+      description: |
+        List all of the Users in your Referral SaaSquatch tenant. This method is the primary way of getting a full list of everyone that has been identified through the API, Squatch.js or mobile widgets.
+        This method supports pagination using the parameters for `limit` and `offset` to iterate through a very large list of records.
+        You can also search for particular users using the `query` method. To find information about which users have completed referrals, use the [List referrals](#list_referrals) method.
+      parameters:
+        - name: query
+          in: query
+          description: "A search query that can be used to filter users by email, name or ID."
+          type: string
+        - $ref: "#/parameters/limit"
+        - $ref: "#/parameters/offset"
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        200: 
+          description: Users found
+          examples: 
+            "application/json":
+              count: 1
+              totalCount: 1
+              users:
+                - 
+                  id: "14125"
+                  accountId: "89842"
+                  email: "mark@example.com"
+                  firstName: "Mark"
+                  lastName: "Testerson"
+                  referralCode: "MARKTESTER"
+                  imageUrl: ""
+                  dateCreated: 1414452680584
+                  emailHash: "a65a76ba72e5a0b1e6253efce357abb6"
+          schema: 
+            $ref: "#/definitions/UserList"
+        default: 
+          $ref: "#/responses/GeneralError"
+          
   "/{tenant_alias}/user": 
     post: 
       operationId: create_user
@@ -104,25 +189,19 @@ paths:
             $ref: "#/definitions/User"
         default: 
           $ref: "#/responses/GeneralError"
-
-  "/{tenant_alias}/account/{accountId}/user/{userId}": 
-    get: 
-      operationId: get_user
-      summary: Lookup a user
+    get:
+      operationId: get_user_by_referralcode
+      summary: Lookup a user by Referral Code
       description: |
-        Looks up a user based upon their `id` and returns their personal information.
-        This method just returns the details of the user in question, and not all associated properties like Rewards, ShareLinks, Balances or Referrals.
-      parameters: 
-        - name: accountId
-          in: path
-          description: "The `id` of the Account that this user is a member of. See [Shared vs. Solo accounts](/shared-vs-solo-accounts/) for more info."
+        Looks up a user based upon their `ReferralCode` and returns their personal information.
+        This method is useful for retrieving the user when only the Referral Code is available. For example when a referred user enters a Referral Code during checkout and you want to find out who this Referral Code belongs to.
+      parameters:
+        - name: code
+          in: query
+          description: "The `referralCode` of the user you want to retrieve. For example BOBTESTERSON."
           required: true
           type: string
-        - name: userId
-          in: path
-          description: "The `id` of the User to find"
-          required: true
-          type: string
+          x-example: "BOBTESTERSON"
         - $ref: "#/parameters/tenant_alias"
       responses: 
         200: 
@@ -144,18 +223,23 @@ paths:
             $ref: "#/definitions/Error"
         default: 
           $ref: "#/responses/GeneralError"
-          
-  "/{tenant_alias}/user?referralCode={code}":
-    get:
-      operationId: get_user_by_referralcode
-      summary: Lookup a user by Referral Code
+
+  "/{tenant_alias}/account/{accountId}/user/{userId}": 
+    get: 
+      operationId: get_user
+      summary: Lookup a user
       description: |
-        Looks up a user based upon their `ReferralCode` and returns their personal information.
-        This method is useful for retrieving the user when only the Referral Code is available. For example when a referred user enters a Referral Code during checkout and you want to find out who this Referral Code belongs to.
-      parameters:
-        - name: code
+        Looks up a user based upon their `id` and returns their personal information.
+        This method just returns the details of the user in question, and not all associated properties like Rewards, ShareLinks, Balances or Referrals.
+      parameters: 
+        - name: accountId
           in: path
-          description: "The `referralCode` of the user you want to retrieve. For example BOBTESTERSON."
+          description: "The `id` of the Account that this user is a member of. See [Shared vs. Solo accounts](/shared-vs-solo-accounts/) for more info."
+          required: true
+          type: string
+        - name: userId
+          in: path
+          description: "The `id` of the User to find"
           required: true
           type: string
         - $ref: "#/parameters/tenant_alias"
@@ -279,294 +363,6 @@ paths:
         default: 
           $ref: "#/responses/GeneralError"
 
-  "/{tenant_alias}/reward/balance": 
-    get: 
-      operationId: list_balances
-      summary: List reward balances
-      description: |
-        Looks up the balance for all rewards of the same type and units.
-      parameters: 
-        - name: accountId
-          in: query
-          description: The ID of the account to look up
-          required: true
-          type: string
-        - name: userId
-          in: query
-          description: Filters rewards by `user.id`.
-          type: string
-        - name: rewardTypeFilter
-          in: query
-          description: Filters rewards by `type`.
-          type: string
-        - name: featureTypeFilter
-          in: query
-          description: Filters rewards by feature type. Works with `FEATURE` types.
-          type: string
-        - $ref: "#/parameters/tenant_alias"
-      tags: 
-        - PCT_DISCOUNT
-        - FEATURE
-        - CREDIT
-        - TIME_CREDIT
-      responses: 
-        200: 
-          description: A list of reward balances
-          schema: 
-            type: array
-            items: 
-              $ref: "#/definitions/RewardBalance"
-          examples: 
-            "application/json": 
-              - 
-                type: FEATURE
-                featureType: storage
-                count: 8
-                totalQuantity: 500
-                unit: MB
-              - 
-                type: CREDIT
-                count: 4
-                totalAssignedCredit: 10000
-                totalRedeemedCredit: 0
-                unit: cents
-              - 
-                type: PCT_DISCOUNT
-                totalDiscountPercent: 30
-                referredDiscountPercent: 10
-                referrerDiscountPercent: 20
-        default: 
-          $ref: "#/responses/GeneralError"
-  "/{tenant_alias}/credit/bulkredeem": 
-    post: 
-      operationId: debit_balance
-      summary: Debit a reward balance
-      description: "Used to redeem the credit earned from a referral program. Permanently debits an account balance. Works with: `TIME_CREDIT` and `CREDIT`"
-      parameters: 
-        - name: debit
-          in: body
-          description: Details of the debit
-          required: true
-          schema: 
-            $ref: "#/definitions/RewardBalanceDebitRequest"
-        - $ref: "#/parameters/tenant_alias"
-      responses: 
-        200: 
-          description: Balance debitted
-          examples: 
-            "application/json":
-              creditRedeemed: 200
-              creditAvailable: 0
-              unit: "cents"
-          schema: 
-            $ref: "#/definitions/RewardDebitResponse"
-        default: 
-          $ref: "#/responses/GeneralError"
-
-  "/{tenant_alias}/reward":
-    get: 
-      operationId: list_rewards
-      summary: List single rewards
-      description: |
-        Looks up a list of single rewards
-      parameters: 
-        - name: accountId
-          in: query
-          description: The ID of the account to look up
-          required: true
-          type: string
-        - name: userId
-          in: query
-          description: Filters rewards by `user.id`.
-          type: string
-        - name: rewardTypeFilter
-          in: query
-          description: Filters rewards by `type`.
-          type: string
-        - name: featureTypeFilter
-          in: query
-          description: Filters rewards by feature type. Works with `FEATURE` types.
-          type: string
-        - $ref: "#/parameters/tenant_alias"
-      tags: 
-        - PCT_DISCOUNT
-        - FEATURE
-        - CREDIT
-        - TIME_CREDIT
-      responses: 
-        200: 
-          description: A list of rewards
-          schema: 
-            type: array
-            items: 
-              $ref: "#/definitions/Reward"
-          examples: 
-            "application/json": 
-              - "type": "FEATURE"
-                "id": "5423508fe4b05184a716a08b"
-                "dateGiven": 1411600527094
-                "dateExpires": null
-                "dateCancelled": null
-                "accountId": "F3BNA0HOKJR17656"
-                "userId": "5423508ee4b059bbbadf48e1"
-                "cancellable": false
-                "rewardSource": "REFERRED"
-                "featureType": "storage"
-                "name": "100 MB Storage"
-                "description": "100 MB Free Storage"
-                "quantity": 100
-                "unit": "MB"
-                
-              - "type": "PCT_DISCOUNT"
-                "id": "54235160e4b05184a716a0b2"
-                "dateGiven": 1411600736220
-                "dateExpires": 1443136736220
-                "dateCancelled": null
-                "accountId": "GUYRP0T2F6F3Y6PN"
-                "userId": "54235132e4b059bbbadf4903"
-                "cancellable": true
-                "rewardSource": "FRIEND_SIGNUP"
-                "discountPercent": 10
-
-              - "type": "CREDIT"
-                "id": "542351e4e4b05184a716a0c5"
-                "dateGiven": 1411600868797
-                "dateExpires": null
-                "dateCancelled": null
-                "accountId": "85W7A2F1QZS9NGI8"
-                "userId": "542351e4e4b059bbbadf496d"
-                "cancellable": false
-                "rewardSource": "FRIEND_SIGNUP"
-                "unit": "cents"
-                "assignedCredit": 10000
-                "redeemedCredit": 0
-                "redeemable": true
-        default: 
-          $ref: "#/responses/GeneralError"
-  "/{tenant_alias}/credit/{id}/redeem":
-    post: 
-      operationId: debit_reward
-      summary: Redeem a single reward
-      description: "Used to redeem an individual credit earned from a referral program. Works with: `TIME_CREDIT` and `CREDIT`"
-      parameters: 
-        - name: id
-          in: path
-          description: The ID of the specific reward to be redeemed
-          required: true
-          type: string
-        - name: debit
-          in: body
-          description: Details of the debit
-          schema: 
-            $ref: "#/definitions/RewardDebitRequest"
-        - $ref: "#/parameters/tenant_alias"
-      responses: 
-        200: 
-          description: Reward debitted
-          examples: 
-            "application/json":
-              creditRedeemed: 200
-              creditAvailable: 1800
-              unit: "cents"
-          schema: 
-            $ref: "#/definitions/RewardDebitResponse"
-        default: 
-          $ref: "#/responses/GeneralError"
-
-  "/{tenant_alias}/discount/{code}":
-    get:
-      operationId: get_coupon
-      summary: Lookup a discount code
-      description: |
-        This method lets you look up the details of a referral code and to ensure that it is valid. Works with `PCT_DISCOUNT`
-      parameters: 
-        - name: code
-          in: path
-          description: The coupon/referral code to look up. Eg. BOBTESTERSON
-          required: true
-          type: string
-        - $ref: "#/parameters/tenant_alias"
-      tags: 
-        - PCT_DISCOUNT
-      responses:
-        200:
-          description: Information about the coupon/referral code
-          examples: 
-            "application/json":
-              "couponCode" : "BOBTESTERSON"
-              "discountPercentage" : 20
-              "dateCreated" : 1377727546528
-              "discountId" : "saasquatch_discount" 
-          schema:
-            $ref: "#/definitions/DiscountCode"
-        404:
-          description: Coupon/referral code not found
-          schema: 
-            $ref: "#/definitions/Error"
-        default: 
-          $ref: "#/responses/GeneralError"
-  "/{tenant_alias}/discount":
-    post: 
-      operationId: set_coupon
-      summary: Set discount code on an account
-      description: |
-        This method associates a new account with their referrer. Use this method when 
-        someone signs up for a paid account to set the coupon code used for them. For Stripe and Recurly do not use this call.
-        Instead during sign-up, just pass the coupon/referral code in your subcribe call. Works with `PCT_DISCOUNT`
-      parameters:
-        - name: accountDiscount
-          in: body
-          description: Account discount details to be updated
-          schema: 
-            $ref: "#/definitions/AccountDiscountRequest"
-        - $ref: "#/parameters/tenant_alias"
-      tags: 
-        - PCT_DISCOUNT
-      responses: 
-        200:
-          description: Account updated
-        400:
-          description: Not implemented
-        default: 
-          $ref: "#/responses/GeneralError"
-  "/{tenant_alias}/account/{accountId}/discount":
-    get:
-      operationId: get_account_reward
-      summary: Lookup an account discount
-      description: |
-        This method information about an account's discount, if any, and what that discount would look like with a `couponCode` applied. Works with `PCT_DISCOUNT`
-      parameters: 
-        - name: accountId
-          in: path
-          description: The account to look up
-          required: true
-          type: string
-        - name: couponCode
-          in: query
-          description: When included, will return a total reward available including any coupon code.
-          type: string
-        - $ref: "#/parameters/tenant_alias"
-      tags: 
-        - PCT_DISCOUNT
-      responses:
-        200: 
-          description: Information about the account discount
-          examples: 
-            "application/json":
-              "accountId": "SV0TYE5OWI11120144"
-              "discountPercentage": 10
-              "referrerDiscountPercent": 0
-              "referredDiscountPercent": 10
-              "discountId": "saasquatch_discount"
-          schema:
-            $ref: "#/definitions/AccountDiscount"
-        404: 
-          description: Account not found
-          schema: 
-            $ref: "#/definitions/Error"
-        default: 
-          $ref: "#/responses/GeneralError"
-
   "/{tenant_alias}/referrals":
     get:
       operationId: list_referrals
@@ -576,15 +372,6 @@ paths:
         and supports pagination using the parameters for `limit` and `offset` to iterate through a very large list of records.
         You can also use the query parameters for `referringAccountId` and `referringUserId` to filters this list of referrals to only include those made by a given user.
       parameters: 
-        - name: limit
-          in: query
-          type: integer
-          description: "A limit on the number of results returned. Defaults to `10`."
-          default: 10
-        - name: offset
-          in: query
-          type: integer
-          description: "When included offsets the first referral used in the list. Use this to paginate through a long list of referrals."
         - name: referringAccountId
           in: query
           type: string
@@ -609,6 +396,8 @@ paths:
           in: query
           type: string
           description: "When included, filters the result to only include referrers with that status. Statuses that are accepted: `PENDING`, `APPROVED` or `DENIED`."
+        - $ref: "#/parameters/limit"
+        - $ref: "#/parameters/offset"
         - $ref: "#/parameters/tenant_alias"
       responses:
         200: 
@@ -811,6 +600,201 @@ paths:
           schema: 
             $ref: "#/definitions/Error"
 
+
+  "/{tenant_alias}/reward/balance": 
+    get: 
+      operationId: list_balances
+      summary: List reward balances
+      description: |
+        Looks up the balance for all rewards of the same type and units.
+      parameters: 
+        - name: accountId
+          in: query
+          description: The ID of the account to look up
+          required: true
+          type: string
+        - name: userId
+          in: query
+          description: Filters rewards by `user.id`.
+          type: string
+        - name: rewardTypeFilter
+          in: query
+          description: Filters rewards by `type`.
+          type: string
+        - name: featureTypeFilter
+          in: query
+          description: Filters rewards by feature type. Works with `FEATURE` types.
+          type: string
+        - $ref: "#/parameters/tenant_alias"
+      tags: 
+        - PCT_DISCOUNT
+        - FEATURE
+        - CREDIT
+        - TIME_CREDIT
+      responses: 
+        200: 
+          description: A list of reward balances
+          schema: 
+            type: array
+            items: 
+              $ref: "#/definitions/RewardBalance"
+          examples: 
+            "application/json": 
+              - 
+                type: FEATURE
+                featureType: storage
+                count: 8
+                totalQuantity: 500
+                unit: MB
+              - 
+                type: CREDIT
+                count: 4
+                totalAssignedCredit: 10000
+                totalRedeemedCredit: 0
+                unit: cents
+              - 
+                type: PCT_DISCOUNT
+                totalDiscountPercent: 30
+                referredDiscountPercent: 10
+                referrerDiscountPercent: 20
+        default: 
+          $ref: "#/responses/GeneralError"
+  "/{tenant_alias}/credit/bulkredeem": 
+    post: 
+      operationId: debit_balance
+      summary: Debit a reward balance
+      description: "Used to redeem the credit earned from a referral program. Permanently debits an account balance. Works with: `TIME_CREDIT` and `CREDIT`"
+      parameters: 
+        - name: debit
+          in: body
+          description: Details of the debit
+          required: true
+          schema: 
+            $ref: "#/definitions/RewardBalanceDebitRequest"
+        - $ref: "#/parameters/tenant_alias"
+      responses: 
+        200: 
+          description: Balance debitted
+          examples: 
+            "application/json":
+              creditRedeemed: 200
+              creditAvailable: 0
+              unit: "cents"
+          schema: 
+            $ref: "#/definitions/RewardDebitResponse"
+        default: 
+          $ref: "#/responses/GeneralError"
+
+  "/{tenant_alias}/reward":
+    get: 
+      operationId: list_rewards
+      summary: List single rewards
+      description: |
+        Looks up a list of single rewards
+      parameters: 
+        - name: accountId
+          in: query
+          description: The ID of the account to look up
+          required: true
+          type: string
+        - name: userId
+          in: query
+          description: Filters rewards by `user.id`.
+          type: string
+        - name: rewardTypeFilter
+          in: query
+          description: Filters rewards by `type`.
+          type: string
+        - name: featureTypeFilter
+          in: query
+          description: Filters rewards by feature type. Works with `FEATURE` types.
+          type: string
+        - $ref: "#/parameters/tenant_alias"
+      tags: 
+        - PCT_DISCOUNT
+        - FEATURE
+        - CREDIT
+        - TIME_CREDIT
+      responses: 
+        200: 
+          description: A list of rewards
+          schema: 
+            type: array
+            items: 
+              $ref: "#/definitions/Reward"
+          examples: 
+            "application/json": 
+              - "type": "FEATURE"
+                "id": "5423508fe4b05184a716a08b"
+                "dateGiven": 1411600527094
+                "dateExpires": null
+                "dateCancelled": null
+                "accountId": "F3BNA0HOKJR17656"
+                "userId": "5423508ee4b059bbbadf48e1"
+                "cancellable": false
+                "rewardSource": "REFERRED"
+                "featureType": "storage"
+                "name": "100 MB Storage"
+                "description": "100 MB Free Storage"
+                "quantity": 100
+                "unit": "MB"
+                
+              - "type": "PCT_DISCOUNT"
+                "id": "54235160e4b05184a716a0b2"
+                "dateGiven": 1411600736220
+                "dateExpires": 1443136736220
+                "dateCancelled": null
+                "accountId": "GUYRP0T2F6F3Y6PN"
+                "userId": "54235132e4b059bbbadf4903"
+                "cancellable": true
+                "rewardSource": "FRIEND_SIGNUP"
+                "discountPercent": 10
+
+              - "type": "CREDIT"
+                "id": "542351e4e4b05184a716a0c5"
+                "dateGiven": 1411600868797
+                "dateExpires": null
+                "dateCancelled": null
+                "accountId": "85W7A2F1QZS9NGI8"
+                "userId": "542351e4e4b059bbbadf496d"
+                "cancellable": false
+                "rewardSource": "FRIEND_SIGNUP"
+                "unit": "cents"
+                "assignedCredit": 10000
+                "redeemedCredit": 0
+                "redeemable": true
+        default: 
+          $ref: "#/responses/GeneralError"
+  "/{tenant_alias}/credit/{id}/redeem":
+    post: 
+      operationId: debit_reward
+      summary: Redeem a single reward
+      description: "Used to redeem an individual credit earned from a referral program. Works with: `TIME_CREDIT` and `CREDIT`"
+      parameters: 
+        - name: id
+          in: path
+          description: The ID of the specific reward to be redeemed
+          required: true
+          type: string
+        - name: debit
+          in: body
+          description: Details of the debit
+          schema: 
+            $ref: "#/definitions/RewardDebitRequest"
+        - $ref: "#/parameters/tenant_alias"
+      responses: 
+        200: 
+          description: Reward debitted
+          examples: 
+            "application/json":
+              creditRedeemed: 200
+              creditAvailable: 1800
+              unit: "cents"
+          schema: 
+            $ref: "#/definitions/RewardDebitResponse"
+        default: 
+          $ref: "#/responses/GeneralError"
+
   "/{tenant_alias}/subscription": 
     post: 
       operationId: create_webhook
@@ -889,6 +873,103 @@ paths:
           description: Test message sent
         default: 
           $ref: "#/responses/GeneralError"
+
+
+  "/{tenant_alias}/discount/{code}":
+    get:
+      operationId: get_coupon
+      summary: Lookup a discount code
+      description: |
+        This method lets you look up the details of a referral code and to ensure that it is valid. Works with `PCT_DISCOUNT`
+      parameters: 
+        - name: code
+          in: path
+          description: The coupon/referral code to look up. Eg. BOBTESTERSON
+          required: true
+          type: string
+        - $ref: "#/parameters/tenant_alias"
+      tags: 
+        - PCT_DISCOUNT
+      responses:
+        200:
+          description: Information about the coupon/referral code
+          examples: 
+            "application/json":
+              "couponCode" : "BOBTESTERSON"
+              "discountPercentage" : 20
+              "dateCreated" : 1377727546528
+              "discountId" : "saasquatch_discount" 
+          schema:
+            $ref: "#/definitions/DiscountCode"
+        404:
+          description: Coupon/referral code not found
+          schema: 
+            $ref: "#/definitions/Error"
+        default: 
+          $ref: "#/responses/GeneralError"
+  "/{tenant_alias}/discount":
+    post: 
+      operationId: set_coupon
+      summary: Set discount code on an account
+      description: |
+        This method associates a new account with their referrer. Use this method when 
+        someone signs up for a paid account to set the coupon code used for them. For Stripe and Recurly do not use this call.
+        Instead during sign-up, just pass the coupon/referral code in your subcribe call. Works with `PCT_DISCOUNT`
+      parameters:
+        - name: accountDiscount
+          in: body
+          description: Account discount details to be updated
+          schema: 
+            $ref: "#/definitions/AccountDiscountRequest"
+        - $ref: "#/parameters/tenant_alias"
+      tags: 
+        - PCT_DISCOUNT
+      responses: 
+        200:
+          description: Account updated
+        400:
+          description: Not implemented
+        default: 
+          $ref: "#/responses/GeneralError"
+  "/{tenant_alias}/account/{accountId}/discount":
+    get:
+      operationId: get_account_reward
+      summary: Lookup an account discount
+      description: |
+        This method information about an account's discount, if any, and what that discount would look like with a `couponCode` applied. Works with `PCT_DISCOUNT`
+      parameters: 
+        - name: accountId
+          in: path
+          description: The account to look up
+          required: true
+          type: string
+        - name: couponCode
+          in: query
+          description: When included, will return a total reward available including any coupon code.
+          type: string
+        - $ref: "#/parameters/tenant_alias"
+      tags: 
+        - PCT_DISCOUNT
+      responses:
+        200: 
+          description: Information about the account discount
+          examples: 
+            "application/json":
+              "accountId": "SV0TYE5OWI11120144"
+              "discountPercentage": 10
+              "referrerDiscountPercent": 0
+              "referredDiscountPercent": 10
+              "discountId": "saasquatch_discount"
+          schema:
+            $ref: "#/definitions/AccountDiscount"
+        404: 
+          description: Account not found
+          schema: 
+            $ref: "#/definitions/Error"
+        default: 
+          $ref: "#/responses/GeneralError"
+
+
 definitions:
   ## General object details
   Account: 
@@ -1312,19 +1393,36 @@ definitions:
   # Only REST response envelopers included in this section.
   #
   
-  ReferralList:
+  ListEnvelope:
     properties:
       count:
         type: integer
-        description: The number of referrals returned in this response
+        description: The number of results returned in this response
       totalCount:
         type: integer
-        description: The total number of referrals available in this tenant
-      referrals:
-        type: array
-        description: A list of Referral objects
-        items: 
-          $ref: "#/definitions/Referral"
+        description: The total number of results available in this tenant
+
+
+  UserList:
+    allOf:
+      - $ref: '#/definitions/ListEnvelope'
+      - type: object
+        properties:
+          users:
+            type: array
+            description: A list of User objects
+            items: 
+              $ref: "#/definitions/User"  
+  ReferralList:
+    allOf:
+      - $ref: '#/definitions/ListEnvelope'
+      - type: object
+        properties:
+          referrals:
+            type: array
+            description: A list of Referral objects
+            items: 
+              $ref: "#/definitions/Referral"
   RewardDebitResponse:
     description: Details about a successful Reward Balance Debit transaction.
     properties: 
