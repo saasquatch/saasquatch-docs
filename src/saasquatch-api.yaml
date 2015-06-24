@@ -111,11 +111,12 @@ paths:
         Looks up a user based upon their `ReferralCode` and returns their personal information.
         This method is useful for retrieving the user when only the Referral Code is available. For example when a referred user enters a Referral Code during checkout and you want to find out who this Referral Code belongs to.
       parameters:
-        - name: code
+        - name: referralCode
           in: query
           description: "The `referralCode` of the user you want to retrieve. For example BOBTESTERSON."
           required: true
           type: string
+          x-example: BOBTESTERSON
         - $ref: "#/parameters/tenant_alias"
       responses: 
         200: 
@@ -860,7 +861,7 @@ paths:
       
     patch:
       operationId: update_variables
-      summary: Replace Variable Values
+      summary: Update Variable Values
       description: |
         Updates the previously stored values for the variables included in this request.
         Will not override, nullify or delete the other variable values that are not included.
