@@ -104,7 +104,39 @@ paths:
             $ref: "#/definitions/User"
         default: 
           $ref: "#/responses/GeneralError"
-
+    get:
+      operationId: get_user_by_referralcode
+      summary: Lookup a user by Referral Code
+      description: |
+        Looks up a user based upon their `ReferralCode` and returns their personal information.
+        This method is useful for retrieving the user when only the Referral Code is available. For example when a referred user enters a Referral Code during checkout and you want to find out who this Referral Code belongs to.
+      parameters:
+        - name: code
+          in: query
+          description: "The `referralCode` of the user you want to retrieve. For example BOBTESTERSON."
+          required: true
+          type: string
+        - $ref: "#/parameters/tenant_alias"
+      responses: 
+        200: 
+          description: User found
+          examples: 
+            "application/json":
+              id: "876343"
+              accountId: "613611"
+              email: "bob@example.com"
+              firstName: "Bob"
+              lastName: "Testerson"
+              referralCode: "BOBTESTERSON"
+              imageUrl: ""
+          schema: 
+            $ref: "#/definitions/User"
+        404: 
+          description: User NOT found
+          schema: 
+            $ref: "#/definitions/Error"
+        default: 
+          $ref: "#/responses/GeneralError"
   "/{tenant_alias}/account/{accountId}/user/{userId}": 
     get: 
       operationId: get_user
@@ -145,41 +177,6 @@ paths:
         default: 
           $ref: "#/responses/GeneralError"
           
-  "/{tenant_alias}/user?referralCode={code}":
-    get:
-      operationId: get_user_by_referralcode
-      summary: Lookup a user by Referral Code
-      description: |
-        Looks up a user based upon their `ReferralCode` and returns their personal information.
-        This method is useful for retrieving the user when only the Referral Code is available. For example when a referred user enters a Referral Code during checkout and you want to find out who this Referral Code belongs to.
-      parameters:
-        - name: code
-          in: path
-          description: "The `referralCode` of the user you want to retrieve. For example BOBTESTERSON."
-          required: true
-          type: string
-        - $ref: "#/parameters/tenant_alias"
-      responses: 
-        200: 
-          description: User found
-          examples: 
-            "application/json":
-              id: "876343"
-              accountId: "613611"
-              email: "bob@example.com"
-              firstName: "Bob"
-              lastName: "Testerson"
-              referralCode: "BOBTESTERSON"
-              imageUrl: ""
-          schema: 
-            $ref: "#/definitions/User"
-        404: 
-          description: User NOT found
-          schema: 
-            $ref: "#/definitions/Error"
-        default: 
-          $ref: "#/responses/GeneralError"
-
 
   "/{tenant_alias}/account/{accountId}/user/{userId}/sharelinks":
     get: 
@@ -811,6 +808,82 @@ paths:
           schema: 
             $ref: "#/definitions/Error"
 
+  "/{tenant_alias}/theme/variables/schema":
+    get: 
+      operationId: lookup_variables_schema
+      summary: Lookup the current Variables Schema
+      description: |
+        Returns the variables schema object that is defined in the tenant theme repository. 
+        This will be a [JSON Schema](http://json-schema.org/) standards compliant definition.
+        
+      produces:
+        - "application/schema+json"
+      parameters:
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        200:
+          description: Variables Schema Found
+          schema:
+            $ref: "#/definitions/VariablesSchema"
+          examples:
+            "application/schema+json": 
+              $ref: "#/definitions/VariablesSchema/example"
+        default: 
+          $ref: "#/responses/GeneralError"
+
+  "/{tenant_alias}/theme/variables/instance":
+    post:
+      operationId: replace_variables
+      summary: Replace Variable Values
+      description: |
+        Replaces all of the previously set values. Use this operation only when your
+        goal is to completely replace all variable values, including deleting previous
+        values of othe fields that you're not setting. Prefer to use a `PATCH` request
+        when you only want to update one variable or subset of variables.
+      parameters:
+        - name: instance
+          in: body
+          description: The variables object to replace all previously stored values.
+          schema: 
+            $ref: "#/definitions/VariablesInstance"
+        - $ref: "#/parameters/tenant_alias"
+      responses: 
+        201: 
+          description: Variables Replaced
+          schema: 
+            $ref: "#/definitions/VariablesInstance"
+          examples:
+            "application/json": 
+              $ref: "#/definitions/VariablesInstance/example"
+        default: 
+          $ref: "#/responses/GeneralError"
+      
+    patch:
+      operationId: update_variables
+      summary: Replace Variable Values
+      description: |
+        Updates the previously stored values for the variables included in this request.
+        Will not override, nullify or delete the other variable values that are not included.
+        This method can be used to selectively set a single variable.
+      parameters:
+        - name: instance
+          in: body
+          description: The variables object that will update fields included here.
+          schema: 
+            $ref: "#/definitions/VariablesInstance"
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        201: 
+          description: Variables Updated
+          schema: 
+            $ref: "#/definitions/VariablesInstance"
+          examples:
+            "application/json": 
+              $ref: "#/definitions/VariablesInstance/example"
+        default: 
+          $ref: "#/responses/GeneralError"
+
+
   "/{tenant_alias}/subscription": 
     post: 
       operationId: create_webhook
@@ -1303,7 +1376,33 @@ definitions:
         type: string
         example: "Zapier"
         description: Optional name of the endpoint that receives events  
-  
+
+  VariablesSchema:
+    description: The JSON Schema that defines the format of the theme variables
+    allOf:
+      # - $ref: "http://json-schema.org/draft-04/schema"
+      - type: object
+        properties:
+          name:
+            type: string
+    example:
+      title: Example Theme Variables Schema
+      type: object
+      properties:
+        headline:
+          type: string
+          default:  "Invite a friend, get $10"
+        buttonColor:
+          type: string
+          format: color
+  VariablesInstance:
+    description: The stored values for the variables
+    type: object
+    additionalProperties: true
+    example:
+      headline: "Invite a friend, get $10"
+      buttonColor: "#FF0000"
+
   
   
  #

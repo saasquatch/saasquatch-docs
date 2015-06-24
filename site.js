@@ -6,6 +6,7 @@ var define = require('metalsmith-define');
 var less = require('metalsmith-less');
 var swig = require('swig');
 var extras = require('swig-extras');
+var extend = require('extend');
 
 var permalinks = require('./plugins/rawpaths.js');
 var swagger = require('./plugins/swagger.js');
@@ -38,6 +39,10 @@ function site(){
     // Doesn't support creating example objects that include Arrays yet....
     
     function extractProperties(schema, output){
+      if(schema['example']){
+        // By default grabs the schema-level example
+        extend(true, output, schema['example']);
+      }
       var props = schema.properties;
       if(!props){ return }
       Object.keys(props).forEach(function(field) {
