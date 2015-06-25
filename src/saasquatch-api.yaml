@@ -593,6 +593,10 @@ paths:
           in: query
           type: string
           description: "When included, filters the results to only referrals that were referred users with this `UserId`"
+        - name: dateReferralStarted
+          in: query
+          type: string
+          description: "When included, filters the results either to the exact timestamp if only one value is given, or a range if devided by a comma. I.E. 0,123412451 gives all referrals that started between 0 and 123412451."
         - name: dateReferralPaid
           in: query
           type: string
