@@ -1,0 +1,27 @@
+{% extends '../themes.html' %}
+
+{% import "../tags/API.html" as API %}
+{% import "./swaggerMacros.html" as swaggerMacros %}
+
+{% block content %}
+
+<section>
+  <div class="page-header">
+      <h1>{{title}}</h1>
+  </div>
+  
+  {% if highlights %}
+  <p class="lead">
+    {{ highlights }}
+  </p>
+  {% endif %}
+  
+  {{ highlights | markdown }}
+  
+ 
+  {{swaggerMacros.outputProperties(swagger.definitions.ThemeContext)}}
+  
+  <pre class="jsonview"><code>{{swagger.definitions.ThemeContext | exampleSwaggerSchema | json(4) }}</code></pre>
+ 
+  
+{% endblock content %}

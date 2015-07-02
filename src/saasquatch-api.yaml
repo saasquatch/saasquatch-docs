@@ -222,14 +222,7 @@ paths:
             $ref: "#/definitions/Sharelink"
           examples: 
             "application/json": 
-              "shareLink": "http://ssqt.co/pZVp"
-              "facebookShareLink": "http://ssqt.co/pZVq"
-              "twitterShareLink": "http://ssqt.co/pZVr"
-              "emailShareLink": "http://ssqt.co/pZVs"
-              "mobileShareLink": "http://ssqt.co/pZVt"
-              "mobileFacebookShareLink": "http://ssqt.co/pZVu"
-              "mobileTwitterShareLink": "http://ssqt.co/pZVv"
-              "mobileEmailShareLink": "http://ssqt.co/pZVw"
+              $ref: "#/definitions/Sharelink/example"
         404: 
           description: User/Account not found
           schema: 
@@ -1365,6 +1358,15 @@ definitions:
       mobileEmailShareLink:
         type: string
         description: "The Share Link for Email on mobile devices."
+    example:
+      shareLink: "http://ssqt.co/pZVp"
+      facebookShareLink: "http://ssqt.co/pZVq"
+      twitterShareLink: "http://ssqt.co/pZVr"
+      emailShareLink: "http://ssqt.co/pZVs"
+      mobileShareLink: "http://ssqt.co/pZVt"
+      mobileFacebookShareLink: "http://ssqt.co/pZVu"
+      mobileTwitterShareLink: "http://ssqt.co/pZVv"
+      mobileEmailShareLink: "http://ssqt.co/pZVw"
 
   WebhookEndpoint:
     description: An endpoint to receive events
@@ -1404,9 +1406,75 @@ definitions:
       headline: "Invite a friend, get $10"
       buttonColor: "#FF0000"
 
-  
-  
- #
+  ThemeContext:
+    description: The context object provided to themes for rendering the current user's widget.
+    properties:
+      tenantAlias:
+        type: string
+        example: abdsds5124abewet
+        description: The active tenant's alias
+      companyName:
+        type: string
+        example: Acme Corp
+        description: The name of the company for the referral program
+      programDetails:
+        type: object
+        description: The details of the incentives used for the referral program.
+        properties:
+          referredRewardDetails:
+            $ref: "#/definitions/RewardTemplate"
+          referrerRewardDetails:
+            $ref: "#/definitions/RewardTemplate"
+      user:
+        $ref: "#/definitions/User"
+      referrals:
+        type: array
+        description: The referrals made by the active user
+        items: 
+          $ref: "#/definitions/Referral"
+      referralsLength:
+        type: integer
+        description: The total number of referrals made by this user
+      rewardBalances:
+        type: array
+        description: An array of reward balances for this user
+        items: 
+          $ref: "#/definitions/RewardBalance"
+      shareLinks:
+        $ref: "#/definitions/Sharelink"
+      referredBy:
+        type: object
+        description: Details of who referred the current user
+        properties:
+          referredByUser:
+            $ref: "#/definitions/User"
+          dateReferred:
+            type: integer
+            description: The date when the referral happened
+            example: 1404121071158
+      variables:
+        $ref: "#/definitions/VariablesInstance"
+      variablesSchema:
+        $ref: "#/definitions/VariablesSchema"
+      mode:
+        type: string
+        description: The mode the widget has been loaded in
+        enum:
+          - POPUP
+          - EMBED
+          - NOCONTENT
+      assetVersion:
+        type: string
+        description: A unique hash used to version assets.
+      headerVersion:
+        type: string
+        description: A unique version number used internally.
+      headerVersion:
+        type: string
+        description: A unique version number used internally.
+
+
+  #
   # ========== Response / Envelope Types ==============
   #
   # Only REST response envelopers included in this section.
