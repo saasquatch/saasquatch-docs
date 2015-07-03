@@ -791,7 +791,7 @@ paths:
   "/{tenant_alias}/theme/variables/schema":
     get: 
       operationId: lookup_variables_schema
-      summary: Lookup the current Variables Schema
+      summary: Lookup variables schema
       description: |
         Returns the variables schema object that is defined in the tenant theme repository. 
         This will be a [JSON Schema](http://json-schema.org/) standards compliant definition.
@@ -812,7 +812,27 @@ paths:
           $ref: "#/responses/GeneralError"
 
   "/{tenant_alias}/theme/variables/instance":
-    post:
+    get: 
+      operationId: lookup_variables
+      summary: Lookup variables values
+      description: |
+        Returns the current variables values stored for the schema object that is defined in the tenant theme repository. 
+      produces:
+        - "application/json"
+      parameters:
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        200:
+          description: Variables Found
+          schema:
+            $ref: "#/definitions/VariablesInstance"
+          examples:
+            "application/schema+json": 
+              $ref: "#/definitions/VariablesInstance/example"
+        default: 
+          $ref: "#/responses/GeneralError"
+    
+    put:
       operationId: replace_variables
       summary: Replace Variable Values
       description: |
