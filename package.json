@@ -13,12 +13,15 @@
     "metalsmith-collections": "^0.7.0",
     "metalsmith-serve": "^0.0.3",
     "metalsmith-watch": "^0.2.0",
+    "metalsmith-metadata": "0.0.1",
+    "metalsmith-request": "^1.0.0",
     "metalsmith": "^1.0.0",
     "swig": "1.4.2",
     "swig-extras": "0.0.1",
     "metalsmith-define": "1.0.0",
     "metalsmith-less": "1.0.3",
     "js-yaml": "^3.0.2",
-    "swagger-parser": "2.3.2"
+    "swagger-parser": "2.4.2",
+    "extend": "2.0.1"
   }
 }

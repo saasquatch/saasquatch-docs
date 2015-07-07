@@ -65,9 +65,9 @@
                 </table>
                 
 <p><b>Example Curl Request</b></p>
-<pre><code class="lang-curl">curl -X {{httpMethod|upper}} {{swagger.schemes[0]}}://{{swagger.host}}{{swagger.basePath}}{{methodPath}} \
+<pre><code class="lang-curl">curl -X {{httpMethod|upper}} {{swagger.schemes[0]}}://{{swagger.host}}{{swagger.basePath}}{{methodPath}}{% for param in method.parameters %}{% if param.in == "query" && param.required %}{% if loop.first %}?{%else%}&{% endif %}{{param.name}}={{param['x-example']|default('')}}{%- endif %}{% endfor %} \
 -u API_KEY: \
-{% if httpMethod == "post" %}-H "Content-Type: application/json" \
+{% if httpMethod == "post" || httpMethod == "put" || httpMethod == "patch" %}-H "Content-Type: application/json" \
 -d '{% for param in method.parameters %}{% if param.in == "body" %}{{ param.schema | exampleSwaggerSchema | json(4) }}{%- endif %}{% endfor %}'{%- endif %}
 </code></pre>
             </div>

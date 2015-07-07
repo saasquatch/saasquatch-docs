@@ -36,6 +36,10 @@ p + h5{
     border: none;
 }
 
+.docs code{
+    color: darken(#dd1144, 20%);
+}
+
 .docs .container section {
     padding-top: 60px;
 }
@@ -119,6 +123,17 @@ a .link {background-color:#fff;}
     
     &:hover .fa{
         background: #005580;
+    }
+}
+
+/**
+    Disables the "Affix" bootstrap plugin for mobile
+    
+    Taken from: http://stackoverflow.com/questions/17394854/how-can-i-disable-bootstraps-affix-on-smaller-screens
+*/
+@media (max-width: 768px) {
+    .affix {
+        position: static;
     }
 }
 

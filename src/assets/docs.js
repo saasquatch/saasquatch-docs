@@ -3,6 +3,7 @@
 */
 /* global hljs */
 /* global Handlebars */
+/* global smoothScroll */
 
 jQuery(document).ready(function() {
 
@@ -26,7 +27,30 @@ jQuery(document).ready(function() {
     hljs.initHighlighting();
     
     jQuery("#js-location-path").text(document.location.pathname);
-    
+
+
+    // TODO: Implement smooth scroll: https://github.com/cferdinandi/smooth-scroll
+    // TODO: Fix artefact of Affix on chrome
+    smoothScroll.init({
+        speed: 1000,
+        easing: 'easeInOutCubic',
+        offset: 100,
+        updateURL: true,
+        callbackBefore: function ( toggle, anchor ) {},
+        callbackAfter: function ( toggle, anchor ) {}
+    });
+    if ( window.location.hash ) { 
+     smoothScroll.animateScroll( null, window.location.hash);
+    }
+    if( location.pathname == "/api/methods/"){
+     // Activates smooth scroll links when
+     jQuery("#accordion-scroller .accordion-inner a").click(function(e){
+         var $this = jQuery(this);
+         var anchor = "#" + $this.attr('href').split("#")[1];
+         smoothScroll.animateScroll( null, anchor);
+         return false;
+     });
+    }    
     
     jQuery(".js-search-form").submit(function(){
         var searchTerm = jQuery(this).find(".search-query").val();
