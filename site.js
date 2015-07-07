@@ -8,7 +8,6 @@ var less = require('metalsmith-less');
 var swig = require('swig');
 var extras = require('swig-extras');
 
-var logPaths = require('./plugins/logPaths.js');
 var permalinks = require('./plugins/rawpaths.js');
 var swagger = require('./plugins/swagger.js');
 var exampleSwaggerSchemaFilter = require('./plugins/exampleSwaggerSchemaFilter.js');
@@ -36,7 +35,6 @@ function site(){
   swig.setFilter('exampleSwaggerSchema', exampleSwaggerSchemaFilter);
 
   var ms = Metalsmith(__dirname)
-  .use(logPaths())
   .use(define({
       "robots": process.env.ROBOTS || "true"
   }))
@@ -53,7 +51,6 @@ function site(){
       }
     } 
   }))
-//  .use(logPaths())
   .use(metadata({
       shorttags: 'metadata/shorttags.yaml'
       }))
