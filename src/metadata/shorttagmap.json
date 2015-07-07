@@ -1,0 +1,17 @@
+{
+	"companyname" : "companyName",
+	"emailsharelink" : "shareLinks.emailShareLink", 
+	"facebooksharelink" : "shareLinks.facebookShareLink",
+	"twittersharelink" : "shareLinks.twitterShareLink", 
+	"referralcode" : "user.referralCode",
+	"referrerpercentdiscount" : "programDetails.referrerRewardDetails.discountPercent",
+	"referredpercentdiscount" : "programDetails.referredRewardDetails.discountPercent",
+	"referrerpercentlength" : "programDetails.referrerRewardDetails.monthsDiscountValid",
+	"referredpercentlength" : "programDetails.referredRewardDetails.monthsDiscountValid",
+	"referrerrewardamount" : "programDetails.referrerRewardDetails.credit", 
+	"referredrewardamount" : "programDetails.referredRewardDetails.credit",
+	"referrerrewardunit" : "programDetails.referrerRewardDetails.unit",
+	"referredrewardunit" : "programDetails.referredRewardDetails.unit",
+	"referrerdollaramount" : "math programDetails.referrerRewardDetails.credit ' / 100'",
+	"referreddollaramount" : "math programDetails.referredRewardDetails.credit ' / 100'"
+}

@@ -5,6 +5,8 @@ var collections = require('metalsmith-collections');
 var metadata = require('metalsmith-metadata');
 var define = require('metalsmith-define');
 var less = require('metalsmith-less');
+var request = require('metalsmith-request');
+
 var swig = require('swig');
 var extras = require('swig-extras');
 
@@ -52,8 +54,17 @@ function site(){
     } 
   }))
   .use(metadata({
-      shorttags: 'metadata/shorttags.yaml'
+      shorttags: 'metadata/shorttags.yaml',
+      shorttagsMap: 'metadata/shorttagmap.json'
       }))
+  // TODO: Migrate to Prod dependency
+  // .use(request({
+  //     shorttagsMap: 'https://staging.referralsaasquatch.com/assets/javascripts/themeshorttags.json'
+  //   }, 
+  //   {
+  //     json: true
+  //   }
+  //   ))
   .use(permalinks())
   .use(templates({
           engine: "swig",

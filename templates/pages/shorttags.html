@@ -17,22 +17,77 @@
   {% endif %}
   
   {{ contents | safe }}
-
   
-  <table class="table">
+  <table class="table table-hover apidocs-args">
+      <thead>
+        <tr>
+          <th>Short Tag</th>
+          <th>Example</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
   {% for shorttag in shorttags.properties %}
       <tr>
-          <td>
-          <code>
-              {{ loop.key }}
-          </code>
-          </td>
+          <th class="docs-monospace">
+                {{ "{{" }}{{ loop.key }}{% raw %}}}{% endraw %}<br>
+                <span class="muted">{{shorttag.type}}</span>
+          </th>
+          <td style="whitespace:nowrap">
+            <small><span class="muted"><b>{{ shorttag.example }}</b></span></small>
+          </td>            
           <td>
             {{ shorttag.description | markdown }}
+            
           </td>
+          {% if shorttag['x-program'] %}
+          <td>
+            <span class="label {{shorttag['x-program']}}">Works with {{shorttag['x-program']}}</span>
+          </td>
+          {% endif %}
       </tr>
   {% endfor %}
+      </tbody>
   </table>
+
+    <h3>Mappings <span class="label">Developer Reference</span></h3>
+    <p>Every short tag gets wrapped to a long tag that is uses one of the <a href="/themes/fields/">theme context fields</a> or <a href="/themes/helpers/">helpers</a>.
+       Embedded template fields with corresponding short tag aliases will be replaced with their respective short tags when viewed in the portal share message editor.
+       It is a <b>two-way transformation</b> so as a developer, you <b>will always see the longer form</b> and will never see short tags in variables, theme context,
+       or anywhere except for the portal itself.
+    </p>
+    
+  <table class="table table-hover">
+      <thead>
+        <tr>
+          <td>Short Tag <br>
+            <small>Seen in the portal</small>
+          </td>
+          <td></td>
+          <td>Mapped Handlebars Tag <br>
+            <small>Seen in the API and theme field context</small>
+          </td>
+        </tr>
+      </thead>
+      
+    {% for shorttag in shorttags.properties %}
+            {% set mappedTo = shorttagsMap[loop.key] %}
+            {% if mappedTo %}
+            <tr>
+              <td>
+                <code>{{ "{{" }}{{ loop.key }}{% raw %}}}{% endraw %}</code>
+              </td>
+              <td>
+                <i class="fa fa-arrows-h"></i>
+              </td>
+              <td>
+                <code>{{ "{{" }}{{ mappedTo }}{% raw %}}}{% endraw %}</code>
+              </td>
+            {% endif %}
+            </tr>
+    {% endfor %}
+  </table>
+  
   
   
 {% endblock content %}
