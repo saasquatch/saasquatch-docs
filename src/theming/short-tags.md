@@ -2,7 +2,7 @@
 title: Short Tags Reference
 highlights: The messages your customers use to refer others to your product can be customized to suite your needs. This reference describes the ways in which you can customize such messaging via the portal. 
 slug: themes/short-tags
-template: themes.html
+template: pages/shorttags.html
 ---
 
 

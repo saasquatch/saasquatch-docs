@@ -1,0 +1,7 @@
+title: |
+    Short tags are aliases for other SaaSquatch theme variables. Short tags make writing share messages easier by reducing how much people need to type and showing less on screen,
+type: object
+properties:
+    companyName:
+        type: string
+        description: The name of the company.

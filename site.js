@@ -2,14 +2,15 @@ var Metalsmith = require('metalsmith');
 var markdown = require('metalsmith-markdown');
 var templates = require('metalsmith-templates');
 var collections = require('metalsmith-collections');
+var metadata = require('metalsmith-metadata');
 var define = require('metalsmith-define');
 var less = require('metalsmith-less');
 var swig = require('swig');
 var extras = require('swig-extras');
-var extend = require('extend');
 
 var permalinks = require('./plugins/rawpaths.js');
 var swagger = require('./plugins/swagger.js');
+var exampleSwaggerSchemaFilter = require('./plugins/exampleSwaggerSchemaFilter.js');
 
 module.exports = site;
 
@@ -31,45 +32,7 @@ function site(){
 
   // Does this approach work here? Yes it does. http://quabr.com/26160954/set-swig-options-with-consolidate
   extras.useFilter(swig, 'markdown');
-
-  swig.setFilter('exampleSwaggerSchema', function (baseSchema) {
-    var myOutput = {};
-    
-    // TODO: Add Array support
-    // Doesn't support creating example objects that include Arrays yet....
-    
-    function extractProperties(schema, output){
-      if(schema['example']){
-        // By default grabs the schema-level example
-        extend(true, output, schema['example']);
-      }
-      var props = schema.properties;
-      if(!props){ return }
-      Object.keys(props).forEach(function(field) {
-        var item = props[field];
-        if(item['example']){
-          // This is a raw field
-          output[field] = item['example'];
-        }else if(item['properties']){
-          // This is an expanded object / schema and should recusively explore it
-          output[field] = {};
-          // Recurses. Loops through all child props.
-          extractProperties(item, output[field]);
-        }else if(item['items']){
-          var innerObj = {};
-          output[field] = [innerObj];
-          // Resurses into arrays. Builds a single-item array with the schema of the "ref'd" type
-          extractProperties(item['items'], innerObj);
-        }
-      });
-    }
-    
-    // Appends any `Field` with `example` set.
-    // Recursively explores all `properties` if a `field` happens to also be a `schema`
-    extractProperties(baseSchema, myOutput);
-    
-    return myOutput;
-  });
+  swig.setFilter('exampleSwaggerSchema', exampleSwaggerSchemaFilter);
 
   var ms = Metalsmith(__dirname)
   .use(define({
@@ -88,6 +51,9 @@ function site(){
       }
     } 
   }))
+  .use(metadata({
+      shorttags: 'metadata/shorttags.yaml'
+      }))
   .use(permalinks())
   .use(templates({
           engine: "swig",
