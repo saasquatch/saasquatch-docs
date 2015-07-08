@@ -850,8 +850,10 @@ paths:
       responses: 
         204: 
           description: Variables Replaced
-        default: 
+        400: 
           $ref: "#/responses/VariablesErrorResponse"
+        default: 
+          $ref: "#/responses/GeneralError"
       
     patch:
       operationId: update_variables
@@ -875,8 +877,10 @@ paths:
           examples:
             "application/json": 
               $ref: "#/definitions/VariablesInstance/example"
-        default: 
+        400: 
           $ref: "#/responses/VariablesErrorResponse"
+        default: 
+          $ref: "#/responses/GeneralError"
 
 
   "/{tenant_alias}/subscription": 
@@ -1733,24 +1737,19 @@ definitions:
       apiErrorCode: 
         description: A machine error code
         type: string
+        
   VariablesError: 
-    properties: 
-      statusCode: 
-        description: The HTTP status code of the error
-        type: integer
-        format: int32
-        example: 404
-      message: 
-        description: The human-readable description of what went wrong. Use this to help you debug.
-        type: string
-      apiErrorCode: 
-        description: A machine error code
-        type: string
-      validationErrors: 
-        description: A list of validation errors
-        type: array
-        items: 
-          type: string
+    allOf:
+      - $ref: '#/definitions/Error'
+      - type: object
+        properties: 
+          validationErrors: 
+            description: A list of validation errors
+            type: array
+            items: 
+              type: string
+    
+
 responses:
   GeneralError:
     description: Unexpected Error
@@ -1760,3 +1759,6 @@ responses:
     description: Variables Update Error
     schema:
       $ref: '#/definitions/VariablesError'
+    examples:
+      "application/json": 
+        "foo": "bar"
