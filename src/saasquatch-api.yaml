@@ -839,7 +839,7 @@ paths:
         Replaces all of the previously set values. Use this operation only when your
         goal is to completely replace all variable values, including deleting previous
         values of othe fields that you're not setting. Prefer to use a `PATCH` request
-        when you only want to update one variable or subset of variables.
+        when you only want to update one variable or a subset of variables.
       parameters:
         - name: instance
           in: body
@@ -848,15 +848,10 @@ paths:
             $ref: "#/definitions/VariablesInstance"
         - $ref: "#/parameters/tenant_alias"
       responses: 
-        201: 
+        204: 
           description: Variables Replaced
-          schema: 
-            $ref: "#/definitions/VariablesInstance"
-          examples:
-            "application/json": 
-              $ref: "#/definitions/VariablesInstance/example"
         default: 
-          $ref: "#/responses/GeneralError"
+          $ref: "#/responses/VariablesErrorResponse"
       
     patch:
       operationId: update_variables
@@ -873,7 +868,7 @@ paths:
             $ref: "#/definitions/VariablesInstance"
         - $ref: "#/parameters/tenant_alias"
       responses:
-        201: 
+        200: 
           description: Variables Updated
           schema: 
             $ref: "#/definitions/VariablesInstance"
@@ -881,7 +876,7 @@ paths:
             "application/json": 
               $ref: "#/definitions/VariablesInstance/example"
         default: 
-          $ref: "#/responses/GeneralError"
+          $ref: "#/responses/VariablesErrorResponse"
 
 
   "/{tenant_alias}/subscription": 
@@ -1738,8 +1733,30 @@ definitions:
       apiErrorCode: 
         description: A machine error code
         type: string
+  VariablesError: 
+    properties: 
+      statusCode: 
+        description: The HTTP status code of the error
+        type: integer
+        format: int32
+        example: 404
+      message: 
+        description: The human-readable description of what went wrong. Use this to help you debug.
+        type: string
+      apiErrorCode: 
+        description: A machine error code
+        type: string
+      validationErrors: 
+        description: A list of validation errors
+        type: array
+        items: 
+          type: string
 responses:
   GeneralError:
     description: Unexpected Error
     schema:
       $ref: '#/definitions/Error'
+  VariablesErrorResponse:
+    description: Variables Update Error
+    schema:
+      $ref: '#/definitions/VariablesError'
