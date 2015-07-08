@@ -2,78 +2,78 @@ title: |
     Short tags are aliases for other SaaSquatch theme variables. Short tags make writing share messages easier by reducing how much people need to type and showing less on screen,
 type: object
 properties:
-    companyname:
+    company_name:
         type: string
         description: |
             The name of the company for the referral program as configured on your *portal settings page*.
         example: Acme Co.
-    emailsharelink:
+    email_share_link:
         type: string
         description: |
             The link that should be used to *establish a referral via email*. Use this in the email share body tab of your portal share message editor.
         example: http://ssqt.co/125gasb0
-    facebooksharelink:
+    facebook_share_link:
         type: string
         description: |
             The link that should be used to *establish a referral via Facebook*. Use this in the Facebook share body tab of your portal share message editor.
         example: http://ssqt.co/125gasb1
-    twittersharelink:
+    twitter_share_link:
         type: string
         description: |
             The link that should be used to *establish a referral via Twitter*. Use this in the Twitter share body tab of your portal share message editor.
         example: http://ssqt.co/125gasb2
-    referralcode:
+    referral_code:
         type: string
         description: |
             The code that the sharing user will use to establish referrals. If your program includes a place to enter a referral code then include this code in the body of your share messages.
         example: BOBTESTERSON
     
-    referrerpercentdiscount:
+    referrer_percent_discount:
         type: integer
         description: |
             The percent discount that the referring user will receive upon successfully referring a friend.
         x-program: PCT_DISCOUNT
         example: 10
-    referredpercentdiscount:
+    referred_percent_discount:
         type: integer
         description: |
             The percent discount that will be given to the referred user.
         x-program: PCT_DISCOUNT
         example: 10
 
-    referrerpercentlength:
+    referrer_percent_length:
         type: integer
         description: |
             The duration in months for which the referring user's discount is valid. E.g. 10% off your monthly bill for "12" months.
         x-program: PCT_DISCOUNT
         example: 12
-    referredpercentlength:
+    referred_percent_length:
         type: integer
         description: |
             The duration in months for which the referred user's discount is valid. E.g. 10% off your monthly bill for "12" months.
         x-program: PCT_DISCOUNT
         example: 12
 
-    referrerrewardunit:
+    referrer_reward_unit:
         type: string
         description: |
             The unit of the credit given to the referring user upon successfully referring a friend. E.g for $20 we would have `referrerrewardamount=2000` and `referrerrewardunit="cents"`.
         x-program: CREDIT
         example: cents
-    referredrewardunit:
+    referred_reward_unit:
         type: string
         description: |
             The unit of the credit given to the referred user. E.g for $20 we would have `referredrewardamount=2000` and `referredrewardunit="cents"`.
         x-program: CREDIT
         example: cents
         
-    referrerdollaramount:
+    referrer_dollar_amount:
         type: integer
         description: |
             The dollar amount for credit given to a referring user upon successfully referring a friend. This amount is equal to the `referrerrewardamount / 100`.
         x-program: CREDIT
         example: 20
-    referreddollaramount:
+    referred_dollar_amount:
         type: integer
         description: |
             The dollar amount for credit given to a referred user. This amount is equal to the `referredrewardamount / 100`.
@@ -81,13 +81,13 @@ properties:
         example: 20
 
 
-    referrerrewardamount:
+    referrer_reward_amount:
         type: integer
         description: |
             The amount of credit that will be given to the referring user upon successfully referring a friend. E.g. "5" months free usage.
         x-program: CREDIT
         example: 5
-    referredrewardamount:
+    referred_reward_amount:
         type: integer
         description: |
             The amount of credit that will be given to the referred user. E.g. "5" months free usage.

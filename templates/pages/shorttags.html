@@ -29,11 +29,11 @@
       <tbody>
   {% for shorttag in shorttags.properties %}
       <tr>
-          <th class="docs-monospace">
-                {{ "{{" }}{{ loop.key }}{% raw %}}}{% endraw %}<br>
+          <th class="docs-monospace" style="white-space:nowrap">
+                {{ "{{" }} {{ loop.key }} {% raw %}}}{% endraw %}<br>
                 <span class="muted">{{shorttag.type}}</span>
           </th>
-          <td style="whitespace:nowrap">
+          <td style="white-space:nowrap">
             <small><span class="muted"><b>{{ shorttag.example }}</b></span></small>
           </td>            
           <td>
@@ -75,13 +75,13 @@
             {% if mappedTo %}
             <tr>
               <td>
-                <code>{{ "{{" }}{{ loop.key }}{% raw %}}}{% endraw %}</code>
+                <code>{{ "{{" }} {{ loop.key }} {% raw %}}}{% endraw %}</code>
               </td>
               <td>
                 <i class="fa fa-arrows-h"></i>
               </td>
               <td>
-                <code>{{ "{{" }}{{ mappedTo }}{% raw %}}}{% endraw %}</code>
+                <code>{{ "{{" }} {{ mappedTo }} {% raw %}}}{% endraw %}</code>
               </td>
             {% endif %}
             </tr>
