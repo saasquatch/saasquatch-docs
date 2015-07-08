@@ -1761,4 +1761,8 @@ responses:
       $ref: '#/definitions/VariablesError'
     examples:
       "application/json": 
-        "foo": "bar"
+        message: "Your request failed to validate against the current variables schema."
+        statusCode: 400
+        apiErrorCode: "VALIDATION_FAILED"
+        validationErrors: 
+          - "object has missing required properties ([\"emailShareSubject\",\"facebookShareBody\",\"facebookShareSubject\",\"twitterShareBody\"])"
