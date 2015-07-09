@@ -794,8 +794,8 @@ paths:
       summary: Lookup variables schema
       description: |
         Returns the variables schema object that is defined in the tenant theme repository. 
-        This will be a [JSON Schema](http://json-schema.org/) standards compliant definition.
-        
+        This will be a [JSON Schema](http://json-schema.org/) standards compliant definition. 
+        See [theme variables](/themes/variables/) for more info.
       produces:
         - "application/schema+json"
       parameters:
@@ -840,6 +840,7 @@ paths:
         goal is to completely replace all variable values, including deleting previous
         values of othe fields that you're not setting. Prefer to use a `PATCH` request
         when you only want to update one variable or a subset of variables.
+        See [theme variables](/themes/variables/) for more info.
       parameters:
         - name: instance
           in: body
@@ -861,7 +862,7 @@ paths:
       description: |
         Updates the previously stored values for the variables included in this request.
         Will not override, nullify or delete the other variable values that are not included.
-        This method can be used to selectively set a single variable.
+        This method can be used to selectively set a single variable. See [theme variables](/themes/variables/) for more info.
       parameters:
         - name: instance
           in: body
@@ -1483,7 +1484,7 @@ definitions:
         description: Optional name of the endpoint that receives events  
 
   VariablesSchema:
-    description: The JSON Schema that defines the format of the theme variables
+    description: The JSON Schema that defines the format of the theme variables. See [theme variables](/themes/variables) for more info.
     allOf:
       # - $ref: "http://json-schema.org/draft-04/schema"
       - type: object
@@ -1501,7 +1502,7 @@ definitions:
           type: string
           format: color
   VariablesInstance:
-    description: The stored values for the variables
+    description: The stored values for the variables.  See [theme variables](/themes/variables) for more info.
     type: object
     additionalProperties: true
     example:
