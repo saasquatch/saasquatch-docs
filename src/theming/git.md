@@ -20,7 +20,7 @@ are usually a collaboration between a lot of people, such as:
 Git lets all of these people work in parallel on the referral program user experience without every losing anyone's changes. It also maintains a history so that 
 we can test new wording, layouts and changes, and roll back those changes if they don't produce the desired results.
 
-<p class="lead align-center well">Git let's us move fast, experiment and over top-notch user experience</p>
+<p class="lead align-center well">Git lets us move fast, experiment and offer a top-notch user experience</p>
 
 ### How do I find out more about git?
 

@@ -2,7 +2,7 @@
 title: Theme Variables
 highlights: |
   Theme Variables make themes more customizable through custom fields. For example, the theme variables defined in [Standard Themes](/themes/standard) are what lets each program have custom email, facebook and twitter share messages.
-  To use varibles, the theme developers define variables in a [JSON Schema](http://json-schema.org/examples.html) in the theme git repository. These variables can then be
+  It is up to theme developers to define the variables in a [JSON Schema](http://json-schema.org/examples.html) in the theme git repository. These variables can then be
   [updated via the SaaSquatch REST API](/api/methods/#update_variables) and then those values rendered in Handlebars templates.
 slug: themes/variables
 template: themes.html
@@ -51,13 +51,21 @@ in the [theme context](/themes/fields).
 }
 ```
 
+<div class="bs-callout bs-callout-warning">
+  <h4>JSON Schema Validation</h4>
+  
+  The `variables.json` file in the root of the theme is validated against the [JSON Schema Spec](http://json-schema.org/) when the theme is [published](/themes/publish/). If the schema is invalid, an error will be thrown and the publish
+  will be rejected. If you're publishing using [saasquatch-cli](https://github.com/saasquatch/saasquatch-cli), then you will be able to see the validation error messages that
+  need to be fixed.
+  
+</div>
+
 
 ### Values
 
-Given the schema above, the following represents a possible value for the `shareMessaging` field. 
-Note that this field value itself includes references to other fields from the general theme context.
-The variables helper will ensure these references are replaced by the actual context values. These values
+Given the schema above, the following represents a possible value for the `shareMessaging` field. These theme variable values
 are available to be [looked up via the SaaSquatch REST API](/api/methods/#lookup_variables) and as the `variables` field in the [theme context](/themes/fields). 
+
 
 ```json
 {
@@ -66,6 +74,22 @@ are available to be [looked up via the SaaSquatch REST API](/api/methods/#lookup
   }
 }
 ```
+
+
+<div class="bs-callout bs-callout-warning">
+  <h4>Context references</h4>
+  
+  Note that this examples includes references to other fields from the general [theme context](/themes/fields), like `companyName` and `programDetails.referredRewardDetails.discountPercent`.
+  Context references like these will be replaced by the actual context values in templates using the `variables` helper. The example usage of `variables` in templates and
+  the output shown in the examples below show how these context references are replaced.
+</div>
+
+<div class="bs-callout bs-callout-warning">
+  <h4>Short Tags in Context references</h4>
+  
+  [Short tags](/themes/short-tags/) are aliases for context references. When editting from [the portal](https://app.referralsaasquatch.com), context references in theme variables are 
+  replaced by their corresponding [short tags](/themes/short-tags/). These short tag replacements **are not persisted** and they are not valid syntax in the API or templates.
+</div>
 
 
 ### Template
