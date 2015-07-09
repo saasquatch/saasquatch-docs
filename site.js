@@ -2,7 +2,6 @@ var Metalsmith = require('metalsmith');
 var markdown = require('metalsmith-markdown');
 var templates = require('metalsmith-templates');
 var collections = require('metalsmith-collections');
-var metadata = require('metalsmith-metadata');
 var define = require('metalsmith-define');
 var less = require('metalsmith-less');
 var request = require('metalsmith-request');
@@ -12,6 +11,7 @@ var extras = require('swig-extras');
 
 var permalinks = require('./plugins/rawpaths.js');
 var swagger = require('./plugins/swagger.js');
+var metadata = require('./plugins/metadata.js');
 var exampleSwaggerSchemaFilter = require('./plugins/exampleSwaggerSchemaFilter.js');
 
 module.exports = site;

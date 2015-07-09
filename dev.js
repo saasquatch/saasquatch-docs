@@ -21,7 +21,10 @@ site().use(serve({
   verbose: true
 }))
 .use(watch({
-  pattern : '**/*',
+   paths: {
+        "**/*": true,
+        "templates/**/*": "**/*.md",
+      },
   livereload: false
 }))
 .build(function(err) {
