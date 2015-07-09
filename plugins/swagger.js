@@ -34,6 +34,7 @@ function plugin(opts){
     if (!files[file]){
       // TODO: Fix or replace metalsmith-watch. It doesn't live-reload all files, and doesn't cache our Swagger.yaml contents
       //return done(new Error('file "' + file + '" not found'));
+      console.error('file "' + file + '" not found');
       return done();
     }
     

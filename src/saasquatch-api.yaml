@@ -794,8 +794,8 @@ paths:
       summary: Lookup variables schema
       description: |
         Returns the variables schema object that is defined in the tenant theme repository. 
-        This will be a [JSON Schema](http://json-schema.org/) standards compliant definition.
-        
+        This will be a [JSON Schema](http://json-schema.org/) standards compliant definition. 
+        See [theme variables](/themes/variables/) for more info.
       produces:
         - "application/schema+json"
       parameters:
@@ -839,7 +839,8 @@ paths:
         Replaces all of the previously set values. Use this operation only when your
         goal is to completely replace all variable values, including deleting previous
         values of othe fields that you're not setting. Prefer to use a `PATCH` request
-        when you only want to update one variable or subset of variables.
+        when you only want to update one variable or a subset of variables.
+        See [theme variables](/themes/variables/) for more info.
       parameters:
         - name: instance
           in: body
@@ -848,13 +849,10 @@ paths:
             $ref: "#/definitions/VariablesInstance"
         - $ref: "#/parameters/tenant_alias"
       responses: 
-        201: 
+        204: 
           description: Variables Replaced
-          schema: 
-            $ref: "#/definitions/VariablesInstance"
-          examples:
-            "application/json": 
-              $ref: "#/definitions/VariablesInstance/example"
+        400: 
+          $ref: "#/responses/VariablesErrorResponse"
         default: 
           $ref: "#/responses/GeneralError"
       
@@ -864,7 +862,7 @@ paths:
       description: |
         Updates the previously stored values for the variables included in this request.
         Will not override, nullify or delete the other variable values that are not included.
-        This method can be used to selectively set a single variable.
+        This method can be used to selectively set a single variable. See [theme variables](/themes/variables/) for more info.
       parameters:
         - name: instance
           in: body
@@ -873,13 +871,15 @@ paths:
             $ref: "#/definitions/VariablesInstance"
         - $ref: "#/parameters/tenant_alias"
       responses:
-        201: 
+        200: 
           description: Variables Updated
           schema: 
             $ref: "#/definitions/VariablesInstance"
           examples:
             "application/json": 
               $ref: "#/definitions/VariablesInstance/example"
+        400: 
+          $ref: "#/responses/VariablesErrorResponse"
         default: 
           $ref: "#/responses/GeneralError"
 
@@ -1484,7 +1484,7 @@ definitions:
         description: Optional name of the endpoint that receives events  
 
   VariablesSchema:
-    description: The JSON Schema that defines the format of the theme variables
+    description: The JSON Schema that defines the format of the theme variables. See [theme variables](/themes/variables) for more info.
     allOf:
       # - $ref: "http://json-schema.org/draft-04/schema"
       - type: object
@@ -1502,7 +1502,7 @@ definitions:
           type: string
           format: color
   VariablesInstance:
-    description: The stored values for the variables
+    description: The stored values for the variables.  See [theme variables](/themes/variables) for more info.
     type: object
     additionalProperties: true
     example:
@@ -1738,8 +1738,32 @@ definitions:
       apiErrorCode: 
         description: A machine error code
         type: string
+        
+  VariablesError: 
+    allOf:
+      - $ref: '#/definitions/Error'
+      - type: object
+        properties: 
+          validationErrors: 
+            description: A list of validation errors
+            type: array
+            items: 
+              type: string
+    
+
 responses:
   GeneralError:
     description: Unexpected Error
     schema:
       $ref: '#/definitions/Error'
+  VariablesErrorResponse:
+    description: Variables Update Error
+    schema:
+      $ref: '#/definitions/VariablesError'
+    examples:
+      "application/json": 
+        message: "Your request failed to validate against the current variables schema."
+        statusCode: 400
+        apiErrorCode: "VALIDATION_FAILED"
+        validationErrors: 
+          - "object has missing required properties ([\"emailShareSubject\",\"facebookShareBody\",\"facebookShareSubject\",\"twitterShareBody\"])"

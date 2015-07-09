@@ -53,3 +53,26 @@ your test tenant or live tenant using the theme publish tool. The ideal workflow
   4. [Publish](/themes/publish) your theme to your test tenant
   5. Preview in your development environment
   6. [Publish](/themes/publish) your theme to your live tenant
+
+---
+
+### File Layout
+
+Custom themes are just a bunch of files organized in a standard layout. Handlebars [templates](/themes/templates) are located in the `templates` folder, [assets](/themes/assets) in the `assets` folder,
+and [variables](/themes/variables) defined in `variables.json` schema file.
+
+```
+├── /assets
+|   ├── /css
+|       ├── plaincss.css
+|       └── lesscss.less
+|   ├── /js
+|       └── myscript.js
+|   └── /images
+|       └── logo.png
+├── /templates
+|   ├── widget.hbs
+|   └── partial.hbs
+├── variables.json
+└── Readme.md
+```
