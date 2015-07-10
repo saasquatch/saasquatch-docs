@@ -13,7 +13,9 @@
   <hr/>
   {% endif %}
   
+  {% block articleContent %}
   {{ contents | safe }}
+  {% endblock articleContent %}
   
 </section>
 {% endblock content %}

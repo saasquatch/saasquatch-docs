@@ -1,21 +1,8 @@
-{% extends '../themes.html' %}
-
-{% import "../tags/API.html" as API %}
 {% import "./swaggerMacros.html" as swaggerMacros %}
 
-{% block content %}
+{% extends '../themes.html' %}
+{% block articleContent %}
 
-<section>
-  <div class="page-header">
-      <h1>{{title}}</h1>
-  </div>
-  
-  {% if highlights %}
-  <p class="lead">
-    {{ highlights }}
-  </p>
-  {% endif %}
-  
   {{ contents | safe }}
   
   <table class="table table-hover apidocs-args">
@@ -90,4 +77,4 @@
   
   
   
-{% endblock content %}
+{% endblock articleContent %}
