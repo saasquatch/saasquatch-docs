@@ -59,7 +59,7 @@ To complete the referral you need to use our [mobile widget](/mobile/widget/). T
 
 We also recommend having a place in your app where a user can enter their friend’s referral code directly. We use short codes that are easy to type so that users can share them face to face as well as sending links.
 
-### Reference
+### <a name="reference">Reference</a>
 
 JSON data embedded in the Branch link:
 
