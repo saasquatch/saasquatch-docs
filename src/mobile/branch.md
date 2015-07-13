@@ -16,7 +16,7 @@ There are two parts of integrating Referral Saasquatch with Branch Metrics: sett
 
 In order to integrate Branch Metrics, you're going to need a Branch account and an app set up within Branch. If you already have one, skip straight to [Adding your Branch account to your Saasquatch account](#saasquatchAccount).
 
-First you're going to need a Branch.io account. Head over to [Branch Metrics](https://branch.io) and click “Sign Up”. All you need is a valid email account.
+If you don't have a Branch account yet, head over to [Branch Metrics](https://branch.io) and click “Sign Up”. All you need is a valid email account.
 
 Now you need to set up an app. Branch's dashboard will walk you through this process if you don't have an app yet, or you can add a new app any time from the dropdown menu in the top right corner. 
 
@@ -48,32 +48,34 @@ Here is an example of the Saasquatch keys and values you will see inside the JSO
 
 ```json
 {
-    "code" : "JOANNATEST",
-    "$desktop_url" : "http:\/\/example.com",
-    "sq_id" : "559f0deeebba89f94fb618b9",
-    "sq_firstName" : "Joanna",
-    "sq_lastName" : "Test",
-    "sq_imageUrl" : "http:\/\/gravatar.com\/avatar\/7ede76436e1258b9a3deb245cfe58a29?d=mm",
-    "sq_referralCode" : "JOANNATEST",
-    "sq_type" : "PCT_DISCOUNT",
-    "sq_quantity" : "10",
-    "~channel" : "DIRECT",
-    "~tags" : ["STANDARD"],
-    "~creation_source" : "API",
-    "+is_first_session" : false,
-    "+clicked_branch_link" : true
+    "code" : "BRITTANYTEST",
+	"$desktop_url" : "http:\/\/\/a\/test_a6whcgrt0vcw3\/widgets\/referral?code=BRITTANYTEST&referralMedium=DIRECT&referralSource=STANDARD",
+	"sq_accountId" : "55a43496ebbaff9cf86443d3",
+	"sq_amount" : "10",
+	"sq_firstName" : "Brittany",
+	"sq_id" : "55a43496ebbaf01cebac42cb",
+	"sq_imageUrl" : "http:\/\/gravatar.com\/avatar\/77af7eba41d1ccad2bf2c13704637c25?d=mm",
+	"sq_lastName" : "Test",
+	"sq_referralCode" : "BRITTANYTEST",
+	"sq_type" : "PCT_DISCOUNT",
+	"sq_unit" : "PERCENT",
+	"~channel" : "DIRECT",
+	"~tags" : ["STANDARD"],
+	"~creation_source" : "API",
+	"+is_first_session" : false,
+	"+clicked_branch_link" : true
 }
 ```
 
 The most important value there is `sq_referralCode`. That's the one you need to complete the referral so that both the referrer and referree get their rewards and tell more friends how great you are.
 
-To complete the referral you need to use our [mobile widget](/mobile/widget/). To load the widget you will need to craft a url with a number of GET parameters, including the new user's account id and user id from your system, as well as the referral code from `sq_referralCode`, then use it to load the mobile widget to display to your new customer. For security we recommend that you generate this url on your server and include a checksum, which will help prevent fraudulent referrals.
+To complete the referral you need to use our [mobile widget](/mobile/widget/). To load the widget you will need to craft a url with a number of GET parameters, including the new user's account id and user id from your system, as well as the referral code from `sq_referralCode` (the referral code is required in this case because it's the only way to connect the new user with their referrer from a deep link), then use it to load the mobile widget to display to your new customer. For security we recommend that you generate this url on your server and include a checksum, which will help prevent fraudulent referrals.
 
 We also recommend having a place in your app where a user can enter their friend's referral code directly. We use short codes that are easy to type so that users can share them face to face as well as sending links.
 
 
 <div class="bs-callout bs-callout-warning">
-  <h4>Tehnical Reference</h4><a name="reference"></a>
+  <h4>Technical Reference</h4><a name="reference"></a>
   
   For a full technical reference of data fields and behaviour, check out the [Branch Metrics Reference](/mobile/branch-metrics/reference)
 </div>
