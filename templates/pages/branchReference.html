@@ -1,0 +1,14 @@
+{% import "./swaggerMacros.html" as swaggerMacros %}
+
+{% extends '../mobile.html' %}
+{% block articleContent %}
+
+
+
+  {{ contents | safe }}
+
+
+  {{swaggerMacros.outputProperties(branchFields)}}
+  
+  
+{% endblock articleContent %}

@@ -1,0 +1,37 @@
+title: |
+    The Referral SaaSquatch integration with Branch Metrics includes these fields as `data` in referral branch deep links.
+type: object
+properties:
+    
+    ##
+    ## User
+    ##
+    sq_id:
+        type: string
+        description: "The referrer's user id. This allows you to look up the user in your own system."
+    sq_firstName:
+        type: string
+        description: "The referrer's first name."
+    sq_lastName:
+        type: string
+        description: "The referrer's last name."
+    sq_imageUrl:
+        type: string
+        description: "The referrer's profile image url or a gravatar link if we do not have an image url for that account."
+    
+    ##
+    ## Referral Code
+    ##
+    sq_referralCode:
+        type: string
+        description: "The referrer's referral code. This is necessary to [attribute the referral](/topics/attribution)."
+
+    ##
+    ## Reward 
+    ##
+    sq_quantity:
+        type: string
+        description: "The quantity of the referree's reward. For example, in a 10% off referral program this would be 10."
+    sq_type:
+        type: string
+        description: "The type of the referree's reward. One of: `PCT_DISCOUNT`, `TIME_CREDIT`, `FEATURE`, `CREDIT`, `GIFTCODE`"
