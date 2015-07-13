@@ -36,7 +36,7 @@ custom metadata produce a deep link like the following example:
 ```json
 {
     "code" : "BRITTANYTEST",
-	"$desktop_url" : "http:\/\/\/a\/test_a6whcgrt0vcw3\/widgets\/referral?code=BRITTANYTEST&referralMedium=DIRECT&referralSource=STANDARD",
+	"$desktop_url" : "http:\/\/landingpage.com\/a\/test_a6whcgrt0vcw3\/widgets\/referral?code=BRITTANYTEST&referralMedium=DIRECT&referralSource=STANDARD",
 	"sq_accountId" : "55a43496ebbaff9cf86443d3",
 	"sq_amount" : "10",
 	"sq_firstName" : "Brittany",
@@ -84,5 +84,5 @@ setting the Branch value for `desktop_url`.
   
 ### Data Fields
 
-When Referral SaaSquatch creates links [dynamically in branch](https://dev.branch.io/references/http_api/#creating-a-deep-linking-url), it includes a number of metadata fields in the `data` field.
+When Referral SaaSquatch creates links [dynamically in branch](https://dev.branch.io/references/http_api/#creating-a-deep-linking-url/), it includes a number of metadata fields in the `data` field.
 These includes fields from the **User**, **Referral Code** and **Reward** objects.

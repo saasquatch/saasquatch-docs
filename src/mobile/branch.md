@@ -68,7 +68,7 @@ Here is an example of the Saasquatch keys and values you will see inside the JSO
 ```json
 {
     "code" : "BRITTANYTEST",
-	"$desktop_url" : "http:\/\/\/a\/test_a6whcgrt0vcw3\/widgets\/referral?code=BRITTANYTEST&referralMedium=DIRECT&referralSource=STANDARD",
+	"$desktop_url" : "http:\/\/landingpage.com\/a\/test_a6whcgrt0vcw3\/widgets\/referral?code=BRITTANYTEST&referralMedium=DIRECT&referralSource=STANDARD",
 	"sq_accountId" : "55a43496ebbaff9cf86443d3",
 	"sq_amount" : "10",
 	"sq_firstName" : "Brittany",
