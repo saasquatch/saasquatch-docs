@@ -56,7 +56,8 @@ function site(){
   .use(metadata({
       shorttags: 'metadata/shorttags.yaml',
       shorttagsMap: 'metadata/shorttagmap.json',
-      branchFields: 'metadata/branchFields.yaml'
+      branchFields: 'metadata/branchFields.yaml',
+      integrations: 'metadata/integrations.yaml',
       }))
   // TODO: Migrate to Prod dependency
   // .use(request({

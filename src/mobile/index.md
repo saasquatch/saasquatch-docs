@@ -5,28 +5,26 @@ slug: mobile
 template: mobile.html
 ---
 
+<!--Referral SaaSquatch is a cross-channel referral platform with support for mobile apps, web apps, desktop apps and ecommerce websites.-->
 
- - Mobile referral attribution
- - Mobile widgets
- - Mobile analytics
- 
+<!-- - Referral tracking for post-install conversions-->
+<!-- - In-app widgets to let your users makes referrals and track their referrals-->
+<!-- - -->
 
----
 
 <div class="row-fluid">
-  <div class="span4">
+  <div class="span6">
     <div class="text-center" style="overflow:hidden; position: relative; height: 124px; margin-bottom: 10px;"><img src="/assets/images/mobile/mobile-widget-lg.png" style="top:-45px; position:relative;"></div>
     <p>Our <a href="/mobile/widget">mobile widget</a> makes it easy for your users to refer their friends and track the status of their referrals all from one place.</p>
     <p>Go to <a href="/mobile/widget">Mobile Widget</a></p>
     </p>
   </div>
-  <div class="span4">
-    <img src="/assets/images/mobile/logo_branch_io.png">
+  <div class="span6">
+    <div class="text-center" >
+      <img src="/assets/images/mobile/logo_branch_io.png">
+    </div>
     <p>Our <a href="/mobile/branch-metrics/">Branch Metrics integration</a> lets your peronalize the onboarding experience of news users who use their phone</p>
     <p>Go to <a href="/mobile/branch-metrics/">Branch Metrics integration</a></p>
-  </div>
-  <div class="span4">
-  
   </div>
 
 </div>

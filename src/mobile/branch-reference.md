@@ -21,7 +21,7 @@ template: pages/branchReference.html
 The Referral SaaSquatch integrates with [Branch Metrics](http://branch.io) works as follows:
 
  - SaaSquatch referral links (e.g. ssqt.co/h126b21) will start redirecting to Branch links
- - Referral SaaSquatch will [create branch links dynamically](https://dev.branch.io/recipes/dynamic_link_creation/) and set values for `data`, `channel`, `tags` and `desktop_url`
+ - Referral SaaSquatch will [create branch links dynamically](https://dev.branch.io/references/http_api/#creating-a-deep-linking-url) and set values for `data`, `channel`, `tags` and `desktop_url`
  - Branch deep link `data` will include details of the referral code, the referrer and reward (See field reference below)
 
 
@@ -30,7 +30,7 @@ The Referral SaaSquatch integrates with [Branch Metrics](http://branch.io) works
 
 ### Example Deeplink
 
-When Referral SaaSquatch creates links [dynamically in branch](https://dev.branch.io/recipes/dynamic_link_creation/) the resulting link, including analytics tags, redirects and
+When Referral SaaSquatch creates links [dynamically in branch](https://dev.branch.io/references/http_api/#creating-a-deep-linking-url) the resulting link, including analytics tags, redirects and
 custom metadata produce a deep link like the following example:
 
 ```json
@@ -82,5 +82,5 @@ setting the Branch value for `desktop_url`.
   
 ### Data Fields
 
-When Referral SaaSquatch creates links [dynamically in branch](https://dev.branch.io/recipes/dynamic_link_creation/), it includes a number of metadata fields in the `data` field.
+When Referral SaaSquatch creates links [dynamically in branch](https://dev.branch.io/references/http_api/#creating-a-deep-linking-url), it includes a number of metadata fields in the `data` field.
 These includes fields from the **User**, **Referral Code** and **Reward** objects.

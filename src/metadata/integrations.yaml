@@ -1,0 +1,35 @@
+Stripe:
+    slug: /stripe
+    logo: stripe-integration.png
+    summary: |
+        The Referral SaaSquatch integration with Stripe powers automatic referral tracking, fulfillment and conversion through Stripe Connect, coupons and invoice line items.
+
+Branch:
+    slug: /mobile/branch-metrics/
+    logo: branch-integration.png
+    summary: |
+        Referral SaaSquatch integrates with Branch Metrics to provide additional attribution, personalization and analytics by using Branch's deep links.
+
+Recurly:
+    slug: /recurly
+    logo: recurly-integration.png
+    summary: |
+        The Referral SaaSquatch integration with Recurly powers automatic referral tracking, fulfillment and conversion through Recurly coupons, push notifications, and direct API access.
+
+Segment:
+    slug: /segment-io
+    logo: segment-integration.png
+    summary: |
+        Segment.io customers can use analytics.js instead of directly using the Squatch.js javascript library
+
+Braintree:
+    slug: /braintree
+    logo: braintree-integration.png
+    summary: |
+        The Referral SaaSquatch integration with Braintree powers automatic referral tracking, fulfillment and conversion using Braintree custom fields, discounts and direct API access.
+
+Zuora:
+    slug: /zuora
+    logo: zuora-integration.jpg
+    summary: |
+        The Referral SaaSquatch integration with Zuora powers automatic referral tracking, fulfillment and conversion through Zuora Subscription Tracking, Product Rate Plans and direct API access.

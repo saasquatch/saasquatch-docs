@@ -1,0 +1,25 @@
+{% import "./swaggerMacros.html" as swaggerMacros %}
+
+{% extends '../guides.html' %}
+{% block articleContent %}
+
+  {{ contents | safe }}
+  
+
+  <div class="docs-integrations-list row-fluid">
+  {% for intg in integrations %}
+  
+      <div class="docs-integration span4">
+        <a href="{{ intg.slug }}" class="docs-integration-logo">
+          <img src="/assets/images/integrations/{{ intg.logo }}" />
+        </a>
+
+          {{ intg.summary | markdown }}
+          
+        <a href="{{ intg.slug }}">Read more about {{ loop.key }}</a>
+      </div>
+
+  {% endfor %}
+  </div>
+  
+{% endblock articleContent %}

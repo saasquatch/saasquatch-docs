@@ -427,3 +427,44 @@ a .link {background-color:#fff;}
   background-color: #f0f7fd;
   border-color: #d0e3f0;
 }
+
+.docs-integrations-list{
+    
+    .docs-integration{
+        // all span4
+    }
+    
+    img{
+        max-height: 150px;
+        display: block;
+        margin: 0 auto;
+    }
+    .docs-integration-logo{
+        display: block;
+        height: 150px;
+    }
+    
+}
+/**
+
+Media overrides for Span4 allow unlimited number of Span4 elements in a single row-fluid.
+
+Stolen from here: http://stackoverflow.com/questions/9478103/multiple-spans-in-one-row-with-twitter-bootstrap
+
+**/
+@media (min-width: 320px) and (max-width:979px) { 
+    /* one column */
+    .docs-integrations-list .span4 {width:100%}
+    .docs-integrations-list .span4 {margin-left:0;}  
+}
+
+@media (min-width: 980px) and (max-width:1409px) { 
+    /* two columns, remove margin off every third span */
+    .docs-integrations-list .span4 {width:48.717948718%;}
+    .docs-integrations-list .span4:nth-child(2n+3) {margin-left:0;}
+}
+
+@media (min-width: 1410px) { 
+    /* three columns, .span4's natural width. remove margin off every 4th span */
+    .docs-integrations-list .span4:nth-child(3n+4) {margin-left:0;}
+}

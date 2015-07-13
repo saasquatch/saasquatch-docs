@@ -10,21 +10,21 @@ template: guides.html
 <div class="row-fluid">
     <div class="span4">
         <div class="align-center">
-            <i class="fa fa-user fa-3x fa-rounded"></i>
+            <i class="fa fa-user fa-3x fa-rounded" style="margin: 20px auto"></i>
             <h3>Email Identification</h3>
         </div>
         <p>Referral SaaSquatch tracks email addresses to <a href="/topics/identification">identify</a> users.</p>
     </div>
     <div class="span4">
         <div class="align-center">
-            <i class="fa fa-share fa-3x fa-rounded"></i>
+            <i class="fa fa-share fa-3x fa-rounded" style="margin: 20px auto"></i>
             <h3>Email Sharing</h3>
         </div>
         <p>Referral SaaSquatch lets your users make referrals by letting them send their friends an email.</p>
     </div>
     <div class="span4">
         <div class="align-center">
-            <i class="fa fa-paper-plane fa-3x fa-rounded"></i>
+            <i class="fa fa-paper-plane fa-3x fa-rounded" style="margin: 20px auto"></i>
             <h3>Email Notifications</h3>
         </div>
         <p>Referral SaaSquatch can automatically send email notifications to keep your users informed about their progress in the referral program.</p>
