@@ -29,9 +29,12 @@ properties:
     ##
     ## Reward 
     ##
-    sq_quantity:
+    sq_amount:
         type: string
-        description: "The quantity of the referree's reward. For example, in a 10% off referral program this would be 10."
+        description: "The amount of the referree's reward. For example, in a 10% off referral program this would be 10."
+    sq_unit:
+        type: string
+        description: "The unit of the referree's reward. For example, in a 10% off referral program this would be `PERCENT`"
     sq_type:
         type: string
         description: "The type of the referree's reward. One of: `PCT_DISCOUNT`, `TIME_CREDIT`, `FEATURE`, `CREDIT`, `GIFTCODE`"

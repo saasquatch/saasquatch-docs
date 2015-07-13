@@ -35,20 +35,22 @@ custom metadata produce a deep link like the following example:
 
 ```json
 {
-    "code" : "JOANNATEST",
-    "$desktop_url" : "http:\/\/example.com",
-    "sq_id" : "559f0deeebba89f94fb618b9",
-    "sq_firstName" : "Joanna",
-    "sq_lastName" : "Test",
-    "sq_imageUrl" : "http:\/\/gravatar.com\/avatar\/7ede76436e1258b9a3deb245cfe58a29?d=mm",
-    "sq_referralCode" : "JOANNATEST",
-    "sq_type" : "PCT_DISCOUNT",
-    "sq_quantity" : "10",
-    "~channel" : "DIRECT",
-    "~tags" : ["STANDARD"],
-    "~creation_source" : "API",
-    "+is_first_session" : false,
-    "+clicked_branch_link" : true
+    "code" : "BRITTANYTEST",
+	"$desktop_url" : "http:\/\/\/a\/test_a6whcgrt0vcw3\/widgets\/referral?code=BRITTANYTEST&referralMedium=DIRECT&referralSource=STANDARD",
+	"sq_accountId" : "55a43496ebbaff9cf86443d3",
+	"sq_amount" : "10",
+	"sq_firstName" : "Brittany",
+	"sq_id" : "55a43496ebbaf01cebac42cb",
+	"sq_imageUrl" : "http:\/\/gravatar.com\/avatar\/77af7eba41d1ccad2bf2c13704637c25?d=mm",
+	"sq_lastName" : "Test",
+	"sq_referralCode" : "BRITTANYTEST",
+	"sq_type" : "PCT_DISCOUNT",
+	"sq_unit" : "PERCENT",
+	"~channel" : "DIRECT",
+	"~tags" : ["STANDARD"],
+	"~creation_source" : "API",
+	"+is_first_session" : false,
+	"+clicked_branch_link" : true
 }
 ```
 
