@@ -7,6 +7,9 @@ slug: mobile/widget
 template: mobile.html
 ---
 
+![Mobile Widget example](/assets/images/mobile-screenshot.jpg)
+
+
 The mobile referral widget provides all the pieces required to track referrals:
 
  - **Identify Users and Generate Links**: If this is the first time a user with the given `userId` or `accountId` has been seen when the widget is loaded, their user record, referral code and referral link will be created. If a user record already exists, it will be updated. Read more on [identification](/topics/identification/).

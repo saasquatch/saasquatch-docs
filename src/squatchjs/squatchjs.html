@@ -1,9 +1,11 @@
 ---
-title: squatch.js functions
-highlights: Below you'll find a complete function reference for Referral SaaSquatch's squatch.js javascript library.
+title: squatch.js
+highlights: squatch.js is the Referral SaaSquatch javascript SDK and a one-stop shop to integrate a referral program into your website or web app. It can show referral widgets on any website, track users, generate unique referral short links and referral codes, and more.
 slug: squatchjs
 template: squatchjs.html
+hero: true
 ---
+
 <div class="squatchjs-header">
 <script type="text/javascript">
 jQuery.ready(function(){
@@ -29,12 +31,16 @@ jQuery.ready(function(){
     <h1>init <small>squatch.js function reference</small></h1>
   </div>
 
+  <p>
+  The <code>init</code> function is the core of Squatch.js.
+  This function lets you <a href="/topics/identification/">identify your users</a>, show them referral widgets, generate referral links and codes, <a href="/topics/attribution/">automatically attribute referrals</a>, <a href="/topics/conversion/">track conversions</a> and more all from one place.
+  The first time that a user is identified to Squatch.js with this method, it will be created in Referral SaaSquatch and can later be <a href="/api/methods/#get_user">looked up via the API</a>.
+  </p>
   <p><b>You must always call init</b> before you can use any part of squatch.js</p>
   
   <pre><code class="lang-js">_sqh.push(['init', parameterObject]);</code></pre>
 
   <h4>Parameters</h4>
-    <p><code>init</code> needs a tenant_alias to identify your account, and information about the currently logged-in user. These parameters should be the same as <a href="/mobile">for mobile</a>.</p>
     <div>
       <table class="table table-hover">
           <tr>

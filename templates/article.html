@@ -1,18 +1,21 @@
 {% extends './twoColumns.html' %}
 {% block content %}
 <section>
-  <div class="page-header">
-      <h1>{{title}}</h1>
-  </div>
   
+  {% if hero %}<div class="hero-unit article">{% endif %}
+
+  <div class="page-header">
+    <h1>{{title}}</h1>
+  </div>
   {% if highlights %}
   <div class="lead">
     {{ highlights | markdown }}
   </div>
-  
-  <hr/>
   {% endif %}
+
+  {% if hero %}</div><!-- end hero block -->{% endif %}
   
+
   {% block articleContent %}
   {{ contents | safe }}
   {% endblock articleContent %}

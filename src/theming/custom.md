@@ -5,6 +5,14 @@ slug: themes/custom
 template: themes.html
 ---
 
+
+![Custom theme example](/assets/images/tablet-screenshot.jpg)
+
+
+
+### Getting Started with Custom Themes
+
+
 <div class="row-fluid">
 <div class="span4 well" style="min-height: 150px">
 
@@ -27,6 +35,7 @@ Make changes [templates](/themes/templates), add dymanic [fields](/themes/fields
 Commit changes to your [Git repo](/themes/git) and then [publish](/themes/publish) those changes to your test or live account
 
 </div>
+
 
 ### Customizing your theme
 

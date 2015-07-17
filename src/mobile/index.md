@@ -1,8 +1,9 @@
 ---
 title: Mobile
-highlights: SaaSquatch helps you grow your mobile app with a referral program. We provide widgets to engage your users, attribution to track referrals, and analytics to measure the success of your program.
+highlights: SaaSquatch helps you grow your mobile app with a referral program. We provide mobile widgets to engage your users, attribution to track referrals, and analytics to measure the success of your program.
 slug: mobile
 template: mobile.html
+hero: true
 ---
 
 <!--Referral SaaSquatch is a cross-channel referral platform with support for mobile apps, web apps, desktop apps and ecommerce websites.-->
@@ -10,7 +11,6 @@ template: mobile.html
 <!-- - Referral tracking for post-install conversions-->
 <!-- - In-app widgets to let your users makes referrals and track their referrals-->
 <!-- - -->
-
 
 <div class="row-fluid">
   <div class="span6">

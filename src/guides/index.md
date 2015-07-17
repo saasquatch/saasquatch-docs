@@ -5,6 +5,7 @@ highlights: |
     to create some of the most popular referral programs, like those used by Dropbox, Uber and Typeform. These guides just scratch the surface of what's possible with the SaaSquatch platform.
 slug: guides
 template: guides.html
+hero: true
 ---
 
 
