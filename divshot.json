@@ -10,6 +10,7 @@
     "/pricing": "/faq/pricing",
     "/contact": "http://www.referralsaasquatch.com/contact-us/",
     "/about": "http://www.referralsaasquatch.com/about-us/",
-    "squatchjs/issues": "/squatchjs/issue"
+    "squatchjs/issues": "/squatchjs/issue",
+    "/segment-io/": "/segment/",
   }
 }

@@ -1,14 +1,14 @@
 ---
-title: Segment.io Integration
-highlights: Segment.io customers can use analytics.js instead of directly using the Squatch.js javascript library
-slug: segment-io
+title: Segment Integration
+highlights: Segment customers can use analytics.js instead of directly using the Squatch.js javascript library
+slug: segment
 template: squatchjs.html
 ---
 
 
-<h3>How do I use the Segment.io integration?</h3>
+<h3>How do I use the Segment integration?</h3>
 <p>
-    Use <a href="https://segment.io/docs/methods/identify"><code>identify</code> from Segment.io</a> instead of <a href="/squatchjs#init">squatch.js init</a> to identify the currently logged in user and set up SaaSquatch.
+    Use <a href="https://segment.com/docs/methods/identify"><code>identify</code> from Segment.io</a> instead of <a href="/squatchjs#init">squatch.js init</a> to identify the currently logged in user and set up SaaSquatch.
 </p>
 <p>
     Some of the parameters are different. For example, to add an image for a user changed from <code>user_image</code> to <code>avatar</code>.
@@ -20,7 +20,7 @@ template: squatchjs.html
             Squatch.js
         </th>
         <th>
-            Segment.io / analytics.js
+            Segment / analytics.js
         </th>
     </tr>
     <tr>
@@ -28,7 +28,7 @@ template: squatchjs.html
             Use <a href="/squatchjs#init">squatch.js init</a>
         </td>
         <td>
-            Use <a href="https://segment.io/docs/methods/identify">analytics.js identify</a>
+            Use <a href="https://segment.com/docs/methods/identify">analytics.js identify</a>
         </td>
     </tr>
     <tr>
@@ -67,7 +67,7 @@ analytics.identify( "u1234", {
 <hr/>
 <h3>How do I use Signed Requests with Segment.io?</h3>
 <p>
-    You can still use <a href="/squatchjs/signed-requests">Signed Requests</a> with Segment.io, keeping in mind a few things:
+    You can still use <a href="/squatchjs/signed-requests">Signed Requests</a> with Segment, keeping in mind a few things:
     <ul>
         <li>Include <code>tenant_alias</code> in the checksum</li>
         <li>Omit other analytics.js traits from the checksum, such as Google Analytics ids</li>
@@ -77,17 +77,17 @@ analytics.identify( "u1234", {
 
 
 <hr/>
-<h3>What features are supported with Segment.io?</h3>
+<h3>What features are supported with Segment?</h3>
 <p>
-    Most of the features of SaaSquatch are released immediately for Segment.io. You can always use squatch.js directly to 
+    Most of the features of SaaSquatch are released immediately for Segment. You can always use squatch.js directly to 
     <a href="/squatchjs#open">open</a> or <a href="/squatchjs#close">close</a> the referral widget. There will always be
     some things that will require you to use squatch.js directly.
 </p>
 
 <hr/>
-<h3>Can I used the REST API with Segment.io?</h3>
+<h3>Can I used the REST API with Segment?</h3>
 <p>
-    No, you cannot use the SaaSquatch REST API on the server side with Segment.io. At this time Segment.io is only an abstractions of the squatch.js javascript library.
+    No, you cannot use the SaaSquatch REST API on the server side with Segment. At this time Segment is only an abstractions of the squatch.js javascript library.
 </p>
 
 
@@ -95,5 +95,5 @@ analytics.identify( "u1234", {
 <h3>Where can I find more information?</h3>
 
 <p>
-    The source code the integration is straightforward. Check out the <a href="https://github.com/segmentio/analytics.js-integrations/blob/master/lib/saasquatch.js">source code on github</a>.
+    The source code the integration is straightforward. Check out the <a href="https://github.com/segment-integrations/analytics.js-integration-saasquatch">source code on github</a>.
 </p>
