@@ -2,7 +2,7 @@
 title: Mobile Widget
 highlights: |
     Referral SaaSquatch provides a mobile-responsive widget that can be embedded directly into your iOS, Android or Windows phone mobile app using a special URL. The widget
-    is a on-stop-shop for your users to participate in the referral program; the can refer friends, track the status of their referrals, and see the rewards earned from referrals.
+    is a one-stop-shop for your users to participate in the referral program; they can refer friends, track the status of their referrals, and see the rewards earned from referrals.
 slug: mobile/widget
 template: mobile.html
 ---
@@ -12,7 +12,7 @@ template: mobile.html
 
 The mobile referral widget provides all the pieces required to track referrals:
 
- - **Identify Users and Generate Links**: If this is the first time a user with the given `userId` or `accountId` has been seen when the widget is loaded, their user record, referral code and referral link will be created. If a user record already exists, it will be updated. Read more on [identification](/topics/identification/).
+ - **Identify Users and Generate Links**: If this is the first time a user with the given `userId` or `accountId` has been seen when the widget is loaded then their user record, referral code and referral link will be created. If a user record already exists then their record will be updated. Read more on [identification](/topics/identification/).
  - **Attribute Referrals**: If a value is passed in for the `referralCode` field and this user was not previously referred then a referral will be created. Read more on [attribution](/topics/attribution/).
  - **Convert Accounts**: If the value of `accountStatus` is updated to `PAID` then any in-progress referrals will be marked as complete. Read more on [conversion](/topics/conversion/).
  - **Secure Access**: The `checksum` optional field can be included to turn on [Signed Requests](/squatchjs/signed-requests/) and protect against unauthenticated data access.
@@ -183,10 +183,14 @@ Usually this requires a small amount of UI code to include the widget in the app
 ### Customization & Examples
 
 Mobile widgets take full advantage of the Referral SaaSquatch [theme system](/themes/), so they can be completely customized to match
-your brand, theme, style, colors, fonts, animations and more. By default, [stanard themes](/themes/standard/) come with a mobile-responsive template based upon Bootstrap 3, 
-but [custom themes](/themes/custom/) like those used in the Shoeboxed referral program can be customized complete with tabbed navigation.
+your brand, theme, style, colors, fonts, animations and more. By default, [standard themes](/themes/standard/) come with a mobile-responsive template based upon Bootstrap 3, 
+but [custom themes](/themes/custom/) like those used in the Shoeboxed referral program shown here can be customized complete with tabbed navigation.
 
 
 ![Shoeboxed Mobile Screenshot 1](/assets/images/mobile/shoeboxed-mobile-1.png)
 ![Shoeboxed Mobile Screenshot 2](/assets/images/mobile/shoeboxed-mobile-2.png)
 ![Shoeboxed Mobile Screenshot 3](/assets/images/mobile/shoeboxed-mobile-3.png)
+
+
+
+![Mobile widget screenshot on 2 phones](/assets/images/mobile/mobile-two-phones.png)
