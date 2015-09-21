@@ -8,7 +8,18 @@
 
   {{swaggerMacros.outputProperties(swagger.definitions.ThemeContext, 1)}}
   
+  <h3>Example</h3>
+
   <pre class="jsonview"><code>{{swagger.definitions.ThemeContext | exampleSwaggerSchema | json(4) }}</code></pre>
  
+  <h3>Swagger Definition</h3>
+
+  <pre class="jsonview"><code>{{swagger.definitions.ThemeContext | json(4) }}</code></pre>
+  
+
+  <h3>Swagger Definition (expanded)</h3>
+
+  <pre class="jsonview"><code>{{swagger.definitions.ThemeContext | expandSwaggerSchemaFilter | json(4) }}</code></pre>
+  
   
 {% endblock articleContent %}

@@ -1433,7 +1433,106 @@ definitions:
       dateModerated:
         type: integer
         description: "Timestamp of when this referral was last moderated."
-  
+
+  ThemeReward:
+    description: Details of an individual reward.
+    properties: 
+      dateGiven:
+        type: integer
+        description: "Timestamp of when this reward was earned."
+      dateExpires:
+        type: integer
+        description: "Timestamp of when this reward is set to expire."
+      dateCancelled:
+        type: integer
+        description: "Timestamp if the reward is cancellable and has been cancelled, the date it was cancelled on. Null if not never cancelled."
+      unit:
+        type: string
+        description: "An identifier for the unit of the reward. E.g. `'credit-in-cents'`, `'freemb'`, `'giftcard20'`, `'tshirt'`, `'freemonth'` or `'%'`"
+      name:
+        type: string
+        description: "The displayable name for the reward"
+      value:
+        type: integer
+        description: "The value of the reward"
+        
+  ThemeReferral:
+    type: object
+    description: A link between the user/account of the referrer and the new referred user/account. The authoritative source of who has referred whom. Not all referrals result in a Reward or a RewardBalance being created, such as in-progress referrals.
+    properties:
+      id:
+        type: string
+        example: abdsds5124abewet
+        description: Unique identifier for the Referral object
+      referrerRewardDeniedOrCancelled:
+        type: boolean
+        description: "If this referral's referrer reward is currently in a cancelled state or has otherwise been prevented (denied) via moderation"
+      referredRewardDeniedOrCancelled:
+        type: boolean
+        description: "If the referral's referred reward is currently in a cancelled state or has otherwise been prevented (denied) via moderation"
+      referredReward:
+        $ref: "#/definitions/ThemeReward"
+      referrerReward:
+        $ref: "#/definitions/ThemeReward"
+      moderationStatus:
+        type: string
+        example: PENDING
+        description: |
+          "One of `PENDING` or `ACTIONED`. When referrals are manually managed, each referral has a `PENDING` state until it is explicitly moderated."
+        enum:
+          - PENDING
+          - ACTIONED
+      referredModerationStatus:
+        type: string
+        example: PENDING
+        description: |
+          "One of `PENDING`, `APPROVED` or `DENIED`. Used to identify the *referred* user's moderation status and affect Reward cancellation."
+        enum:
+          - PENDING
+          - APPROVED
+          - DENIED
+      referrerModerationStatus:
+        type: string
+        example: PENDING
+        description: |
+          "One of `PENDING`, `APPROVED` or `DENIED`. Used to identify the *referrer* user's moderation status and affect Reward cancellation."
+        enum:
+          - PENDING
+          - APPROVED
+          - DENIED
+      dateReferralStarted:
+        type: integer
+        description: "Timestamp of when this referral was started."
+      dateReferralPaid:
+        type: integer
+        description: "Timestamp of when this referral was marked as `PAID`."
+      dateReferralEnded:
+        type: integer
+        description: "Timestamp of when this referral was ended."
+      dateModerated:
+        type: integer
+        description: "Timestamp of when this referral was last moderated."
+        
+  ThemeReferrerReferralDto: 
+    type: object
+    description: "Details of who referrals made by the current user"
+    allOf: 
+      - $ref: "#/definitions/ThemeReferral"
+      - type: object
+        properties:
+          referredUser: 
+            $ref: "#/definitions/User"
+
+  ThemeReferredReferralDto: 
+    type: object
+    description: "Details of who referred the current user"
+    allOf: 
+      - $ref: "#/definitions/ThemeReferral"
+      - type: object
+        properties:
+          referredByUser: 
+            $ref: "#/definitions/User"
+            
   Sharelink:
     description: Share link for an individual user.
     properties: 
@@ -1534,7 +1633,7 @@ definitions:
         type: array
         description: The referrals made by the active user
         items: 
-          $ref: "#/definitions/Referral"
+          $ref: "#/definitions/ThemeReferrerReferralDto"
       referralsLength:
         type: integer
         description: The total number of referrals made by this user
@@ -1546,15 +1645,7 @@ definitions:
       shareLinks:
         $ref: "#/definitions/Sharelink"
       referredBy:
-        type: object
-        description: Details of who referred the current user
-        properties:
-          referredByUser:
-            $ref: "#/definitions/User"
-          dateReferred:
-            type: integer
-            description: The date when the referral happened
-            example: 1404121071158
+        $ref: "#/definitions/ThemeReferredReferralDto"
       variables:
         $ref: "#/definitions/VariablesInstance"
       variablesSchema:
@@ -1572,11 +1663,15 @@ definitions:
       headerVersion:
         type: string
         description: A unique version number used internally.
-      headerVersion:
+      locale:
         type: string
-        description: A unique version number used internally.
-
-
+        description: |
+          The user locale, used for [Internationalization](/themes/internationalization).
+          The locale must be of the format `language_COUNTRY` where the language code must be lowercase and the country code must be uppercase.
+          The separator must be an underscore.
+          Examples `en` or `en_US` or `zh_CN`
+          
+                
   #
   # ========== Response / Envelope Types ==============
   #

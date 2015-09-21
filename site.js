@@ -12,7 +12,9 @@ var extras = require('swig-extras');
 var permalinks = require('./plugins/rawpaths.js');
 var swagger = require('./plugins/swagger.js');
 var metadata = require('./plugins/metadata.js');
-var exampleSwaggerSchemaFilter = require('./plugins/exampleSwaggerSchemaFilter.js');
+
+var exampleSwaggerSchemaFilter = require('./filters/exampleSwaggerSchemaFilter.js');
+var expandSwaggerSchemaFilter = require('./filters/expandSwaggerSchemaFilter.js');
 
 module.exports = site;
 
@@ -35,6 +37,7 @@ function site(){
   // Does this approach work here? Yes it does. http://quabr.com/26160954/set-swig-options-with-consolidate
   extras.useFilter(swig, 'markdown');
   swig.setFilter('exampleSwaggerSchema', exampleSwaggerSchemaFilter);
+  swig.setFilter('expandSwaggerSchemaFilter', expandSwaggerSchemaFilter);
 
   var ms = Metalsmith(__dirname)
   .use(define({

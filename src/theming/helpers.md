@@ -35,6 +35,7 @@ The Referral SaaSquatch template system is built using [Handlebars.java](http://
 The Referral SaaSquatch template system also includes a few custom helpers built specifically to help you run your theme.
 
  * **[assets](/themes/assets/)** - a custom helper for serving [assets](/themes/assets/)
+ * **[i18n](/themes/i18n-helper/)** - a helper that for [internationalization](/themes/internationalization)
  * **[variables](/themes/variables/)** - a helper that renders a variables value
  * **squatchHead** - includes basic Javascript and CSS to make your theme function with [squatch](/squatchjs/)
 
