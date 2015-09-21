@@ -160,6 +160,12 @@ Send information about the currently logged-in user. These parameters should be 
         <td>Defaults to no image for Facebook referrals. If you provide an absolute URL an image it will be used when a referral is made on Facebook. Minimum image size is 114px tall or 155px wide.</td>
     </tr>
     <tr>
+        <th>locale</th>
+        <td><span class="label">Optional</span></td>
+        <td>The user's locale, used for <a href="/themes/internationalization">Internationalization</a>. The locale must be of the format `language_COUNTRY` where the language code must be lowercase and the country code must be uppercase. The separator must be an underscore.
+            Examples: <code>en</code> or <code>en_US</code> or <code>zh_CN</code> </td>
+    </tr>
+    <tr>
         <th>checksum</th>
         <td><span class="label">Optional</span></td>
         <td>A HMAC-SHA2 checksum of the other parameter values. Used to validate that data originated from your servers. For details, see the <a href="/squatchjs/signed-requests">Signed Requests documentation</a>.</td>
