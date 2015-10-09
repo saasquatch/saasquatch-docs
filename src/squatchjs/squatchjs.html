@@ -19,6 +19,7 @@ jQuery.ready(function(){
       <li><a href="#autofill">autofill</a></li>
       <li><a href="#open">open</a></li>
       <li><a href="#close">close</a></li>
+      <li><a href="#subscribe">subscribe</a></li>
       <li><a href="#getRewardBalance">getRewardBalance</a></li>
       <li><a href="#getReward">getReward <span class="label">deprecated</span></a></li>
       <li class="nav-header">squatch.js functions</li>
@@ -301,6 +302,36 @@ _sqh.push(['autofill', '#my_coupon']);
         <pre><code class="lang-html">&lt;script type="text/javascript"&gt;
     _sqh.push('close');
 &lt;/script&gt;</code></pre>
+</section>
+
+<section id="subscribe">
+    <div class="page-header">
+        <h1>subscribe <small>squatch.js function reference</small></h1>
+    </div>
+    <p>Subscribes the provided callback to the given event; any time an event of the provided name (eventName) is <a href="/themes/widgetjs">published via the widget</a>, this subscribe call will be triggered. </p>
+
+    <pre><code class="lang-js">_sqh.push([‘subscribe’, String eventName, function([payload]) { 
+  /* code to execute after event is published from the widget */
+]);</code></pre>
+
+    <h4>Parameters</h4>
+    <div>
+        <table class="table table-hover">
+          <tr>
+            <th>event</th>
+            <td>
+                <p>Event name</p>
+          </td>
+          </tr>
+          <tr>
+            <th>fn</th>
+            <td>
+                <p>A callback function with an optional argument <code>payload</code>. If provided in the widget publish this will be set, otherwise it will be undefined.</p>
+          </td>
+          </tr>
+      </table>
+    </div>
+
 </section>
 
 <section id="getRewardBalance">
