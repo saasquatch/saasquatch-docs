@@ -310,7 +310,7 @@ _sqh.push(['autofill', '#my_coupon']);
     </div>
     <p>Subscribes the provided callback to the given event; any time an event of the provided name (eventName) is <a href="/themes/widgetjs">published via the widget</a>, this subscribe call will be triggered. </p>
 
-    <pre><code class="lang-js">_sqh.push([‘subscribe’, String eventName, function([payload]) { 
+    <pre><code class="lang-js">_sqh.push(['subscribe', String eventName, function([payload]) { 
   /* code to execute after event is published from the widget */
 ]);</code></pre>
 
@@ -318,19 +318,23 @@ _sqh.push(['autofill', '#my_coupon']);
     <div>
         <table class="table table-hover">
           <tr>
-            <th>event</th>
+            <th>eventName</th>
             <td>
-                <p>Event name</p>
+                <p>The name of the event you are subscribing to</p>
           </td>
           </tr>
           <tr>
             <th>fn</th>
             <td>
-                <p>A callback function with an optional argument <code>payload</code>. If provided in the widget publish this will be set, otherwise it will be undefined.</p>
+                <p>A callback function with an optional argument <code>payload</code>. The 'payload' argument will only be set if provided in the Widget JS publish call, otherwise it will be undefined.</p>
           </td>
           </tr>
       </table>
     </div>
+
+    <h4>Example</h4>
+    <pre><code class="lang-js">_sqh.push(['subscribe', 'changeUrl', function(payload) { window.location = payload.url; }]);</code></pre>
+
 
 </section>
 
