@@ -137,9 +137,9 @@ full email test to the address of your choosing via the `sendTo` parameter.
 ### Portal
 
 Alternatively, if you include the `content` subschema as part of your *email type* subschema you will be able to preview and edit parts of your email via the portal. This ability is 
-exposed in the default themes which use the `configuration` and `content` email subscema [theme variables](/themes/variables/) to allow for portal-based configurability. Note that in 
-the portal the `configuration` subschema contains variables for customizing the email headers (i.e. `from`, `fromAddress`, and `subject`) and `content` the variables for changing the 
-email's visual properties and wording.
+exposed in the [standard themes](/themes/standard/) which use the `configuration` and `content` email subscema [theme variables](/themes/variables/) to allow for portal-based configurability. 
+Note that in the portal the `configuration` subschema contains variables for customizing the email headers (i.e. `from`, `fromAddress`, and `subject`) and `content` the variables for changing 
+the email's visual properties and wording.
 
 
 <div class="row-fluid">
