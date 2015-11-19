@@ -883,6 +883,51 @@ paths:
         default: 
           $ref: "#/responses/GeneralError"
 
+  "/{tenant_alias}/theme/email/{email_type}/preview":
+    post: 
+      operationId: preview_theme_email
+      summary: Preview Theme Email
+      description: |
+        Generates preview content for a themed email. If the `sendTo` parameter is set this content will be sent to the provided *email address* otherwise the content will be returned in the response.
+      produces:
+        - "text/html"
+      parameters:
+        - $ref: "#/parameters/tenant_alias"
+        - name: email_type
+          in: path
+          description: |
+            The type of email to be previwed. E.g. `REFERRAL_STARTED` or `REFERRAL_CONVERTED`, see *theme mappings* in [email theming](/themes/emails/) for details.
+          type: string
+          required: true
+        - name: locale
+          in: query
+          description: |
+            The user locale, used for [Internationalization](/themes/internationalization).
+          type: string
+        - name: sendTo
+          in: query
+          description: |
+            If an *email address* is set in the `sendTo` parameter the *preview email content* will be delivered to the provided address.
+          type: string
+      responses:
+        200:
+          description: Preview Response
+          examples:
+            "text/html": 
+              <html>
+                <head>
+                  ...
+                </head>
+                <body>
+                  <h1>Congratulations Mike</h1>
+                  Your friend John has accepted your referral. You will now receive 10% off your next bill.
+                  ...
+                </body>
+              </body>
+        204:
+          description: SendTo Response
+        default: 
+          $ref: "#/responses/GeneralError"
 
   "/{tenant_alias}/subscription": 
     post: 
@@ -1515,7 +1560,7 @@ definitions:
         
   ThemeReferrerReferralDto: 
     type: object
-    description: "Details of who referrals made by the current user"
+    description: "Details of a user who was referred by the current user"
     allOf: 
       - $ref: "#/definitions/ThemeReferral"
       - type: object
@@ -1663,6 +1708,10 @@ definitions:
       headerVersion:
         type: string
         description: A unique version number used internally.
+      newReferral:
+        description: Details of a user who was referred by the current user (Available only in `REFERRAL_STARTED` email context)
+      convertedReferral:
+        description: Details of a user who was referred by the current user (Available only in `REFERRAL_CONVERTED` email context)
       locale:
         type: string
         description: |

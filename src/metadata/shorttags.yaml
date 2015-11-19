@@ -93,3 +93,28 @@ properties:
             The amount of credit that will be given to the referred user. E.g. "5" months free usage.
         x-program: CREDIT
         example: 5
+    email_converted_header_image:
+        type: string
+        description: |
+            The url for the image pulled in the `referral converted` email header.
+        example: https://d35vcmgdka52pk.cloudfront.net/images/referral-converted.png
+    email_started_header_image:
+        type: string
+        description: |
+            The url for the image pulled in the `referral started` email header.
+        example: https://d35vcmgdka52pk.cloudfront.net/images/referral-started.png
+    email_reward_limit_header_image:
+        type: string
+        description: |
+            The url for the image pulled in the `reward limit reached` email header.
+        example: https://d35vcmgdka52pk.cloudfront.net/images/referral-friend-name.png
+    email_converted_friend_name:
+        type: string
+        description: |
+            In the `referral converted` email this will be the name of the user whose referral converted. [Click here](/topics/conversion/) for more info on conversion.
+        example: John Smith
+    email_started_friend_name:
+        type: string
+        description: |
+            In the `referral attributed` email this will be the name of the user whose referral was attributed. [Click here](/topics/attribution/) for more info on attribution.
+        example: John Smith
