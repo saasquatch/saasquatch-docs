@@ -22,7 +22,7 @@ The mobile referral widget provides all the pieces required to track referrals:
 
 ### Tracking App Users
 
-To render the referral program in your iOS, Android, Windows phone, Cardova or Xamarin mobile project, you should include this special URL in a WebView or iFrame component. 
+To render the referral program in your iOS, Android, Windows phone, Cordova or Xamarin mobile project, you should include this special URL in a WebView or iFrame component. 
 It will load a mobile-responsive web page as part of your app, look after the referral tracking, and let your users refer their friends.
 
 ```nohighlight
@@ -182,7 +182,7 @@ Usually this requires a small amount of UI code to include the widget in the app
  - [Android Webview](http://developer.android.com/reference/android/webkit/WebView.html)
  - [iOS Webview](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIWebView_Class/)
  - [Xamarin Webview](http://developer.xamarin.com/guides/cross-platform/xamarin-forms/working-with/webview/)
- - [Cardova Webview](http://cordova.apache.org/docs/en/5.0.0/guide_hybrid_webviews_index.md.html#Embedding%20WebViews)
+ - [Cordova Webview](http://cordova.apache.org/docs/en/5.0.0/guide_hybrid_webviews_index.md.html#Embedding%20WebViews)
  - [Windows Phone Webview](https://msdn.microsoft.com/library/windows/apps/windows.ui.xaml.controls.webview.aspx)
 
 
