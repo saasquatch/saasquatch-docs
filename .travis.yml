@@ -7,13 +7,15 @@ before_script:
 - npm install
 script:
 - node build.js
+install:
+- npm install -g firebase-tools
 deploy:
-  provider: divshot
-  environment:
-    staging: staging
-    production: production
-  skip_cleanup: true
-  api_key:
-    secure: S7kydE3GdlauZVkNTJ+KTKefgsURnxb+GBlL5RnllzRo+bk6SkbU9N2q5LvQEGt3VKBFncRTvDBfRx/gmmWx+KZMfWoW+sWe5arBm/MLOd71NMuKmMnj8+DCTZFSSbKwqMFhIBbmBGw0qv5qwCupZBOpkaO66mR4F7xFq2H/yDQ=
+  provider: script
+  script: firebaseDeploy.sh
+  on:
+  	branch: production
 notifications:
   slack: saasquatch:RIZoBfbBnFIlgIoAW0C17ugr
+env:
+  global:
+    secure: rFtuQZWxeWaIgOAA1NLBSYibtDMittSS+fNAvR17ISqRx0fq00PDeDj01GkfuwBbuXt+x68SWSYq1JEC2rBnETUWQWtLQbkF5vhT6bVq30+xAcu2Kb7KtHYujqYEKhtkeV2sArk2txQJF9sf+DBhqiY7tfTHeVxYSfLedDtAdPw=
