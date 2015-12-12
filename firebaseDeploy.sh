@@ -1,4 +1,6 @@
 #!/bin/bash
+set -ev
+
 echo "Starting firebase scripts"
 
 echo "Confirming auth"
