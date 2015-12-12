@@ -15,6 +15,3 @@ deploy:
     branch: production
 notifications:
   slack: saasquatch:RIZoBfbBnFIlgIoAW0C17ugr
-env:
-  global:
-  - secure: PLj8v1FTuvnZiyCW/I/V5nT4TlhSpt5Q0t01N86nVZGBMtleh128kxI3OI59uHgmS1jWDjNUgnIVUn1v39PzlQQAQeZ7OZzLFFkpHBplLWKUkAQ/YjpwkxkwtmZJv7wjOsj81NiDZCcQd9PL1AbRFifATBU0j1I3+fmr/qAL7lU=
