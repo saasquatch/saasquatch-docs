@@ -10,7 +10,7 @@ install:
 - npm install -g firebase-tools
 deploy:
   provider: script
-  script: firebaseDeploy.sh
+  script: ./firebaseDeploy.sh
   on:
     branch: production
 notifications:
