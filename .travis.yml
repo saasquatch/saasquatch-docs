@@ -18,4 +18,4 @@ notifications:
   slack: saasquatch:RIZoBfbBnFIlgIoAW0C17ugr
 env:
   global:
-    secure: rFtuQZWxeWaIgOAA1NLBSYibtDMittSS+fNAvR17ISqRx0fq00PDeDj01GkfuwBbuXt+x68SWSYq1JEC2rBnETUWQWtLQbkF5vhT6bVq30+xAcu2Kb7KtHYujqYEKhtkeV2sArk2txQJF9sf+DBhqiY7tfTHeVxYSfLedDtAdPw=
+  - secure: PLj8v1FTuvnZiyCW/I/V5nT4TlhSpt5Q0t01N86nVZGBMtleh128kxI3OI59uHgmS1jWDjNUgnIVUn1v39PzlQQAQeZ7OZzLFFkpHBplLWKUkAQ/YjpwkxkwtmZJv7wjOsj81NiDZCcQd9PL1AbRFifATBU0j1I3+fmr/qAL7lU=
