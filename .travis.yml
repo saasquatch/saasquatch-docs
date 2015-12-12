@@ -13,7 +13,7 @@ deploy:
   provider: script
   script: firebaseDeploy.sh
   on:
-  	branch: production
+    branch: production
 notifications:
   slack: saasquatch:RIZoBfbBnFIlgIoAW0C17ugr
 env:
