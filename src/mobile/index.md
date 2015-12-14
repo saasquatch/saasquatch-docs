@@ -23,7 +23,7 @@ hero: true
     <div class="text-center" >
       <img src="/assets/images/mobile/logo_branch_io.png">
     </div>
-    <p>Our <a href="/mobile/branch-metrics/">Branch Metrics integration</a> lets your peronalize the onboarding experience of news users who use their phone</p>
+    <p>Our <a href="/mobile/branch-metrics/">Branch Metrics integration</a> lets your personalize the onboarding experience of new users who use their phone</p>
     <p>Go to <a href="/mobile/branch-metrics/">Branch Metrics integration</a></p>
   </div>
 
