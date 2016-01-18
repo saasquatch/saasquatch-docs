@@ -32,13 +32,13 @@ app.referralsaasquatch.com/a/{{tenant_alias}}/widgets/mobilewidget
 Each link should be personalized with the details of the currently logged in user, like this example:
 
 ```nohighlight
-http://app.referralsaasquatch.com/a/{{tenant_alias}}/widgets/mobilewidget?userId=123&firstName=Bob&lastName=Testserson&accountId=abc&paymentProviderId=NULL&email=misterd%2Bmuser001%40example.com&checksum=1KOCYrvKuQWKeyEUmoWCMaY8pmQCPNs%2Ft3a%2BZT0SLAM%3D
+https://app.referralsaasquatch.com/a/{{tenant_alias}}/widgets/mobilewidget?userId=123&firstName=Bob&lastName=Testserson&accountId=abc&paymentProviderId=NULL&email=misterd%2Bmuser001%40example.com&checksum=1KOCYrvKuQWKeyEUmoWCMaY8pmQCPNs%2Ft3a%2BZT0SLAM%3D
 ```
 
 Here's the same URL broken across multiple lines for clarity.
 
 ```nohighlight
-http://app.referralsaasquatch.com/a/{{tenant_alias}}/widgets/mobilewidget
+https://app.referralsaasquatch.com/a/{{tenant_alias}}/widgets/mobilewidget
 ?userId=123
 &firstName=Bob
 &lastName=Testserson
