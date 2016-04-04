@@ -12,6 +12,8 @@ var extras = require('swig-extras');
 var permalinks = require('./plugins/rawpaths.js');
 var swagger = require('./plugins/swagger.js');
 var metadata = require('./plugins/metadata.js');
+var contentful = require('./plugins/contentful.js');
+var pageify = require('./plugins/pageify.js');
 
 var exampleSwaggerSchemaFilter = require('./filters/exampleSwaggerSchemaFilter.js');
 var expandSwaggerSchemaFilter = require('./filters/expandSwaggerSchemaFilter.js');
@@ -46,6 +48,12 @@ function site(){
   .use(swagger({
       path: "saasquatch-api.yaml"
     }))
+  .use(contentful({
+    accessKey: "ae31ffc9de0831d887cff9aa3c72d861c323bd09de2a4cafd763c205393976c9",
+    spaceId: "s68ib1kj8k5n"
+  }))
+  .use(pageify())
+  
   .use(markdown())
   .use(collections({
     "issues": {

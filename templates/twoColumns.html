@@ -5,22 +5,26 @@
 <!-- Docs Sections
 ================================================== -->
 
-<div class="row-fluid">
-    <div class="span12">
-        <ul class="nav nav-tabs">
-          <li {% if sectionType == 'gettingStarted' %}class="active"{% endif %}><a href="/"><i class="fa fa-life-ring"></i> Getting Started</a></li>
-          <li {% if sectionType == 'guide' %}class="active"{% endif %}><a href="/guides"><i class="fa fa-book"></i> Guides</a></li>
-          <li {% if sectionType == 'apiReference' %}class="active"{% endif %}><a href="/api"><i class="fa fa-desktop"></i> API</a></li>
-          <li {% if sectionType == 'jsReference' %}class="active"{% endif %}><a href="/squatchjs"><i class="fa fa-html5"></i> Squatch.js</a></li>
-          <li {% if sectionType == 'mobile' %}class="active"{% endif %}><a href="/mobile"><i class="fa fa-mobile"></i> Mobile</a></li>
-          <li {% if sectionType == 'themes' %}class="active"{% endif %}><a href="/themes"><i class="fa fa-paint-brush"></i> Themes</a></li>
-
-          <li class="pull-right">
-            <a class="typeform-share button" href="https://logvol.typeform.com/to/iKqYLd" data-mode="2" target="_blank"><i class="fa fa-smile-o"></i> Give Feedback</a>
-          </li>
-        </ul>
-    </div>
+<div class="gp-row">
+    <div class="gp-span_2 docs-navsection"><a href="/"><i class="fa fa-line-chart"></i> Marketer Center</a></div>
+    <div class="gp-span_4 docs-navsection"><a href="/guides"><i class="fa fa-book"></i> Developer Center</a></div>
+    <div class="gp-span_1 docs-navsection"><a href="/api"><i class="fa fa-desktop"></i> Designer Center</a></div>
 </div>
+
+<div class="gp-row">
+    <div class="gp-span_1 docs-navsection {% if sectionType == 'gettingStarted' %} active{% endif %}"><a href="/"><i class="fa fa-life-ring"></i> Quick Answers</a></div>
+    <div class="gp-span_1 docs-navsection {% if sectionType == 'gettingStarted' %} active{% endif %}"><a href="/"><i class="fa fa-life-ring"></i> Marketr Guides</a></div>
+    
+    <div class="gp-span_1 docs-navsection {% if sectionType == 'guide' %} active{% endif %}"><a href="/guides"><i class="fa fa-book"></i> Developer Guides</a></div>
+    <div class="gp-span_1 docs-navsection {% if sectionType == 'apiReference' %} active{% endif %}"><a href="/api"><i class="fa fa-desktop"></i> API Reference</a></div>
+    <div class="gp-span_1 docs-navsection {% if sectionType == 'jsReference' %} active{% endif %}"><a href="/squatchjs"><i class="fa fa-html5"></i> Squatch.js</a></div>
+    <div class="gp-span_1 docs-navsection {% if sectionType == 'mobile' %} active{% endif %}"><a href="/mobile"><i class="fa fa-mobile"></i> Mobile</a></div>
+    
+    <div class="gp-span_1 docs-navsection {% if sectionType == 'themes' %} active{% endif %}"><a href="/themes"><i class="fa fa-paint-brush"></i> Themes</a></div>
+</div>
+
+
+
 
 
 <!-- Docs nav

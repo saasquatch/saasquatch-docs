@@ -456,6 +456,26 @@ a .link {background-color:#fff;}
     
 }
 
+.docs-navsection{
+    &:extend(.span2 all);
+    
+    height: 100px;
+    & > a{
+        background: #eee;
+        &:hover{
+            background: #fafafa;
+        }
+        display: block;
+        font-size: 14px;
+        line-height: 100px;
+        text-align: center;
+    }
+    &.active > a {
+        background: #FFF;
+    }
+}
+
+
 .docs-footer-menu{
     text-align: left;
 
