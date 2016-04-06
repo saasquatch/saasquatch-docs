@@ -1381,6 +1381,11 @@ definitions:
         example: "Testerson"
         description: |
           The user's last name
+      locale:
+        type: string
+        example: "`en` or `en_US` or `zh_CN`"
+        description: |
+          The user's locale, used for [Internationalization](/themes/internationalization). The locale must be of the format 'language_COUNTRY' where the language code must be lowercase and the country code must be uppercase. The separator must be an underscore.
   RewardBalance: 
     description: Details of the balance of several individual rewards.
     properties: 
