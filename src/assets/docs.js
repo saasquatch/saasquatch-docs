@@ -1,6 +1,7 @@
 /* 
 == JsHint details here ==
 */
+/* global jQuery */
 /* global hljs */
 /* global Handlebars */
 /* global smoothScroll */
@@ -37,12 +38,14 @@ jQuery(document).ready(function() {
         offset: 100,
         updateURL: true,
         callbackBefore: function ( toggle, anchor ) {},
-        callbackAfter: function ( toggle, anchor ) {}
+        callbackAfter: function ( toggle, anchor ) {
+            anchor.focus();
+        }
     });
     if ( window.location.hash ) { 
      smoothScroll.animateScroll( null, window.location.hash);
     }
-    if( location.pathname == "/api/methods/"){
+    if( window.location.pathname == "/api/methods/"){
      // Activates smooth scroll links when
      jQuery("#accordion-scroller .accordion-inner a").click(function(e){
          var $this = jQuery(this);
@@ -51,6 +54,13 @@ jQuery(document).ready(function() {
          return false;
      });
     }    
+    
+    jQuery(".js-faq-list a").click(function(e){
+         var $this = jQuery(this);
+         var anchor = "#" + $this.attr('href').split("#")[1];
+         smoothScroll.animateScroll( null, anchor);
+         return false;
+    });
     
     jQuery(".js-search-form").submit(function(){
         var searchTerm = jQuery(this).find(".search-query").val();

@@ -17,6 +17,8 @@ var pageify = require('./plugins/pageify.js');
 
 var exampleSwaggerSchemaFilter = require('./filters/exampleSwaggerSchemaFilter.js');
 var expandSwaggerSchemaFilter = require('./filters/expandSwaggerSchemaFilter.js');
+var mardownFilter = require('./filters/markdown.js');
+var slugFilter = require('./filters/slug.js');
 
 module.exports = site;
 
@@ -37,7 +39,9 @@ module.exports = site;
 function site(){
 
   // Does this approach work here? Yes it does. http://quabr.com/26160954/set-swig-options-with-consolidate
-  extras.useFilter(swig, 'markdown');
+  // extras.useFilter(swig, 'markdown');
+  swig.setFilter('markdown', mardownFilter);
+  swig.setFilter('slug', slugFilter);
   swig.setFilter('exampleSwaggerSchema', exampleSwaggerSchemaFilter);
   swig.setFilter('expandSwaggerSchemaFilter', expandSwaggerSchemaFilter);
 

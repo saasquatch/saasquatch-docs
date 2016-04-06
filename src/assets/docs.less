@@ -77,19 +77,34 @@ a .link {background-color:#fff;}
 
 .hero-unit{
     background: #EEE;
-}
-.hero-unit h1,
-.hero-unit p{
-    text-align: center;
+    h1,
+    p{
+        text-align: center;
+    }
 }
 
-.docs-sections .span3{
+.docs-sections{
     margin-top: 60px;
     text-align: center;
-}
+    
+    a {
+        display: block;
+        
+        &:hover,
+        &:active,
+        &:focus{
+            text-decoration: none;
+        }
+        
+        &:hover .fa{
+            background: #005580;
+        }
+    }
+    a .fa ~ div{
+        font-size: 18px;
+        line-height: 36px;
+    }
 
-.docs-sections a{
-    display: block;
 }
 
 .fa-rounded,
@@ -107,23 +122,6 @@ a .link {background-color:#fff;}
     // Custom center-of-weight balancing
     &.fa-desktop{line-height: 110px;}
     &.fa-html5{line-height: 105px;}
-}
-
-.docs-sections a .fa ~ div{
-    font-size: 18px;
-    line-height: 36px;
-}
-
-.docs-sections a{
-    &:hover,
-    &:active,
-    &:focus{
-        text-decoration: none;
-    }
-    
-    &:hover .fa{
-        background: #005580;
-    }
 }
 
 /**
@@ -404,6 +402,16 @@ a .link {background-color:#fff;}
    
 }
 
+// FAQ highlighting technique stolen from: http://stackoverflow.com/questions/11142125/css-highlight-a-div-when-the-id-is-linked-to-using-an-anchor
+.docs-faq-question{
+    background-color: #fff;
+}
+.docs-faq-question:target {
+    background-color: #ffa;
+    -webkit-transition: all 1s linear;
+}
+
+
 /* Side notes for calling out things
 -------------------------------------------------- */
  
@@ -457,23 +465,56 @@ a .link {background-color:#fff;}
 }
 
 .docs-navsection{
-    &:extend(.span2 all);
-    
+    background: #aaa;
     height: 100px;
-    & > a{
-        background: #eee;
+    a{
         &:hover{
-            background: #fafafa;
+            background: darken(#a4daa9, 25%);
+            color: #333;
         }
         display: block;
-        font-size: 14px;
+        font-size: 16px;
         line-height: 100px;
         text-align: center;
+        color: #FFF;
+        font-weight: bold;
     }
-    &.active > a {
-        background: #FFF;
+    // &.active > a {
+    //     background: #FFF;
+    //     color: #333;
+    //     border-width: 1px 1px 0 1px
+    //     border-color: #333
+    // }
+}
+
+.docs-persistent-nav{
+    .row-fluid{
+        margin-bottom: 30px;
+    }
+    .docs-navsection{
+        height: 60px;
+        & > a{
+            line-height: 60px;
+        }
     }
 }
+// Color coding
+.colorCoded(@custColor){
+    &.docs-navsection a,
+    &.hero-unit{
+        background: @custColor;
+        color: #FFF
+    }
+    &.hero-unit a{
+        color: #FFF;
+    }
+    .docs-sections a .fa{
+        background: lighten(@custColor, 25%);
+    }
+}
+.marketer{ .colorCoded(#f9690e) } 
+.developer{ .colorCoded(#0088cc) } 
+.designer{ .colorCoded(#be392b) } 
 
 
 .docs-footer-menu{
