@@ -1,22 +1,22 @@
 # This is a swagger.io definition for the Referral SaaSquatch Rest API
 swagger: "2.0"
-info: 
+info:
   title: Referral SaaSquatch
   description: Build your own custom refer a friend program.
   version: 1.0.0
 # the domain of the service
 host: app.referralsaasquatch.com
 # array of all schemes that your API supports
-schemes: 
+schemes:
   - https
 # will be prefixed to all paths
 basePath: /api/v1
-consumes: 
+consumes:
   - application/json
-produces: 
+produces:
   - application/json
-securityDefinitions: 
-  basic: 
+securityDefinitions:
+  basic:
     type: basic
     description: Authorize your requests using your apiKey as the HTTP Basic password
 security:
@@ -24,8 +24,8 @@ security:
 externalDocs:
   description: "Official Referral SaaSquatch documentation"
   url: "http://docs.referralsaasquatch.com/"
-parameters: 
-  tenant_alias: 
+parameters:
+  tenant_alias:
     name: tenant_alias
     in: path
     description: |
@@ -46,78 +46,78 @@ parameters:
     default: 0
 
 paths:
-  "/{tenant_alias}/accountsync": 
-    post: 
+  "/{tenant_alias}/accountsync":
+    post:
       operationId: account_sync
       summary: Create or Update an account
       description: |
-        Use this method to update SaaSquatch when the status of an account changes or when a new account is created. If you're using 
+        Use this method to update SaaSquatch when the status of an account changes or when a new account is created. If you're using
         a payment system connector, such as the Recurly connector, then you won't need to use this method. We automatically track account status for Braintree, Stripe, Reculy and Zuora.
-      parameters: 
+      parameters:
         - name: account
           in: body
           description: Account details of the account to be created or updated
-          schema: 
+          schema:
             $ref: "#/definitions/Account"
         - $ref: "#/parameters/tenant_alias"
-      tags: 
+      tags:
         - PCT_DISCOUNT
         - FEATURE
         - CREDIT
         - TIME_CREDIT
-      responses: 
-        200: 
+      responses:
+        200:
           description: Account created or updated
-          examples: 
-            "application/json": 
+          examples:
+            "application/json":
               id: a1234
               currency: USD
-              subscription: 
+              subscription:
                 status: PAID
                 value: 99.99
                 billingIntervalType: DAY
                 billingIntervalValue: 30
-              referral: 
+              referral:
                 code: 3j033r
-          schema: 
+          schema:
             $ref: "#/definitions/Account"
-        default: 
+        default:
           $ref: "#/responses/GeneralError"
-  "/{tenant_alias}/account/{accountId}": 
-    get: 
+  "/{tenant_alias}/account/{accountId}":
+    get:
       operationId: get_account
       summary: Lookup an account
       description: |
         Looks up an Account based upon `id` and returns the stored account information.
         This method just returns the details of the account in question, and not all associated properties like Rewards, ShareLinks, Balances or Referrals.
-      parameters: 
+      parameters:
         - name: accountId
           in: path
           description: "The `id` of the Account to look up."
           required: true
           type: string
         - $ref: "#/parameters/tenant_alias"
-      responses: 
-        200: 
+      responses:
+        200:
           description: Account found
-          examples: 
+          examples:
             "application/json":
               id: "89842"
               currency: "USD"
               subscription: null
-              referral: 
+              referral:
                 code: "WILLSANDERSON2"
-          schema: 
+          schema:
             $ref: "#/definitions/Account"
-        404: 
+        404:
           description: Account NOT found
-          schema: 
+          schema:
             $ref: "#/definitions/Error"
-        default: 
+        default:
           $ref: "#/responses/GeneralError"
 
 
-  # "/{tenant_alias}/users": 
+  # "/{tenant_alias}/users":
   #   get:
   #     operationId: list_users
   #     summary: List users
@@ -134,14 +134,14 @@ paths:
   #       - $ref: "#/parameters/offset"
   #       - $ref: "#/parameters/tenant_alias"
   #     responses:
-  #       200: 
+  #       200:
   #         description: Users found
-  #         examples: 
+  #         examples:
   #           "application/json":
   #             count: 1
   #             totalCount: 1
   #             users:
-  #               - 
+  #               -
   #                 id: "14125"
   #                 accountId: "89842"
   #                 email: "mark@example.com"
@@ -151,33 +151,33 @@ paths:
   #                 imageUrl: ""
   #                 dateCreated: 1414452680584
   #                 emailHash: "a65a76ba72e5a0b1e6253efce357abb6"
-  #         schema: 
+  #         schema:
   #           $ref: "#/definitions/UserList"
-  #       default: 
+  #       default:
   #         $ref: "#/responses/GeneralError"
 
-  "/{tenant_alias}/user": 
-    post: 
+  "/{tenant_alias}/user":
+    post:
       operationId: create_user
       summary: Create or Update a User
       description: |
-        This method creates or updates a User object by performing an atomic upsert operation. Using this method will either replace the information stored about a given user, or 
+        This method creates or updates a User object by performing an atomic upsert operation. Using this method will either replace the information stored about a given user, or
         create a new user if no User with a matching `id` is found. This method is helpful for synchronizing user information from your database into Referral SaaSquatch.
         This method will not create or update the Account linked by `accountId`. When creating users for the first time ensure that the Account already exists or create it before using this call.
         See the article on [Shared vs Solo Accounts](/shared-vs-solo-accounts/) for more information on Users and Accounts and how they relate.
-      parameters: 
+      parameters:
         - name: user
           in: body
           description: Details of the User to be created or updated
           required: true
-          schema: 
+          schema:
             $ref: "#/definitions/User"
         - $ref: "#/parameters/tenant_alias"
-      responses: 
-        200: 
+      responses:
+        200:
           description: User Created or Updated
-          examples: 
-            "application/json": 
+          examples:
+            "application/json":
               id: "876343"
               accountId: "613611"
               email: "bob@example.com"
@@ -185,9 +185,9 @@ paths:
               lastName: "Testerson"
               referralCode: "BOBTESTERSON"
               imageUrl: ""
-          schema: 
+          schema:
             $ref: "#/definitions/User"
-        default: 
+        default:
           $ref: "#/responses/GeneralError"
     get:
       operationId: get_user_by_referralcode
@@ -203,10 +203,10 @@ paths:
           type: string
           x-example: "BOBTESTERSON"
         - $ref: "#/parameters/tenant_alias"
-      responses: 
-        200: 
+      responses:
+        200:
           description: User found
-          examples: 
+          examples:
             "application/json":
               id: "876343"
               accountId: "613611"
@@ -215,23 +215,23 @@ paths:
               lastName: "Testerson"
               referralCode: "BOBTESTERSON"
               imageUrl: ""
-          schema: 
+          schema:
             $ref: "#/definitions/User"
-        404: 
+        404:
           description: User NOT found
-          schema: 
+          schema:
             $ref: "#/definitions/Error"
-        default: 
+        default:
           $ref: "#/responses/GeneralError"
 
-  "/{tenant_alias}/account/{accountId}/user/{userId}": 
-    get: 
+  "/{tenant_alias}/account/{accountId}/user/{userId}":
+    get:
       operationId: get_user
       summary: Lookup a user
       description: |
         Looks up a user based upon their `id` and returns their personal information.
         This method just returns the details of the user in question, and not all associated properties like Rewards, ShareLinks, Balances or Referrals.
-      parameters: 
+      parameters:
         - name: accountId
           in: path
           description: "The `id` of the Account that this user is a member of. See [Shared vs. Solo accounts](/shared-vs-solo-accounts/) for more info."
@@ -243,10 +243,10 @@ paths:
           required: true
           type: string
         - $ref: "#/parameters/tenant_alias"
-      responses: 
-        200: 
+      responses:
+        200:
           description: User found
-          examples: 
+          examples:
             "application/json":
               id: "876343"
               accountId: "613611"
@@ -255,39 +255,39 @@ paths:
               lastName: "Testerson"
               referralCode: "BOBTESTERSON"
               imageUrl: ""
-          schema: 
+          schema:
             $ref: "#/definitions/User"
-        404: 
+        404:
           description: User NOT found
-          schema: 
+          schema:
             $ref: "#/definitions/Error"
-        default: 
+        default:
           $ref: "#/responses/GeneralError"
-          
+
 
   "/{tenant_alias}/account/{accountId}/user/{userId}/sharelinks":
-    get: 
+    get:
       operationId: get_sharelinks
       summary: Lookup a user's share links
       description: |
-        Gets the share links for a user. Share links are the links that people use to refer their friends and are the same links used in the Referral SaaSquatch widgets. The main 
+        Gets the share links for a user. Share links are the links that people use to refer their friends and are the same links used in the Referral SaaSquatch widgets. The main
         use case for this method is to look up share links to include in other channels like email marketing, CRM and product integration when a widget or mobile webview can't be
         easily used. For example, one could write "Share this link with your friends, and get rewarded when they sign up" and include the share link looked up using this method.
-        
-        All share links work by dropping a tracking cookie when someone clicks the link and redirecting the new user to a landing page. This cookie includes the value of the 
+
+        All share links work by dropping a tracking cookie when someone clicks the link and redirecting the new user to a landing page. This cookie includes the value of the
         referral code of the person that shared it. The cookie
         can be read using the `autofill` function of Squatch.js and is also passed along as the `rsCode` parameter in the redirect.
         For example `http://ssqt.co/pZVp` redirects to `https://www.google.ca/?rsCode=THIRDUSER`.
-        
-        There are many share links for each user, each one tagged with additional metadata for tracking the effectiveness of sharing channels. For example the `facebookShareLink` is used in the 
+
+        There are many share links for each user, each one tagged with additional metadata for tracking the effectiveness of sharing channels. For example the `facebookShareLink` is used in the
         share on Facebook functionality of the widget. When people share on facebook using the widget that `facebookShareLink` will be posted on their wall so that when new people click on that
-        link they will be tracked as a referral and attributed back to Facebook. Note that this does not necessarily guarantee tracking; the generic `shareLink` could simply be copied 
+        link they will be tracked as a referral and attributed back to Facebook. Note that this does not necessarily guarantee tracking; the generic `shareLink` could simply be copied
         and pasted on to Facebook, and due to limitation on http referer information passed on by browsers, it may not be possible to determine which share medium a new sign up came from.
-        
+
         In some cases it is preferable to have users share their referral code with friends instead of sharing their referral link. For example mobile apps and cookie blocking may prevent
         a share link from successfully tracking a referral, and having an input box for "Referral Code" on your product sign up form gets around these limitations and will ensure that more
         types of referrals can be tracked. Use the [Lookup a user API call](#get_user) to find a user's referral code.
-      parameters: 
+      parameters:
         - $ref: "#/parameters/tenant_alias"
         - name: accountId
           in: path
@@ -299,46 +299,46 @@ paths:
           description: Filters share links by `user.id`.
           required: true
           type: string
-      tags: 
+      tags:
         - SHARELINKS
-      responses: 
-        200: 
+      responses:
+        200:
           description: A list of share links
-          schema: 
+          schema:
             $ref: "#/definitions/Sharelink"
-          examples: 
-            "application/json": 
+          examples:
+            "application/json":
               $ref: "#/definitions/Sharelink/example"
-        404: 
+        404:
           description: User/Account not found
-          schema: 
-            $ref: "#/definitions/Error"  
+          schema:
+            $ref: "#/definitions/Error"
         default:
           $ref: "#/responses/GeneralError"
-            
-  "/{tenant_alias}/code/{code}": 
-    get: 
+
+  "/{tenant_alias}/code/{code}":
+    get:
       operationId: get_code
       summary: Lookup a referral code
       description: |
         Looks up a referral code and the attached details
-      parameters: 
-        - 
+      parameters:
+        -
           name: code
           in: path
           description: The referral code to look up. E.g. "BOBTESTERSON"
           required: true
           type: string
         - $ref: "#/parameters/tenant_alias"
-      tags: 
+      tags:
         - PCT_DISCOUNT
         - FEATURE
         - CREDIT
         - TIME_CREDIT
-      responses: 
-        200: 
+      responses:
+        200:
           description: Referral code found
-          examples: 
+          examples:
             "application/json":
               code: "BOBTESTERSON"
               dateCreated: 1411600868797
@@ -347,13 +347,13 @@ paths:
                 type: "PCT_DISCOUNT"
                 discountPercent: 10
                 monthsDiscountIsValid: 12
-          schema: 
+          schema:
             $ref: "#/definitions/Code"
-        404: 
+        404:
           description: Referral code NOT found
-          schema: 
+          schema:
             $ref: "#/definitions/Error"
-        default: 
+        default:
           $ref: "#/responses/GeneralError"
 
   "/{tenant_alias}/referrals":
@@ -364,7 +364,7 @@ paths:
         List all of the referrals in your Referral SaaSquatch tenant. This method is the primary way of getting a full list of everyone that has made a referral and everyone that has been referred,
         and supports pagination using the parameters for `limit` and `offset` to iterate through a very large list of records.
         You can also use the query parameters for `referringAccountId` and `referringUserId` to filters this list of referrals to only include those made by a given user.
-      parameters: 
+      parameters:
         - name: referringAccountId
           in: query
           type: string
@@ -393,18 +393,18 @@ paths:
         - $ref: "#/parameters/offset"
         - $ref: "#/parameters/tenant_alias"
       responses:
-        200: 
+        200:
           description: A list of referrals
           schema:
             $ref: "#/definitions/ReferralList"
-          examples: 
-            "application/json": 
+          examples:
+            "application/json":
               count: 2
               totalCount: 4
-              referrals: 
-                - 
+              referrals:
+                -
                   id: "5462600de4b09b1c41108f28"
-                  referredUser: 
+                  referredUser:
                     id: "876343"
                     accountId: "613611"
                     email: "logan@example.com"
@@ -412,7 +412,7 @@ paths:
                     lastName: "Volker"
                     referralCode: "LOGANVOLKER"
                     imageUrl: ""
-                  referrerUser: 
+                  referrerUser:
                     id: "14125"
                     accountId: "89842"
                     email: "mark@example.com"
@@ -420,7 +420,7 @@ paths:
                     lastName: "Smellerson"
                     referralCode: "MARKSMELLERSON"
                     imageUrl: ""
-                  referredReward: 
+                  referredReward:
                     type: "PCT_DISCOUNT"
                     id: "5462600de4b09b1c41108f2e"
                     dateGiven: 1415733261275
@@ -440,9 +440,9 @@ paths:
                   dateModerated: 1427410131006
                   referredModerationStatus: "APPROVED"
                   referrerModerationStatus: "APPROVED"
-                - 
+                -
                   id: "546270a6e4b0c1871186a920"
-                  referredUser: 
+                  referredUser:
                     id: "898746321"
                     accountId: "987321"
                     email: "hello@example.com"
@@ -450,7 +450,7 @@ paths:
                     lastName: "Thompson"
                     referralCode: "HENKTHOMPSON"
                     imageUrl: ""
-                  referrerUser: 
+                  referrerUser:
                     id: "14125"
                     accountId: "89842"
                     email: "mark@example.com"
@@ -458,7 +458,7 @@ paths:
                     lastName: "Smellerson"
                     referralCode: "MARKSMELLERSON"
                     imageUrl: ""
-                  referredReward: 
+                  referredReward:
                     type: "PCT_DISCOUNT"
                     id: "546270a6e4b0c1871186a926"
                     dateGiven: 1415737510458
@@ -470,7 +470,7 @@ paths:
                     rewardSource: "REFERRED"
                     discountPercent: 20
                     unit: "%"
-                  referrerReward: 
+                  referrerReward:
                     type: "PCT_DISCOUNT"
                     id: "546270d5e4b0c1871186a93a"
                     dateGiven: 1415737557271
@@ -490,7 +490,7 @@ paths:
                   referredModerationStatus: "APPROVED"
                   referrerModerationStatus: "APPROVED"
 
-        default: 
+        default:
           $ref: "#/responses/GeneralError"
   "/{tenant_alias}/referrals/{referralId}":
     get:
@@ -500,7 +500,7 @@ paths:
         Looks up a single Referral object by it's associated `id`. This method is helpful for looking into a particular referral of interest. Since it requires the `id` of the referral to
         be specified, it isn't applicable for querying all referrals to find those made by a particular user or account. To query for those referrals use the [list referrals](#list_referrals) endpoint instead
         with query parameters specified.
-      parameters: 
+      parameters:
         - name: referralId
           in: path
           type: string
@@ -508,14 +508,14 @@ paths:
           required: true
         - $ref: "#/parameters/tenant_alias"
       responses:
-        200: 
+        200:
           description: Referral found
           schema:
             $ref: "#/definitions/Referral"
-          examples: 
+          examples:
             "application/json":
               id: "546270a6e4b0c1871186a920"
-              referredUser: 
+              referredUser:
                 id: "898746321"
                 accountId: "987321"
                 email: "hello@example.com"
@@ -523,7 +523,7 @@ paths:
                 lastName: "Thompson"
                 referralCode: "HENKTHOMPSON"
                 imageUrl: ""
-              referrerUser: 
+              referrerUser:
                 id: "14125"
                 accountId: "89842"
                 email: "mark@example.com"
@@ -531,7 +531,7 @@ paths:
                 lastName: "Smellerson"
                 referralCode: "MARKSMELLERSON"
                 imageUrl: ""
-              referredReward: 
+              referredReward:
                 type: "PCT_DISCOUNT"
                 id: "546270a6e4b0c1871186a926"
                 dateGiven: 1415737510458
@@ -543,7 +543,7 @@ paths:
                 rewardSource: "REFERRED"
                 discountPercent: 20
                 unit: "%"
-              referrerReward: 
+              referrerReward:
                 type: "PCT_DISCOUNT"
                 id: "546270d5e4b0c1871186a93a"
                 dateGiven: 1415737557271
@@ -562,11 +562,11 @@ paths:
               dateModerated: 1427410131029
               referredModerationStatus: "APPROVED"
               referrerModerationStatus: "APPROVED"
-        404: 
+        404:
           description: Referral NOT found
-          schema: 
+          schema:
             $ref: "#/definitions/Error"
-        default: 
+        default:
           $ref: "#/responses/GeneralError"
   "/{tenant_alias}/referrals/moderate":
     post:
@@ -575,32 +575,32 @@ paths:
       description: |
         Moderates one or several referrals by either approving or denying.
         Moderation can apply to one side of a referral, the other side, or both sides (Referrer and Referred).
-        When a referral is denied, the associated reward will be "cancelled". 
-        A referral can be moderated several times, subsequently cancelling and un-cancelling the associated reward or rewards, and can be done as long as the associated reward is `cancellable`. 
+        When a referral is denied, the associated reward will be "cancelled".
+        A referral can be moderated several times, subsequently cancelling and un-cancelling the associated reward or rewards, and can be done as long as the associated reward is `cancellable`.
         Some rewards such as the coupons automatically generated by Referral SaaSquatch into Stripe and Recurly are not `cancellable` and requests to change the moderation will error.
       parameters:
         - name: moderationBulkRequest
           in: body
           description: Details of the referrals to be moderated
-          schema: 
+          schema:
             $ref: "#/definitions/ReferralModerationBulkRequest"
         - $ref: "#/parameters/tenant_alias"
       responses:
-        200: 
+        200:
           description: Success
-        default: 
+        default:
           description: Unexpected error
-          schema: 
+          schema:
             $ref: "#/definitions/Error"
 
 
-  "/{tenant_alias}/reward/balance": 
-    get: 
+  "/{tenant_alias}/reward/balance":
+    get:
       operationId: list_balances
       summary: List reward balances
       description: |
         Looks up the balance for all rewards of the same type and units.
-      parameters: 
+      parameters:
         - name: accountId
           in: query
           description: The ID of the account to look up
@@ -619,72 +619,72 @@ paths:
           description: Filters rewards by feature type. Works with `FEATURE` types.
           type: string
         - $ref: "#/parameters/tenant_alias"
-      tags: 
+      tags:
         - PCT_DISCOUNT
         - FEATURE
         - CREDIT
         - TIME_CREDIT
-      responses: 
-        200: 
+      responses:
+        200:
           description: A list of reward balances
-          schema: 
+          schema:
             type: array
-            items: 
+            items:
               $ref: "#/definitions/RewardBalance"
-          examples: 
-            "application/json": 
-              - 
+          examples:
+            "application/json":
+              -
                 type: FEATURE
                 featureType: storage
                 count: 8
                 totalQuantity: 500
                 unit: MB
-              - 
+              -
                 type: CREDIT
                 count: 4
                 totalAssignedCredit: 10000
                 totalRedeemedCredit: 0
                 unit: cents
-              - 
+              -
                 type: PCT_DISCOUNT
                 totalDiscountPercent: 30
                 referredDiscountPercent: 10
                 referrerDiscountPercent: 20
-        default: 
+        default:
           $ref: "#/responses/GeneralError"
-  "/{tenant_alias}/credit/bulkredeem": 
-    post: 
+  "/{tenant_alias}/credit/bulkredeem":
+    post:
       operationId: debit_balance
       summary: Debit a reward balance
       description: "Used to redeem the credit earned from a referral program. Permanently debits an account balance. Works with: `TIME_CREDIT` and `CREDIT`"
-      parameters: 
+      parameters:
         - name: debit
           in: body
           description: Details of the debit
           required: true
-          schema: 
+          schema:
             $ref: "#/definitions/RewardBalanceDebitRequest"
         - $ref: "#/parameters/tenant_alias"
-      responses: 
-        200: 
+      responses:
+        200:
           description: Balance debitted
-          examples: 
+          examples:
             "application/json":
               creditRedeemed: 200
               creditAvailable: 0
               unit: "cents"
-          schema: 
+          schema:
             $ref: "#/definitions/RewardDebitResponse"
-        default: 
+        default:
           $ref: "#/responses/GeneralError"
 
   "/{tenant_alias}/reward":
-    get: 
+    get:
       operationId: list_rewards
       summary: List single rewards
       description: |
         Looks up a list of single rewards
-      parameters: 
+      parameters:
         - name: accountId
           in: query
           description: The ID of the account to look up
@@ -703,20 +703,20 @@ paths:
           description: Filters rewards by feature type. Works with `FEATURE` types.
           type: string
         - $ref: "#/parameters/tenant_alias"
-      tags: 
+      tags:
         - PCT_DISCOUNT
         - FEATURE
         - CREDIT
         - TIME_CREDIT
-      responses: 
-        200: 
+      responses:
+        200:
           description: A list of rewards
-          schema: 
+          schema:
             type: array
-            items: 
+            items:
               $ref: "#/definitions/Reward"
-          examples: 
-            "application/json": 
+          examples:
+            "application/json":
               - "type": "FEATURE"
                 "id": "5423508fe4b05184a716a08b"
                 "dateGiven": 1411600527094
@@ -731,7 +731,7 @@ paths:
                 "description": "100 MB Free Storage"
                 "quantity": 100
                 "unit": "MB"
-                
+
               - "type": "PCT_DISCOUNT"
                 "id": "54235160e4b05184a716a0b2"
                 "dateGiven": 1411600736220
@@ -756,14 +756,14 @@ paths:
                 "assignedCredit": 10000
                 "redeemedCredit": 0
                 "redeemable": true
-        default: 
+        default:
           $ref: "#/responses/GeneralError"
   "/{tenant_alias}/credit/{id}/redeem":
-    post: 
+    post:
       operationId: debit_reward
       summary: Redeem a single reward
       description: "Used to redeem an individual credit earned from a referral program. Works with: `TIME_CREDIT` and `CREDIT`"
-      parameters: 
+      parameters:
         - name: id
           in: path
           description: The ID of the specific reward to be redeemed
@@ -772,29 +772,29 @@ paths:
         - name: debit
           in: body
           description: Details of the debit
-          schema: 
+          schema:
             $ref: "#/definitions/RewardDebitRequest"
         - $ref: "#/parameters/tenant_alias"
-      responses: 
-        200: 
+      responses:
+        200:
           description: Reward debitted
-          examples: 
+          examples:
             "application/json":
               creditRedeemed: 200
               creditAvailable: 1800
               unit: "cents"
-          schema: 
+          schema:
             $ref: "#/definitions/RewardDebitResponse"
-        default: 
+        default:
           $ref: "#/responses/GeneralError"
 
   "/{tenant_alias}/theme/variables/schema":
-    get: 
+    get:
       operationId: lookup_variables_schema
       summary: Lookup variables schema
       description: |
-        Returns the variables schema object that is defined in the tenant theme repository. 
-        This will be a [JSON Schema](http://json-schema.org/) standards compliant definition. 
+        Returns the variables schema object that is defined in the tenant theme repository.
+        This will be a [JSON Schema](http://json-schema.org/) standards compliant definition.
         See [theme variables](/themes/variables/) for more info.
       produces:
         - "application/schema+json"
@@ -806,17 +806,17 @@ paths:
           schema:
             $ref: "#/definitions/VariablesSchema"
           examples:
-            "application/schema+json": 
+            "application/schema+json":
               $ref: "#/definitions/VariablesSchema/example"
-        default: 
+        default:
           $ref: "#/responses/GeneralError"
 
   "/{tenant_alias}/theme/variables/instance":
-    get: 
+    get:
       operationId: lookup_variables
       summary: Lookup variables values
       description: |
-        Returns the current variables values stored for the schema object that is defined in the tenant theme repository. 
+        Returns the current variables values stored for the schema object that is defined in the tenant theme repository.
       produces:
         - "application/json"
       parameters:
@@ -827,11 +827,11 @@ paths:
           schema:
             $ref: "#/definitions/VariablesInstance"
           examples:
-            "application/schema+json": 
+            "application/schema+json":
               $ref: "#/definitions/VariablesInstance/example"
-        default: 
+        default:
           $ref: "#/responses/GeneralError"
-    
+
     put:
       operationId: replace_variables
       summary: Replace Variable Values
@@ -845,17 +845,17 @@ paths:
         - name: instance
           in: body
           description: The variables object to replace all previously stored values.
-          schema: 
+          schema:
             $ref: "#/definitions/VariablesInstance"
         - $ref: "#/parameters/tenant_alias"
-      responses: 
-        204: 
+      responses:
+        204:
           description: Variables Replaced
-        400: 
+        400:
           $ref: "#/responses/VariablesErrorResponse"
-        default: 
+        default:
           $ref: "#/responses/GeneralError"
-      
+
     patch:
       operationId: update_variables
       summary: Update Variable Values
@@ -867,24 +867,24 @@ paths:
         - name: instance
           in: body
           description: The variables object that will update fields included here.
-          schema: 
+          schema:
             $ref: "#/definitions/VariablesInstance"
         - $ref: "#/parameters/tenant_alias"
       responses:
-        200: 
+        200:
           description: Variables Updated
-          schema: 
+          schema:
             $ref: "#/definitions/VariablesInstance"
           examples:
-            "application/json": 
+            "application/json":
               $ref: "#/definitions/VariablesInstance/example"
-        400: 
+        400:
           $ref: "#/responses/VariablesErrorResponse"
-        default: 
+        default:
           $ref: "#/responses/GeneralError"
 
   "/{tenant_alias}/theme/email/{email_type}/preview":
-    post: 
+    post:
       operationId: preview_theme_email
       summary: Preview Theme Email
       description: |
@@ -913,7 +913,7 @@ paths:
         200:
           description: Preview Response
           examples:
-            "text/html": 
+            "text/html":
               <html>
                 <head>
                   ...
@@ -926,56 +926,56 @@ paths:
               </body>
         204:
           description: SendTo Response
-        default: 
+        default:
           $ref: "#/responses/GeneralError"
 
-  "/{tenant_alias}/subscription": 
-    post: 
+  "/{tenant_alias}/subscription":
+    post:
       operationId: create_webhook
       summary: Create a webhook subscription
       description: |
         Subscribes a URL to receive events via webhooks
-      parameters: 
+      parameters:
         - name: endpoint
           in: body
           description: Details of the endpoint to be created
-          schema: 
+          schema:
             $ref: "#/definitions/WebhookEndpoint"
         - $ref: "#/parameters/tenant_alias"
-      responses: 
-        201: 
+      responses:
+        201:
           description: Webhook endpoint created
-        default: 
+        default:
           $ref: "#/responses/GeneralError"
-    get: 
+    get:
       operationId: list_webhooks
       summary: List webhook subscriptions
       description: |
         Lists all the URLs that are currently subscribed to receive events via webhooks
-      parameters: 
+      parameters:
         - $ref: "#/parameters/tenant_alias"
-      responses: 
-        200: 
+      responses:
+        200:
           description: A list of endpoints
-          schema: 
+          schema:
             type: array
             items:
               $ref: "#/definitions/WebhookEndpoint"
-          examples: 
-            "application/json": 
+          examples:
+            "application/json":
               - endpointUrl: "https://example.com/hook"
                 name: "Zapier"
               - endpointUrl: "https://another.example.com/hook"
                 name: "Example"
-        default: 
+        default:
           $ref: "#/responses/GeneralError"
   "/{tenant_alias}/subscription/{url}":
-    delete: 
+    delete:
       operationId: delete_webhook
       summary: Delete a webhook subscription
       description: |
         Removes a URL from receiving events via webhooks
-      parameters: 
+      parameters:
         - name: url
           in: path
           description: |
@@ -983,18 +983,18 @@ paths:
           required: true
           type: string
         - $ref: "#/parameters/tenant_alias"
-      responses: 
-        204: 
+      responses:
+        204:
           description: Endpoint deleted
-        default: 
+        default:
           $ref: "#/responses/GeneralError"
-  "/{tenant_alias}/subscription/{url}/test": 
-    post: 
+  "/{tenant_alias}/subscription/{url}/test":
+    post:
       operationId: test_webhook
       summary: Test a webhook subscription
       description: |
         Sends a test event to the specified webhook
-      parameters: 
+      parameters:
         - name: url
           in: path
           description: |
@@ -1002,10 +1002,10 @@ paths:
           required: true
           type: string
         - $ref: "#/parameters/tenant_alias"
-      responses: 
-        204: 
+      responses:
+        204:
           description: Test message sent
-        default: 
+        default:
           $ref: "#/responses/GeneralError"
 
 
@@ -1015,55 +1015,55 @@ paths:
       summary: Lookup a discount code
       description: |
         This method lets you look up the details of a referral code and to ensure that it is valid. Works with `PCT_DISCOUNT`
-      parameters: 
+      parameters:
         - name: code
           in: path
           description: The coupon/referral code to look up. Eg. BOBTESTERSON
           required: true
           type: string
         - $ref: "#/parameters/tenant_alias"
-      tags: 
+      tags:
         - PCT_DISCOUNT
       responses:
         200:
           description: Information about the coupon/referral code
-          examples: 
+          examples:
             "application/json":
               "couponCode" : "BOBTESTERSON"
               "discountPercentage" : 20
               "dateCreated" : 1377727546528
-              "discountId" : "saasquatch_discount" 
+              "discountId" : "saasquatch_discount"
           schema:
             $ref: "#/definitions/DiscountCode"
         404:
           description: Coupon/referral code not found
-          schema: 
+          schema:
             $ref: "#/definitions/Error"
-        default: 
+        default:
           $ref: "#/responses/GeneralError"
   "/{tenant_alias}/discount":
-    post: 
+    post:
       operationId: set_coupon
       summary: Set discount code on an account
       description: |
-        This method associates a new account with their referrer. Use this method when 
+        This method associates a new account with their referrer. Use this method when
         someone signs up for a paid account to set the coupon code used for them. For Stripe and Recurly do not use this call.
         Instead during sign-up, just pass the coupon/referral code in your subcribe call. Works with `PCT_DISCOUNT`
       parameters:
         - name: accountDiscount
           in: body
           description: Account discount details to be updated
-          schema: 
+          schema:
             $ref: "#/definitions/AccountDiscountRequest"
         - $ref: "#/parameters/tenant_alias"
-      tags: 
+      tags:
         - PCT_DISCOUNT
-      responses: 
+      responses:
         200:
           description: Account updated
         400:
           description: Not implemented
-        default: 
+        default:
           $ref: "#/responses/GeneralError"
   "/{tenant_alias}/account/{accountId}/discount":
     get:
@@ -1071,7 +1071,7 @@ paths:
       summary: Lookup an account discount
       description: |
         This method information about an account's discount, if any, and what that discount would look like with a `couponCode` applied. Works with `PCT_DISCOUNT`
-      parameters: 
+      parameters:
         - name: accountId
           in: path
           description: The account to look up
@@ -1082,12 +1082,12 @@ paths:
           description: When included, will return a total reward available including any coupon code.
           type: string
         - $ref: "#/parameters/tenant_alias"
-      tags: 
+      tags:
         - PCT_DISCOUNT
       responses:
-        200: 
+        200:
           description: Information about the account discount
-          examples: 
+          examples:
             "application/json":
               "accountId": "SV0TYE5OWI11120144"
               "discountPercentage": 10
@@ -1096,30 +1096,379 @@ paths:
               "discountId": "saasquatch_discount"
           schema:
             $ref: "#/definitions/AccountDiscount"
-        404: 
+        404:
           description: Account not found
-          schema: 
+          schema:
             $ref: "#/definitions/Error"
-        default: 
+        default:
           $ref: "#/responses/GeneralError"
+  "/{tenant_alias}/open/account/{accountId}/user/{userId}":
+      post:
+        operationId: open_create_user
+        summary: Create a user and account
+        description: |
+          This method creates a user and an account in one call without requiring an API key. Because this call creates a user, no user secret is required either. By default, this endpoint is disabled. Contact support to enable the open endpoints.
+        parameters:
+          - name: accountId
+            in: path
+            description: The account to create
+            required: true
+            type: string
+          - name: userId
+            in: path
+            required: true
+            description: The user to create
+            type: string
+          - $ref: "#/parameters/tenant_alias"
+        responses:
+          200:
+            description: Information about the newly created user
+            examples:
+              "application/json":
+                "id": "876343"
+                "accountId": "613611"
+                "email": "bob@example.com"
+                "firstName": "Bob"
+                "lastName": "Testerson"
+                "locale": "en_US"
+                "referralCode": "BOBTESTERSON"
+                "imageUrl": ""
+                "shareLinks":
+                  "shareLink": ""
+                  "facebookShareLink": ""
+                  "twitterShareLink": ""
+                  "emailShareLink": ""
+                  "mobileShareLink": ""
+                  "mobileFacebookShareLink": ""
+                  "mobileTwitterShareLink": ""
+                  "mobileEmailShareLink": ""
+            schema:
+              $ref: "#/definitions/OpenUser"
+          403:
+            description: Endpoint disabled
+            schema:
+              $ref: "#/definitions/Error"
+          default:
+            description: Unexpected error
+            schema:
+              $ref: "#/definitions/Error"
+      get:
+        operationId: open_get_user
+        summary: Lookup a user
+        description: |
+          Looks up a user based upon their `id` and returns their personal information including sharelinks.
+        parameters:
+          - $ref: "#/parameters/tenant_alias"
+          - name: accountId
+            in: path
+            description: A valid Account ID that a user is associated with
+            required: true
+            type: string
+          - name: userId
+            in: path
+            description: A valid User ID
+            required: true
+            type: string
+        responses:
+          200:
+            description: User found
+            examples:
+              application/json:
+                id: '876343'
+                accountId: '613611'
+                email: bob@example.com
+                firstName: Bob
+                lastName: Testerson
+                referralCode: BOBTESTERSON
+                imageUrl: ''
+                shareLinks:
+                  shareLink: 'http://ssqt.co/pZVp'
+                  facebookShareLink: 'http://ssqt.co/pZVq'
+                  twitterShareLink: 'http://ssqt.co/pZVr'
+                  emailShareLink: 'http://ssqt.co/pZVs'
+                  mobileShareLink: 'http://ssqt.co/pZVt'
+                  mobileFacebookShareLink: 'http://ssqt.co/pZVu'
+                  mobileTwitterShareLink: 'http://ssqt.co/pZVv'
+                  mobileEmailShareLink: 'http://ssqt.co/pZVw'
+          401:
+            description: Unauthorized
+            schema:
+              $ref: "#/definitions/Error"
+          403:
+            description: Endpoint disabled
+            schema:
+              $ref: "#/definitions/Error"
+          404:
+            description: Account not found
+            schema:
+              $ref: "#/definitions/Error"
+  "/{tenant_alias}/open/user":
+    get:
+      operationId: open_get_user_by_code
+      summary: Get a user by a referral code
+      description: |
+        Looks up a user based upon their `ReferralCode` and returns their personal information. This method is useful for retrieving the user when only the Referral Code is available. For example when a referred user enters a Referral Code during checkout and you want to find out who this Referral Code belongs to.
+      parameters:
+        - $ref: "#/parameters/tenant_alias"
+        - name: referralCode
+          in: query
+          description: The code with which to lookup the User
+          required: true
+          type: string
+      responses:
+        200:
+          description: Found user
+          examples:
+            application/json:
+              id: '876344'
+              accountId: '613612'
+              firstName: Bill
+              lastInitial: T
+              referralCode: BILLTESTERSON
+              imageUrl: ''
+        403:
+          description: Endpoint disabled
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: Not Found
+          schema:
+            $ref: "#/definitions/Error"
+  "/{tenant_alias}/open/code/{referral_code}":
+    get:
+      operationId: open_validate_code
+      summary: Lookup a referral code
+      description: |
+        Looks up a referral code and the attached details
+      parameters:
+        - $ref: "#/parameters/tenant_alias"
+        - name: referral_code
+          in: path
+          description: The code to be validated
+          required: true
+          type: string
+      responses:
+        200:
+          description: Referral code found
+          examples:
+            application/json:
+              code: "BOBTESTERSON"
+              dateCreated: 1411600868797
+              referrerName: "Bob T"
+              reward:
+                type: "PCT_DISCOUNT"
+                discountPercent: 10
+                monthsDiscountIsValid: 12
+        403:
+            description: Endpoint disabled
+            schema:
+              $ref: "#/definitions/Error"
+        404:
+          description: Not Found
+          schema:
+            $ref: "#/definitions/Error"
+  "/{tenant_alias}/open/code/{referral_code}/account/{account_id}/user/{user_id}":
+    post:
+      operationId: open_apply_code
+      summary: Apply a referral code
+      description: |
+        Apply a `ReferralCode` to an account, automatically rewarding both sides of the referral.
+      parameters:
+        - $ref: "#/parameters/tenant_alias"
+        - name: referral_code
+          in: path
+          description: 'Referral code to apply to user account'
+          required: true
+          type: string
+        - name: account_id
+          in: path
+          description: 'Account to apply referral code to'
+          required: true
+          type: string
+        - name: user_id
+          in: path
+          description: 'User to apply referral code to'
+          required: true
+          type: string
+      responses:
+        200:
+          description: Referral code applied
+          examples:
+            "application/json":
+              code: "BOBTESTERSON"
+              dateCreated: 1411600868797
+              referrerName: "Bob T"
+              reward:
+                type: "PCT_DISCOUNT"
+                discountPercent: 10
+                monthsDiscountIsValid: 12
+        400:
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: Unauthorized
+          schema:
+            $ref: "#/definitions/Error"
+        403:
+            description: Endpoint disabled
+            schema:
+              $ref: "#/definitions/Error"
+        404:
+          description: Not Found
+          schema:
+            $ref: "#/definitions/Error"
+  "/{tenant_alias}/open/referrals":
+    get:
+      operationId: open_list_referrals
+      summary: List referrals
+      description: |
+        List all of the referrals involving the given user. This method is the primary way of getting a list of everyone that has made a referral and everyone that has been referred, and supports pagination using the parameters for `limit` and `offset` to iterate through a very large list of records.
+        When authenticating with a user secret, the `referringAccountId` and `referringUserId` parameters are required. These filter the list of referrals to only include those made by the given user.
+      parameters:
+        - name: referringAccountId
+          in: query
+          type: string
+          description: "When included, filters the results to only referrals that were referred users with this `AccountId`"
+        - name: referringUserId
+          in: query
+          type: string
+          description: "When included, filters the results to only referrals that were referred users with this `UserId`"
+        - name: dateReferralPaid
+          in: query
+          type: string
+          description: "When included, filters the results either to the exact timestamp if only one value is given, or a range if devided by a comma. I.E. 0,123412451 gives all referrals that converted between 0 and 123412451."
+        - name: dateReferralEnded
+          in: query
+          type: string
+          description: "When included, filters the results either to the exact timestamp if only one value is given, or a range if devided by a comma. I.E. 0,123412451 gives all referrals that ended between 0 and 123412451."
+        - name: referredModerationStatus
+          in: query
+          type: string
+          description: "When included, filters the result to only include referred users with that status. Statuses that are accepted: `PENDING`, `APPROVED` or `DENIED`."
+        - name: referrerModerationStatus
+          in: query
+          type: string
+          description: "When included, filters the result to only include referrers with that status. Statuses that are accepted: `PENDING`, `APPROVED` or `DENIED`."
+        - $ref: "#/parameters/limit"
+        - $ref: "#/parameters/offset"
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        200:
+          description: A list of referrals
+          schema:
+            $ref: "#/definitions/ReferralList"
+          examples:
+            "application/json":
+              count: 2
+              totalCount: 4
+              referrals:
+                -
+                  id: "5462600de4b09b1c41108f28"
+                  referredUser:
+                    id: "876343"
+                    accountId: "613611"
+                    email: "logan@example.com"
+                    firstName: "Logan"
+                    lastName: "Volker"
+                    referralCode: "LOGANVOLKER"
+                    imageUrl: ""
+                  referrerUser:
+                    id: "14125"
+                    accountId: "89842"
+                    email: "mark@example.com"
+                    firstName: "Mark"
+                    lastName: "Smellerson"
+                    referralCode: "MARKSMELLERSON"
+                    imageUrl: ""
+                  referredReward:
+                    type: "PCT_DISCOUNT"
+                    id: "5462600de4b09b1c41108f2e"
+                    dateGiven: 1415733261275
+                    dateExpires: null
+                    dateCancelled: null
+                    accountId: "613611"
+                    userId: "876343"
+                    cancellable: true
+                    rewardSource: "REFERRED"
+                    discountPercent: 20
+                    unit: "%"
+                  referrerReward: null
+                  moderationStatus: "ACTIONED"
+                  dateReferralStarted: 1415733261238
+                  dateReferralPaid: null
+                  dateReferralEnded: null
+                  dateModerated: 1427410131006
+                  referredModerationStatus: "APPROVED"
+                  referrerModerationStatus: "APPROVED"
+                -
+                  id: "546270a6e4b0c1871186a920"
+                  referredUser:
+                    id: "898746321"
+                    accountId: "987321"
+                    email: "hello@example.com"
+                    firstName: "Henk"
+                    lastName: "Thompson"
+                    referralCode: "HENKTHOMPSON"
+                    imageUrl: ""
+                  referrerUser:
+                    id: "14125"
+                    accountId: "89842"
+                    email: "mark@example.com"
+                    firstName: "Mark"
+                    lastName: "Smellerson"
+                    referralCode: "MARKSMELLERSON"
+                    imageUrl: ""
+                  referredReward:
+                    type: "PCT_DISCOUNT"
+                    id: "546270a6e4b0c1871186a926"
+                    dateGiven: 1415737510458
+                    dateExpires: null
+                    dateCancelled: null
+                    accountId: "987321"
+                    userId: "898746321"
+                    cancellable: true
+                    rewardSource: "REFERRED"
+                    discountPercent: 20
+                    unit: "%"
+                  referrerReward:
+                    type: "PCT_DISCOUNT"
+                    id: "546270d5e4b0c1871186a93a"
+                    dateGiven: 1415737557271
+                    dateExpires: null
+                    dateCancelled: null
+                    accountId: "89842"
+                    userId: "14125"
+                    cancellable: true
+                    rewardSource: "FRIEND_SIGNUP"
+                    discountPercent: 20
+                    unit: "%"
+                  moderationStatus: "ACTIONED"
+                  dateReferralStarted: 1415737510411
+                  dateReferralPaid: 1415737557217
+                  dateReferralEnded: null
+                  dateModerated: 1427410131029
+                  referredModerationStatus: "APPROVED"
+                  referrerModerationStatus: "APPROVED"
 
-
+        default:
+          $ref: "#/responses/GeneralError"
 definitions:
   ## General object details
-  Account: 
-    required: 
+  Account:
+    required:
       - id
       - subscription
-    properties: 
-      id: 
+    properties:
+      id:
         type: string
         description: Unique identifier for the account
         example: abc123
-      subscription: 
+      subscription:
         $ref: "#/definitions/AccountSubscription"
-      referral: 
+      referral:
         $ref: "#/definitions/AccountReferral"
-      currency: 
+      currency:
         type: string
         example: USD
         description: |
@@ -1135,12 +1484,12 @@ definitions:
         type: integer
         example: 10
         description: |
-            An integer representing the total discount percentage from the referral program. 
+            An integer representing the total discount percentage from the referral program.
             e.g. For 10% would return the number 10. `discountPercentage` = `referredDiscountPercent` + `referrerDiscountPercent`
       referredDiscountPercent:
         type: integer
         description: |
-          An integer representing the discount percentage from being referred. 
+          An integer representing the discount percentage from being referred.
           This will only have a value if the account has a coupon/referral code already associated with it, or if `couponCode` was passed as an argument.
       referrerDiscountPercent:
         type: integer
@@ -1158,12 +1507,12 @@ definitions:
         description: |
           The first and last name of the referrer that referred the user or `null` if this account was not referred.
 
-  AccountSubscription: 
+  AccountSubscription:
     description: An object describing the current subscription for this account
-    required: 
+    required:
       - status
-    properties: 
-      status: 
+    properties:
+      status:
         type: string
         description: The status of the subscription. One of `PAID`, `TRIAL`, `FREE` or `CANCELLED`
         example: PAID
@@ -1172,7 +1521,7 @@ definitions:
           - TRIAL
           - FREE
           - CANCELLED
-      billingIntervalType: 
+      billingIntervalType:
         type: string
         description: "Type of billing interval. One of `DAY`, `WEEK`, `MONTH`, `QUARTER`, `SEMI_ANNUAL` or `YEAR`. Required when `status: 'PAID'`."
         example: DAY
@@ -1183,40 +1532,40 @@ definitions:
           - QUARTER
           - SEMI_ANNUAL
           - YEAR
-      billingIntervalValue: 
+      billingIntervalValue:
         type: integer
         description: "The value of billing interval. Required when `status: PAID`. Example billing intervals"
-      value: 
+      value:
         type: number
         format: double
         example: 99.99
         description: "Dollar value of the subscription per renewal. Required when `status: PAID`"
-  AccountReferral: 
+  AccountReferral:
     description: Info about who referred this account. Use this on first signup.
-    properties: 
-      code: 
+    properties:
+      code:
         type: string
         example: BOBTESTERSON
         description: |
           The referral code of the person that referred this account. Use squatch.js autofill to retrieve this value from the tracking cookie on your checkout form.
-  Code: 
+  Code:
     description: A referral code, details of the person who it belongs to, and details of the reward it unlocks
-    properties: 
-      code: 
+    properties:
+      code:
         type: string
         example: BOBTESTERSON
         description: |
           The unique identifier for the code. E.g. "BOBTESTERSON"
-      dateCreated: 
+      dateCreated:
         type: integer
         example: 1411600868797
         description: The date the code was created.
-      referrerName: 
+      referrerName:
         type: string
         example: Bob Testerson
         description: |
           The name of the owner of this code. E.g. "Bob Testerson"
-      reward: 
+      reward:
         $ref: "#/definitions/RewardTemplate"
   DiscountCode:
     description: Information about the coupon/referral code
@@ -1245,10 +1594,10 @@ definitions:
         type: string
         example: saasquatch_discount
         description: Braintree only The Braintree discount ID used to apply this coupon.
-  RewardTemplate: 
+  RewardTemplate:
     description: "Details of the reward that could be earned -- but *is not yet earned*."
-    properties: 
-      type: 
+    properties:
+      type:
         type: string
         example: CREDIT
         description: "The type of reward. One of either the following: `PCT_DISCOUNT`, `FEATURE`, `TIME_CREDIT`, `CREDIT`"
@@ -1257,39 +1606,39 @@ definitions:
           - FEATURE
           - TIME_CREDIT
           - CREDIT
-      unit: 
+      unit:
         type: string
         example: cents
         description: |
           An identifier for the unit of the reward. E.g. "credit-in-cents", "freemb", "giftcard20", "tshirt", "freemonth". Only works with types `FEATURE`, `TIME_CREDIT`, `CREDIT`
-      credit: 
+      credit:
         type: integer
         example: 2000
         description: |
           The amount of credit that this referral code is valid for. e.g. for $20 this
           object would have credit=2000, unit="cents". Only works for `TIME_CREDIT`, `CREDIT`
-      discountPercent: 
+      discountPercent:
         type: integer
         description: |
           The percent discount that the referral code is valid for. E.g. "10" for "10%". Only works with `PCT_DISCOUNT`
-      monthsDiscountIsValid: 
+      monthsDiscountIsValid:
         type: integer
         description: When this reward is set to expire.
-      featureType: 
+      featureType:
         type: string
         description: A unique identifier for the type of feature. Only works with types `FEATURE`
-      name: 
+      name:
         type: string
         description: The human readable name of the feature. Only works with types `FEATURE`
-      description: 
+      description:
         type: string
         description: The human readable description of the feature. Only works with types `FEATURE`
-      quantity: 
+      quantity:
         type: integer
         description: The quantity of feature that this referral code is valid for.  Only works with types `FEATURE`
   Reward:
     description: Details of an individual reward.
-    properties: 
+    properties:
       id:
         type: string
         description: The unique identifier for this reward
@@ -1326,7 +1675,7 @@ definitions:
         type: integer
         description: "The percent discount. E.g. 10 means 10% Works with: `PCT_DISCOUNT`"
       featureType:
-        type: string 
+        type: string
         description: "A unique identifier for the type of feature. E.g. `'freeSeats'` or `'freeMb'`. Works with: `FEATURE`"
       name:
         type: string
@@ -1343,13 +1692,13 @@ definitions:
       redeemedCredit:
         type: integer
         description: "The redeemed quantity of the feature. Works with: `TIME_CREDIT` or `CREDIT`"
-  User: 
+  User:
     description: An object describing an individual user
     required:
       - id
       - accountId
       - firstName
-    properties: 
+    properties:
       id:
         type: string
         example: "219065"
@@ -1386,10 +1735,10 @@ definitions:
         example: "`en` or `en_US` or `zh_CN`"
         description: |
           The user's locale, used for [Internationalization](/themes/internationalization). The locale must be of the format 'language_COUNTRY' where the language code must be lowercase and the country code must be uppercase. The separator must be an underscore.
-  RewardBalance: 
+  RewardBalance:
     description: Details of the balance of several individual rewards.
-    properties: 
-      type: 
+    properties:
+      type:
         type: string
         example: CREDIT
         description: "The type of reward. One of either the following: `PCT_DISCOUNT`, `FEATURE`, `TIME_CREDIT`, `CREDIT`"
@@ -1398,35 +1747,35 @@ definitions:
           - FEATURE
           - TIME_CREDIT
           - CREDIT
-      unit: 
+      unit:
         type: string
         example: cents
         description: |
           An identifier for the unit of the reward. E.g. "credit-in-cents", "freemb", "giftcard20", "tshirt", "freemonth". Only works with types `FEATURE`, `TIME_CREDIT`, `CREDIT`
-      count: 
+      count:
         type: integer
         description: |
-          "The number of rewards earned. Usually is equal to the number of successful referrals made. 
-          E.g. An account has $80 of credit due to the referral program. $60 from making referrals, $20 from being referred. 
+          "The number of rewards earned. Usually is equal to the number of successful referrals made.
+          E.g. An account has $80 of credit due to the referral program. $60 from making referrals, $20 from being referred.
           The count would be 4 rewards, each worth $20. Only works for `FEATURE`, `TIME_CREDIT`, `CREDIT`"
-      featureType: 
+      featureType:
         type: string
         description: A unique identifier for the type of feature. Only works with types `FEATURE`
-      totalAssignedCredit: 
+      totalAssignedCredit:
         type: integer
         example: 4000
         description: "The total assignedCredit for all reward credits of the same unit type. Only works with types: `TIME_CREDIT`, `CREDIT`"
-      totalRedeemedCredit: 
+      totalRedeemedCredit:
         type: integer
         example: 1490
         description: "The total redeemedCredit for all reward credits of the same unit type. Only works with types: `TIME_CREDIT`, `CREDIT`"
-      totalDiscountPercent: 
+      totalDiscountPercent:
         type: integer
         description: "The total discountPercent from all rewards. Only works with types: `PCT_DISCOUNT`"
-      referredDiscountPercent: 
+      referredDiscountPercent:
         type: integer
         description: "The total discountPercent from rewards with `rewardSource = REFERRED` Only works with types: `PCT_DISCOUNT`"
-      referrerDiscountPercent: 
+      referrerDiscountPercent:
         type: integer
         description: "The total discountPercent from rewards with `rewardSource = FRIEND_SIGNUP` Only works with types: `PCT_DISCOUNT`"
 
@@ -1486,7 +1835,7 @@ definitions:
 
   ThemeReward:
     description: Details of an individual reward.
-    properties: 
+    properties:
       dateGiven:
         type: integer
         description: "Timestamp of when this reward was earned."
@@ -1505,7 +1854,7 @@ definitions:
       value:
         type: integer
         description: "The value of the reward"
-        
+
   ThemeReferral:
     type: object
     description: A link between the user/account of the referrer and the new referred user/account. The authoritative source of who has referred whom. Not all referrals result in a Reward or a RewardBalance being created, such as in-progress referrals.
@@ -1562,33 +1911,33 @@ definitions:
       dateModerated:
         type: integer
         description: "Timestamp of when this referral was last moderated."
-        
-  ThemeReferrerReferralDto: 
+
+  ThemeReferrerReferralDto:
     type: object
     description: "Details of a user who was referred by the current user"
-    allOf: 
+    allOf:
       - $ref: "#/definitions/ThemeReferral"
       - type: object
         properties:
-          referredUser: 
+          referredUser:
             $ref: "#/definitions/User"
 
-  ThemeReferredReferralDto: 
+  ThemeReferredReferralDto:
     type: object
     description: "Details of who referred the current user"
-    allOf: 
+    allOf:
       - $ref: "#/definitions/ThemeReferral"
       - type: object
         properties:
-          referredByUser: 
+          referredByUser:
             $ref: "#/definitions/User"
-            
+
   Sharelink:
     description: Share link for an individual user.
-    properties: 
+    properties:
       shareLink:
         type: string
-        description: The unique share link the user can refer their friends with. The Share Link contains the Referral Code for making referrals and a source for Analytics purposes. 
+        description: The unique share link the user can refer their friends with. The Share Link contains the Referral Code for making referrals and a source for Analytics purposes.
       facebookShareLink:
         type: string
         description: "The Share Link for Facebook."
@@ -1630,7 +1979,7 @@ definitions:
       name:
         type: string
         example: "Zapier"
-        description: Optional name of the endpoint that receives events  
+        description: Optional name of the endpoint that receives events
 
   VariablesSchema:
     description: The JSON Schema that defines the format of the theme variables. See [theme variables](/themes/variables) for more info.
@@ -1682,7 +2031,7 @@ definitions:
       referrals:
         type: array
         description: The referrals made by the active user
-        items: 
+        items:
           $ref: "#/definitions/ThemeReferrerReferralDto"
       referralsLength:
         type: integer
@@ -1690,7 +2039,7 @@ definitions:
       rewardBalances:
         type: array
         description: An array of reward balances for this user
-        items: 
+        items:
           $ref: "#/definitions/RewardBalance"
       shareLinks:
         $ref: "#/definitions/Sharelink"
@@ -1724,14 +2073,63 @@ definitions:
           The locale must be of the format `language_COUNTRY` where the language code must be lowercase and the country code must be uppercase.
           The separator must be an underscore.
           Examples `en` or `en_US` or `zh_CN`
-          
-                
+  OpenUser:
+    description: An object describing an individual user returned by an open endpoint
+    required:
+      - secret
+      - id
+      - accountId
+      - firstName
+    properties:
+      secret:
+        type: string
+        example: "038tr0810t8h1028th108102085180"
+        description: A unique string known only by the user. SaaSquatch uses this to verify that a request to look up or change this user came from the user.
+      id:
+        type: string
+        example: "219065"
+        description: The unique identifier provided for this user.
+      accountId:
+        type: string
+        example: "accc9065"
+        description: The unique identifier of the Account that this user belongs to.
+      referralCode:
+        type: string
+        example: "BOBTESTERSON"
+        description: The referral code *used for sharing by this user*
+      email:
+        type: string
+        example: "bob@example.com"
+        description: The email address provided for the user. SaaSquatch uses this to notify someone when they have a successful referral.
+      imageUrl:
+        type: string
+        example: "https://www.example.com/profiled/ab5111251125"
+        description: |
+          Optionally used in widgets, emails, and themes. If you provide a absolute profile image URL the minimum image size is 80px x 80px.
+      firstName:
+        type: string
+        example: "Bob"
+        description: |
+          The user's first name
+      lastName:
+        type: string
+        example: "Testerson"
+        description: |
+          The user's last name
+      locale:
+        type: string
+        example: "`en` or `en_US` or `zh_CN`"
+        description: |
+          The user's locale, used for [Internationalization](/themes/internationalization). The locale must be of the format 'language_COUNTRY' where the language code must be lowercase and the country code must be uppercase. The separator must be an underscore.
+
+
+
   #
   # ========== Response / Envelope Types ==============
   #
   # Only REST response envelopers included in this section.
   #
-  
+
   ListEnvelope:
     properties:
       count:
@@ -1750,8 +2148,8 @@ definitions:
           users:
             type: array
             description: A list of User objects
-            items: 
-              $ref: "#/definitions/User"  
+            items:
+              $ref: "#/definitions/User"
   ReferralList:
     allOf:
       - $ref: '#/definitions/ListEnvelope'
@@ -1760,11 +2158,11 @@ definitions:
           referrals:
             type: array
             description: A list of Referral objects
-            items: 
+            items:
               $ref: "#/definitions/Referral"
   RewardDebitResponse:
     description: Details about a successful Reward Balance Debit transaction.
-    properties: 
+    properties:
       creditRedeemed:
         type: integer
         example: 200
@@ -1789,7 +2187,7 @@ definitions:
       - paymentProviderId
       - couponCode
     properties:
-      accountId: 
+      accountId:
         type: string
         example: abc123
         description: |
@@ -1809,7 +2207,7 @@ definitions:
     required:
       - amount
       - unit
-    properties: 
+    properties:
       amount:
         type: integer
         example: 200
@@ -1825,7 +2223,7 @@ definitions:
       - accountId
       - unit
       - amount
-    properties: 
+    properties:
       accountId:
         type: string
         description: The ID of the account to be debitted.
@@ -1849,7 +2247,7 @@ definitions:
         description: "A list of individual moderation actions for specific referrals. Limited to a maximum of 100 actions per request"
         minItems: 1
         maxItems: 100
-        items: 
+        items:
           $ref: "#/definitions/ReferralModerationRequest"
   ReferralModerationRequest:
     description: A request to moderate a single referral
@@ -1874,31 +2272,31 @@ definitions:
           - REFERRED_DENIED
 
   # Response Types
-  Error: 
-    properties: 
-      statusCode: 
+  Error:
+    properties:
+      statusCode:
         description: The HTTP status code of the error
         type: integer
         format: int32
         example: 404
-      message: 
+      message:
         description: The human-readable description of what went wrong. Use this to help you debug.
         type: string
-      apiErrorCode: 
+      apiErrorCode:
         description: A machine error code
         type: string
-        
-  VariablesError: 
+
+  VariablesError:
     allOf:
       - $ref: '#/definitions/Error'
       - type: object
-        properties: 
-          validationErrors: 
+        properties:
+          validationErrors:
             description: A list of validation errors
             type: array
-            items: 
+            items:
               type: string
-    
+
 
 responses:
   GeneralError:
@@ -1910,9 +2308,9 @@ responses:
     schema:
       $ref: '#/definitions/VariablesError'
     examples:
-      "application/json": 
+      "application/json":
         message: "Your request failed to validate against the current variables schema."
         statusCode: 400
         apiErrorCode: "VALIDATION_FAILED"
-        validationErrors: 
+        validationErrors:
           - "object has missing required properties ([\"emailShareSubject\",\"facebookShareBody\",\"facebookShareSubject\",\"twitterShareBody\"])"
