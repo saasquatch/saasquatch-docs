@@ -1156,7 +1156,7 @@ paths:
         operationId: open_get_user
         summary: Lookup a user
         description: |
-          Looks up a user based upon their `id` and returns their personal information including sharelinks.
+          Looks up a user based upon their `id` and returns their personal information including sharelinks. By default, this endpoint is disabled. Contact support to enable the open endpoints.
         parameters:
           - $ref: "#/parameters/tenant_alias"
           - name: accountId
@@ -1207,7 +1207,7 @@ paths:
       operationId: open_get_user_by_code
       summary: Get a user by a referral code
       description: |
-        Looks up a user based upon their `ReferralCode` and returns their personal information. This method is useful for retrieving the user when only the Referral Code is available. For example when a referred user enters a Referral Code during checkout and you want to find out who this Referral Code belongs to.
+        Looks up a user based upon their `ReferralCode` and returns their personal information. This method is useful for retrieving the user when only the Referral Code is available, for example when a referred user enters a Referral Code during checkout and you want to find out who this Referral Code belongs to. By default, this endpoint is disabled. Contact support to enable the open endpoints.
       parameters:
         - $ref: "#/parameters/tenant_alias"
         - name: referralCode
@@ -1239,7 +1239,7 @@ paths:
       operationId: open_validate_code
       summary: Lookup a referral code
       description: |
-        Looks up a referral code and the attached details
+        Looks up a referral code and the details of the attached reward. By default, this endpoint is disabled. Contact support to enable the open endpoints.
       parameters:
         - $ref: "#/parameters/tenant_alias"
         - name: referral_code
@@ -1272,7 +1272,7 @@ paths:
       operationId: open_apply_code
       summary: Apply a referral code
       description: |
-        Apply a `ReferralCode` to an account, automatically rewarding both sides of the referral.
+        Apply a `ReferralCode` to an account, automatically rewarding both sides of the referral. By default, this endpoint is disabled. Contact support to enable the open endpoints.
       parameters:
         - $ref: "#/parameters/tenant_alias"
         - name: referral_code
@@ -1324,7 +1324,7 @@ paths:
       summary: List referrals
       description: |
         List all of the referrals involving the given user. This method is the primary way of getting a list of everyone that has made a referral and everyone that has been referred, and supports pagination using the parameters for `limit` and `offset` to iterate through a very large list of records.
-        When authenticating with a user secret, the `referringAccountId` and `referringUserId` parameters are required. These filter the list of referrals to only include those made by the given user.
+        When authenticating with a user secret, the `referringAccountId` and `referringUserId` parameters are required. These filter the list of referrals to only include those made by the given user. By default, this endpoint is disabled. Contact support to enable the open endpoints.
       parameters:
         - name: referringAccountId
           in: query
@@ -1699,6 +1699,10 @@ definitions:
       - accountId
       - firstName
     properties:
+      secret:
+        type: string
+        example: "038tr0810t8h1028th108102085180"
+        description: A unique string known only by the user. SaaSquatch uses this to verify that a request to look up or change this user came from the user.
       id:
         type: string
         example: "219065"

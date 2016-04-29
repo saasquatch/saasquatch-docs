@@ -1,12 +1,12 @@
 ---
-title: Open Endpoints
+title: Open Endpoints [BETA]
 highlights: The Open endpoints in the SaaSquatch REST API are authenticated with an API key or a user secret
 slug: api/openendpoints
 template: api.html
 published: true
 ---
 
-Normally, you authenticate to the Referral SaaSquatch API by providing one of your API keys in the request. When using an open endpoint, you have the choice of using an API key or a user secret. Some open endpoints do not require any authentication. A user secret is a string you provide when you create a user, we recommend generating a UUID for this purpose.
+Normally, you authenticate to the Referral SaaSquatch API by providing one of your API keys in the request. When using an open endpoint, you have the choice of using an API key or a user secret. Some open endpoints do not require any authentication. A user secret is a string you provide when you create a user, we recommend generating a UUID for this purpose. Existing users can be given a secret for use with the open endpoints using the [create or update a user method](/api/methods#create_user).
 
 
 Authentication to the API occurs either via <a href="http://en.wikipedia.org/wiki/Basic_access_authentication">HTTP Basic Auth</a> or by providing a user secret in a header. All API requests must be made over <a href="http://en.wikipedia.org/wiki/HTTP_Secure">HTTPS</a>. Calls made over plain HTTP will fail.
@@ -30,3 +30,16 @@ curl https://app.referralsaasquatch.com/api/v1/{TENANT_ALIAS}/open/account/{ACCO
 ```
 
 curl uses the -H flag to pass an extra header. You may specify any number of extra headers.
+
+### Open Endpoints
+
+These methods can be used safely from a mobile or javascript only client without a tenant api key.
+
+ - [Create a user](/api/methods#open_create_user)
+ - [Lookup a user](/api/methods#open_get_user)
+ - [Lookup a user by referral code](/api/methods#open_get_user_by_code)
+ - [Lookup a referral code](/api/methods#open_validate_code)
+ - [Apply a referral code](/api/methods#open_apply_code)
+ - [List referrals](/api/methods#open_list_referrals)
+
+<hr/>
