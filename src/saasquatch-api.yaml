@@ -1107,7 +1107,7 @@ paths:
         operationId: open_create_user
         summary: Create a user and account
         description: |
-          This method creates a user and an account in one call without requiring an API key. Because this call creates a user, no user secret is required either. By default, this endpoint is disabled. Contact support to enable the open endpoints.
+          This method creates a user and an account in one call. Because this call creates a user, it requires either a [write token](../openendpoints/) or an API key. By default, this endpoint is disabled. Contact support to enable the open endpoints.
         parameters:
           - name: accountId
             in: path
@@ -1156,7 +1156,7 @@ paths:
         operationId: open_get_user
         summary: Lookup a user
         description: |
-          Looks up a user based upon their `id` and returns their personal information including sharelinks. By default, this endpoint is disabled. Contact support to enable the open endpoints.
+          Looks up a user based upon their `id` and returns their personal information including sharelinks. This endpoint requires a [read token](../openendpoints/) or an API key. By default, this endpoint is disabled. Contact support to enable the open endpoints.
         parameters:
           - $ref: "#/parameters/tenant_alias"
           - name: accountId
@@ -1272,7 +1272,7 @@ paths:
       operationId: open_apply_code
       summary: Apply a referral code
       description: |
-        Apply a `ReferralCode` to an account, automatically rewarding both sides of the referral. By default, this endpoint is disabled. Contact support to enable the open endpoints.
+        Apply a `ReferralCode` to an account, automatically rewarding both sides of the referral. This endpoint requires a [write token](../openendpoints/) or an API key. By default, this endpoint is disabled. Contact support to enable the open endpoints.
       parameters:
         - $ref: "#/parameters/tenant_alias"
         - name: referral_code
@@ -1324,7 +1324,7 @@ paths:
       summary: List referrals
       description: |
         List all of the referrals involving the given user. This method is the primary way of getting a list of everyone that has made a referral and everyone that has been referred, and supports pagination using the parameters for `limit` and `offset` to iterate through a very large list of records.
-        When authenticating with a user secret, the `referringAccountId` and `referringUserId` parameters are required. These filter the list of referrals to only include those made by the given user. By default, this endpoint is disabled. Contact support to enable the open endpoints.
+        When authenticating with a [write token](../openendpoints/), the `referringAccountId` and `referringUserId` parameters are required. These filter the list of referrals to only include those made by the given user. By default, this endpoint is disabled. Contact support to enable the open endpoints.
       parameters:
         - name: referringAccountId
           in: query
@@ -1699,10 +1699,6 @@ definitions:
       - accountId
       - firstName
     properties:
-      secret:
-        type: string
-        example: "038tr0810t8h1028th108102085180"
-        description: A unique string known only by the user. SaaSquatch uses this to verify that a request to look up or change this user came from the user.
       id:
         type: string
         example: "219065"
@@ -2080,15 +2076,10 @@ definitions:
   OpenUser:
     description: An object describing an individual user returned by an open endpoint
     required:
-      - secret
       - id
       - accountId
       - firstName
     properties:
-      secret:
-        type: string
-        example: "038tr0810t8h1028th108102085180"
-        description: A unique string known only by the user. SaaSquatch uses this to verify that a request to look up or change this user came from the user.
       id:
         type: string
         example: "219065"

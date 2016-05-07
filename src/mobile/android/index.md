@@ -1,8 +1,12 @@
 ---
 title: Android SDK
 highlights: |
-    Referral SaaSquatch has a great Android SDK
+    The Referral SaaSquatch Android SDK integrates a referral program into your Android app.
 permalinks: false
 template: mobile.html
 ---
 
+
+
+Quickstart Guide
+----------------

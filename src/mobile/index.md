@@ -23,8 +23,21 @@ hero: true
     <div class="text-center" >
       <img src="/assets/images/mobile/logo_branch_io.png">
     </div>
-    <p>Our <a href="/mobile/branch-metrics/">Branch Metrics integration</a> lets your personalize the onboarding experience of new users who use their phone</p>
+    <p>Our <a href="/mobile/branch-metrics/">Branch Metrics integration</a> lets your personalize the onboarding experience of new users who use their phone.</p>
     <p>Go to <a href="/mobile/branch-metrics/">Branch Metrics integration</a></p>
   </div>
-
+</div>
+<div class="row-fluid">
+  <div class="span6">
+    <div class="text-center" style="overflow:hidden; position: relative; height: 124px; margin-bottom: 10px;"><img src="/assets/images/mobile/logo-android.png" style=" position:relative; height:124px;"></div>
+    <p>Our <a href="/mobile/android">Android SDK</a> gives you complete control over how your referral program is presented inside your Android app.</p>
+    <p>Go to <a href="/mobile/android">Android SDK</a></p>
+    </p>
+  </div>
+  <div class="span6">
+    <div class="text-center" style="overflow:hidden; position: relative; height: 124px; margin-bottom: 10px;"><img src="/assets/images/mobile/logo-ios.png" style=" position:relative; top: 30px"></div>
+    <p>Our <a href="/mobile/ios">iOS SDK</a> gives you complete control over how your referral program is presented inside your iOS app.</p>
+    <p>Go to <a href="/mobile/ios">iOS SDK</a></p>
+    </p>
+  </div>
 </div>
