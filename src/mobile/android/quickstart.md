@@ -1,14 +1,14 @@
 ---
 title: Android SDK Quickstart Guide
 highlights: |
-    The Referral SaaSquatch Android SDK integrates a referral program into your Android app.
+    The Referral SaaSquatch Android SDK integrates a referral program into your app.
 permalinks: false
 slug: mobile/android/quickstart
 template: mobile.html
 ---
 
 Overview
-------------
+--------
 
 
 We're going to add the SDK into our project and start using it to interface with Referral SaaSquatch.
@@ -52,14 +52,14 @@ dependencies {
 
 Run a gradle sync and the SDK is now ready for use in your project.
 
-###Manual install
+### Manual install
 
 There are 2 steps to manually install the SDK in your app:
 
 * Import the library into your project.
 * Reference the library in your module's `build.gradle` file.
 
-####Step 1: Import the library into your project
+#### Step 1: Import the library into your project
 
 To add the SDK to your project, go to File -> New -> New Module.
 
@@ -68,7 +68,7 @@ Select *Import .JAR/.AAR Package* and hit "Next".
 Click the "..." button next to the *File name* field, and locate `saasquatch-release.aar` within the zip and select it. Click "Finish" and your project will include the `saasquatch-release` module.
 
 
-####Step 2: Reference the library in your module's build.gradle file
+#### Step 2: Reference the library in your module's build.gradle file
 
 Open up the `build.gradle` file for your module and add the following:
 
@@ -99,10 +99,10 @@ To demonstrate how to use the SDK, let's walk through registering a user with Re
 * Apply the referral to our user's account.
 * Show our user come information about the user who referred them.
 
-####Register a user with Referral SaaSquatch
+#### Register a user with Referral SaaSquatch
 
-To register a user, we provide user information to Referral SaaSquatch. We provide our tenant alias which identifies our app. A userId from our system is passed to SaaSquatch to uniquely identify our users. We pass in an accountId, which Referral SaaSquatch uses to group users together; see [Shared vs Solo Accounts](http://docs.referralsaasquatch.com/shared-vs-solo-accounts/ "Shared vs Solo Accounts") to see what you should use here.
-Lastly, we provide a valid JSONObject containing information about our user. For a description of the available `userInfo` fields, please see [SaaSquatch docs](http://docs.referralsaasquatch.com/api/methods/#open_create_user "Referral SaaSquatch REST API reference"). Here is an example:
+To register a user, we provide user information to Referral SaaSquatch. We provide our tenant alias which identifies our app. A userId from our system is passed to SaaSquatch to uniquely identify our users. We pass in an accountId, which Referral SaaSquatch uses to group users together; see [Shared vs Solo Accounts](/shared-vs-solo-accounts/ "Shared vs Solo Accounts") to see what you should use here.
+Lastly, we provide a valid JSONObject containing information about our user. For a description of the available `userInfo` fields, please see [SaaSquatch docs](../../../api/methods/#open_create_user "Referral SaaSquatch REST API reference"). Here is an example:
 
 ```java
 // This is your tenant alias which identifies you with Referral SaaSquatch
@@ -150,16 +150,7 @@ public void onComplete(JSONObject userInfo, String errorMessage, Integer errorCo
 
     // First, check if an error occurred
     if (errorCode != null) {
-        // If the error is an http error, errorCode will be an http status code
-        if (errorCode.equals(401)) {
-            Log.e("MyActivity", "HTTP 401: Unauthorized");
-        } else if (errorCode.equals(400) {
-            Log.e("MyActivity", "HTTP 400: Bad Request");
-        } else {
-            // errorMessage contains a description of the error
-            Log.e("MyActivity", errorMessage);
-        }
-        return;
+        // handle errors
     }
 
     // If the error is null, then userInfo will exist
@@ -184,7 +175,7 @@ public void onComplete(JSONObject userInfo, String errorMessage, Integer errorCo
 }
 ```
 
-####Make the referral
+#### Make the referral
 
 Once the user is registered and any useful information returned in `userInfo` has been saved away, we will make their referral with Referral SaaSquatch. We'll call `applyReferralCode` with the code our user gave us and their userId, accountId and token. The function validates the referral code. If the code is successful the reward information will be returned in `userInfo`, or if the code cannot be applied to the account an error will be returned.
 
@@ -197,16 +188,7 @@ Saasquatch.applyReferralCode(tenant, userId, accountId, "BOBTESTERSON", token, M
 
             // First, check the error
             if (errorCode != null) {
-                if (errorCode.equals(401)) {
-                    // The token was invalid
-                    Log.e("MyActivity", errorMessage);
-                } else if (errorCode.equals(404)) {
-                    // The referral code was not found
-                    Log.e("MyActivity", errorMessage);
-                } else {
-                    Log.e("MyActivity", errorMessage);
-                }
-                return;
+                // handle errors
             }
 
             // Parse the referral code information returned in userInfo
@@ -237,7 +219,7 @@ Saasquatch.applyReferralCode(tenant, userId, accountId, "BOBTESTERSON", token, M
 
 During your user's registration, you may want to look up a referral code they entered to check it's existance and get information about the associated reward. The call is very similar to applyReferralCode and returns the same reward information in userInfo. The tenant, referral code and context are the only required parameters, but if you make too many calls without a token you may get a 401: Unauthorized response.
 
-For a complete description of the available fields, visit the [SaaSquatch docs](http://docs.referralsaasquatch.com/api/methods/#open_apply_code "Referral SaaSquatch REST API reference").
+For a complete description of the available fields, visit the [SaaSquatch docs](../../../api/methods/#open_apply_code "Referral SaaSquatch REST API reference").
 
 ```java
 Saasquatch.lookupReferralCode(tenant, "BOBTESTERSON", token, MyActivity.this,
@@ -251,7 +233,7 @@ Saasquatch.lookupReferralCode(tenant, "BOBTESTERSON", token, MyActivity.this,
 ```
 
 
-####Lookup who referred our user
+#### Lookup who referred our user
 
 The last thing we would like to do is let our user know they have been referred successfully. Let's lookup the user that referred them so we can let our user know who they can thank. For this, we can use the `getUserByReferralCode` method like this:
 
@@ -263,16 +245,7 @@ Saasquatch.getUserByReferralCode(tenant, "BOBTESTERSON", token, MyActivity.this,
 
             // Always check the error
             if (errorCode != null) {
-                if (errorCode.equals(401)) {
-                    // The token was invalid
-                    Log.e("MyActivity", errorMessage);
-                } else if (errorCode.equals(404)) {
-                    // The user associated with the referral code was not found
-                    Log.e("MyActivity", errorMessage);
-                } else {
-                    Log.e("MyActivity", errorMessage);
-                }
-                return;
+                // handle errors
             }
 
             // Parse the returned information
@@ -294,12 +267,12 @@ Saasquatch.getUserByReferralCode(tenant, "BOBTESTERSON", token, MyActivity.this,
 
 Great! We registered our new user with Referral SaaSquatch and successfully made a referral.
 
-####List Referrals
+#### List Referrals
 
 Let's add one more bit of functionality to our app to demonstrate `listReferralsForTenant`. Bob Testerson referred our new user, Claire Fraser, and we would like to show him a list of everyone he's referred (it's a lot). To do this, we call `listReferralsForTenant`.
 
 This method looks up all the referrals for us, the tenant. The other required parameter is a token to authenticate the request. The remainder of the parameters are options for filtering this list. In this case, we want to list only the referrals where Bob is the *referrer*. We will pass in Bob's userId and accountId and parse the list returned in `userInfo`. For a description of the options for filtering, see the [SaaSquatch
-docs](http://docs.referralsaasquatch.com/api/methods/#open_list_referrals "Referral SaaSquatch REST API reference").
+docs](../../../api/methods/#open_list_referrals "Referral SaaSquatch REST API reference").
 
 ```java
 Saasquatch.listReferralsForTenant(tenant, token, bobsAccountId, bobsUserId, null, null, null, null, null, null, MyActivity.this,
@@ -309,16 +282,7 @@ Saasquatch.listReferralsForTenant(tenant, token, bobsAccountId, bobsUserId, null
         public void onComplete(JSONObject userInfo, String errorMessage, Integer errorCode) {
 
             if (errorCode != null) {
-                if (errorCode.equals(401)) {
-                    // The token was invalid
-                    Log.e("MyActivity", errorMessage);
-                } else if (errorCode.equals(404)) {
-                    // The tenant was incorrect
-                    Log.e("MyActivity", errorMessage);
-                } else {
-                    Log.e("MyActivity", errorMessage);
-                }
-                return;
+                // handle errors
             }
 
             JSONArray referrals;
@@ -348,10 +312,10 @@ Saasquatch.listReferralsForTenant(tenant, token, bobsAccountId, bobsUserId, null
 ```
 
 
-####Done!
+#### Done!
 
 For a working demo implementation, check out our [Sample App](https://github.com/saasquatch/mobile-sdk-android-sample "Sample App").
 
-For a detailed description of the `Saasquatch` class and it's public methods, please visit the [API Docs](http://docs.referralsaasquatch.com/mobile/android/docs/ "API level docs").
+For a detailed description of the `Saasquatch` class and it's public methods, please visit the [API Docs](../docs/ "API level docs").
 
-For a reference of the fields available in `userInfo` please visit the [Referral SaaSquatch REST API docs](http://docs.referralsaasquatch.com/api/methods/ "Referral SaaSquatch REST API docs").
+For a reference of the fields available in `userInfo` please visit the [Referral SaaSquatch REST API docs](../../../api/methods/#open_create_user "Referral SaaSquatch REST API docs").
