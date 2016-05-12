@@ -27,6 +27,7 @@ hero: true
     <p>Go to <a href="/mobile/branch-metrics/">Branch Metrics integration</a></p>
   </div>
 </div>
+<br/><br/>
 <div class="row-fluid">
   <div class="span6">
     <div class="text-center" style="overflow:hidden; position: relative; height: 124px; margin-bottom: 10px;"><img src="/assets/images/mobile/logo-android.png" style=" position:relative; height:124px;"></div>
@@ -35,7 +36,7 @@ hero: true
     </p>
   </div>
   <div class="span6">
-    <div class="text-center" style="overflow:hidden; position: relative; height: 124px; margin-bottom: 10px;"><img src="/assets/images/mobile/logo-ios.png" style=" position:relative; top: 30px"></div>
+    <div class="text-center" style="overflow:hidden; position: relative; height: 124px; margin-bottom: 10px;"><img src="/assets/images/mobile/logo-ios.png" style=" position:relative; top: 25px"></div>
     <p>Our <a href="/mobile/ios">iOS SDK</a> gives you complete control over how your referral program is presented inside your iOS app.</p>
     <p>Go to <a href="/mobile/ios">iOS SDK</a></p>
     </p>
