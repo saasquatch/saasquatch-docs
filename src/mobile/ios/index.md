@@ -1,7 +1,7 @@
 ---
 title: iOS SDK
 highlights: |
-    The Referral SaaSquatch iOS SDK integrates a referral program into your Android app.
+    The Referral SaaSquatch iOS SDK integrates a referral program into your iOS app.
 permalinks: false
 template: mobile.html
 ---
