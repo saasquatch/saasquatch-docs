@@ -787,6 +787,52 @@ paths:
             $ref: "#/definitions/RewardDebitResponse"
         default: 
           $ref: "#/responses/GeneralError"
+  "/{tenant_alias}/rewards/account/{accountId}/user/{userId}":
+    post:
+      operationId: create_reward
+      summary: Create a single reward
+      description: |
+        Used to create a reward for a specified user. Note that the reward will only be redeemed automatically 
+        if the default program supports automatic redemption for the provided reward type (see the [install guides](/guides/) 
+        for more on automatic redemption).
+      parameters:
+        - name: userId
+          in: path
+          description: The ID of the user that will be given the reward
+          required: true
+          type: string
+        - name: accountId
+          in: path
+          description: The ID of the account that will be given the reward
+          required: true
+          type: string
+        - name: reward
+          in: body
+          description: Details of the reward to create
+          schema:
+            $ref: "#/definitions/NewReward"
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        201:
+          description: Reward created
+          schema:
+            $ref: "#/definitions/Reward"
+          examples: 
+            "application/json": 
+              - "type": "PCT_DISCOUNT"
+                "id": "5734d4f9e4b04da952ff4d0a"
+                "dateGiven": 1463080185421
+                "dateExpires": 1471028988000
+                "dateCancelled": null
+                "accountId": "KWCCHLA7INJUTLEY"
+                "userId": "56ce0cdae4b09d48bf7e7fcc"
+                "cancellable": true
+                "rewardSource": "MANUAL"
+                "discountPercent": 15
+                "unit": "%"
+        default:
+          $ref: "#/responses/GeneralError"
+          
 
   "/{tenant_alias}/theme/variables/schema":
     get: 
@@ -1287,6 +1333,45 @@ definitions:
       quantity: 
         type: integer
         description: The quantity of feature that this referral code is valid for.  Only works with types `FEATURE`
+  NewReward:
+    description: Details of a new reward to create.
+    properties:
+      type:
+        type: string
+        description: "The type of reward. One of either of the following: `PCT_DISCOUNT` `FEATURE` `TIME_CREDIT` or `CREDIT`"
+        example: PCT_DISCOUNT
+        enum:
+          - PCT_DISCOUNT
+          - FEATURE
+          - TIME_CREDIT
+          - CREDIT
+      dateExpires:
+        type: integer
+        description: "Timestamp of when this reward was earned. Works with: `PCT_DISCOUNT` or `FEATURE`"
+        example: 1471028988000
+      cancellable:
+        type: boolean
+        description: "If a reward is cancellable then it may be revoked. If it has been cancelled then dateCancelled will be non-null."
+        example: true
+      unit:
+        type: string
+        description: "An identifier for the unit of the reward. E.g. `'credit-in-cents'`, `'freemb'`, `'giftcard20'`, `'tshirt'`, `'freemonth'` or `'%'`. Works with: `TIME_CREDIT` `FEATURE` or `CREDIT`"
+      discountPercent:
+        type: integer
+        description: "The percent discount. E.g. 10 means 10% Works with: `PCT_DISCOUNT`"
+        example: 15
+      featureType:
+        type: string 
+        description: "A unique identifier for the type of feature. E.g. `'freeSeats'` or `'freeMb'`. Works with: `FEATURE`"      
+      quantity:
+        type: integer
+        description: "The earned quantity of the feature Works with:`FEATURE`"
+      assignedCredit:
+        type: integer
+        description: "The earned quantity of the feature. Works with: `TIME_CREDIT` or `CREDIT`"
+      currency:
+        type: string
+        description: "For programs that require a currency. Works with: `CREDIT`"
   Reward:
     description: Details of an individual reward.
     properties: 
@@ -1295,7 +1380,7 @@ definitions:
         description: The unique identifier for this reward
       type:
         type: string
-        description: "The type of reward. One of either the following: `PCT_DISCOUNT` `FEATURE` `TIME_CREDIT` or `CREDIT`"
+        description: "The type of reward. One of either of the following: `PCT_DISCOUNT` `FEATURE` `TIME_CREDIT` or `CREDIT`"
         enum:
           - PCT_DISCOUNT
           - FEATURE
@@ -1319,6 +1404,7 @@ definitions:
         enum:
           - FRIEND_SIGNUP
           - REFERRED
+          - MANUAL
       unit:
         type: string
         description: "An identifier for the unit of the reward. E.g. `'credit-in-cents'`, `'freemb'`, `'giftcard20'`, `'tshirt'`, `'freemonth'` or `'%'`"
@@ -1343,6 +1429,9 @@ definitions:
       redeemedCredit:
         type: integer
         description: "The redeemed quantity of the feature. Works with: `TIME_CREDIT` or `CREDIT`"
+      currency:
+        type: string
+        description: "For programs that require a currency. Works with: `CREDIT`"
   User: 
     description: An object describing an individual user
     required:
