@@ -1778,14 +1778,11 @@ definitions:
       redeemedCredit:
         type: integer
         description: "The redeemed quantity of the feature. Works with: `TIME_CREDIT` or `CREDIT`"
-<<<<<<< HEAD
-  User:
-=======
       currency:
         type: string
         description: "For programs that require a currency. Works with: `CREDIT`"
+
   User: 
->>>>>>> creatreward
     description: An object describing an individual user
     required:
       - id
