@@ -15,24 +15,24 @@ The Referral SaaSquatch API accepts two types of JWTs, read tokens and write tok
 
 ### Read Token
 
-The payload of a read token is
+The payload of a read token is the minimum information needed to identify a user. This has changed from the original `"sub": "accountId_userId"` format, which would not have worked with all valid account ids.
 
 ```
 {
-  "sub": "accountId_userId",
+  "user": {
+    "id": "adfgafdg",
+    "accountId": "adfklajdnrerereACdsedf"
+  }
   "exp": 1462327764000 // optional  
 }
 ```
 
-Both the account id and user id are necessary to uniquely identify a user, so we concatenate them together with an underscore to create a single value that meets the JWT <a href="https://www.iana.org/assignments/jwt/jwt.xhtml">specification</a>.
-
 ### Write Token
 
-The payload of a write token contains a user object in addition to the `sub` field.
+The payload of a write token contains a complete user object.
 
 ```
 {
-  "sub": "accountId_userId",
   "user": {
     "id": "adfgafdg",
     "accountId": "adfklajdnrerereACdsedf",
