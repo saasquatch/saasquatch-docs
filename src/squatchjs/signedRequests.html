@@ -204,7 +204,28 @@ public static String buildJWT(String secret, String accountId, String userId, St
     </div>
 
     <div class="tab-pane calculatehash-example-php">
-        <pre><code class="lang-php">base64_encode(hash_hmac(&#x27;sha256&#x27;,&#x27;a5678joe.tester@example.comJoeTestertest_aaaexampleaaau1234&#x27;, &#x27;TEST_HGO8125ANDFH152HSAS15&#x27;, true))</code></pre>
+        <pre><code class="lang-php">use \Firebase\JWT\JWT;
+
+function buildJWT($secret, $userId, $accountId, $email, $firstName, $lastName, $expiryDate, $referralCode, $userReferralCode, $accountStatus, $userImage) {
+  //build user object
+  $payload = array(
+      "user" => array(
+          "id" => $userId,
+          "accountId" => $accountId,
+          "firstName" => $firstName,
+          "lastName" => $lastName,
+          "email" => $email,
+          "userReferralCode" => $userReferralCode,
+          "referralCode" => $referralCode,
+          "userImage" => $userImage,
+          "accountStatus" => $accountStatus,
+      ),
+      "exp" => $expiryDate
+  );
+
+  //the encoder defaults to HS256, no need to specify an algorithm
+  return JWT::encode($payload, $secret);
+}</code></pre>
     </div>
 
     <div class="tab-pane calculatehash-example-py active">
