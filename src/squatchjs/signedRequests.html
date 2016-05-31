@@ -135,18 +135,41 @@ _sqh.push(['autofill', '#referralCoupon']);
 <div class="tab-content">
 
     <div class="tab-pane calculatehash-example-cs">
-        <pre><code class="lang-cs">using System.Security.Cryptography;
+        <pre><code class="lang-cs">using System.Collections.Generic;
+using System.Text;
+using Jose;
 
-private string CreateToken(string message, string secret)
+namespace JWTExample
 {
-    var encoding = new System.Text.ASCIIEncoding();
-    byte[] keyByte = encoding.GetBytes(secret);
-    byte[] messageBytes = encoding.GetBytes(message);
-    using (var hmacsha256 = new HMACSHA256(keyByte))
-    {
-        byte[] hashmessage = hmacsha256.ComputeHash(messageBytes);
-        return Convert.ToBase64String(hashmessage);
-    }
+    class Program
+	{
+		public static string buildJWT(string secret, string accountId, string userId, string email, string firstName, string lastName, long expiryDate, string referralCode, string userReferralCode, string accountStatus, string userImage)
+		{
+      var userPayload = new Dictionary<string, object>()
+      {
+          { "id", userId },
+          { "accountId", accountId },
+          { "firstName", firstName },
+          { "lastName", lastName },
+          { "email", email },
+          { "userReferralCode", userReferralCode },
+          { "referralCode", referralCode },
+          { "userImage", userImage},
+          { "accountStatus", accountStatus }
+      };
+
+      var payload = new Dictionary<string, object>()
+      {
+          { "user", userPayload },
+          { "exp", 1300819380 }
+      };
+
+      //the encoding must match the encoding of your secret, UTF8 is just an example
+      var byteSecret = Encoding.UTF8.GetBytes(secret);
+
+      return Jose.JWT.Encode(payload, byteSecret, JwsAlgorithm.HS256);
+		}
+	}
 }</code></pre>
     </div>
 
