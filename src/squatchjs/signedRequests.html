@@ -54,7 +54,7 @@ template: squatchjs.html
                 </td>
             </tr>
             <tr>
-                <th>On your homepage</th>
+                <th>On your checkout page</th>
                 <td>
                     <pre><code class="lang-js">_sqh.push(['init', {
     tenant_alias: 'test_aaaexampleaaa'
@@ -123,7 +123,7 @@ _sqh.push(['autofill', '#referralCoupon']);
 }</code></pre>
             </li>
             <li>
-                <p>Use your chosen library to build the JWT and sign it with your API key. In the code below we use an example API key: <code>TEST_HGO8125ANDFH152HSAS15</code></p>
+                <p>Use your chosen library to build the JWT and sign it with your API key.</p>
 
 <ul class="nav nav-tabs">
     <li><a href="#" data-toggle="tab" data-target=".calculatehash-example-cs">C#</a></li>
@@ -141,10 +141,10 @@ using Jose;
 
 namespace JWTExample
 {
-    class Program
-	{
-		public static string buildJWT(string secret, string accountId, string userId, string email, string firstName, string lastName, long expiryDate, string referralCode, string userReferralCode, string accountStatus, string userImage)
-		{
+  class Program
+  {
+    public static string buildJWT(string secret, string accountId, string userId, string email, string firstName, string lastName, long expiryDate, string referralCode, string userReferralCode, string accountStatus, string userImage)
+    {
       var userPayload = new Dictionary<string, object>()
       {
           { "id", userId },
@@ -168,8 +168,8 @@ namespace JWTExample
       var byteSecret = Encoding.UTF8.GetBytes(secret);
 
       return Jose.JWT.Encode(payload, byteSecret, JwsAlgorithm.HS256);
-		}
-	}
+    }
+  }
 }</code></pre>
     </div>
 
@@ -274,7 +274,7 @@ def buildJWT(secret, userId, accountId, email, firstName, lastName, referralCode
 
             </li>
             <li>
-                <p><strong>Include the checksum</strong> in your javascript initialization call. Secure mode is enabled for an account as soon as we receive your first valid signed request. Once enabled, non-signed requests will no longer be accepted for that account.</p>
+                <p><strong>Include the JWT</strong> in your javascript initialization call. Secure mode is enabled for an account as soon as we receive your first valid signed request. Once enabled, non-signed requests will no longer be accepted for that account.</p>
                 <pre><code class="lang-js">_sqh.push(['init', {
     tenant_alias: 'test_aaaexampleaaa',
     account_id: 'a5678',
@@ -284,11 +284,12 @@ def buildJWT(secret, userId, accountId, email, firstName, lastName, referralCode
     first_name: 'Joe',
     last_name: 'Tester',
     fb_share_image: "http://example.com/f.png",
-    <span class="nocode"><strong>checksum: 'TFs5pf1zQUgaerOVvLSIiCfrty/GXHdXU5AK5rCmbYU='</strong></span> // &lt;-- Add the checksum to your init call
+    <span class="nocode"><strong>jwt: 'eyJhbGciOi.eyJzdWIiOixY.TJA95OrM'</strong></span> // &lt;-- Add the JWT to your init call
 }]);</code></pre>
             </li>
         </ol>
-
+        <br/>
+        <br/>
 
         <h3 id="checksum">Signed requests with Checksums</h3>
 
@@ -331,7 +332,7 @@ def buildJWT(secret, userId, accountId, email, firstName, lastName, referralCode
                 </td>
             </tr>
             <tr>
-                <th>On your homepage</th>
+                <th>On your checkout page</th>
                 <td>
                     <pre><code class="lang-js">_sqh.push(['init', {
     tenant_alias: 'test_aaaexampleaaa'
