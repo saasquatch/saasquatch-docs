@@ -1,8 +1,8 @@
 ---
 title: Signed Requests
-highlights: | 
+highlights: |
   Signed Requests provide an extra layer of security on top of the squatch.js javascript library.
-  A signed request uses a cryptographic signature (or checksum) to validate that the data we receive in javascript API calls originated from your servers. 
+  A signed request uses either a cryptographic signature (or checksum) or a [JSON Web Token](https://jwt.io/introduction/) (JWT) to validate that the data we receive in javascript API calls originated from your servers.
   We recommend that all sites use Signed Requests to secure their client-side code.
 slug: squatchjs/signed-requests
 template: squatchjs.html
@@ -10,8 +10,243 @@ template: squatchjs.html
 
         <h3>How do I use signed requests?</h3>
         <p>
-            To use signed requests, your server must generate a checksum using your tenant's API key, and pass that to the <a href="/squatchjs#init">squatch.js init function</a>.
+            To use signed requests, your server must generate a JWT or <a href="#checksum">checksum</a> using your tenant's API key, and pass that to the <a href="/squatchjs#init">squatch.js init function</a>.
         </p>
+
+        <h3>Signed requests with JWTs</h3>
+
+        <table class="table">
+            <tr>
+                <td></td>
+                <th>
+                    <strong>Without</strong> Signed Requests
+                </th>
+                <th>
+                    <strong>With</strong> Signed Requests
+                </th>
+            </tr>
+            <tr>
+                <th>In your app</th>
+                <td>
+                    <pre><code class="lang-js">_sqh.push(['init', {
+    tenant_alias: 'test_aaaexampleaaa',
+    account_id: 'a5678',
+    payment_provider_id: null,
+    user_id: 'u1234',
+    email: 'joe.tester@example.com',
+    first_name: 'Joe',
+    last_name: 'Tester',
+    fb_share_image: "http://example.com/f.png"
+}]);</code></pre>
+                </td>
+                <td>
+                    <pre><code class="lang-js">_sqh.push(['init', {
+    tenant_alias: 'test_aaaexampleaaa',
+    account_id: 'a5678',
+    payment_provider_id: null,
+    user_id: 'u1234',
+    email: 'joe.tester@example.com',
+    first_name: 'Joe',
+    last_name: 'Tester',
+    fb_share_image: "http://example.com/f.png",
+    <span class="nocode"><strong>jwt: 'eyJhbGciOi.eyJzdWIiOixY.TJA95OrM'</strong></span>
+}]);</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <th>On your homepage</th>
+                <td>
+                    <pre><code class="lang-js">_sqh.push(['init', {
+    tenant_alias: 'test_aaaexampleaaa'
+}]);
+
+_sqh.push(['autofill', '#referralCoupon']);
+</code></pre>
+                </td>
+                <td>
+                    <pre><code class="lang-js">_sqh.push(['init', {
+    tenant_alias: 'test_aaaexampleaaa'
+}]);
+
+_sqh.push(['autofill', '#referralCoupon']);
+</code></pre>
+                </td>
+            </tr>
+        </table>
+
+
+        <hr/>
+
+        <h3>What is a JWT?</h3>
+
+        <p>A JWT is an <a href="https://tools.ietf.org/html/rfc7519">open standard</a> for securely sharing information as a JSON object. JWTs are small enough to be used in a GET or POST parameter or an HTTP header. Because they are digitally signed the information inside can be trusted. This allows us to use them like a checksum to verify that the widget parameters are correct, but with the convenience of using a library to generate the JWT.</p>
+
+        <h3>How is the JWT generated?</h3>
+
+        <p>JWTs can easily be generated using one of the <a href="https://jwt.io/#libraries-io">libraries</a> available. There are
+        even more libraries in even more languages available on <a href="https://github.com/search?utf8=%E2%9C%93&q=json+web+token&type=Repositories&ref=searchresults">GitHub</a>
+        in addition to the ones recommended by <a href="https://jwt.io">JWT.io</a>.</p>
+
+        <p class="muted">
+            <strong>Don't forget!</strong> You have a both a live API key and a test API key.
+        </p>
+
+
+        <h4>Example -- How To Build the JWT</h4>
+
+        <p>To start using secure requests, you simply need to add a JWT. For example, here is a JSON object of the parameters passed to the javascript initialization call:</p>
+
+        <pre><code class="lang-json">{
+    "tenant_alias": "test_aaaexampleaaa",
+    "account_id": "a5678",
+    "payment_provider_id": null,
+    "user_id": "u1234",
+    "email": "joe.tester@example.com",
+    "first_name": "Joe",
+    "last_name": "Tester",
+    "fb_share_image": "http://example.com/f.png",
+}</code></pre>
+
+        <ol>
+            <li>
+                <p><strong>Ignore client-only parameters</strong> that don't need to be signed. The <code>mode</code>, <code>fbShareImage</code> and <code>autofill</code> parameters should be ignored.
+                </p>
+        <pre><code class="lang-json">{
+    "tenant_alias": "test_aaaexampleaaa",
+    "account_id": "a5678",
+    "payment_provider_id": null,
+    "user_id": "u1234",
+    "email": "joe.tester@example.com",
+    "first_name": "Joe",
+    "last_name": "Tester",
+    // "fb_share_image": "http://example.com/f.png", &lt;-- This one is ignored for checksum purposes
+}</code></pre>
+            </li>
+            <li>
+                <p>Use your chosen library to build the JWT and sign it with your API key. In the code below we use an example API key: <code>TEST_HGO8125ANDFH152HSAS15</code></p>
+
+<ul class="nav nav-tabs">
+    <li><a href="#" data-toggle="tab" data-target=".calculatehash-example-cs">C#</a></li>
+    <li><a href="#" data-toggle="tab" data-target=".calculatehash-example-rb">Ruby</a></li>
+    <li><a href="#" data-toggle="tab" data-target=".calculatehash-example-java">Java</a></li>
+    <li><a href="#" data-toggle="tab" data-target=".calculatehash-example-php">PHP</a></li>
+    <li class="active"><a href="#" data-toggle="tab" data-target=".calculatehash-example-py">Python</a></li>
+</ul>
+<div class="tab-content">
+
+    <div class="tab-pane calculatehash-example-cs">
+        <pre><code class="lang-cs">using System.Security.Cryptography;
+
+private string CreateToken(string message, string secret)
+{
+    var encoding = new System.Text.ASCIIEncoding();
+    byte[] keyByte = encoding.GetBytes(secret);
+    byte[] messageBytes = encoding.GetBytes(message);
+    using (var hmacsha256 = new HMACSHA256(keyByte))
+    {
+        byte[] hashmessage = hmacsha256.ComputeHash(messageBytes);
+        return Convert.ToBase64String(hashmessage);
+    }
+}</code></pre>
+    </div>
+
+    <div class="tab-pane calculatehash-example-rb">
+        <pre><code class="lang-rb">require 'jwt'
+
+def buildJWT(secret, userId, accountId, email, firstName, lastName, referralCode, userReferralCode, accountStatus, userImage, expiryDate)
+  secret = 'Referral SaaSquatch API key'
+  return payload = JWT.encode({
+    user: {
+      id: userId,
+      accountId: accountId,
+      firstName: firstName,
+      lastName: lastName,
+      referralCode: referralCode,
+      userReferralCode: userReferralCode,
+      accountStatus: accountStatus,
+      userImage: userImage
+    },
+    exp: expiryDate
+  }, secret)
+end</code></pre>
+    </div>
+
+    <div class="tab-pane calculatehash-example-java">
+        <pre><code class="lang-java">import com.auth0.jwt.Algorithm;
+import com.auth0.jwt.JWTSigner;
+import com.auth0.jwt.JWTSigner.Options;
+
+public static String buildJWT(String secret, String accountId, String userId, String email, String firstName, String lastName, Long expiryDate, String referralCode, String userReferralCode, String accountStatus, String userImage) {
+  //build user object
+  Map<String, Object> userMap = new HashMap<String, Object>();
+  userMap.put("id", userId);
+  userMap.put("accountId", accountId);
+  userMap.put("firstName", firstName);
+  userMap.put("lastName", lastName);
+  userMap.put("email", email);
+  userMap.put("userReferralCode", userReferralCode);
+  userMap.put("referralCode", referralCode);
+  userMap.put("userImage", userImage);
+  userMap.put("accountStatus", accountStatus);
+
+  //create token
+  JWTSigner signer = new JWTSigner(secret);
+  Map<String, Object> claims = new HashMap<String, Object>();
+  claims.put("user", userMap);
+  if (expiryDate != null) {
+    claims.put("exp", expiryDate.longValue());
+  }
+  Options options = new Options();
+  options.setAlgorithm(Algorithm.HS256);
+  String signedToken = signer.sign(claims, options);
+  return signedToken;
+}</code></pre>
+    </div>
+
+    <div class="tab-pane calculatehash-example-php">
+        <pre><code class="lang-php">base64_encode(hash_hmac(&#x27;sha256&#x27;,&#x27;a5678joe.tester@example.comJoeTestertest_aaaexampleaaau1234&#x27;, &#x27;TEST_HGO8125ANDFH152HSAS15&#x27;, true))</code></pre>
+    </div>
+
+    <div class="tab-pane calculatehash-example-py active">
+        <pre><code class="lang-py">import jwt
+
+def buildJWT(secret, userId, accountId, email, firstName, lastName, referralCode, userReferralCode, accountStatus, userImage, expiryDate):
+    return jwt.encode({
+        'user': {
+            'id': userId,
+            'accountId': accountId,
+            'firstName': firstName,
+            'lastName': lastName,
+            'referralCode': referralCode,
+            'userReferralCode': userReferralCode,
+            'accountStatus': accountStatus,
+            'userImage': userImage
+        },
+        'exp': expiryDate
+    }, secret, algorithm='HS256')</code></pre>
+    </div>
+
+</div>
+
+            </li>
+            <li>
+                <p><strong>Include the checksum</strong> in your javascript initialization call. Secure mode is enabled for an account as soon as we receive your first valid signed request. Once enabled, non-signed requests will no longer be accepted for that account.</p>
+                <pre><code class="lang-js">_sqh.push(['init', {
+    tenant_alias: 'test_aaaexampleaaa',
+    account_id: 'a5678',
+    payment_provider_id: null,
+    user_id: 'u1234',
+    email: 'joe.tester@example.com',
+    first_name: 'Joe',
+    last_name: 'Tester',
+    fb_share_image: "http://example.com/f.png",
+    <span class="nocode"><strong>checksum: 'TFs5pf1zQUgaerOVvLSIiCfrty/GXHdXU5AK5rCmbYU='</strong></span> // &lt;-- Add the checksum to your init call
+}]);</code></pre>
+            </li>
+        </ol>
+
+
+        <h3 id="checksum">Signed requests with Checksums</h3>
 
         <table class="table">
             <tr>
@@ -48,7 +283,7 @@ template: squatchjs.html
     last_name: 'Tester',
     fb_share_image: "http://example.com/f.png",
     <span class="nocode"><strong>checksum: 'arbPDAcedO38Qw/qdJLCqd2tlRQ='</strong></span>
-}]);</code></pre>       
+}]);</code></pre>
                 </td>
             </tr>
             <tr>
@@ -57,7 +292,7 @@ template: squatchjs.html
                     <pre><code class="lang-js">_sqh.push(['init', {
     tenant_alias: 'test_aaaexampleaaa'
 }]);
-    
+
 _sqh.push(['autofill', '#referralCoupon']);
 </code></pre>
                 </td>
@@ -67,29 +302,29 @@ _sqh.push(['autofill', '#referralCoupon']);
 }]);
 
 _sqh.push(['autofill', '#referralCoupon']);
-</code></pre>       
+</code></pre>
                 </td>
             </tr>
         </table>
 
-        
+
         <hr/>
         <h3>How is the checksum generated?</h3>
-        
-        <p>The param checksum is computed using a HMAC-SHA2 algorithm. The signed value is a concatenated string assembled 
-        from the <a href="/squatchjs#init">squatch.js init</a> parameter map. As a simple convention, the values are concatenated 
-        based on an alphabetical ordering of the parameter names. This will become more clear in an example below. The final piece 
+
+        <p>The param checksum is computed using a HMAC-SHA2 algorithm. The signed value is a concatenated string assembled
+        from the <a href="/squatchjs#init">squatch.js init</a> parameter map. As a simple convention, the values are concatenated
+        based on an alphabetical ordering of the parameter names. This will become more clear in an example below. The final piece
         missing is the HMAC algorithm’s shared secret: your account’s API key. </p>
-        
+
         <p class="muted">
             <strong>Don't forget!</strong> You have a both a live API key and a test API key.
         </p>
 
 
         <h4>Example -- How To Compute the Checksum</h4>
-                
+
         <p>To start using secure requests, you simply need to add a checksum. For example, here is a JSON object of the parameters to be signed:</p>
-        
+
         <pre><code class="lang-json">{
     "tenant_alias": "test_aaaexampleaaa",
     "account_id": "a5678",
@@ -115,7 +350,7 @@ _sqh.push(['autofill', '#referralCoupon']);
     "last_name": "Tester",
     // "fb_share_image": "http://example.com/f.png", &lt;-- This one is ignored for checksum purposes
 }</code></pre>
-            </li>        
+            </li>
             <li>
                 <p><strong>Sort your parameters</strong> according to the alphabetical order of their keys. Notice how <code>account_id</code> is now first and <code>user_id</code> is now last.
                 </p>
@@ -130,7 +365,7 @@ _sqh.push(['autofill', '#referralCoupon']);
 }</code></pre>
             </li>
             <li>
-                <p><strong>Concatenate the <em>sorted</em> values.</strong> Starting with an empty string, iterate through all the parameters that you sorted and append each parameter's value to the end of a string. Notice 
+                <p><strong>Concatenate the <em>sorted</em> values.</strong> Starting with an empty string, iterate through all the parameters that you sorted and append each parameter's value to the end of a string. Notice
                 how "a5678", the value for <code>account_id</code>, is at the start, and "u1234", the value for <code>user_id</code>, is at the end. Also, any optional parameters or null parameters can be
                 omitted. In this example <code>payment_provider_id</code> is set to null and isn't included in the concatenated string.
                 </p>
@@ -148,10 +383,10 @@ _sqh.push(['autofill', '#referralCoupon']);
     <li class="active"><a href="#" data-toggle="tab" data-target=".calculatehash-example-py">Python</a></li>
 </ul>
 <div class="tab-content">
-    
+
     <div class="tab-pane calculatehash-example-cs">
         <pre><code class="lang-cs">using System.Security.Cryptography;
- 
+
 private string CreateToken(string message, string secret)
 {
     var encoding = new System.Text.ASCIIEncoding();
@@ -164,14 +399,14 @@ private string CreateToken(string message, string secret)
     }
 }</code></pre>
     </div>
-    
+
     <div class="tab-pane calculatehash-example-rb">
         <pre><code class="lang-rb">require &#x27;openssl&#x27;
 require base64&#x27;
 
 hash = Base64.strict_encode64(OpenSSL::HMAC.digest(&#x27;sha256&#x27;, &#x27;TEST_HGO8125ANDFH152HSAS15&#x27;, &#x27;a5678joe.tester@example.comJoeTestertest_aaaexampleaaau1234&#x27;))</code></pre>
     </div>
-    
+
     <div class="tab-pane calculatehash-example-java">
         <pre><code class="lang-java">import java.security.SignatureException;
 
@@ -193,21 +428,21 @@ public static String calculateHMACSHA256(String data, String secretKey) throws j
     return result;
 }</code></pre>
     </div>
-    
+
     <div class="tab-pane calculatehash-example-php">
         <pre><code class="lang-php">base64_encode(hash_hmac(&#x27;sha256&#x27;,&#x27;a5678joe.tester@example.comJoeTestertest_aaaexampleaaau1234&#x27;, &#x27;TEST_HGO8125ANDFH152HSAS15&#x27;, true))</code></pre>
     </div>
-    
+
     <div class="tab-pane calculatehash-example-py active">
         <pre><code class="lang-py">import hashlib
 import hmac
 import base64
- 
+
 message = bytes(&#x27;a5678joe.tester@example.comJoeTestertest_aaaexampleaaau1234&#x27;).encode(&#x27;utf-8&#x27;)
 secret = bytes(&#x27;TEST_HGO8125ANDFH152HSAS15&#x27;).encode(&#x27;utf-8&#x27;)
 base64.standard_b64encode(hmac.new(secret, message, digestmod=hashlib.sha256).digest())</code></pre>
     </div>
-    
+
 </div>
 
             </li>
@@ -223,7 +458,7 @@ base64.standard_b64encode(hmac.new(secret, message, digestmod=hashlib.sha256).di
     last_name: 'Tester',
     fb_share_image: "http://example.com/f.png",
     <span class="nocode"><strong>checksum: 'TFs5pf1zQUgaerOVvLSIiCfrty/GXHdXU5AK5rCmbYU='</strong></span> // &lt;-- Add the checksum to your init call
-}]);</code></pre>       
+}]);</code></pre>
             </li>
         </ol>
 
@@ -238,4 +473,3 @@ base64.standard_b64encode(hmac.new(secret, message, digestmod=hashlib.sha256).di
 <p>Signed Requests can be turned off through the Referral SaaSquatch Portal. Navigate to the <b>Install page</b> and locate the <i>Secure Mode</i> header under which the current status of Signed Requests is displayed. By clicking disable, the Signed Requests will no longer be required.</p>
 
 <p><i>Note: Signed Requests can only be turned off for API integrations.</i></p>
-
