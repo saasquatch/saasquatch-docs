@@ -1,51 +1,43 @@
 {
-  "firebase": "saasquatch-doc",
-  "public": "build",
-  "ignore": [
-    "firebase.json",
-    "**/.*",
-    "**/node_modules/**"
-  ],
-  "redirects": [
-    {
-    	"type" : 301,
-    	"source" : "/theming",
-    	"destination" : "/themes"
-    },
-    {
-    	"type" : 301,
-    	"source" : "/api-guide",
-    	"destination" : "/guides"
-    },
-    {
-    	"type" : 301,
-    	"source" : "/faq/general",
-    	"destination" : "/faq"
-    },
-    {
-    	"type" : 301,
-    	"source" : "/pricing",
-    	"destination" : "/faq/pricing"
-    },
-    {
-    	"type" : 301,
-    	"source" : "/contact",
-    	"destination" : "http://www.referralsaasquatch.com/contact-us/"
-    },
-    {
-    	"type" : 301,
-    	"source" : "/about",
-    	"destination" : "http://www.referralsaasquatch.com/about-us/"
-    },
-    {
-    	"type" : 301,
-    	"source" : "/squatchjs/issues",
-    	"destination" : "/squatchjs/issue"
-    },
-    {
-    	"type" : 301,
-    	"source" : "/segment-io",
-    	"destination" : "/segment"
-    }
-  ]
+  "hosting": {
+    "public": "build",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "redirects": [{
+      "type": 301,
+      "source": "/theming",
+      "destination": "/themes"
+    }, {
+      "type": 301,
+      "source": "/api-guide",
+      "destination": "/guides"
+    }, {
+      "type": 301,
+      "source": "/faq/general",
+      "destination": "/faq"
+    }, {
+      "type": 301,
+      "source": "/pricing",
+      "destination": "/faq/pricing"
+    }, {
+      "type": 301,
+      "source": "/contact",
+      "destination": "http://www.referralsaasquatch.com/contact-us/"
+    }, {
+      "type": 301,
+      "source": "/about",
+      "destination": "http://www.referralsaasquatch.com/about-us/"
+    }, {
+      "type": 301,
+      "source": "/squatchjs/issues",
+      "destination": "/squatchjs/issue"
+    }, {
+      "type": 301,
+      "source": "/segment-io",
+      "destination": "/segment"
+    }]
+  }
 }
