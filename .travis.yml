@@ -6,8 +6,6 @@ before_script:
 - npm install
 script:
 - node build.js
-install:
-- npm install -g firebase-tools
 deploy:
   skip_cleanup: true
   provider: script
