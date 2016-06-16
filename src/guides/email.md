@@ -43,7 +43,7 @@ then SaaSquatch can use that information for analytics, fraud management, sharin
 
 ### <i class="fa fa-share"></i> Email Sharing
 
-Users can initiate sending a share message by email directly through the Referral SaaSquatch widget on your website or in your app. The mail link is a standard “mailto:” where a user clicking the email share link directs opens their email client of choice to complete the share process. In their email client the referrer can then simply input the email address of the desired recipient and make any personalizations to your referral program's standard email message.
+Users can initiate sending a share message by email directly through the Referral SaaSquatch widget on your website or in your app. The mail link is a standard "mailto:" where a user clicking the email share link directs opens their email client of choice to complete the share process. In their email client the referrer can then simply input the email address of the desired recipient and make any personalizations to your referral program's standard email message.
 
 #### Example
 
@@ -60,7 +60,7 @@ Users can initiate sending a share message by email directly through the Referra
 
 Referral SaaSquatch provides a complete notification email service for your referral program. 
 
-Email notifications are available to be sent whenever a referred user signs up for a new trial or free account, and then again whenever a referred user converts to “paid” as a successful referral. These notifications allow the referrer to track the progress of their referrals and be notified when they have earned a reward.
+Email notifications are available to be sent whenever a referred user signs up for a new trial or free account, and then again whenever a referred user converts to "paid" as a successful referral. These notifications allow the referrer to track the progress of their referrals and be notified when they have earned a reward.
 
 
 The content of the emails sent to your customers through Referral SaaSquatch can also be customized using the theme engine. Basic plans have the ability to customize the header image, title, and content of the message they send to their users. Pro and Enterprise accounts are able to fully customize the email theme through a similar manner to their [widget customization](https://docs.referralsaasquatch.com/themes/).
@@ -77,7 +77,7 @@ To disable SaaSquatch sending notification emails, and start using your own SMTP
 
 Here you can input the details of your SMTP server. The required fields are: 
 - SMTP Server Hostname and Port 
-- Authentication Method (options include “No Encryption”, “TLS”, and “SSL”) 
+- Authentication Method (options include "No Encryption", "TLS", and "SSL") 
 - Username and Password
 
 Test the connection to your SMTP Server to make sure all the information if correct, and then connect the SMTP server to your program.
