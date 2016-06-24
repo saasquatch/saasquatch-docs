@@ -22,8 +22,8 @@ The first step is granting SaaSquatch access to your Stripe account using Stripe
 
 We use Stripe Connect to connect the corresponding Live and Test accounts. To authorize your Referral SaaSquatch Live and Test tenants with the respective Live and Test Stripe accounts:
 
-1.  Go the install tab under the Setup section in your Portal.
-**Note:**
+1.  Go the install tab under the Setup section in your Portal. <br>
+**Note:** Make sure that you are keeping track of whether you are connecting your Live or Test tenant.
 
 3.  Click "Authorize" and follow the prompts to login to your Stripe account. This will automatically fill in the necessary API key.
 4.  Repeat the same process for both your live and test accounts.
@@ -34,7 +34,9 @@ Making use of our squatch.js library will allow you to surface a gorgeously rend
 
 ### Integration Flow
 
-In order to utilize the Referral SaaSquatch integration with Stripe it is important to be mindful of the correct order of operations for successfully completing the referral flow from a trial to a paid referral. The supported Referral SaaSquatch Stripe integration flow is:
+In order to utilize the Referral SaaSquatch integration with Stripe it is important to be mindful of the correct order of operations for successfully completing the referral flow from a trial to a paid referral. 
+
+The supported Referral SaaSquatch Stripe integration flow is:
 
 1.  Make sure that the Referrer is registered in Stripe with a valid credit card and plan selected
 2.  Create an account for the Referred User in Stripe
@@ -42,10 +44,12 @@ In order to utilize the Referral SaaSquatch integration with Stripe it is import
 4.  Create a Referral SaaSquatch account for the Referred User
 5.  Include their payment_provider_id from Stripe (listed as "ID" under Customer Details)
 6.  Attribute referral (widget should automatically pick up referral cookie)
-7.  Update Referred User in Stripe with coupon and plan with API call. This will convert the user from TRIAL to PAID when a non-zero, non-trial subscription is applied to the user’s invoice. Including the "account_status = PAID" in your squatch.js calls will have no effect when your program is configured for a payment provider integration.
+7.  Update Referred User in Stripe with subscription to a plan. This will convert the user from TRIAL to PAID when a non-zero, non-trial subscription is applied to the user’s invoice.<br>**Note:** Including the "account_status = PAID" in your squatch.js calls will have no effect when your program is configured for a payment provider integration.
 8.  Wait for the conversion to propagate from Stripe to Referral SaaSquatch (this process may be instantaneous but also may take longer depending on the load on Stripe and the frequency of them sending out updates).
 
-Result: Referral converted to paid, rewards fulfilled in Stripe, rewards redeemed in Referral SaaSquatch **Note:** Referral rewards get applied to a user’s stripe account as a line item on their next invoice. Discounts or credits being applied to a user’s stripe invoice should have an "RS_" appended at the beginning.
+Result: Referral converted to paid, rewards fulfilled in Stripe, rewards redeemed in Referral SaaSquatch 
+
+**Note:** Referral rewards get applied to a user’s stripe account as a line item on their next invoice. Discounts or credits being applied to a user’s stripe invoice should have an "RS_" appended at the beginning.
 
 * * *
 
