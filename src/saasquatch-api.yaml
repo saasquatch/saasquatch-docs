@@ -792,8 +792,8 @@ paths:
       operationId: create_reward
       summary: Create a single reward
       description: |
-        Used to create a reward for a specified user. Note that the reward will only be redeemed automatically 
-        if the default program supports automatic redemption for the provided reward type (see the [install guides](/guides/) 
+        Used to create a reward for a specified user. Note that the reward will only be redeemed automatically
+        if the default program supports automatic redemption for the provided reward type (see the [install guides](/guides/)
         for more on automatic redemption).
       parameters:
         - name: userId
@@ -817,8 +817,8 @@ paths:
           description: Reward created
           schema:
             $ref: "#/definitions/Reward"
-          examples: 
-            "application/json": 
+          examples:
+            "application/json":
               - "type": "PCT_DISCOUNT"
                 "id": "5734d4f9e4b04da952ff4d0a"
                 "dateGiven": 1463080185421
@@ -832,7 +832,7 @@ paths:
                 "unit": "%"
         default:
           $ref: "#/responses/GeneralError"
-          
+
 
   "/{tenant_alias}/theme/variables/schema":
     get:
@@ -1165,6 +1165,10 @@ paths:
             required: true
             description: The user to create
             type: string
+          - name: user
+            in: body
+            schema:
+              $ref: "#/definitions/OpenUser"
           - $ref: "#/parameters/tenant_alias"
         responses:
           200:
@@ -1710,8 +1714,8 @@ definitions:
         description: "The percent discount. E.g. 10 means 10% Works with: `PCT_DISCOUNT`"
         example: 15
       featureType:
-        type: string 
-        description: "A unique identifier for the type of feature. E.g. `'freeSeats'` or `'freeMb'`. Works with: `FEATURE`"      
+        type: string
+        description: "A unique identifier for the type of feature. E.g. `'freeSeats'` or `'freeMb'`. Works with: `FEATURE`"
       quantity:
         type: integer
         description: "The earned quantity of the feature Works with:`FEATURE`"
@@ -1782,7 +1786,7 @@ definitions:
         type: string
         description: "For programs that require a currency. Works with: `CREDIT`"
 
-  User: 
+  User:
     description: An object describing an individual user
     required:
       - id
@@ -2188,7 +2192,7 @@ definitions:
         description: The email address provided for the user. SaaSquatch uses this to notify someone when they have a successful referral.
       imageUrl:
         type: string
-        example: "https://www.example.com/profiled/ab5111251125"
+        example: "https://www.example.com/profile/ab5111251125"
         description: |
           Optionally used in widgets, emails, and themes. If you provide a absolute profile image URL the minimum image size is 80px x 80px.
       firstName:
@@ -2203,7 +2207,7 @@ definitions:
           The user's last name
       locale:
         type: string
-        example: "`en` or `en_US` or `zh_CN`"
+        example: "en_US"
         description: |
           The user's locale, used for [Internationalization](/themes/internationalization). The locale must be of the format 'language_COUNTRY' where the language code must be lowercase and the country code must be uppercase. The separator must be an underscore.
 
