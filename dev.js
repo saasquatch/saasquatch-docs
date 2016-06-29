@@ -20,13 +20,13 @@ site().use(serve({
   host: myIp,
   verbose: true
 }))
-.use(watch({
-   paths: {
-        "**/*": true,
-        "templates/**/*": "**/*.md",
-      },
-  livereload: false
-}))
+// .use(watch({
+//   paths: {
+//         "**/*": true,
+//         "templates/**/*": "**/*.md",
+//       },
+//   livereload: false
+// }))
 .build(function(err) {
   if (err){
     console.error("Build error", err);
