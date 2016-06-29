@@ -5,63 +5,54 @@ slug: stripe
 template: guides.html
 ---
 
-<div class="install-guide-checklist">
 
-<h5 data-toggle="collapse" data-target=".install-step1">Connect with Stripe</h5>
-<div class="install-step1 collapse in">
-    <p>The first step is granting SaaSquatch access to your Stripe test account using Stripe Connect.</p>
-    <ul class="unstyled">
-        <li><label class="checkbox"><input type="checkbox"> Authorize Stripe Connect</label></li>
-    </ul>
-</div>
+* * *
 
-<h5 data-toggle="collapse" data-target=".install-step2">Install squatch.js</h5>
-<div class="install-step2 collapse">
-    <p><a href="/app-integration">squatch.js</a> will show a gorgeously rendered popup in your app so your customers can seamlessly refer their friends.</p>
-    <ul class="unstyled">
-        <li><label class="checkbox"><input type="checkbox"> Install <a href="/app-integration">squatch.js</a> on your page</label></li>
-        <li><label class="checkbox"><input type="checkbox"> Replace the <a href="/squatchjs#init">squatch.js init</a> variables with real user data</label></li>
-        <li><label class="checkbox"><input type="checkbox"> Add a button to your page with <code>class="squatchpop"</code></label></li>
-        <li><label class="checkbox"><input type="checkbox"> <span class="label">Testing</span> Click the button. Make sure the popup shows. (Make sure you are using the right <code>account_id</code> and <code>user_id</code>)</label></li>
-    </ul>
-</div>
+### Configure Stripe
 
-<h5 data-toggle="collapse" data-target=".install-step3">Setup coupons for new subscriptions</h5>
-<div class="install-step3 collapse">
-    <p>When new friends click through on a referral link and signs up, you're in charge of making sure that the referral coupon code is applied on their new subscription. You <b>only</b> need to add
-        referral coupons for new customer's new subscriptions. Referrers will get credit for inviting their friends as line-items automatically applied to their invoices every month.
-    </p>
-    <ul class="unstyled">
-        <li><label class="checkbox"><input type="checkbox"> Add a hidden input to your checkout page</label></li>
-        <li><label class="checkbox"><input type="checkbox"> Use <a href="/squatchjs#autofill">squatch.js autofill</a> to read the tracking cookie and set the active referral code in your form</label></li>
-        <li><label class="checkbox"><input type="checkbox"> Set the coupon in your <a href="https://stripe.com/docs/api#create_customer">Stripe Create Subscription</a> API call</label></li>
-        <li><label class="checkbox"><input type="checkbox"> <span class="label">Testing</span> Click a referral link and signup for a new account. <a href="https://app.referralsaasquatch.com/">Login</a> to your SaaSquatch account
-            to see the new referral in the news feed.
-        </label></li>
-    </ul>
-</div>
+The first step is granting SaaSquatch access to your Stripe account using Stripe Connect. Note: Test mode vs. live mode - We let you test your referral program using Stripe Test Mode and fake credit cards before deploying to your production environment. It is not required to setup a test environment but it will make testing easier for you.
+
+<div class="well ">**Test mode vs. live mode** - We let you test your referral program using [Stripe Test Mode](https://stripe.com/docs/testing) and fake credit cards before deploying to your production environment.
+<br>
+**Note:** It is not required to setup a test environment but it will make testing easier for you.
 
 </div>
 
-<hr/>
-<div class="well pull-right span3">
-<b>Test mode vs. live mode</b> - We let you test your referral program using <a href="https://stripe.com/docs/testing">Stripe Test Mode</a> and fake credit cards before deploying to your production environment.
-<p class="muted">
-    <b>Note:</b> It is not required to setup a test environment but it will make testing easier for you.
-</p>
-</div>
+#### Connect with Stripe
 
-<h3>How to authorize Stripe Connect</h3>
+We use Stripe Connect to connect the corresponding Live and Test accounts. To authorize your Referral SaaSquatch Live and Test tenants with the respective Live and Test Stripe accounts:
 
-<p>
-We use Stripe Connect to connect to the corresponding account type. So, if you authorize your test account with Stripe, we'll connect to that Stripe account's test mode, and if you authorize your live account with Stripe, we'll connect to that Stripe account's live mode.
-</p>
-<ol>
-<li><a href="http://app.referralsaasquatch.com">Login to Referral SaaSquatch</a> and go to "Setup" and click "Authorize". <b>Click Connect With Stripe</b> and you're done!</li>
-<li>Repeat this process for both your <b>test</b> and <b>live</b> accounts.</li>
-</ol>
+1.  Go the install tab under the Setup section in your Portal. <br>
+**Note:** Make sure that you are keeping track of whether you are connecting your Live or Test tenant.
 
-<hr/>
+3.  Click "Authorize" and follow the prompts to login to your Stripe account. This will automatically fill in the necessary API key.
+4.  Repeat the same process for both your live and test accounts.
 
-<h4>That's it!</h4>
-<p>Check out our <a href="/bestpractices/common-pitfalls">Common Pitfalls Guide</a></p>
+### Install squatch.js
+
+Making use of our squatch.js library will allow you to surface a gorgeously rendered referral widget to your users either on your website or in your app. Through this widget your users will be able to seamlessly refer their friends. To get up and running follow the squatch.js [install guide](/app-integration/) to place the widget on your page.
+
+### Integration Flow
+
+In order to utilize the Referral SaaSquatch integration with Stripe it is important to be mindful of the correct order of operations for successfully completing the referral flow from a trial to a paid referral. 
+
+The supported Referral SaaSquatch Stripe integration flow is:
+
+1.  Make sure that the Referrer is registered in Stripe with a valid credit card and plan selected
+2.  Create an account for the Referred User in Stripe
+3.  Add a valid credit card to the Referred User’s Account in Stripe
+4.  Create a Referral SaaSquatch account for the Referred User
+5.  Include their payment_provider_id from Stripe (listed as "ID" under Customer Details)
+6.  Attribute referral (widget should automatically pick up referral cookie)
+7.  Update Referred User in Stripe with subscription to a plan. This will convert the user from TRIAL to PAID when a non-zero, non-trial subscription is applied to the user’s invoice.<br>**Note:** Including the "account_status = PAID" in your squatch.js calls will have no effect when your program is configured for a payment provider integration.
+8.  Wait for the conversion to propagate from Stripe to Referral SaaSquatch (this process may be instantaneous but also may take longer depending on the load on Stripe and the frequency of them sending out updates).
+
+Result: Referral converted to paid, rewards fulfilled in Stripe, rewards redeemed in Referral SaaSquatch 
+
+**Note:** Referral rewards get applied to a user’s stripe account as a line item on their next invoice. Discounts or credits being applied to a user’s stripe invoice should have an "RS_" appended at the beginning.
+
+* * *
+
+#### That's it!
+
+Check out our [Common Pitfalls Guide](/bestpractices/common-pitfalls)

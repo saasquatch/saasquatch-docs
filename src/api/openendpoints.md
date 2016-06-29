@@ -23,7 +23,7 @@ The payload of a read token is the minimum information needed to identify a user
     "id": "adfgafdg",
     "accountId": "adfklajdnrerereACdsedf"
   }
-  "exp": 1462327764000 // optional  
+  "exp": 1462327764 //optional date in seconds since the epoch
 }
 ```
 
@@ -43,7 +43,7 @@ The payload of a write token contains a complete user object.
     "referralCode": "BOBTESTERSON", //optional
     "imageUrl": "" //optional
   },
-  "exp": 1462327764000 // optional
+  "exp": 1462327764 //optional date in seconds since the epoch
 }
 ```
 

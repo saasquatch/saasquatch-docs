@@ -114,7 +114,7 @@ namespace JWTExample
       var payload = new Dictionary<string, object>()
       {
           { "user", userPayload },
-          { "exp", 1300819380 }
+          { "exp", expiryDate } //optional date in seconds since the epoch
       };
 
       //the encoding must match the encoding of your secret, UTF8 is just an example
@@ -142,7 +142,7 @@ def buildJWT(secret, userId, accountId, email, firstName, lastName, referralCode
       accountStatus: accountStatus,
       userImage: userImage
     },
-    exp: expiryDate
+    exp: expiryDate #optional date in seconds since the epoch
   }, secret)
 end</code></pre>
     </div>
@@ -170,7 +170,7 @@ public static String buildJWT(String secret, String accountId, String userId, St
   Map<String, Object> claims = new HashMap<String, Object>();
   claims.put("user", userMap);
   if (expiryDate != null) {
-    claims.put("exp", expiryDate.longValue());
+    claims.put("exp", expiryDate.longValue()); //optional date in seconds since the epoch
   }
   Options options = new Options();
   options.setAlgorithm(Algorithm.HS256);
@@ -196,7 +196,7 @@ function buildJWT($secret, $userId, $accountId, $email, $firstName, $lastName, $
           "userImage" => $userImage,
           "accountStatus" => $accountStatus,
       ),
-      "exp" => $expiryDate
+      "exp" => $expiryDate //optional date in seconds since the epoch
   );
 
   //the encoder defaults to HS256, no need to specify an algorithm
@@ -219,7 +219,7 @@ def buildJWT(secret, userId, accountId, email, firstName, lastName, referralCode
             'accountStatus': accountStatus,
             'userImage': userImage
         },
-        'exp': expiryDate
+        'exp': expiryDate #optional date in seconds since the epoch
     }, secret, algorithm='HS256')</code></pre>
     </div>
 </div>
