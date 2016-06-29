@@ -6,18 +6,12 @@ var site = require('./site.js');
 console.log("Running metal...");
 
 var myPort = process.env.PORT || 8080;
-var myIp = process.env.IP || '0.0.0.0';
-
+// var myIp = process.env.IP || '0.0.0.0';
 
 var app = express();
 
 const THIRTY_SECONDS = 30*1000;
 var lastBuild = 0;
-
-// respond with "hello world" when a GET request is made to the homepage
-app.get('/', function(req, res) {
-  res.send('hello world');
-});
 
 var metalsmithCompile = function (req, res, next) {
     
