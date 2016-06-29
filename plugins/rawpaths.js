@@ -33,6 +33,8 @@ function plugin(options){
       if (!html(file)) return;
       var data = files[file];
       if (data['permalink'] === false) return;
+      if (!data['slug']) return;
+      
       var path = find(data, options) || resolve(file);
 
       // add to path data for use in links in templates

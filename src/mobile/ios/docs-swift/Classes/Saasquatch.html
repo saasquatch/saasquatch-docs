@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Saasquatch Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/Saasquatch" class="dashAnchor"></a>
+    <a title="Saasquatch Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        Saasquatch Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/Saasquatch.html">Saasquatch</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Saasquatch</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Saasquatch</span></code></pre>
+
+                </div>
+              </div>
+            <p><code>Saasquatch</code> is the Referral Saasquatch iOS SDK which provides a set of methods for interfacing with Referral SaaSquatch. It can register user with Referral SaaSquatch, retrieve information about users and referral codes, validate referral codes, and apply referral codes to a user&rsquo;s account.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Class%20Methods"></a>
+                <a name="//apple_ref/swift/Section/Class Methods" class="dashAnchor"></a>
+                <a href="#/Class%20Methods">
+                  <h3 class="section-name">Class Methods</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC10saasquatch10Saasquatch21registerUserForTenantFMS0_FTSS10withUserIDSS13withAccountIDSS12withUserInfoPSs9AnyObject_17completionHandlerFT8userInfoGSqPS1___5errorGSqCSo7NSError__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/registerUserForTenant(_:withUserID:withAccountID:withUserInfo:completionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC10saasquatch10Saasquatch21registerUserForTenantFMS0_FTSS10withUserIDSS13withAccountIDSS12withUserInfoPSs9AnyObject_17completionHandlerFT8userInfoGSqPS1___5errorGSqCSo7NSError__T__T_">registerUserForTenant(_:withUserID:withAccountID:withUserInfo:completionHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Registers a user with Referral SaaSquatch.</p>
+
+<div class="aside aside-seealso">
+    <p class="aside-title">Seealso</p>
+    <p><a href="http://docs.referralsaasquatch.com/api/methods/#open_create_user">http://docs.referralsaasquatch.com/api/methods/#open_create_user</a></p>
+
+</div>
+
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>The top level object in <strong>userInfo</strong> will be an NSDictionary containing the JSON data to be passed to the Referral SaaSquatch server. This requires the <code>secret</code>, <code>id</code>, and <code>accountId</code> values and can include several others. For a complete description see the Referral SaaSquatch REST API docs. Here is an example:</p>
+
+</div>
+
+<pre class="highlight swift"><code>
+       <span class="k">let</span> <span class="nv">userInfo</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">]</span> <span class="o">=</span>
+       <span class="p">[</span>
+           <span class="s">"secret"</span><span class="p">:</span> <span class="s">"978-0440212560"</span><span class="p">,</span>
+           <span class="s">"id"</span><span class="p">:</span> <span class="s">"10001110101"</span><span class="p">,</span>
+           <span class="s">"accountId"</span><span class="p">:</span> <span class="s">"10001110101"</span><span class="p">,</span>
+           <span class="s">"email"</span><span class="p">:</span> <span class="s">"claire@lallybroch.com"</span><span class="p">,</span>
+           <span class="s">"firstName"</span><span class="p">:</span> <span class="s">"Claire"</span><span class="p">,</span>
+           <span class="s">"lastName"</span><span class="p">:</span> <span class="s">"Fraser"</span><span class="p">,</span>
+           <span class="s">"locale"</span><span class="p">:</span> <span class="s">"en_US"</span><span class="p">,</span>
+           <span class="s">"referralCode"</span><span class="p">:</span> <span class="s">"CLAIREFRASER"</span>
+       <span class="p">]</span>
+</code></pre>
+
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    The secret is your password for authenticating the user. It should not contain sensitive user data such as their password. Make sure to save it somewhere, or else you won&rsquo;t be able to authenticate future requests for the user.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">registerUserForTenant</span><span class="p">(</span>
+        <span class="nv">tenant</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+        <span class="n">withUserID</span> <span class="nv">userID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+        <span class="n">withAccountID</span> <span class="nv">accountID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+        <span class="n">withUserInfo</span> <span class="nv">userInfo</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span>
+        <span class="nv">completionHandler</span><span class="p">:</span> <span class="p">(</span><span class="nv">userInfo</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">?,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">NSError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tenant</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Identifies which tenant to connect to. For your app, you will get two tenant aliases &ndash; one for test mode and one for live mode. Test mode alias are prefixed with <b>test_</b> , for example <code>test_abhoihnqwet</code>.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>userID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A user ID from your system (must be unique for every user). We use this to uniquely track users, and lets us handle accounts that are shared between users.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>accountID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>We use this ID to link a group of users together. <a href="%22http://docs.referralsaasquatch.com/shared-vs-solo-accounts/%22%20See%20Shared%20vs%20Solo%20Accounts">See Shared vs Solo Accounts</a> to see what you should use here.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>userInfo</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A Foundation object from which to generate JSON for the request.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A block object to be executed when the task finishes. This block has no return value and takes two arguments:  the Foundation object containing the returned user information constructed from the JSON response, and  containing an NSError descibing the error if the request failed.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC10saasquatch10Saasquatch13userForTenantFMS0_FTSS10withUserIDSS13withAccountIDSS10withSecretSS17completionHandlerFT8userInfoGSqPSs9AnyObject__5errorGSqCSo7NSError__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/userForTenant(_:withUserID:withAccountID:withSecret:completionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC10saasquatch10Saasquatch13userForTenantFMS0_FTSS10withUserIDSS13withAccountIDSS10withSecretSS17completionHandlerFT8userInfoGSqPSs9AnyObject__5errorGSqCSo7NSError__T__T_">userForTenant(_:withUserID:withAccountID:withSecret:completionHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Gets a user&rsquo;s information from Referral Saasquatch.</p>
+
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <p><a href="http://docs.referralsaasquatch.com/api/methods/#open_get_user">http://docs.referralsaasquatch.com/api/methods/#open_get_user</a></p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">userForTenant</span><span class="p">(</span>
+        <span class="nv">tenant</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+        <span class="n">withUserID</span> <span class="nv">userID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+        <span class="n">withAccountID</span> <span class="nv">accountID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+        <span class="n">withSecret</span> <span class="nv">secret</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+        <span class="nv">completionHandler</span><span class="p">:</span> <span class="p">(</span><span class="nv">userInfo</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">?,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">NSError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tenant</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Identifies which tenant to connect to. For your app, you will get two tenant aliases &ndash; one for test mode and one for live mode. Test mode alias are prefixed with <b>test_</b> , for example <code>test_abhoihnqwet</code>.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>userID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A user ID from your system (must be unique for every user). We use this to uniquely track users, and lets us handle accounts that are shared between users.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>accountID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>We use this ID to link a group of users together. <a href="%22http://docs.referralsaasquatch.com/shared-vs-solo-accounts/%22%20See%20Shared%20vs%20Solo%20Accounts">See Shared vs Solo Accounts</a> to see what you should use here.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>secret</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The secret for the user.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A block object to be executed when the task finishes. This block has no return value and takes two arguments:  the Foundation object containing the returned user information constructed from the JSON response, and  containing an NSError descibing the error if the request failed.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC10saasquatch10Saasquatch18userByReferralCodeFMS0_FTSS9forTenantSS10withSecretGSqSS_17completionHandlerFT8userInfoGSqPSs9AnyObject__5errorGSqCSo7NSError__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/userByReferralCode(_:forTenant:withSecret:completionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC10saasquatch10Saasquatch18userByReferralCodeFMS0_FTSS9forTenantSS10withSecretGSqSS_17completionHandlerFT8userInfoGSqPSs9AnyObject__5errorGSqCSo7NSError__T__T_">userByReferralCode(_:forTenant:withSecret:completionHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Gets a user&rsquo;s information by their referral code.</p>
+
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <p><a href="http://docs.referralsaasquatch.com/api/methods/#open_get_user_by_code">http://docs.referralsaasquatch.com/api/methods/#open_get_user_by_code</a></p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">userByReferralCode</span><span class="p">(</span>
+        <span class="nv">referralCode</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+        <span class="n">forTenant</span> <span class="nv">tenant</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+        <span class="n">withSecret</span> <span class="nv">secret</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span>
+        <span class="nv">completionHandler</span><span class="p">:</span> <span class="p">(</span><span class="nv">userInfo</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">?,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">NSError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>referralCode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The referral code of the user being looked up.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tenant</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Identifies which tenant to connect to. For your app, you will get two tenant aliases &ndash; one for test mode and one for live mode. Test mode alias are prefixed with <b>test_</b> , for example <code>test_abhoihnqwet</code>.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>secret</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The secret for the user.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A block object to be executed when the task finishes. This block has no return value and takes two arguments:  the Foundation object containing the returned user information constructed from the JSON response, and  containing an NSError descibing the error if the request failed.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC10saasquatch10Saasquatch18lookupReferralCodeFMS0_FTSS9forTenantSS10withSecretGSqSS_17completionHandlerFT8userInfoGSqPSs9AnyObject__5errorGSqCSo7NSError__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/lookupReferralCode(_:forTenant:withSecret:completionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC10saasquatch10Saasquatch18lookupReferralCodeFMS0_FTSS9forTenantSS10withSecretGSqSS_17completionHandlerFT8userInfoGSqPSs9AnyObject__5errorGSqCSo7NSError__T__T_">lookupReferralCode(_:forTenant:withSecret:completionHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Checks if a referral code exists and retrieves information about the code and it&rsquo;s reward.</p>
+
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <p><a href="http://docs.referralsaasquatch.com/api/methods/#open_validate_code">http://docs.referralsaasquatch.com/api/methods/#open_validate_code</a></p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">lookupReferralCode</span><span class="p">(</span>
+        <span class="nv">referralCode</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+        <span class="n">forTenant</span> <span class="nv">tenant</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+        <span class="n">withSecret</span> <span class="nv">secret</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span>
+        <span class="nv">completionHandler</span><span class="p">:</span> <span class="p">(</span><span class="nv">userInfo</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">?,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">NSError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>referralCode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The referral code being validated.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tenant</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Identifies which tenant to connect to. For your app, you will get two tenant aliases &ndash; one for test mode and one for live mode. Test mode alias are prefixed with <b>test_</b> , for example <code>test_abhoihnqwet</code>.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>secret</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The secret for the user.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A block object to be executed when the task finishes. This block has no return value and takes two arguments:  the Foundation object containing the returned referral code context constructed from the JSON response, and  containing an NSError descibing the error if the request failed.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC10saasquatch10Saasquatch17applyReferralCodeFMS0_FTSS9forTenantSS8toUserIDSS11toAccountIDSS10withSecretSS17completionHandlerFT8userInfoGSqPSs9AnyObject__5errorGSqCSo7NSError__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/applyReferralCode(_:forTenant:toUserID:toAccountID:withSecret:completionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC10saasquatch10Saasquatch17applyReferralCodeFMS0_FTSS9forTenantSS8toUserIDSS11toAccountIDSS10withSecretSS17completionHandlerFT8userInfoGSqPSs9AnyObject__5errorGSqCSo7NSError__T__T_">applyReferralCode(_:forTenant:toUserID:toAccountID:withSecret:completionHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Applies a referral code to a user&rsquo;s account.</p>
+
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <p><a href="http://docs.referralsaasquatch.com/api/methods/#open_apply_code">http://docs.referralsaasquatch.com/api/methods/#open_apply_code</a></p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">applyReferralCode</span><span class="p">(</span>
+        <span class="nv">referralCode</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+        <span class="n">forTenant</span> <span class="nv">tenant</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+        <span class="n">toUserID</span> <span class="nv">userID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+        <span class="n">toAccountID</span> <span class="nv">accountID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+        <span class="n">withSecret</span> <span class="nv">secret</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+        <span class="nv">completionHandler</span><span class="p">:</span> <span class="p">(</span><span class="nv">userInfo</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">?,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">NSError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>referralCode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The referral code to be applied.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tenant</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Identifies which tenant to connect to. For your app, you will get two tenant aliases &ndash; one for test mode and one for live mode. Test mode alias are prefixed with <b>test_</b> , for example <code>test_abhoihnqwet</code>.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>userID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A user ID from your system (must be unique for every user). We use this to uniquely track users, and lets us handle accounts that are shared between users.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>accountID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>We use this ID to link a group of users together. <a href="%22http://docs.referralsaasquatch.com/shared-vs-solo-accounts/%22%20See%20Shared%20vs%20Solo%20Accounts">See Shared vs Solo Accounts</a> to see what you should use here.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>secret</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The secret for the user.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A block object to be executed when the task finishes. This block has no return value and takes two arguments:  the Foundation object containing the returned referral code information constructed from the JSON response, and  containing an NSError descibing the error if the request failed.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC10saasquatch10Saasquatch22listReferralsForTenantFMS0_FTSS10withSecretSS21forReferringAccountIDGSqSS_18forReferringUserIDGSqSS_22beforeDateReferralPaidGSqSS_23beforeDateReferralEndedGSqSS_28withReferredModerationStatusGSqSS_28withReferrerModerationStatusGSqSS_9withLimitGSqCSo8NSString_10withOffsetGSqS1__17completionHandlerFT8userInfoGSqPSs9AnyObject__5errorGSqCSo7NSError__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/listReferralsForTenant(_:withSecret:forReferringAccountID:forReferringUserID:beforeDateReferralPaid:beforeDateReferralEnded:withReferredModerationStatus:withReferrerModerationStatus:withLimit:withOffset:completionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC10saasquatch10Saasquatch22listReferralsForTenantFMS0_FTSS10withSecretSS21forReferringAccountIDGSqSS_18forReferringUserIDGSqSS_22beforeDateReferralPaidGSqSS_23beforeDateReferralEndedGSqSS_28withReferredModerationStatusGSqSS_28withReferrerModerationStatusGSqSS_9withLimitGSqCSo8NSString_10withOffsetGSqS1__17completionHandlerFT8userInfoGSqPSs9AnyObject__5errorGSqCSo7NSError__T__T_">listReferralsForTenant(_:withSecret:forReferringAccountID:forReferringUserID:beforeDateReferralPaid:beforeDateReferralEnded:withReferredModerationStatus:withReferrerModerationStatus:withLimit:withOffset:completionHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the list of referrals for the tenant with options for filtering.</p>
+
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <p><a href="http://docs.referralsaasquatch.com/api/methods/#open_list_referrals">http://docs.referralsaasquatch.com/api/methods/#open_list_referrals</a></p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">listReferralsForTenant</span><span class="p">(</span>
+        <span class="nv">tenant</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+        <span class="n">withSecret</span> <span class="nv">secret</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+        <span class="n">forReferringAccountID</span> <span class="nv">accountID</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span>
+        <span class="n">forReferringUserID</span> <span class="nv">userID</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span>
+        <span class="n">beforeDateReferralPaid</span> <span class="nv">datePaid</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span>
+        <span class="n">beforeDateReferralEnded</span> <span class="nv">dateEnded</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span>
+        <span class="n">withReferredModerationStatus</span> <span class="nv">referredStatus</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span>
+        <span class="n">withReferrerModerationStatus</span> <span class="nv">referrerStatus</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span>
+        <span class="n">withLimit</span> <span class="nv">limit</span><span class="p">:</span> <span class="kt">NSString</span><span class="p">?,</span>
+        <span class="n">withOffset</span> <span class="nv">offset</span><span class="p">:</span> <span class="kt">NSString</span><span class="p">?,</span>
+        <span class="nv">completionHandler</span><span class="p">:</span> <span class="p">(</span><span class="nv">userInfo</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">?,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">NSError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tenant</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Identifies which tenant to connect to. For your app, you will get two tenant aliases &ndash; one for test mode and one for live mode. Test mode alias are prefixed with <b>test_</b> , for example <code>test_abhoihnqwet</code>.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>secret</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The secret for the user.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>accountID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>When included, filters the results to only referrals that were referred by users with this account id.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>userID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>When included, filters the results to only referrals that were referred by users with this user id.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>datePaid</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>When included, filters the results either to the exact timestamp if only one value is given, or a range if devided by a comma. I.E. 0,123412451 gives all referrals that converted between 0 and 123412451.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dateEnded</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>When included, filters the results either to the exact timestamp if only one value is given, or a range if devided by a comma. I.E. 0,123412451 gives all referrals that ended between 0 and 123412451.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>referredStatus</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>When included, filters the result to only include referred users with that status. Statuses that are accepted: PENDING, APPROVED or DENIED.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>referrerStatus</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>When included, filters the result to only include referrers with that status. Statuses that are accepted: PENDING, APPROVED or DENIED.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>limit</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A limit on the number of results returned. Defaults to 10.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>offset</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>When included offsets the first result returns in the list. Use this to paginate through a long list of results. Defaults to 0.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A block object to be executed when the task finishes. This block has no return value and takes two arguments:  the Foundation object containing the returned referrals information constructed from the JSON response, and  containing an NSError descibing the error if the request failed.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2016-04-29)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.6.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

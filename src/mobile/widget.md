@@ -200,3 +200,67 @@ but [custom themes](/themes/custom/) like those used in the Shoeboxed referral p
 
 
 ![Mobile widget screenshot on 2 phones](/assets/images/mobile/mobile-two-phones.png)
+
+### Configuring default mailto behavior
+
+The Email Share option in the referral widget uses the mailto link format. In order for the mailto link to work smoothly on both iOS and Android devices, we need to configure the mailto event inside the app.
+
+#### iOS mailto link configuration
+
+Add the following code in your UIWebView’s delegate:
+
+```swift
+func webView(webView: UIWebView, shouldStartLoadWithRequest r: NSURLRequest, navigationType nt: UIWebViewNavigationType) -> Bool {
+    if let scheme = r.URL?.scheme where scheme == "mailto" {
+        UIApplication.sharedApplication().openURL(r.URL!)
+        return false
+    }
+    return true
+}
+```
+
+#### Android mailto link configuration
+
+Create your WebViewClient:
+
+```java
+public class MyWebViewClient extends WebViewClient {
+
+    @Override
+    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+       if(url.startsWith("mailto:")) {
+    
+           String stringUri = null;
+           try {
+               stringUri = URLDecoder.decode(url, "UTF-8");
+           } catch (UnsupportedEncodingException e) {
+               e.printStackTrace();
+           }
+    
+           String[] url_variables = stringUri.split("&");
+           String subject = url_variables[0].replaceFirst("mailto:\\?subject=", "");
+           String body = url_variables[1].replaceFirst("body=", "");
+           Intent intent = new Intent(Intent.ACTION_SEND);
+           intent.setType("message/rfc822");
+           intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+           intent.putExtra(Intent.EXTRA_TEXT, body);
+    
+           startActivity(Intent.createChooser(intent, "Send Email"));
+       }
+       else if(url.startsWith("http:") || url.startsWith("https:")) {
+           view.loadUrl(url);
+       }
+       return true;
+   }
+}
+```
+
+Use the following code example to Load the Webview:
+
+```java
+String url = "https://app.referralsaasquatch.com/widgeturl";
+WebView widget = (WebView) this.findViewById(R.id.webView);
+widget.getSettings().setJavaScriptEnabled(true);
+widget.setWebViewClient(new MyWebViewClient());
+widget.loadUrl(url);
+```
