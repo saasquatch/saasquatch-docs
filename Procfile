@@ -1,1 +1,1 @@
-web: cd salesforce-sync-server && npm start
+web: node preview.js
