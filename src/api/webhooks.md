@@ -78,6 +78,48 @@ endpoint urls will simply result in one subscription being created for that url.
     </td>
 </tr>
 <tr>
+    <td class="docs-monospace">referral.started</td>
+    <td>
+        Sent whenever a new referred user signs up for a new (trial) account.
+    </td>
+</tr>
+<tr>
+    <td class="docs-monospace">referral.converted</td>
+    <td>
+        Sent whenever a new referred user upgrades to a paid subscription.
+    </td>
+</tr>
+<tr>
+    <td class="docs-monospace">referral.ended</td>
+    <td>
+        Sent whenever a referred user subscription ended or the referral is cancelled.
+    </td>
+</tr>
+<tr>
+    <td class="docs-monospace">theme.publish.finished</td>
+    <td>
+        Sent whenever a theme has been successfully published to a tenant.
+    </td>
+</tr>
+<tr>
+    <td class="docs-monospace">email.referral.rewardLimitReached</td>
+    <td>
+        Sent whenever the referral reward limit is reached.
+    </td>
+</tr>
+<tr>
+    <td class="docs-monospace">export.created</td>
+    <td>
+        Sent whenever a data export for a tenant is queued for creation.
+    </td>
+</tr>
+<tr>
+    <td class="docs-monospace">export.completed</td>
+    <td>
+        Sent whenever an export that was being generated for a tenant has completed and is ready to be downloaded.
+    </td>
+</tr>
+<tr>
 <td class="docs-monospace">test</td>
     <td>
         Sent to test a subscription.
@@ -170,24 +212,75 @@ Sent whenever a new User is created. Note: Users can be created via the REST Api
 widget or a batch upload process. Only fires when a new user is created, not for updates or deletes.
 
 ```json
-{
-    "id": "31049u0194u2105",
-    "type": "user.created",
-    "tenantAlias": "AAA111BBB222DDD333",
-    "live": false,
-    "created": 1337001337,
-    "data": {
-        "id": "876343",
-        "accountId": "613611",
-        "email": "bob@example.com",
-        "firstName": "Bob",
-        "lastName": "Testerson",
-        "referralCode": "BOBTESTERSON",
-        "imageUrl": ""
+{  
+    "id":"577303ece4b066c5cb171835",
+    "type":"user.created",
+    "tenantAlias":"aohgcctyskc0p",
+    "live":true,
+    "created":1467155436449,
+    "data":{  
+        "id":"sat09jsaet09setset",
+        "accountId":"90w4etjsa4et",
+        "email":"mike.keenerson@example.com",
+        "firstName":"Mike",
+        "lastName":"Keenerson",
+        "referralCode":"MIKEKEENERSON",
+        "imageUrl":"",
+        "firstSeenIP":"10.230.163.157",
+        "lastSeenIP":null,
+        "dateCreated":1467155436418,
+        "emailHash":"b9010177a4d44e5de5db4da29d34b5d7",
+        "referralSource":null,
+        "locale":null,
+        "shareLinks":{  
+            "shareLink":"http://ssqt.co/mvbcEY",
+            "facebookShareLink":"http://ssqt.co/mmbcEY",
+            "twitterShareLink":"http://ssqt.co/mRbcEY",
+            "emailShareLink":"http://ssqt.co/mLbcEY",
+            "linkedinShareLink":"http://ssqt.co/mLbcEY",
+            "mobileShareLink":"http://ssqt.co/mebcEY",
+            "mobileFacebookShareLink":"http://ssqt.co/mnbcEY",
+            "mobileTwitterShareLink":"http://ssqt.co/mCbcEY",
+            "mobileEmailShareLink":"http://ssqt.co/mEbcEY",
+            "EMBED":{  
+                "shareLink":"http://ssqt.co/mQbcEY",
+                "facebookShareLink":"http://ssqt.co/mwbcEY",
+                "twitterShareLink":"http://ssqt.co/mcbcEY",
+                "emailShareLink":"http://ssqt.co/mJbcEY",
+                "linkedinShareLink":"http://ssqt.co/mHbcEY"
+            },
+            "POPUP":{  
+                "shareLink":"http://ssqt.co/m5bcEY",
+                "facebookShareLink":"http://ssqt.co/m9bcEY",
+                "twitterShareLink":"http://ssqt.co/mMbcEY",
+                "emailShareLink":"http://ssqt.co/mobcEY",
+                "linkedinShareLink":"http://ssqt.co/m7bcEY"
+            },
+            "HOSTED":{  
+                "shareLink":"http://ssqt.co/mtbcEY",
+                "facebookShareLink":"http://ssqt.co/mubcEY",
+                "twitterShareLink":"http://ssqt.co/mSbcEY",
+                "emailShareLink":"http://ssqt.co/mlbcEY",
+                "linkedinShareLink":"http://ssqt.co/mYbcEY"
+            },
+            "MOBILE":{  
+                "shareLink":"http://ssqt.co/mebcEY",
+                "facebookShareLink":"http://ssqt.co/mnbcEY",
+                "twitterShareLink":"http://ssqt.co/mCbcEY",
+                "emailShareLink":"http://ssqt.co/mEbcEY",
+                "linkedinShareLink":"http://ssqt.co/m3bcEY"
+            },
+            "EMAIL":{  
+                "shareLink":"http://ssqt.co/mPbcEY",
+                "facebookShareLink":"http://ssqt.co/mTbcEY",
+                "twitterShareLink":"http://ssqt.co/mGbcEY",
+                "emailShareLink":"http://ssqt.co/mbbcEY",
+                "linkedinShareLink":"http://ssqt.co/m1bcEY"
+            }
+        }
     }
 }
 ```
-
 
 ### coupon.created
 
@@ -209,8 +302,6 @@ Sent in response to a new referral coupon being created.
 }
 ```
 
-
-
 ### reward.created
 
 Sent whenever a new reward is created. Data is a single <a href="/api/methods#list_rewards">Reward Object</a> that is returned 
@@ -218,27 +309,27 @@ from the <a href="/api/methods#list_rewards">List Rewards REST API Endpoint</a>
 
 
 ```json
-{
-    "id": "31049u0194u2105",
-    "type": "reward.created",
-    "tenantAlias": "AAA111BBB222DDD333",
-    "live": false,
-    "created": 1337001337,
-    "data": {
-        "type": "PCT_DISCOUNT",
-        "id": "54235160e4b05184a716a0b2",
-        "dateGiven": 1411600736220,
-        "dateExpires": 1443136736220,
-        "dateCancelled": null,
-        "accountId": "GUYRP0T2F6F3Y6PN",
-        "userId": "54235132e4b059bbbadf4903",
-        "cancellable": true,
-        "rewardSource": "FRIEND_SIGNUP",
-        "discountPercent": 10
+{  
+    "id":"577405e3e4b0cc57c1e2e687",
+    "type":"reward.created",
+    "tenantAlias":"aohgcctyskc0p",
+    "live":true,
+    "created":1467221475167,
+    "data":{  
+        "id":"577405e3e4b0cc57c1e2e684",
+        "type":"PCT_DISCOUNT",
+        "dateGiven":1467221475151,
+        "dateExpires":1475170275151,
+        "dateCancelled":null,
+        "accountId":"6UTR8OQZX0HE3QBP",
+        "userId":"56f2e6a9e4b08a1cbef6c561",
+        "cancellable":true,
+        "rewardSource":"FRIEND_SIGNUP",
+        "discountPercent":15,
+        "unit":"%"
     }
 }
 ```
-
 
 ### email.referral.started
 
@@ -255,7 +346,8 @@ Sent whenever a new referred user signs up for a new (trial) account.
         "recipientUserId": "u1234",
         "recipientAccountId": "a1234",
         "subject": "Congratulations! Susy Example signed up for a trial account.",
-        "message": "&lt;p&gt;This is rendered HTML content.&lt;/p&gt;"
+        "message": "&lt;p&gt;This is rendered HTML content.&lt;/p&gt;",
+        "mergeVars":null
     }
 }
 ```
@@ -277,6 +369,194 @@ Sent whenever a new referred user upgrades to a paid subscription.
         "recipientAccountId": "a1234",
         "subject": "Congratulations! Susy Example signed up for a paid subscription.",
         "message": "&lt;p&gt;This is rendered HTML content.&lt;/p&gt;"
+    }
+}
+```
+
+### referral.started
+
+Sent whenever a new referred user signs up for a new (trial) account.
+
+```json
+{  
+    "id":"5773073fe4b066c5cb171900",
+    "type":"referral.started",
+    "tenantAlias":"aohgcctyskc0p",
+    "live":true,
+    "created":1467156287085,
+    "data":{  
+        "id":"5773073ee4b066c5cb1718fc",
+        "referredUser":"5773073ee4b08b14ab979fb8",
+        "referrerUser":"577306eae4b08b14ab979f70",
+        "referredReward":null,
+        "referrerReward":null,
+        "moderationStatus":"PENDING",
+        "dateReferralStarted":1467156286882,
+        "dateReferralPaid":null,
+        "dateReferralEnded":null,
+        "dateModerated":1467156286882,
+        "referredModerationStatus":"PENDING",
+        "referrerModerationStatus":"PENDING"
+    }
+}
+```
+
+### referral.converted
+
+Sent whenever a new referred user upgrades to a paid subscription.
+
+```json
+{  
+    "id":"57731b5ee4b07320b5c0980a",
+    "type":"referral.converted",
+    "tenantAlias":"aohgcctyskc0p",
+    "live":true,
+    "created":1467161438453,
+    "data":{  
+        "id":"57731b43e4b07320b5c097ec",
+        "referredUser":"57731b42e4b08b14ab97a0c5",
+        "referrerUser":"5773073ee4b08b14ab979fb8",
+        "referredReward":null,
+        "referrerReward":null,
+        "moderationStatus":"PENDING",
+        "dateReferralStarted":1467161411028,
+        "dateReferralPaid":1467161438415,
+        "dateReferralEnded":null,
+        "dateModerated":1467161411027,
+        "referredModerationStatus":"PENDING",
+        "referrerModerationStatus":"PENDING"
+    }
+}
+```
+
+### referral.ended
+
+Sent whenever a referred user subscription ended or the referral is cancelled.
+
+```json
+{  
+    "id":"577401e5e4b0cc57c1e2e5d0",
+    "type":"referral.ended",
+    "tenantAlias":"aohgcctyskc0p",
+    "live":true,
+    "created":1467220453323,
+    "data":{  
+        "id":"577308bce4b066c5cb171927",
+        "referredUser":"577308bce4b08b14ab97a015",
+        "referrerUser":"5773073ee4b08b14ab979fb8",
+        "referredReward":null,
+        "referrerReward":null,
+        "moderationStatus":"PENDING",
+        "dateReferralStarted":1467156668562,
+        "dateReferralPaid":1467156679563,
+        "dateReferralEnded":1467220453226,
+        "dateModerated":1467156668561,
+        "referredModerationStatus":"PENDING",
+        "referrerModerationStatus":"PENDING"
+    }
+}
+```
+
+### theme.publish.finished
+
+Sent whenever a theme has been successfully published to a tenant.
+
+```json
+{  
+    "id":"577407a6e4b0cc57c1e2e6a6",
+    "type":"theme.publish.finished",
+    "tenantAlias":"aohgcctyskc0p",
+    "live":true,
+    "created":1467221926388,
+    "data":{  
+        "newAssetsVersion":"CQOkemZF"
+    }
+}
+```
+
+### email.referral.rewardLimitReached
+
+Sent whenever the referral reward limit is reached
+
+```json
+{  
+    "id":"57740d8fe4b0cc57c1e2e8b4",
+    "type":"email.referral.rewardLimitReached",
+    "tenantAlias":"aohgcctyskc0p",
+    "live":true,
+    "created":1467223439081,
+    "data":{  
+        "recipientUserId":"5774097ae4b0b4869cb4e213",
+        "recipientAccountId":"E6YL0SFGQU9PQG20",
+        "subject":"Will, it looks like you've reached the top!",
+        "message":"Thank you Will,\r\n\r\nThanks for spreading the word about V2 API No Email. You've referred so many new people that you've earned the maximum amount of available credit that we offer. However, you can keep referring new users and giving $20 with your link (http://short.staging.referralsaasquatch.com/mPbcF5), so keep it up!",
+        "mergeVars":null,
+        "referralRewardLimit":4
+    }
+}
+```
+
+### export.created
+
+Sent whenever a data export for a tenant is queued for creation.
+
+```json
+{  
+    "id":"57740ebae4b0cc57c1e2e8b9",
+    "type":"export.created",
+    "tenantAlias":"aohgcctyskc0p",
+    "live":true,
+    "created":1467223738961,
+    "data":{  
+        "id":"57740ebae4b0cc57c1e2e8b8",
+        "name":"Test Export Webhook",
+        "requester":"Hayward Erikson",
+        "status":"PENDING",
+        "dateCreated":1467223738947,
+        "dateExpires":null,
+        "dateCompleted":null,
+        "type":"USER",
+        "format":"CSV",
+        "params":{  
+            "createdSince":null,
+            "createdBefore":null,
+            "updatedSince":null,
+            "updatedBefore":null,
+            "createdOrUpdatedSince":null,
+            "createdOrUpdatedBefore":null
+        }
+    }
+}
+```
+### export.completed
+
+Sent whenever an export that was being generated for a tenant has completed and is ready to be downloaded
+
+```json
+{  
+    "id":"57740ec5e4b034a7ceae80de",
+    "type":"export.completed",
+    "tenantAlias":"aohgcctyskc0p",
+    "live":true,
+    "created":1467223749687,
+    "data":{  
+        "id":"57740ebae4b0cc57c1e2e8b8",
+        "name":"Test Export Webhook",
+        "requester":"Hayward Erikson",
+        "status":"COMPLETED",
+        "dateCreated":1467223738947,
+        "dateExpires":1470247749304,
+        "dateCompleted":1467223749304,
+        "type":"USER",
+        "format":"CSV",
+        "params":{  
+            "createdSince":null,
+            "createdBefore":null,
+            "updatedSince":null,
+            "updatedBefore":null,
+            "createdOrUpdatedSince":null,
+            "createdOrUpdatedBefore":null
+        }
     }
 }
 ```
