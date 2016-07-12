@@ -2,105 +2,151 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en-US" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="google-site-verification" content="RdOFXwKJvCorEOtVBMJTkuwZ8pDOOjvR4hoia3OYecE" />
-        <title>{%if title %}{{title}} | {% endif %}Referral SaaSquatch Documentation</title>
-        
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        {% if robots == 'true' %}
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en-US" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+<!--<![endif]-->
 
-        {%else%}
-            <meta name="robots" content="noindex, nofollow">
-            <meta name="st:robots" content="follow, index">
-        {% endif %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="google-site-verification" content="RdOFXwKJvCorEOtVBMJTkuwZ8pDOOjvR4hoia3OYecE" />
+    <title>{%if title %}{{title}} | {% endif %}Referral SaaSquatch Documentation</title>
 
-        <!-- Rollbar error monitoring -->
-        <script>
-           var _rollbarParams = {"server.environment": "production"};
-           _rollbarParams["notifier.snippet_version"] = "2"; var _rollbar=["c8fd34f79430479a98f49007397a11db", _rollbarParams]; var _ratchet=_rollbar;
-           (function(w,d){w.onerror=function(e,u,l){_rollbar.push({_t:'uncaught',e:e,u:u,l:l});};var i=function(){var s=d.createElement("script");var 
-           f=d.getElementsByTagName("script")[0];s.src="//d37gvrvc0wt4s1.cloudfront.net/js/1/rollbar.min.js";s.async=!0;
-           f.parentNode.insertBefore(s,f);};if(w.addEventListener){w.addEventListener("load",i,!1);}else{w.attachEvent("onload",i);}})(window,document);
-        </script>
-        <!-- End of Rollbar error monitoring -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> {% if robots == 'true' %} {%else%}
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="st:robots" content="follow, index"> {% endif %}
 
-        <!-- Start Pingdom RUM -->
-        <script>
-            var _prum = [['id', '52c61993abe53d650f000000'],
-                         ['mark', 'firstbyte', (new Date()).getTime()]];
-            (function() {
-                var s = document.getElementsByTagName('script')[0]
-                  , p = document.createElement('script');
-                p.async = 'async';
-                p.src = '//rum-static.pingdom.net/prum.min.js';
-                s.parentNode.insertBefore(p, s);
-            })();
-        </script>
-        <!-- End Pingdom RUM -->
-            
-        <!-- Segment.io -->
-        <script type="text/javascript">
-            window.analytics||(window.analytics=[]),window.analytics.methods=["identify","track","trackLink","trackForm","trackClick","trackSubmit","page","pageview","ab","alias","ready","group","on","once","off"],window.analytics.factory=function(a){return function(){var t=Array.prototype.slice.call(arguments);return t.unshift(a),window.analytics.push(t),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var method=window.analytics.methods[i];window.analytics[method]=window.analytics.factory(method)}window.analytics.load=function(a){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"===document.location.protocol?"https://":"http://")+"d2dq2ahtl5zl1z.cloudfront.net/analytics.js/v1/"+a+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n)},window.analytics.SNIPPET_VERSION="2.0.6",
+    <!-- Rollbar error monitoring -->
+    <script>
+        var _rollbarParams = {
+            "server.environment": "production"
+        };
+        _rollbarParams["notifier.snippet_version"] = "2";
+        var _rollbar = ["c8fd34f79430479a98f49007397a11db", _rollbarParams];
+        var _ratchet = _rollbar;
+        (function(w, d) {
+            w.onerror = function(e, u, l) {
+                _rollbar.push({
+                    _t: 'uncaught',
+                    e: e,
+                    u: u,
+                    l: l
+                });
+            };
+            var i = function() {
+                var s = d.createElement("script");
+                var
+                    f = d.getElementsByTagName("script")[0];
+                s.src = "//d37gvrvc0wt4s1.cloudfront.net/js/1/rollbar.min.js";
+                s.async = !0;
+                f.parentNode.insertBefore(s, f);
+            };
+            if (w.addEventListener) {
+                w.addEventListener("load", i, !1);
+            }
+            else {
+                w.attachEvent("onload", i);
+            }
+        })(window, document);
+    </script>
+    <!-- End of Rollbar error monitoring -->
+
+    <!-- Start Pingdom RUM -->
+    <script>
+        var _prum = [
+            ['id', '52c61993abe53d650f000000'],
+            ['mark', 'firstbyte', (new Date()).getTime()]
+        ];
+        (function() {
+            var s = document.getElementsByTagName('script')[0],
+                p = document.createElement('script');
+            p.async = 'async';
+            p.src = '//rum-static.pingdom.net/prum.min.js';
+            s.parentNode.insertBefore(p, s);
+        })();
+    </script>
+    <!-- End Pingdom RUM -->
+
+    <!-- Segment.io -->
+    <script type="text/javascript">
+        window.analytics || (window.analytics = []), window.analytics.methods = ["identify", "track", "trackLink", "trackForm", "trackClick", "trackSubmit", "page", "pageview", "ab", "alias", "ready", "group", "on", "once", "off"], window.analytics.factory = function(a) {
+            return function() {
+                var t = Array.prototype.slice.call(arguments);
+                return t.unshift(a), window.analytics.push(t), window.analytics
+            }
+        };
+        for (var i = 0; i < window.analytics.methods.length; i++) {
+            var method = window.analytics.methods[i];
+            window.analytics[method] = window.analytics.factory(method)
+        }
+        window.analytics.load = function(a) {
+                var t = document.createElement("script");
+                t.type = "text/javascript", t.async = !0, t.src = ("https:" === document.location.protocol ? "https://" : "http://") + "d2dq2ahtl5zl1z.cloudfront.net/analytics.js/v1/" + a + "/analytics.min.js";
+                var n = document.getElementsByTagName("script")[0];
+                n.parentNode.insertBefore(t, n)
+            }, window.analytics.SNIPPET_VERSION = "2.0.6",
             window.analytics.load("kjj37zev7u"),
             window.analytics.page();
-        </script>
+    </script>
 
 
-        <!-- SEO Metadata -->
-        <meta name="description" content="{{highlights | markdown | striptags }}"/>
+    <!-- SEO Metadata -->
+    <meta name="description" content="{{highlights | markdown | striptags }}" />
 
-        <meta property="og:locale" content="en_US" />
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content="{{title}} | Referral SaaSquatch Documentation" />
-        <meta property="og:description" content="{{highlights | markdown | striptags }}" />
-        <meta property="og:url" content="http://docs.referralsaasquatch.com/" />
-        <meta property="og:site_name" content="Referral SaaSquatch" />
-        <meta name="twitter:card" content="summary"/>
-        <meta name="twitter:site" content="@getSaaSquatch"/>
-        <meta name="twitter:domain" content="Referral SaaSquatch"/>
-        <meta name="twitter:creator" content="@getSaaSquatch"/>
-        <!-- / SEO metadata. -->
-        
-        <!-- Swiftype Metadata -->
-        <meta class="swiftype" name="title" data-type="string" content="{{title}}" />
-        <meta class="swiftype" name="body" data-type="text" content="{{highlights | markdown | striptags }}" />
-        <meta class='swiftype' name='type' data-type='enum' content='{{sectionType}}' />
-        <!-- / Swiftype Metadata -->
-        
-        <link rel="stylesheet" href="/assets/docs.css">
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="{{title}} | Referral SaaSquatch Documentation" />
+    <meta property="og:description" content="{{highlights | markdown | striptags }}" />
+    <meta property="og:url" content="http://docs.referralsaasquatch.com/" />
+    <meta property="og:site_name" content="Referral SaaSquatch" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@getSaaSquatch" />
+    <meta name="twitter:domain" content="Referral SaaSquatch" />
+    <meta name="twitter:creator" content="@getSaaSquatch" />
+    <!-- / SEO metadata. -->
 
-        <!-- These next two lines include our TypeKit fonts -->
-        <script type="text/javascript" src="//use.typekit.net/hqf0oje.js"></script>
-        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-        <link rel="shortcut icon" href="/assets/marketing-website/img/ico.png">
+    <!-- Swiftype Metadata -->
+    <meta class="swiftype" name="title" data-type="string" content="{{title}}" />
+    <meta class="swiftype" name="body" data-type="text" content="{{highlights | markdown | striptags }}" />
+    <meta class='swiftype' name='type' data-type='enum' content='{{sectionType}}' />
+    <!-- / Swiftype Metadata -->
+
+    <link rel="stylesheet" href="/assets/docs.css">
+    <link href="/assets/mmenu/css/jquery.mmenu.all.css" type="text/css" rel="stylesheet" />
+
+    <!-- These next two lines include our TypeKit fonts -->
+    <script type="text/javascript" src="//use.typekit.net/hqf0oje.js"></script>
+    <script type="text/javascript">
+        try {
+            Typekit.load();
+        }
+        catch (e) {}
+    </script>
+    <link rel="shortcut icon" href="/assets/marketing-website/img/ico.png">
 
 
-    </head>
-    
+</head>
 
-    <body class="page docs" style="padding-bottom: 0"> 
 
+<body class="docs" style="padding-bottom: 0" id="{{pageId}}">
+    <div id="my-page">
         <!-- Begin Header / Nav -->
-        <header class="navbar navbar-fixed-top" data-swiftype-index="false" data-scroll-header>
+        <header id="my-header" class="navbar navbar-top" data-swiftype-index="false">
             <div class="navbar-inner">
-                <div class="container">
+                <div class="container-fluid">
                     <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
 
                     <!-- Logo -->
-                    <a href="http://www.referralsaasquatch.com" class="brand"><img src="/assets/marketing-website/img/RS-Logo-Head-Long-small-2.png" alt="Referral SaaSquatch Logo" title="Referral SaaSquatch"></a>                    
+                    <a href="http://www.referralsaasquatch.com" class="brand"><img src="/assets/marketing-website/img/RS-Logo-Head-Long-small-2.png" alt="Referral SaaSquatch Logo" title="Referral SaaSquatch"></a>
 
-                    <!-- Navigation --> 
+                    <!-- Navigation -->
                     <div class="nav-collapse collapse" id="navigation">
                         <ul id="menu-primary-navigation" class="nav">
-                        <li id="menu-item-1759" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1759"><a href="http://www.referralsaasquatch.com/resources/">Resources</a></li>
-                        <li id="menu-item-990" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-952 current_page_item active menu-item-990"><a href="http://docs.referralsaasquatch.com/">Documentation</a></li>
-                        <li id="menu-item-1564" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1564"><a href="https://app.referralsaasquatch.com/">Login</a></li>
-                        <li id="menu-item-1760" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1760"><a href="http://www.referralsaasquatch.com/#sign-up">Sign Up</a></li>
-                    </ul>                   
+                            <li id="menu-item-1759" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1759"><a href="http://www.referralsaasquatch.com/resources/">Resources</a></li>
+                            <li id="menu-item-990" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-952 current_page_item active menu-item-990"><a href="http://docs.referralsaasquatch.com/">Documentation</a></li>
+                            <li id="menu-item-1564" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1564"><a href="https://app.referralsaasquatch.com/">Login</a></li>
+                            <li id="menu-item-1760" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1760"><a href="http://www.referralsaasquatch.com/#sign-up">Sign Up</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -108,100 +154,369 @@
         <!-- End Header / Nav -->
 
 
-    <div class="container">
+        <div id="my-content" class="container">
 
-        {% block container %}{% endblock container %}
+            {% block container %}{% endblock container %}
 
-    </div><!-- end of main content .container -->
-    
-    <!-- Begin footer -->
-    <footer id="footer" data-swiftype-index="false">
+        </div>
+        <!-- end of main content .container -->
 
-	<section class="copyright">
-	<div class="container">
-	    <div class="row-fluid docs-footer-menu">
-            <div class="span2" >
-    	        <ul style="list-style-type: none; color:white; font-weight:300;">
-    	            <li>Product</li>
-    	            <li><a href="http://www.referralsaasquatch.com/pricing">Pricing</a></li>
-    	            <li class="active"><a href="http://www.referralsaasquatch.com/#features">Features</a></li>
-    	            <li><a href="http://docs.referralsaasquatch.com">Documentation</a></li>
-    	            <li><a href="http://docs.referralsaasquatch.com/api">API</a></li>
-    	       </ul>
-            </div>
-            <div class="span2">
-    	        <ul style="list-style-type: none; color:white; font-weight:300;">
-    	            <li>Company</li>
-    	            <li><a href="http://www.referralsaasquatch.com/about">About</a></li>
-    	            <li><a href="http://www.referralsaasquatch.com/partners">Partners</a></li>
-    	            <li><a href="http://www.referralsaasquatch.com/media">Media</a></li>
-    	            <li><a href="http://www.referralsaasquatch.com/careers">Careers</a></li>
-    	            <li><a href="http://www.referralsaasquatch.com/contact-us">Contact Us</a></li>
-    	       </ul>
-            </div>
-            <div class="span2" >
-    	        <ul style="list-style-type: none; color:white; font-weight:300;">
-    	            <li>Education</li>
-    	            <li><a href="http://www.referralsaasquatch.com/resources">Resources</a></li>
-    	            <li><a href="http://www.referralsaasquatch.com/customers">Customers</a></li>
-    	            <li><a href="http://www.referralsaasquatch.com/blog">Blog</a></li>
-    	       </ul>
-            </div>
-            <div class="span2">
-    	        <ul style="list-style-type: none; color:white; font-weight:300;">
-    	            <li>Legal</li>
-    	            <li><a href="http://www.referralsaasquatch.com/terms-of-service">Terms of Service</a></li>
-    	            <li><a href="http://www.referralsaasquatch.com/privacy-policy">Privacy Policy</a></li>
-    	       </ul>
-            </div>
-            <div class="span2">
-            </div>
-            <div class="span2">
-    	        <ul style="list-style-type: none; color:white; font-weight:300;">
-    	            <li>Login</li>
-    	            <li><a href="https://app.referralsaasquatch.com/">Login</a></li>
-    	            <li><a href="http://www.referralsaasquatch.com/sign-up">Sign Up</a></li>
-    	            <li><a href="http://www.referralsaasquatch.com/demo-request">Request Demo</a></li>
-    	       </ul>
-            </div>
-	   </div>
-    <div class="span12 text-center" style="color: white; margin-left:0px;">
-        <p style="margin-top: 61px; margin-bottom: -46px; opacity:0.7; ">Copyright © 2015 Referral SaaSquatch.com. All rights reserved.</p>
-        <p class="hidden-phone" style="margin-top: 45px; margin-bottom: -46px; opacity:0.7; ">838 Fort St, Victoria, British Columbia, V8W 1H8, Canada</p>
+        <!-- Begin footer -->
+        <div id="my-footer">
+            <footer id="footer" data-swiftype-index="false">
+
+                <section class="copyright">
+                    <div class="container">
+                        <div class="row-fluid docs-footer-menu">
+                            <div class="span2">
+                                <ul style="list-style-type: none; color:white; font-weight:300;">
+                                    <li>Product</li>
+                                    <li><a href="http://www.referralsaasquatch.com/pricing">Pricing</a></li>
+                                    <li class="active"><a href="http://www.referralsaasquatch.com/#features">Features</a></li>
+                                    <li><a href="http://docs.referralsaasquatch.com">Documentation</a></li>
+                                    <li><a href="http://docs.referralsaasquatch.com/api">API</a></li>
+                                </ul>
+                            </div>
+                            <div class="span2">
+                                <ul style="list-style-type: none; color:white; font-weight:300;">
+                                    <li>Company</li>
+                                    <li><a href="http://www.referralsaasquatch.com/about">About</a></li>
+                                    <li><a href="http://www.referralsaasquatch.com/partners">Partners</a></li>
+                                    <li><a href="http://www.referralsaasquatch.com/media">Media</a></li>
+                                    <li><a href="http://www.referralsaasquatch.com/careers">Careers</a></li>
+                                    <li><a href="http://www.referralsaasquatch.com/contact-us">Contact Us</a></li>
+                                </ul>
+                            </div>
+                            <div class="span2">
+                                <ul style="list-style-type: none; color:white; font-weight:300;">
+                                    <li>Education</li>
+                                    <li><a href="http://www.referralsaasquatch.com/resources">Resources</a></li>
+                                    <li><a href="http://www.referralsaasquatch.com/customers">Customers</a></li>
+                                    <li><a href="http://www.referralsaasquatch.com/blog">Blog</a></li>
+                                </ul>
+                            </div>
+                            <div class="span2">
+                                <ul style="list-style-type: none; color:white; font-weight:300;">
+                                    <li>Legal</li>
+                                    <li><a href="http://www.referralsaasquatch.com/terms-of-service">Terms of Service</a></li>
+                                    <li><a href="http://www.referralsaasquatch.com/privacy-policy">Privacy Policy</a></li>
+                                </ul>
+                            </div>
+                            <div class="span2">
+                            </div>
+                            <div class="span2">
+                                <ul style="list-style-type: none; color:white; font-weight:300;">
+                                    <li>Login</li>
+                                    <li><a href="https://app.referralsaasquatch.com/">Login</a></li>
+                                    <li><a href="http://www.referralsaasquatch.com/sign-up">Sign Up</a></li>
+                                    <li><a href="http://www.referralsaasquatch.com/demo-request">Request Demo</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="span12 text-center" style="color: white; margin-left:0px;">
+                            <p style="margin-top: 61px; margin-bottom: -46px; opacity:0.7; ">Copyright © 2015 Referral SaaSquatch.com. All rights reserved.</p>
+                            <p class="hidden-phone" style="margin-top: 45px; margin-bottom: -46px; opacity:0.7; ">838 Fort St, Victoria, British Columbia, V8W 1H8, Canada</p>
+                        </div>
+
+                    </div>
+                </section>
+            </footer>
+        </div>
+        <!-- End footer -->
+
+
     </div>
-	  
-	</div>
-	</section>
-	</footer>
-    <!-- End footer -->
-    
+    <!-- End myPage -->
+
+    <nav id="my-menu">
+        <ul class="baseMenu">
+            <li><a href="/"><i class="fa fa-fw fa-life-ring"></i> Referral SaaSquatch Help Center</a></li>
+            <li class="successCenter">
+                <span>
+                    <i class="fa fa-fw fa-line-chart"></i> Success Center <br>
+                </span>
+                <ul>
+                    <li>
+                        <a href="/success/">Success Center Home
+                        <br><small>Learn how to use Referral SaaSquatch</small>
+                        </a>
+                    </li>
+                    <li><a href="/intro/">The Basics</a></li>
+                    <li><a href="/faq/">Frequently Asked Questions</a></li>
+
+                    <li class="Divider">Core Topics</li>
+                    <li><a href="/topics/identification">Identification</a></li>
+                    <li><a href="/topics/attribution">Attribution</a></li>
+                    <li><a href="/topics/conversion">Conversion</a></li>
+                    <li><a href="/topics/fulfillment">Fulfillment</a></li>
+                    <li><a href="/fraud-and-security">Fraud</a></li>                    
+                </ul>
+            </li>
+            <li class="developerCenter">
+                <span>
+                    <i class="fa fa-fw fa-desktop"></i> Developer Center <br>
+                </span>
+                <ul>
+                    <li>
+                        <a href="/developer/">
+                            Dev Center Home
+                            <br><small>Build on our SDKs, APIs and JS</small>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/guides/"><i class="fa fa-fw fa-life-ring"></i> Dev Guides</a>
+                        <ul>
+                            <li class="Divider">Examples</li>
+                            
+                            <li><a href="/guides/dollar-credit">Give $20 credit</a></li>
+                            <li><a href="/guides/percent-discount">Give 10% off</a></li>
+                            <li><a href="/guides/percent-discount-nojs">Give 10% off (No JS)</a></li>
+                            <li><a href="/guides/point-reward">Give 50 points</a></li>
+
+                            <li class="Divider">Subscription System Integrations</li>
+                            <li><a href="/braintree">Braintree</a></li>
+                            <li><a href="/recurly">Recurly</a></li>
+                            <li><a href="/stripe">Stripe</a></li>
+                            <li><a href="/zuora">Zuora</a></li>
+
+                            <li class="Divider">Core Topics</li>
+                            <li><a href="/topics/identification">Identification</a></li>
+                            <li><a href="/topics/attribution">Attribution</a></li>
+                            <li><a href="/topics/conversion">Conversion</a></li>
+                            <li><a href="/topics/fulfillment">Fulfillment</a></li>
+                            <li><a href="/fraud-and-security">Fraud</a></li>
+
+                            <li class="Divider">Tips and Tricks</li>
+                            <li><a href="/topics/email">Email</a></li>
+                            <li><a href="/free-trials">Free trials</a></li>
+                            <li><a href="/shared-vs-solo-accounts">Shared vs Solo Accounts</a></li>
+                            <li><a href="/testing">Testing</a></li>
+                            <li><a href="/customshortdomainguide">Custom Short Domains</a></li>
+
+                            <li class="Divider">Best Practices</li>
+                            <li><a href="/bestpractices/common-pitfalls">Common Pitfalls</a></li>
+                            <li><a href="/bestpractices/buttons">Refer-a-friend buttons</a></li>
+                            <li><a href="/bestpractices/speed">Page Speed</a></li>
+
+                        </ul>
+                    </li>
+                    
+                    <li><a href="/mobile/"><i class="fa fa-fw fa-mobile"></i> Mobile</a>
+                        <ul>
+                            <li><a href="/mobile">Overview</a></li>
+
+                            <li class="Divider">iOS</li>
+                            <li><a href="/mobile/ios">iOS Overview</a></li>
+                            <li><a href="/mobile/ios/quickstart">iOS Quickstart Guide</a></li>
+                            <li><a href="/mobile/ios/docs-swift">iOS Swift SDK Reference <i class="fa fa-external-link"></i></a></li>
+                            <li><a href="/mobile/ios/docs-objectivec">iOS Objective-C SDK Reference <i class="fa fa-external-link"></i></a></li>
+
+                            <li class="Divider">Android</li>
+                            <li><a href="/mobile/android">Android Overview</a></li>
+                            <li><a href="/mobile/android/quickstart">Android Quickstart Guide</a></li>
+                            <li><a href="/mobile/android/docs">Android SDK Reference <i class="fa fa-external-link"></i></a></li>
+
+
+                            <li class="Divider">Reference</li>
+                            <li><a href="/mobile/widget">Widget</a></li>
+
+                            <li class="Divider">Integrations</li>
+                            <li><a href="/mobile/branch-metrics">Branch Tutorial</a></li>
+                            <li><a href="/mobile/branch-metrics/reference">Branch Tech Reference</a></li>
+
+                        </ul>
+                    </li>
+                    <li><a href="/api/"><i class="fa fa-fw fa-desktop"></i> REST API</a>
+                        <ul>
+                            <li>
+                            <li><a href="/api/authentication">Authentication</a></li>
+                            <li><a href="/api/errors">Errors</a></li>
+                            <li><a href="/api/webhooks">Webhooks</a></li>
+
+                            <li class="Divider">API Reference</li>
+                            <li><a href="/api/methods">Full list of Methods</a></li>
+                            <li>
+                                <span>Accounts</span>
+                                <ul class="Vertical">
+                                    <li><a href="/api/methods#account_sync">Create or update an account</a></li>
+                                    <li><a href="/api/methods#get_account">Lookup an account</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span>Users</span>
+                                <ul class="Vertical">
+                                    <!--<li><a href="/api/methods#list_users">List users</a></li>-->
+                                    <li><a href="/api/methods#create_user">Create or update a user</a></li>
+                                    <li><a href="/api/methods#get_user">Lookup a user</a></li>
+                                    <li><a href="/api/methods#get_user_by_referralcode">Lookup a user by referral code</a></li>
+                                    <li><a href="/api/methods#get_sharelinks">Lookup a user's share links</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span>Referral Codes</span>
+                                <ul class="Vertical">
+                                    <li><a href="/api/methods#get_code">Lookup a referral code</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span>Referrals</span>
+                                <ul class="Vertical">
+                                    <li><a href="/api/methods#list_referrals">List referrals</a></li>
+                                    <li><a href="/api/methods#get_referral">Lookup a referral</a></li>
+                                    <li><a href="/api/methods#moderate_referrals">Moderate referrals</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span>Reward Balances</span>
+                                <ul class="Vertical">
+                                    <li><a href="/api/methods#list_balances">List reward balances</a></li>
+                                    <li><a href="/api/methods#debit_balance">Debit a reward balance</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span>Rewards</span>
+                                <ul class="Vertical">
+                                    <li><a href="/api/methods#list_rewards">List an account's rewards</a></li>
+                                    <li><a href="/api/methods#debit_reward">Redeem a single reward</a></li>
+                                    <li><a href="/api/methods#create_reward">Create a reward</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span>Webhooks</span>
+                                <ul class="Vertical">
+                                    <li><a href="/api/methods#create_webhook">Create a webhook subscription</a></li>
+                                    <li><a href="/api/methods#list_webhooks">List webhook subscriptions</a></li>
+                                    <li><a href="/api/methods#delete_webhook">Delete a webhook subscription</a></li>
+                                    <li><a href="/api/methods#test_webhook">Test a webhook subscription</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span>Themes</span>
+                                <ul class="Vertical">
+                                    <li><a href="/api/methods#lookup_variables_schema">Lookup variables schema</a></li>
+                                    <li><a href="/api/methods#lookup_variables">Lookup variables</a></li>
+                                    <li><a href="/api/methods#replace_variables">Replace variables</a></li>
+                                    <li><a href="/api/methods#update_variables">Update variables</a></li>
+                                    <li><a href="/api/methods#preview_theme_email">Preview email</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span>Discounts</span>
+                                <ul class="Vertical">
+                                    <li><a href="/api/methods#get_coupon">Lookup a discount code</a></li>
+                                    <li><a href="/api/methods#set_coupon">Set a discount code</a></li>
+                                    <li><a href="/api/methods#get_account_reward">Lookup an account's discount</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span>Open Endpoints</span>
+                                <ul class="Vertical">
+                                    <li><a href="/api/methods#open_create_user">Create a user</a></li>
+                                    <li><a href="/api/methods#open_get_user">Lookup a user</a></li>
+                                    <li><a href="/api/methods#open_get_user_by_code">Lookup a user by referral code</a></li>
+                                    <li><a href="/api/methods#open_validate_code">Lookup a referral code</a></li>
+                                    <li><a href="/api/methods#open_apply_code">Apply a referral code</a></li>
+                                    <li><a href="/api/methods#open_list_referrals">List referrals</a></li>
+                                </ul>
+                            </li>
+                            <li class="Divider">Advanced</li>
+                            <li><a href="/api/openendpoints">Open Endpoints</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/squatchjs/"><i class="fa fa-fw fa-html5"></i> Squatch.js</a>
+                        <ul>
+                            <li><a href="/app-integration">Installation</a></li>
+                            <li><a href="/squatchjs/signed-requests">Signed Requests</a></li>
+                            <li><a href="/segment">Segment</a></li>
+                            <li><a href="/squatchjs/issue">Issue Code List</a></li>
+
+                            <li class="Divider">Methods</li>
+
+                            <li><a href="/squatchjs#init">init</a></li>
+                            <li><a href="/squatchjs#autofill">autofill</a></li>
+                            <li><a href="/squatchjs#open">open</a></li>
+                            <li><a href="/squatchjs#close">close</a></li>
+                            <li><a href="/squatchjs#getRewardBalance">getRewardBalance</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="designerCenter">
+                <span>
+                    <i class="fa fa-fw fa-paint-brush"></i> Designer Center <br>
+                </span>
+                <ul>
+                    <li>
+                        <a href="/designer/">
+                            Designer Center
+                            <br><small>Customize to match your brand's style</small>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/themes/">Themes</a>
+                        <ul>
+                            <li class="Divider">Tutorials</li>
+                            <li><a href="/themes/standard">Standard Themes</a></li>
+                            <li><a href="/themes/custom">Custom Themes</a></li>
+
+                            <li class="Divider">Managing Themes</li>
+                            <li><a href="/themes/git">Using Git</a></li>
+                            <li><a href="/themes/publish">Publishing</a></li>
+
+                            <li class="Divider">Reference Manual</li>
+                            <li><a href="/themes/templates">Templates</a></li>
+                            <li><a href="/themes/assets">Assets</a></li>
+                            <li><a href="/themes/fields">Fields</a></li>
+                            <li><a href="/themes/helpers">Helpers</a></li>
+                            <li><a href="/themes/short-tags">Short Tags</a></li>
+                            <li><a href="/themes/widgetjs">widget.js</a></li>
+
+                            <li class="Divider">Advanced</li>
+                            <li><a href="/themes/variables">Variables</a></li>
+                            <li><a href="/themes/emails">Emails</a></li>
+                            <li><a href="/themes/internationalization">Internationalization / i18n</a></li>
+                            <li><a href="/themes/integrations/crowdin">Crowdin (i18n)</a></li>
+                            <li><a href="/themes/integrations/transifex">Transifex (i18n)</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="/integrations/">Integrations</a></li>
+        </ul>
+    </nav>
+
     <script type='text/javascript' src='/assets/marketing-website/jquery.js'></script>
     <script type='text/javascript' src='/assets/marketing-website/jquery-migrate.min.js'></script>
     <script type='text/javascript' src='/assets/marketing-website/modernizr-2.6.2.min.js'></script>
     <script type='text/javascript' src='/assets/marketing-website/bootstrap.min.js'></script>
+    <script type='text/javascript' src='/assets/mmenu/js/jquery.mmenu.all.min.js'></script>
     <script type='text/javascript' src='/assets/highlight-js/highlight.pack.js'></script>
     <script type='text/javascript' src='/assets/jquery.jsonview.js'></script>
     <script type='text/javascript' src='/assets/lightbox/js/lightbox.min.js'></script>
     <script type='text/javascript' src='/assets/smooth-scroll.js'></script>
 
     <script type='text/javascript' src='/assets/docs.js'></script>
-    
+
 
 
     <script>
-    	var _gaq = _gaq || [];
-    	_gaq.push(['_setAccount', 'UA-39831433-1']);
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-39831433-1']);
         //_gaq.push(['_trackPageview']);
 
-    	// LV: This prefixes all paths with "docs", which helps with google analytics page tracking
+        // LV: This prefixes all paths with "docs", which helps with google analytics page tracking
         _gaq.push(['_trackPageview', '/docs/' + document.location.pathname]);
-    
-    	(function() {
-        	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    	})();
+
+        (function() {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
     </script>
 
 </body>
+
 </html>

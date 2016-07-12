@@ -8,6 +8,70 @@
 
 jQuery(document).ready(function() {
 
+    var menuDom = jQuery("#my-menu");
+
+    /**
+     * Sets the current page nav item as "Selected"
+     * 
+     * Source: https://css-tricks.com/snippets/jquery/highlight-all-links-to-current-page/
+     */
+    jQuery("a", menuDom).filter(function(){
+        // TODO: Ignore trailing slash
+        // TODO: Make anchor-tag pages work
+        // TODO: If no exact page matches, provide a reasonable default...
+        var thisUrl = window.location.pathname.replace(/\/+$/, "");
+        var thatUrl = jQuery(this).attr("href").replace(/\/+$/, "");
+        return thisUrl == thatUrl;
+    })
+    .first()
+    .each(function() {
+        jQuery(this).parent("li").addClass("Selected");
+    });
+    
+        
+    var sections = ["successCenter", "developerCenter", "designerCenter"];
+    
+    /*
+    * Copies all the "Sections" classes to their sub-lists.
+    *    This has to be done before MMenu is initalized.
+    */
+    sections.map(function(section){
+        jQuery("li."+section+" ul", menuDom).addClass(section);
+    });
+
+    /**
+     *  Loads the Navigation menu (uses the MMenu jQuery plugin)
+     */
+    menuDom.mmenu({
+         // configuration
+         "offCanvas": false,
+        //  "counters": true,
+         "iconPanels": {
+            "add": true,
+            "visible": 2
+         },
+         extensions: [
+            "theme-squatchdocs",
+            "multiline"
+         ]
+         
+        //  offCanvas: {
+        //     pageSelector: "#my-page",
+        //     pageNodetype: "section"
+        //  }
+      }).init(function($panels){
+        /**
+         * Copies the "Section" styling onto their parent `.mm-panel` containers
+         * 
+         */
+        sections.map(function(section){
+            jQuery(".mm-panel > ul." + section, menuDom).parent(".mm-panel").addClass(section);
+        });
+      });
+
+
+    window.myMenu = menuDom.data( "mmenu" );
+      
     jQuery('.js-docs-collapse').each(function() {
         var content = jQuery(this);
         var toggler = jQuery("<a class='js-docs-collapse-toggle'>&nbsp;</a>").click(function(){
@@ -53,20 +117,12 @@ jQuery(document).ready(function() {
          smoothScroll.animateScroll( null, anchor);
          return false;
      });
-    }    
+    }
     
     jQuery(".js-faq-list a").click(function(e){
-         var $this = jQuery(this);
-         var anchor = "#" + $this.attr('href').split("#")[1];
+         var anchor = "#" + jQuery(this).attr('href').split("#")[1];
          smoothScroll.animateScroll( null, anchor);
          return false;
-    });
-    
-    jQuery(".js-search-form").submit(function(){
-        var searchTerm = jQuery(this).find(".search-query").val();
-        window.location.href = "/search/?q=" + encodeURIComponent(searchTerm);
-        
-        return false; // prevent default
     });
 
 
@@ -104,6 +160,12 @@ jQuery(document).ready(function() {
      *  Uses google custom search, Handlebars, and format 
      * 
      */
+    
+    jQuery(".js-search-form").submit(function(){
+        var searchTerm = jQuery(this).find(".search-query").val();
+        window.location.href = "/search/?q=" + encodeURIComponent(searchTerm);
+        return false; // prevent default
+    });
 
     jQuery("#js-docs-search-results").each(function(){
         

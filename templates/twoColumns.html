@@ -5,39 +5,31 @@
 <!-- Docs Sections
 ================================================== -->
 
-<div class="docs-persistent-nav">
+<!--<div class="docs-persistent-nav">-->
 
-<div class="row-fluid">
-    <div class="span4 docs-navsection marketer"><a href="/marketer"><i class="fa fa-line-chart"></i> Marketer Center</a></div>
-    <div class="span4 docs-navsection developer"><a href="/developer"><i class="fa fa-desktop"></i> Developer Center</a></div>
-    <div class="span4 docs-navsection designer"><a href="/designer"><i class="fa fa-paint-brush"></i> Designer Center</a></div>
-</div>
+<!--<div class="row-fluid">-->
+<!--    <div class="span4 docs-navsection marketer"><a href="/marketer"><i class="fa fa-line-chart"></i> Marketer Center</a></div>-->
+<!--    <div class="span4 docs-navsection developer"><a href="/developer"><i class="fa fa-desktop"></i> Developer Center</a></div>-->
+<!--    <div class="span4 docs-navsection designer"><a href="/designer"><i class="fa fa-paint-brush"></i> Designer Center</a></div>-->
+<!--</div>-->
 
-<div class="row-fluid">
-    <div class="span2 docs-navsection {% if sectionType == 'gettingStarted' %} active{% endif %}"><a href="/faq"><i class="fa fa-life-ring"></i> FAQ</a></div>
+<!--<div class="row-fluid">-->
+<!--    <div class="span2 docs-navsection {% if sectionType == 'gettingStarted' %} active{% endif %}"><a href="/faq"><i class="fa fa-life-ring"></i> FAQ</a></div>-->
 
-    <div class="span2 docs-navsection {% if sectionType == 'guide' %} active{% endif %}"><a href="/guides"><i class="fa fa-book"></i> Developer Guides</a></div>
-    <div class="span2 docs-navsection {% if sectionType == 'apiReference' %} active{% endif %}"><a href="/api"><i class="fa fa-desktop"></i> API Reference</a></div>
-    <div class="span2 docs-navsection {% if sectionType == 'jsReference' %} active{% endif %}"><a href="/squatchjs"><i class="fa fa-html5"></i> Squatch.js</a></div>
-    <div class="span2 docs-navsection {% if sectionType == 'mobile' %} active{% endif %}"><a href="/mobile"><i class="fa fa-mobile"></i> Mobile</a></div>
+<!--    <div class="span2 docs-navsection {% if sectionType == 'guide' %} active{% endif %}"><a href="/guides"><i class="fa fa-book"></i> Developer Guides</a></div>-->
+<!--    <div class="span2 docs-navsection {% if sectionType == 'apiReference' %} active{% endif %}"><a href="/api"><i class="fa fa-desktop"></i> API Reference</a></div>-->
+<!--    <div class="span2 docs-navsection {% if sectionType == 'jsReference' %} active{% endif %}"><a href="/squatchjs"><i class="fa fa-html5"></i> Squatch.js</a></div>-->
+<!--    <div class="span2 docs-navsection {% if sectionType == 'mobile' %} active{% endif %}"><a href="/mobile"><i class="fa fa-mobile"></i> Mobile</a></div>-->
     
-    <div class="span2 docs-navsection {% if sectionType == 'themes' %} active{% endif %}"><a href="/themes"><i class="fa fa-paint-brush"></i> Themes</a></div>
-</div>
-</div>
+<!--    <div class="span2 docs-navsection {% if sectionType == 'themes' %} active{% endif %}"><a href="/themes"><i class="fa fa-paint-brush"></i> Themes</a></div>-->
+<!--</div>-->
+<!--</div>-->
 
 
 <!-- Docs nav
 ================================================== -->
-<div class="row-fluid" style="padding-bottom: 60px;">
-  <div class="span3 docs-sidebar" data-swiftype-index="false">
-    <ul class="nav nav-list docs-sidenav">
-       {% block navbar %}{% endblock navbar %}
-    </ul>
-  </div>
-    <div class="span9">
-       {% block content %}{% endblock content %}
-        
-    </div><!-- end of right column -->
+<div class="row-fluid">
+   {% block content %}{% endblock content %}
 </div><!-- end of main content #docs.row -->
 
         

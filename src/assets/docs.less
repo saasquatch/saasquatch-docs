@@ -1,42 +1,40 @@
 @import (css) "./jquery.jsonview.css";
 @import (css) "./lightbox/css/lightbox.css";
 @import (css) "./highlight-js/styles/github.css";
-
 @import (css) "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css";
-
 @import (css) "./marketing-website/mediaqueries.css";
 @import (css) "./marketing-website/style.css";
 
 @colorForRewardTypes: #3a87ad;
-@portalBlue: rgb(48,160,235);
-
-
-.docs{
-    /* .docs is applied to the BODY in documentation to differentiate styles in documentation from that in the website */  
-    
-    padding-top: 180px;
+@portalBlue: rgb(48, 160, 235);
+.docs {
+    /* .docs is applied to the BODY in documentation to differentiate styles in documentation from that in the website */
+    // padding-top: 180px;
 }
-
 
 
 /* OVERRIDES default h2 styling from the website */
-.docs h2{
+
+.docs h2 {
     font-size: 36px;
     font-weight: 600;
 }
-p + h3,
-p + h4,
-p + h5{
+
+p+ h3,
+p+ h4,
+p+ h5 {
     margin-top: 1.5em;
 }
 
+
 /** HIDES the border around code blocks for both PRE and CODE tags, which removes some jarringness */
+
 .docs pre,
-.docs code{
+.docs code {
     border: none;
 }
 
-.docs code{
+.docs code {
     color: darken(#dd1144, 20%);
 }
 
@@ -52,7 +50,8 @@ p + h5{
 /**
     Docs Sidebar 
 **/
-.docs-sidebar{
+
+.docs-sidebar {
     padding-top: 31px;
 }
 
@@ -60,55 +59,114 @@ p + h5{
 /*
     Monospace fonts are used for URLs and other pseudo-code like blocks
 */
-.docs-monospace{
-    font-family: Monaco,Consolas,"Lucida Console",monospace;
+
+.docs-monospace {
+    font-family: Monaco, Consolas, "Lucida Console", monospace;
     font-size: 12px;
 }
 
+#my-page {
+    margin-left: 20%;
+}
+
+#my-menu {
+    width: 20%;
+    position: fixed;
+    
+    small{
+        font-size: 12px;
+        line-height: 12px;
+    }
+}
+
+// Makes the NavSections bigger
+ul.baseMenu > li{
+    line-height: 30px;
+    padding: 10px 0;
+    font-size: 16px;
+    
+    &.successCenter span:after{
+        content: "Learn how to use Referral SaaSquatch";
+        font-size: 12px;
+    }
+    &.developerCenter span:after{
+        content: "Build on our SDKs, APIs and JS";
+        font-size: 12px;
+    }
+    &.designerCenter span:after{
+        content: "Customize to match your brand's style";
+        font-size: 12px;
+    }
+}
+
+.successCenter{
+    .navSection(#fba772);
+}
+.developerCenter{
+    .navSection(#6eb5e2);
+}
+
+.designerCenter{
+    .navSection(#df7b70);
+}
+
+.navSection(@sectionColor){
+    &,
+    div &.mm-panel {
+        background:@sectionColor;
+        color: #FFF;
+    }
+}
+.mm-menu .mm-listview>li.mm-selected>a:not(.mm-next), .mm-menu .mm-listview>li.mm-selected>span {
+    background: rgba(255,255,255,.2);
+}
+
 /** Styles removed from the body -- were probably piped through by wordpress plugin theming **/
-.navbar .nav > li > .dropdown-menu:after
-{ border-bottom: 7px solid ; }
 
-.nav-pills > li > a:hover, .nav-pills > li.active > a,.nav-pills > li.active > a:hover
-{ border: 1px solid ; }
+.navbar .nav> li> .dropdown-menu:after {
+    border-bottom: 7px solid;
+}
 
-a .link {background-color:#fff;}
+.nav-pills> li> a:hover,
+.nav-pills> li.active> a,
+.nav-pills> li.active> a:hover {
+    border: 1px solid;
+}
 
+a .link {
+    background-color: #fff;
+}
 
-.hero-unit{
+.hero-unit {
     background: #EEE;
     h1,
-    p{
+    p {
         text-align: center;
     }
 }
 
-.docs-sections{
+.docs-sections {
     margin-top: 60px;
     text-align: center;
-    
     a {
         display: block;
-        
         &:hover,
         &:active,
-        &:focus{
+        &:focus {
             text-decoration: none;
         }
-        
-        &:hover .fa{
+        &:hover .fa {
             background: #005580;
         }
     }
-    a .fa ~ div{
+    a .fa~ div {
         font-size: 18px;
         line-height: 36px;
     }
-
 }
 
 .fa-rounded,
-.docs-sections a .fa{
+.docs-sections a .fa {
     background: @portalBlue;
     border-radius: 50%;
     color: #FFF;
@@ -118,22 +176,28 @@ a .link {background-color:#fff;}
     line-height: 100px;
     text-align: center;
     margin: 0 auto;
-    
     // Custom center-of-weight balancing
-    &.fa-desktop{line-height: 110px;}
-    &.fa-html5{line-height: 105px;}
+    &.fa-desktop {
+        line-height: 110px;
+    }
+    &.fa-html5 {
+        line-height: 105px;
+    }
 }
+
 
 /**
     Disables the "Affix" bootstrap plugin for mobile
     
     Taken from: http://stackoverflow.com/questions/17394854/how-can-i-disable-bootstraps-affix-on-smaller-screens
 */
+
 @media (max-width: 768px) {
     .affix {
         position: static;
     }
 }
+
 
 /**
     Install checklist style for collapsable todo list
@@ -141,35 +205,43 @@ a .link {background-color:#fff;}
     Used in integration guides
 **/
 
-.install-guide-checklist h5{
-  cursor: pointer;
-  color: #08c; /** Links color **/
+.install-guide-checklist h5 {
+    cursor: pointer;
+    color: #08c;
+    /** Links color **/
 }
+
 .install-guide-checklist h5:before {
-  content: "> ";
-  color: #2a1e1c;
+    content: "> ";
+    color: #2a1e1c;
 }
-.install-guide-checklist h5:after{
-  content: "(click to expand)";
-  font-weight: normal;
-  font-size: 12px;
-  margin-left: 12px;
-  color: #2a1e1c;
+
+.install-guide-checklist h5:after {
+    content: "(click to expand)";
+    font-weight: normal;
+    font-size: 12px;
+    margin-left: 12px;
+    color: #2a1e1c;
 }
 
 
 /** Makes the argument names right-aligned for easier skimability (stolen from Stripe's API reference) **/
-.apidocs-args th{
+
+.apidocs-args th {
     text-align: right;
 }
 
+
 /** Color-coding for reward types **/
-.label.program-type-label{
+
+.label.program-type-label {
     background-color: @colorForRewardTypes;
 }
 
+
 /** Makes the API reference more easy to scroll **/
-.apidocs-section{
+
+.apidocs-section {
     padding-bottom: 200px;
     border-bottom: 1px solid #CCC;
     margin-bottom: 200px;
@@ -177,56 +249,55 @@ a .link {background-color:#fff;}
 
 
 /** Styles that are used when AFFIXED */
-#squatchjs-navbar.affix{
+
+#squatchjs-navbar.affix {
     top: 100px;
     background: #FFF;
     border-radius: 3px;
     border: 1px solid #CCC;
 }
- #squatchjs-navbar .nav-pills > li > a {
-    
-}
+
+#squatchjs-navbar .nav-pills> li> a {}
+
+
 /** Override the crappy default nav pills from the disillusion theme **/
-#squatchjs-navbar .nav-pills{
+
+#squatchjs-navbar .nav-pills {
     margin-left: 0;
-    padding-top: 15px; /* makes space for funky li > a height animations on hover */
+    padding-top: 15px;
+    /* makes space for funky li > a height animations on hover */
 }
-#squatchjs-navbar .nav-pills > li {
+
+#squatchjs-navbar .nav-pills> li {
     list-style-type: none;
 }
 
-
-.js-docs-collapse-toggle{
+.js-docs-collapse-toggle {
     font-family: Monaco, Consolas, "Lucida Console", monospace;
     font-size: 12px;
-
-    &:before{
+    &:before {
         content: "[+] Expand Details";
     }
-    
-    &.active:before{
+    &.active:before {
         content: "[-] Collapse Details";
     }
-    
 }
 
-.js-docs-collapse{
+.js-docs-collapse {
     display: none;
 }
 
-
-
-.docs-theme-types{
+.docs-theme-types {
     a:hover {
         cursor: pointer;
-        .well{
+        .well {
             background: #FAFAFA;
         }
     }
 }
 
-.themes-icon .fa{
-    background: #CCC;//@portalBlue;
+.themes-icon .fa {
+    background: #CCC; //@portalBlue;
     text-align: center;
     border-radius: 5px;
     color: #FFF;
@@ -237,58 +308,46 @@ a .link {background-color:#fff;}
     margin: 0 auto;
 }
 
-
-.docs-lightbox{
-
+.docs-lightbox {
     position: relative;
-    
-    div{
+    div {
         position: absolute;
         bottom: 0;
         left: 0;
         right: 0;
-        background: rgba(0,0,0,0.5);
+        background: rgba(0, 0, 0, 0.5);
         text-align: center;
         padding: 10px 0;
         color: #FFF;
         height: 30px;
     }
-    
-    &:hover div{
-        background: rgba(0,0,0,0.7);
+    &:hover div {
+        background: rgba(0, 0, 0, 0.7);
     }
-    
     img {
         height: 200px;
     }
-
 }
 
-.docs-guide-summary{
-    
-    
-    .fa-check-circle{
+.docs-guide-summary {
+    .fa-check-circle {
         color: green;
     }
-    
     .fa-grey,
-    .fa-circle{
+    .fa-circle {
         color: #CCC;
     }
-    .fa-info-circle{
+    .fa-info-circle {
         color: #AAA;
     }
-    
-    
-    .docs-guide-program{}
-    .docs-guide-api{
+    .docs-guide-program {}
+    .docs-guide-api {
         background: #FAFAFA;
     }
-    .docs-guide-payments{
+    .docs-guide-payments {
         text-align: center;
     }
-    
-    tbody td{
+    tbody td {
         vertical-align: middle;
     }
 }
@@ -298,34 +357,32 @@ a .link {background-color:#fff;}
     line-height: inherit;
 }
 
-.fa-grey{
+.fa-grey {
     color: #CCC;
 }
 
-
 .hero-unit.article {
     text-align: left;
-    h1, p, div {
+    h1,
+    p,
+    div {
         text-align: left;
     }
     color: #FFF;
-    text-shadow: rgba(0,0,0,0.3) 0 0 5px;
+    text-shadow: rgba(0, 0, 0, 0.3) 0 0 5px;
     background: #08c url('/assets/marketing-website/img/headerbackground.jpg');
 }
 
-.docs-searchbox-full{
+.docs-searchbox-full {
     position: relative;
-    
     border: 1px solid #CCC;
     border-width: 1px 1px 0 1px;
     border-radius: 5px 5px 0 0;
     text-align: center;
     padding: 20px;
     background: #EEE;
-  
     margin-top: 160px;
-  
-    &:before{
+    &:before {
         content: "";
         background: url("/assets/images/peeker.png");
         width: 155px;
@@ -337,15 +394,12 @@ a .link {background-color:#fff;}
     }
 }
 
-
-.search-page{
-    
+.search-page {
     width: 580px;
     min-height: 160px;
     margin: 0 auto;
-    position:relative;
-    
-    &:before{
+    position: relative;
+    &:before {
         content: "";
         background: url("/assets/images/side-peeker.png");
         width: 97px;
@@ -355,57 +409,57 @@ a .link {background-color:#fff;}
         left: -87px;
     }
 }
-.search-results{
-    
+
+.search-results {
     padding-top: 50px;
     width: 520px;
     margin: 0 auto;
-  
-    .search-spinner{
+    .search-spinner {
         &,
-        & h3{
+        & h3 {
             color: #999 !important;
         }
     }
-    .search-results-item a{
-       
+    .search-results-item a {
         display: block;
         text-decoration: none;
         margin-bottom: 20px;
-       
-        .search-results-title{
+        .search-results-title {
             font-weight: bold;
             font-size: 1.2em;
         }
-        .search-results-body{
+        .search-results-body {
             color: #333;
         }
-        .search-results-link{
+        .search-results-link {
             color: #999;
         }
-       
-        &:hover{
+        &:hover {
             background: #eee;
         }
-       
-        .search-results-type{
-
-            &.guide:before {  content: "\f02d"; }
-            &.jsReference:before {  content: "\f13b"; }
-            &.apiReference:before {  content: "\f108"; }
-            &.themes:before {  content: "\f1fc"; }
+        .search-results-type {
+            &.guide:before {
+                content: "\f02d";
+            }
+            &.jsReference:before {
+                content: "\f13b";
+            }
+            &.apiReference:before {
+                content: "\f108";
+            }
+            &.themes:before {
+                content: "\f1fc";
+            }
         }
-       
-       
-        .search-results-none{}
+        .search-results-none {}
     }
-   
 }
 
 // FAQ highlighting technique stolen from: http://stackoverflow.com/questions/11142125/css-highlight-a-div-when-the-id-is-linked-to-using-an-anchor
-.docs-faq-question{
+.docs-faq-question {
     background-color: #fff;
 }
+
 .docs-faq-question:target {
     background-color: #ffa;
     -webkit-transition: all 1s linear;
@@ -414,61 +468,67 @@ a .link {background-color:#fff;}
 
 /* Side notes for calling out things
 -------------------------------------------------- */
- 
+
+
 /* Base styles (regardless of theme) */
+
 .bs-callout {
-  margin: 20px 0;
-  padding: 15px 30px 15px 15px;
-  border-left: 5px solid #eee;
-}
-.bs-callout h4 {
-  margin-top: 0;
-}
-.bs-callout p:last-child {
-  margin-bottom: 0;
-}
-.bs-callout code,
-.bs-callout .highlight {
-  background-color: #fff;
-}
- 
-/* Themes for different contexts */
-.bs-callout-danger {
-  background-color: #fcf2f2;
-  border-color: #dFb5b4;
-}
-.bs-callout-warning {
-  background-color: #fefbed;
-  border-color: #f1e7bc;
-}
-.bs-callout-info {
-  background-color: #f0f7fd;
-  border-color: #d0e3f0;
+    margin: 20px 0;
+    padding: 15px 30px 15px 15px;
+    border-left: 5px solid #eee;
 }
 
-.docs-integrations-list{
-    
-    .docs-integration{
+.bs-callout h4 {
+    margin-top: 0;
+}
+
+.bs-callout p:last-child {
+    margin-bottom: 0;
+}
+
+.bs-callout code,
+.bs-callout .highlight {
+    background-color: #fff;
+}
+
+
+/* Themes for different contexts */
+
+.bs-callout-danger {
+    background-color: #fcf2f2;
+    border-color: #dFb5b4;
+}
+
+.bs-callout-warning {
+    background-color: #fefbed;
+    border-color: #f1e7bc;
+}
+
+.bs-callout-info {
+    background-color: #f0f7fd;
+    border-color: #d0e3f0;
+}
+
+.docs-integrations-list {
+    .docs-integration {
         // all span4
     }
-    
-    img{
+    img {
         max-height: 150px;
         display: block;
         margin: 0 auto;
     }
-    .docs-integration-logo{
+    .docs-integration-logo {
         display: block;
         height: 150px;
     }
-    
 }
 
-.docs-navsection{
+.docs-navsection {
     background: #aaa;
     height: 100px;
-    a{
-        &:hover{
+    a {
+        &:hover {
             background: darken(#a4daa9, 25%);
             color: #333;
         }
@@ -487,46 +547,58 @@ a .link {background-color:#fff;}
     // }
 }
 
-.docs-persistent-nav{
-    .row-fluid{
+.docs-persistent-nav {
+    .row-fluid {
         margin-bottom: 30px;
     }
-    .docs-navsection{
+    .docs-navsection {
         height: 60px;
-        & > a{
+        &> a {
             line-height: 60px;
         }
     }
 }
+
 // Color coding
-.colorCoded(@custColor){
+.colorCoded(@custColor) {
     &.docs-navsection a,
-    &.hero-unit{
+    &.hero-unit {
         background: @custColor;
         color: #FFF
     }
-    &.hero-unit a{
+    &.hero-unit {
+        background: url('/assets/marketing-website/img/footerbackgroundrs2.jpg');
+    }
+    &.hero-unit a {
         color: #FFF;
     }
-    .docs-sections a .fa{
-        background: lighten(@custColor, 25%);
+    .docs-sections a .fa {
+        background: lighten(@custColor, 5%);
     }
 }
-.marketer{ .colorCoded(#f9690e) } 
-.developer{ .colorCoded(#0088cc) } 
-.designer{ .colorCoded(#be392b) } 
 
+.marketer {
+    .colorCoded(#fba772)
+}
 
-.docs-footer-menu{
+.developer {
+    .colorCoded(#6eb5e2)
+}
+
+.designer {
+    .colorCoded(#df7b70)
+}
+
+.docs-footer-menu {
     text-align: left;
-
-    ul li:first-child{
+    ul li:first-child {
         font-weight: bold;
         padding-bottom: 3px;
         border-bottom: 1px solid #999;
         margin-bottom: 9px;
     }
 }
+
 
 /**
 
@@ -535,19 +607,30 @@ Media overrides for Span4 allow unlimited number of Span4 elements in a single r
 Stolen from here: http://stackoverflow.com/questions/9478103/multiple-spans-in-one-row-with-twitter-bootstrap
 
 **/
-@media (min-width: 320px) and (max-width:979px) { 
+
+@media (min-width: 320px) and (max-width:979px) {
     /* one column */
-    .docs-integrations-list .span4 {width:100%}
-    .docs-integrations-list .span4 {margin-left:0;}  
+    .docs-integrations-list .span4 {
+        width: 100%
+    }
+    .docs-integrations-list .span4 {
+        margin-left: 0;
+    }
 }
 
-@media (min-width: 980px) and (max-width:1409px) { 
+@media (min-width: 980px) and (max-width:1409px) {
     /* two columns, remove margin off every third span */
-    .docs-integrations-list .span4 {width:48.717948718%;}
-    .docs-integrations-list .span4:nth-child(2n+3) {margin-left:0;}
+    .docs-integrations-list .span4 {
+        width: 48.717948718%;
+    }
+    .docs-integrations-list .span4:nth-child(2n+3) {
+        margin-left: 0;
+    }
 }
 
-@media (min-width: 1410px) { 
+@media (min-width: 1410px) {
     /* three columns, .span4's natural width. remove margin off every 4th span */
-    .docs-integrations-list .span4:nth-child(3n+4) {margin-left:0;}
+    .docs-integrations-list .span4:nth-child(3n+4) {
+        margin-left: 0;
+    }
 }
