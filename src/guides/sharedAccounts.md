@@ -2,7 +2,8 @@
 title: Shared vs. Solo Accounts
 highlights: We support both companies with accounts that are shared between users and solo accounts. In other words we support both B2B and B2C. This guide explains how to set <code>account_id</code> for both of those cases.
 slug: shared-vs-solo-accounts
-template: guides.html
+sectionType: guide
+template: hasTableOfContents.html
 ---
 
 ### What is the difference between Shared and Solo accounts?

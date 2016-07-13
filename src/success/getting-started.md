@@ -1,7 +1,8 @@
 ---
 title: Getting Started
 slug: getting-started
-template: gettingStarted.html
+sectionType: successArticle
+template: article.html
 ---
 
 <p>Welcome to SaaSquatch! Let's get you running with your very own refer-a-friend program.</p>

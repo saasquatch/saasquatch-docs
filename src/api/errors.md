@@ -5,7 +5,8 @@ highlights: |
     success, codes in the 4xx range indicate an error that resulted from the provided information (e.g. a required parameter was missing, a
     coupon code doesn't exist, etc.), and codes in the 5xx range indicate an error with Referral SaaSquatch's servers.
 slug: api/errors
-template: api.html
+sectionType: apiReference
+template: article.html
 ---
 
 

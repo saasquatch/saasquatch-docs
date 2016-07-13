@@ -2,7 +2,8 @@
 title: Helpers
 highlights: Helpers are functions that you can use in your Handlebar template files to help generate your theme.
 slug: themes/helpers
-template: themes.html
+sectionType: themes
+template: article.html
 ---
 
 ### What is a helper?

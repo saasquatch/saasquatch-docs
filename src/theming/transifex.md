@@ -4,7 +4,8 @@ highlights: |
     SaaSquatch internationalization integrates easily with [Transifex](http://transifex.com) to automatically manage your translations. 
     This article describes how to use the Transifex CLI to translate your custom theme.
 slug: themes/integrations/transifex
-template: themes.html
+sectionType: themes
+template: article.html
 ---
 
 

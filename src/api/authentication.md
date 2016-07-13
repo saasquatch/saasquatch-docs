@@ -2,7 +2,8 @@
 title: API Authentication
 highlights: The Referral SaaSquatch REST API is authenticated by providing one of your API keys in the request
 slug: api/authentication
-template: api.html
+sectionType: apiReference
+template: article.html
 published: true
 ---
 

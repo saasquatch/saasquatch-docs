@@ -4,7 +4,8 @@ highlights: |
     Referral SaaSquatch provides a mobile-responsive widget that can be embedded directly into your iOS, Android or Windows phone mobile app using a special URL. The widget
     is a one-stop-shop for your users to participate in the referral program; they can refer friends, track the status of their referrals, and see the rewards earned from referrals.
 slug: mobile/widget
-template: mobile.html
+sectionType: mobile
+template: hasTableOfContents.html
 ---
 
 ![Mobile Widget example](/assets/images/mobile-screenshot.jpg)

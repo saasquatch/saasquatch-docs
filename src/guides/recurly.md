@@ -2,7 +2,8 @@
 title: Recurly Integration
 highlights: Referral SaaSquatch's Recurly integration uses Recurly’s Push Notifications and Recurly's API to automatically track subscriptions and give people discounts. This guide will walk you through how to set up this integration.
 slug: recurly
-template: guides.html
+sectionType: guide
+template: hasTableOfContents.html
 ---
 
 * * *

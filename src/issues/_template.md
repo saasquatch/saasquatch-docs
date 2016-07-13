@@ -2,7 +2,8 @@
 title: RS001
 highlights: 
 slug: squatchjs/issue/RS0xx
-template: squatchjs.html
+sectionType: jsReference
+template: article.html
 ---
 
 ### Tips To Fix This

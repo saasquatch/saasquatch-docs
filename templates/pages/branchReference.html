@@ -1,11 +1,11 @@
-{% import "./swaggerMacros.html" as swaggerMacros %}
+{% import "../macros/swaggerMacros.html" as swaggerMacros %}
 
-{% extends '../mobile.html' %}
+{% extends '../hasTableOfContents.html' %}
 {% block articleContent %}
 
 
 
-  {{ contents | safe }}
+  {{ tocContents.content | safe }}
 
 
   {{swaggerMacros.outputProperties(branchFields)}}

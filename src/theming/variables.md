@@ -5,7 +5,8 @@ highlights: |
   It is up to theme developers to define the variables in a [JSON Schema](http://json-schema.org/examples.html) in the theme git repository. These variables can then be
   [updated via the SaaSquatch REST API](/api/methods/#update_variables) and then those values rendered in Handlebars templates.
 slug: themes/variables
-template: themes.html
+sectionType: themes
+template: article.html
 ---
 
 ![JSON Schema Example](/assets/images/schema-to-json.png)

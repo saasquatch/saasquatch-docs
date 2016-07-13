@@ -3,7 +3,8 @@ title: Branch Metrics Integration
 highlights: |
     Referral SaaSquatch integrates with [Branch Metrics](http://branch.io) to provide additional attribution, personalization and analytics for mobile app referral programs by using Branch's deep links.
 slug: mobile/branch-metrics
-template: mobile.html
+sectionType: mobile
+template: hasTableOfContents.html
 ---
 
 ### Overview

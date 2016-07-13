@@ -2,7 +2,8 @@
 title: Git & Custom Themes 
 highlights: 
 slug: themes/git
-template: themes.html
+sectionType: themes
+template: article.html
 ---
 
 

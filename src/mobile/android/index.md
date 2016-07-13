@@ -3,7 +3,8 @@ title: Android SDK
 highlights: |
     The Referral SaaSquatch Android SDK integrates a referral program into your Android app.
 permalinks: false
-template: mobile.html
+sectionType: mobile
+template: article.html
 ---
 
 Our Android SDK gives you complete control of the look and feel of your referral program on mobile devices. Our mobile widget is the fastest and simplest way to integrate a referral program into your app, but it doesn't give you as much control as our SDK. Currently our SDK cannot be used with payment system connectors such as Braintree, Stripe, Recurly, or Zuora.

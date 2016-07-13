@@ -2,7 +2,8 @@
 title: Page Speed Best Practice Guide
 highlights: This guide explains best practices for making the Referral SaaSquatch widget load quickly without affecting other items on your page.
 slug: bestpractices/speed
-template: guides.html
+sectionType: guide
+template: article.html
 ---
 
 <strong><i class="icon-chevron-right"></i> Keep it in the body.</strong> Place the `&lt;script&gt;` tag examples that we provide right before the `&lt;/body&gt;` tag, or at the very least, keep 

@@ -33,3 +33,15 @@ Zuora:
     logo: zuora-integration.jpg
     summary: |
         The Referral SaaSquatch integration with Zuora powers automatic referral tracking, fulfillment and conversion through Zuora Subscription Tracking, Product Rate Plans and direct API access.
+
+Salesforce:
+    slug: /salesforce
+    logo: salesforce-integration.png
+    summary: |
+        Referral SaaSquatch for Salesforce is a managed package for Salesforce built on the Force.com platform. It provides synchronization of Referrals, Rewards and User Profiles as native Force.com custom objects.
+
+Silverpop:
+    slug: /silverpop
+    logo: silverpop-integration.png
+    summary: |
+        Silverpop customers can can use Referral SaaSquatch for Silverpop to automatically have transactional emails sent through their Silverpop account, providing a unified email workflow.

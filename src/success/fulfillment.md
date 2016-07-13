@@ -8,7 +8,8 @@ highlights: |
      means there's an automated synchronization process to apply discounts in payment systems. Referral SaaSquatch supports manual, automated
      and semi-automated fulfillment options and even has turnkey connectors that handle fulfillment automatically for you.
 slug: topics/fulfillment
-template: guides.html
+sectionType: successArticle
+template: hasTableOfContents.html
 ---
 
 <div class="bs-callout bs-callout-default">

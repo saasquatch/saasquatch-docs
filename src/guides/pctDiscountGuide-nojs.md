@@ -5,7 +5,8 @@ highlights: |
     Most companies will use [Squatch.js](/guides/percent-discount/) but this provides an example of implementing when javascript is either not desired or
     can't be used.
 slug: guides/percent-discount-nojs
-template: guides.html
+sectionType: guide
+template: article.html
 ---
 
 

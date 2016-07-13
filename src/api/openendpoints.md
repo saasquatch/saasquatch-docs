@@ -2,7 +2,8 @@
 title: Open Endpoints [BETA]
 highlights: The Open endpoints in the SaaSquatch REST API are authenticated with an API key or a user secret
 slug: api/openendpoints
-template: api.html
+sectionType: apiReference
+template: article.html
 published: true
 ---
 

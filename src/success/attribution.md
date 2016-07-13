@@ -6,7 +6,8 @@ highlights: |
      the process of giving people rewards. For example you want to *attribute* a referral as soon as some one signs in to your website,
      but you only want to give a referral reward when the referred person [converts](/topics/conversion) and pays their first bill.
 slug: topics/attribution
-template: guides.html
+sectionType: successArticle
+template: hasTableOfContents.html
 ---
 
 

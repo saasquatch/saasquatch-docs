@@ -4,7 +4,8 @@ highlights: |
     Referral SaaSquatch supports some types of referral programs using the REST API and Squatch.js, and others by native payment system integrations. Our guides show you how to use SaaSquatch 
     to create some of the most popular referral programs, like those used by Dropbox, Uber and Typeform. These guides just scratch the surface of what's possible with the SaaSquatch platform.
 slug: guides
-template: guides.html
+sectionType: guide
+template: article.html
 hero: true
 ---
 

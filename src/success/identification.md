@@ -3,10 +3,11 @@ title: Identification
 highlights: |
      Identification is the topic of loading contact records into SaaSquatch from other systems. To implement a referral program you need to develop a strategy
      for how and when a user will be identified to SaaSquatch. Typically this happens whenever a user logs in to your website or service, or makes a purchase.
-     Identifying a user enrolls them to be able to refer their friends and tracks if they have been referred.
+     When you "Identify" a user, you enroll them to be able to refer their friends and to track if they have been referred.
      For details on how referrals are tracked see [Attribution](/topics/attribution/) and [Conversion](/topics/conversion/).
 slug: topics/identification
-template: guides.html
+sectionType: successArticle
+template: hasTableOfContents.html
 ---
 
 

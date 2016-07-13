@@ -2,7 +2,8 @@
 title: Common Pitfalls
 highlights: Many common Referral SaaSquatch integration problems can be easily avoided by reading this guide.
 slug: bestpractices/common-pitfalls
-template: guides.html
+sectionType: guide
+template: article.html
 ---
 
 ### Using the wrong account_id

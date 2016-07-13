@@ -2,7 +2,8 @@
 title: Dollar Credit Integration Guide
 highlights: Follow this guide to setup a "Give $20, Get $20 Referral Program" using the SaaSquatch REST API and Squatch.js
 slug: guides/dollar-credit
-template: guides.html
+sectionType: guide
+template: article.html
 ---
 <div class="install-guide-checklist">
     

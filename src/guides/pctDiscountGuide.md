@@ -2,7 +2,8 @@
 title: "Percent Discount Integration Guide"
 highlights: "Give your users 10% for a year for referring a friend. Follow this guide to setup a 'Give 10%, Get 10% Referral Program' using the SaaSquatch REST API and Squatch.js"
 slug: guides/percent-discount
-template: guides.html
+sectionType: guide
+template: article.html
 ---
 <div class="well pull-right span3">
     Alternatively to the API, you can create this type of program using the <a href="/stripe">Stripe</a>, <a href="/recurly">Recurly</a>, <a href="/braintree">Braintree</a> or <a href="/zuora">Zuora</a> connectors.

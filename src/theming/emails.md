@@ -4,7 +4,8 @@ highlights: |
   The content of the emails sent to your customers by SaaSquatch can be customized using the theme engine. These emails are typically delivered in the case of referral events such as [attribution](/topics/attribution/) or [conversion](/topics/conversion/).
   To begin email theming you must have a [custom theme](/themes/custom/). From there, email theming can be accomplished in a similar manner to customizing your widget [template](/themes/templates/), but with a few additional configuration steps that will be discussed below.
 slug: themes/emails
-template: themes.html
+sectionType: themes
+template: article.html
 ---
 
 ### Template Mappings

@@ -1,6 +1,7 @@
 ---
 slug: search
 template: fullpage.html
+category: search
 ---
 
 <section class="page" id="js-docs-search-results">
@@ -36,7 +37,7 @@ template: fullpage.html
     <div class="search-results-none text-center">
    
     <h3 class="visible-desktop" style="padding-top:43px">No matching Docs!</h3>
-    <p class="lead">Looks like we couldn't find any documentation page that matches your search term <strong>"{{queries.request.0.searchTerms}}"</strong></p>
+    <p class="lead">Looks like we couldn't find any Help Center page that matches your search term <strong>"{{queries.request.0.searchTerms}}"</strong></p>
    
     </div>
     {{/unless}}
@@ -48,15 +49,15 @@ template: fullpage.html
    
 <div class="well search-page">
     <div class="row-fluid text-center">
-        <h3>Documentation Search</h3>
+        <h3>Help Center Search</h3>
         <form class="js-search-form form-search">
           <div class="input-append">
             <input type="text" class="search-query">
-            <button type="submit" class="btn">Search Docs</button>
+            <button type="submit" class="btn">Search Help Center</button>
           </div>
         </form>
         
-        <a href="/" class="">Back to docs</a>
+        <a href="/" class="">Back to Help Center</a>
     </div>
     
     <div class="row-fluid">
@@ -64,7 +65,7 @@ template: fullpage.html
     
         <div id="pretty-results" class="search-results">
             <div class="text-center search-spinner">
-                <h3>Searching docs...</h3>
+                <h3>Searching Help Center...</h3>
                 <i class="fa fa-spinner fa-spin fa-5x"></i>
             </div>
        

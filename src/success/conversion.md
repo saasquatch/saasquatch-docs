@@ -7,7 +7,8 @@ highlights: |
      the conversion event would be the purchase of a product or subscription, which can often happen hours or days after a user was first identified or a 
      referral first attributed.
 slug: topics/conversion
-template: guides.html
+sectionType: successArticle
+template: hasTableOfContents.html
 ---
 
 

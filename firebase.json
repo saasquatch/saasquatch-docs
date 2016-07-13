@@ -38,6 +38,10 @@
       "type": 301,
       "source": "/segment-io",
       "destination": "/segment"
+    }, {
+      "type": 301,
+      "source": "/how-it-works",
+      "destination": "/success"
     }]
   }
 }

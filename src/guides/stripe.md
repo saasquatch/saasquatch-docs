@@ -2,7 +2,8 @@
 title: Stripe Integration
 highlights: Referral SaaSquatch's Stripe integration uses Stripe Connect to automatically track subscriptions and give people discounts. This guide will walk you through how to set up this integration.
 slug: stripe
-template: guides.html
+sectionType: guide
+template: hasTableOfContents.html
 ---
 
 

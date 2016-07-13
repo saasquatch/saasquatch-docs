@@ -1,8 +1,8 @@
-{% extends './twoColumns.html' %}
+{% extends './hasSearchBox.html' %}
 {% block content %}
 <section>
   
-  {% if hero %}<div class="hero-unit article">{% endif %}
+  {% if hero %}<div class="hero-unit article {{category}}">{% endif %}
 
   <div class="page-header">
     <h1>{{title}}</h1>

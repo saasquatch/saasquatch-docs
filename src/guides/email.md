@@ -3,7 +3,8 @@ title: Email
 highlights: |
     Referral SaaSquatch uses email for three separate things: Identifying users, sharing between users, and notifications of referrals.
 slug: topics/email
-template: guides.html
+sectionType: guide
+template: article.html
 ---
 
 

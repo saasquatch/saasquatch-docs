@@ -1,29 +1,23 @@
 ---
 title: Android SDK Quickstart Guide
 highlights: |
-    The Referral SaaSquatch Android SDK integrates a referral program into your app.
+    In this article we're going to add the Android SDK into our project and start using it to interface with Referral SaaSquatch. For a working demo implementation, check out our [Android Sample App](https://github.com/saasquatch/mobile-sdk-android-sample "Android Sample App").
 permalinks: false
 slug: mobile/android/quickstart
-template: mobile.html
+sectionType: mobile
+template: hasTableOfContents.html
 ---
 
-Overview
---------
 
 
-We're going to add the SDK into our project and start using it to interface with Referral SaaSquatch.
+### Installation
 
-For a working demo implementation, check out our [Sample App](https://github.com/saasquatch/mobile-sdk-android-sample "Sample App").
-
-
-Installation
-------------
 
 The minimum Android API required to use this SDK is 15.
 
 You can install the latest version of the SDK from the maven repository, or download the aar and manually include the library.
 
-### Install from the repository
+#### Install from the repository
 
 To install the SDK from the maven repository, first include the repo in your *project's* `build.gradle` file:
 
@@ -52,14 +46,14 @@ dependencies {
 
 Run a gradle sync and the SDK is now ready for use in your project.
 
-### Manual install
+#### Manual install
 
 There are 2 steps to manually install the SDK in your app:
 
 * Import the library into your project.
 * Reference the library in your module's `build.gradle` file.
 
-#### Step 1: Import the library into your project
+##### Step 1: Import the library into your project
 
 To add the SDK to your project, go to File -> New -> New Module.
 
@@ -68,7 +62,7 @@ Select *Import .JAR/.AAR Package* and hit "Next".
 Click the "..." button next to the *File name* field, and locate `saasquatch-release.aar` within the zip and select it. Click "Finish" and your project will include the `saasquatch-release` module.
 
 
-#### Step 2: Reference the library in your module's build.gradle file
+##### Step 2: Reference the library in your module's build.gradle file
 
 Open up the `build.gradle` file for your module and add the following:
 
@@ -82,8 +76,9 @@ dependencies {
 
 Run a gradle sync and you will be able to use the SDK in your app.
 
-Usage
------
+
+### Usage
+
 
 The Referral SaaSquatch Android SDK allows us to:
 
@@ -312,7 +307,7 @@ Saasquatch.listReferralsForTenant(tenant, token, bobsAccountId, bobsUserId, null
 ```
 
 
-#### Done!
+### Done!
 
 For a working demo implementation, check out our [Sample App](https://github.com/saasquatch/mobile-sdk-android-sample "Sample App").
 

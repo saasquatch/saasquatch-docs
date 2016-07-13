@@ -1,6 +1,6 @@
-{% extends '../api.html' %}
+{% extends '../hasSearchBox.html' %}
 
-{% import "./swaggerMacros.html" as swaggerMacros %}
+{% import "../macros/swaggerMacros.html" as swaggerMacros %}
 
 {% block content %}
 
@@ -15,7 +15,7 @@
   </p>
   {% endif %}
   
-        {% include "./apiNavigationTable.html" %}
+        {% include "../partials/apiNavigationTable.html" %}
 
         {% for path in swagger.paths %}
             {% set methodPath = loop.key %}

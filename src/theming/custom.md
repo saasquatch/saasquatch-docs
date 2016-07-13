@@ -2,7 +2,8 @@
 title: Custom Themes
 highlights: The Referral SaaSquatch theme engine lets you build a custom widget to exactly match your brand. Change layout, wording, colors, fonts and styles to white-label your program. Upload custom images, CSS and Javascript to power A/B testing, interactive new widgets and new sharing experiences. Work with your Referral SaaSquatch account manager to have the Referral SaaSquatch enterprise team design and implement something new for you, or bring in your own UI/UX team to do the work.
 slug: themes/custom
-template: themes.html
+sectionType: themes
+template: article.html
 ---
 
 

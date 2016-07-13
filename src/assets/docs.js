@@ -15,8 +15,8 @@ jQuery(document).ready(function() {
      * 
      * Source: https://css-tricks.com/snippets/jquery/highlight-all-links-to-current-page/
      */
+    var selectedOne = false;
     jQuery("a", menuDom).filter(function(){
-        // TODO: Ignore trailing slash
         // TODO: Make anchor-tag pages work
         // TODO: If no exact page matches, provide a reasonable default...
         var thisUrl = window.location.pathname.replace(/\/+$/, "");
@@ -25,18 +25,26 @@ jQuery(document).ready(function() {
     })
     .first()
     .each(function() {
+        selectedOne = true;
         jQuery(this).parent("li").addClass("Selected");
     });
     
-        
-    var sections = ["successCenter", "developerCenter", "designerCenter"];
+    var categories = ["successCenter", "developerCenter", "designerCenter"];
+
+    if(!selectedOne){
+        // If no nav selected, defaults to the category
+        categories.map(function(category){
+            jQuery("body."+category+ " li."+category).addClass("Selected");
+        });
+    }
+
     
     /*
-    * Copies all the "Sections" classes to their sub-lists.
+    * Copies all the "categories" classes to their sub-lists.
     *    This has to be done before MMenu is initalized.
     */
-    sections.map(function(section){
-        jQuery("li."+section+" ul", menuDom).addClass(section);
+    categories.map(function(category){
+        jQuery("li."+category+" ul", menuDom).addClass(category);
     });
 
     /**
@@ -57,15 +65,15 @@ jQuery(document).ready(function() {
          
         //  offCanvas: {
         //     pageSelector: "#my-page",
-        //     pageNodetype: "section"
+        //     pageNodetype: "category"
         //  }
       }).init(function($panels){
         /**
-         * Copies the "Section" styling onto their parent `.mm-panel` containers
+         * Copies the "category" styling onto their parent `.mm-panel` containers
          * 
          */
-        sections.map(function(section){
-            jQuery(".mm-panel > ul." + section, menuDom).parent(".mm-panel").addClass(section);
+        categories.map(function(category){
+            jQuery(".mm-panel > ul." + category, menuDom).parent(".mm-panel").addClass(category);
         });
       });
 
@@ -109,21 +117,16 @@ jQuery(document).ready(function() {
     if ( window.location.hash ) { 
      smoothScroll.animateScroll( null, window.location.hash);
     }
-    if( window.location.pathname == "/api/methods/"){
+    
      // Activates smooth scroll links when
-     jQuery("#accordion-scroller .accordion-inner a").click(function(e){
+     jQuery("#accordion-scroller .accordion-inner a",
+            "#toc-content a",
+            ".js-faq-list a").click(function(e){
          var $this = jQuery(this);
          var anchor = "#" + $this.attr('href').split("#")[1];
          smoothScroll.animateScroll( null, anchor);
          return false;
      });
-    }
-    
-    jQuery(".js-faq-list a").click(function(e){
-         var anchor = "#" + jQuery(this).attr('href').split("#")[1];
-         smoothScroll.animateScroll( null, anchor);
-         return false;
-    });
 
 
     /**
@@ -169,6 +172,7 @@ jQuery(document).ready(function() {
 
     jQuery("#js-docs-search-results").each(function(){
         
+        // var categoryFilter = "more:pagemap:metatags-type:jsReference";
         
         var query = getParameterByName('q');
         var startIndex = getParameterByName('startIndex');

@@ -1,0 +1,47 @@
+{% extends './hasSearchBox.html' %}
+
+{% set tocContents = contents | tableOfContents %}
+
+{% block content %}
+<div class="span9">
+    
+    <section>
+      
+      {% if hero %}<div class="hero-unit article {{category}}">{% endif %}
+    
+      <div class="page-header">
+        <h1 id="top">{{title}}</h1>
+      </div>
+      {% if highlights %}
+      <div class="lead">
+        {{ highlights | markdown }}
+      </div>
+      {% endif %}
+    
+      {% if hero %}</div><!-- end hero block -->{% endif %}
+      
+    
+      {% block articleContent %}
+      {{ tocContents.content | safe }}
+      {% endblock articleContent %}
+      
+    </section>
+</div>
+<div class="span3" id="toc-holder">
+    <script type="text/javascript">
+    jQuery.ready(function(){
+        jQuery('#toc-content').scrollspy();
+    });
+    </script>
+    <div id="toc-content" data-spy="affix" data-offset-top="90" data-clampedwidth="#toc-holder" class="visible-desktop">
+        <div class="toc-title">In this Article:</div>
+        <ul>
+            <li><a href="#top">Introduction</a></li>
+        {% for heading in tocContents.headings %}
+            <li><a href="#{{heading.id}}">{{heading.text}}</a></li>
+        {% endfor %}
+        </ul>
+    </div>
+    
+</div>
+{% endblock content %}

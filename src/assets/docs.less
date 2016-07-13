@@ -1,12 +1,17 @@
-@import (css) "./jquery.jsonview.css";
-@import (css) "./lightbox/css/lightbox.css";
-@import (css) "./highlight-js/styles/github.css";
 @import (css) "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css";
+
+@import (css) "./lib/jquery.jsonview.css";
+@import (css) "./lib/lightbox/css/lightbox.css";
+@import (css) "./lib/highlight-js/styles/github.css";
+@import (css) "./lib/mmenu/css/jquery.mmenu.all.css";
+@import (css) "./lib/bsCallout.css";
+
 @import (css) "./marketing-website/mediaqueries.css";
 @import (css) "./marketing-website/style.css";
 
 @colorForRewardTypes: #3a87ad;
 @portalBlue: rgb(48, 160, 235);
+
 .docs {
     /* .docs is applied to the BODY in documentation to differentiate styles in documentation from that in the website */
     // padding-top: 180px;
@@ -26,6 +31,9 @@ p+ h5 {
     margin-top: 1.5em;
 }
 
+a .link {
+    background-color: #fff;
+}
 
 /** HIDES the border around code blocks for both PRE and CODE tags, which removes some jarringness */
 
@@ -38,33 +46,26 @@ p+ h5 {
     color: darken(#dd1144, 20%);
 }
 
-.docs .container section {
-    padding-top: 60px;
-}
-
-.docs .container section:first-child {
-    padding-top: 0;
-}
-
-
-/**
-    Docs Sidebar 
-**/
-
-.docs-sidebar {
-    padding-top: 31px;
-}
-
-
-/*
-    Monospace fonts are used for URLs and other pseudo-code like blocks
-*/
-
+// Monospace spans are used for URLs and other pseudo-code like blocks
 .docs-monospace {
     font-family: Monaco, Consolas, "Lucida Console", monospace;
     font-size: 12px;
 }
 
+
+// Padding between <section>s
+.docs .container{
+    section { padding-top: 60px; }
+    section:first-child { padding-top: 0; }
+}
+
+
+
+/**
+*    Styling for the MMenu sidebar
+*
+*
+*/
 #my-page {
     margin-left: 20%;
 }
@@ -77,49 +78,33 @@ p+ h5 {
         font-size: 12px;
         line-height: 12px;
     }
-}
-
-// Makes the NavSections bigger
-ul.baseMenu > li{
-    line-height: 30px;
-    padding: 10px 0;
-    font-size: 16px;
     
-    &.successCenter span:after{
-        content: "Learn how to use Referral SaaSquatch";
-        font-size: 12px;
+    // Makes the NavSections bigger
+    ul.baseMenu > li{
+        line-height: 30px;
+        padding: 10px 0;
+        font-size: 16px;
+        
+        &.successCenter span:after{
+            content: "Learn how to use Referral SaaSquatch";
+            font-size: 12px;
+        }
+        &.developerCenter span:after{
+            content: "Build on our SDKs, APIs and JS";
+            font-size: 12px;
+        }
+        &.designerCenter span:after{
+            content: "Customize to match your brand's style";
+            font-size: 12px;
+        }
     }
-    &.developerCenter span:after{
-        content: "Build on our SDKs, APIs and JS";
-        font-size: 12px;
-    }
-    &.designerCenter span:after{
-        content: "Customize to match your brand's style";
-        font-size: 12px;
+    
+    .mm-listview>li.mm-selected>a:not(.mm-next),
+    .mm-listview>li.mm-selected>span {
+        background: rgba(255,255,255,.2);
     }
 }
 
-.successCenter{
-    .navSection(#fba772);
-}
-.developerCenter{
-    .navSection(#6eb5e2);
-}
-
-.designerCenter{
-    .navSection(#df7b70);
-}
-
-.navSection(@sectionColor){
-    &,
-    div &.mm-panel {
-        background:@sectionColor;
-        color: #FFF;
-    }
-}
-.mm-menu .mm-listview>li.mm-selected>a:not(.mm-next), .mm-menu .mm-listview>li.mm-selected>span {
-    background: rgba(255,255,255,.2);
-}
 
 /** Styles removed from the body -- were probably piped through by wordpress plugin theming **/
 
@@ -131,10 +116,6 @@ ul.baseMenu > li{
 .nav-pills> li.active> a,
 .nav-pills> li.active> a:hover {
     border: 1px solid;
-}
-
-a .link {
-    background-color: #fff;
 }
 
 .hero-unit {
@@ -225,51 +206,22 @@ a .link {
 }
 
 
-/** Makes the argument names right-aligned for easier skimability (stolen from Stripe's API reference) **/
 
-.apidocs-args th {
-    text-align: right;
-}
-
-
-/** Color-coding for reward types **/
-
+// Color-coding for reward types
 .label.program-type-label {
     background-color: @colorForRewardTypes;
 }
 
+// Makes the argument names right-aligned for easier skimability (stolen from Stripe's API reference)
+.apidocs-args th {
+    text-align: right;
+}
 
-/** Makes the API reference more easy to scroll **/
-
+// Makes the API reference easier  to scroll
 .apidocs-section {
     padding-bottom: 200px;
     border-bottom: 1px solid #CCC;
     margin-bottom: 200px;
-}
-
-
-/** Styles that are used when AFFIXED */
-
-#squatchjs-navbar.affix {
-    top: 100px;
-    background: #FFF;
-    border-radius: 3px;
-    border: 1px solid #CCC;
-}
-
-#squatchjs-navbar .nav-pills> li> a {}
-
-
-/** Override the crappy default nav pills from the disillusion theme **/
-
-#squatchjs-navbar .nav-pills {
-    margin-left: 0;
-    padding-top: 15px;
-    /* makes space for funky li > a height animations on hover */
-}
-
-#squatchjs-navbar .nav-pills> li {
-    list-style-type: none;
 }
 
 .js-docs-collapse-toggle {
@@ -285,6 +237,13 @@ a .link {
 
 .js-docs-collapse {
     display: none;
+}
+
+.toc-title{
+    font-weight: bold;
+    color: #999;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #CCC;
 }
 
 .docs-theme-types {
@@ -466,48 +425,7 @@ a .link {
 }
 
 
-/* Side notes for calling out things
--------------------------------------------------- */
 
-
-/* Base styles (regardless of theme) */
-
-.bs-callout {
-    margin: 20px 0;
-    padding: 15px 30px 15px 15px;
-    border-left: 5px solid #eee;
-}
-
-.bs-callout h4 {
-    margin-top: 0;
-}
-
-.bs-callout p:last-child {
-    margin-bottom: 0;
-}
-
-.bs-callout code,
-.bs-callout .highlight {
-    background-color: #fff;
-}
-
-
-/* Themes for different contexts */
-
-.bs-callout-danger {
-    background-color: #fcf2f2;
-    border-color: #dFb5b4;
-}
-
-.bs-callout-warning {
-    background-color: #fefbed;
-    border-color: #f1e7bc;
-}
-
-.bs-callout-info {
-    background-color: #f0f7fd;
-    border-color: #d0e3f0;
-}
 
 .docs-integrations-list {
     .docs-integration {
@@ -547,23 +465,31 @@ a .link {
     // }
 }
 
-.docs-persistent-nav {
-    .row-fluid {
-        margin-bottom: 30px;
-    }
-    .docs-navsection {
-        height: 60px;
-        &> a {
-            line-height: 60px;
-        }
-    }
+
+.successCenter{
+    .colorCoded(#fba772, 'Success Center Article');
+}
+.developerCenter{
+    .colorCoded(#6eb5e2, 'Developer Center Article');
+}
+.designerCenter{
+    .colorCoded(#df7b70, 'Designer Center Article');
 }
 
-// Color coding
-.colorCoded(@custColor) {
+.colorCoded(@categoryColor, @categoryName){
+    // Sidenav color coding
+    .mm-listview > &,
+    &.mm-listview,
+    div &.mm-panel {
+        background:@categoryColor;
+        color: #FFF;
+        text-shadow: rgba(0,0,0,0.1) 1px 1px;
+    }
+    
+    // Hero / landing page color coding
     &.docs-navsection a,
     &.hero-unit {
-        background: @custColor;
+        background: @categoryColor;
         color: #FFF
     }
     &.hero-unit {
@@ -573,20 +499,22 @@ a .link {
         color: #FFF;
     }
     .docs-sections a .fa {
-        background: lighten(@custColor, 5%);
+        background: lighten(@categoryColor, 5%);
     }
-}
-
-.marketer {
-    .colorCoded(#fba772)
-}
-
-.developer {
-    .colorCoded(#6eb5e2)
-}
-
-.designer {
-    .colorCoded(#df7b70)
+    
+    // Page header color coding
+    body& .page-header{
+        border-bottom: 3px solid @categoryColor;
+        
+        position: relative;
+        &::after{
+            content: @categoryName;
+            color: @categoryColor;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+        }
+    }
 }
 
 .docs-footer-menu {

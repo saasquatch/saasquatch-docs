@@ -1,30 +1,21 @@
 ---
 title: iOS SDK
 highlights: |
-    The Referral SaaSquatch iOS SDK integrates a referral program into your app.
+    The Referral SaaSquatch iOS SDK integrates a referral program into your iOS app. In this article we're going to add the SDK into our project and start using it to interface with Referral SaaSquatch. For a working demo implementation, check out our [iOs Sample App](https://github.com/saasquatch/mobile-sdk-ios-sample "iOs Sample App").
 permalinks: false
 slug: mobile/ios/quickstart
-template: mobile.html
+sectionType: mobile
+template: hasTableOfContents.html
 ---
 
-Overview
---------
 
-The Referral SaaSquatch iOS SDK integrates a referral program into your iOS app.
-
-We're going to add the SDK into our project and start using it to interface with Referral SaaSquatch.
-
-For a working demo implementation, check out our [Sample App](https://github.com/saasquatch/mobile-sdk-ios-sample "Sample App").
-
-
-Installation
-------------
+### Installation
 
 The deployment target for this SDK is 8.0.
 
 The SDK can be installed with CocoaPods or by manually including and linking the framework.
 
-### CocoaPods
+#### CocoaPods
 
 If you do not have CocoaPods installed on your system, get it with:
 
@@ -52,7 +43,7 @@ Save and close the Podfile and run `$ pod install`. The SDK will be integrated i
 
 The SDK is now available for use. Please see [Usage](#usage) for usage instructions.
 
-### Manual Installation
+#### Manual Installation
 
 There are 2 steps to install the SDK in your app:
 
@@ -60,13 +51,13 @@ There are 2 steps to install the SDK in your app:
 * Link the library.
 
 
-#### Step 1: Add the SDK to your project
+##### Step 1: Add the SDK to your project
 
 Unzip the SDK and drag `saasquatch.framework` into your XCode project.
 Make sure you add it to your app targets.
 
 
-#### Step 2: Link the library
+##### Step 2: Link the library
 
 Select your project in the Project navigator like this:
 
@@ -93,8 +84,8 @@ Your **Build Phases** tab should look like this:
 
 The SDK is now ready for use in your project.
 
-Usage
-------
+### Usage
+
 
 The Referral SaaSquatch iOS SDK allows us to:
 
@@ -284,7 +275,7 @@ Saasquatch.listReferralsForTenant(tenant, withToken: token, forReferringAccountI
     })
 ```
 
-#### Done!
+### Done!
 
 For a working demo implementation, check out our [Sample App](https://github.com/saasquatch/mobile-sdk-ios-sample "Sample App").
 

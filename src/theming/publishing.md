@@ -2,7 +2,8 @@
 title: Publishing Custom Themes
 highlights: Custom referral saasquatch themes can be published using the Command Line Interface.
 slug: themes/publish
-template: themes.html
+sectionType: themes
+template: article.html
 ---
 
 Once you've made changes to a theme and pushed those changes to you remote git repository, you'll want to publish those changes to your tenants to see how they look in a live environment. To publish themes,

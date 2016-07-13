@@ -2,7 +2,8 @@
 title: API Webhooks
 highlights: The Referral SaaSquatch Webhooks API closely matches that described by the [RestHooks](http://resthooks.org/docs/) guidelines.
 slug: 'api/webhooks'
-template: api.html
+sectionType: apiReference
+template: article.html
 ---
 
 Interacting with third party APIs like Referral SaaSquatch often suffers from two important problems:

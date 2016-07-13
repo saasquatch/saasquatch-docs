@@ -2,7 +2,8 @@
 title: Templates in Themes
 highlights: Referral SaaSquatch templates use **Handlebars**. Handlebars let you include dynamic information, like the number of referrals someone has made, inside of your referral widget.
 slug: themes/templates
-template: themes.html
+sectionType: themes
+template: article.html
 ---
 
 Templates are easy to use. Here's an example template:

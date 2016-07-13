@@ -4,7 +4,8 @@ highlights: |
     SaaSquatch internationalization integrates easily with [Crowdin](http://crowdin.com) to automatically manage your translations. 
     This article describes how to use the Crowdin CLI to translate your custom theme.
 slug: themes/integrations/crowdin
-template: themes.html
+sectionType: themes
+template: article.html
 ---
 
 

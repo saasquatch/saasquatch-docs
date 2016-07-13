@@ -3,7 +3,8 @@ title: iOS SDK
 highlights: |
     The Referral SaaSquatch iOS SDK integrates a referral program into your iOS app.
 permalinks: false
-template: mobile.html
+sectionType: mobile
+template: article.html
 ---
 
 Our iOS SDK gives you complete control of the look and feel of your referral program on mobile devices. Our mobile widget is the fastest and simplest way to integrate a referral program into your app, but it doesn't give you as much control as our SDK. Whether you use Swift or Objective-C, we have an SDK for you. Currently our SDK cannot be used with payment system connectors such as Braintree, Stripe, Recurly, or Zuora.

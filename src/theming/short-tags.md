@@ -4,6 +4,7 @@ highlights: |
   Short tags are variables that make it easy to include dynamic data like referral links and referral codes in your widget messaging. Short tags are aliases for the longer tags used by theme developers when they design widgets. This reference list the short tags you can use to customize messaging in the web portal. 
 slug: themes/short-tags
 template: pages/shorttags.html
+sectionType: themes
 ---
 
 

@@ -14,11 +14,13 @@ var swagger = require('./plugins/swagger.js');
 var metadata = require('./plugins/metadata.js');
 var contentful = require('./plugins/contentful.js');
 var pageify = require('./plugins/pageify.js');
+var categoryManager = require('./plugins/categoryManager.js');
 
 var exampleSwaggerSchemaFilter = require('./filters/exampleSwaggerSchemaFilter.js');
 var expandSwaggerSchemaFilter = require('./filters/expandSwaggerSchemaFilter.js');
 var mardownFilter = require('./filters/markdown.js');
 var slugFilter = require('./filters/slug.js');
+var tocFilter = require('./filters/tableOfContents.js');
 
 module.exports = site;
 
@@ -44,6 +46,7 @@ function site(){
   swig.setFilter('slug', slugFilter);
   swig.setFilter('exampleSwaggerSchema', exampleSwaggerSchemaFilter);
   swig.setFilter('expandSwaggerSchemaFilter', expandSwaggerSchemaFilter);
+  swig.setFilter('tableOfContents', tocFilter);
 
   var ms = Metalsmith(__dirname)
   .use(define({
@@ -58,6 +61,7 @@ function site(){
   }))
   .use(pageify())
   
+  .use(categoryManager())
   .use(markdown())
   .use(collections({
     "issues": {

@@ -3,7 +3,8 @@ title: Internationalization (i18n) helper
 highlights: |
     The i18n helper is used to swap translated strings into Handlebars templates and powers [Internationalization](/themes/internationalization). The helper loads messages from resource bundles (collections of messages files) from a messages file ([.properties files](https://en.wikipedia.org/wiki/.properties)) that matches a specified locale. These files follow the .properties standard, with the exception that they must be encoded using UTF8 instead of ISO-8859-1.
 slug: themes/i18n-helper
-template: themes.html
+sectionType: themes
+template: article.html
 ---
 
 

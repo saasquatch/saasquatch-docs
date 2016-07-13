@@ -2,7 +2,8 @@
 title: Widget.js
 highlights: Publicly available widget JS API at ```window.widget.rpc = widget.rpc || {};```
 slug: themes/widgetjs
-template: themes.html
+sectionType: themes
+template: article.html
 ---
 
 ### Methods

@@ -39,7 +39,8 @@ function plugin(options) {
                     fields: entry.fields,
                     id: entry.sys.id,
                     
-                    template: "guides.html"
+                    template: "hasTableOfContents.html",
+                    sectionType: "successArticle"
                 };
 
                 path = entry.fields.slug['en-US'];
@@ -55,7 +56,8 @@ function plugin(options) {
                     fields: entry.fields,
                     id: entry.sys.id,
                     
-                    template: "faqCategory.html"
+                    template: "faqCategory.html",
+                    sectionType: "faq"
                 };
 
                 path = entry.fields.slug['en-US'];
