@@ -9,11 +9,11 @@ var myPort = process.env.PORT || 8080;
 // var myIp = process.env.IP || '0.0.0.0';
 
 
-process.env.GOOGLE_SITE_ID = "ynZGJlNk33o1bpcfo2rLxaty1CgbwBt1SOLVtBtOdn4";
-process.env.ROBOTS = "true"; 
+process.env.ROBOTS = "false"; 
 
-process.env.GCSE_CX = "014638356218796023717:iajbhojb63w";
-process.env.GCSE_KEY  = "AIzaSyAOxNZQO2zvNFv98_HImD1BruDfITNEOFo";
+// process.env.GOOGLE_SITE_ID = "ynZGJlNk33o1bpcfo2rLxaty1CgbwBt1SOLVtBtOdn4";
+// process.env.GCSE_CX = "014638356218796023717:iajbhojb63w";
+// process.env.GCSE_KEY  = "AIzaSyAOxNZQO2zvNFv98_HImD1BruDfITNEOFo";
 
 process.env.ROLLBAR_ID = "none";
 process.env.PINGDOM_ID = "none";
