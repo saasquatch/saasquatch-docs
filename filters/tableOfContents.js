@@ -25,7 +25,7 @@ module.exports = function (input) {
             id: id
         });
     });
-    console.log("Generated headings", headings);
+    // console.log("Generated headings", headings);
     
     return {
         content: $.html(),

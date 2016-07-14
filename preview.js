@@ -8,15 +8,27 @@ console.log("Running metal...");
 var myPort = process.env.PORT || 8080;
 // var myIp = process.env.IP || '0.0.0.0';
 
-var app = express();
 
+process.env.GOOGLE_SITE_ID = "ynZGJlNk33o1bpcfo2rLxaty1CgbwBt1SOLVtBtOdn4";
+process.env.ROBOTS = "true"; 
+
+process.env.GCSE_CX = "014638356218796023717:iajbhojb63w";
+process.env.GCSE_KEY  = "AIzaSyAOxNZQO2zvNFv98_HImD1BruDfITNEOFo";
+
+process.env.ROLLBAR_ID = "none";
+process.env.PINGDOM_ID = "none";
+process.env.ANALYTICSJS_ID = "none";
+process.env.GA_ACCOUNT = "none";
+process.env.GA_PREFIX = "/docs/";
+process.env.TYPEKIT_ID = "none";
+        
 const THIRTY_SECONDS = 30*1000;
-var lastBuild = 0;
 
+var lastBuild = 0;
 var metalsmithCompile = function (req, res, next) {
     
     if(Date.now() > (lastBuild + THIRTY_SECONDS)){
-        console.log('Rebuilding from Scratch....');
+        console.log('Rebuilding the docs from scratch....');
         // More than 30 seconds since last build.        
         site().build(function(err) {
           if (err){
@@ -31,10 +43,8 @@ var metalsmithCompile = function (req, res, next) {
     }
 };
 
+var app = express();
 app.use(metalsmithCompile, express.static('build'));
-
 app.listen(myPort);
 
-console.log("Server running.");
-
-console.log("NOTE: Only hot-reloads files in `/src`! Any changes to files in `/templates` or `site.js` require a restart");
+console.log("Preview server running. Refreshes the build every 30 seconds....");

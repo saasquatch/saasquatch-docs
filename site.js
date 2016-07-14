@@ -50,7 +50,19 @@ function site(){
 
   var ms = Metalsmith(__dirname)
   .use(define({
-      "robots": process.env.ROBOTS || "true"
+      "robots": process.env.ROBOTS || "true",
+      "googleSiteId": process.env.GOOGLE_SITE_ID || "RdOFXwKJvCorEOtVBMJTkuwZ8pDOOjvR4hoia3OYecE",
+      windowDotEnv: {
+        // Google Custom Search (GCSE) params
+        GCSE_CX: process.env.GCSE_CX || "014638356218796023717:gvlcaiusvsk",
+        GCSE_KEY: process.env.GCSE_KEY || "AIzaSyCMGfdDaSfjqv5zYoS0mTJnOT3e9MURWkU",
+        ROLLBAR_ID: process.env.ROLLBAR_ID || "c8fd34f79430479a98f49007397a11db",
+        PINGDOM_ID: process.env.PINGDOM_ID || "52c61993abe53d650f000000",
+        ANALYTICSJS_ID: process.env.ANALYTICSJS_ID || "kjj37zev7u",
+        GA_ACCOUNT: process.env.GA_ACCOUNT || "UA-39831433-1",
+        GA_PREFIX: process.env.GA_PREFIX || "/docs/",
+        TYPEKIT_ID: process.env.TYPEKIT_ID || "hqf0oje",
+      }
   }))
   .use(swagger({
       path: "saasquatch-api.yaml"

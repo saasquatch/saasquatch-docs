@@ -28,11 +28,6 @@
     </section>
 </div>
 <div class="span3" id="toc-holder">
-    <script type="text/javascript">
-    jQuery.ready(function(){
-        jQuery('#toc-content').scrollspy();
-    });
-    </script>
     <div id="toc-content" data-spy="affix" data-offset-top="90" data-clampedwidth="#toc-holder" class="visible-desktop">
         <div class="toc-title">In this Article:</div>
         <ul>
@@ -42,6 +37,5 @@
         {% endfor %}
         </ul>
     </div>
-    
 </div>
 {% endblock content %}

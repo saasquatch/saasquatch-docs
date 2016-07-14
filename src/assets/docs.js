@@ -196,8 +196,8 @@ jQuery(document).ready(function() {
 
         var dataObj = {
             q: query,
-            cx: "014638356218796023717:gvlcaiusvsk",
-            key: "AIzaSyCMGfdDaSfjqv5zYoS0mTJnOT3e9MURWkU",
+            cx: window.env.GCSE_CX,
+            key: window.env.GCSE_KEY,
             format: "json"
         };
         
