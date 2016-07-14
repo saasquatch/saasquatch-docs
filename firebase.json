@@ -21,7 +21,7 @@
     }, {
       "type": 301,
       "source": "/pricing",
-      "destination": "/faq/pricing"
+      "destination": "http://www.referralsaasquatch.com/pricing/"
     }, {
       "type": 301,
       "source": "/contact",
@@ -29,7 +29,7 @@
     }, {
       "type": 301,
       "source": "/about",
-      "destination": "http://www.referralsaasquatch.com/about-us/"
+      "destination": "http://www.referralsaasquatch.com/about/"
     }, {
       "type": 301,
       "source": "/squatchjs/issues",
@@ -38,6 +38,10 @@
       "type": 301,
       "source": "/segment-io",
       "destination": "/segment"
+    }, {
+      "type": 301,
+      "source": "/faq/pricing",
+      "destination": "http://www.referralsaasquatch.com/pricing/"
     }]
   }
 }
