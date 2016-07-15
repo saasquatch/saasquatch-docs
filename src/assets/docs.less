@@ -386,6 +386,7 @@ a .link {
         .search-results-title {
             font-weight: bold;
             font-size: 1.2em;
+            color: #666;
         }
         .search-results-body {
             color: #333;
@@ -396,20 +397,21 @@ a .link {
         &:hover {
             background: #eee;
         }
-        .search-results-type {
-            &.guide:before {
-                content: "\f02d";
-            }
-            &.jsReference:before {
-                content: "\f13b";
-            }
-            &.apiReference:before {
-                content: "\f108";
-            }
-            &.themes:before {
-                content: "\f1fc";
-            }
-        }
+        // Disabled section-type diplays in the docs for the moment.
+        // .search-results-type {
+        //     &.guide:before {
+        //         content: "\f02d";
+        //     }
+        //     &.jsReference:before {
+        //         content: "\f13b";
+        //     }
+        //     &.apiReference:before {
+        //         content: "\f108";
+        //     }
+        //     &.themes:before {
+        //         content: "\f1fc";
+        //     }
+        // }
         .search-results-none {}
     }
 }
@@ -466,6 +468,7 @@ a .link {
 }
 
 
+
 .successCenter{
     .colorCoded(#fba772, 'Success Center Article');
 }
@@ -477,6 +480,7 @@ a .link {
 }
 
 .colorCoded(@categoryColor, @categoryName){
+    @categoryFontColor: darken(@categoryColor, 10%);
     // Sidenav color coding
     .mm-listview > &,
     &.mm-listview,
@@ -498,9 +502,29 @@ a .link {
     &.hero-unit a {
         color: #FFF;
     }
-    .docs-sections a .fa {
+    &.docs-sections a .fa {
         background: lighten(@categoryColor, 5%);
     }
+
+    // Search results color coding.
+    &.search-results-item{
+        
+        .search-results-title::after {
+            content: "- @{categoryName}";
+            color: @categoryFontColor;
+            font-size: 12px;
+            font-weight: normal;
+        }
+        
+        a .search-results-title{
+            color: @categoryFontColor;
+        }
+        a:hover .search-results-title,
+        a:focus .search-results-title{
+            color: darken(@categoryFontColor, 5%);
+        }
+    }
+    
     
     // Page header color coding
     body& .page-header{

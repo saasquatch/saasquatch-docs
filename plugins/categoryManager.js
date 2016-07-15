@@ -8,7 +8,7 @@ var extname = path.extname;
 
 module.exports = plugin;
 
-var categories = {
+var sectionsToCategories = {
     guide: 'developerCenter',
     jsReference: 'developerCenter',
     apiReference: 'developerCenter',
@@ -20,13 +20,13 @@ var categories = {
     successArticle: 'successCenter'
 };
 
-var allCategories = {
-  'developerCenter':true,
-  'designerCenter':true,
-  'successCenter':true,
-  "landingPage": true,
-  "error": true,
-  "search": true
+var categoriesToNames = {
+  'developerCenter': "Developer Center",
+  'designerCenter': "Designer Center",
+  'successCenter':"Success Center",
+  "landingPage": "Help Center",
+  "error": "Help Center",
+  "search": "Help Center"
 };
 
 var ignore = ['robots.txt'];
@@ -44,9 +44,10 @@ function plugin(options){
       
       var data = files[file];
       if(data['category']){
-          if(!allCategories[data['category']]){
+          if(!categoriesToNames[data['category']]){
             throw new Error("File metadata has invalid `category` property: " + data['category'] + " on file: " + file);
           }
+          data['categoryName'] = categoriesToNames[data['category']];
           return; // Category already defined
       }
 
@@ -55,13 +56,14 @@ function plugin(options){
           throw new Error("File metadata is missing `sectionType` property on file " + file );
       }else{
           var sectionType = data['sectionType'];
-          category = categories[sectionType];
+          category = sectionsToCategories[sectionType];
           if(!category){
               throw new Error("File metadata has invalid `sectionType` property: " + data['sectionType'] + " on file: " + file);
           }
       }
       // Assigned the
       data['category'] = category;
+      data['categoryName'] = categoriesToNames[category];
     });
 
   };

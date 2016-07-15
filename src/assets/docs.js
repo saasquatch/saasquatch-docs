@@ -163,18 +163,13 @@ jQuery(document).ready(function() {
      *  Uses google custom search, Handlebars, and format 
      * 
      */
-    
-    jQuery(".js-search-form").submit(function(){
-        var searchTerm = jQuery(this).find(".search-query").val();
-        window.location.href = "/search/?q=" + encodeURIComponent(searchTerm);
-        return false; // prevent default
-    });
 
     jQuery("#js-docs-search-results").each(function(){
         
         // var categoryFilter = "more:pagemap:metatags-type:jsReference";
         
         var query = getParameterByName('q');
+        var cat = getParameterByName('cat');
         var startIndex = getParameterByName('startIndex');
         
         if(!query){
@@ -184,18 +179,23 @@ jQuery(document).ready(function() {
         }
         
         jQuery(".js-search-form .search-query").val(query);
+        jQuery(".js-search-form input[name=cat]").val([cat]);
         
+        Handlebars.registerHelper('pagination', function(startIndex) {
+            return "/search/?q=" + encodeURIComponent(query) + "&cat=" + encodeURIComponent(cat) + "&startIndex=" + encodeURIComponent(startIndex);
+        });
         var template = Handlebars.compile(jQuery("#search-template").html());
-       
-        function getParameterByName(name) {
-            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-                results = regex.exec(location.search);
-            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+
+        var privateQuery;
+        if(cat && cat.length > 1){
+            // privateQuery = query + " more:pagemap:metatags-type:" + cat;
+            privateQuery = query + " more:pagemap:metatags-docsCategory:" + cat;
+        }else{
+            privateQuery = query;
         }
 
         var dataObj = {
-            q: query,
+            q: privateQuery,
             cx: window.env.GCSE_CX,
             key: window.env.GCSE_KEY,
             format: "json"
@@ -213,24 +213,17 @@ jQuery(document).ready(function() {
         
             // Work with the response
             success: function( response ) {
-                jQuery('#results').html(JSON.stringify(response, " ", "\t"));
-                var html = template(response);
-                jQuery('#pretty-results').html(html);
-                
-                rebind();
+                jQuery('#pretty-results').html(template(response));
+                window.searchResults = response;
             }
         });
-                
-        var rebind = function(){
-            jQuery(".js-search-pager").click(function(e){
-                var start = jQuery(this).data('start');
-                var q = jQuery(this).data('q');
-                
-                window.location.href = "/search/?q=" + encodeURIComponent(q) + "&startIndex=" + start;
-                return false;
-            });
-        };
 
     });
-    
 });
+
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(window.location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}

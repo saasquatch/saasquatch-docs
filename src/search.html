@@ -11,9 +11,9 @@ category: search
    
     {{#if items}}
         {{#each items}}
-            <div class="search-results-item">
+            <div class="search-results-item {{pagemap.metatags.0.docsSectionType}} {{pagemap.metatags.0.docsCategory}}">
                 <a href="{{link}}" class="clearfix">
-                    <div class="search-results-title">{{pagemap.metatags.0.title}} <i class="search-results-type fa {{pagemap.metatags.0.type}}"></i></div>
+                    <div class="search-results-title">{{pagemap.metatags.0.title}} <i class="search-results-type fa"></i></div>
                     <div class="search-results-body">{{{htmlSnippet}}}</div>
                     <div class="search-results-link">{{formattedUrl}}</div>
                 </a>
@@ -24,11 +24,11 @@ category: search
 
         <div class="docs-search-pager">
         {{#if queries.previousPage}}
-            <a href="#" class="btn js-search-pager" data-start="{{queries.previousPage.0.startIndex}}" data-q="{{queries.previousPage.0.searchTerms}}">Previous</a>
+            <a href="{{pagination queries.previousPage.0.startIndex}}" class="btn js-search-pager">Previous</a>
         {{/if}}
         
         {{#if queries.nextPage}}
-            <a href="#" class="btn js-search-pager" data-start="{{queries.nextPage.0.startIndex}}" data-q="{{queries.nextPage.0.searchTerms}}">Next</a>
+            <a href="{{pagination queries.nextPage.0.startIndex}}"  class="btn js-search-pager">Next</a>
         {{/if}}
         </div>
     {{/if}}
@@ -50,12 +50,23 @@ category: search
 <div class="well search-page">
     <div class="row-fluid text-center">
         <h3>Help Center Search</h3>
-        <form class="js-search-form form-search">
+        <form class="js-search-form form-search" action="/search/">
           <div class="input-append">
-            <input type="text" class="search-query">
+            <input type="text" class="search-query" name="q" autofocus>
             <button type="submit" class="btn">Search Help Center</button>
           </div>
+          <!--<div>-->
+          <!--  <label class="radio inline">-->
+          <!--    <input type="radio" name="cat" value="" checked=true>All</label>-->
+          <!--  <label class="radio inline successCenter">-->
+          <!--    <input type="radio" name="cat" value="successCenter">Success</label>-->
+          <!--  <label class="radio inline developerCenter">-->
+          <!--    <input type="radio" name="cat" value="developerCenter">Developer</label>-->
+          <!--  <label class="radio inline designerCenter">-->
+          <!--    <input type="radio" name="cat" value="designerCenter ">Designer</label>-->
+          <!--</div>-->
         </form>
+
         
         <a href="/" class="">Back to Help Center</a>
     </div>
