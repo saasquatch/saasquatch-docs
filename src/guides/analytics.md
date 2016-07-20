@@ -1,7 +1,7 @@
 ---
 title: Analytics
 highlights: The new Analytics feature helps you gain more insight into your referrals and participants. This document provides more info on the different terms and explains some of the main features this new Analytics feature brings to the SaaSquatch platform. 
-slug: topics/attribution
+slug: features/analytics
 sectionType: successArticle
 template: hasTableOfContents.html
 ---
