@@ -26,19 +26,19 @@ function plugin(opts) {
 
   return function(files, metalsmith, done) {
     var metadata = metalsmith.metadata();
-    console.log("createContentfulClient...");
+    // console.log("createContentfulClient...");
     var client = createContentfulClient(opts.accessKey, opts.spaceId);
-    console.log("createContentfulClient...done");
+    // console.log("createContentfulClient...done");
     client.sync({initial: true})
     .then(function(response){
       metadata['contentful'] = response.entries;
-      console.log("contentful content", response);
+      // console.log("contentful content", response);
       done();
     },function(error){
-      console.log("error", error);
-      done();
+      // console.log("error", error);
+      done(error);
     });
-   console.log("contentful Bootstrapped");
+  // console.log("contentful Bootstrapped");
   };
 }
 

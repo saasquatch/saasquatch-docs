@@ -15,7 +15,8 @@ module.exports = plugin;
 function plugin(options) {
 
     return function(files, metalsmith, done) {
-
+        var numFaq =0, numArticles =0, numIgnored =0;
+        
         var data = metalsmith.metadata()['contentful'];
 
         // JSON raw output
@@ -24,11 +25,11 @@ function plugin(options) {
         };
         files['contentful-entries.json'] = jsonfile;
 
-        console.log("Iterating entries", data);
+        // console.log("Iterating entries", data);
         var path, out;
         for(var i in data) {
             var entry = data[i];
-            console.log("Processing...", entry.sys.id);
+            // console.log("Processing...", entry.sys.id);
             if ("article" == entry.sys.contentType.sys.id) {
                 var article = {
                     title: entry.fields.title['en-US'],
@@ -42,16 +43,17 @@ function plugin(options) {
                     template: "hasTableOfContents.html"
                 };
 
-                if( entry.fields.sectionType == "Developer Guide"){
+                if( entry.fields.sectionType['en-US']  == "Developer Guide"){
                     article.sectionType = "guide";
-                }else if (entry.fields.sectionType == "Marketer Guide"){
-                    article.sectionType = "successArticle"
+                }else if (entry.fields.sectionType['en-US']  == "Marketer Guide"){
+                    article.sectionType = "successArticle";
                 }
+                // console.log("Section type", entry.fields.sectionType);
 
                 path = entry.fields.slug['en-US'];
                 out = join(path, 'index.md');
                 files[out] = article;
-                console.log("Pagified", out);
+                numArticles++;
             }else if("faqCategory" == entry.sys.contentType.sys.id){
                 var faqCategory = {
                     title: entry.fields.name['en-US'] + " FAQ",
@@ -68,13 +70,13 @@ function plugin(options) {
                 path = entry.fields.slug['en-US'];
                 out = join(path, 'index.md');
                 files[out] = faqCategory;
-                console.log("Pagified", out);
+                numFaq++;
             }else{
-                console.log("Ignored", entry.sys.id);
+                numIgnored++;
             }
         }
         
-        console.log("Done pagification");
+        console.log("Done pagifying", numArticles, "articles and", numFaq, "faq articles from", data.length, "total contentful entries.", numIgnored, "entired ignored.");
         done();
 
     };

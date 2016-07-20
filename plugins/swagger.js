@@ -2,6 +2,8 @@ var extname = require('path').extname;
 var parser = require("swagger-parser");
 var yaml = require('js-yaml');
 
+var Resolver = require('swagger-client/lib/resolver');
+
 /**
  * Expose `plugin`.
  */
@@ -55,9 +57,19 @@ function plugin(opts){
             return done(new Error("Swagger parsing error: " + err.message, err));
         }
     
-        metadata['swagger'] = api;
-    
-        done();
+        new Resolver().resolve(api, null, function (spec, unresolved) {
+          // console.log("Parsed spec", spec);
+          
+          var numUnresolved = Object.keys(unresolved).length;
+          if(numUnresolved !=0 ){
+            console.error("Found unresolved Swagger paths", unresolved);
+            return done(new Error("Found unresolved Swagger paths. See logs for details."));
+          }
+          
+          metadata['swagger'] = api;
+          done();
+        });
+
     });
 
   };

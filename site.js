@@ -17,7 +17,6 @@ var pageify = require('./plugins/pageify.js');
 var categoryManager = require('./plugins/categoryManager.js');
 
 var exampleSwaggerSchemaFilter = require('./filters/exampleSwaggerSchemaFilter.js');
-var expandSwaggerSchemaFilter = require('./filters/expandSwaggerSchemaFilter.js');
 var mardownFilter = require('./filters/markdown.js');
 var slugFilter = require('./filters/slug.js');
 var tocFilter = require('./filters/tableOfContents.js');
@@ -45,7 +44,6 @@ function site(){
   swig.setFilter('markdown', mardownFilter);
   swig.setFilter('slug', slugFilter);
   swig.setFilter('exampleSwaggerSchema', exampleSwaggerSchemaFilter);
-  swig.setFilter('expandSwaggerSchemaFilter', expandSwaggerSchemaFilter);
   swig.setFilter('tableOfContents', tocFilter);
 
   var ms = Metalsmith(__dirname)

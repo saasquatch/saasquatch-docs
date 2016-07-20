@@ -1,11 +1,11 @@
-console.log("Loading deps...");
+console.log("DEV Loading deps...");
 
 var serve = require('metalsmith-serve');
 var watch = require('metalsmith-watch');
 
 var site = require('./site.js');
 
-console.log("Running metal...");
+console.log("DEV Running metal...");
 
 var myPort = process.env.PORT || 8080;
 var myIp = process.env.IP || '0.0.0.0';
@@ -33,6 +33,4 @@ site().use(serve({
   }
 });
 
-console.log("Server running.");
-
-console.log("NOTE: Only hot-reloads files in `/src`! Any changes to files in `/templates` or `site.js` require a restart");
+console.log("DEV Server running...");
