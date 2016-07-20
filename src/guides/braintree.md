@@ -1,7 +1,7 @@
 ---
-title: Braintree Integration
+title: Braintree Install Guide
 highlights: Referral SaaSquatch's Braintree integration uses Braintree's API and Braintree's Custom Fields to automatically track subscriptions and give discounts. This guide will walk you through how to set up this integration.
-slug: braintree
+slug: developer/braintree
 sectionType: guide
 template: article.html
 ---

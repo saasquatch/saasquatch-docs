@@ -58,10 +58,10 @@ This incentive is used in the referral programs of companies like <a href="http:
  ----<br/>
  <a href="/guides/percent-discount-nojs" ><i class="fa fa-book"></i> Alternative (No JS)</a>
 </td>
-<td><a href="/stripe"><i class="fa fa-2x fa-book"></i></a></td>
-<td><a href="/recurly"><i class="fa fa-2x fa-book"></i></a></td>
-<td><a href="/braintree"><i class="fa fa-2x fa-book"></i></a></td>
-<td><a href="/zuora"><i class="fa fa-2x fa-book fa-grey"></i></a></td>
+<td><a href="/developer/stripe"><i class="fa fa-2x fa-book"></i></a></td>
+<td><a href="/developer/recurly"><i class="fa fa-2x fa-book"></i></a></td>
+<td><a href="/developer/braintree"><i class="fa fa-2x fa-book"></i></a></td>
+<td><a href="/developer/zuora"><i class="fa fa-2x fa-book fa-grey"></i></a></td>
 </tr>
 <tr>
 <td><strong>Loyalty Points</strong> <span class="muted"> - Give 50 points</span>

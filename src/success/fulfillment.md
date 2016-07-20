@@ -18,23 +18,6 @@ template: hasTableOfContents.html
 </div>
 
 
-### Guides
-
-The easiest way to start exploring the topic of fulfillment is to start with one of the getting started guides. These guides provide step-by-step instructions for how
-to implement some of the most popular types of referral program rewards.
-
- - [Give $20, get $20 guide](/guides/dollar-credit)
- - [Give 10%, get 10% guide](/guides/percent-discount)
-
-SaaSquatch also has some connectors for payment systems for companies wishing to run a "Give 10%, get 10%" style referral program. These connectors automate fulfillment by 
-automatically creating coupon codes and invoice line items for rewards earned from the referral program. These connectors also automate some parts of
-[conversion tracking](/topics/conversion/), [attribution](/topics/attribution/) and [identification](/topics/identification/).
-
- - [Give 10%, get 10% guide (Using Stripe)](/stripe)
- - [Give 10%, get 10% guide (Using Recurly)](/recurly)
- - [Give 10%, get 10% guide (Using Braintree)](/braintree)
-
-
 ### Pro & Enterprise Options
 
 Fulfillment automation can be one of the biggest challenges of running a referral program. The Pro and Enterprise plans of Referral SaaSquatch come with a lot of flexibility
@@ -49,3 +32,8 @@ to help make this process and streamlined as possible for companies with the cha
  - Coupon upload
  - Batch CSVs
  - Synchronizations jobs
+
+ 
+### Tech Guide
+
+For details on implementing fulfillment, see our [developer center guide on fulfillment](/developer/fulfillment)

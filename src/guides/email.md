@@ -4,7 +4,7 @@ highlights: |
     Referral SaaSquatch uses email for three separate things: Identifying users, sharing between users, and notifications of referrals.
 slug: topics/email
 sectionType: guide
-template: article.html
+template: hasTableOfContents.html
 ---
 
 
@@ -12,23 +12,20 @@ template: article.html
     <div class="span4">
         <div class="align-center">
             <i class="fa fa-user fa-3x fa-rounded" style="margin: 20px auto"></i>
-            <h3>Email Identification</h3>
         </div>
-        <p>Referral SaaSquatch tracks email addresses to <a href="/topics/identification">identify</a> users.</p>
+        <p><b>Email Identification:</b> Referral SaaSquatch tracks email addresses to <a href="/topics/identification">identify</a> users.</p>
     </div>
     <div class="span4">
         <div class="align-center">
             <i class="fa fa-share fa-3x fa-rounded" style="margin: 20px auto"></i>
-            <h3>Email Sharing</h3>
         </div>
-        <p>Referral SaaSquatch lets your users make referrals by letting them send their friends an email.</p>
+        <p><b>Email Sharing:</b> Referral SaaSquatch lets your users make referrals by letting them send their friends an email.</p>
     </div>
     <div class="span4">
         <div class="align-center">
             <i class="fa fa-paper-plane fa-3x fa-rounded" style="margin: 20px auto"></i>
-            <h3>Email Notifications</h3>
         </div>
-        <p>Referral SaaSquatch can automatically send email notifications to keep your users informed about their progress in the referral program.</p>
+        <p><b>Email Notifications:</b> Referral SaaSquatch can automatically send email notifications to keep your users informed about their progress in the referral program.</p>
     </div>
 </div>
 
@@ -93,18 +90,23 @@ Picking up these two webhook events gives you the flexibility to send out your o
 
 To create a webhook subscription to SaaSquatch use:
 
-<pre><code class="lang-json">Type: POST
-URL: https://app.referralsaasquatch.com/api/v1/{tenant_alias}/subscription</code></pre>
+```json
+Type: POST
+URL: https://app.referralsaasquatch.com/api/v1/{tenant_alias}/subscription
+```
 
 
 **Example curl request:**
-<pre><code class="lang-json">curl -X POST https://app.referralsaasquatch.com/api/v1/{tenant_alias}/subscription \
+
+```bash
+curl -X POST https://app.referralsaasquatch.com/api/v1/{tenant_alias}/subscription \
 -u API_KEY: \
 -H "Content-Type: application/json" \
 -d '{
     "endpointUrl": "http://app.example.com/endpoint/sqtch",
     "name": "Zapier"
-}'</code></pre>
+}'
+```
 
 Which, if successful, should return a response code: `HTTP 201`
 
@@ -147,7 +149,8 @@ Check for the `email.referral.started` and `email.referral.paid` type strings in
 
 The `email.referral.started` event will return data in the format:
 
-<pre><code class="lang-json">{
+```json
+{
     "id": "1337049u0194u2105",
     "type": "email.referral.started",
     "tenantAlias": "AAA111BBB222DDD333",
@@ -159,12 +162,14 @@ The `email.referral.started` event will return data in the format:
         "subject": "Congratulations! Susy Example signed up for a trial account.",
         "message": "&lt;p&gt;This is rendered HTML content.&lt;/p&gt;"
     }
-}</code></pre>
+}
+```
 
 
 While the `email.referral.paid` event will be in the format:
 
-<pre><code class="lang-json">{
+```json
+{
     "id": "1337049u0194u2105",
     "type": "email.referral.paid",
     "tenantAlias": "AAA111BBB222DDD333",
@@ -176,13 +181,15 @@ While the `email.referral.paid` event will be in the format:
         "subject": "Congratulations! Susy Example signed up for a paid subscription.",
         "message": "&lt;p&gt;This is rendered HTML content.&lt;/p&gt;"
     }
-}</code></pre>
+}
+```
 
 You can then make use of the [Lookup User](https://docs.referralsaasquatch.com/api/methods/#get_user) API call to grab the email address of the referrer based on the `recipientUserId` parameter in the webhook event.
 
 This information provides everything needed to send out your own emails to the referrer informing them about the trial or paid status of their referrals.
 
 #### SPF Record Setup
+
 The SPF (Sender Policy File) allows you to define a hostname or IP address from which email for a given domain can originate.
 
 Setting up the SPF Record will allow you to utilize our email servers for sending out notifications, but make it look like the emails were sent from your domain.
@@ -193,6 +200,7 @@ To allow your notification emails to be sent by Referral SaaSquatch you will nee
 It is discouraged to create more than one SPF Record for a given domain as they can cause authorization problems. This can become a problem when trying to send out emails from your own domain as well as allowing Referral SaaSquatch to send out notifications for referral events from the same domain. This limitation should be taken into consideration before deciding to make use of our SPF email support.
 
 #### Silverpop
+
 Silverpop is an email marketing automation platform. 
 Referral SaaSquatch supports integration with Silverpop for sending notification emails. To enable our Silverpop integration head over to the Integrations page under the Setup sidebar heading in your SaaSquatch portal. 
 

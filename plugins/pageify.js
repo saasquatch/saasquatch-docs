@@ -39,9 +39,14 @@ function plugin(options) {
                     fields: entry.fields,
                     id: entry.sys.id,
                     
-                    template: "hasTableOfContents.html",
-                    sectionType: "successArticle"
+                    template: "hasTableOfContents.html"
                 };
+
+                if( entry.fields.sectionType == "Developer Guide"){
+                    article.sectionType = "guide";
+                }else if (entry.fields.sectionType == "Marketer Guide"){
+                    article.sectionType = "successArticle"
+                }
 
                 path = entry.fields.slug['en-US'];
                 out = join(path, 'index.md');

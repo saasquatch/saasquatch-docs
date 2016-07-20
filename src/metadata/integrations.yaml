@@ -5,7 +5,7 @@ Stripe:
         The Referral SaaSquatch integration with Stripe powers automatic referral tracking, fulfillment and conversion through Stripe Connect, coupons and invoice line items.
 
 Branch:
-    slug: /mobile/branch-metrics/
+    slug: /branch-metrics
     logo: branch-integration.png
     summary: |
         Referral SaaSquatch integrates with Branch Metrics to provide additional attribution, personalization and analytics by using Branch's deep links.

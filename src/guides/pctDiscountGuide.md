@@ -6,7 +6,7 @@ sectionType: guide
 template: article.html
 ---
 <div class="well pull-right span3">
-    Alternatively to the API, you can create this type of program using the <a href="/stripe">Stripe</a>, <a href="/recurly">Recurly</a>, <a href="/braintree">Braintree</a> or <a href="/zuora">Zuora</a> connectors.
+    Alternatively to the API, you can create this type of program using the <a href="/developer/stripe">Stripe</a>, <a href="/developer/recurly">Recurly</a>, <a href="/developer/braintree">Braintree</a> or <a href="/developer/zuora">Zuora</a> connectors.
 </div>
 
 <div class="install-guide-checklist">
