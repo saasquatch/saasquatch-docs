@@ -7,3 +7,6 @@ c9-installed-software
 node_modules
 build
 .divshot-cache
+
+# Ignores log files
+npm-debug.log
