@@ -7,7 +7,9 @@ console.log("Building metal...");
 /**
  * Does a production build of Metalsmith. Output static files into the `build` folder.
  */
-site().build(function(err) {
+site()
+.clean(false) // Prevent deleting `assets` folder
+.build(function(err) {
   if (err){
     console.error("Build error", err);
     throw err;

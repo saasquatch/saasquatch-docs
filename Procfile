@@ -1,1 +1,1 @@
-web: node preview.js
+web: npm run server

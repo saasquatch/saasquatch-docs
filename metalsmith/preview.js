@@ -30,7 +30,9 @@ var metalsmithCompile = function (req, res, next) {
     if(Date.now() > (lastBuild + THIRTY_SECONDS)){
         console.log('Rebuilding the docs from scratch....');
         // More than 30 seconds since last build.        
-        site().build(function(err) {
+        site()
+        .clean(false) // Prevent deleting `assets` folder
+        .build(function(err) {
           if (err){
             console.error("Build error", err);
             throw err;
