@@ -65,6 +65,10 @@ function plugin(opts){
             console.error("Found unresolved Swagger paths", unresolved);
             return done(new Error("Found unresolved Swagger paths. See logs for details."));
           }
+          Object.keys(spec.paths).forEach(function(k,v){
+            // LV: Cleans up the `parameters` cruft field added by Swagger JS. Messes up templates. And doesn't seem spec compliant?
+            delete spec.paths[k]["parameters"];
+          });
           
           metadata['swagger'] = api;
           done();
