@@ -1,0 +1,43 @@
+{
+  "root": {
+    "src": "./assets",
+    "dest": "./build/assets"
+  },
+
+  "tasks": {
+    "browserSync": {
+      "server": {
+        "baseDir": "public",
+        "port": 8082
+      }
+    },
+
+    "static": {
+      "src": "lib",
+      "dest": "lib"
+    },
+
+    "js": {
+      "src": "js",
+      "dest": "js"
+    },
+    "css": {
+      "src": "stylesheets",
+      "dest": "stylesheets",
+      "autoprefixer": {
+        "browsers": ["last 3 version"]
+      },
+      "extensions": ["less", "css"]
+    },
+
+    "images": {
+      "src": "images",
+      "dest": "images",
+      "extensions": ["jpg", "png", "svg", "gif"]
+    },
+
+    "production" : {
+      "rev": false
+    }
+  }
+}

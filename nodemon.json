@@ -1,0 +1,5 @@
+{
+ "ignore": ["build/*", "node_modules/*"],
+ "ext": "js, hbs, scss, md, html, yml, less",
+ "no_delay": "200ms"
+}

@@ -1,0 +1,68 @@
+.docs {
+    /* .docs is applied to the BODY in documentation to differentiate styles in documentation from that in the website */
+    // padding-top: 180px;
+}
+
+
+/* OVERRIDES default h2 styling from the website */
+
+.docs h2 {
+    font-size: 36px;
+    font-weight: 600;
+}
+
+// Headings that follow paragraphs have margin at the top
+p+ h3,
+p+ h4,
+p+ h5 {
+    margin-top: 1.5em;
+}
+
+a .link {
+    background-color: #fff;
+}
+
+/** HIDES the border around code blocks for both PRE and CODE tags, which removes some jarringness */
+
+.docs pre,
+.docs code {
+    border: none;
+}
+
+.docs code {
+    color: darken(#dd1144, 20%);
+}
+
+// Monospace spans are used for URLs and other pseudo-code like blocks
+.docs-monospace {
+    font-family: Monaco, Consolas, "Lucida Console", monospace;
+    font-size: 12px;
+}
+
+
+// Padding between <section>s
+.docs .container{
+    section { padding-top: 60px; }
+    section:first-child { padding-top: 0; }
+}
+
+
+
+/**
+*    Framing
+*/
+#my-page {
+    margin-left: 20%;
+}
+
+#my-content{
+    max-width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#my-menu {
+    width: 20%;
+    position: fixed;
+}
+

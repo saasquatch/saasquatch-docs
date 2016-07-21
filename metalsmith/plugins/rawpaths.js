@@ -1,4 +1,4 @@
-// var moment = require('moment');
+var debug = require('debug')('rawpaths-plugin');
 var path = require('path');
 // var slug = require('slug-component');
 // var substitute = require('substitute');
@@ -36,11 +36,12 @@ function plugin(options){
       if (!data['slug']) return;
       
       var path = find(data, options) || resolve(file);
-
+      
       // add to path data for use in links in templates
       data.path = '.' == path ? '' : path;
 
       var out = join(path, 'index.html');
+      debug("Remmapped file: %s -> %s ",file, out);
       delete files[file];
       files[out] = data;
     });

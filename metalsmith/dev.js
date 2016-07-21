@@ -1,7 +1,9 @@
-console.log("DEV Loading deps...");
+// To turn on debug logging
+// process.env.DEBUG='*,-metalsmith-collections,-metalsmith-templates';
 
-var serve = require('metalsmith-serve');
-var watch = require('metalsmith-watch');
+var debug = require('debug')('saasquatch-docs');
+
+debug('Loading modules');
 
 var site = require('./site.js');
 
@@ -15,11 +17,14 @@ var myIp = process.env.IP || '0.0.0.0';
 * 
 * `metalsmith-watch` will autoload any changed files
 */
-site().use(serve({
-  port: myPort,
-  host: myIp,
-  verbose: true
-}))
+debug('Firing off build');
+site()
+.clean(false)
+// .use(serve({
+//   port: myPort,
+//   host: myIp,
+//   verbose: true
+// }))
 // .use(watch({
 //   paths: {
 //         "**/*": true,
@@ -27,10 +32,10 @@ site().use(serve({
 //       },
 //   livereload: false
 // }))
-.build(function(err) {
+.build(function(err, files) {
   if (err){
     console.error("Build error", err);
   }
-});
 
-console.log("DEV Server running...");
+  console.log("Metalsmith build done!", Object.keys(files).length, "files processed");
+});

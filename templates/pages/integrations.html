@@ -6,9 +6,12 @@
   {{ contents | safe }}
   
 
-  <div class="docs-integrations-list row-fluid">
+  <div class="docs-integrations-list">
+    <div class="row-fluid">
   {% for intg in integrations %}
-  
+      {% if (loop.index0 != 0 && loop.index0 % 3 == 0) %}
+      </div><div class="row-fluid">
+      {% endif %}
       <div class="docs-integration span4">
         <a href="{{ intg.slug }}" class="docs-integration-logo">
           <img src="/assets/images/integrations/{{ intg.logo }}" />
@@ -20,6 +23,7 @@
       </div>
 
   {% endfor %}
+    </div>
   </div>
   
 {% endblock articleContent %}

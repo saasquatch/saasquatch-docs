@@ -1,0 +1,243 @@
+
+
+.navbar .nav> li> .dropdown-menu:after {
+    border-bottom: 7px solid;
+}
+
+.nav-pills> li> a:hover,
+.nav-pills> li.active> a,
+.nav-pills> li.active> a:hover {
+    border: 1px solid;
+}
+
+.hero-unit {
+    background: #EEE;
+    h1,
+    p {
+        text-align: center;
+    }
+}
+
+.docs-sections {
+    margin-top: 60px;
+    text-align: center;
+    a {
+        display: block;
+        &:hover,
+        &:active,
+        &:focus {
+            text-decoration: none;
+        }
+        &:hover .fa {
+            background: #005580;
+        }
+    }
+    a .fa~ div {
+        font-size: 18px;
+        line-height: 36px;
+    }
+}
+
+.fa-rounded,
+.docs-sections a .fa {
+    background: @portalBlue;
+    border-radius: 50%;
+    color: #FFF;
+    display: block;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    margin: 0 auto;
+    // Custom center-of-weight balancing
+    &.fa-desktop {
+        line-height: 110px;
+    }
+    &.fa-html5 {
+        line-height: 105px;
+    }
+}
+
+
+/**
+    Disables the "Affix" bootstrap plugin for mobile
+    
+    Taken from: http://stackoverflow.com/questions/17394854/how-can-i-disable-bootstraps-affix-on-smaller-screens
+*/
+@media (max-width: 768px) {
+    .affix {
+        position: static;
+    }
+}
+
+// Color-coding for reward types
+.label.program-type-label {
+    background-color: @colorForRewardTypes;
+}
+
+// Makes the argument names right-aligned for easier skimability (stolen from Stripe's API reference)
+.apidocs-args th {
+    text-align: right;
+}
+
+// Makes the API reference easier  to scroll
+.apidocs-section {
+    padding-bottom: 200px;
+    border-bottom: 1px solid #CCC;
+    margin-bottom: 200px;
+}
+
+.js-docs-collapse-toggle {
+    font-family: Monaco, Consolas, "Lucida Console", monospace;
+    font-size: 12px;
+    &:before {
+        content: "[+] Expand Details";
+    }
+    &.active:before {
+        content: "[-] Collapse Details";
+    }
+}
+
+.js-docs-collapse {
+    display: none;
+}
+
+.toc-title{
+    font-weight: bold;
+    color: #999;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #CCC;
+}
+
+.docs-theme-types {
+    a:hover {
+        cursor: pointer;
+        .well {
+            background: #FAFAFA;
+        }
+    }
+}
+
+.themes-icon .fa {
+    background: #CCC; //@portalBlue;
+    text-align: center;
+    border-radius: 5px;
+    color: #FFF;
+    display: block;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    margin: 0 auto;
+}
+
+.docs-lightbox {
+    position: relative;
+    div {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.5);
+        text-align: center;
+        padding: 10px 0;
+        color: #FFF;
+        height: 30px;
+    }
+    &:hover div {
+        background: rgba(0, 0, 0, 0.7);
+    }
+    img {
+        height: 200px;
+    }
+}
+
+.docs-guide-summary {
+    .fa-check-circle {
+        color: green;
+    }
+    .fa-grey,
+    .fa-circle {
+        color: #CCC;
+    }
+    .fa-info-circle {
+        color: #AAA;
+    }
+    .docs-guide-program {}
+    .docs-guide-api {
+        background: #FAFAFA;
+    }
+    .docs-guide-payments {
+        text-align: center;
+    }
+    tbody td {
+        vertical-align: middle;
+    }
+}
+
+.badge-inherit {
+    font-size: inherit;
+    line-height: inherit;
+}
+
+.fa-grey {
+    color: #CCC;
+}
+
+.hero-unit.article {
+    text-align: left;
+    h1,
+    p,
+    div {
+        text-align: left;
+    }
+    color: #FFF;
+    text-shadow: rgba(0, 0, 0, 0.3) 0 0 5px;
+    background: #08c url('/assets/images/marketing-website/img/headerbackground.jpg');
+}
+
+
+// FAQ highlighting technique stolen from: http://stackoverflow.com/questions/11142125/css-highlight-a-div-when-the-id-is-linked-to-using-an-anchor
+.docs-faq-question {
+    background-color: #fff;
+}
+
+.docs-faq-question:target {
+    background-color: #ffa;
+    -webkit-transition: all 1s linear;
+}
+
+
+.docs-navsection {
+    background: #aaa;
+    height: 100px;
+    a {
+        &:hover {
+            background: darken(#a4daa9, 25%);
+            color: #333;
+        }
+        display: block;
+        font-size: 16px;
+        line-height: 100px;
+        text-align: center;
+        color: #FFF;
+        font-weight: bold;
+    }
+    // &.active > a {
+    //     background: #FFF;
+    //     color: #333;
+    //     border-width: 1px 1px 0 1px
+    //     border-color: #333
+    // }
+}
+
+
+
+.docs-footer-menu {
+    text-align: left;
+    ul li:first-child {
+        font-weight: bold;
+        padding-bottom: 3px;
+        border-bottom: 1px solid #999;
+        margin-bottom: 9px;
+    }
+}

@@ -1,0 +1,76 @@
+
+.successCenter{
+    .colorCoded(#fba772, 'Success Center Article');
+}
+.developerCenter{
+    .colorCoded(#6eb5e2, 'Developer Center Article');
+}
+.designerCenter{
+    .colorCoded(#df7b70, 'Designer Center Article');
+}
+
+.colorCoded(@categoryColor, @categoryName){
+    @categoryFontColor: darken(@categoryColor, 10%);
+    
+    // Sidenav color coding
+    .mm-listview > &,
+    &.mm-listview,
+    div &.mm-panel {
+        background:@categoryColor;
+        color: #FFF;
+        text-shadow: rgba(0,0,0,0.1) 1px 1px;
+    }
+    
+    // Hero / landing page color coding
+    &.docs-navsection{
+        background: @categoryColor;
+        color: #FFF
+    }
+    
+    &.hero-unit {
+        background: @categoryColor;
+        background: url('/assets/images/marketing-website/footerbackgroundrs2.jpg');
+        color: #FFF;
+        a {
+            color: #FFF;
+        }
+    }
+    
+    &.docs-sections a .fa {
+        background: lighten(@categoryColor, 5%);
+    }
+
+    // Search results color coding.
+    &.search-results-item{
+        a .search-results-title{
+            color: @categoryFontColor;
+        }
+        a:hover .search-results-title,
+        a:focus .search-results-title{
+            color: darken(@categoryFontColor, 5%);
+        }
+
+        // Labels search items
+        .search-results-title::after {
+            content: "- @{categoryName}";
+            color: @categoryFontColor;
+            font-size: 12px;
+            font-weight: normal;
+        }
+    }
+
+    // Page header color coding
+    body& .page-header{
+        border-bottom: 3px solid @categoryColor;
+        position: relative;
+        
+        // Shows the article title for Page Headers
+        &::after{
+            content: @categoryName;
+            color: @categoryColor;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+        }
+    }
+}
