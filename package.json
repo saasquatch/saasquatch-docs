@@ -7,9 +7,10 @@
     "type": "git",
     "url": "http://github.com/saasquatch/saasquatch-docs.git"
   },
+  "engine": "node 4.4.3",
   "scripts": {
     "start": "gulp & node ./metalsmith/dev.js & wait",
-    "production": "gulp production && node ./metalsmith/build.js",
+    "production": "gulp production & node ./metalsmith/build.js",
     "dev": "npm run browser_sync & NODE_ENV=development nodemon --exec 'npm start && browser-sync reload --port $PORT --host $IP'",
     "server": "gulp && node ./metalsmith/preview.js",
     "browser_sync": "browser-sync start --server build --port $PORT --host $IP"
