@@ -25,10 +25,8 @@ jQuery.ready(function(){
 </div>
 </div>
 
-<section id="init">
-  <div class="page-header">
-    <h1>init <small>squatch.js function reference</small></h1>
-  </div>
+<section id="init" class="apidocs-section">
+  <h2>init <small>squatch.js function reference</small></h2>
 
   <p>
   The <code>init</code> function is the core of Squatch.js.
@@ -161,9 +159,14 @@ jQuery.ready(function(){
             <td>Defaults to <a href="http://gravatar.com/">Gravatar</a> or, if unavailable, the user's initials. If you provide a absolute profile image URL the minimum image size is 80px x 80px. Requires <a href="/squatchjs/signed-requests">Signed Requests</a>.</td>
           </tr>
           <tr>
+            <th>jwt</th>
+            <td><span class="label">Optional</span></td>
+            <td>A JSON Web Token (JWT) that is used to validate that data originated from your servers. For details, see the <a href="/squatchjs/signed-requests">Signed Requests documentation</a>. A signed request can use EITHER <code>jwt</code> or <code>checksum</code> but not both.</td>
+          </tr>
+          <tr>
             <th>checksum</th>
             <td><span class="label">Optional</span></td>
-            <td>A HMAC-SHA2 checksum of the other parameter values. Used to validate that data originated from your servers. For details, see the <a href="/squatchjs/signed-requests">Signed Requests documentation</a>.</td>
+            <td>A HMAC-SHA2 checksum that is used to validate that data originated from your servers. For details, see the <a href="/squatchjs/signed-requests">Signed Requests documentation</a>. A signed request can use EITHER <code>jwt</code> or <code>checksum</code> but not both.</td>
           </tr>
           <tr>
             <th>fb_share_image †</th>
@@ -232,10 +235,9 @@ _sqh.push(['init', {
 &lt;/script&gt;</code></pre>
 </section>
 
-<section id="autofill">
-    <div class="page-header">
-        <h1>autofill <small>squatch.js function reference</small></h1>
-    </div>
+<section id="autofill" class="apidocs-section">
+
+    <h2>autofill <small>squatch.js function reference</small></h2>
 
     <p>Use autofill on your payment page to connect a referral's coupon code to your payment form. Coupon code input elements can be hidden elements.</p>
     <pre><code class="lang-js">_sqh.push(['autofill', jQuerySelector]);
@@ -288,10 +290,8 @@ _sqh.push(['autofill', '#my_coupon']);
 &lt;input type="text" name="Coupon" id="my_coupon" value="" /&gt; &lt;!-- This input box will get autofilled --&gt; </code></pre>
 </section>
 
-<section id="open">
-    <div class="page-header">
-        <h1>open <small>squatch.js function reference</small></h1>
-    </div>
+<section id="open" class="apidocs-section">
+    <h1>open <small>squatch.js function reference</small></h1>
 
     <p>You can programatically open the referral program widget on any page of your application where Referral SaaSquatch javascript has been <a href="#init">initialized</a>.</p>
     <h4>Example</h4>
@@ -307,10 +307,8 @@ _sqh.push(['autofill', '#my_coupon']);
 
 </section>
 
-<section id="close">
-    <div class="page-header">
-        <h1>close <small>squatch.js function reference</small></h1>
-    </div>
+<section id="close" class="apidocs-section">
+    <h2>close <small>squatch.js function reference</small></h2>
 
     <p>You can programatically open the referral program widget on any page of your application where Referral SaaSquatch javascript has been <a href="#init">initialized</a>.</p>
     <h4>Example</h4>
@@ -319,10 +317,8 @@ _sqh.push(['autofill', '#my_coupon']);
 &lt;/script&gt;</code></pre>
 </section>
 
-<section id="subscribe">
-    <div class="page-header">
-        <h1>subscribe <small>squatch.js function reference</small></h1>
-    </div>
+<section id="subscribe" class="apidocs-section">
+    <h2>subscribe <small>squatch.js function reference</small></h2>
     <p>Subscribes the provided callback to the given event; any time an event of the provided name (eventName) is <a href="/themes/widgetjs">published via the widget</a>, this subscribe call will be triggered. </p>
 
     <pre><code class="lang-js">_sqh.push(['subscribe', String eventName, function([payload]) {
@@ -353,4 +349,148 @@ _sqh.push(['autofill', '#my_coupon']);
 
 </section>
 
+<section id="getReward" class="apidocs-section">
+    <h2>getReward <small>REMOVED</small></h2>
+
+    <div class="bs-callout bs-callout-danger">
+      <h4>Removed</h4>
+      Only worked with older accounts and the PCT_DISCOUNT reward. Prefer to use the more flexible <a href="#subscribe">subscribe</a> method.
+    </div>
+
+    <div class="js-docs-collapse" style="display:none;">
+
+    <p>Looks up the referral reward for the currently logged in user. (this is the user identified in ‘init’)</p>
+    <pre><code class="lang-js">_sqh.push(['getReward', function(reward){ ... }]);</code></pre>
+
+    <h4>Parameters</h4>
+    <div>
+        <table class="table table-hover">
+          <tr>
+            <th>fn</th>
+            <td>
+                <p>A callback function with a single argument <code>reward</code> with the following fields</p>
+
+                <table class="table table-hover">
+                  <tr>
+                    <th>details</th>
+                    <td>
+                        <p>An object of reward details</p>
+                        <table class="table table-hover">
+                          <tr>
+                            <th>discountPercentage</th>
+                            <td>
+                                <p>The total discount percentage both from referring and being referred</p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>referrerDiscountPercent</th>
+                            <td>
+                                <p>Earned from referring friends</p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>referredDiscountPercent</th>
+                            <td>
+                                <p>Earned by being referred by friends</p>
+                            </td>
+                          </tr>
+                        </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>type</th>
+                    <td>
+                        <p>The reward type</p>
+                    </td>
+                  </tr>
+                </table>
+          </td>
+          </tr>
+      </table>
+    </div>
+
+    <hr />
+
+    <h4>Example</h4>
+    <pre><code class="lang-html">&lt;script type="text/javascript"&gt;
+var _sqh = _sqh || [];
+
+// Push user details for a user who is logged in to your system
+_sqh.push(['init', {
+   tenant_alias: 'test_bpinhag9yagag',
+   account_id: 'abc',
+   payment_provider_id: 'cus_1234',
+   user_id: '5678',
+   email: 'bob@example.com',
+   first_name: 'Bob',
+   last_name: 'Testerson'
+}]);
+
+_sqh.push(['getReward', function(reward){
+    // Gets the current user's (e.g. Bob Testerson) reward
+    // e.g. show this on the My Account page to show the current user's info
+}]);
+
+// Include squatch.js
+(function(){function l(){var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src=location.protocol+"//d2rcp9ak152ke1.cloudfront.net/assets/javascripts/squatch.min.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(s,t)}if(window.attachEvent){window.attachEvent("onload",l)}else{window.addEventListener("load",l,false)}})();
+&lt;/script&gt;</code></pre>
+    </div>
+</section>
+
+
+<section id="getRewardBalance" class="apidocs-section">
+    <h2>getRewardBalance <small>REMOVED</small></h2>
+
+    <div class="bs-callout bs-callout-danger">
+      <h4>Removed</h4>
+      Only worked with older accounts. Prefer to use the more flexible <a href="#subscribe">subscribe</a> method.
+    </div>
+    
+    <div class="js-docs-collapse" style="display:none;">
+
+    <p>Looks up the Reward Balance reward for the currently logged in user. (this is the user identified in ‘init’)</p>
+    <pre><code class="lang-js">_sqh.push(['getRewardBalance', function(rewardBalance){ ... }]);</code></pre>
+
+    <h4>Parameters</h4>
+    <div>
+        <table class="table table-hover">
+          <tr>
+            <th>fn</th>
+            <td>
+                <p>A callback function with a single argument <code>rewardBalance</code>. Returns the same <a href="/api/methods/#list_balances">Reward Balance object
+                as the REST API</a></p>
+          </td>
+          </tr>
+      </table>
+    </div>
+
+    <hr />
+
+    <h4>Example</h4>
+    <pre><code class="lang-html">&lt;script type="text/javascript"&gt;
+var _sqh = _sqh || [];
+
+// Push user details for a user who is logged in to your system
+_sqh.push(['init', {
+   tenant_alias: 'test_bpinhag9yagag',
+   account_id: 'abc',
+   payment_provider_id: 'cus_1234',
+   user_id: '5678',
+   email: 'bob@example.com',
+   first_name: 'Bob',
+   last_name: 'Testerson'
+}]);
+
+_sqh.push(['getRewardBalance', function(rewardBalance){
+    // Gets the current user's (e.g. Bob Testerson) reward balance
+    // e.g. show this on the My Account page to show the current user's info
+    console.log(rewardBalance.0.totalAssignedCredit);
+}]);
+
+// Include squatch.js
+(function(){function l(){var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src=location.protocol+"//d2rcp9ak152ke1.cloudfront.net/assets/javascripts/squatch.min.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(s,t)}if(window.attachEvent){window.attachEvent("onload",l)}else{window.addEventListener("load",l,false)}})();
+&lt;/script&gt;</code></pre>
+
+    </div>
+</section>
 
