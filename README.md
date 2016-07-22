@@ -17,7 +17,7 @@ To contribute:
 
  1. Clone this repo
  2. Add or edit an article in the `src` folder
- 3. Run `npm install` followed by `npm run dev` to run locally and verify your changes
+ 3. Run `npm install` followed by `npm run local` to run locally and verify your changes
  4. Submit a pull request to the `staging` branch.
 
 We'll roll in changes once the [Travis CI build](https://travis-ci.org/saasquatch/saasquatch-docs) passes and someone finishes code review.

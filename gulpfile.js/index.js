@@ -23,5 +23,8 @@ require('./tasks/static.js');
 require('./tasks/images.js');
 require('./tasks/sizereport.js');
 
+require('./tasks/metalsmithDev.js');
+require('./tasks/metalsmithProd.js');
+
 require('./tasks/default.js');
 require('./tasks/production.js');

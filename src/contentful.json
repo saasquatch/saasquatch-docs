@@ -1,0 +1,1792 @@
+[
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "1mbdhjQDq4Uc0eKoY2ioSi",
+            "type": "Entry",
+            "createdAt": "2016-04-04T22:19:20.743Z",
+            "updatedAt": "2016-04-04T22:19:20.743Z",
+            "revision": 1,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "faq"
+                }
+            }
+        },
+        "fields": {
+            "question": {
+                "en-US": "How does Referral SaaSquatch know that a referral has been made?"
+            },
+            "answer": {
+                "en-US": "Referral SaaSquatch uses integration with your subscription management system, link tracking, cookie tracking and JavaScript widgets to track from first interaction right to payment. Since we get notified when actual dollars are transfered, you'll only end up giving discounts for real quantifiable new revenue."
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "1MtlsZDlsswu8iEEyiIiMS",
+            "type": "Entry",
+            "createdAt": "2016-07-20T04:36:49.751Z",
+            "updatedAt": "2016-07-20T04:36:49.751Z",
+            "revision": 1,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "article"
+                }
+            }
+        },
+        "fields": {
+            "sectionType": {
+                "en-US": "Marketer Guide"
+            },
+            "title": {
+                "en-US": "Identification"
+            },
+            "slug": {
+                "en-US": "topics/identification"
+            },
+            "highlights": {
+                "en-US": "Identification is the topic of loading contact records into SaaSquatch from other systems. To implement a referral program you need to develop a strategy for how and when a user will be identified to SaaSquatch. Typically this happens whenever a user logs in to your website or service, or makes a purchase. When you \"Identify\" a user, you enroll them to be able to refer their friends and to track if they have been referred. For details on how referrals are tracked see [Attribution](/topics/attribution/) and [Conversion](/topics/conversion/)."
+            },
+            "content": {
+                "en-US": "\n<div class=\"bs-callout bs-callout-default\">\n  <h4>Definition</h4>\n  Identification is the process sending information about your users, like email and user id, to Referral SaaSquatch.\n</div>\n\n\n### Identifications Strategies\n\nSaaSquatch needs identifying information about your user so that we can build out their profile. This usually involves a company providing information about the active user to Referral SaaSquatch using our REST API or Squatch.js, our javascript library. Here are a few examples of common ways that people identify users.\n\n - **eCommerce:** After someone completes a purchase, they visit a \"Thank You\" page. On this page, an ecommerce company loads Squatch.js to track the email address, user id and name of the person that just made a purchase. This identifying information is used to build a contact record in SaaSquatch so that this person that just purchased can make referrals, or if they were referred, so they can be [attributed as a referral](/topics/attribution) and [marked as converted](/topics/conversion).\n - **SaaS:** Identification usually happens by including Squatch.js on every page of your web application. After launching your referral program, then the first time someone signs into your product, they'll have their email address, user id and name synched with SaaSquatch. If someone has been referred, then this identifying information will be used to [attribute](/topics/attribution) any referrals that happened.\n - **Mobile:** Identification usually happens when someone signs up for a user account. When someone is created in the server database, it is also created as a record in the SaaSquatch database using the SaaSquatch REST API.\n\n\n### Accounts vs Users\n\nReferral SaaSquatch supports referral tracking for both B2B and B2C workflows by seperating an \"Account\" and a \"User\".\nUsers are for people. Accounts are for companies or groups. Users have individual contact records for a person with names, email addresses, profile pictures and share links. Accounts have \none or more users in them and have rewards and reward balances. For more information, read the article on [Shared vs Solo Accounts](/shared-vs-solo-accounts/).\n\n<table class=\"table\">\n<tbody><tr>\n<th>\n    <strong>Shared</strong> Account\n</th>\n<td>\n    <i class=\"fa fa-users\"></i> Multiple users share the same billing information. [Read More](/shared-vs-solo-accounts/)\n</td>\n</tr>\n<tr>\n<th>\n    <strong>Solo</strong> Account\n</th>\n<td>\n    <i class=\"fa fa-user\"></i> Every user has their own billing information. [Read More](/shared-vs-solo-accounts/)\n</td>\n</tr>\n</tbody></table>"
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "1N3jv8v50sMw4mi4YUyQmE",
+            "type": "Entry",
+            "createdAt": "2016-04-04T22:22:55.478Z",
+            "updatedAt": "2016-04-04T22:22:55.478Z",
+            "revision": 1,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "faq"
+                }
+            }
+        },
+        "fields": {
+            "question": {
+                "en-US": "How do I get started?"
+            },
+            "answer": {
+                "en-US": "- First you take a look at our pricing page and find the plan that best suits you.\n- Then you enter and confirm your email through our sign-up page.\n- Finally you login to the platform, pick your reward type and start customizing the widget."
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "1W7mNxcBVe0wIECMu6OAqa",
+            "type": "Entry",
+            "createdAt": "2016-04-04T22:21:44.283Z",
+            "updatedAt": "2016-04-04T22:21:44.283Z",
+            "revision": 1,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "faq"
+                }
+            }
+        },
+        "fields": {
+            "question": {
+                "en-US": "What browsers does Referral SaaSquatch support?"
+            },
+            "answer": {
+                "en-US": "Our [squatch.js](/squatchjs/) will run in any browser that supports Javascript. To make sure that our referral widget gives a great user experience, we support our themes on Internet Explorer 8 - 11, and modern versions of Chrome, Firefox and Safari."
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "28qUue6VoEkKywgimgKU26",
+            "type": "Entry",
+            "createdAt": "2016-04-04T22:15:29.325Z",
+            "updatedAt": "2016-04-04T22:15:34.891Z",
+            "revision": 2,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "faq"
+                }
+            }
+        },
+        "fields": {
+            "question": {
+                "en-US": "How should I promote my referral program?"
+            },
+            "answer": {
+                "en-US": "If nobody knows about your referral program, then it won't be a success. When you launch your referral program, you should design a strategy to promote the program to your customers: make it __easy to discover__ by placing it in highly visible places, make it __easy to find__ when people are seeking it out, and __target happy moments__ in your customer journey.\n\nA good place to start is our [Promoting Your Referral Program Webinar](https://attendee.gotowebinar.com/recording/4633109273020290561)"
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "2dTq45oCwcCo40YYqSaKcA",
+            "type": "Entry",
+            "createdAt": "2016-03-31T00:18:19.598Z",
+            "updatedAt": "2016-07-13T20:28:59.414Z",
+            "revision": 7,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "article"
+                }
+            }
+        },
+        "fields": {
+            "sectionType": {
+                "en-US": "Marketer Guide"
+            },
+            "title": {
+                "en-US": "Referral Program 101"
+            },
+            "slug": {
+                "en-US": "intro"
+            },
+            "highlights": {
+                "en-US": "Welcome to Referral SaaSquatch! In this article we'll give you a quick overview of how SaaSquatch works and how to use it to run your referral program. If you're a marketer or non-technical person, this is the best place to learn about Referral SaaSquatch."
+            },
+            "content": {
+                "en-US": "\n### Core Topics\n\nThere a few terms that we use to explain the different parts of referral tracking. These terms are:\n\n- Identification\n- Engagement\n- Attribution\n- Conversion\n- Fulfillment\n\n![Core Topics Diagram](//images.contentful.com/s68ib1kj8k5n/wWsIeWH46OuuI0eCYeW04/6e0faacb2230e63962d4ec4a2f23d6e1/coretopics.png?fit=thumb&w=820)\n\n#### Identification\nIdentification is the topic of loading contact records into SaaSquatch from other systems. To implement a referral program you need to develop a strategy for how and when a user will be identified to SaaSquatch. Typically this happens whenever a user logs in to your website or service, or makes a purchase. Identifying a user enrolls them to be able to refer their friends and tracks if they have been referred.\n\n#### Attribution\nAttribution is the process of building a referral link between two people; the person that was referred and the person doing the referring. When you run a referral program you often want to separate the linking of referrals from the process of giving people rewards. For example you want to *attribute* a referral as soon as some one signs in to your website, but you only want to give a referral reward when the referred person converts and pays their first bill.\n\n#### Conversion\nConversion is the process of converting in-progress referrals and unlocking rewards. It is the final of three steps in referral tracking, the first two being identifying a user and attributing the referral back to the person who referred them. Conversion can happen immediately when someone signs up or checks out, or can be set up to only happen after some future conversion event. In most cases the conversion event would be the purchase of a product or subscription, which can often happen hours or days after a user was first identified or a referral first attributed.\n\n#### Fulfillment\nFulfillment is the process of making sure people can use the rewards they earn. People can earn rewards from referring their friends, and in some cases can get a reward just from being referred. Rewards can be discounts, credit, gift cards, points and many other things. To make sure these rewards are more than just a record in the Referral SaaSquatch database, there needs to be some way to fulfill them. Sometimes this just means rewards have a coupon code that can be used in other systems, sometimes SaaSquatch keeps track of a balance that is deducted by another system, and other times it means there's an automated synchronization process to apply discounts in payment systems. Referral SaaSquatch supports manual, automated and semi-automated fulfillment options and even has turnkey connectors that handle fulfillment automatically for you.\n\n\n### Share Options\n\n#### Referral Links\n\nOne of the most popular ways of letting people share with their friends is using share links like `http://ssqt.co/hR6O`. Share links are unique links generated for each user that can be used for making referrals. Share links rely on Tracking Cookies to track when someone has been referred. When a referred friend clicks on a share link, they will be redirected to the SaaSquatch domain, have a tracking cookie placed, and then be redirected to a website or landing page to get started as new customers. Share links are often used along with Squatch.js to track when someone has made a successful referral.\n\n__Benefits of Share Links:__\n\n- Work across email, facebook, twitter and other social channels\n- Easy to set up\n- Can have domain white-labeled\n\n__Disadvantages of Share Links:__\n\n- Relies on Cookies\n- Can be blocked by some browsers or cleared regularly\n- Does not work well with native mobile apps\n- Does not support real world face-to-face referrals\n\n#### Referral Codes\n\nReferral codes are a more modern way of sharing that rely on a human-readable code like `BOBTESTERSON`. Referral codes are unique codes that people can use when they sign up for a product or check out at a store. Since there is a unique referral code for everyone who shares, referral codes can be used as the sole way of doing attribution.\n\n__Benefits of Referral Codes:__\n\n- Can be used with on-the-phone and in-person sign up processes link Banks, Call Centers and Retail Stores\n- Works well with printed materials\n- Supports mobile-first referrals for native mobile apps\n\n__Disadvantages of Referral Codes:__\n\n- Some companies have policies against allowing any sort of promo codes\n\n#### Hybrid (recommended)\n\nIt is possible to get the best of both worlds by using both human-readable codes and share links. This is the recommended approach for attribution because it provides all of the benefits of both of the methods of share links and codes. In most cases, if it's possible to refer friends using a referral code, then it is preferable to go for a hybrid approach and take advantage of the additional analytics provided by links.\n\n__Benefits of Share Links:__\n\n- All of the benefits listed above\n- Best in class success rates\n\n__Disadvantages of Share Links:__\n\n- Some companies have policies against allowing any sort of promo codes\n\n### Touch Points\nEnd users interact with a referral program through a variety of avenues. The most common are the referral widget, notification emails and share messages.\n\n#### Referral Widget\nThe referral widget is found inside of the web and/or mobile app as a part of the seamless customer experience. Depending on the program, the widget may be themed in different ways.\n\nThe referral widget provides an interface for users to share the product via Email, Facebook, Twitter and provides the user with both their unique referral link and referral code.\n\nThe referral widget also displays the progress and success of the end user as they make referrals. They can see how many of their referrals have converted to trial or paid and the subsequent referral rewards.\n\n#### Share Messages\nWhen users share a link, it is usually best to include a share message. All of the share messages that can be sent out on the social mediums through the widget are pre-populated with standard share messages. All of the pre-populated share messages can be customized inside of the Referral SaaSquatch portal.\n\n#### Email Notifications\nReferral SaaSquatch provides two standard email notifications for participants in the customer referral program.\n\nThe Referral Started email is sent out to the referrer when a newly referred customer signs up for the product via the referrer's code or link.\n\nThe Referral Complete email is sent out when a newly referred customer converts to a paying customer and the referrer ears their referral reward.\n\nAll of the email notifications can be customized inside of the Referral SaaSquatch portal.\n"
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "2qTfnI5kEsEO2IkoQu8uOO",
+            "type": "Entry",
+            "createdAt": "2016-04-04T20:25:05.744Z",
+            "updatedAt": "2016-07-13T03:49:40.918Z",
+            "revision": 4,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "article"
+                }
+            }
+        },
+        "fields": {
+            "sectionType": {
+                "en-US": "Marketer Guide"
+            },
+            "title": {
+                "en-US": "Fraud, Security and Fake Referrals"
+            },
+            "slug": {
+                "en-US": "fraud-and-security"
+            },
+            "highlights": {
+                "en-US": "The prizes that are offered in your referral program can be the target of fraud and faked referrals. This is why Referral SaaSquatch has a number of security features to help you prevent, detect and respond to these attempts to fraud or fake referrals."
+            },
+            "content": {
+                "en-US": "Some examples of fraud are:\n\n - **Self-referral**: existing users creating fake referrals to take advantage of referral prizes\n - **Exploitation**: anonymous internet users creating referrals for personal financial gain\n - **Account Cycling**: existing users signing up for and cancelling subsequent accounts\n - **Broadcasting**: Posting referral links on coupon sites or other locations your company does not approve of\n\nThere are three parts to a complete fraud management strategy:\n\n - **Prevention**: the best strategy for fraud management is in the structure of your referral program and identity systems to make fraud financially and logically infeasible.\n - **Detection**: in some cases not all types of fraud can be prevented, leaving additional cases to be detected through automated algorithms and human oversight.\n - **Response**: every business has their own practices on how best to respond to fraud cases, like removing rewards, suspending accounts or even seeking legal recompense.\n\n\n### Fraud Prevention\n\nThe best strategy for fraud management is to prevent fraud before it happens. This can usually be accomplished by choosing the right structure for the referral incentives and the goalpost required to earn a referral credit:\n\n - **Conversion goalposts should be meaningful** to customer acquisition. Typical examples include making a purchase or fully experiencing a product such as setting up a website, verifying a phone number or making your first post. This makes exploiting the referral program harder, while still achieving your business goals.\n - **Incentives should be profitable** to the company immediately or shortly after the conversion goal post is passed by the referred user. This reduces the financial risk of any potential fraud, and in some cases can ensure a positive ROI from every possible referral.\n\nReferral SaaSquatch fraud prevention also takes advantage of a company's existing account and identity systems and leverages them to simplify referral program integration and the fraud preventions systems involved.\n\nReferral SaaSquatch comes with several built-in fraud prevention features:\n\n - **Existing User Detection**: Referral SaaSquatch blocks current paying customers from being referred. This protects against paying users referring themselves or paying users finding a referral link in the wild (i.e. social media or coupon sites) and using it to get a false discount. \n\n - **Two-step Referral Tracking**: Referral SaaSquatch tracks a referral for new users is separated into the two steps of Attribution and Conversion. This lets your referral program be structured so that referral rewards are only triggered for *conversion* goalpost events like purchases even though referrals are fully tracked for free accounts, un-verified accounts or partial carts. \n\n - **Consolidated identity**: Referral SaaSquatch is designed to easily connect with your user database and other identity systems. Users in SaaSquatch are tracked by account and user identities, which means that your existing systems for account de-duplication, email address verification, credit card authorization, social log-in, and account lockdown are automatically tied into your referral program.\n\n - **Explicit Double-sided Incentive Management**: Referral SaaSquatch manages all rewards associated with a referral program; both the rewards earned from making referrals as well as the rewards given to new users in a double-sided incentive program. Referral SaaSquatch also ties these rewards tightly to your users identities. This lets companies have complete control over what rewards users have access to, revoke rewards, track payout and avoid the potential headaches of leaked global-use coupon codes or secret landing pages.\n\nOther fraud prevention measures that involve other systems:\n\n- **The Threat of Cancellation**: Existing users that are looking to game the referral system can often be deterred by the threat of losing access to their account. This is particularly effective for SaaS, games, or marketplace companies because users often have vested value in keeping their accounts active, and fear losing access to a service they regularly use. \n\n\n**Example 1: Bad Incentive, Shallow Goalpost, No Implicit Prevention**: For example, imagine a referral program that gives people $100 in cash for each email address that they provide to an anonymous web form. It is easy to exploit this type program by providing fake email addresses, and anonymous users making referrals. While it would still be possible to create systems for fraud detection and response within Referral SaaSquatch, it would be a routine exercise to get around those systems with access to fake email addresses and proxy servers. Even if someone was caught repeatedly abusing the system, they would have already received their cash payout and the company would have no viable tracking means to pursue response from potentially anonymous individuals.\n\n**Example 2: Good Incentive, Rewards for payment, Implicit Prevention Constraints**: The referral program structure gives people a credit towards a future purchase when a friend makes a purchase. The credit can only be applied against future purchases, preventing people from exploiting the system for cash benefit. The credit is associated with an account, so if someone is caught, the credit could be revoked, the account canceled. The friends are required to make a purchase, creating a paper trail of purchase information (such as credit card) that can be used to de-duplicate accounts, and for fraud detection and response.\n\n\n### Fraud Detection\n\nThe best strategy for fraud management is preventing fraud before it happens, but a company may not have natural systems to prevent fraud, like verifying emails or de-duplicating accounts. In these cases, Referral SaaSquatch provides a way to detect and address fraud.\n\n**Example of detection**: A company's account system does not prevent an email address from being used for more than one account, creating a potential fraud hole since people could refer themselves using their own email address. Referral SaaSquatch helps fill that hole by detecting when two users with the same email address sign up.\n\n**Referral Moderation**\n\nReferral SaaSquatch provides a referral moderation functionality that works much like a blog comment moderation system. You may elect to:\n\n - Approve all referrals until revoked\n - Pend all referrals until approved\n - Approve one side of a referral and pend the other (i.e. approve newly referred users’ prizes while pending referrer’s prizes)\n\nIf you elect to use the referral moderation functionality you will be notified every 24 hours of all referrals requiring review. \n\n### Fraud Response\n\nThe best strategy for fraud management is preventing fraud before it happens, but sometimes you may need to respond to fraud cases regardless either on a one-off basis, or as a general strategy.\n\n**Investigation**\n\nThe first step of responding to a potential fraud case is investigation. Not all cases are worth a formal action. In some cases, for example, multiple people may genuinely share the same name, and the potential case can be ignored.\n\nIn the Referral SaaSquatch security view you can easily see all approved and pending referrals. Each referral shows you dates of the referral and the names of the referrer and referred users. If you see similar names all in a short period, then it’s likely that you have a case of self-referral fraud.\n\nIf the names do not match but you are still suspicious of a referral, perhaps one user has made a large number of referrals in rapid succession, you are able to investigate the referral further and review:\n\n- The IP address of the referrer and referred user\n- The email address of the referrer and referred user\n- The site the referred user clicked the referral link from\n\nAlternatively, if you are suspicious of a specific user you can view their referral history from their profile, which will show you the name and email address of each person they referred. You can then further investigate each referral to verify IP address and referring site. \n\n**Action**\n\nReferral SaaSquatch lets you both **moderate referrals** as they come in, as well as **revoke historical credit** that has not yet been used.\n\n - **Referral Moderation**: Referral SaaSquatch has the ability to mark referral rewards as `PENDING` while one of your agents performs a review. The agent can choose to either Approve or Deny the referral. When a referral is denied, rewards for both sides are either cancelled or never created. If a referral is approved during moderation, it can later be denied. Any rewards that have not been consumed will be cancelled.\n\n - **Cancel Historical Credit**: Referral SaaSquatch allows referral credits to be revoked at any time, regardless of whether they were auto-approved, manually approved, or denied. Any referral can be approved or denied as many times as needed for your business case. There is no timeline by when rewards can be cancelled, but some reward types by their very nature are uncancellable, like for example a coupon that has already been redeemed.\n\nFraud response strategies may also involve other external systems, like your account, ecommerce or CRM systems. Other types of fraud action may not explicitly rely on using Referral SaaSquatch.\n\n - **Account Cancellation**: If someone has been found to be repeatedly abusing the referral system, a logical avenue of recourse would be to cancel their account and blacklist them. In most cases the threat of this is sufficient to stop the activity in question.\n\n\n### Fraud Services\n\nFraud management is not one size fits all. Referral SaaSquatch provides a number of professional services to help design, manage and maintain your referral program and the fraud, gaming and fake referral considerations therein.\n\n - **Fraud Management Strategy Consultation Services**: Referral SaaSquatch has implemented fraud management solutions across industries such eCommerce, SaaS, mobile and POS situations for private and publicly traded companies, startups and fortune 500 companies alike. Companies that subscribe to our Pro and Enterprise plans are eligible for limited complimentary consultation as part of the onboarding package. Further consultations are available on a per hour or per diem basis.\n\n - **Fraud Investigation Services**: Referral SaaSquatch investigates all reported patterns of fraud as a service to our customers. We continuously monitor for new types of fraud, gaming and fake referrals to stay on top of the new development in social network sharing, privacy blocking systems, proxy networks and anonymous systems. All Referral SaaSquatch customers are urged to report any patterns of suspicious activity directly to Referral SaaSquatch support."
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "2RgObdamKQAey6o28QyEEm",
+            "type": "Entry",
+            "createdAt": "2016-04-04T22:32:10.169Z",
+            "updatedAt": "2016-04-04T22:32:10.169Z",
+            "revision": 1,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "faq"
+                }
+            }
+        },
+        "fields": {
+            "question": {
+                "en-US": "I have more questions, what should I do?"
+            },
+            "answer": {
+                "en-US": "We know that you may still have questions and we want to hear from you. Email us at <a href=\"mailto:hello@saasquat.ch?Subject=More%20Questions\">hello@saasquat.ch</a> and we will get back to you just as fast as we can."
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "338NlddZUQW0caioCq4M86",
+            "type": "Entry",
+            "createdAt": "2016-04-04T22:23:59.405Z",
+            "updatedAt": "2016-04-04T22:23:59.405Z",
+            "revision": 1,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "faq"
+                }
+            }
+        },
+        "fields": {
+            "question": {
+                "en-US": "Is the widget customizable?"
+            },
+            "answer": {
+                "en-US": "Right now the widget is fully customizable, so you can match the branding of your company. However, we do charge an additional setup fee to do this. We highly recommend this so you can give your users a seamless experience within your product."
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "35Nyllt8g8seCOaCweo62M",
+            "type": "Entry",
+            "createdAt": "2016-04-04T20:25:27.688Z",
+            "updatedAt": "2016-04-04T21:59:09.709Z",
+            "revision": 2,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "article"
+                }
+            }
+        },
+        "fields": {
+            "sectionType": {
+                "en-US": "Developer Guide"
+            },
+            "title": {
+                "en-US": "Free Trials Guide"
+            },
+            "slug": {
+                "en-US": "free-trials"
+            },
+            "highlights": {
+                "en-US": "Referral SaaSquatch supports free trials. By default referral credit is given once a new user has completed their trial and paid their first invoice."
+            },
+            "content": {
+                "en-US": "### How do referrals work with free trials?\n\nOur default referral program behaviour is to not consider a referral complete until a referred customer has completed a trial and paid their first invoice. Referrers can see which of their friends have signed up for a trial or paid, so that it is clear when their referral credit will be earned.\n\n### How does Referral SaaSquatch track trials?\n\nMost subscription billing systems support free trials as a first-order concept. Since our payment system connectors work directly with your payment system API, we can use those APIs to detect when a user is on a trial and when they have paid.\n\n### What if my trial users aren't in Stripe or Recurly etc.?\n\nWe support you! If your trial users or free users don't exist in your payment system, just remember to set `payment_provider: null` when you identify your users in [squatch.js 'init'](/squatchjs#init).\n\nWe recommend that you also read about [Shared vs Solo Accounts](/shared-vs-solo-accounts)."
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "39uPojubFei6GWSqec6Csc",
+            "type": "Entry",
+            "createdAt": "2016-04-04T22:25:37.830Z",
+            "updatedAt": "2016-04-04T22:25:37.830Z",
+            "revision": 1,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "faq"
+                }
+            }
+        },
+        "fields": {
+            "question": {
+                "en-US": "What if I go over my plan limits?"
+            },
+            "answer": {
+                "en-US": "There's nothing to worry about. If you go over your plan limits, your program will continue to function normally. At the end of your billing period we will contact you to discuss upgrading your plan.\n\n<div class=\"well\">\n    <h4>Pricing Example</h4>\n    \n    <p>I’m a marketing director looking to buy a referral program for my company that has 25,000 active users.</p> \n    <p>Given that usage I would select the Pro Plan, which would cost $874 per month. (Base of $499 + $375 at $25/1,000 users)</p> \n    <p>This is an example if your service costs $40/month and you want to give both the referring user and the newly referred users 10% off</p>\n    <ul>\n        <li>One of your customers refers a friend to signup</li>\n        <li>That friend signs up, finishes their 15 day trial, and pays their first invoice</li>\n        <li>The new friend gets 10% off their first bill ($4 off)</li>\n        <li>The referrer get 10% off their next bill for the next 12 months (or until their friend cancels their subscription)</li>\n    </ul>\n</div>\n"
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "3hlifpUwFiCASWUUUGukk0",
+            "type": "Entry",
+            "createdAt": "2016-04-04T22:11:07.857Z",
+            "updatedAt": "2016-04-04T22:11:07.857Z",
+            "revision": 1,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "faq"
+                }
+            }
+        },
+        "fields": {
+            "question": {
+                "en-US": "What kind of reward should I use for my referral program?"
+            },
+            "answer": {
+                "en-US": "A successful referral program depends on the right choice of incentive for both the person doing the referring and the person they have referred. Each industry has different best practices for what works; discounts, gift cards, loyalty points, banked credit, or something tangible like swag.\n\nA good place to start would be watching out best practices webinar: [How to Structure your Referral Program](https://attendee.gotowebinar.com/recording/4794104163915938049)"
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "3WF4A7nPmwKiaCOwMW6KIm",
+            "type": "Entry",
+            "createdAt": "2016-04-04T22:20:20.660Z",
+            "updatedAt": "2016-04-04T22:20:20.660Z",
+            "revision": 1,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "faq"
+                }
+            }
+        },
+        "fields": {
+            "question": {
+                "en-US": "Can customers complete a referral over the phone?"
+            },
+            "answer": {
+                "en-US": "Yes. You will simply add the coupon code they were given to their account manual through your subscription provider. Once that user then logs into your system the referral will be completed."
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "3yrIu9ZQgwOGGiu6OgiU4U",
+            "type": "Entry",
+            "createdAt": "2016-04-04T22:18:25.135Z",
+            "updatedAt": "2016-04-04T22:18:25.135Z",
+            "revision": 1,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "faq"
+                }
+            }
+        },
+        "fields": {
+            "question": {
+                "en-US": "What doesn't Referral SaaSquatch do?"
+            },
+            "answer": {
+                "en-US": "Referral SaaSquatch is not an affiliate or partner program. If you are looking to pay third parties a cash commission when they sell your product then Referral SaaSquatch is not for you."
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "4L4RJ5V172YEgkmggASaCs",
+            "type": "Entry",
+            "createdAt": "2016-04-04T22:22:09.418Z",
+            "updatedAt": "2016-04-04T22:22:09.418Z",
+            "revision": 1,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "faq"
+                }
+            }
+        },
+        "fields": {
+            "question": {
+                "en-US": "What happens when a user clicks on a sharelink?"
+            },
+            "answer": {
+                "en-US": "The sharelink sends the user to our servers, on which we place a cookie with their referral code, before forwarding them to your landing page. <strong>We store this cookie for 365 days.</strong> This means that if a user follows the sharelink, but not signs up immediately, we can still track the referral later. Please bear in mind that if the user clears their cache or switches to a different browser, we might not be able to track the referral."
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "4wEiUCzFMIOS2Mw6oSY8qc",
+            "type": "Entry",
+            "createdAt": "2016-04-04T22:36:52.332Z",
+            "updatedAt": "2016-04-05T00:29:51.661Z",
+            "revision": 2,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "faqCategory"
+                }
+            }
+        },
+        "fields": {
+            "name": {
+                "en-US": "General"
+            },
+            "slug": {
+                "en-US": "faq"
+            },
+            "answers": {
+                "en-US": [
+                    {
+                        "sys": {
+                            "space": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "Space",
+                                    "id": "s68ib1kj8k5n"
+                                }
+                            },
+                            "id": "4x6GFvmGqQcw4IMyIqYc2E",
+                            "type": "Entry",
+                            "createdAt": "2016-04-04T22:17:19.420Z",
+                            "updatedAt": "2016-04-04T22:17:31.596Z",
+                            "revision": 2,
+                            "contentType": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "ContentType",
+                                    "id": "faq"
+                                }
+                            }
+                        },
+                        "fields": {
+                            "question": {
+                                "en-US": "What is Referral SaaSquatch?"
+                            },
+                            "answer": {
+                                "en-US": "Referral SaaSquatch is a customer referral platform that lets companies track and reward referrals from their customers.\n\nWith Referral SaaSquatch, you can create a fully customizable referral program right inside your product. We handle everything from tracking referrals and fraud detection to analytics and payment system integrations."
+                            }
+                        }
+                    },
+                    {
+                        "sys": {
+                            "space": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "Space",
+                                    "id": "s68ib1kj8k5n"
+                                }
+                            },
+                            "id": "5h77PuV00E2eAmIwI4COK6",
+                            "type": "Entry",
+                            "createdAt": "2016-04-04T22:18:01.044Z",
+                            "updatedAt": "2016-04-04T22:18:01.044Z",
+                            "revision": 1,
+                            "contentType": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "ContentType",
+                                    "id": "faq"
+                                }
+                            }
+                        },
+                        "fields": {
+                            "question": {
+                                "en-US": "Who is Referral SaaSquatch for?"
+                            },
+                            "answer": {
+                                "en-US": "Referral SaaSquatch is for companies involved with SaaS, Media and E-Commerce that are looking to reward their existing customers for referring new customers."
+                            }
+                        }
+                    },
+                    {
+                        "sys": {
+                            "space": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "Space",
+                                    "id": "s68ib1kj8k5n"
+                                }
+                            },
+                            "id": "3yrIu9ZQgwOGGiu6OgiU4U",
+                            "type": "Entry",
+                            "createdAt": "2016-04-04T22:18:25.135Z",
+                            "updatedAt": "2016-04-04T22:18:25.135Z",
+                            "revision": 1,
+                            "contentType": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "ContentType",
+                                    "id": "faq"
+                                }
+                            }
+                        },
+                        "fields": {
+                            "question": {
+                                "en-US": "What doesn't Referral SaaSquatch do?"
+                            },
+                            "answer": {
+                                "en-US": "Referral SaaSquatch is not an affiliate or partner program. If you are looking to pay third parties a cash commission when they sell your product then Referral SaaSquatch is not for you."
+                            }
+                        }
+                    },
+                    {
+                        "sys": {
+                            "space": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "Space",
+                                    "id": "s68ib1kj8k5n"
+                                }
+                            },
+                            "id": "60dtuFlXzi6G8wmyWWiu2Y",
+                            "type": "Entry",
+                            "createdAt": "2016-04-04T22:18:55.990Z",
+                            "updatedAt": "2016-04-04T22:18:55.990Z",
+                            "revision": 1,
+                            "contentType": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "ContentType",
+                                    "id": "faq"
+                                }
+                            }
+                        },
+                        "fields": {
+                            "question": {
+                                "en-US": "Why is Referral SaaSquatch better than the other options I'm considering?"
+                            },
+                            "answer": {
+                                "en-US": "We're glad you asked us!\n\n<ul>\n    <li><strong>A great user experience</strong>. Referral SaaSquatch integrates right into your app for a seamless customer experience. Other platforms make your customers go to some other website, sign up for an account, and remember yet another username and password just to be able to invite their friends.</li>\n    <li><strong>Fast integration</strong>. We work with the technology you use right out of the box. Our API and integrations are simple and transparent to use, and have been integrated in under a day.</li>\n    <li><strong>Focus</strong>. Our service is built to satisfy the unique needs of large tech companies. Our strength lies in our seamless user experience and reward type flexibility. This ensures that your customers will engage with a best in-class referral program and drive profitable acquisition for your company.</li> \n</ul>\n"
+                            }
+                        }
+                    },
+                    {
+                        "sys": {
+                            "space": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "Space",
+                                    "id": "s68ib1kj8k5n"
+                                }
+                            },
+                            "id": "1mbdhjQDq4Uc0eKoY2ioSi",
+                            "type": "Entry",
+                            "createdAt": "2016-04-04T22:19:20.743Z",
+                            "updatedAt": "2016-04-04T22:19:20.743Z",
+                            "revision": 1,
+                            "contentType": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "ContentType",
+                                    "id": "faq"
+                                }
+                            }
+                        },
+                        "fields": {
+                            "question": {
+                                "en-US": "How does Referral SaaSquatch know that a referral has been made?"
+                            },
+                            "answer": {
+                                "en-US": "Referral SaaSquatch uses integration with your subscription management system, link tracking, cookie tracking and JavaScript widgets to track from first interaction right to payment. Since we get notified when actual dollars are transfered, you'll only end up giving discounts for real quantifiable new revenue."
+                            }
+                        }
+                    },
+                    {
+                        "sys": {
+                            "space": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "Space",
+                                    "id": "s68ib1kj8k5n"
+                                }
+                            },
+                            "id": "7EH0nQh6YE28SQQ2Eymmu4",
+                            "type": "Entry",
+                            "createdAt": "2016-04-04T22:19:52.255Z",
+                            "updatedAt": "2016-04-04T22:19:52.255Z",
+                            "revision": 1,
+                            "contentType": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "ContentType",
+                                    "id": "faq"
+                                }
+                            }
+                        },
+                        "fields": {
+                            "question": {
+                                "en-US": "Do my customers have to signup with Referral SaaSquatch before they can make a referral?"
+                            },
+                            "answer": {
+                                "en-US": "__No, your customers don't need a Referral SaaSquatch account__. By installing Referral SaaSquatch in your app all of your customers will automatically be enrolled. We do this to make inviting friends as fast and seamless as possible, to both increase participation in the program and to protect your brand."
+                            }
+                        }
+                    },
+                    {
+                        "sys": {
+                            "space": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "Space",
+                                    "id": "s68ib1kj8k5n"
+                                }
+                            },
+                            "id": "3WF4A7nPmwKiaCOwMW6KIm",
+                            "type": "Entry",
+                            "createdAt": "2016-04-04T22:20:20.660Z",
+                            "updatedAt": "2016-04-04T22:20:20.660Z",
+                            "revision": 1,
+                            "contentType": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "ContentType",
+                                    "id": "faq"
+                                }
+                            }
+                        },
+                        "fields": {
+                            "question": {
+                                "en-US": "Can customers complete a referral over the phone?"
+                            },
+                            "answer": {
+                                "en-US": "Yes. You will simply add the coupon code they were given to their account manual through your subscription provider. Once that user then logs into your system the referral will be completed."
+                            }
+                        }
+                    },
+                    {
+                        "sys": {
+                            "space": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "Space",
+                                    "id": "s68ib1kj8k5n"
+                                }
+                            },
+                            "id": "65esK6hgSAoAsS2gMkgEsC",
+                            "type": "Entry",
+                            "createdAt": "2016-04-04T22:21:02.594Z",
+                            "updatedAt": "2016-04-04T22:21:02.594Z",
+                            "revision": 1,
+                            "contentType": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "ContentType",
+                                    "id": "faq"
+                                }
+                            }
+                        },
+                        "fields": {
+                            "question": {
+                                "en-US": "Will Referral SaaSquatch scale? Am I too big for Referral SaaSquatch?"
+                            },
+                            "answer": {
+                                "en-US": "Referral SaaSquatch is built on world-class infrastructure and modern technology. This means we can seamlessly scale to meet your unique needs as an enterprise customer while providing the reliability you and your customers deserve.\n\n__Have enterprise needs?__ Don't worry, you're not too big. We work with major tech companies every day and can find a solution that fits your needs. Whether you need a custom feature, style or integration partner, we can help you out. Just contact <a href=\"mailto:sales@saasquat.ch?Subject=Enterprise%20Questions\">sales@saasquat.ch</a> if you want to know more."
+                            }
+                        }
+                    },
+                    {
+                        "sys": {
+                            "space": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "Space",
+                                    "id": "s68ib1kj8k5n"
+                                }
+                            },
+                            "id": "1W7mNxcBVe0wIECMu6OAqa",
+                            "type": "Entry",
+                            "createdAt": "2016-04-04T22:21:44.283Z",
+                            "updatedAt": "2016-04-04T22:21:44.283Z",
+                            "revision": 1,
+                            "contentType": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "ContentType",
+                                    "id": "faq"
+                                }
+                            }
+                        },
+                        "fields": {
+                            "question": {
+                                "en-US": "What browsers does Referral SaaSquatch support?"
+                            },
+                            "answer": {
+                                "en-US": "Our [squatch.js](/squatchjs/) will run in any browser that supports Javascript. To make sure that our referral widget gives a great user experience, we support our themes on Internet Explorer 8 - 11, and modern versions of Chrome, Firefox and Safari."
+                            }
+                        }
+                    },
+                    {
+                        "sys": {
+                            "space": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "Space",
+                                    "id": "s68ib1kj8k5n"
+                                }
+                            },
+                            "id": "4L4RJ5V172YEgkmggASaCs",
+                            "type": "Entry",
+                            "createdAt": "2016-04-04T22:22:09.418Z",
+                            "updatedAt": "2016-04-04T22:22:09.418Z",
+                            "revision": 1,
+                            "contentType": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "ContentType",
+                                    "id": "faq"
+                                }
+                            }
+                        },
+                        "fields": {
+                            "question": {
+                                "en-US": "What happens when a user clicks on a sharelink?"
+                            },
+                            "answer": {
+                                "en-US": "The sharelink sends the user to our servers, on which we place a cookie with their referral code, before forwarding them to your landing page. <strong>We store this cookie for 365 days.</strong> This means that if a user follows the sharelink, but not signs up immediately, we can still track the referral later. Please bear in mind that if the user clears their cache or switches to a different browser, we might not be able to track the referral."
+                            }
+                        }
+                    },
+                    {
+                        "sys": {
+                            "space": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "Space",
+                                    "id": "s68ib1kj8k5n"
+                                }
+                            },
+                            "id": "2RgObdamKQAey6o28QyEEm",
+                            "type": "Entry",
+                            "createdAt": "2016-04-04T22:32:10.169Z",
+                            "updatedAt": "2016-04-04T22:32:10.169Z",
+                            "revision": 1,
+                            "contentType": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "ContentType",
+                                    "id": "faq"
+                                }
+                            }
+                        },
+                        "fields": {
+                            "question": {
+                                "en-US": "I have more questions, what should I do?"
+                            },
+                            "answer": {
+                                "en-US": "We know that you may still have questions and we want to hear from you. Email us at <a href=\"mailto:hello@saasquat.ch?Subject=More%20Questions\">hello@saasquat.ch</a> and we will get back to you just as fast as we can."
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "4WlKyZPiJayi8I2iyqGcGu",
+            "type": "Entry",
+            "createdAt": "2016-04-04T20:25:24.012Z",
+            "updatedAt": "2016-04-04T21:59:21.525Z",
+            "revision": 2,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "article"
+                }
+            }
+        },
+        "fields": {
+            "sectionType": {
+                "en-US": "Developer Guide"
+            },
+            "title": {
+                "en-US": "Refer-a-friend Buttons Best Practice Guide"
+            },
+            "slug": {
+                "en-US": "bestpractices/buttons"
+            },
+            "highlights": {
+                "en-US": "Refer-a-friend buttons should be targeted at your existing loyal users. They should be easy to find from anywhere in your app and prominent on a few key pages."
+            },
+            "content": {
+                "en-US": "**Lots of refer-a-friend buttons and links.** You can add the `squatchpop` CSS class to as many buttons, links and images as you want. You're not limited to a single button per page.\n\n**Put a link on every page.** The referral program shouldn't be hidden in settings. Consider adding at least a small link to the header or footer of every page. This will also make support easier, as it is a single click to have someone see their referral program status.\n\n**Use the power of suggestion.** When someone completes an action in your system, and there is no obvious next step for them, use the power of suggestion to get them to check out the referral program. For example substitute _\"Your password was successfully changed.\"_ with _\"Your password was successfully changed. Have a minute? Help spread the word about our service and get 10% off your bill.\"_\n"
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "4x6GFvmGqQcw4IMyIqYc2E",
+            "type": "Entry",
+            "createdAt": "2016-04-04T22:17:19.420Z",
+            "updatedAt": "2016-04-04T22:17:31.596Z",
+            "revision": 2,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "faq"
+                }
+            }
+        },
+        "fields": {
+            "question": {
+                "en-US": "What is Referral SaaSquatch?"
+            },
+            "answer": {
+                "en-US": "Referral SaaSquatch is a customer referral platform that lets companies track and reward referrals from their customers.\n\nWith Referral SaaSquatch, you can create a fully customizable referral program right inside your product. We handle everything from tracking referrals and fraud detection to analytics and payment system integrations."
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "4ZF530VDJ62EGEkI4uYGWy",
+            "type": "Entry",
+            "createdAt": "2016-04-04T22:24:49.183Z",
+            "updatedAt": "2016-04-04T22:24:49.183Z",
+            "revision": 1,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "faq"
+                }
+            }
+        },
+        "fields": {
+            "question": {
+                "en-US": "What happens if a referred customer cancels shortly after they start paying?"
+            },
+            "answer": {
+                "en-US": "Our service is focused on driving customer acquisition for your company. So, unfortunately we can't be responsible for customer retention efforts."
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "5cGGtSHOVGaI6qES0uY862",
+            "type": "Entry",
+            "createdAt": "2016-04-04T22:23:34.670Z",
+            "updatedAt": "2016-04-04T22:23:34.670Z",
+            "revision": 1,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "faq"
+                }
+            }
+        },
+        "fields": {
+            "question": {
+                "en-US": "Why is there a setup fee for some tiers?"
+            },
+            "answer": {
+                "en-US": "In order to ensure your success with our referral marketing platform we need to get you off on the right foot. Referral marketing is more than just using software, it’s about transforming the way your product interacts with your customers. The fee goes towards aligning time and resources to make sure the program is designed and implemented correctly."
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "5h77PuV00E2eAmIwI4COK6",
+            "type": "Entry",
+            "createdAt": "2016-04-04T22:18:01.044Z",
+            "updatedAt": "2016-04-04T22:18:01.044Z",
+            "revision": 1,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "faq"
+                }
+            }
+        },
+        "fields": {
+            "question": {
+                "en-US": "Who is Referral SaaSquatch for?"
+            },
+            "answer": {
+                "en-US": "Referral SaaSquatch is for companies involved with SaaS, Media and E-Commerce that are looking to reward their existing customers for referring new customers."
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "5Qp2UvLSDueGiM4wIsg84q",
+            "type": "Entry",
+            "createdAt": "2016-04-04T22:28:52.273Z",
+            "updatedAt": "2016-04-04T22:37:01.631Z",
+            "revision": 2,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "faqCategory"
+                }
+            }
+        },
+        "fields": {
+            "name": {
+                "en-US": "Pricing"
+            },
+            "slug": {
+                "en-US": "faq/pricing"
+            },
+            "answers": {
+                "en-US": [
+                    {
+                        "sys": {
+                            "space": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "Space",
+                                    "id": "s68ib1kj8k5n"
+                                }
+                            },
+                            "id": "1N3jv8v50sMw4mi4YUyQmE",
+                            "type": "Entry",
+                            "createdAt": "2016-04-04T22:22:55.478Z",
+                            "updatedAt": "2016-04-04T22:22:55.478Z",
+                            "revision": 1,
+                            "contentType": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "ContentType",
+                                    "id": "faq"
+                                }
+                            }
+                        },
+                        "fields": {
+                            "question": {
+                                "en-US": "How do I get started?"
+                            },
+                            "answer": {
+                                "en-US": "- First you take a look at our pricing page and find the plan that best suits you.\n- Then you enter and confirm your email through our sign-up page.\n- Finally you login to the platform, pick your reward type and start customizing the widget."
+                            }
+                        }
+                    },
+                    {
+                        "sys": {
+                            "space": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "Space",
+                                    "id": "s68ib1kj8k5n"
+                                }
+                            },
+                            "id": "6Uxs7fYWk0CaIuKuiy4oIu",
+                            "type": "Entry",
+                            "createdAt": "2016-04-04T22:23:15.726Z",
+                            "updatedAt": "2016-04-04T22:23:15.726Z",
+                            "revision": 1,
+                            "contentType": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "ContentType",
+                                    "id": "faq"
+                                }
+                            }
+                        },
+                        "fields": {
+                            "question": {
+                                "en-US": "How do you define a member?"
+                            },
+                            "answer": {
+                                "en-US": "A member is an identified customer who is registered with our system and has a referral link and/or code generated for them. We suggest adding up the total number of customers you work with in one month to determine how many members you need from our system."
+                            }
+                        }
+                    },
+                    {
+                        "sys": {
+                            "space": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "Space",
+                                    "id": "s68ib1kj8k5n"
+                                }
+                            },
+                            "id": "5cGGtSHOVGaI6qES0uY862",
+                            "type": "Entry",
+                            "createdAt": "2016-04-04T22:23:34.670Z",
+                            "updatedAt": "2016-04-04T22:23:34.670Z",
+                            "revision": 1,
+                            "contentType": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "ContentType",
+                                    "id": "faq"
+                                }
+                            }
+                        },
+                        "fields": {
+                            "question": {
+                                "en-US": "Why is there a setup fee for some tiers?"
+                            },
+                            "answer": {
+                                "en-US": "In order to ensure your success with our referral marketing platform we need to get you off on the right foot. Referral marketing is more than just using software, it’s about transforming the way your product interacts with your customers. The fee goes towards aligning time and resources to make sure the program is designed and implemented correctly."
+                            }
+                        }
+                    },
+                    {
+                        "sys": {
+                            "space": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "Space",
+                                    "id": "s68ib1kj8k5n"
+                                }
+                            },
+                            "id": "338NlddZUQW0caioCq4M86",
+                            "type": "Entry",
+                            "createdAt": "2016-04-04T22:23:59.405Z",
+                            "updatedAt": "2016-04-04T22:23:59.405Z",
+                            "revision": 1,
+                            "contentType": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "ContentType",
+                                    "id": "faq"
+                                }
+                            }
+                        },
+                        "fields": {
+                            "question": {
+                                "en-US": "Is the widget customizable?"
+                            },
+                            "answer": {
+                                "en-US": "Right now the widget is fully customizable, so you can match the branding of your company. However, we do charge an additional setup fee to do this. We highly recommend this so you can give your users a seamless experience within your product."
+                            }
+                        }
+                    },
+                    {
+                        "sys": {
+                            "space": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "Space",
+                                    "id": "s68ib1kj8k5n"
+                                }
+                            },
+                            "id": "39uPojubFei6GWSqec6Csc",
+                            "type": "Entry",
+                            "createdAt": "2016-04-04T22:25:37.830Z",
+                            "updatedAt": "2016-04-04T22:25:37.830Z",
+                            "revision": 1,
+                            "contentType": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "ContentType",
+                                    "id": "faq"
+                                }
+                            }
+                        },
+                        "fields": {
+                            "question": {
+                                "en-US": "What if I go over my plan limits?"
+                            },
+                            "answer": {
+                                "en-US": "There's nothing to worry about. If you go over your plan limits, your program will continue to function normally. At the end of your billing period we will contact you to discuss upgrading your plan.\n\n<div class=\"well\">\n    <h4>Pricing Example</h4>\n    \n    <p>I’m a marketing director looking to buy a referral program for my company that has 25,000 active users.</p> \n    <p>Given that usage I would select the Pro Plan, which would cost $874 per month. (Base of $499 + $375 at $25/1,000 users)</p> \n    <p>This is an example if your service costs $40/month and you want to give both the referring user and the newly referred users 10% off</p>\n    <ul>\n        <li>One of your customers refers a friend to signup</li>\n        <li>That friend signs up, finishes their 15 day trial, and pays their first invoice</li>\n        <li>The new friend gets 10% off their first bill ($4 off)</li>\n        <li>The referrer get 10% off their next bill for the next 12 months (or until their friend cancels their subscription)</li>\n    </ul>\n</div>\n"
+                            }
+                        }
+                    },
+                    {
+                        "sys": {
+                            "space": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "Space",
+                                    "id": "s68ib1kj8k5n"
+                                }
+                            },
+                            "id": "4ZF530VDJ62EGEkI4uYGWy",
+                            "type": "Entry",
+                            "createdAt": "2016-04-04T22:24:49.183Z",
+                            "updatedAt": "2016-04-04T22:24:49.183Z",
+                            "revision": 1,
+                            "contentType": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "ContentType",
+                                    "id": "faq"
+                                }
+                            }
+                        },
+                        "fields": {
+                            "question": {
+                                "en-US": "What happens if a referred customer cancels shortly after they start paying?"
+                            },
+                            "answer": {
+                                "en-US": "Our service is focused on driving customer acquisition for your company. So, unfortunately we can't be responsible for customer retention efforts."
+                            }
+                        }
+                    },
+                    {
+                        "sys": {
+                            "space": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "Space",
+                                    "id": "s68ib1kj8k5n"
+                                }
+                            },
+                            "id": "Qv9utsEpoG0Ag6g4qui4K",
+                            "type": "Entry",
+                            "createdAt": "2016-04-04T22:25:14.520Z",
+                            "updatedAt": "2016-04-04T22:25:14.520Z",
+                            "revision": 1,
+                            "contentType": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "ContentType",
+                                    "id": "faq"
+                                }
+                            }
+                        },
+                        "fields": {
+                            "question": {
+                                "en-US": "Does Referral SaaSquatch work with foreign currencies?"
+                            },
+                            "answer": {
+                                "en-US": "Yes. We work with any currency that your subscription provider works with. We will charge you in USD at the conversion rate available to us on the day of your invoice."
+                            }
+                        }
+                    },
+                    {
+                        "sys": {
+                            "space": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "Space",
+                                    "id": "s68ib1kj8k5n"
+                                }
+                            },
+                            "id": "6OowKhu9j22M4scykoQAM6",
+                            "type": "Entry",
+                            "createdAt": "2016-04-04T22:25:31.221Z",
+                            "updatedAt": "2016-06-09T22:41:09.722Z",
+                            "revision": 3,
+                            "contentType": {
+                                "sys": {
+                                    "type": "Link",
+                                    "linkType": "ContentType",
+                                    "id": "faq"
+                                }
+                            }
+                        },
+                        "fields": {
+                            "question": {
+                                "en-US": "Does Referral SaaSquatch offer volume discounts?"
+                            },
+                            "answer": {
+                                "en-US": "Happily! Our Enterprise tier is available for larger more complex solutions. Email us at <a href=\"mailto:sales@saasquat.ch?subject=Enterprise%20Plans\">sales@saasquat.ch</a>"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "5XVSHBd2Ja8YGOgcUY8aEO",
+            "type": "Entry",
+            "createdAt": "2016-07-14T23:03:40.000Z",
+            "updatedAt": "2016-07-14T23:03:40.000Z",
+            "revision": 1,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "article"
+                }
+            }
+        },
+        "fields": {
+            "sectionType": {
+                "en-US": "Marketer Guide"
+            },
+            "title": {
+                "en-US": "Touchpoints"
+            },
+            "slug": {
+                "en-US": "touchpoints"
+            },
+            "highlights": {
+                "en-US": "Overview of the Touchpoints of a referral program."
+            },
+            "content": {
+                "en-US": "The touchpoints are all the components of your referral program that your users will interact with. These include the desktop and mobile widget, notification emails, share messages, and marketing emails. \n\nFor a referral program to be successful it is crucial that each of these components is providing a unified, clear, and concise message about how the referral program works; the user’s progress within it; and what the user needs to do next. When users are well-informed about the availability of a referral program, what the program offers, and how to get involved, it makes it easier for them to start making successful referrals. \n\nThe sections below discuss the touchpoint components of a referral program, the role they each play, and how your users will be interacting with them.\n### Widgets\nThe Referral Saasquatch platform provides a responsive widget for users to access. The widget is a one-stop-shop for your users to participate in the referral program; they can refer friends, track the status of their referrals, and see the rewards earned from referrals.This can be surfaced anywhere users can be identified on your website and used to track users for registration, display the widget, and more. \n#### Desktop Widget\nThe responsive desktop widget provides full support for the Referral SaaSquatch themes which allow you to customize your referral program to pixel-perfect brand constraints. The desktop widget can either be served as a popup / modal window, or embedded directly into the page. \n\nDetails about theming your widget and complete install guides for integrating our referral widget into your website or mobile app, are available in the documentation.\n#### Mobile Widget\nReferral SaaSquatch provides a fully responsive mobile widget that can be embedded directly into your iOS, Android, or Windows phone mobile apps.\n\nIncluding the referral widget into your mobile app can be as simple as including a user’s personalized URL in a WebView or iFrame component. This will load a mobile-responsive web page as part of your app, look after the referral tracking, and let your users refer their friends.\n\nFor complete control over the look and experience of your referral program in your app we provide a comprehensive Mobile SDK. The Mobile SDK, available on our enterprise plans, allows you to build your referral programs natively into your mobile applications on iOS and Android.\nDetails about including the widget in your mobile app, configuring the mobile widget theme, the Mobile SDK, and examples of implementations on iOS and Android are available in the documentation.\n### Share Messages\nReferral SaaSquatch widget and email themes include sharing options that allow your users to share their referral link on Facebook, Twitter, or by email with ease. The Referral SaaSquatch social media integration helps reducing the friction for users looking to share their referral link by not requiring users to authorize access to their Facebook or Twitter account in order to share their post.\n\n[[image of portal with share messaging edit fields, or a sample post]]\n\nWithin the Referral SaaSquatch portal, you can provide pre-written messaging for all social sharing options to ensure that essentials like the user’s unique sharelink are included correctly, and that the messaging is captivating and relevant. User’s can still edit the posts, but providing a solid starting point can help improve program performance.  You can also update the messaging any time, to maintain consistency with other promotions or seasonal offerings. \n### Notification Emails\nReferral SaaSquatch provides a complete notification email service for your referral program. \n\nEmail notifications are available to be sent whenever a referred user signs up for a new trial or free account, and then again whenever a referral is converted. These notifications allow the referrer to keep track of the progress of their referrals and be notified when they have earned their reward. By default, the notification emails also include referral program sharing options, to further incentivize participation. \n\nPro and Enterprise accounts are able to utilize the theme engine to fully customize the email HTML and CSS, to perfectly match your transactional or marketing email templates and branding. \n### Marketing Emails\nMarketing, blast, or mass emails are a great way to promote your referral program to your existing user base or email subscription list. Pro and Enterprise customers can make use of the Referral SaaSquatch mass user import functionality. By providing a list of existing users, Referral SaaSquatch will register them and return an export with their unique share links. This data can be imported into an email platform, like Mailchimp, where the share links can be utilized as merge variables. Individual share links can also be looked up using an API call for use in personalized emails. These powerful tools make it possible to deliver emails with all the information user’s need to participate in your referral program directly from their inbox!\n\n### Conclusion\nThe touchpoints of a referral program are those that your end user will interact with. Understanding which parts of the referral process involve interaction with your users, what that interaction is, and the importance of that step in the referral process will allow you to make a cleaner, simpler, and more engaging referral program. \n\nThese touchpoints tie in closely with the structure of a referral program that is covered in our Core topics article. \n\nTo learn more about referral programs and how to get your program up and running, check out our “Referral Program 101” article."
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "60dtuFlXzi6G8wmyWWiu2Y",
+            "type": "Entry",
+            "createdAt": "2016-04-04T22:18:55.990Z",
+            "updatedAt": "2016-04-04T22:18:55.990Z",
+            "revision": 1,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "faq"
+                }
+            }
+        },
+        "fields": {
+            "question": {
+                "en-US": "Why is Referral SaaSquatch better than the other options I'm considering?"
+            },
+            "answer": {
+                "en-US": "We're glad you asked us!\n\n<ul>\n    <li><strong>A great user experience</strong>. Referral SaaSquatch integrates right into your app for a seamless customer experience. Other platforms make your customers go to some other website, sign up for an account, and remember yet another username and password just to be able to invite their friends.</li>\n    <li><strong>Fast integration</strong>. We work with the technology you use right out of the box. Our API and integrations are simple and transparent to use, and have been integrated in under a day.</li>\n    <li><strong>Focus</strong>. Our service is built to satisfy the unique needs of large tech companies. Our strength lies in our seamless user experience and reward type flexibility. This ensures that your customers will engage with a best in-class referral program and drive profitable acquisition for your company.</li> \n</ul>\n"
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "62czKrmv5KeyUGKWUc6642",
+            "type": "Entry",
+            "createdAt": "2016-07-20T04:35:39.301Z",
+            "updatedAt": "2016-07-20T06:16:24.551Z",
+            "revision": 2,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "article"
+                }
+            }
+        },
+        "fields": {
+            "sectionType": {
+                "en-US": "Marketer Guide"
+            },
+            "title": {
+                "en-US": "Fulfillment"
+            },
+            "slug": {
+                "en-US": "topics/fulfillment"
+            },
+            "highlights": {
+                "en-US": "Fulfillment is the process of making sure people can use the rewards they earn. People can earn rewards from referring their friends, and in some cases can get a reward just from being referred. Rewards can be discounts, credit, gift cards, points and many other things. To make sure these rewards are more than just a record in the Referral SaaSquatch database, there needs to be some way to fulfill them. Sometimes this just means rewards have a coupon code that can be used in other systems, sometimes SaaSquatch keeps track of a balance that is deducted by another system, and other times it means there's an automated synchronization process to apply discounts in payment systems. Referral SaaSquatch supports manual, automated and semi-automated fulfillment options and even has turnkey connectors that handle fulfillment automatically for you."
+            },
+            "content": {
+                "en-US": "<div class=\"bs-callout bs-callout-default\">\n  <h4>Definition</h4>\n  Fulfillment is the process of making sure people can use the rewards they earn from referrals.\n</div>\n\n\n### Pro & Enterprise Options\n\nFulfillment automation can be one of the biggest challenges of running a referral program. The Pro and Enterprise plans of Referral SaaSquatch come with a lot of flexibility\nto help make this process and streamlined as possible for companies with the challenges of enterprises and high volume accounts.\n\n - Coupon codes limits\n - SaaSquatch credit tracking\n - Discount synchronizing\n - Turnkey connectors\n - Gift card automation\n - Voucher automation\n - Coupon upload\n - Batch CSVs\n - Synchronizations jobs\n\n \n### Tech Guide\n\nFor details on implementing fulfillment, see our [developer center guide on fulfillment](/developer/fulfillment)"
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "65esK6hgSAoAsS2gMkgEsC",
+            "type": "Entry",
+            "createdAt": "2016-04-04T22:21:02.594Z",
+            "updatedAt": "2016-04-04T22:21:02.594Z",
+            "revision": 1,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "faq"
+                }
+            }
+        },
+        "fields": {
+            "question": {
+                "en-US": "Will Referral SaaSquatch scale? Am I too big for Referral SaaSquatch?"
+            },
+            "answer": {
+                "en-US": "Referral SaaSquatch is built on world-class infrastructure and modern technology. This means we can seamlessly scale to meet your unique needs as an enterprise customer while providing the reliability you and your customers deserve.\n\n__Have enterprise needs?__ Don't worry, you're not too big. We work with major tech companies every day and can find a solution that fits your needs. Whether you need a custom feature, style or integration partner, we can help you out. Just contact <a href=\"mailto:sales@saasquat.ch?Subject=Enterprise%20Questions\">sales@saasquat.ch</a> if you want to know more."
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "6HPkkCiaWIyMyMyqsQoyyk",
+            "type": "Entry",
+            "createdAt": "2016-07-05T18:52:09.622Z",
+            "updatedAt": "2016-07-19T22:51:35.482Z",
+            "revision": 7,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "article"
+                }
+            }
+        },
+        "fields": {
+            "sectionType": {
+                "en-US": "Marketer Guide"
+            },
+            "title": {
+                "en-US": "Core Topics"
+            },
+            "slug": {
+                "en-US": "core-topics"
+            },
+            "highlights": {
+                "en-US": "Overview of the five core aspects of a referral program."
+            },
+            "content": {
+                "en-US": "To better understand how a referral program works we have broken the process down into five core topics; Engagement, Identification, Attribution, Conversion, Fulfilment. These cover the complete referral process from beginning (user discovery) to end (fulfilling rewards). \n### Engagement\nThe engagement component of the referral process is all about figuring out how to best interact with existing customers. In order to direct a user's attention towards your referral program you should take advantage of channels that they interact with everyday. The referral widget can both be embedded and served as a popup or modal, and the more visible and easy to access your program is, the better results you will see. \n\nPromotion is something that all referral programs need in order to deliver results as you have to create awareness of your referral program to drive participation. In most cases, promoting your referral program to existing customers across a wide range of mediums will help with the visibility of your program and drive engagement.\n \nOn your website or in app; banners, visible referral pages, triggered calls to action, push notifications, and dedicated emails will all increase the visibility of your referral program. Including a footer in your other emails for invoice receipts, reminders, blog articles, and support tickets can also increase awareness of the referral program. A referral program will benefit from promotion across any or all of these channels. \n### Identification\nThis step is where users are enrolled for inclusion in your referral program. With a user registered in your referral program they are able to start making referrals by sharing out their referral link to family and friends.\n\nEnrolling a user in your referral program requires providing Referral SaaSquatch with identifying information about the user such as name, email, and a unique account and user id. The identification step typically happens whenever a user first creates an account on your website or service, makes a purchase, or logs in.\n\nOnce a user has been identified and engages with the referral program the referral process can continue towards Attribution and Conversion. \n### Attribution\nAttribution is the process of building a referral link between two people; the person doing the referring, and the person that was referred. In this step your referral program establishes the connection between these two users. \n\nThe process of attributing this referral of a new user is done automatically through Referral SaaSquatch as part of a correctly configured program. Links and referral codes shared directly, by email, or through social media work across desktop or mobile devices and seamlessly attribute the referral connection between the referrer and the referred user. \n\nOnce the referral connection is made Referral SaaSquatch will send the referrer an email notifying them of the progress of the user they referred. Subsequent steps in the referral process will be accurately applied to both the referrer and referred user with the referral connection correctly attributed.\n### Conversion\nThe conversion step is where the goal-post of your referral program is achieved. This goal-post is the ultimate objective of your referral program. Many organizations have this event as the point at which a referred user pays for a subscription. Other organizations have their goal-post as when a referred user signs up for a free account, or when a referred user makes a purchase of a certain value. This target is flexible and can be tailored to your specific business needs. \n\nIn Referral SaaSquatch, user’s have 3 possible Account Statuses, TRIAL, PAID, and CANCELLED. A TRIAL user, is one that has been identified, but hasn’t reached the goal-post of the program, this is typically when they first create an account with you. When a TRIAL user is converted to PAID, any associated referrals will be converted. This means that if they were referred, rewards will be generated for the person who referred them. It also means that if they were not referred, they are considered a full paying customer and will not be able to be referred later. This status update can be done in several ways, including using our JavaScript library, mobile widgets, or REST API, or manually through your Referral SaaSquatch program’s web portal. \n\nOnce the goal-post has been hit, and the user’s status has been updated, the referral process can progress to fulfillment. \n### Fulfillment\nFulfillment is the process of making sure people are able to use the rewards they earn. Referral SaaSquatch supports manual, semi-automated, and fully-automated reward fulfillment options. Rewards rewards come in many shapes and sizes but are commonly discount percentages, account credits, gift cards, or points. \n\nReferral SaaSuatch supports integrations with a range of payment providers and reward systems to fulfill rewards. Integrations with payment providers allow for seamless inclusion of the rewards with your existing billing platform. Highly customized referral reward solutions are also possible through our API-based referral programs. \n\nThe easiest way to learn more about the topic of fulfillment is to start by exploring one of our getting started guides. These guides provide step-by-step instructions for how to implement some of the most popular types of referral program rewards.  [ADD LINKIES]"
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "6kamW1Rz2wIeGyg66kywic",
+            "type": "Entry",
+            "createdAt": "2016-04-04T20:25:10.177Z",
+            "updatedAt": "2016-04-04T21:59:14.703Z",
+            "revision": 4,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "article"
+                }
+            }
+        },
+        "fields": {
+            "sectionType": {
+                "en-US": "Developer Guide"
+            },
+            "title": {
+                "en-US": "Testing Best Practice Guide"
+            },
+            "slug": {
+                "en-US": "testing"
+            },
+            "highlights": {
+                "en-US": "You can test your Referral SaaSquatch integration in test mode before touching any production systems."
+            },
+            "content": {
+                "en-US": "### What is test mode?\n\nEvery Referral SaaSquatch account comes with both a test and live \"tenant\". The test tenant can be configured to connect to your sandbox payment provider account. You'll notice that the\n`tenant_alias` of your test tenant always begins with **\"test_\"**\n\n\n### How do I use test mode?\n\nWhen you're configuring your payment system integration, set up your payment provider's sandbox first. Then, <a href=\"/app-integration\">install squatch.js</a> using your test <code>tenant_alias</code>. Test\nmode is fully functional, so you can test the whole user experience.\n\n\n### What should I test?\n\nYou should test things:\n\n<ul>\n    <li>Open the referral widget <span class=\"muted\">(click any button with <code>class=\"squatchpop\"</code>)</span></li>\n    <li>Click a referral link <span class=\"muted\">(you can find your referral link in the referral widget)</span></li>\n    <li>Make sure <code>coupon_code</code> is autofilled <span class=\"muted\">(go to your payment form after clicking a referral link)</span></li>\n    <li>Check your first invoice <span class=\"muted\">(sign up as a \"referred\" user and make sure your first invoice has a coupon applied)</span></li>\n</ul>\n<p></p>\n\n### What else should I know?\n\nWe recommend that you also read about <a href=\"/shared-vs-solo-accounts\">Shared vs Solo Accounts</a> and \nthe <a href=\"/bestpractices/common-pitfalls\">Common Pitfalls</a>. Most integration problems are listed in those guides."
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "6N0pu9GndKmc0KooMYQQw6",
+            "type": "Entry",
+            "createdAt": "2016-07-20T04:34:25.791Z",
+            "updatedAt": "2016-07-20T04:34:25.791Z",
+            "revision": 1,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "article"
+                }
+            }
+        },
+        "fields": {
+            "sectionType": {
+                "en-US": "Marketer Guide"
+            },
+            "title": {
+                "en-US": "Conversion"
+            },
+            "slug": {
+                "en-US": "topics/conversion"
+            },
+            "highlights": {
+                "en-US": "Conversion is the process of converting in-progress referrals and unlocking rewards. It is the final of three steps in referral tracking, the first two being [identifying a user](/topics/identification) and [attributing the referral](/topics/attribution) back to the person who referred them. Conversion can happen immediately when someone signs up or checks out, or can be set up to only happen after some future conversion event. In most cases the conversion event would be the purchase of a product or subscription, which can often happen hours or days after a user was first identified or a referral first attributed."
+            },
+            "content": {
+                "en-US": "<div class=\"bs-callout bs-callout-default\">\n    <h4>Definition</h4>\n    Conversion is the process of converting in-progress referrals and unlocking rewards.\n</div>\n\n\n### Conversion Events\n\nConversion can happen immediately when someone signs up or checks out, or can be set up to only happen after some future conversion event. In most cases\nthe conversion event would be the purchase of a product or subscription, which can often happen hours or days after a user was first identified or a \nreferral first attributed.\n\n - **eCommerce:** The conversion is usually triggered after checkout\n - **B2B SaaS:** The conversion is usually triggered when someone purchases a subscription at the end of a free trial period\n - **Consumer Software:** The conversion is usually triggered when someone has verified their email and finished activating their account\n\n\n<hr/>\n\n### Tech Guide\n\nFor details on implementing conversion, see our [developer center guide on conversion](/developer/conversion)"
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "6OowKhu9j22M4scykoQAM6",
+            "type": "Entry",
+            "createdAt": "2016-04-04T22:25:31.221Z",
+            "updatedAt": "2016-06-09T22:41:09.722Z",
+            "revision": 3,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "faq"
+                }
+            }
+        },
+        "fields": {
+            "question": {
+                "en-US": "Does Referral SaaSquatch offer volume discounts?"
+            },
+            "answer": {
+                "en-US": "Happily! Our Enterprise tier is available for larger more complex solutions. Email us at <a href=\"mailto:sales@saasquat.ch?subject=Enterprise%20Plans\">sales@saasquat.ch</a>"
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "6Uxs7fYWk0CaIuKuiy4oIu",
+            "type": "Entry",
+            "createdAt": "2016-04-04T22:23:15.726Z",
+            "updatedAt": "2016-04-04T22:23:15.726Z",
+            "revision": 1,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "faq"
+                }
+            }
+        },
+        "fields": {
+            "question": {
+                "en-US": "How do you define a member?"
+            },
+            "answer": {
+                "en-US": "A member is an identified customer who is registered with our system and has a referral link and/or code generated for them. We suggest adding up the total number of customers you work with in one month to determine how many members you need from our system."
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "72zHDHSw9yyyow2m20MQeU",
+            "type": "Entry",
+            "createdAt": "2016-07-15T17:48:05.145Z",
+            "updatedAt": "2016-07-15T17:51:49.042Z",
+            "revision": 2,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "article"
+                }
+            }
+        },
+        "fields": {
+            "sectionType": {
+                "en-US": "Marketer Guide"
+            },
+            "title": {
+                "en-US": "Share Options"
+            },
+            "slug": {
+                "en-US": "share-options"
+            },
+            "highlights": {
+                "en-US": "Referral SaaSquatch referral programs provide your users with a wide range of options for sharing their experience with their friends, family, colleagues, and social networks."
+            },
+            "content": {
+                "en-US": "Your customers can access the referral program through a widget in your product or site, or through email messages sent to them. More information about ways to engage with your existing user and how to drive participation in your referral program can be found in our Touchpoints document in the Success Centre [Link to Touchpoints].\n\n*** image of referral widget here***\n\nThere are five main methods users have access to for sharing a referral with their friends and family; referral code, referral link, Facebook, Twitter, and email. This guide covers how each of these sharing methods works with Referral SaaSquatch, examples, and the benefits of each platform.\n### Referral Code\nWhen a user is registered in our system they are provided a unique referral code. This referral code typically comes in the form of FIRSTNAMELASTNAME, such as JOHNDOE. By default the referral code is shown in the referral widget right underneath the main text.\n\n***highlighted referral code in widget here***\n\nThe referral code provides a simple method for users to connect with your referral program. They are a relatively short human-readable code which users can share with their friends and family. Many people are familiar with the concept of a referral coupon code so using the referral codes as part of your referral program can make the process easier to understand.\n\nThe main limitation of this share option is that it does not take advantage of our automatic referral attribution. The referred user is required to manually input the referral code on your referral landing page. This mean that referred users could forget the code, or have take the extra step of  copying and pasting it. Referral codes can be hidden for products that do not have a coupon or code input field. \n\n### Referral Links\nWhen a user is registered in your referral program they are also provided a unique link to share with their friends and family. Sharing this referral link provides your customers an easy way to connect their friends with your platform by directing them to a referral landing page of your choice. \n\nThe referral links can be found in the user’s widget where they can copy it for sharing with family and friends. The main advantage of referral links is that the referral can be attributed automatically by our squatch.js tracking script. The referral link includes all the information needed to track the referral so there is no need for the referred user to worry about inputting a referral code.\n\nYou can set the destination for referral links on the Settings page of the Setup section of your Referral SaaSquatch portal. This destination can be changed at any time and will even update any user share links that have already been shared.\n\n***highlighted referral link in widget here***\n\nAn example of one of these links is ssqt.co/barYS\n\nBy default Referral SaaSquatch generates these unique links using the ssqt.co short domain. Information on how to use your own domain rather than the default ssqt.co domain can be found in our documentation.\n### Share Messages\nShare messages provide your customers an opportunity to share their referral experience with their friends and family using a number of platforms including Facebook, Twitter, and Email.\nIn each user’s personalized referral widget and notification emails there are sharing options for each of the three supported platforms.\nEach of these options includes a platform specific, unique share link which can be used to track share traffic by platform.\n#### Facebook and Twitter\nFacebook and Twitter sharing options allow a referral user to make a post to their social media profile. The share messages themselves are extensively customizable, with settings for editing default share message content in your program portal. This lets you provide your users with a pre-formatted starting point for their shares. \n\nFriction is minimal as we do not require users to authorize access to their account to make the post.\n\n*** image of share message editing options in portal ***\n\nConfigurable options for Facebook share messages include the message subject, body, and image. Images to be used in Facebook share messages have an optimal resolution of 1200x627px.\n***example facebook share message***\n\nTwitter share messages are configurable up to the standard 140 character limit, note that currently, any link URL including the user’s sharelink counts for 23 characters. Twitter image thumbnails can also be included on the sharetweets! The size of in-stream photo’s on twitter is 440x220px.\n***example twitter share image***\n\nTo change Facebook and Twitter share images please let the success team know.\n#### Email\nUsers are also able to make a referral by sharing their sharelink through email. The email share link in the widget is a standard \"mailto:\" link which lets users complete the share process through their email client of choice. In their email client the referrer can then simply input the email address of the desired recipient and make any personalizations to your referral program's standard email message.\n\n***Example email share***\n\nThis default messaging can be customized just like that of the Facebook and Twitter share options. Configurable options for the email share messages include the message subject and body text.\n***portal share message edit options***\nWhile formatting is limited to plain text, allowing users to send the email through their own email account provides a more personalized experience for both the referrer and referred user, and will consistently arrive in the recipient's general inbox, not the promotions folder..\n\nMore information about ways to engage with your existing user and how to drive participation in your referral program can be found in our Referral Program Touchpoints article.\n\nTo learn more about referral programs and how to get your program up and running, check out our “Referral Program 101” article.\n\n"
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "7EH0nQh6YE28SQQ2Eymmu4",
+            "type": "Entry",
+            "createdAt": "2016-04-04T22:19:52.255Z",
+            "updatedAt": "2016-04-04T22:19:52.255Z",
+            "revision": 1,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "faq"
+                }
+            }
+        },
+        "fields": {
+            "question": {
+                "en-US": "Do my customers have to signup with Referral SaaSquatch before they can make a referral?"
+            },
+            "answer": {
+                "en-US": "__No, your customers don't need a Referral SaaSquatch account__. By installing Referral SaaSquatch in your app all of your customers will automatically be enrolled. We do this to make inviting friends as fast and seamless as possible, to both increase participation in the program and to protect your brand."
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "GG7L7xzDW0MwaqKogYoMe",
+            "type": "Entry",
+            "createdAt": "2016-07-20T04:33:27.495Z",
+            "updatedAt": "2016-07-22T05:28:09.890Z",
+            "revision": 21,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "article"
+                }
+            }
+        },
+        "fields": {
+            "sectionType": {
+                "en-US": "Marketer Guide"
+            },
+            "title": {
+                "en-US": "Attribution"
+            },
+            "slug": {
+                "en-US": "topics/attribution"
+            },
+            "highlights": {
+                "en-US": "**\"Attribution\"** means creating a referral link between two people; the person that was referred and the person doing the referring. It is one of the 5 core terms you should know for your referral program. When you run a referral program you often want to separate the linking of referrals from the process of giving people rewards. For example you want to *attribute* a referral as soon as some one signs in to your website,  but you only want to give a referral reward when the referred person [converts](/topics/conversion) and pays their first bill."
+            },
+            "content": {
+                "en-US": "<div class=\"bs-callout bs-callout-default\">\n  <h4>Definition</h4>\n  Attribution is the process of tracking a referral link between two people.\n</div>\n\n\n### Share Links\n\nOne of the most popular ways to let people share with their friends is using share links like `http://ssqt.co/hR6O`. Share links are unique links generated for each user that can be used for making referrals.\nShare links rely on [Tracking Cookies](/topics/tracking-cookies) to track when someone has been referred, redirecting referred friends to a website or landing page to get started as a new customers. Share links are\noften used along with [Squatch.js Javascript Library](/squatchjs) or deeplinking like Branch Metrics integration to track when someone has made a successful referral.\n\n**Benefits of Share Links**:\n\n - Work across email, facebook, twitter and other social channels\n - Easy to set up\n - Can have a white-labeled domain\n\n**Disadvantages of Share Links**:\n \n - Relies on Cookies or Deeplinking\n   - Can be blocked by some browsers or cleared regularly\n   - Requires a Deeplinking tool like Branch to work well in Mobile apps\n - Does not support real world face-to-face referrals\n\n<div class=\"text-center\">![Example share link](/assets/images/attribution/sharelink-attribution.png)</div>\n\n\n\n### Referral Codes\n\nReferral codes are a more modern way of sharing that rely on a human-readable code like `BOBTESTERSON`. Referral codes are unique codes that people can use when they sign up for a product\nor check out at a store. Since there is a unique referral code for everyone who shares, referral codes can be used as the sole way of doing attribution. \n\n__Benefits of Referral Codes__:\n\n - Can be used with on-the-phone and in-person sign up processes link Banks, Call Centers and Retail Stores\n - Works well with printed materials\n - Supports mobile-first referrals for native mobile apps\n\n__Disadvantages of Referral Codes__:\n \n - Some companies have policies against allowing any sort of promo codes\n - Can be listed on coupon sites\n\n<div class=\"text-center\">![Example share link](/assets/images/attribution/referralcode-attribution.png)</div>\n\n\n### Hybrid (recommended)\n\nIt is possible to get the best of both worlds by using both human-readable codes and share links. This is the recommended approach for attribution because it provides all of the benefits\nof both of the methods of share links and codes. In most cases, if it's possible to refer friends using a referral code, then it is preferable to go for a hybrid approach and take\nadvantage of the additional analytics provided by links.\n\n__Benefits of Share Links__:\n\n - All of the benefits listed above\n - Best in class success rates\n\n__Disadvantages of Share Links__:\n \n - Some companies have policies against allowing any sort of promo codes\n\n<div class=\"text-center\">![Example share link](/assets/images/attribution/hybrid-attribution.png)</div>\n\n\n### Choosing an attribution method\n\nReferral SaaSquatch has flexible attribution methods for controlling how referrals can be made and tracked. Each attribution method has certain strengths and limitations. Unique share links, for example, are a simple way to power your referral program but they don't work well offline, with cookie blockers or on mobile. Referral codes work well on mobile, but aren't as \nconvenient for online sharing.\n\n<table class=\"table\">\n<tr>\n    <td></td>\n    <td>Desktop</td>\n    <td>Mobile</td>\n    <td>Offline</td>\n<tr>\n<tr>\n    <th>Share Links</th>\n    <td><i class=\"fa fa-check-circle fa-3x\"></i></td>\n    <td><i class=\"fa fa-check-circle fa-3x\" style=\"color: #CCC\"></i></td>\n    <td></td>\n</tr>\n<tr>\n    <th>Referral Codes</th>\n    <td><i class=\"fa fa-check-circle fa-3x\" style=\"color: #CCC\"></i></td>\n    <td><i class=\"fa fa-check-circle fa-3x\"></i></td>\n    <td><i class=\"fa fa-check-circle fa-3x\"></i></td>\n</tr>\n<tr>\n    <th>Hybrid (Recommended)</th>\n    <td><i class=\"fa fa-check-circle fa-3x\"></i></td>\n    <td><i class=\"fa fa-check-circle fa-3x\"></i></td>\n    <td><i class=\"fa fa-check-circle fa-3x\"></i></td>\n</tr>\n</table>\n\n\n<div class=\"bs-callout bs-callout-default\">\n  Attribution can use share links, referral codes or both (hybrid)\n</div>\n\n\n### Tech Guide\n\nFor details on implementing attribution, see our [developer center guide on attribution](/developer/attribution)"
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "Qv9utsEpoG0Ag6g4qui4K",
+            "type": "Entry",
+            "createdAt": "2016-04-04T22:25:14.520Z",
+            "updatedAt": "2016-04-04T22:25:14.520Z",
+            "revision": 1,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "faq"
+                }
+            }
+        },
+        "fields": {
+            "question": {
+                "en-US": "Does Referral SaaSquatch work with foreign currencies?"
+            },
+            "answer": {
+                "en-US": "Yes. We work with any currency that your subscription provider works with. We will charge you in USD at the conversion rate available to us on the day of your invoice."
+            }
+        }
+    }
+]

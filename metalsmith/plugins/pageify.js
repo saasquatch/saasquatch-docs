@@ -29,7 +29,7 @@ function plugin(options) {
         var jsonfile = {
             contents: JSON.stringify(data)
         };
-        files['contentful-entries.json'] = jsonfile;
+        files['contentful-processed.json'] = jsonfile;
 
         debug("Iterating entries", Object.keys(data).length);
         for(var i in data) {

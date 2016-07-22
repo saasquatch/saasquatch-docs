@@ -4,6 +4,7 @@ c9-installed-software
 
 #Ignore Node / Metalsmith
 
+logs
 node_modules
 build
 .divshot-cache

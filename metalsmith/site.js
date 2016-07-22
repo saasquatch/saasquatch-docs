@@ -1,3 +1,5 @@
+var debug = require('debug')('saasquatch-docs');
+
 var Metalsmith = require('metalsmith');
 var markdown = require('metalsmith-markdown');
 var templates = require('metalsmith-templates');
@@ -12,7 +14,6 @@ var extras = require('swig-extras');
 var permalinks = require('./plugins/rawpaths.js');
 var swagger = require('./plugins/swagger.js');
 var metadata = require('./plugins/metadata.js');
-var contentful = require('./plugins/contentful.js');
 var pageify = require('./plugins/pageify.js');
 var categoryManager = require('./plugins/categoryManager.js');
 var dumplog = require('./plugins/dumplog.js');
@@ -39,7 +40,9 @@ module.exports = site;
  * 
  * @author loganv
  */
-function site(root){
+function site(baseplugin){
+
+  debug("Bootstrapping the Docs build process using Metalsmith");
 
   // Does this approach work here? Yes it does. http://quabr.com/26160954/set-swig-options-with-consolidate
   // extras.useFilter(swig, 'markdown');
@@ -64,20 +67,19 @@ function site(root){
     }
   };
   
-  var ms = Metalsmith(path.resolve(__dirname, "../"))
+  var ms = Metalsmith(path.resolve(__dirname, "../"));
 
+  if(baseplugin){
+    ms = ms.use(baseplugin);
+    debug("Using base plugin");
+  }
   /**
    *  Build up all the metadata
    */
-  .use(define(baseMetadata))
+  ms = ms.use(define(baseMetadata))
   .use(swagger({
       path: "saasquatch-api.yaml"
     }))
-  .use(dumplog('contentful'))
-  .use(contentful({
-    accessKey: "ae31ffc9de0831d887cff9aa3c72d861c323bd09de2a4cafd763c205393976c9",
-    spaceId: "s68ib1kj8k5n"
-  }))
   .use(dumplog('pageify'))
   .use(pageify())
   .use(dumplog('categoryManager'))
@@ -112,6 +114,8 @@ function site(root){
           engine: "swig",
           directory: 'templates'
       }));
+
+  debug("Finished bootstrapping the Docs build process using Metalsmith");
 
   return ms;
 }

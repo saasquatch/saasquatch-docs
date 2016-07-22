@@ -9,11 +9,16 @@
   },
   "engine": "node 4.4.3",
   "scripts": {
-    "start": "gulp & node ./metalsmith/dev.js & wait",
-    "production": "gulp production & node ./metalsmith/build.js",
-    "dev": "npm run browser_sync & NODE_ENV=development nodemon --exec 'npm start && browser-sync reload --port $PORT --host $IP'",
-    "server": "node ./metalsmith/preview.js",
+    "production": "gulp production",
+    "dev": "gulp & gulp metalsmithDev & wait",
+
+    "local": "npm run watch & NODE_ENV=development nodemon --exec 'npm run dev && npm run browser_sync_reload'",
+    "server": "npm run watch & NODE_ENV=development nodemon --exec 'gulp metalsmithDev && npm run browser_sync_reload'",
+
+    "watch": "npm run browser_sync & node contentful-watch.js",
     "browser_sync": "browser-sync start --server build --port $PORT --host $IP",
+    "browser_sync_reload": "browser-sync reload --port $PORT --host $IP",
+
     "heroku-postbuild": "gulp"
   },
   "dependencies": {
@@ -48,6 +53,8 @@
     "metalsmith-request": "^1.0.0",
     "metalsmith-templates": "^0.7.0",
     "nodemon": "^1.9.2",
+    "performance-now": "^0.2.0",
+    "promise": "^7.1.1",
     "slug": "0.9.1",
     "swagger-client": "^2.1.15",
     "swagger-parser": "^3.4.1",

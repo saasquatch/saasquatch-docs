@@ -5,7 +5,7 @@ sectionType: successArticle
 template: article.html
 ---
 
-<p>Welcome to SaaSquatch! Let's get you running with your very own refer-a-friend program.</p>
+<p>Welcome to SaaSquatch! Let's get you running with your very own referral program.</p>
 
 <h3><span class="label label-success">Step 1</span> Sign Up</h3>
 <p>You need to <a href="http://www.referralsaasquatch.com/#sign-up">sign up</a> for a Referral SaaSquatch account before you can get started.</p>
