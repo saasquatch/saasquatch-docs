@@ -55,6 +55,20 @@ The supported Referral SaaSquatch Stripe integration flow is:
 -  Discounts or credits being applied to a user’s stripe invoice should have an "RS_" appended at the beginning.
 - Including the "account_status = PAID" in your squatch.js calls will have no effect when your program is configured for a payment provider integration. Only a non-zero, non-trial subscription applied to the user’s invoice will convert the user from TRIAL to PAID.
 
+### Dollar Credit Rewards
+
+Looking to run a referral program with Stripe as your payment provider and Dollar Credit rewards?
+
+This reward type is currently in Beta for our integration with Stripe. If you are interested in using this type of reward with your Stripe Referral SaaSquatch program please contact [support](mailto:support@referralsaasquatch.com) to find out more.
+
+### Arbitrary Rewards
+
+Looking to run a referral program with Stripe as your payment provider and an arbitrary reward type (like points, free time, foo credits)?
+
+Stripe only supports credits in a single specified currency. Anything beyond that (arbitrary rewards) will not be recognized by Stripe. 
+
+If you are interested in running a Referral SaaSquatch referral program with arbitrary rewards (like points, free time, foo credits) please take a look at our API referral programs. API programs are extremely flexible and support a wide range of reward types, including [Percentage Discount](https://docs.referralsaasquatch.com/guides/percent-discount/), [Dollar Credit](https://docs.referralsaasquatch.com/guides/dollar-credit/), [Free Time](https://docs.referralsaasquatch.com/guides/time-reward/), and [Points](https://docs.referralsaasquatch.com/guides/point-reward/). Please checkout our docs on API programs and our guides for each of these reward types.
+
 * * *
 
 #### That's it!

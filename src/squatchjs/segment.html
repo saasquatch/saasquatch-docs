@@ -57,7 +57,13 @@ analytics.identify( "u1234", {
     firstName: "Joe",
     lastName: "Tester",
     referralImage: "http://www.example.com/logo.png",
-    checksum: "arbPDAcedO38Qw/qdJLCqd2tlRQ="
+    paymentProviderId: 'cus_8rVOAthroptvT6'
+},{
+    integrations: {
+        SaaSquatch: {
+            checksum: 'n3VtXg92TVOuzQ+6EMV8FvjY4em5NptCcesDYv+9tegs='
+        }
+    }
 });</code></pre>
         </td>
     </tr>
@@ -81,7 +87,9 @@ analytics.identify( "u1234", {
 <p>
     Most of the features of SaaSquatch are released immediately for Segment. You can always use squatch.js directly to 
     <a href="/squatchjs#open">open</a> or <a href="/squatchjs#close">close</a> the referral widget. There will always be
-    some things that will require you to use squatch.js directly.
+    some things that will require you to use squatch.js directly.<br><br>
+    
+    <b>Note:</b> The Segment intigration with Referral SaaSquatch is currently only supported on programs setup for payment provider integration. The <code>paymentProviderId</code> value must always be included in a call and cannot be set as <code>null</code>.
 </p>
 
 <hr/>

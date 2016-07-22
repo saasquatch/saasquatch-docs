@@ -30,7 +30,7 @@ template: guides.html
 
 <h5 data-toggle="collapse" data-target=".install-step3">Redeem points</h5>
 <div class="install-step3 collapse">
-    <p>When someone wants to redeem their points, adjust their point balance and give them their prize.</p>
+    <p>When someone wants to redeem their points, adjust their point balance and give them their reward.</p>
     <ul class="unstyled">
         <li><label class="checkbox"><input type="checkbox"> Make sure a user has been identified to Squatch.js before they redeem points</label></li>
         <li><label class="checkbox"><input type="checkbox"> <a href="/api/methods#list_balances">Lookup remaining points balance</a> on the points redemption page</label></li>
@@ -123,9 +123,9 @@ It is possible to explore the individual points that has been earned by an accou
     </tbody>
 </table>
 
-<h5>Step 2 - Fulfill Prize </h5>
+<h5>Step 2 - Fulfill Reward </h5>
 
-<p>You are responsible for fulfilling the prizes you offer through your prize program. </p>
+<p>You are responsible for fulfilling the reward you offer through your referral program. </p>
 
 
 <h5>Step 3 - Redeem Points with Referral SaaSquatch</h5>

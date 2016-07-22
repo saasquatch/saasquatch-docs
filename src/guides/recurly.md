@@ -52,6 +52,20 @@ The supported Referral SaaSquatch Recurly integration flow is:
 3.  Convert the user to paid through Recurly. This conversion happens when a non-zero, non-trial subscription is applied to the user’s invoice. Including the "account_status = PAID" in your squatch.js calls will have no effect when your program is configured for a payment provider integration.
 4.  Wait for the conversion to propagate from Recurly to Referral SaaSquatch (this process may be instantaneous but also may take longer depending on the load on Recurly and the frequency of them sending out webhooks).
 
+### Dollar Credit Rewards
+
+Looking to run a referral program with Recurly as your payment provider and Dollar Credit rewards?
+
+This reward type is currently in Beta for our integration with Recurly. If you are interested in using this type of reward with your Recurly Referral SaaSquatch program please contact [support](mailto:support@referralsaasquatch.com) to find out more.
+
+### Arbitrary Rewards
+
+Looking to run a referral program with Recurly as your payment provider and an arbitrary reward type (like points, free time, foo credits)?
+
+Recurly only supports credits in a single specified currency. Anything beyond that (arbitrary rewards) will not be recognized by Recurly. 
+
+If you are interested in running a Referral SaaSquatch referral program with arbitrary rewards (like points, free time, foo credits) please take a look at our API referral programs. API programs are extremely flexible and support a wide range of reward types, including [Percentage Discount](https://docs.referralsaasquatch.com/guides/percent-discount/), [Dollar Credit](https://docs.referralsaasquatch.com/guides/dollar-credit/), [Free Time](https://docs.referralsaasquatch.com/guides/time-reward/), and [Points](https://docs.referralsaasquatch.com/guides/point-reward/). Please checkout our docs on API programs and our guides for each of these reward types.
+
 * * *
 
 #### More information
