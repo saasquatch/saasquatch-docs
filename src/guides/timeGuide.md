@@ -2,7 +2,8 @@
 title: Free Time Integration Guide
 highlights: Follow this guide to setup a "Give 1 Month, Get 1 Month Referral Program" using the SaaSquatch REST API and Squatch.js
 slug: guides/time-reward
-template: guides.html
+sectionType: guide
+template: hasTableOfContents.html
 ---
 
 <div class="install-guide-checklist">
