@@ -1,15 +1,16 @@
+// External -- These stylesheets reference relative image/font files, so can't be inlined
 @import (css) "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css";
+@import (css) "../lib/lightbox/css/lightbox.css";
 
-// Base styles stolen from our old Wordpress blog
+// Old Website -- Base styles stolen from our old Wordpress blog
 @import (inline) "../lib/bootstrap-2.3.0.css";
 @import (inline) "../lib/bootstrap-responsive-2.3.1.css";
 @import (inline) "../lib/animate.css";
 @import (inline) "./marketing-website/mediaqueries.css";
 @import (inline) "./marketing-website/style.css";
 
-// External websites
+// Imported Libraries -- add more dependencies here
 @import (inline) "../lib/jquery.jsonview.css";
-@import (css) "../lib/lightbox/css/lightbox.css";
 @import (inline) "../lib/highlight-js/styles/github.css";
 @import (inline) "../lib/mmenu/css/jquery.mmenu.all.css";
 
@@ -28,4 +29,4 @@
 @import "./_integrations.less";
 
 @import "./_misc.less";
-@import "./_colorCoded.less";
+@import "./_colorCoded.less"; // Orange/Blue/Red colors for categories
