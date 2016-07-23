@@ -20,6 +20,7 @@ var client = contentful.createClient({
 var opts = {
     destination: 'src/contentful.json',
     logging: 'logs/',
+    useLogging: false,
     syncPeriod: 5 * 1000,
 };
 
@@ -92,7 +93,13 @@ function write(entries, resp){
     localStorage.contentfulSyncToken = resp.nextSyncToken;
     return writeJson(opts.destination, localStorage.contentfulEntries)
         .then(
-            x => writeJson(opts.logging + 'log-' + new Date().getTime() + '.json', resp.toPlainObject())
+            x => {
+                if(opts.useLogging){
+                    return writeJson(opts.logging + 'log-' + new Date().getTime() + '.json', resp.toPlainObject());
+                }else{
+                    return Promise.resolve(x);
+                }
+            }
         );
 }
 
