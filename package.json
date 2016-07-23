@@ -14,7 +14,7 @@
     "local": "npm run watch & NODE_ENV=development nodemon --exec 'npm run dev && npm run browser_sync_reload'",
     "server": "npm run superstatic & node contentful-watch.js & NODE_ENV=development nodemon --exec 'gulp metalsmithDev'",
     "watch": "npm run browser_sync & node contentful-watch.js",
-    "superstatic": "superstatic build --port $PORT --host $IP --config firebase.json",
+    "superstatic": "superstatic build --port $PORT --config firebase.json",
     "browser_sync": "browser-sync start --server build --port $PORT --host $IP",
     "browser_sync_reload": "browser-sync reload --port $PORT --host $IP",
     "heroku-postbuild": "gulp",
