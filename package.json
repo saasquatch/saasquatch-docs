@@ -12,13 +12,12 @@
     "production": "gulp production",
     "dev": "gulp & gulp metalsmithDev & wait",
     "local": "npm run watch & NODE_ENV=development nodemon --exec 'npm run dev && npm run browser_sync_reload'",
-    "server": "npm run superstatic & node contentful-watch.js & NODE_ENV=development nodemon --exec 'gulp metalsmithDev'",
+    "server": "npm run watch & NODE_ENV=development nodemon --exec 'gulp metalsmithDev && npm run browser_sync_reload'",
     "watch": "npm run browser_sync & node contentful-watch.js",
     "superstatic": "superstatic build --port $PORT --config firebase.json",
     "browser_sync": "browser-sync start --server build --port $PORT --host $IP",
     "browser_sync_reload": "browser-sync reload --port $PORT --host $IP",
-    "heroku-postbuild": "gulp",
-    "herlp": "superstatic --help"
+    "heroku-postbuild": "gulp"
   },
   "dependencies": {
     "browser-sync": "^2.13.0",
