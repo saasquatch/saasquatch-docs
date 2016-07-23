@@ -53,6 +53,8 @@ function site(baseplugin){
   
   var baseMetadata = {
     "robots": process.env.ROBOTS || "true",
+    "jsTrackers":  process.env.JSTRACKERS || "true",
+    "useTypekit":  (process.env.TYPEKIT_ID != "none"),
     "googleSiteId": process.env.GOOGLE_SITE_ID || "RdOFXwKJvCorEOtVBMJTkuwZ8pDOOjvR4hoia3OYecE",
     "windowDotEnv": {
       // Google Custom Search (GCSE) params

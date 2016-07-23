@@ -987,6 +987,46 @@
                     "id": "s68ib1kj8k5n"
                 }
             },
+            "id": "52rATpelrWIIACkUaYMWWw",
+            "type": "Entry",
+            "createdAt": "2016-07-23T03:59:27.259Z",
+            "updatedAt": "2016-07-23T04:16:51.490Z",
+            "revision": 2,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "article"
+                }
+            }
+        },
+        "fields": {
+            "sectionType": {
+                "en-US": "Marketer Guide"
+            },
+            "title": {
+                "en-US": "Salesforce Install Guide"
+            },
+            "slug": {
+                "en-US": "salesforce/install-guide"
+            },
+            "highlights": {
+                "en-US": "This guide will walk you through the steps to install Referral SaaSquatch for Salesforce™ in your organization."
+            },
+            "content": {
+                "en-US": "Referral SaaSquatch for Salesforce™ is what Salesforce calls a \"Composite Application\" because it consists of two parts:\n\n- A __Managed Package__ consisting of Custom Objects, Custom Fields, Triggers, Reports and other Force.com components that will be installed into your Salesforce organization\n- A __synchronization service__ that automatically syncs information from Referral SaaSquatch into Salesforce\n\nThe Referral SaaSquatch for Salesforce Install Wizard is going to be your friend. The wizard walks you through all the steps required to install the Managed Package and configuring the synchronization service.\n\n__What to expect__:\n\n- You'll need to be a Salesforce Administrator to complete these steps\n- You may way to use your Salesforce Sandbox\n- The user that completes these steps will be the default owner of Referral SaaSquatch custom objects\n- You should have a base understand of Salesforce and Referral SaaSquatch to complete these steps\n\n__What is not covered__:\n\n- How to setup your Referral SaaSquatch account -- Talk to your account manager\n- How to configure Salesforce page layouts -- That's in the next step\n- How to setup a Salesforce Sandbox -- Complete the Salesforce Trailhead Trails for Admins\n\n\n### Let's Go\n\nClick the button below to get started.\n\n<a href=\"https://www.process.st/checklist/install-referral-saasquatch-for-salesforce-copy-2\" class=\"btn\">Open Install Guide</a>\n\n\n \n"
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
             "id": "5cGGtSHOVGaI6qES0uY862",
             "type": "Entry",
             "createdAt": "2016-04-04T22:23:34.670Z",
@@ -1037,6 +1077,46 @@
             },
             "answer": {
                 "en-US": "Referral SaaSquatch is for companies involved with SaaS, Media and E-Commerce that are looking to reward their existing customers for referring new customers."
+            }
+        }
+    },
+    {
+        "sys": {
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "s68ib1kj8k5n"
+                }
+            },
+            "id": "5NNchkBQIg0A4Y64c82Sac",
+            "type": "Entry",
+            "createdAt": "2016-07-23T03:49:51.082Z",
+            "updatedAt": "2016-07-23T03:49:51.082Z",
+            "revision": 1,
+            "contentType": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "article"
+                }
+            }
+        },
+        "fields": {
+            "sectionType": {
+                "en-US": "Marketer Guide"
+            },
+            "title": {
+                "en-US": "Salesforce FAQ"
+            },
+            "slug": {
+                "en-US": "salesforce/faq"
+            },
+            "highlights": {
+                "en-US": "These of some of the most common questions about Referral SaaSquatch for Salesforce™. RS for Salesforce is a managed package built on Force.com that lets you synchronize your Referral SaaSquatch referral program with Salesforce. If you want to get started with RS for Salesforce, please contact your account manager."
+            },
+            "content": {
+                "en-US": "### What is synchronized?\n\nRS for Salesforce sychronizes to user data into your Saleforce account as __custom objects__ and __custom fields__.\n\n- __SaaSquatch User__, __Referral__ and __Reward Balance__ custom objects automatically links to Lead and Contact records\n- __Referral Code__ and __Share Link__ custom fields on Lead and Contact records\n\n### How are Leads & Contacts mapped?\n\nWe use email address to map records from Referral SaaSquatch with a matching Lead or Contact. RS for Salesforce automatically loads user records into Salesforce as a separate custom object called __SaaSquatch User__. These records are then linked to a Lead or Contact when the email address matches. Leads and Contacts automatically have their custom fields and related lists updated based upon the matched record.\n\n### How are duplicates handled?\n\n - __Duplicate Contact or Leads in Salesforce__ - RS for Salesforce links the first record with the right email address.\n - __Leads that a duplicates Contact__ - RS for Salesforce links to Contacts first and Leads second.\n - __Merging duplicates__ - RS for Salesforce will map to the merged record only if it has the right email address.\n - __Updating Email__ - RS for Salesforce will immediately relink a record when an email address changed.\n\n### Why isn't a user syncing to Salesforce?\n\nHere are some reasons a Lead or Contact is not getting linked:\n\n- A __Validation Rule__ on your Lead or Contact record is prevent RS for Salesforce from updating records.\n- A __SaaSquatch User__ has been created, but the email address in SaaSquatch doesn't exactly match the email of the Lead or Contact.\n\n### Does it work with Salesforce Lightning Experience?\n\nYes, Referral SaaSquatch for Salesforce will work out of the box with both Salesforce Classic and Salesforce Lightning Experience.\n\n### Which Salesforce Editions do you support?\n\nOur integration uses the Salesforce Bulk API for efficient loading and synchronization of large data sets, so we only support Professional, Enterprise, Performance and Unlimited Editions.\n\n### What other features should I know about?\n\nHere are some important features to know about:\n - Supports synchronization of historical data. Turn it on or off at any point.\n - Use custom fields to simplify integration into your Marketing Automation systems like Marketo, Hubspot and Pardot.\n - Works with __custom salesforce reports__, __process builder__, __workflow rules__ and the other Salesforce tools you're used to using.\n - Support conversion tracking customization. Conversions can be triggered on Opportunity Won, based off custom Process Builder actions, based on any arbitrary APEX event or Trigger, or external conversion events using the SaaSquatch REST API\n - Self-healing linking will automatically heal the link between SaaSquatch and Salesforce if a Lead or Contact is Merged, Converted or Deleted\n - Attribution tracking persists into Opportunities when a Lead is converted\n - Works with both Inbound Referral and Outbound Referral workflows\n"
             }
         }
     },

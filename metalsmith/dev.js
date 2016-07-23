@@ -12,13 +12,16 @@ function dev(callback){
   // process.env.GCSE_CX = "014638356218796023717:iajbhojb63w";
   // process.env.GCSE_KEY  = "AIzaSyAOxNZQO2zvNFv98_HImD1BruDfITNEOFo";
   
+  process.env.ROBOTS = "false";
+  process.env.JSTRACKERS = "false";
+
   process.env.ROLLBAR_ID = "none";
   process.env.PINGDOM_ID = "none";
   process.env.ANALYTICSJS_ID = "none";
   process.env.GA_ACCOUNT = "none";
   process.env.GA_PREFIX = "/docs/";
   process.env.TYPEKIT_ID = "none";
-
+  
   debug('Firing off build');
   site(metadata({
         contentful: 'contentful.json'

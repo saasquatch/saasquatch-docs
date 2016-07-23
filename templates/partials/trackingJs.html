@@ -1,0 +1,88 @@
+<!-- Rollbar error monitoring -->
+<script>
+    var _rollbarParams = {
+        "server.environment": "production"
+    };
+    _rollbarParams["notifier.snippet_version"] = "2";
+    var _rollbar = [window.env.ROLLBAR_ID, _rollbarParams];
+    var _ratchet = _rollbar;
+    (function(w, d) {
+        w.onerror = function(e, u, l) {
+            _rollbar.push({
+                _t: 'uncaught',
+                e: e,
+                u: u,
+                l: l
+            });
+        };
+        var i = function() {
+            var s = d.createElement("script");
+            var
+                f = d.getElementsByTagName("script")[0];
+            s.src = "//d37gvrvc0wt4s1.cloudfront.net/js/1/rollbar.min.js";
+            s.async = !0;
+            f.parentNode.insertBefore(s, f);
+        };
+        if (w.addEventListener) {
+            w.addEventListener("load", i, !1);
+        }
+        else {
+            w.attachEvent("onload", i);
+        }
+    })(window, document);
+</script>
+<!-- End of Rollbar error monitoring -->
+
+<!-- Start Pingdom RUM -->
+<script>
+    var _prum = [
+        ['id', window.env.PINGDOM_ID],
+        ['mark', 'firstbyte', (new Date()).getTime()]
+    ];
+    (function() {
+        var s = document.getElementsByTagName('script')[0],
+            p = document.createElement('script');
+        p.async = 'async';
+        p.src = '//rum-static.pingdom.net/prum.min.js';
+        s.parentNode.insertBefore(p, s);
+    })();
+</script>
+<!-- End Pingdom RUM -->
+
+<!-- Segment.io -->
+<script type="text/javascript">
+    window.analytics || (window.analytics = []), window.analytics.methods = ["identify", "track", "trackLink", "trackForm", "trackClick", "trackSubmit", "page", "pageview", "ab", "alias", "ready", "group", "on", "once", "off"], window.analytics.factory = function(a) {
+        return function() {
+            var t = Array.prototype.slice.call(arguments);
+            return t.unshift(a), window.analytics.push(t), window.analytics
+        }
+    };
+    for (var i = 0; i < window.analytics.methods.length; i++) {
+        var method = window.analytics.methods[i];
+        window.analytics[method] = window.analytics.factory(method)
+    }
+    window.analytics.load = function(a) {
+        var t = document.createElement("script");
+        t.type = "text/javascript", t.async = !0, t.src = ("https:" === document.location.protocol ? "https://" : "http://") + "d2dq2ahtl5zl1z.cloudfront.net/analytics.js/v1/" + a + "/analytics.min.js";
+        var n = document.getElementsByTagName("script")[0];
+        n.parentNode.insertBefore(t, n)
+    }, window.analytics.SNIPPET_VERSION = "2.0.6",
+    window.analytics.load(window.env.ANALYTICSJS_ID),
+    window.analytics.page();
+</script>
+<!-- end Segment.io -->
+
+<script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', window.env.GA_ACCOUNT]);
+    // LV: This prefixes all paths with "docs", which helps with google analytics page tracking
+    _gaq.push(['_trackPageview', window.env.GA_PREFIX + document.location.pathname]);
+    (function() {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+</script>
