@@ -1,0 +1,7 @@
+dependencies:
+  post:
+    - node build.js
+  production:
+    branch: circleci
+    commands:
+      - ./firebaseDeploy.sh
