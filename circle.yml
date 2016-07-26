@@ -5,4 +5,4 @@ deployment:
   production:
     branch: circleci
     commands:
-      - ./firebaseDeploy.sh
+      - npm run deploy
