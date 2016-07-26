@@ -1,6 +1,7 @@
 dependencies:
   post:
     - node build.js
+deployment:
   production:
     branch: circleci
     commands:
