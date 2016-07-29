@@ -8,7 +8,7 @@
     "url": "http://github.com/saasquatch/saasquatch-docs.git"
   },
   "engine": {
-    "node": ">= 4.4.3"
+    "node": ">= v6.3.1"
   },
   "scripts": {
     "production": "gulp production && npm run webpack",
