@@ -21,7 +21,7 @@
     "browser_sync": "browser-sync start --server build --port $PORT --host $IP",
     "browser_sync_reload": "browser-sync reload --port $PORT --host $IP",
     "gulp": "gulp",
-    "heroku-postbuild": "gulp"
+    "heroku-postbuild": "gulp && npm run webpack"
   },
   "dependencies": {
     "browser-sync": "^2.13.0",
