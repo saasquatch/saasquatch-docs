@@ -24,7 +24,7 @@ jQuery(document).ready(function() {
     search();
     
     if ( window.location.hash ) { 
-        smoothScroll.animateScroll( null, window.location.hash);
+        smoothScroll.animateScroll(window.location.hash);
     }
 
     jQuery('.js-docs-collapse').each(function() {
@@ -107,5 +107,5 @@ function initializeScolling(){
 window.smoothScrollTo = function(elem){
     var $this = jQuery(elem);
     var anchor = "#" + $this.attr('href').split("#")[1];
-    smoothScroll.animateScroll(null, anchor);
+    smoothScroll.animateScroll(anchor);
 }
