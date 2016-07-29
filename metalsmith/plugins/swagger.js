@@ -2,7 +2,7 @@ var extname = require('path').extname;
 var parser = require("swagger-parser");
 var yaml = require('js-yaml');
 
-var Resolver = require('swagger-client/lib/resolver');
+var resolveAllOf = require('json-schema-resolve-allof');
 
 /**
  * Expose `plugin`.
@@ -52,29 +52,15 @@ function plugin(opts){
         return done(new Error('malformed data in "' + file + '"'));
     }
 
-    parser.parse(data, function(err, api, swaggerMetaD) {
-        if(err){
-            return done(new Error("Swagger parsing error: " + err.message, err));
-        }
-    
-        new Resolver().resolve(api, null, function (spec, unresolved) {
-          // console.log("Parsed spec", spec);
-          
-          var numUnresolved = Object.keys(unresolved).length;
-          if(numUnresolved !=0 ){
-            console.error("Found unresolved Swagger paths", unresolved);
-            return done(new Error("Found unresolved Swagger paths. See logs for details."));
-          }
-          Object.keys(spec.paths).forEach(function(k,v){
-            // LV: Cleans up the `parameters` cruft field added by Swagger JS. Messes up templates. And doesn't seem spec compliant?
-            delete spec.paths[k]["parameters"];
-          });
-          
-          metadata['swagger'] = api;
-          done();
-        });
-
-    });
-
+    parser
+    .dereference(data)
+    .then(function(spec) {
+      return resolveAllOf(spec);
+    })
+    .then((spec) => {
+        metadata['swagger'] = spec;
+        done();
+    })
+    .catch( (err) => done(new Error("Swagger parsing error: " + err.message, err)));
   };
 }

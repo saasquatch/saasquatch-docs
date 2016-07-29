@@ -38,9 +38,10 @@ client.sync({
         debug("Waiting for next sync....");
         setTimeout(runIncrementalSync, opts.syncPeriod);
     })
-    .catch((err) => console.error("Uncaught error", err));
+    .catch((err) => console.error("Contentful: Uncaught error in initial sync", err));
 
 // Later....
+var consecutiveErrors = 0;
 function runIncrementalSync() {
     debug("Incr sync...");
     var start = now();
@@ -83,9 +84,14 @@ function runIncrementalSync() {
                 console.log("Watching for changes...");
             }
             debug("Waiting for next sync....");
+            consecutiveErrors = 0;
             setTimeout(runIncrementalSync, opts.syncPeriod);
         })
-        .catch((err) => console.error("Uncaught error", err));
+        .catch((err) => {
+            console.error("Contentful: Uncaught error in incremental sync", err);
+            consecutiveErrors++; // Exponential backoff
+            setTimeout(runIncrementalSync, consecutiveErrors*opts.syncPeriod);
+        });
 }
 
 function write(entries, resp){

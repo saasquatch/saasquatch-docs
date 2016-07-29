@@ -7,22 +7,26 @@
     "type": "git",
     "url": "http://github.com/saasquatch/saasquatch-docs.git"
   },
-  "engine": "node 4.4.3",
+  "engine": {
+    "node": ">= 4.4.3"
+  },
   "scripts": {
-    "production": "gulp production",
-    "dev": "gulp & gulp metalsmithDev & wait",
+    "production": "gulp production && npm run webpack",
+    "dev": "gulp & gulp metalsmithDev & npm run webpack & wait",
     "local": "npm run watch & NODE_ENV=development nodemon --exec 'npm run dev && npm run browser_sync_reload'",
     "server": "npm run watch & NODE_ENV=development nodemon --exec 'gulp metalsmithDev && npm run browser_sync_reload'",
     "watch": "npm run browser_sync & node contentful-watch.js",
+    "webpack": "webpack ./assets/js/docs.js ./build/assets/js/bundle.js",
     "superstatic": "superstatic build --port $PORT --config firebase.json",
     "browser_sync": "browser-sync start --server build --port $PORT --host $IP",
     "browser_sync_reload": "browser-sync reload --port $PORT --host $IP",
+    "gulp": "gulp",
     "heroku-postbuild": "gulp"
   },
   "dependencies": {
     "browser-sync": "^2.13.0",
     "cheerio": "^0.20.0",
-    "contentful": "^3.3.0",
+    "contentful": "^3.5.0",
     "debug": "^2.2.0",
     "del": "^2.2.1",
     "express": "^4.14.0",
@@ -39,8 +43,15 @@
     "gulp-sequence": "^0.4.5",
     "gulp-sizereport": "^1.1.3",
     "gulp-sourcemaps": "^1.6.0",
+    "handlebars": "^4.0.5",
+    "highlight.js": "^9.5.0",
+    "jquery": "^3.1.0",
+    "jquery-jsonview": "^1.2.3",
+    "jquery.mmenu": "^5.6.5",
     "js-yaml": "^3.0.2",
+    "json-schema-resolve-allof": "^1.1.1",
     "less": "^2.7.1",
+    "lightbox2": "^2.8.2",
     "lodash": "^4.13.1",
     "marked": "^0.3.5",
     "metalsmith": "^2.1.0",
@@ -50,15 +61,17 @@
     "metalsmith-metadata": "0.0.4",
     "metalsmith-request": "^1.0.0",
     "metalsmith-templates": "^0.7.0",
-    "nodemon": "^1.9.2",
+    "nodemon": "^1.10.0",
     "performance-now": "^0.2.0",
     "promise": "^7.1.1",
     "slug": "0.9.1",
+    "smooth-scroll": "cferdinandi/smooth-scroll",
     "superstatic": "^4.0.3",
     "swagger-client": "^2.1.15",
     "swagger-parser": "^3.4.1",
     "swig": "1.4.2",
-    "swig-extras": "0.0.1"
+    "swig-extras": "0.0.1",
+    "webpack": "^1.13.1"
   },
   "devDependencies": {}
 }

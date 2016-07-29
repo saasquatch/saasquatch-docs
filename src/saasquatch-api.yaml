@@ -2077,12 +2077,8 @@ definitions:
 
   VariablesSchema:
     description: The JSON Schema that defines the format of the theme variables. See [theme variables](/themes/variables) for more info.
-    allOf:
-      # - $ref: "http://json-schema.org/draft-04/schema"
-      - type: object
-        properties:
-          name:
-            type: string
+    type: object
+    additionalProperties: true
     example:
       title: Example Theme Variables Schema
       type: object
