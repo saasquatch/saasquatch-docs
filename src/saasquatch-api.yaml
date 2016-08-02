@@ -51,8 +51,9 @@ paths:
       operationId: account_sync
       summary: Create or Update an account
       description: |
-        Use this method to update SaaSquatch when the status of an account changes or when a new account is created. If you're using
-        a payment system connector, such as the Recurly connector, then you won't need to use this method. We automatically track account status for Braintree, Stripe, Reculy and Zuora.
+        Use this method to update SaaSquatch when the status of an account changes or when a new account is created. 
+        
+        This call is only available on an API-only program. Making this call on a payment provider program will fail and return a 403 error indicating the call is incompatible with your type of program.
       parameters:
         - name: account
           in: body
@@ -81,6 +82,13 @@ paths:
                 code: 3j033r
           schema:
             $ref: "#/definitions/Account"
+        403:
+          description: Account sync failed
+          examples:
+            "application/json":
+              message: "Account sync failed. This push is not valid for your tenant type[STRIPE]"
+              statusCode: 403
+              apiErrorCode: "API_REQUEST_NOT_SUPPORTED"
         default:
           $ref: "#/responses/GeneralError"
   "/{tenant_alias}/account/{accountId}":
@@ -90,6 +98,8 @@ paths:
       description: |
         Looks up an Account based upon `id` and returns the stored account information.
         This method just returns the details of the account in question, and not all associated properties like Rewards, ShareLinks, Balances or Referrals.
+        
+        This call is only available on an API-only program. Making this call on a payment provider program will fail and return a 403 error indicating the call is incompatible with your type of program.
       parameters:
         - name: accountId
           in: path
@@ -104,11 +114,22 @@ paths:
             "application/json":
               id: "89842"
               currency: "USD"
-              subscription: null
+              subscription: 
+                status: "PAID"
+                value: 29.99
+                billingIntervalType: "MONTH"
+                billingIntervalValue: 1
               referral:
                 code: "WILLSANDERSON2"
           schema:
             $ref: "#/definitions/Account"
+        403:
+          description: Account sync failed
+          examples:
+            "application/json":
+              message: "Account sync failed. This push is not valid for your tenant type[STRIPE]"
+              statusCode: 403
+              apiErrorCode: "API_REQUEST_NOT_SUPPORTED"
         404:
           description: Account NOT found
           schema:
@@ -171,20 +192,14 @@ paths:
           description: Details of the User to be created or updated
           required: true
           schema:
-            $ref: "#/definitions/User"
+            $ref: "#/definitions/User_POST"
         - $ref: "#/parameters/tenant_alias"
       responses:
         200:
           description: User Created or Updated
           examples:
             "application/json":
-              id: "876343"
-              accountId: "613611"
-              email: "bob@example.com"
-              firstName: "Bob"
-              lastName: "Testerson"
-              referralCode: "BOBTESTERSON"
-              imageUrl: ""
+              $ref: "#/definitions/User/example"
           schema:
             $ref: "#/definitions/User"
         default:
@@ -208,13 +223,7 @@ paths:
           description: User found
           examples:
             "application/json":
-              id: "876343"
-              accountId: "613611"
-              email: "bob@example.com"
-              firstName: "Bob"
-              lastName: "Testerson"
-              referralCode: "BOBTESTERSON"
-              imageUrl: ""
+              $ref: "#/definitions/User/example"
           schema:
             $ref: "#/definitions/User"
         404:
@@ -248,13 +257,7 @@ paths:
           description: User found
           examples:
             "application/json":
-              id: "876343"
-              accountId: "613611"
-              email: "bob@example.com"
-              firstName: "Bob"
-              lastName: "Testerson"
-              referralCode: "BOBTESTERSON"
-              imageUrl: ""
+              $ref: "#/definitions/User/example"
           schema:
             $ref: "#/definitions/User"
         404:
@@ -344,9 +347,7 @@ paths:
               dateCreated: 1411600868797
               referrerName: "Bob Testerson"
               reward:
-                type: "PCT_DISCOUNT"
-                discountPercent: 10
-                monthsDiscountIsValid: 12
+                $ref: "#/definitions/Reward/example"
           schema:
             $ref: "#/definitions/Code"
         404:
@@ -405,33 +406,11 @@ paths:
                 -
                   id: "5462600de4b09b1c41108f28"
                   referredUser:
-                    id: "876343"
-                    accountId: "613611"
-                    email: "logan@example.com"
-                    firstName: "Logan"
-                    lastName: "Volker"
-                    referralCode: "LOGANVOLKER"
-                    imageUrl: ""
+                    $ref: "#/definitions/User/example"
                   referrerUser:
-                    id: "14125"
-                    accountId: "89842"
-                    email: "mark@example.com"
-                    firstName: "Mark"
-                    lastName: "Smellerson"
-                    referralCode: "MARKSMELLERSON"
-                    imageUrl: ""
+                    $ref: "#/definitions/User/example"
                   referredReward:
-                    type: "PCT_DISCOUNT"
-                    id: "5462600de4b09b1c41108f2e"
-                    dateGiven: 1415733261275
-                    dateExpires: null
-                    dateCancelled: null
-                    accountId: "613611"
-                    userId: "876343"
-                    cancellable: true
-                    rewardSource: "REFERRED"
-                    discountPercent: 20
-                    unit: "%"
+                    $ref: "#/definitions/Reward/example"
                   referrerReward: null
                   moderationStatus: "ACTIONED"
                   dateReferralStarted: 1415733261238
@@ -443,45 +422,13 @@ paths:
                 -
                   id: "546270a6e4b0c1871186a920"
                   referredUser:
-                    id: "898746321"
-                    accountId: "987321"
-                    email: "hello@example.com"
-                    firstName: "Henk"
-                    lastName: "Thompson"
-                    referralCode: "HENKTHOMPSON"
-                    imageUrl: ""
+                    $ref: "#/definitions/User/example"
                   referrerUser:
-                    id: "14125"
-                    accountId: "89842"
-                    email: "mark@example.com"
-                    firstName: "Mark"
-                    lastName: "Smellerson"
-                    referralCode: "MARKSMELLERSON"
-                    imageUrl: ""
+                    $ref: "#/definitions/User/example"
                   referredReward:
-                    type: "PCT_DISCOUNT"
-                    id: "546270a6e4b0c1871186a926"
-                    dateGiven: 1415737510458
-                    dateExpires: null
-                    dateCancelled: null
-                    accountId: "987321"
-                    userId: "898746321"
-                    cancellable: true
-                    rewardSource: "REFERRED"
-                    discountPercent: 20
-                    unit: "%"
+                    $ref: "#/definitions/Reward/example"
                   referrerReward:
-                    type: "PCT_DISCOUNT"
-                    id: "546270d5e4b0c1871186a93a"
-                    dateGiven: 1415737557271
-                    dateExpires: null
-                    dateCancelled: null
-                    accountId: "89842"
-                    userId: "14125"
-                    cancellable: true
-                    rewardSource: "FRIEND_SIGNUP"
-                    discountPercent: 20
-                    unit: "%"
+                    $ref: "#/definitions/Reward/example"
                   moderationStatus: "ACTIONED"
                   dateReferralStarted: 1415737510411
                   dateReferralPaid: 1415737557217
@@ -516,45 +463,13 @@ paths:
             "application/json":
               id: "546270a6e4b0c1871186a920"
               referredUser:
-                id: "898746321"
-                accountId: "987321"
-                email: "hello@example.com"
-                firstName: "Henk"
-                lastName: "Thompson"
-                referralCode: "HENKTHOMPSON"
-                imageUrl: ""
+                $ref: "#/definitions/User/example"
               referrerUser:
-                id: "14125"
-                accountId: "89842"
-                email: "mark@example.com"
-                firstName: "Mark"
-                lastName: "Smellerson"
-                referralCode: "MARKSMELLERSON"
-                imageUrl: ""
+                $ref: "#/definitions/User/example"
               referredReward:
-                type: "PCT_DISCOUNT"
-                id: "546270a6e4b0c1871186a926"
-                dateGiven: 1415737510458
-                dateExpires: null
-                dateCancelled: null
-                accountId: "987321"
-                userId: "898746321"
-                cancellable: true
-                rewardSource: "REFERRED"
-                discountPercent: 20
-                unit: "%"
+                $ref: "#/definitions/Reward/example"
               referrerReward:
-                type: "PCT_DISCOUNT"
-                id: "546270d5e4b0c1871186a93a"
-                dateGiven: 1415737557271
-                dateExpires: null
-                dateCancelled: null
-                accountId: "89842"
-                userId: "14125"
-                cancellable: true
-                rewardSource: "FRIEND_SIGNUP"
-                discountPercent: 20
-                unit: "%"
+                $ref: "#/definitions/Reward/example"
               moderationStatus: "ACTIONED"
               dateReferralStarted: 1415737510411
               dateReferralPaid: 1415737557217
@@ -592,7 +507,6 @@ paths:
           description: Unexpected error
           schema:
             $ref: "#/definitions/Error"
-
 
   "/{tenant_alias}/reward/balance":
     get:
@@ -717,45 +631,7 @@ paths:
               $ref: "#/definitions/Reward"
           examples:
             "application/json":
-              - "type": "FEATURE"
-                "id": "5423508fe4b05184a716a08b"
-                "dateGiven": 1411600527094
-                "dateExpires": null
-                "dateCancelled": null
-                "accountId": "F3BNA0HOKJR17656"
-                "userId": "5423508ee4b059bbbadf48e1"
-                "cancellable": false
-                "rewardSource": "REFERRED"
-                "featureType": "storage"
-                "name": "100 MB Storage"
-                "description": "100 MB Free Storage"
-                "quantity": 100
-                "unit": "MB"
-
-              - "type": "PCT_DISCOUNT"
-                "id": "54235160e4b05184a716a0b2"
-                "dateGiven": 1411600736220
-                "dateExpires": 1443136736220
-                "dateCancelled": null
-                "accountId": "GUYRP0T2F6F3Y6PN"
-                "userId": "54235132e4b059bbbadf4903"
-                "cancellable": true
-                "rewardSource": "FRIEND_SIGNUP"
-                "discountPercent": 10
-
-              - "type": "CREDIT"
-                "id": "542351e4e4b05184a716a0c5"
-                "dateGiven": 1411600868797
-                "dateExpires": null
-                "dateCancelled": null
-                "accountId": "85W7A2F1QZS9NGI8"
-                "userId": "542351e4e4b059bbbadf496d"
-                "cancellable": false
-                "rewardSource": "FRIEND_SIGNUP"
-                "unit": "cents"
-                "assignedCredit": 10000
-                "redeemedCredit": 0
-                "redeemable": true
+              $ref: "#/definitions/Reward/example"
         default:
           $ref: "#/responses/GeneralError"
   "/{tenant_alias}/credit/{id}/redeem":
@@ -818,18 +694,9 @@ paths:
           schema:
             $ref: "#/definitions/Reward"
           examples:
-            "application/json":
-              - "type": "PCT_DISCOUNT"
-                "id": "5734d4f9e4b04da952ff4d0a"
-                "dateGiven": 1463080185421
-                "dateExpires": 1471028988000
-                "dateCancelled": null
-                "accountId": "KWCCHLA7INJUTLEY"
-                "userId": "56ce0cdae4b09d48bf7e7fcc"
-                "cancellable": true
-                "rewardSource": "MANUAL"
-                "discountPercent": 15
-                "unit": "%"
+            "application/json":  
+              $ref: "#/definitions/Reward/example"
+             
         default:
           $ref: "#/responses/GeneralError"
 
@@ -1785,8 +1652,20 @@ definitions:
       currency:
         type: string
         description: "For programs that require a currency. Works with: `CREDIT`"
-
-  User:
+    example:
+      type: "PCT_DISCOUNT"
+      id: "5462600de4b09b1c41108f2e"
+      dateGiven: 1415733261275
+      dateExpires: null
+      dateCancelled: null
+      accountId: "613611"
+      userId: "876343"
+      cancellable: true
+      rewardSource: "REFERRED"
+      discountPercent: 20
+      unit: "%"
+        
+  User_POST:
     description: An object describing an individual user
     required:
       - id
@@ -1829,6 +1708,104 @@ definitions:
         example: "`en` or `en_US` or `zh_CN`"
         description: |
           The user's locale, used for [Internationalization](/themes/internationalization). The locale must be of the format 'language_COUNTRY' where the language code must be lowercase and the country code must be uppercase. The separator must be an underscore.
+    example:
+      id: "898746321"
+      accountId: "987321"
+      email: "hello@example.com"
+      firstName: "Henk"
+      lastName: "Thompson"
+      referralCode: "HENKTHOMPSON"
+      imageUrl: ""
+      locale: null
+
+  User:
+    description: An object describing an individual user
+    required:
+      - id
+      - accountId
+      - firstName
+    properties:
+      id:
+        type: string
+        example: "219065"
+        description: The unique identifier provided for this user.
+      accountId:
+        type: string
+        example: "accc9065"
+        description: The unique identifier of the Account that this user belongs to.
+      referralCode:
+        type: string
+        example: "BOBTESTERSON"
+        description: The referral code *used for sharing by this user*
+      email:
+        type: string
+        example: "bob@example.com"
+        description: The email address provided for the user. SaaSquatch uses this to notify someone when they have a successful referral.
+      imageUrl:
+        type: string
+        example: "https://www.example.com/profiled/ab5111251125"
+        description: |
+          Optionally used in widgets, emails, and themes. If you provide a absolute profile image URL the minimum image size is 80px x 80px.
+      firstName:
+        type: string
+        example: "Bob"
+        description: |
+          The user's first name
+      lastName:
+        type: string
+        example: "Testerson"
+        description: |
+          The user's last name
+      firstSeenIP: 
+        type: string
+        example: "10.230.163.157"
+        description: |
+          The user's IP address on indentification
+      lastSeenIP: 
+        type: string
+        example: "184.66.242.57"
+        description: |
+          The user's last known IP address
+      dateCreated: 
+        type: integer
+        example: 1467222395030
+        description: |
+          The Unix time stamp of when the user was created
+      emailHash: 
+        type: string
+        example: "180bc1412a038746af9b37fb782724a2"
+        description: |
+          The hash of the user's email address
+      referralSource: 
+        type: string
+        example: "http://unifiedtestapp.herokuapp.com/"
+        description: |
+          The domain from which the user was registered
+      locale:
+        type: string
+        example: "`en` or `en_US` or `zh_CN`"
+        description: |
+          The user's locale, used for [Internationalization](/themes/internationalization). The locale must be of the format 'language_COUNTRY' where the language code must be lowercase and the country code must be uppercase. The separator must be an underscore.
+      shareLinks:
+        description: "Share links for an individual user"
+        $ref: "#/definitions/Sharelink"
+    example:
+      id: "898746321"
+      accountId: "987321"
+      email: "hello@example.com"
+      firstName: "Henk"
+      lastName: "Thompson"
+      referralCode: "HENKTHOMPSON"
+      imageUrl: ""
+      firstSeenIP: "10.230.163.157"
+      lastSeenIP: "184.66.242.57"
+      dateCreated: 1467222395030
+      emailHash: "180bc1412a038746af9b37fb782724a2"
+      referralSource: "http://unifiedtestapp.herokuapp.com/"
+      locale: null
+      shareLinks:
+        $ref: "#/definitions/Sharelink/example"
+      
   RewardBalance:
     description: Details of the balance of several individual rewards.
     properties:
@@ -2053,15 +2030,142 @@ definitions:
       mobileEmailShareLink:
         type: string
         description: "The Share Link for Email on mobile devices."
+      EMBED: 
+        description: An individual user's Share links for use in EMBED.
+        properties:
+          shareLink: 
+            type: string
+            description: The unique share link the user can refer their friends with. The Share Link contains the Referral Code for making referrals and a source for Analytics purposes.
+          facebookShareLink: 
+            type: string
+            description: "The Share Link for Facebook."
+          twitterShareLink: 
+            type: string
+            description: "The Share Link for Twitter."
+          emailShareLink: 
+            type: string
+            description: "The Share Link for Email."
+          linkedinShareLink: 
+            type: string
+            description: "The Share Link for linkedin."
+      POPUP: 
+        description: An individual user's Share links for use in POPUP.
+        properties:
+          shareLink: 
+            type: string
+            description: The unique share link the user can refer their friends with. The Share Link contains the Referral Code for making referrals and a source for Analytics purposes.
+          facebookShareLink: 
+            type: string
+            description: "The Share Link for Facebook."
+          twitterShareLink: 
+            type: string
+            description: "The Share Link for Twitter."
+          emailShareLink: 
+            type: string
+            description: "The Share Link for Email."
+          linkedinShareLink: 
+            type: string
+            description: "The Share Link for linkedin."
+      HOSTED:
+        description: An individual user's Share links for use in HOSTED.
+        properties:
+          shareLink:
+            type: string
+            description: The unique share link the user can refer their friends with. The Share Link contains the Referral Code for making referrals and a source for Analytics purposes.
+          facebookShareLink: 
+            type: string
+            description: "The Share Link for Facebook."
+          twitterShareLink: 
+            type: string
+            description: "The Share Link for Twitter."
+          emailShareLink: 
+            type: string
+            description: "The Share Link for Email."
+          linkedinShareLink: 
+            type: string
+            description: "The Share Link for linkedin."
+      MOBILE: 
+        description: An individual user's Share links for use in MOBILE.
+        properties:
+          shareLink:
+            type: string
+            description: The unique share link the user can refer their friends with. The Share Link contains the Referral Code for making referrals and a source for Analytics purposes.
+          facebookShareLink: 
+            type: string
+            description: "The Share Link for Facebook."
+          twitterShareLink: 
+            type: string
+            description: "The Share Link for Twitter."
+          emailShareLink: 
+            type: string
+            description: "The Share Link for Email."
+          linkedinShareLink: 
+            type: string
+            description: "The Share Link for linkedin."
+      EMAIL: 
+        description: An individual user's Share links for use in EMAIL.
+        properties:
+          shareLink:
+            type: string
+            description: The unique share link the user can refer their friends with. The Share Link contains the Referral Code for making referrals and a source for Analytics purposes.
+          facebookShareLink: 
+            type: string
+            description: "The Share Link for Facebook."
+          twitterShareLink: 
+            type: string
+            description: "The Share Link for Twitter."
+          emailShareLink: 
+            type: string
+            description: "The Share Link for Email."
+          linkedinShareLink: 
+            type: string
+            description: "The Share Link for linkedin."
+    
     example:
-      shareLink: "http://ssqt.co/pZVp"
-      facebookShareLink: "http://ssqt.co/pZVq"
-      twitterShareLink: "http://ssqt.co/pZVr"
-      emailShareLink: "http://ssqt.co/pZVs"
-      mobileShareLink: "http://ssqt.co/pZVt"
-      mobileFacebookShareLink: "http://ssqt.co/pZVu"
-      mobileTwitterShareLink: "http://ssqt.co/pZVv"
-      mobileEmailShareLink: "http://ssqt.co/pZVw"
+      shareLink: "http://ssqt.co/mvbcF5"
+      facebookShareLink: "http://ssqt.co/mmbcF5"
+      twitterShareLink: "http://ssqt.co/mRbcF5"
+      emailShareLink: "http://ssqt.co/mLbcF5"
+      linkedinShareLink: "http://ssqt.co/mLbcF5"
+      mobileShareLink: "http://ssqt.co/mebcF5"
+      mobileFacebookShareLink: "http://ssqt.co/mnbcF5"
+      mobileTwitterShareLink: "http://ssqt.co/mCbcF5"
+      mobileEmailShareLink: "http://ssqt.co/mEbcF5"
+      
+      EMBED: 
+        shareLink: "http://ssqt.co/mQbcF5"
+        facebookShareLink: "http://ssqt.co/mwbcF5"
+        twitterShareLink: "http://ssqt.co/mcbcF5"
+        emailShareLink: "http://ssqt.co/mJbcF5"
+        linkedinShareLink: "http://ssqt.co/mHbcF5"
+      
+      POPUP: 
+        shareLink: "http://ssqt.co/m5bcF5"
+        facebookShareLink: "http://ssqt.co/m9bcF5"
+        twitterShareLink: "http://ssqt.co/mMbcF5"
+        emailShareLink: "http://ssqt.co/mobcF5"
+        linkedinShareLink: "http://ssqt.co/m7bcF5"
+      
+      HOSTED:
+        shareLink: "http://ssqt.co/mtbcF5"
+        facebookShareLink: "http://ssqt.co/mubcF5"
+        twitterShareLink: "http://ssqt.co/mSbcF5"
+        emailShareLink: "http://ssqt.co/mlbcF5"
+        linkedinShareLink: "http://ssqt.co/mYbcF5"
+      
+      MOBILE: 
+        shareLink: "http://ssqt.co/mebcF5"
+        facebookShareLink: "http://ssqt.co/mnbcF5"
+        twitterShareLink: "http://ssqt.co/mCbcF5"
+        emailShareLink: "http://ssqt.co/mEbcF5"
+        linkedinShareLink: "http://ssqt.co/m3bcF5"
+      
+      EMAIL: 
+        shareLink: "http://ssqt.co/mPbcF5"
+        facebookShareLink: "http://ssqt.co/mTbcF5"
+        twitterShareLink: "http://ssqt.co/mGbcF5"
+        emailShareLink: "http://ssqt.co/mbbcF5"
+        linkedinShareLink: "http://ssqt.co/m1bcF5"
 
   WebhookEndpoint:
     description: An endpoint to receive events
