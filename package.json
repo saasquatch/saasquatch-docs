@@ -21,16 +21,22 @@
     "browser_sync": "browser-sync start --server build --port $PORT --host $IP",
     "browser_sync_reload": "browser-sync reload --port $PORT --host $IP",
     "gulp": "gulp",
-    "heroku-postbuild": "gulp && npm run webpack"
+    "heroku-postbuild": "gulp && npm run webpack",
+    "deploy:production": "npm run firebaseDeploy && npm run maxcdnPurge",
+    "maxcdnPurge": "node ./node_modules/maxcdn-purge/purge.js --alias referralsaasquat --key $MAXCDN_KEY  --secret $MAXCDN_SECRET --pull 136632 && echo \"Purged MaxCDN zone\"",
+    "firebaseDeploy": "firebase use default --token \"$FIREBASETOKEN\" && firebase deploy --token \"$FIREBASETOKEN\"",
+    "test": "./node_modules/.bin/mocha --reporter spec"
   },
   "dependencies": {
     "browser-sync": "^2.13.0",
+    "chai": "^3.5.0",
     "cheerio": "^0.20.0",
     "contentful": "^3.5.0",
     "debug": "^2.2.0",
     "del": "^2.2.1",
     "express": "^4.14.0",
     "extend": "^3.0.0",
+    "get-folder-size": "^1.0.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-changed": "^1.3.0",

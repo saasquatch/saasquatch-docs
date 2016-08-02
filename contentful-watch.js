@@ -21,7 +21,7 @@ var opts = {
     destination: 'src/contentful.json',
     logging: 'logs/',
     useLogging: false,
-    syncPeriod: 5 * 1000,
+    syncPeriod: 60 * 1000, // Every 60 seconds
 };
 
 var localStorage = {};

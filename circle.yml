@@ -1,0 +1,11 @@
+dependencies:
+  post:
+    - node build.js
+deployment:
+  production:
+    branch: circleci # TODO: Change to production once new branch is merged
+    commands:
+      - npm run deploy
+general:
+  artifacts:
+    - "build" # Saves the built site in CircleCi artifacts
