@@ -43,6 +43,7 @@
       "source": "/how-it-works",
       "destination": "/success"
     }, {
+      "type": 301,
       "source": "/faq/pricing",
       "destination": "http://www.referralsaasquatch.com/pricing/"
     }]
