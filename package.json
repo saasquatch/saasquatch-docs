@@ -67,6 +67,7 @@
     "metalsmith-metadata": "0.0.4",
     "metalsmith-request": "^1.0.0",
     "metalsmith-templates": "^0.7.0",
+    "mocha": "^3.0.0",
     "nodemon": "^1.10.0",
     "performance-now": "^0.2.0",
     "promise": "^7.1.1",
