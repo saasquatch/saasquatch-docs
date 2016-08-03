@@ -55,7 +55,7 @@ function site(baseplugin){
     "robots": process.env.ROBOTS || "true",
     "jsTrackers":  process.env.JSTRACKERS || "true",
     "useTypekit":  (process.env.TYPEKIT_ID != "none"),
-    "googleSiteId": process.env.GOOGLE_SITE_ID || "RdOFXwKJvCorEOtVBMJTkuwZ8pDOOjvR4hoia3OYecE",
+    "googleSiteId": process.env.GOOGLE_SITE_ID || "240GodHWd0rPOGqZxZo3-fDym0MeTAYYHSnkwZV9xSE",
     "windowDotEnv": {
       // Google Custom Search (GCSE) params
       "GCSE_CX": process.env.GCSE_CX || "014638356218796023717:gvlcaiusvsk",
