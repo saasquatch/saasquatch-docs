@@ -8,7 +8,7 @@ deployment:
   production:
     branch: production # TODO: Change to production once new branch is merged
     commands:
-      - npm run deploy
+      - npm run deploy:production
 general:
   artifacts:
     - "build" # Saves the built site in CircleCi artifacts
