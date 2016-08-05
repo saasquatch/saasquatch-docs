@@ -53,9 +53,14 @@
             font-weight: bold;
             font-size: 1.2em;
             color: #666;
+            text-decoration: underline;
         }
         .search-results-body {
             color: #333;
+            
+            br {
+                display: none; // Hide line breaks that Google injects
+            }
         }
         .search-results-link {
             color: #999;

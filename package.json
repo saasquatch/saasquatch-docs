@@ -11,20 +11,22 @@
     "node": ">= v6.1.0"
   },
   "scripts": {
-    "production": "gulp production && npm run webpack",
-    "dev": "gulp & gulp metalsmithDev & npm run webpack & wait",
-    "local": "npm run watch & NODE_ENV=development nodemon --exec 'npm run dev && npm run browser_sync_reload'",
+    "production": "gulp production && npm run build:js",
+    "local": "npm run watch & NODE_ENV=development nodemon --exec 'npm run build:dev && npm run browser_sync_reload'",
     "server": "npm run watch & NODE_ENV=development nodemon --exec 'gulp metalsmithDev && npm run browser_sync_reload'",
     "watch": "npm run browser_sync & node contentful-watch.js",
-    "webpack": "webpack ./assets/js/docs.js ./build/assets/js/bundle.js",
+    "build:dev": "gulp & gulp metalsmithDev & npm run build:js & wait",
+    "build:js": "npm run build:webpack && npm run build:uglifyjs",
+    "build:webpack": "webpack ./assets/js/docs.js ./build/assets/js/bundle.js",
+    "build:uglifyjs": "uglifyjs --output ./build/assets/js/bundle.min.js ./build/assets/js/bundle.js ",
     "superstatic": "superstatic build --port $PORT --config firebase.json",
     "browser_sync": "browser-sync start --server build --port $PORT --host $IP",
     "browser_sync_reload": "browser-sync reload --port $PORT --host $IP",
     "gulp": "gulp",
-    "heroku-postbuild": "gulp && npm run webpack",
-    "deploy:production": "npm run firebaseDeploy && npm run maxcdnPurge",
-    "maxcdnPurge": "node ./node_modules/maxcdn-purge/purge.js --alias referralsaasquat --key $MAXCDN_KEY  --secret $MAXCDN_SECRET --pull 136632 && echo \"Purged MaxCDN zone\"",
-    "firebaseDeploy": "firebase use default --token \"$FIREBASETOKEN\" && firebase deploy --token \"$FIREBASETOKEN\"",
+    "heroku-postbuild": "gulp && npm run build:js",
+    "deploy:production": "npm run deploy:firebase && npm run deploy:maxcdn",
+    "deploy:maxcdn": "node ./node_modules/maxcdn-purge/purge.js --alias referralsaasquat --key $MAXCDN_KEY  --secret $MAXCDN_SECRET --pull 136632 && echo \"Purged MaxCDN zone\"",
+    "deploy:firebase": "firebase use default --token \"$FIREBASETOKEN\" && firebase deploy --token \"$FIREBASETOKEN\"",
     "test": "./node_modules/.bin/mocha --reporter spec"
   },
   "dependencies": {
@@ -80,6 +82,7 @@
     "swagger-parser": "^3.4.1",
     "swig": "1.4.2",
     "swig-extras": "0.0.1",
+    "uglifyjs": "^2.4.10",
     "webpack": "^1.13.1"
   },
   "devDependencies": {}
