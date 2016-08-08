@@ -71,7 +71,7 @@ jQuery(document).ready(function() {
     })();
     
     // Non-necessary highlighting
-    setInterval(function(){
+    setTimeout(function(){
         // TODO: LV: Move these highlighting functions server-side to improve page render time or bundle the JS
         jQuery('.jsonview').each(function() {
             // parse -> sort -> JSONView
