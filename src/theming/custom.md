@@ -36,7 +36,7 @@ Make changes [templates](/themes/templates), add dymanic [fields](/themes/fields
 Commit changes to your [Git repo](/themes/git) and then [publish](/themes/publish) those changes to your test or live account
 
 </div>
-
+</div>
 
 ### Customizing your theme
 

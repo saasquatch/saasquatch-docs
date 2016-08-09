@@ -36,6 +36,10 @@ jQuery(document).ready(function() {
         content.before(toggler);
     });
     
+    jQuery(".navbar .hamburger").click(function(e){
+        jQuery(this).toggleClass("is-active");
+    });
+    
     jQuery("#js-location-path").text(document.location.pathname);
 
      // Activates smooth scroll links when
