@@ -15,21 +15,21 @@ template: article.html
 
 
 <div class="row-fluid">
-<div class="span4 well" style="min-height: 150px">
+<div class="span4" style="min-height: 150px">
 
 <h3><span class="badge badge-inherit">1</span> Set up</h3>
 
 Sign up for **Pro** or **Enterprise** and [open a support ticket](mailto:support@saasquat.ch) to get set up with a base custom theme [Git repo](/themes/git).
 
 </div>
-<div class="span4 well" style="min-height: 150px">
+<div class="span4" style="min-height: 150px">
 
 <h3><span class="badge badge-inherit">2</span> Modify</h3>
 
 Make changes [templates](/themes/templates), add dymanic [fields](/themes/fields) and upload [assets](/themes/assets).
 
 </div>
-<div class="span4 well" style="min-height: 150px">
+<div class="span4" style="min-height: 150px">
 
 <h3><span class="badge badge-inherit">3</span> Publish</h3>
 
