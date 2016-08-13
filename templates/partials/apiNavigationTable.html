@@ -10,6 +10,12 @@
             <th>
                 Description
             </th>
+            <th>
+                Auth
+            </th>
+            <th>
+                Tags
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -27,6 +33,21 @@
                     <td>
                         <a href="/api/methods#{{method.operationId}}">{{method.summary}}</a>
                     </td>
+                    <td>
+                        {% for sec in method.security %}
+                          {% set secName = method.security[loop.key] %}
+                          
+                          {% for secScope in sec %}
+                              <span class="label">{{secName}}:{{secScope}}</span>
+                          {% endfor %}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for tag method.tags %}
+                          <span class="label">{{tag}}</span>
+                        {% endfor %}
+                    </td>
+
                 </tr>
            {% endfor %}
        {% endfor %}

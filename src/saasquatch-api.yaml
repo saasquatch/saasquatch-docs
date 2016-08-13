@@ -16,11 +16,16 @@ consumes:
 produces:
   - application/json
 securityDefinitions:
-  basic:
+  ## Describes API Key used as the Basic password approach
+  apiKey:
     type: basic
-    description: Authorize your requests using your apiKey as the HTTP Basic password
-security:
-  - basic: []
+    description: Authorize your requests using a tenant's API Key. Use this method of security only in server-to-server interactions.
+  ## Describes the method of using JWT tokens for the Open API
+  userJWT:
+    type: apiKey
+    in: header
+    name: X-SaaSquatch-User-Token
+    description: Authorize your requests using a JSON Web Token (JWT) for a given user. Useful for client-server authorization, such as the Mobile and Web SDKs.
 externalDocs:
   description: "Official Referral SaaSquatch documentation"
   url: "http://docs.referralsaasquatch.com/"
@@ -48,8 +53,13 @@ parameters:
 paths:
   "/{tenant_alias}/accountsync":
     post:
-      operationId: account_sync
       summary: Create or Update an account
+      operationId: upsertAccount
+      x-docs-anchor: account_sync
+      tags:
+        - Account
+      security:
+        - apiKey: []
       description: |
         Use this method to update SaaSquatch when the status of an account changes or when a new account is created. 
         
@@ -61,11 +71,6 @@ paths:
           schema:
             $ref: "#/definitions/Account"
         - $ref: "#/parameters/tenant_alias"
-      tags:
-        - PCT_DISCOUNT
-        - FEATURE
-        - CREDIT
-        - TIME_CREDIT
       responses:
         200:
           description: Account created or updated
@@ -93,8 +98,16 @@ paths:
           $ref: "#/responses/GeneralError"
   "/{tenant_alias}/account/{accountId}":
     get:
-      operationId: get_account
       summary: Lookup an account
+      operationId: getAccount
+      x-docs-anchor: get_account
+      tags:
+        - Account
+      security:
+        - apiKey: []
+        # - userJWT:
+        #   - read
+        #   - write
       description: |
         Looks up an Account based upon `id` and returns the stored account information.
         This method just returns the details of the account in question, and not all associated properties like Rewards, ShareLinks, Balances or Referrals.
@@ -179,8 +192,13 @@ paths:
 
   "/{tenant_alias}/user":
     post:
-      operationId: create_user
       summary: Create or Update a User
+      operationId: createUser
+      x-docs-anchor: create_user
+      tags:
+        - User
+      security:
+        - apiKey: []
       description: |
         This method creates or updates a User object by performing an atomic upsert operation. Using this method will either replace the information stored about a given user, or
         create a new user if no User with a matching `id` is found. This method is helpful for synchronizing user information from your database into Referral SaaSquatch.
@@ -205,8 +223,16 @@ paths:
         default:
           $ref: "#/responses/GeneralError"
     get:
-      operationId: get_user_by_referralcode
       summary: Lookup a user by Referral Code
+      operationId: findUserByReferralCode
+      x-docs-anchor: get_user_by_referralcode
+      tags:
+        - User
+      security:
+        - apiKey: []
+        # - userJWT:
+        #   - read
+        #   - write
       description: |
         Looks up a user based upon their `ReferralCode` and returns their personal information.
         This method is useful for retrieving the user when only the Referral Code is available. For example when a referred user enters a Referral Code during checkout and you want to find out who this Referral Code belongs to.
@@ -235,8 +261,13 @@ paths:
 
   "/{tenant_alias}/account/{accountId}/user/{userId}":
     get:
-      operationId: get_user
       summary: Lookup a user
+      operationId: getUser
+      x-docs-anchor: get_user
+      tags:
+        - User
+      security:
+        - apiKey: []
       description: |
         Looks up a user based upon their `id` and returns their personal information.
         This method just returns the details of the user in question, and not all associated properties like Rewards, ShareLinks, Balances or Referrals.
@@ -270,8 +301,16 @@ paths:
 
   "/{tenant_alias}/account/{accountId}/user/{userId}/sharelinks":
     get:
-      operationId: get_sharelinks
       summary: Lookup a user's share links
+      operationId: getSharelinks
+      x-docs-anchor: get_sharelinks
+      tags:
+        - User
+      security:
+        - apiKey: []
+        # - userJWT:
+        #   - read
+        #   - write
       description: |
         Gets the share links for a user. Share links are the links that people use to refer their friends and are the same links used in the Referral SaaSquatch widgets. The main
         use case for this method is to look up share links to include in other channels like email marketing, CRM and product integration when a widget or mobile webview can't be
@@ -302,8 +341,6 @@ paths:
           description: Filters share links by `user.id`.
           required: true
           type: string
-      tags:
-        - SHARELINKS
       responses:
         200:
           description: A list of share links
@@ -321,8 +358,16 @@ paths:
 
   "/{tenant_alias}/code/{code}":
     get:
-      operationId: get_code
       summary: Lookup a referral code
+      operationId: getCode
+      x-docs-anchor: get_code
+      tags:
+        - Referral Code
+      security:
+        - apiKey: []
+        # - userJWT:
+        #   - read
+        #   - write
       description: |
         Looks up a referral code and the attached details
       parameters:
@@ -333,11 +378,6 @@ paths:
           required: true
           type: string
         - $ref: "#/parameters/tenant_alias"
-      tags:
-        - PCT_DISCOUNT
-        - FEATURE
-        - CREDIT
-        - TIME_CREDIT
       responses:
         200:
           description: Referral code found
@@ -359,8 +399,16 @@ paths:
 
   "/{tenant_alias}/referrals":
     get:
-      operationId: list_referrals
       summary: List referrals
+      operationId: listReferrals
+      x-docs-anchor: list_referrals
+      tags:
+        - Referral
+      security:
+        - apiKey: []
+        # - userJWT:
+        #   - read
+        #   - write
       description: |
         List all of the referrals in your Referral SaaSquatch tenant. This method is the primary way of getting a full list of everyone that has made a referral and everyone that has been referred,
         and supports pagination using the parameters for `limit` and `offset` to iterate through a very large list of records.
@@ -441,8 +489,16 @@ paths:
           $ref: "#/responses/GeneralError"
   "/{tenant_alias}/referrals/{referralId}":
     get:
-      operationId: get_referral
       summary: Lookup a Referral
+      operationId: getReferral
+      x-docs-anchor: get_referral
+      tags:
+        - Referral
+      security:
+        - apiKey: []
+        # - userJWT:
+        #   - read
+        #   - write
       description: |
         Looks up a single Referral object by it's associated `id`. This method is helpful for looking into a particular referral of interest. Since it requires the `id` of the referral to
         be specified, it isn't applicable for querying all referrals to find those made by a particular user or account. To query for those referrals use the [list referrals](#list_referrals) endpoint instead
@@ -485,8 +541,16 @@ paths:
           $ref: "#/responses/GeneralError"
   "/{tenant_alias}/referrals/moderate":
     post:
-      operationId: moderate_referrals
       summary: Moderate referrals
+      operationId: moderateReferrals
+      x-docs-anchor: moderate_referrals
+      tags:
+        - Referral
+      security:
+        - apiKey: []
+        # - userJWT:
+        #   - read
+        #   - write
       description: |
         Moderates one or several referrals by either approving or denying.
         Moderation can apply to one side of a referral, the other side, or both sides (Referrer and Referred).
@@ -510,8 +574,16 @@ paths:
 
   "/{tenant_alias}/reward/balance":
     get:
-      operationId: list_balances
       summary: List reward balances
+      operationId: listRewardBalances
+      x-docs-anchor: list_balances
+      tags:
+        - Reward Balance
+      security:
+        - apiKey: []
+        # - userJWT:
+        #   - read
+        #   - write
       description: |
         Looks up the balance for all rewards of the same type and units.
       parameters:
@@ -533,11 +605,6 @@ paths:
           description: Filters rewards by feature type. Works with `FEATURE` types.
           type: string
         - $ref: "#/parameters/tenant_alias"
-      tags:
-        - PCT_DISCOUNT
-        - FEATURE
-        - CREDIT
-        - TIME_CREDIT
       responses:
         200:
           description: A list of reward balances
@@ -568,8 +635,16 @@ paths:
           $ref: "#/responses/GeneralError"
   "/{tenant_alias}/credit/bulkredeem":
     post:
-      operationId: debit_balance
       summary: Debit a reward balance
+      operationId: debitRewardBalance
+      x-docs-anchor: debit_balance
+      tags:
+        - Reward Balance
+      security:
+        - apiKey: []
+        # - userJWT:
+        #   - read
+        #   - write
       description: "Used to redeem the credit earned from a referral program. Permanently debits an account balance. Works with: `TIME_CREDIT` and `CREDIT`"
       parameters:
         - name: debit
@@ -594,8 +669,16 @@ paths:
 
   "/{tenant_alias}/reward":
     get:
-      operationId: list_rewards
-      summary: List single rewards
+      summary: List an account's rewards
+      operationId: getRewards
+      x-docs-anchor: list_rewards
+      tags:
+        - Reward
+      security:
+        - apiKey: []
+        # - userJWT:
+        #   - read
+        #   - write
       description: |
         Looks up a list of single rewards
       parameters:
@@ -617,11 +700,6 @@ paths:
           description: Filters rewards by feature type. Works with `FEATURE` types.
           type: string
         - $ref: "#/parameters/tenant_alias"
-      tags:
-        - PCT_DISCOUNT
-        - FEATURE
-        - CREDIT
-        - TIME_CREDIT
       responses:
         200:
           description: A list of rewards
@@ -636,8 +714,16 @@ paths:
           $ref: "#/responses/GeneralError"
   "/{tenant_alias}/credit/{id}/redeem":
     post:
-      operationId: debit_reward
       summary: Redeem a single reward
+      operationId: debitReward
+      x-docs-anchor: debit_reward
+      tags:
+        - Reward
+      security:
+        - apiKey: []
+        - userJWT:
+          - read
+          - write
       description: "Used to redeem an individual credit earned from a referral program. Works with: `TIME_CREDIT` and `CREDIT`"
       parameters:
         - name: id
@@ -665,8 +751,16 @@ paths:
           $ref: "#/responses/GeneralError"
   "/{tenant_alias}/rewards/account/{accountId}/user/{userId}":
     post:
-      operationId: create_reward
       summary: Create a single reward
+      operationId: createReward
+      x-docs-anchor: create_reward
+      tags:
+        - Reward
+      security:
+        - apiKey: []
+        # - userJWT:
+        #   - read
+        #   - write
       description: |
         Used to create a reward for a specified user. Note that the reward will only be redeemed automatically
         if the default program supports automatic redemption for the provided reward type (see the [install guides](/guides/)
@@ -703,8 +797,16 @@ paths:
 
   "/{tenant_alias}/theme/variables/schema":
     get:
-      operationId: lookup_variables_schema
       summary: Lookup variables schema
+      operationId: getVariablesSchema
+      x-docs-anchor: lookup_variables_schema
+      tags:
+        - Theme
+      security:
+        - apiKey: []
+        # - userJWT:
+        #   - read
+        #   - write
       description: |
         Returns the variables schema object that is defined in the tenant theme repository.
         This will be a [JSON Schema](http://json-schema.org/) standards compliant definition.
@@ -726,8 +828,16 @@ paths:
 
   "/{tenant_alias}/theme/variables/instance":
     get:
-      operationId: lookup_variables
       summary: Lookup variables values
+      operationId: lookupVariables
+      x-docs-anchor: lookup_variables
+      tags:
+        - Theme
+      security:
+        - apiKey: []
+        # - userJWT:
+        #   - read
+        #   - write
       description: |
         Returns the current variables values stored for the schema object that is defined in the tenant theme repository.
       produces:
@@ -746,8 +856,16 @@ paths:
           $ref: "#/responses/GeneralError"
 
     put:
-      operationId: replace_variables
       summary: Replace Variable Values
+      operationId: replaceVariables
+      x-docs-anchor: replace_variables
+      tags:
+        - Theme
+      security:
+        - apiKey: []
+        # - userJWT:
+        #   - read
+        #   - write
       description: |
         Replaces all of the previously set values. Use this operation only when your
         goal is to completely replace all variable values, including deleting previous
@@ -770,8 +888,16 @@ paths:
           $ref: "#/responses/GeneralError"
 
     patch:
-      operationId: update_variables
       summary: Update Variable Values
+      operationId: updateVariables
+      x-docs-anchor: update_variables
+      tags:
+        - Theme
+      security:
+        - apiKey: []
+        - userJWT:
+          - read
+          - write
       description: |
         Updates the previously stored values for the variables included in this request.
         Will not override, nullify or delete the other variable values that are not included.
@@ -798,8 +924,16 @@ paths:
 
   "/{tenant_alias}/theme/email/{email_type}/preview":
     post:
-      operationId: preview_theme_email
       summary: Preview Theme Email
+      operationId: previewThemeEmail
+      x-docs-anchor: preview_theme_email
+      tags:
+        - Theme
+      security:
+        - apiKey: []
+        # - userJWT:
+        #   - read
+        #   - write
       description: |
         Generates preview content for a themed email. If the `sendTo` parameter is set this content will be sent to the provided *email address* otherwise the content will be returned in the response.
       produces:
@@ -844,8 +978,16 @@ paths:
 
   "/{tenant_alias}/subscription":
     post:
-      operationId: create_webhook
       summary: Create a webhook subscription
+      operationId: createWebhook
+      x-docs-anchor: create_webhook
+      tags:
+        - Webhook
+      security:
+        - apiKey: []
+        # - userJWT:
+        #   - read
+        #   - write
       description: |
         Subscribes a URL to receive events via webhooks
       parameters:
@@ -884,8 +1026,16 @@ paths:
           $ref: "#/responses/GeneralError"
   "/{tenant_alias}/subscription/{url}":
     delete:
-      operationId: delete_webhook
       summary: Delete a webhook subscription
+      operationId: deleteWebhook
+      x-docs-anchor: delete_webhook
+      tags:
+        - Webhook
+      security:
+        - apiKey: []
+        # - userJWT:
+        #   - read
+        #   - write
       description: |
         Removes a URL from receiving events via webhooks
       parameters:
@@ -903,8 +1053,16 @@ paths:
           $ref: "#/responses/GeneralError"
   "/{tenant_alias}/subscription/{url}/test":
     post:
-      operationId: test_webhook
       summary: Test a webhook subscription
+      operationId: testWebhook
+      x-docs-anchor: test_webhook
+      tags:
+        - Webhook
+      security:
+        - apiKey: []
+        - userJWT:
+          - read
+          - write
       description: |
         Sends a test event to the specified webhook
       parameters:
@@ -924,8 +1082,17 @@ paths:
 
   "/{tenant_alias}/discount/{code}":
     get:
-      operationId: get_coupon
+      deprecated: true
       summary: Lookup a discount code
+      operationId: getAccount
+      x-docs-anchor: get_coupon
+      tags:
+        - Discount
+      security:
+        - apiKey: []
+        # - userJWT:
+        #   - read
+        #   - write
       description: |
         This method lets you look up the details of a referral code and to ensure that it is valid. Works with `PCT_DISCOUNT`
       parameters:
@@ -935,8 +1102,6 @@ paths:
           required: true
           type: string
         - $ref: "#/parameters/tenant_alias"
-      tags:
-        - PCT_DISCOUNT
       responses:
         200:
           description: Information about the coupon/referral code
@@ -956,8 +1121,17 @@ paths:
           $ref: "#/responses/GeneralError"
   "/{tenant_alias}/discount":
     post:
-      operationId: set_coupon
+      deprecated: true
       summary: Set discount code on an account
+      operationId: setCoupon
+      x-docs-anchor: set_coupon
+      tags:
+        - Discount
+      security:
+        - apiKey: []
+        - userJWT:
+          - read
+          - write
       description: |
         This method associates a new account with their referrer. Use this method when
         someone signs up for a paid account to set the coupon code used for them. For Stripe and Recurly do not use this call.
@@ -969,8 +1143,6 @@ paths:
           schema:
             $ref: "#/definitions/AccountDiscountRequest"
         - $ref: "#/parameters/tenant_alias"
-      tags:
-        - PCT_DISCOUNT
       responses:
         200:
           description: Account updated
@@ -980,8 +1152,16 @@ paths:
           $ref: "#/responses/GeneralError"
   "/{tenant_alias}/account/{accountId}/discount":
     get:
-      operationId: get_account_reward
       summary: Lookup an account discount
+      operationId: getAccountDiscount
+      x-docs-anchor: get_account_reward
+      tags:
+        - Discount
+      security:
+        - apiKey: []
+        # - userJWT:
+        #   - read
+        #   - write
       description: |
         This method information about an account's discount, if any, and what that discount would look like with a `couponCode` applied. Works with `PCT_DISCOUNT`
       parameters:
@@ -995,8 +1175,6 @@ paths:
           description: When included, will return a total reward available including any coupon code.
           type: string
         - $ref: "#/parameters/tenant_alias"
-      tags:
-        - PCT_DISCOUNT
       responses:
         200:
           description: Information about the account discount
@@ -1015,114 +1193,144 @@ paths:
             $ref: "#/definitions/Error"
         default:
           $ref: "#/responses/GeneralError"
+          
+  ## Open API Endpoints
+    
   "/{tenant_alias}/open/account/{accountId}/user/{userId}":
-      post:
-        operationId: open_create_user
-        summary: Create a user and account
-        description: |
-          This method creates a user and an account in one call. Because this call creates a user, it requires either a [write token](../openendpoints/) or an API key. By default, this endpoint is disabled. Contact support to enable the open endpoints.
-        parameters:
-          - name: accountId
-            in: path
-            description: The account to create
-            required: true
-            type: string
-          - name: userId
-            in: path
-            required: true
-            description: The user to create
-            type: string
-          - name: user
-            in: body
-            schema:
-              $ref: "#/definitions/OpenUser"
-          - $ref: "#/parameters/tenant_alias"
-        responses:
-          200:
-            description: Information about the newly created user
-            examples:
-              "application/json":
-                "id": "876343"
-                "accountId": "613611"
-                "email": "bob@example.com"
-                "firstName": "Bob"
-                "lastName": "Testerson"
-                "locale": "en_US"
-                "referralCode": "BOBTESTERSON"
-                "imageUrl": ""
-                "shareLinks":
-                  "shareLink": ""
-                  "facebookShareLink": ""
-                  "twitterShareLink": ""
-                  "emailShareLink": ""
-                  "mobileShareLink": ""
-                  "mobileFacebookShareLink": ""
-                  "mobileTwitterShareLink": ""
-                  "mobileEmailShareLink": ""
-            schema:
-              $ref: "#/definitions/OpenUser"
-          403:
-            description: Endpoint disabled
-            schema:
-              $ref: "#/definitions/Error"
-          default:
-            description: Unexpected error
-            schema:
-              $ref: "#/definitions/Error"
-      get:
-        operationId: open_get_user
-        summary: Lookup a user
-        description: |
-          Looks up a user based upon their `id` and returns their personal information including sharelinks. This endpoint requires a [read token](../openendpoints/) or an API key. By default, this endpoint is disabled. Contact support to enable the open endpoints.
-        parameters:
-          - $ref: "#/parameters/tenant_alias"
-          - name: accountId
-            in: path
-            description: A valid Account ID that a user is associated with
-            required: true
-            type: string
-          - name: userId
-            in: path
-            description: A valid User ID
-            required: true
-            type: string
-        responses:
-          200:
-            description: User found
-            examples:
-              application/json:
-                id: '876343'
-                accountId: '613611'
-                email: bob@example.com
-                firstName: Bob
-                lastName: Testerson
-                referralCode: BOBTESTERSON
-                imageUrl: ''
-                shareLinks:
-                  shareLink: 'http://ssqt.co/pZVp'
-                  facebookShareLink: 'http://ssqt.co/pZVq'
-                  twitterShareLink: 'http://ssqt.co/pZVr'
-                  emailShareLink: 'http://ssqt.co/pZVs'
-                  mobileShareLink: 'http://ssqt.co/pZVt'
-                  mobileFacebookShareLink: 'http://ssqt.co/pZVu'
-                  mobileTwitterShareLink: 'http://ssqt.co/pZVv'
-                  mobileEmailShareLink: 'http://ssqt.co/pZVw'
-          401:
-            description: Unauthorized
-            schema:
-              $ref: "#/definitions/Error"
-          403:
-            description: Endpoint disabled
-            schema:
-              $ref: "#/definitions/Error"
-          404:
-            description: Account not found
-            schema:
-              $ref: "#/definitions/Error"
+    post:
+      summary: Create a user and account
+      operationId: openCreateUser
+      x-docs-anchor: open_create_user
+      tags:
+        - User
+        - Open
+      security:
+        - apiKey: []
+        - userJWT:
+          - write
+      description: |
+        This method creates a user and an account in one call. Because this call creates a user, it requires either a [write token](../openendpoints/) or an API key. By default, this endpoint is disabled. Contact support to enable the open endpoints.
+      parameters:
+        - name: accountId
+          in: path
+          description: The account to create
+          required: true
+          type: string
+        - name: userId
+          in: path
+          required: true
+          description: The user to create
+          type: string
+        - name: user
+          in: body
+          schema:
+            $ref: "#/definitions/OpenUser"
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        200:
+          description: Information about the newly created user
+          examples:
+            "application/json":
+              "id": "876343"
+              "accountId": "613611"
+              "email": "bob@example.com"
+              "firstName": "Bob"
+              "lastName": "Testerson"
+              "locale": "en_US"
+              "referralCode": "BOBTESTERSON"
+              "imageUrl": ""
+              "shareLinks":
+                "shareLink": ""
+                "facebookShareLink": ""
+                "twitterShareLink": ""
+                "emailShareLink": ""
+                "mobileShareLink": ""
+                "mobileFacebookShareLink": ""
+                "mobileTwitterShareLink": ""
+                "mobileEmailShareLink": ""
+          schema:
+            $ref: "#/definitions/OpenUser"
+        403:
+          description: Endpoint disabled
+          schema:
+            $ref: "#/definitions/Error"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: "#/definitions/Error"
+    get:
+      summary: Lookup a user
+      operationId: openGetUser
+      x-docs-anchor: open_get_user
+      tags:
+        - User
+        - Open
+      security:
+        - apiKey: []
+        - userJWT:
+          - read
+          - write
+      description: |
+        Looks up a user based upon their `id` and returns their personal information including sharelinks. This endpoint requires a [read token](../openendpoints/) or an API key. By default, this endpoint is disabled. Contact support to enable the open endpoints.
+      parameters:
+        - $ref: "#/parameters/tenant_alias"
+        - name: accountId
+          in: path
+          description: A valid Account ID that a user is associated with
+          required: true
+          type: string
+        - name: userId
+          in: path
+          description: A valid User ID
+          required: true
+          type: string
+      responses:
+        200:
+          description: User found
+          examples:
+            application/json:
+              id: '876343'
+              accountId: '613611'
+              email: bob@example.com
+              firstName: Bob
+              lastName: Testerson
+              referralCode: BOBTESTERSON
+              imageUrl: ''
+              shareLinks:
+                shareLink: 'http://ssqt.co/pZVp'
+                facebookShareLink: 'http://ssqt.co/pZVq'
+                twitterShareLink: 'http://ssqt.co/pZVr'
+                emailShareLink: 'http://ssqt.co/pZVs'
+                mobileShareLink: 'http://ssqt.co/pZVt'
+                mobileFacebookShareLink: 'http://ssqt.co/pZVu'
+                mobileTwitterShareLink: 'http://ssqt.co/pZVv'
+                mobileEmailShareLink: 'http://ssqt.co/pZVw'
+        401:
+          description: Unauthorized
+          schema:
+            $ref: "#/definitions/Error"
+        403:
+          description: Endpoint disabled
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: Account not found
+          schema:
+            $ref: "#/definitions/Error"
+            
+            
   "/{tenant_alias}/open/user":
     get:
-      operationId: open_get_user_by_code
       summary: Get a user by a referral code
+      operationId: getAccount
+      x-docs-anchor: open_get_user_by_code
+      tags:
+        - Account
+      security:
+        - apiKey: []
+        - userJWT:
+          - read
+          - write
       description: |
         Looks up a user based upon their `ReferralCode` and returns their personal information. This method is useful for retrieving the user when only the Referral Code is available, for example when a referred user enters a Referral Code during checkout and you want to find out who this Referral Code belongs to. By default, this endpoint is disabled. Contact support to enable the open endpoints.
       parameters:
@@ -1153,8 +1361,17 @@ paths:
             $ref: "#/definitions/Error"
   "/{tenant_alias}/open/code/{referral_code}":
     get:
-      operationId: open_validate_code
       summary: Lookup a referral code
+      operationId: openValidateCode
+      x-docs-anchor: open_validate_code
+      tags:
+        - Referral Code
+        - Open
+      # security:
+      #   - apiKey: []
+      #   - userJWT:
+      #     - read
+      #     - write
       description: |
         Looks up a referral code and the details of the attached reward. By default, this endpoint is disabled. Contact support to enable the open endpoints.
       parameters:
@@ -1186,8 +1403,15 @@ paths:
             $ref: "#/definitions/Error"
   "/{tenant_alias}/open/code/{referral_code}/account/{account_id}/user/{user_id}":
     post:
-      operationId: open_apply_code
       summary: Apply a referral code
+      operationId: openApplyCode
+      x-docs-anchor: open_apply_code
+      tags:
+        - Account
+      security:
+        - apiKey: []
+        - userJWT:
+          - write
       description: |
         Apply a `ReferralCode` to an account, automatically rewarding both sides of the referral. This endpoint requires a [write token](../openendpoints/) or an API key. By default, this endpoint is disabled. Contact support to enable the open endpoints.
       parameters:
@@ -1237,8 +1461,17 @@ paths:
             $ref: "#/definitions/Error"
   "/{tenant_alias}/open/referrals":
     get:
-      operationId: open_list_referrals
       summary: List referrals
+      operationId: openListReferrals
+      x-docs-anchor: open_list_referrals
+      tags:
+        - Referral
+        - Open
+      security:
+        - apiKey: []
+        - userJWT:
+          - read
+          - write
       description: |
         List all of the referrals involving the given user. This method is the primary way of getting a list of everyone that has made a referral and everyone that has been referred, and supports pagination using the parameters for `limit` and `offset` to iterate through a very large list of records.
         When authenticating with a [write token](../openendpoints/), the `referringAccountId` and `referringUserId` parameters are required. These filter the list of referrals to only include those made by the given user. By default, this endpoint is disabled. Contact support to enable the open endpoints.

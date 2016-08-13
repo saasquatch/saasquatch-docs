@@ -49,7 +49,7 @@ function plugin(opts){
     try {
         var data = parse(str);
     } catch (e) {
-        return done(new Error('malformed data in "' + file + '"'));
+        return done(new Error('Swagger parse error in "' + file + '":' + e.name + e.message));
     }
 
     parser
