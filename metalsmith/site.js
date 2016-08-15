@@ -58,7 +58,7 @@ function site(baseplugin){
     "googleSiteId": process.env.GOOGLE_SITE_ID || "240GodHWd0rPOGqZxZo3-fDym0MeTAYYHSnkwZV9xSE",
     "windowDotEnv": {
       // Google Custom Search (GCSE) params
-      "GCSE_CX": process.env.GCSE_CX || "014638356218796023717:gvlcaiusvsk",
+      "GCSE_CX": process.env.GCSE_CX || "012261857935385488279:zvjz-tcsjnm",
       "GCSE_KEY": process.env.GCSE_KEY || "AIzaSyCMGfdDaSfjqv5zYoS0mTJnOT3e9MURWkU",
       "ROLLBAR_ID": process.env.ROLLBAR_ID || "c8fd34f79430479a98f49007397a11db",
       "PINGDOM_ID": process.env.PINGDOM_ID || "52c61993abe53d650f000000",

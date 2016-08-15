@@ -36,6 +36,10 @@ jQuery(document).ready(function() {
         content.before(toggler);
     });
     
+    jQuery(".navbar .hamburger").click(function(e){
+        jQuery(this).toggleClass("is-active");
+    });
+    
     jQuery("#js-location-path").text(document.location.pathname);
 
      // Activates smooth scroll links when
@@ -71,7 +75,7 @@ jQuery(document).ready(function() {
     })();
     
     // Non-necessary highlighting
-    setInterval(function(){
+    setTimeout(function(){
         // TODO: LV: Move these highlighting functions server-side to improve page render time or bundle the JS
         jQuery('.jsonview').each(function() {
             // parse -> sort -> JSONView

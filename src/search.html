@@ -11,11 +11,11 @@ category: search
    
     {{#if items}}
         {{#each items}}
-            <div class="search-results-item {{pagemap.metatags.0.docsSectionType}} {{pagemap.metatags.0.docsCategory}}">
+            <div class="search-results-item {{pagemap.metatags.0.docssectiontype}} {{pagemap.metatags.0.docscategory}}">
                 <a href="{{link}}" class="clearfix">
                     <div class="search-results-title">{{pagemap.metatags.0.title}} <i class="search-results-type fa"></i></div>
+                    <div class="search-results-link">{{{htmlFormattedUrl}}}</div>
                     <div class="search-results-body">{{{htmlSnippet}}}</div>
-                    <div class="search-results-link">{{formattedUrl}}</div>
                 </a>
             </div>
         {{/each}}
@@ -54,16 +54,16 @@ category: search
             <input type="text" class="search-query" name="q" autofocus>
             <button type="submit" class="btn">Search Help Center</button>
           </div>
-          <!--<div>-->
-          <!--  <label class="radio inline">-->
-          <!--    <input type="radio" name="cat" value="" checked=true>All</label>-->
-          <!--  <label class="radio inline successCenter">-->
-          <!--    <input type="radio" name="cat" value="successCenter">Success</label>-->
-          <!--  <label class="radio inline developerCenter">-->
-          <!--    <input type="radio" name="cat" value="developerCenter">Developer</label>-->
-          <!--  <label class="radio inline designerCenter">-->
-          <!--    <input type="radio" name="cat" value="designerCenter ">Designer</label>-->
-          <!--</div>-->
+          <div>
+            <label class="radio inline">
+              <input type="radio" name="cat" value="" checked=true>All</label>
+            <label class="radio inline successCenter">
+              <input type="radio" name="cat" value="successCenter">Success</label>
+            <label class="radio inline developerCenter">
+              <input type="radio" name="cat" value="developerCenter">Developer</label>
+            <label class="radio inline designerCenter">
+              <input type="radio" name="cat" value="designerCenter ">Designer</label>
+          </div>
         </form>
 
         

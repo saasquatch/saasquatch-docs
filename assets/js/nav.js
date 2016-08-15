@@ -1,6 +1,6 @@
 var jQuery = require('jquery');
-var mmenu = require('jquery.mmenu');
-
+window.mmenu = require('jquery.mmenu');
+window.Hammer = require('hammerjs');
 var isOnPage = require('./isOnPage');
 
 module.exports = function(){
@@ -67,14 +67,21 @@ module.exports = function(){
      */
     menuDom.mmenu({
          // configuration
-         "offCanvas": false,
+         offCanvas: {
+            pageSelector: "#my-page"
+         },
         //  "counters": true,
-         "iconPanels": {
-            "add": true,
-            "visible": 2
+        //  "iconPanels": {
+        //     "add": true,
+        //     "visible": 2
+        //  },
+         "dragOpen": {
+             
          },
          extensions: [
             "theme-squatchdocs",
+            "widescreen",
+            "pagedim-black",
             "multiline"
          ]
         //  offCanvas: {
@@ -89,6 +96,7 @@ module.exports = function(){
         categories.map(function(category){
             jQuery(".mm-panel > ul." + category, menuDom).parent(".mm-panel").addClass(category);
         });
+        
         jQuery("a.nav-onpage, .nav-onpage a").click(function(){
             // Trigger this method to set or unset a menu item as "selected".
             if(!isOnPage(jQuery(this).prop('href'), window.location.href)){
@@ -99,8 +107,25 @@ module.exports = function(){
             window.smoothScrollTo(this);
             return false;
         });
+        
+        jQuery("#open-sidenav").click(function(e){
+			e.preventDefault();
+			if ( jQuery('html').hasClass( 'mm-opened' ) ){
+				window.myMenu.close();
+			}else{
+				window.myMenu.open();
+			}
+		});
+        
       });
 
 
     window.myMenu = menuDom.data( "mmenu" );
+    
+    window.myMenu.bind('opened', function () {
+          jQuery("#open-sidenav").addClass("is-active");
+      });
+    window.myMenu.bind('closed', function () {
+          jQuery("#open-sidenav").removeClass("is-active");
+      })
 };

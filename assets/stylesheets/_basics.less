@@ -12,6 +12,7 @@
 }
 
 // Headings that follow paragraphs have margin at the top
+h2,
 h3,
 h4,
 h5 {
@@ -47,12 +48,24 @@ a .link {
 }
 
 
+#footer{
+    padding-top: 20px;
+    background: #333 url('/assets/images/marketing-website/footerbackgroundrs2.jpg');
+    background-position: 50% 0%;
+}
+
+#footer a {color:#fff; opacity:0.7;}
+
+#footer a:hover {color:#fff; opacity:1;}
+
 
 /**
 *    Framing
 */
 #my-page {
-    margin-left: 20%;
+    // margin-left: 20%;
+    overflow: hidden;
+    background: white;
 }
 
 #my-content{
@@ -62,7 +75,95 @@ a .link {
 }
 
 #my-menu {
-    width: 20%;
-    position: fixed;
+    // width: 20%;
+    // position: fixed;
 }
 
+
+// Hamburger that opens docs nav
+button#open-sidenav {
+    padding-left: 0;
+}
+#mm-blocker{
+    left: -12px; // Stupid spacing that I have NO idea what is causing...
+}
+
+.navbar {
+    color: #000;
+
+    @media (max-width: 979px){
+        .brand {
+            padding-right: 0;
+            padding-left: 5px;
+        }
+        .navbar-inner{
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+    .hamburger{
+        padding-right: 0;
+    }
+    .hamburger-box{
+        width: 10px;
+        padding-left: 10px;
+    }
+    .hamburger-inner,
+    .hamburger-inner:after,
+    .hamburger-inner:before{
+        width: 4px;
+    }
+    
+    .navbar-inner {
+        border: none;
+        background: transparent;
+        background-color: #fff;
+        background-color: rgba(255, 255, 255, 0.95);
+    }
+
+    .navbar .brand {
+        color: #333;
+        font-weight: 600;
+    }
+
+    .nav> li> a {
+        color: #000;
+        text-shadow: none;
+        font-weight: bold;
+    }
+    
+    .nav-collapse.in.collapse {
+        text-align: right; // Right-aligns the nav-collapse dropdown items
+    }
+
+    .nav li.dropdown.open> .dropdown-toggle,
+    .nav li.dropdown.open.active> .dropdown-toggle {
+        background-color: transparent;
+    }
+
+    .nav> li> .dropdown-menu:before {
+        display: none;
+    }
+
+    .nav> li> .dropdown-menu:after {
+        border-right: 7px solid transparent;
+        border-left: 7px solid transparent;
+    }
+    
+    .dropdown-menu {
+        border: none;
+        box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+    }
+    
+    .dropdown-menu li> a {
+        color: #fff;
+    }
+    
+    .dropdown-menu li> a:hover,
+    .dropdown-menu .active> a,
+    .dropdown-menu .active> a:hover {
+        background-color: transparent;
+        color: #000;
+        background: transparent;
+    }
+}

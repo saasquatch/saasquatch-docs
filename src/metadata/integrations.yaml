@@ -17,7 +17,7 @@ Recurly:
         The Referral SaaSquatch integration with Recurly powers automatic referral tracking, fulfillment and conversion through Recurly coupons, push notifications, and direct API access.
 
 Segment:
-    slug: /segment-io
+    slug: /segment
     logo: segment-integration.png
     summary: |
         Segment.io customers can use analytics.js instead of directly using the Squatch.js javascript library
