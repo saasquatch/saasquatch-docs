@@ -176,7 +176,7 @@ hero: true
           </tr>
           <tr>
             <th>fb_share_image †</th>
-            <td><span class="label">Optional</span></td>
+            <td><span class="label">Optional</span><span class="label">Deprecated</span></td>
             <td>Defaults to no image for Facebook referrals. If you provide an absolute URL an image it will be used when a referral is made on Facebook. Minimum image size is 114px tall or 155px wide. Not signed in the checksum.</td>
           </tr>
           <tr>
@@ -441,68 +441,7 @@ _sqh.push(['getReward', function(reward){
 (function(){function l(){var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src=location.protocol+"//d2rcp9ak152ke1.cloudfront.net/assets/javascripts/squatch.min.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(s,t)}if(window.attachEvent){window.attachEvent("onload",l)}else{window.addEventListener("load",l,false)}})();
 &lt;/script&gt;</code></pre>
     </div>
-<<<<<<< HEAD
 </section>
-
-
-<section id="getRewardBalance" class="apidocs-section">
-    <h2>getRewardBalance <small>REMOVED</small></h2>
-
-    <div class="bs-callout bs-callout-danger">
-      <h4>Removed</h4>
-      Only worked with older accounts. Prefer to use the more flexible <a href="#subscribe">subscribe</a> method.
-    </div>
-    
-    <div class="js-docs-collapse" style="display:none;">
-
-    <p>Looks up the Reward Balance reward for the currently logged in user. (this is the user identified in ‘init’)</p>
-    <pre><code class="lang-js">_sqh.push(['getRewardBalance', function(rewardBalance){ ... }]);</code></pre>
-
-    <h4>Parameters</h4>
-    <div>
-        <table class="table table-hover">
-          <tr>
-            <th>fn</th>
-            <td>
-                <p>A callback function with a single argument <code>rewardBalance</code>. Returns the same <a href="/api/methods/#list_balances">Reward Balance object
-                as the REST API</a></p>
-          </td>
-          </tr>
-      </table>
-    </div>
-
-    <hr />
-
-    <h4>Example</h4>
-    <pre><code class="lang-html">&lt;script type="text/javascript"&gt;
-var _sqh = _sqh || [];
-
-// Push user details for a user who is logged in to your system
-_sqh.push(['init', {
-   tenant_alias: 'test_bpinhag9yagag',
-   account_id: 'abc',
-   payment_provider_id: 'cus_1234',
-   user_id: '5678',
-   email: 'bob@example.com',
-   first_name: 'Bob',
-   last_name: 'Testerson'
-}]);
-
-_sqh.push(['getRewardBalance', function(rewardBalance){
-    // Gets the current user's (e.g. Bob Testerson) reward balance
-    // e.g. show this on the My Account page to show the current user's info
-    console.log(rewardBalance.0.totalAssignedCredit);
-}]);
-
-// Include squatch.js
-(function(){function l(){var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src=location.protocol+"//d2rcp9ak152ke1.cloudfront.net/assets/javascripts/squatch.min.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(s,t)}if(window.attachEvent){window.attachEvent("onload",l)}else{window.addEventListener("load",l,false)}})();
-&lt;/script&gt;</code></pre>
-
-    </div>
-=======
->>>>>>> production
-</section>
-
 
 <section id="getRewardBalance" class="apidocs-section">
     <h2>getRewardBalance <small>REMOVED</small></h2>
@@ -559,4 +498,7 @@ _sqh.push(['getRewardBalance', function(rewardBalance){
 
     </div>
 </section>
+
+
+
 
