@@ -31,16 +31,24 @@
                         {{swagger.basePath}}{{methodPath}}
                     </td>
                     <td>
-                        <a href="/api/methods#{{method.operationId}}">{{method.summary}}</a>
+                        <a href="/api/methods#{{method['x-docs-anchor']}}" class="nav-onpage">{{method.summary}}</a>
                     </td>
                     <td>
                         {% for sec in method.security %}
-                          {% set secName = method.security[loop.key] %}
-                          
-                          {% for secScope in sec %}
-                              <span class="label">{{secName}}:{{secScope}}</span>
+                          {% for secScopes in sec %}
+                              {% set secName = loop.key %}
+                              {% if secScopes.length %}
+                                  {% for scope in secScopes %}
+                                  <span class="label">{{secName}}:{{scope}}</span>
+                                  {% endfor %}
+                              {% else %}
+                                  <span class="label">{{secName}}</span>
+                              {% endif %}
                           {% endfor %}
                         {% endfor %}
+                        {% if method.security.length < 1 %}
+                            <span class="label">Unauthenticated</span>
+                        {% endif %}
                     </td>
                     <td>
                         {% for tag method.tags %}

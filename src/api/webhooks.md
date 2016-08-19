@@ -3,7 +3,7 @@ title: API Webhooks
 highlights: The Referral SaaSquatch Webhooks API closely matches that described by the [RestHooks](http://resthooks.org/docs/) guidelines.
 slug: 'api/webhooks'
 sectionType: apiReference
-template: article.html
+template: hasTableOfContents.html
 ---
 
 Interacting with third party APIs like Referral SaaSquatch often suffers from two important problems:
@@ -132,9 +132,9 @@ endpoint urls will simply result in one subscription being created for that url.
 
 <hr />
 
-### Manage Webhook Endpoints
+### Webhook Management API Endpoints
 
-These methods can be used to create and manage the endpoints that will receive webhook events.
+To use webhooks, you need a subscription first. These API endpoints can be used to create and manage the subscriptions that will receive webhook events.
 
  - [Create a webhook subscription](/api/methods#create_webhook)
  - [List webhook subscriptions](/api/methods#list_webhooks)

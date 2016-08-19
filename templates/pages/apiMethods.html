@@ -1,3 +1,5 @@
+{% set highlights = swagger.info.description %}
+
 {% extends '../hasSearchBox.html' %}
 
 {% import "../macros/swaggerMacros.html" as swaggerMacros %}
@@ -8,14 +10,40 @@
   <div class="page-header">
       <h1>{{title}}</h1>
   </div>
+  <div class="lead">
+    {{ swagger.info.description | markdown}}
+  </div>
+
+  <h3>Tag Summary</h3>
+
+  <p>API methods are organized by <b>tags</b> of similar functionality. If you're in a hurry to understand how the SaaSquatch REST API works, then understanding the tags is a great place to start.</p>
+
+<dl class="dl-horizontal">
+  {% for tag in tagMap %}
+      <dt><span class="label">{{tag.name}}</span></dt>
+      <dd>{{tag.description |markdown }}</dd>
+  {% endfor %}
+</dl>
+
+
+  <h3>Authentication Summary</h3>
+
+  <p>API methods may be used with one or several authentication schemes as defined in this table:</p>
   
-  {% if highlights %}
-  <p class="lead">
-    {{ highlights }}
-  </p>
-  {% endif %}
+<dl class="dl-horizontal">
+  {% for secDef in swagger.securityDefinitions %}
+      <dt><span class="label">{{loop.key}}</span></dt>
+      <dd>{{secDef.description | markdown }}</dd>
+  {% endfor %}
+  <dt><span class="label">Unauthenticated</span></dt>
+  <dd>Does not require any type of authentication.</dd>
+</dl>
+
+
   
-        {% include "../partials/apiNavigationTable.html" %}
+  <h3>Methods Summary</h3>  
+  {% include "../partials/apiNavigationTable.html" %}
+
 
         {% for path in swagger.paths %}
             {% set methodPath = loop.key %}
@@ -24,19 +52,38 @@
 
             <div class="apidocs-section">
             
-            <a id="{{method.operationId}}" name="{{method.operationId}}" class="section-anchor">&nbsp;</a>
+            <a id="{{method['x-docs-anchor']}}" name="{{method['x-docs-anchor']}}" class="section-anchor">&nbsp;</a>
             
             <h2>
                 {{method.summary}}
-                <code>{{httpMethod | upper}} {{swagger.basePath}}{{methodPath}}</code>
+                <span class="label docs-label-{{httpMethod | lower}}">{{httpMethod | upper}}</span>
+                <code>{{swagger.basePath}}{{methodPath}}</code>
             </h2>
 
             {{method.description | markdown}} 
 
-            <p style="display: none;">Works with: 
+            <p>
+                <b>Tags</b>: 
                 {% for tag in method.tags %}
-                    <span class="label program-type-label program-type-{{tag | lower}}">{{tag | lower | title}}</span>
+                    <span class="label">{{tag }}</span>
                 {% endfor %}
+                
+                <b>Auth</b>: 
+                {% for sec in method.security %}
+                  {% for secScopes in sec %}
+                      {% set secName = loop.key %}
+                      {% if secScopes.length %}
+                          {% for scope in secScopes %}
+                          <span class="label">{{secName}}:{{scope}}</span>
+                          {% endfor %}
+                      {% else %}
+                          <span class="label">{{secName}}</span>
+                      {% endif %}
+                  {% endfor %}
+                {% endfor %}
+                {% if method.security.length < 1 %}
+                    <span class="label">Unauthenticated</span>
+                {% endif %}
             </p>
 
             <h4 style="margin-top: 40px;">Arguments</h4>
@@ -57,14 +104,14 @@
                         <td>
                             {{param.description | markdown}}
                             
-                            {% if param.schema %}{{swaggerMacros.outputProperties(param.schema)}}{% endif %}
+                            {% if param.schema %}{{swaggerMacros.outputRequestProperties(param.schema)}}{% endif %}
                         </td>
                       </tr>
                     {% endfor %}
                 </table>
                 
 <p><b>Example Curl Request</b></p>
-<pre><code class="lang-curl">curl -X {{httpMethod|upper}} {{swagger.schemes[0]}}://{{swagger.host}}{{swagger.basePath}}{{methodPath}}{% for param in method.parameters %}{% if param.in == "query" && param.required %}{% if loop.first %}?{%else%}&{% endif %}{{param.name}}={{param['x-example']|default('')}}{%- endif %}{% endfor %} \
+<pre><code class="lang-curl">curl -X {{httpMethod|upper}} {{swagger.schemes[0]}}://{{swagger.host}}{{swagger.basePath}}{{methodPath}}{% for param in method.parameters %}{% if param.in == "query" && param.required %}{% if firstQuery %}?{%else%}&{% endif %}{{param.name}}={{param['x-example']|default('')}}{% set firstQuery=false %}{%- endif %}{% endfor %} \
 -u :API_KEY \
 {% if httpMethod == "post" || httpMethod == "put" || httpMethod == "patch" %}-H "Content-Type: application/json" \
 -d '{% for param in method.parameters %}{% if param.in == "body" %}{{ param.schema | exampleSwaggerSchema | json(4) }}{%- endif %}{% endfor %}'{%- endif %}
@@ -109,12 +156,6 @@
             {% endfor %}
         {% endfor %}
 
-
-        
-        <h2>Swagger Spec</h2>
-        <p>The Referral SaaSquatch documentation is generated from this Swagger.io specification.</p>
-        <pre class="jsonview">{{ swagger|json(4) }}</pre>
-        
 
 </section>
 

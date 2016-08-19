@@ -3,6 +3,7 @@ var parser = require("swagger-parser");
 var yaml = require('js-yaml');
 
 var resolveAllOf = require('json-schema-resolve-allof');
+var swaggerUtils = require('../utils/swaggerUtils.js');
 
 /**
  * Expose `plugin`.
@@ -59,6 +60,8 @@ function plugin(opts){
     })
     .then((spec) => {
         metadata['swagger'] = spec;
+        metadata['methodsByTag'] = swaggerUtils.methodsByTag(spec);
+        metadata['tagMap'] = swaggerUtils.tagMap(spec);
         done();
     })
     .catch( (err) => done(new Error("Swagger parsing error: " + err.message, err)));

@@ -109,97 +109,13 @@
                     <ul>
                         <li>
                         <li><a href="/api/authentication">Authentication</a></li>
+                        <li><a href="/api/openendpoints">Open Endpoints</a></li>
                         <li><a href="/api/errors">Errors</a></li>
                         <li><a href="/api/webhooks">Webhooks</a></li>
 
                         <li class="Divider">API Reference</li>
                         <li><a href="/api/methods">Full list of Methods</a></li>
-                        <li>
-                            <span>Accounts</span>
-                            <ul class="Vertical nav-onpage">
-                                <li><a href="/api/methods#account_sync">Create or update an account</a></li>
-                                <li><a href="/api/methods#get_account">Lookup an account</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <span>Users</span>
-                            <ul class="Vertical nav-onpage">
-                                <!--<li><a href="/api/methods#list_users">List users</a></li>-->
-                                <li><a href="/api/methods#create_user">Create or update a user</a></li>
-                                <li><a href="/api/methods#get_user">Lookup a user</a></li>
-                                <li><a href="/api/methods#get_user_by_referralcode">Lookup a user by referral code</a></li>
-                                <li><a href="/api/methods#get_sharelinks">Lookup a user's share links</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <span>Referral Codes</span>
-                            <ul class="Vertical nav-onpage">
-                                <li><a href="/api/methods#get_code">Lookup a referral code</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <span>Referrals</span>
-                            <ul class="Vertical nav-onpage">
-                                <li><a href="/api/methods#list_referrals">List referrals</a></li>
-                                <li><a href="/api/methods#get_referral">Lookup a referral</a></li>
-                                <li><a href="/api/methods#moderate_referrals">Moderate referrals</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <span>Reward Balances</span>
-                            <ul class="Vertical nav-onpage">
-                                <li><a href="/api/methods#list_balances">List reward balances</a></li>
-                                <li><a href="/api/methods#debit_balance">Debit a reward balance</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <span>Rewards</span>
-                            <ul class="Vertical nav-onpage">
-                                <li><a href="/api/methods#list_rewards">List an account's rewards</a></li>
-                                <li><a href="/api/methods#debit_reward">Redeem a single reward</a></li>
-                                <li><a href="/api/methods#create_reward">Create a reward</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <span>Webhooks</span>
-                            <ul class="Vertical nav-onpage">
-                                <li><a href="/api/methods#create_webhook">Create a webhook subscription</a></li>
-                                <li><a href="/api/methods#list_webhooks">List webhook subscriptions</a></li>
-                                <li><a href="/api/methods#delete_webhook">Delete a webhook subscription</a></li>
-                                <li><a href="/api/methods#test_webhook">Test a webhook subscription</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <span>Themes</span>
-                            <ul class="Vertical nav-onpage">
-                                <li><a href="/api/methods#lookup_variables_schema">Lookup variables schema</a></li>
-                                <li><a href="/api/methods#lookup_variables">Lookup variables</a></li>
-                                <li><a href="/api/methods#replace_variables">Replace variables</a></li>
-                                <li><a href="/api/methods#update_variables">Update variables</a></li>
-                                <li><a href="/api/methods#preview_theme_email">Preview email</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <span>Discounts</span>
-                            <ul class="Vertical nav-onpage">
-                                <li><a href="/api/methods#get_coupon">Lookup a discount code</a></li>
-                                <li><a href="/api/methods#set_coupon">Set a discount code</a></li>
-                                <li><a href="/api/methods#get_account_reward">Lookup an account's discount</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <span>Open Endpoints</span>
-                            <ul class="Vertical nav-onpage">
-                                <li><a href="/api/methods#open_create_user">Create a user</a></li>
-                                <li><a href="/api/methods#open_get_user">Lookup a user</a></li>
-                                <li><a href="/api/methods#open_get_user_by_code">Lookup a user by referral code</a></li>
-                                <li><a href="/api/methods#open_validate_code">Lookup a referral code</a></li>
-                                <li><a href="/api/methods#open_apply_code">Apply a referral code</a></li>
-                                <li><a href="/api/methods#open_list_referrals">List referrals</a></li>
-                            </ul>
-                        </li>
-                        <li class="Divider">Advanced</li>
-                        <li><a href="/api/openendpoints">Open Endpoints</a></li>
+                        {% include "./apiNavigationSidebar.html" %}
                     </ul>
                 </li>
                 <li><a href="/squatchjs/"><i class="fa fa-fw fa-html5"></i> Squatch.js</a>

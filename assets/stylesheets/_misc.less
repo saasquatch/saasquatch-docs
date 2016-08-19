@@ -79,6 +79,11 @@
     background-color: @colorForRewardTypes;
 }
 
+.docs-label-get{ background-color: #468847}
+.docs-label-put{ background-color: #f89406}
+.docs-label-post{ background-color: #f89406}
+.docs-label-patch{ background-color: #f89406}
+
 // Makes the argument names right-aligned for easier skimability (stolen from Stripe's API reference)
 .apidocs-args th {
     text-align: right;
@@ -94,6 +99,10 @@
 .js-docs-collapse-toggle {
     font-family: Monaco, Consolas, "Lucida Console", monospace;
     font-size: 12px;
+    padding: 3px 7px;
+    border: 1px solid;
+    border-radius: 3px;
+    cursor: pointer;
     &:before {
         content: "[+] Expand Details";
     }

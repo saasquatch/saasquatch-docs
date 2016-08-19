@@ -59,7 +59,7 @@ module.exports = function(){
     *    This has to be done before MMenu is initalized.
     */
     categories.map(function(category){
-        jQuery("li."+category+" ul", menuDom).addClass(category);
+        menuDom.find(".baseMenu > ."+category).find('ul').addClass(category);
     });
 
     /**
@@ -97,7 +97,7 @@ module.exports = function(){
             jQuery(".mm-panel > ul." + category, menuDom).parent(".mm-panel").addClass(category);
         });
         
-        jQuery("a.nav-onpage, .nav-onpage a").click(function(){
+        jQuery("a.nav-onpage, ul.nav-onpage > li > a").click(function(){
             // Trigger this method to set or unset a menu item as "selected".
             if(!isOnPage(jQuery(this).prop('href'), window.location.href)){
                 return true;

@@ -1,8 +1,11 @@
 # This is a swagger.io definition for the Referral SaaSquatch Rest API
 swagger: "2.0"
 info:
-  title: Referral SaaSquatch
-  description: Build your own custom refer a friend program.
+  title: Referral SaaSquatch REST API Reference
+  description: |
+    The Referral SaaSquatch API is organized around REST. Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP authentication and HTTP verbs, which can be understood by off-the-shelf HTTP clients. JSON will be returned in all responses from the API, including errors.
+
+    To make the Referral SaaSquatch API as explorable as possible, accounts have test-mode API keys as well as live-mode API keys. These keys are both active at the same time. Data created with test-mode credentials will use your payment system's respective test mode.
   version: 1.0.0
 # the domain of the service
 host: app.referralsaasquatch.com
@@ -17,18 +20,21 @@ produces:
   - application/json
 securityDefinitions:
   ## Describes API Key used as the Basic password approach
-  apiKey:
+  APIKey:
     type: basic
     description: Authorize your requests using a tenant's API Key. Use this method of security only in server-to-server interactions.
   ## Describes the method of using JWT tokens for the Open API
-  userJWT:
+  UserToken:
     type: apiKey
     in: header
     name: X-SaaSquatch-User-Token
-    description: Authorize your requests using a JSON Web Token (JWT) for a given user. Useful for client-server authorization, such as the Mobile and Web SDKs.
+    description: Authorize your requests using a JSON Web Token (JWT) for a given user. Useful for client-server authorization, such as the Mobile and Web SDKs. Used in Open Endpoints.
+    x-scopes:
+      - read
+      - write
 externalDocs:
   description: "Official Referral SaaSquatch documentation"
-  url: "http://docs.referralsaasquatch.com/"
+  url: "http://docs.referralsaasquatch.com/api"
 parameters:
   tenant_alias:
     name: tenant_alias
@@ -49,6 +55,37 @@ parameters:
     type: integer
     description: "When included offsets the first result returns in the list. Use this to paginate through a long list of results. Defaults to `0`"
     default: 0
+tags:
+ -
+  name: Account
+  description: Accounts can be shared between users and accumulate credit.
+ -
+  name: User
+  description: Users are the people in your program. In other places a User might also be called a Contact, Lead or Participant.
+ -
+  name: Referral Code
+  description: Referral Codes are unique ids used to track referrals.
+ -
+  name: Referral
+  description: A Referral tracks who has referred whom.
+ -
+  name: Reward Balance
+  description: Reward Balances summarizes the Rewards in someone's account.
+ -
+  name: Reward
+  description: A Reward keeps track of a prize, discount or credit that someone has received.
+ -
+  name: Open Endpoint
+  description: Open Endpoints are special methods designed specifically for Client-facing applications like the Mobile SDK and Javascript SDK.
+ -
+  name: Export
+  description: Exports are used to do bulk data dumps from your SaaSquatch account.
+ -
+  name: Theme
+  description: Themes control the look and feel of your program's widgets.
+ -
+  name: Discount
+  description: Endpoints for working with discounts. **Most of these are deprecated** in favor of using Reward endpoints.
 
 paths:
   "/{tenant_alias}/accountsync":
@@ -59,7 +96,7 @@ paths:
       tags:
         - Account
       security:
-        - apiKey: []
+        - APIKey: []
       description: |
         Use this method to update SaaSquatch when the status of an account changes or when a new account is created. 
         
@@ -104,8 +141,8 @@ paths:
       tags:
         - Account
       security:
-        - apiKey: []
-        # - userJWT:
+        - APIKey: []
+        # - UserToken:
         #   - read
         #   - write
       description: |
@@ -150,46 +187,6 @@ paths:
         default:
           $ref: "#/responses/GeneralError"
 
-
-  # "/{tenant_alias}/users":
-  #   get:
-  #     operationId: list_users
-  #     summary: List users
-  #     description: |
-  #       List all of the Users in your Referral SaaSquatch tenant. This method is the primary way of getting a full list of everyone that has been identified through the API, Squatch.js or mobile widgets.
-  #       This method supports pagination using the parameters for `limit` and `offset` to iterate through a very large list of records.
-  #       You can also search for particular users using the `query` method. To find information about which users have completed referrals, use the [List referrals](#list_referrals) method.
-  #     parameters:
-  #       - name: query
-  #         in: query
-  #         description: "A search query that can be used to filter users by email, name or ID."
-  #         type: string
-  #       - $ref: "#/parameters/limit"
-  #       - $ref: "#/parameters/offset"
-  #       - $ref: "#/parameters/tenant_alias"
-  #     responses:
-  #       200:
-  #         description: Users found
-  #         examples:
-  #           "application/json":
-  #             count: 1
-  #             totalCount: 1
-  #             users:
-  #               -
-  #                 id: "14125"
-  #                 accountId: "89842"
-  #                 email: "mark@example.com"
-  #                 firstName: "Mark"
-  #                 lastName: "Testerson"
-  #                 referralCode: "MARKTESTER"
-  #                 imageUrl: ""
-  #                 dateCreated: 1414452680584
-  #                 emailHash: "a65a76ba72e5a0b1e6253efce357abb6"
-  #         schema:
-  #           $ref: "#/definitions/UserList"
-  #       default:
-  #         $ref: "#/responses/GeneralError"
-
   "/{tenant_alias}/user":
     post:
       summary: Create or Update a User
@@ -198,7 +195,7 @@ paths:
       tags:
         - User
       security:
-        - apiKey: []
+        - APIKey: []
       description: |
         This method creates or updates a User object by performing an atomic upsert operation. Using this method will either replace the information stored about a given user, or
         create a new user if no User with a matching `id` is found. This method is helpful for synchronizing user information from your database into Referral SaaSquatch.
@@ -210,7 +207,7 @@ paths:
           description: Details of the User to be created or updated
           required: true
           schema:
-            $ref: "#/definitions/User_POST"
+            $ref: "#/definitions/UserStub"
         - $ref: "#/parameters/tenant_alias"
       responses:
         200:
@@ -229,8 +226,8 @@ paths:
       tags:
         - User
       security:
-        - apiKey: []
-        # - userJWT:
+        - APIKey: []
+        # - UserToken:
         #   - read
         #   - write
       description: |
@@ -258,7 +255,6 @@ paths:
             $ref: "#/definitions/Error"
         default:
           $ref: "#/responses/GeneralError"
-
   "/{tenant_alias}/account/{accountId}/user/{userId}":
     get:
       summary: Lookup a user
@@ -267,7 +263,7 @@ paths:
       tags:
         - User
       security:
-        - apiKey: []
+        - APIKey: []
       description: |
         Looks up a user based upon their `id` and returns their personal information.
         This method just returns the details of the user in question, and not all associated properties like Rewards, ShareLinks, Balances or Referrals.
@@ -297,8 +293,6 @@ paths:
             $ref: "#/definitions/Error"
         default:
           $ref: "#/responses/GeneralError"
-
-
   "/{tenant_alias}/account/{accountId}/user/{userId}/sharelinks":
     get:
       summary: Lookup a user's share links
@@ -307,8 +301,8 @@ paths:
       tags:
         - User
       security:
-        - apiKey: []
-        # - userJWT:
+        - APIKey: []
+        # - UserToken:
         #   - read
         #   - write
       description: |
@@ -355,6 +349,49 @@ paths:
             $ref: "#/definitions/Error"
         default:
           $ref: "#/responses/GeneralError"
+  "/{tenant_alias}/users":
+    get:
+      summary: List users
+      operationId: listUsers
+      x-docs-anchor: list_users
+      tags:
+        - User
+      security:
+        - APIKey: []      
+      description: |
+        List all of the Users in your Referral SaaSquatch tenant. This method is the primary way of getting a full list of everyone that has been identified through the API, Squatch.js or mobile widgets.
+        This method supports pagination using the parameters for `limit` and `offset` to iterate through a very large list of records.
+        You can also search for particular users using the `query` method. To find information about which users have completed referrals, use the [List referrals](#list_referrals) method.
+      parameters:
+        - name: query
+          in: query
+          description: "A search query that can be used to filter users by email, name or ID."
+          type: string
+        - $ref: "#/parameters/limit"
+        - $ref: "#/parameters/offset"
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        200:
+          description: Users found
+          examples:
+            "application/json":
+              count: 1
+              totalCount: 1
+              users:
+                -
+                  id: "14125"
+                  accountId: "89842"
+                  email: "mark@example.com"
+                  firstName: "Mark"
+                  lastName: "Testerson"
+                  referralCode: "MARKTESTER"
+                  imageUrl: ""
+                  dateCreated: 1414452680584
+                  emailHash: "a65a76ba72e5a0b1e6253efce357abb6"
+          schema:
+            $ref: "#/definitions/UserList"
+        default:
+          $ref: "#/responses/GeneralError"
 
   "/{tenant_alias}/code/{code}":
     get:
@@ -364,8 +401,8 @@ paths:
       tags:
         - Referral Code
       security:
-        - apiKey: []
-        # - userJWT:
+        - APIKey: []
+        # - UserToken:
         #   - read
         #   - write
       description: |
@@ -405,8 +442,8 @@ paths:
       tags:
         - Referral
       security:
-        - apiKey: []
-        # - userJWT:
+        - APIKey: []
+        # - UserToken:
         #   - read
         #   - write
       description: |
@@ -495,8 +532,8 @@ paths:
       tags:
         - Referral
       security:
-        - apiKey: []
-        # - userJWT:
+        - APIKey: []
+        # - UserToken:
         #   - read
         #   - write
       description: |
@@ -547,8 +584,8 @@ paths:
       tags:
         - Referral
       security:
-        - apiKey: []
-        # - userJWT:
+        - APIKey: []
+        # - UserToken:
         #   - read
         #   - write
       description: |
@@ -580,8 +617,8 @@ paths:
       tags:
         - Reward Balance
       security:
-        - apiKey: []
-        # - userJWT:
+        - APIKey: []
+        # - UserToken:
         #   - read
         #   - write
       description: |
@@ -641,8 +678,8 @@ paths:
       tags:
         - Reward Balance
       security:
-        - apiKey: []
-        # - userJWT:
+        - APIKey: []
+        # - UserToken:
         #   - read
         #   - write
       description: "Used to redeem the credit earned from a referral program. Permanently debits an account balance. Works with: `TIME_CREDIT` and `CREDIT`"
@@ -675,8 +712,8 @@ paths:
       tags:
         - Reward
       security:
-        - apiKey: []
-        # - userJWT:
+        - APIKey: []
+        # - UserToken:
         #   - read
         #   - write
       description: |
@@ -720,10 +757,7 @@ paths:
       tags:
         - Reward
       security:
-        - apiKey: []
-        - userJWT:
-          - read
-          - write
+        - APIKey: []
       description: "Used to redeem an individual credit earned from a referral program. Works with: `TIME_CREDIT` and `CREDIT`"
       parameters:
         - name: id
@@ -757,8 +791,8 @@ paths:
       tags:
         - Reward
       security:
-        - apiKey: []
-        # - userJWT:
+        - APIKey: []
+        # - UserToken:
         #   - read
         #   - write
       description: |
@@ -794,408 +828,7 @@ paths:
         default:
           $ref: "#/responses/GeneralError"
 
-
-  "/{tenant_alias}/theme/variables/schema":
-    get:
-      summary: Lookup variables schema
-      operationId: getVariablesSchema
-      x-docs-anchor: lookup_variables_schema
-      tags:
-        - Theme
-      security:
-        - apiKey: []
-        # - userJWT:
-        #   - read
-        #   - write
-      description: |
-        Returns the variables schema object that is defined in the tenant theme repository.
-        This will be a [JSON Schema](http://json-schema.org/) standards compliant definition.
-        See [theme variables](/themes/variables/) for more info.
-      produces:
-        - "application/schema+json"
-      parameters:
-        - $ref: "#/parameters/tenant_alias"
-      responses:
-        200:
-          description: Variables Schema Found
-          schema:
-            $ref: "#/definitions/VariablesSchema"
-          examples:
-            "application/schema+json":
-              $ref: "#/definitions/VariablesSchema/example"
-        default:
-          $ref: "#/responses/GeneralError"
-
-  "/{tenant_alias}/theme/variables/instance":
-    get:
-      summary: Lookup variables values
-      operationId: lookupVariables
-      x-docs-anchor: lookup_variables
-      tags:
-        - Theme
-      security:
-        - apiKey: []
-        # - userJWT:
-        #   - read
-        #   - write
-      description: |
-        Returns the current variables values stored for the schema object that is defined in the tenant theme repository.
-      produces:
-        - "application/json"
-      parameters:
-        - $ref: "#/parameters/tenant_alias"
-      responses:
-        200:
-          description: Variables Found
-          schema:
-            $ref: "#/definitions/VariablesInstance"
-          examples:
-            "application/schema+json":
-              $ref: "#/definitions/VariablesInstance/example"
-        default:
-          $ref: "#/responses/GeneralError"
-
-    put:
-      summary: Replace Variable Values
-      operationId: replaceVariables
-      x-docs-anchor: replace_variables
-      tags:
-        - Theme
-      security:
-        - apiKey: []
-        # - userJWT:
-        #   - read
-        #   - write
-      description: |
-        Replaces all of the previously set values. Use this operation only when your
-        goal is to completely replace all variable values, including deleting previous
-        values of othe fields that you're not setting. Prefer to use a `PATCH` request
-        when you only want to update one variable or a subset of variables.
-        See [theme variables](/themes/variables/) for more info.
-      parameters:
-        - name: instance
-          in: body
-          description: The variables object to replace all previously stored values.
-          schema:
-            $ref: "#/definitions/VariablesInstance"
-        - $ref: "#/parameters/tenant_alias"
-      responses:
-        204:
-          description: Variables Replaced
-        400:
-          $ref: "#/responses/VariablesErrorResponse"
-        default:
-          $ref: "#/responses/GeneralError"
-
-    patch:
-      summary: Update Variable Values
-      operationId: updateVariables
-      x-docs-anchor: update_variables
-      tags:
-        - Theme
-      security:
-        - apiKey: []
-        - userJWT:
-          - read
-          - write
-      description: |
-        Updates the previously stored values for the variables included in this request.
-        Will not override, nullify or delete the other variable values that are not included.
-        This method can be used to selectively set a single variable. See [theme variables](/themes/variables/) for more info.
-      parameters:
-        - name: instance
-          in: body
-          description: The variables object that will update fields included here.
-          schema:
-            $ref: "#/definitions/VariablesInstance"
-        - $ref: "#/parameters/tenant_alias"
-      responses:
-        200:
-          description: Variables Updated
-          schema:
-            $ref: "#/definitions/VariablesInstance"
-          examples:
-            "application/json":
-              $ref: "#/definitions/VariablesInstance/example"
-        400:
-          $ref: "#/responses/VariablesErrorResponse"
-        default:
-          $ref: "#/responses/GeneralError"
-
-  "/{tenant_alias}/theme/email/{email_type}/preview":
-    post:
-      summary: Preview Theme Email
-      operationId: previewThemeEmail
-      x-docs-anchor: preview_theme_email
-      tags:
-        - Theme
-      security:
-        - apiKey: []
-        # - userJWT:
-        #   - read
-        #   - write
-      description: |
-        Generates preview content for a themed email. If the `sendTo` parameter is set this content will be sent to the provided *email address* otherwise the content will be returned in the response.
-      produces:
-        - "text/html"
-      parameters:
-        - $ref: "#/parameters/tenant_alias"
-        - name: email_type
-          in: path
-          description: |
-            The type of email to be previwed. E.g. `REFERRAL_STARTED` or `REFERRAL_CONVERTED`, see *theme mappings* in [email theming](/themes/emails/) for details.
-          type: string
-          required: true
-        - name: locale
-          in: query
-          description: |
-            The user locale, used for [Internationalization](/themes/internationalization).
-          type: string
-        - name: sendTo
-          in: query
-          description: |
-            If an *email address* is set in the `sendTo` parameter the *preview email content* will be delivered to the provided address.
-          type: string
-      responses:
-        200:
-          description: Preview Response
-          examples:
-            "text/html":
-              <html>
-                <head>
-                  ...
-                </head>
-                <body>
-                  <h1>Congratulations Mike</h1>
-                  Your friend John has accepted your referral. You will now receive 10% off your next bill.
-                  ...
-                </body>
-              </body>
-        204:
-          description: SendTo Response
-        default:
-          $ref: "#/responses/GeneralError"
-
-  "/{tenant_alias}/subscription":
-    post:
-      summary: Create a webhook subscription
-      operationId: createWebhook
-      x-docs-anchor: create_webhook
-      tags:
-        - Webhook
-      security:
-        - apiKey: []
-        # - userJWT:
-        #   - read
-        #   - write
-      description: |
-        Subscribes a URL to receive events via webhooks
-      parameters:
-        - name: endpoint
-          in: body
-          description: Details of the endpoint to be created
-          schema:
-            $ref: "#/definitions/WebhookEndpoint"
-        - $ref: "#/parameters/tenant_alias"
-      responses:
-        201:
-          description: Webhook endpoint created
-        default:
-          $ref: "#/responses/GeneralError"
-    get:
-      operationId: list_webhooks
-      summary: List webhook subscriptions
-      description: |
-        Lists all the URLs that are currently subscribed to receive events via webhooks
-      parameters:
-        - $ref: "#/parameters/tenant_alias"
-      responses:
-        200:
-          description: A list of endpoints
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/WebhookEndpoint"
-          examples:
-            "application/json":
-              - endpointUrl: "https://example.com/hook"
-                name: "Zapier"
-              - endpointUrl: "https://another.example.com/hook"
-                name: "Example"
-        default:
-          $ref: "#/responses/GeneralError"
-  "/{tenant_alias}/subscription/{url}":
-    delete:
-      summary: Delete a webhook subscription
-      operationId: deleteWebhook
-      x-docs-anchor: delete_webhook
-      tags:
-        - Webhook
-      security:
-        - apiKey: []
-        # - userJWT:
-        #   - read
-        #   - write
-      description: |
-        Removes a URL from receiving events via webhooks
-      parameters:
-        - name: url
-          in: path
-          description: |
-            The url of the endpoint that will be removed. *Remember to URL-encode this field*
-          required: true
-          type: string
-        - $ref: "#/parameters/tenant_alias"
-      responses:
-        204:
-          description: Endpoint deleted
-        default:
-          $ref: "#/responses/GeneralError"
-  "/{tenant_alias}/subscription/{url}/test":
-    post:
-      summary: Test a webhook subscription
-      operationId: testWebhook
-      x-docs-anchor: test_webhook
-      tags:
-        - Webhook
-      security:
-        - apiKey: []
-        - userJWT:
-          - read
-          - write
-      description: |
-        Sends a test event to the specified webhook
-      parameters:
-        - name: url
-          in: path
-          description: |
-            The url of the endpoint to send a test message to. *Remember to URL-encode this field*
-          required: true
-          type: string
-        - $ref: "#/parameters/tenant_alias"
-      responses:
-        204:
-          description: Test message sent
-        default:
-          $ref: "#/responses/GeneralError"
-
-
-  "/{tenant_alias}/discount/{code}":
-    get:
-      deprecated: true
-      summary: Lookup a discount code
-      operationId: getAccount
-      x-docs-anchor: get_coupon
-      tags:
-        - Discount
-      security:
-        - apiKey: []
-        # - userJWT:
-        #   - read
-        #   - write
-      description: |
-        This method lets you look up the details of a referral code and to ensure that it is valid. Works with `PCT_DISCOUNT`
-      parameters:
-        - name: code
-          in: path
-          description: The coupon/referral code to look up. Eg. BOBTESTERSON
-          required: true
-          type: string
-        - $ref: "#/parameters/tenant_alias"
-      responses:
-        200:
-          description: Information about the coupon/referral code
-          examples:
-            "application/json":
-              "couponCode" : "BOBTESTERSON"
-              "discountPercentage" : 20
-              "dateCreated" : 1377727546528
-              "discountId" : "saasquatch_discount"
-          schema:
-            $ref: "#/definitions/DiscountCode"
-        404:
-          description: Coupon/referral code not found
-          schema:
-            $ref: "#/definitions/Error"
-        default:
-          $ref: "#/responses/GeneralError"
-  "/{tenant_alias}/discount":
-    post:
-      deprecated: true
-      summary: Set discount code on an account
-      operationId: setCoupon
-      x-docs-anchor: set_coupon
-      tags:
-        - Discount
-      security:
-        - apiKey: []
-        - userJWT:
-          - read
-          - write
-      description: |
-        This method associates a new account with their referrer. Use this method when
-        someone signs up for a paid account to set the coupon code used for them. For Stripe and Recurly do not use this call.
-        Instead during sign-up, just pass the coupon/referral code in your subcribe call. Works with `PCT_DISCOUNT`
-      parameters:
-        - name: accountDiscount
-          in: body
-          description: Account discount details to be updated
-          schema:
-            $ref: "#/definitions/AccountDiscountRequest"
-        - $ref: "#/parameters/tenant_alias"
-      responses:
-        200:
-          description: Account updated
-        400:
-          description: Not implemented
-        default:
-          $ref: "#/responses/GeneralError"
-  "/{tenant_alias}/account/{accountId}/discount":
-    get:
-      summary: Lookup an account discount
-      operationId: getAccountDiscount
-      x-docs-anchor: get_account_reward
-      tags:
-        - Discount
-      security:
-        - apiKey: []
-        # - userJWT:
-        #   - read
-        #   - write
-      description: |
-        This method information about an account's discount, if any, and what that discount would look like with a `couponCode` applied. Works with `PCT_DISCOUNT`
-      parameters:
-        - name: accountId
-          in: path
-          description: The account to look up
-          required: true
-          type: string
-        - name: couponCode
-          in: query
-          description: When included, will return a total reward available including any coupon code.
-          type: string
-        - $ref: "#/parameters/tenant_alias"
-      responses:
-        200:
-          description: Information about the account discount
-          examples:
-            "application/json":
-              "accountId": "SV0TYE5OWI11120144"
-              "discountPercentage": 10
-              "referrerDiscountPercent": 0
-              "referredDiscountPercent": 10
-              "discountId": "saasquatch_discount"
-          schema:
-            $ref: "#/definitions/AccountDiscount"
-        404:
-          description: Account not found
-          schema:
-            $ref: "#/definitions/Error"
-        default:
-          $ref: "#/responses/GeneralError"
-          
   ## Open API Endpoints
-    
   "/{tenant_alias}/open/account/{accountId}/user/{userId}":
     post:
       summary: Create a user and account
@@ -1203,11 +836,10 @@ paths:
       x-docs-anchor: open_create_user
       tags:
         - User
-        - Open
+        - Open Endpoint
       security:
-        - apiKey: []
-        - userJWT:
-          - write
+        - APIKey: []
+        - UserToken: []
       description: |
         This method creates a user and an account in one call. Because this call creates a user, it requires either a [write token](../openendpoints/) or an API key. By default, this endpoint is disabled. Contact support to enable the open endpoints.
       parameters:
@@ -1264,12 +896,10 @@ paths:
       x-docs-anchor: open_get_user
       tags:
         - User
-        - Open
+        - Open Endpoint
       security:
-        - apiKey: []
-        - userJWT:
-          - read
-          - write
+        - APIKey: []
+        - UserToken: []
       description: |
         Looks up a user based upon their `id` and returns their personal information including sharelinks. This endpoint requires a [read token](../openendpoints/) or an API key. By default, this endpoint is disabled. Contact support to enable the open endpoints.
       parameters:
@@ -1317,29 +947,26 @@ paths:
           description: Account not found
           schema:
             $ref: "#/definitions/Error"
-            
-            
   "/{tenant_alias}/open/user":
     get:
       summary: Get a user by a referral code
-      operationId: getAccount
+      operationId: openGetUserByCode
       x-docs-anchor: open_get_user_by_code
       tags:
-        - Account
-      security:
-        - apiKey: []
-        - userJWT:
-          - read
-          - write
+        - User
+        - Open Endpoint
+      security: []
+        # - APIKey: []
+        # - UserToken: []
       description: |
         Looks up a user based upon their `ReferralCode` and returns their personal information. This method is useful for retrieving the user when only the Referral Code is available, for example when a referred user enters a Referral Code during checkout and you want to find out who this Referral Code belongs to. By default, this endpoint is disabled. Contact support to enable the open endpoints.
       parameters:
-        - $ref: "#/parameters/tenant_alias"
         - name: referralCode
           in: query
           description: The code with which to lookup the User
           required: true
           type: string
+        - $ref: "#/parameters/tenant_alias"
       responses:
         200:
           description: Found user
@@ -1366,21 +993,21 @@ paths:
       x-docs-anchor: open_validate_code
       tags:
         - Referral Code
-        - Open
-      # security:
-      #   - apiKey: []
-      #   - userJWT:
+        - Open Endpoint
+      security: []
+      #   - APIKey: []
+      #   - UserToken:
       #     - read
       #     - write
       description: |
         Looks up a referral code and the details of the attached reward. By default, this endpoint is disabled. Contact support to enable the open endpoints.
       parameters:
-        - $ref: "#/parameters/tenant_alias"
         - name: referral_code
           in: path
           description: The code to be validated
           required: true
           type: string
+        - $ref: "#/parameters/tenant_alias"
       responses:
         200:
           description: Referral code found
@@ -1407,11 +1034,11 @@ paths:
       operationId: openApplyCode
       x-docs-anchor: open_apply_code
       tags:
-        - Account
+        - Referral Code
+        - Open Endpoint
       security:
-        - apiKey: []
-        - userJWT:
-          - write
+        - APIKey: []
+        - UserToken: []
       description: |
         Apply a `ReferralCode` to an account, automatically rewarding both sides of the referral. This endpoint requires a [write token](../openendpoints/) or an API key. By default, this endpoint is disabled. Contact support to enable the open endpoints.
       parameters:
@@ -1466,12 +1093,10 @@ paths:
       x-docs-anchor: open_list_referrals
       tags:
         - Referral
-        - Open
+        - Open Endpoint
       security:
-        - apiKey: []
-        - userJWT:
-          - read
-          - write
+        - APIKey: []
+        - UserToken: []
       description: |
         List all of the referrals involving the given user. This method is the primary way of getting a list of everyone that has made a referral and everyone that has been referred, and supports pagination using the parameters for `limit` and `offset` to iterate through a very large list of records.
         When authenticating with a [write token](../openendpoints/), the `referringAccountId` and `referringUserId` parameters are required. These filter the list of referrals to only include those made by the given user. By default, this endpoint is disabled. Contact support to enable the open endpoints.
@@ -1603,6 +1228,537 @@ paths:
 
         default:
           $ref: "#/responses/GeneralError"
+
+  "/{tenant_alias}/subscription":
+    post:
+      summary: Create a webhook subscription
+      operationId: createWebhook
+      x-docs-anchor: create_webhook
+      tags:
+        - Webhook
+      security:
+        - APIKey: []
+        # - UserToken:
+        #   - read
+        #   - write
+      description: |
+        Subscribes a URL to receive events via webhooks
+      parameters:
+        - name: endpoint
+          in: body
+          description: Details of the endpoint to be created
+          schema:
+            $ref: "#/definitions/WebhookEndpoint"
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        201:
+          description: Webhook endpoint created
+        default:
+          $ref: "#/responses/GeneralError"
+    get:
+      summary: List webhook subscriptions
+      operationId: listWebhooks
+      x-docs-anchor: list_webhooks
+      tags:
+        - Webhook
+      security:
+        - APIKey: []
+        # - UserToken:
+        #   - read
+        #   - write
+      description: |
+        Lists all the URLs that are currently subscribed to receive events via webhooks
+      parameters:
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        200:
+          description: A list of endpoints
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/WebhookEndpoint"
+          examples:
+            "application/json":
+              - endpointUrl: "https://example.com/hook"
+                name: "Zapier"
+              - endpointUrl: "https://another.example.com/hook"
+                name: "Example"
+        default:
+          $ref: "#/responses/GeneralError"
+  "/{tenant_alias}/subscription/{url}":
+    delete:
+      summary: Delete a webhook subscription
+      operationId: deleteWebhook
+      x-docs-anchor: delete_webhook
+      tags:
+        - Webhook
+      security:
+        - APIKey: []
+        # - UserToken:
+        #   - read
+        #   - write
+      description: |
+        Removes a URL from receiving events via webhooks
+      parameters:
+        - name: url
+          in: path
+          description: |
+            The url of the endpoint that will be removed. *Remember to URL-encode this field*
+          required: true
+          type: string
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        204:
+          description: Endpoint deleted
+        default:
+          $ref: "#/responses/GeneralError"
+  "/{tenant_alias}/subscription/{url}/test":
+    post:
+      summary: Test a webhook subscription
+      operationId: testWebhook
+      x-docs-anchor: test_webhook
+      tags:
+        - Webhook
+      security:
+        - APIKey: []
+        - UserToken: []
+      description: |
+        Sends a test event to the specified webhook
+      parameters:
+        - name: url
+          in: path
+          description: |
+            The url of the endpoint to send a test message to. *Remember to URL-encode this field*
+          required: true
+          type: string
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        204:
+          description: Test message sent
+        default:
+          $ref: "#/responses/GeneralError"
+
+  "/{tenant_alias}/export":
+    post:
+      summary: Create an Export
+      operationId: createExport
+      x-docs-anchor: create_export
+      tags:
+        - Export
+      security:
+        - APIKey: []
+        # - UserToken:
+        #   - read
+        #   - write
+      description: |
+        Creates an asynchronous request for an Exports. Depending on the size of the Export and other exports in the export pipeline, it may take awhile for an
+        export request to complete. Once the Export is completed, it can be downloaded as a CSV file using the download url endpoint. 
+        
+        Here are a few ways to check for when an export is ready.
+        
+        - **Polling** - While an export is being prepared you can check it's status using it's `id`. Make sure you store the `id` of the export when you request it.
+        - **Webhooks** - When an export is complete, a webhook event will be fired. Make sure you create a webhook endpoint subscription before you create your export.
+        - **Listing** - You can use the API to list recent exports, and check their status.
+        
+      parameters:
+        - name: export
+          in: body
+          description: Details of the export to be created
+          schema:
+            $ref: "#/definitions/Export"
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        201:
+          description: Export created
+          schema:
+            $ref: "#/definitions/Export"
+        default:
+          $ref: "#/responses/GeneralError"
+  "/{tenant_alias}/export/{exportId}":
+    get:
+      summary: Lookup an Export
+      operationId: getExport
+      x-docs-anchor: get_export
+      tags:
+        - Export
+      security:
+        - APIKey: []
+        # - UserToken:
+        #   - read
+        #   - write
+      description: |
+        Looks up an Export to check it's status. Useful when you're generating exports to check when an export is no longer `PENDING`
+        so that you can begin it's download.
+      parameters:
+        - name: exportId
+          in: path
+          type: string
+          required: true
+          description: The `id` of the export to look up
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        200:
+          description: Export found
+          schema:
+            $ref: "#/definitions/Export"
+        404:
+          description: Export NOT found
+        default:
+          $ref: "#/responses/GeneralError"
+  "/{tenant_alias}/export/{exportId}/download":
+    get:
+      summary: Download an Export
+      operationId: downloadExport
+      x-docs-anchor: download_export
+      tags:
+        - Export
+      security:
+        - APIKey: []
+        # - UserToken:
+        #   - read
+        #   - write
+      description: |
+        The endpoint to download a completed export. This method can only be used when an export is `COMPLETED`. Exports are not always immediately available to download
+        after they have been created, often exports are large files that take time to process and prepare. If you want to check if an export is ready to be downloaded,
+        use the API method to lookup an export or to list exports.
+      produces:
+        - 'text/csv' ## CSV file downloads
+      parameters:
+        - name: exportId
+          in: path
+          type: string
+          required: true
+          description: The `id` of the export to look up
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        200:
+          description: Export ready
+        default:
+          $ref: "#/responses/GeneralError"
+  "/{tenant_alias}/export/history/list":
+    get:
+      summary: List Exports
+      operationId: listExports
+      x-docs-anchor: list_exports
+      tags:
+        - Export
+      security:
+        - APIKey: []
+        # - UserToken:
+        #   - read
+        #   - write
+      description: |
+        List all of the exports in a tenant. Useful for tracking down exports 
+      produces:
+        - 'text/csv' ## CSV file downloads
+      parameters:
+        - name: limit
+          in: query
+          type: integer
+          default: 10
+          description: A limit on the maximum number of results to return, defaults to `10`.
+        - name: offset
+          in: query
+          type: integer
+          default: 0
+          description: The row number of the first result to return, defaults to `0`.
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        200:
+          description: List of Exports found
+          schema:
+            $ref: "#/definitions/ExportList"
+        default:
+          $ref: "#/responses/GeneralError"
+
+  "/{tenant_alias}/theme/variables/schema":
+    get:
+      summary: Lookup variables schema
+      operationId: getVariablesSchema
+      x-docs-anchor: lookup_variables_schema
+      tags:
+        - Theme
+      security:
+        - APIKey: []
+        # - UserToken:
+        #   - read
+        #   - write
+      description: |
+        Returns the variables schema object that is defined in the tenant theme repository.
+        This will be a [JSON Schema](http://json-schema.org/) standards compliant definition.
+        See [theme variables](/themes/variables/) for more info.
+      produces:
+        - "application/schema+json"
+      parameters:
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        200:
+          description: Variables Schema Found
+          schema:
+            $ref: "#/definitions/VariablesSchema"
+          examples:
+            "application/schema+json":
+              $ref: "#/definitions/VariablesSchema/example"
+        default:
+          $ref: "#/responses/GeneralError"
+  "/{tenant_alias}/theme/variables/instance":
+    get:
+      summary: Lookup variables values
+      operationId: lookupVariables
+      x-docs-anchor: lookup_variables
+      tags:
+        - Theme
+      security:
+        - APIKey: []
+        # - UserToken:
+        #   - read
+        #   - write
+      description: |
+        Returns the current variables values stored for the schema object that is defined in the tenant theme repository.
+      produces:
+        - "application/json"
+      parameters:
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        200:
+          description: Variables Found
+          schema:
+            $ref: "#/definitions/VariablesInstance"
+          examples:
+            "application/schema+json":
+              $ref: "#/definitions/VariablesInstance/example"
+        default:
+          $ref: "#/responses/GeneralError"
+
+    put:
+      summary: Replace Variable Values
+      operationId: replaceVariables
+      x-docs-anchor: replace_variables
+      tags:
+        - Theme
+      security:
+        - APIKey: []
+        # - UserToken:
+        #   - read
+        #   - write
+      description: |
+        Replaces all of the previously set values. Use this operation only when your
+        goal is to completely replace all variable values, including deleting previous
+        values of othe fields that you're not setting. Prefer to use a `PATCH` request
+        when you only want to update one variable or a subset of variables.
+        See [theme variables](/themes/variables/) for more info.
+      parameters:
+        - name: instance
+          in: body
+          description: The variables object to replace all previously stored values.
+          schema:
+            $ref: "#/definitions/VariablesInstance"
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        204:
+          description: Variables Replaced
+        400:
+          $ref: "#/responses/VariablesErrorResponse"
+        default:
+          $ref: "#/responses/GeneralError"
+
+    patch:
+      summary: Update Variable Values
+      operationId: updateVariables
+      x-docs-anchor: update_variables
+      tags:
+        - Theme
+      security:
+        - APIKey: []
+        - UserToken: []
+      description: |
+        Updates the previously stored values for the variables included in this request.
+        Will not override, nullify or delete the other variable values that are not included.
+        This method can be used to selectively set a single variable. See [theme variables](/themes/variables/) for more info.
+      parameters:
+        - name: instance
+          in: body
+          description: The variables object that will update fields included here.
+          schema:
+            $ref: "#/definitions/VariablesInstance"
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        200:
+          description: Variables Updated
+          schema:
+            $ref: "#/definitions/VariablesInstance"
+          examples:
+            "application/json":
+              $ref: "#/definitions/VariablesInstance/example"
+        400:
+          $ref: "#/responses/VariablesErrorResponse"
+        default:
+          $ref: "#/responses/GeneralError"
+  "/{tenant_alias}/theme/email/{email_type}/preview":
+    post:
+      summary: Preview Theme Email
+      operationId: previewThemeEmail
+      x-docs-anchor: preview_theme_email
+      tags:
+        - Theme
+      security:
+        - APIKey: []
+        # - UserToken:
+        #   - read
+        #   - write
+      description: |
+        Generates preview content for a themed email. If the `sendTo` parameter is set this content will be sent to the provided *email address* otherwise the content will be returned in the response.
+      produces:
+        - "text/html"
+      parameters:
+        - $ref: "#/parameters/tenant_alias"
+        - name: email_type
+          in: path
+          description: |
+            The type of email to be previwed. E.g. `REFERRAL_STARTED` or `REFERRAL_CONVERTED`, see *theme mappings* in [email theming](/themes/emails/) for details.
+          type: string
+          required: true
+        - name: locale
+          in: query
+          description: |
+            The user locale, used for [Internationalization](/themes/internationalization).
+          type: string
+        - name: sendTo
+          in: query
+          description: |
+            If an *email address* is set in the `sendTo` parameter the *preview email content* will be delivered to the provided address.
+          type: string
+      responses:
+        200:
+          description: Preview Response
+          examples:
+            "text/html":
+              <html>
+                <head>
+                  ...
+                </head>
+                <body>
+                  <h1>Congratulations Mike</h1>
+                  Your friend John has accepted your referral. You will now receive 10% off your next bill.
+                  ...
+                </body>
+              </body>
+        204:
+          description: SendTo Response
+        default:
+          $ref: "#/responses/GeneralError"
+
+  "/{tenant_alias}/discount/{code}":
+    get:
+      deprecated: true
+      summary: Lookup a discount code
+      operationId: getDiscountCoupon
+      x-docs-anchor: get_coupon
+      tags:
+        - Discount
+      security:
+        - APIKey: []
+        # - UserToken:
+        #   - read
+        #   - write
+      description: |
+        This method lets you look up the details of a referral code and to ensure that it is valid. Works with `PCT_DISCOUNT`
+      parameters:
+        - name: code
+          in: path
+          description: The coupon/referral code to look up. Eg. BOBTESTERSON
+          required: true
+          type: string
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        200:
+          description: Information about the coupon/referral code
+          examples:
+            "application/json":
+              "couponCode" : "BOBTESTERSON"
+              "discountPercentage" : 20
+              "dateCreated" : 1377727546528
+              "discountId" : "saasquatch_discount"
+          schema:
+            $ref: "#/definitions/DiscountCode"
+        404:
+          description: Coupon/referral code not found
+          schema:
+            $ref: "#/definitions/Error"
+        default:
+          $ref: "#/responses/GeneralError"
+  "/{tenant_alias}/discount":
+    post:
+      deprecated: true
+      summary: Set discount code on an account
+      operationId: setCoupon
+      x-docs-anchor: set_coupon
+      tags:
+        - Discount
+      security:
+        - APIKey: []
+      description: |
+        This method associates a new account with their referrer. Use this method when
+        someone signs up for a paid account to set the coupon code used for them. For Stripe and Recurly do not use this call.
+        Instead during sign-up, just pass the coupon/referral code in your subcribe call. Works with `PCT_DISCOUNT`
+      parameters:
+        - name: accountDiscount
+          in: body
+          description: Account discount details to be updated
+          schema:
+            $ref: "#/definitions/AccountDiscountRequest"
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        200:
+          description: Account updated
+        400:
+          description: Not implemented
+        default:
+          $ref: "#/responses/GeneralError"
+  "/{tenant_alias}/account/{accountId}/discount":
+    get:
+      summary: Lookup an account discount
+      operationId: getAccountDiscount
+      x-docs-anchor: get_account_reward
+      tags:
+        - Discount
+      security:
+        - APIKey: []
+        # - UserToken:
+        #   - read
+        #   - write
+      description: |
+        This method information about an account's discount, if any, and what that discount would look like with a `couponCode` applied. Works with `PCT_DISCOUNT`
+      parameters:
+        - name: accountId
+          in: path
+          description: The account to look up
+          required: true
+          type: string
+        - name: couponCode
+          in: query
+          description: When included, will return a total reward available including any coupon code.
+          type: string
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        200:
+          description: Information about the account discount
+          examples:
+            "application/json":
+              "accountId": "SV0TYE5OWI11120144"
+              "discountPercentage": 10
+              "referrerDiscountPercent": 0
+              "referredDiscountPercent": 10
+              "discountId": "saasquatch_discount"
+          schema:
+            $ref: "#/definitions/AccountDiscount"
+        404:
+          description: Account not found
+          schema:
+            $ref: "#/definitions/Error"
+        default:
+          $ref: "#/responses/GeneralError"
+          
 definitions:
   ## General object details
   Account:
@@ -1826,7 +1982,8 @@ definitions:
         type: string
         description: "For programs that require a currency. Works with: `CREDIT`"
   Reward:
-    description: Details of an individual reward.
+    title: A Reward object.
+    description: Rewards are used in SaaSquatch to track the credits, discounts, gift cards and other prizes that a User earns.
     properties:
       id:
         type: string
@@ -1850,10 +2007,10 @@ definitions:
         description: "Timestamp if the reward is cancellable and has been cancelled, the date it was cancelled on. Null if not never cancelled."
       cancellable:
         type: boolean
-        description: "If a reward is cancellable then it may be revoked. If it has been cancelled then dateCancelled will be non-null."
+        description: "If a reward is cancellable then it may be revoked. If it has been cancelled then `dateCancelled` will be non-null."
       rewardSource:
         type: string
-        description: "The type of the source of the reward. One of either `FRIEND_SIGNUP` or `REFERRED`."
+        description: "The type of the source of the reward. One of either `FRIEND_SIGNUP`, `REFERRED` or `MANUAL`."
         enum:
           - FRIEND_SIGNUP
           - REFERRED
@@ -1898,8 +2055,9 @@ definitions:
       discountPercent: 20
       unit: "%"
         
-  User_POST:
-    description: An object describing an individual user
+  UserStub:
+    title: A User object stub
+    description: The basic information about a User used when you want to create a new user, called a UserStub.
     required:
       - id
       - accountId
@@ -1952,7 +2110,8 @@ definitions:
       locale: null
 
   User:
-    description: An object describing an individual user
+    title: The User object
+    description: An object describing an individual user. Users are used in SaaSquatch to track people/contacts/leads. When a referral happens, it always happens between two Users.
     required:
       - id
       - accountId
@@ -1991,26 +2150,31 @@ definitions:
           The user's last name
       firstSeenIP: 
         type: string
+        readOnly: true
         example: "10.230.163.157"
         description: |
           The user's IP address on indentification
       lastSeenIP: 
         type: string
+        readOnly: true
         example: "184.66.242.57"
         description: |
           The user's last known IP address
       dateCreated: 
         type: integer
+        readOnly: true
         example: 1467222395030
         description: |
           The Unix time stamp of when the user was created
       emailHash: 
         type: string
+        readOnly: true
         example: "180bc1412a038746af9b37fb782724a2"
         description: |
           The hash of the user's email address
       referralSource: 
         type: string
+        readOnly: true
         example: "http://unifiedtestapp.herokuapp.com/"
         description: |
           The domain from which the user was registered
@@ -2020,7 +2184,7 @@ definitions:
         description: |
           The user's locale, used for [Internationalization](/themes/internationalization). The locale must be of the format 'language_COUNTRY' where the language code must be lowercase and the country code must be uppercase. The separator must be an underscore.
       shareLinks:
-        description: "Share links for an individual user"
+        readOnly: true
         $ref: "#/definitions/Sharelink"
     example:
       id: "898746321"
@@ -2102,7 +2266,7 @@ definitions:
         type: string
         example: PENDING
         description: |
-          "One of `PENDING` or `ACTIONED`. When referrals are manually managed, each referral has a `PENDING` state until it is explicitly moderated."
+          When referrals are manually managed, each referral has a `PENDING` state until it is explicitly moderated.
         enum:
           - PENDING
           - ACTIONED
@@ -2110,7 +2274,7 @@ definitions:
         type: string
         example: PENDING
         description: |
-          "One of `PENDING`, `APPROVED` or `DENIED`. Used to identify the *referred* user's moderation status and affect Reward cancellation."
+          Used to identify the *referred* user's moderation status and affect Reward cancellation.
         enum:
           - PENDING
           - APPROVED
@@ -2119,13 +2283,14 @@ definitions:
         type: string
         example: PENDING
         description: |
-          "One of `PENDING`, `APPROVED` or `DENIED`. Used to identify the *referrer* user's moderation status and affect Reward cancellation."
+          Used to identify the *referrer* user's moderation status and affect Reward cancellation.
         enum:
           - PENDING
           - APPROVED
           - DENIED
       dateReferralStarted:
         type: integer
+        format: 
         description: "Timestamp of when this referral was started."
       dateReferralPaid:
         type: integer
@@ -2142,12 +2307,15 @@ definitions:
     properties:
       dateGiven:
         type: integer
+        format: int64
         description: "Timestamp of when this reward was earned."
       dateExpires:
         type: integer
+        format: int64
         description: "Timestamp of when this reward is set to expire."
       dateCancelled:
         type: integer
+        format: int64
         description: "Timestamp if the reward is cancellable and has been cancelled, the date it was cancelled on. Null if not never cancelled."
       unit:
         type: string
@@ -2205,15 +2373,19 @@ definitions:
           - DENIED
       dateReferralStarted:
         type: integer
+        format: int64
         description: "Timestamp of when this referral was started."
       dateReferralPaid:
         type: integer
+        format: int64
         description: "Timestamp of when this referral was marked as `PAID`."
       dateReferralEnded:
         type: integer
+        format: int64
         description: "Timestamp of when this referral was ended."
       dateModerated:
         type: integer
+        format: int64
         description: "Timestamp of when this referral was last moderated."
 
   ThemeReferrerReferralDto:
@@ -2543,45 +2715,59 @@ definitions:
         example: "en_US"
         description: |
           The user's locale, used for [Internationalization](/themes/internationalization). The locale must be of the format 'language_COUNTRY' where the language code must be lowercase and the country code must be uppercase. The separator must be an underscore.
-
-
-
-  #
-  # ========== Response / Envelope Types ==============
-  #
-  # Only REST response envelopers included in this section.
-  #
+          
+        
+#
+# ========== Response / Envelope Types ==============
+#
+# Only REST response envelopers included in this section.
+#
 
   ListEnvelope:
+    description: A generic base model to help with paginating lists. The `count` counts the number in this list, and `totalCount` gives the total available results.
     properties:
       count:
         type: integer
-        description: The number of results returned in this response
+        description: The number of results returned in this list, see `totalCount` for all rows.
       totalCount:
         type: integer
-        description: The total number of results available in this tenant
+        description: The total number of results available overall, see `count` for the number of rows in this list.
 
 
   UserList:
-    allOf:
-      - $ref: '#/definitions/ListEnvelope'
-      - type: object
-        properties:
-          users:
-            type: array
-            description: A list of User objects
-            items:
-              $ref: "#/definitions/User"
+    type: object
+    description: A list of User objects as `users`, with the fields `count` and `totalCount` to help with pagination.
+    properties:
+      users:
+        type: array
+        description: A list of User objects. This is the actual data in this list envelope.
+        items:
+          $ref: "#/definitions/User"
+      count:
+        type: integer
+        description: The number of results returned in this list, see `totalCount` for all rows.
+      totalCount:
+        type: integer
+        description: The total number of results available overall, see `count` for the number of rows in this list.
+
+      
   ReferralList:
-    allOf:
-      - $ref: '#/definitions/ListEnvelope'
-      - type: object
-        properties:
-          referrals:
-            type: array
-            description: A list of Referral objects
-            items:
-              $ref: "#/definitions/Referral"
+    type: object
+    description: A list of Referral objects as `referrals`, with the fields `count` and `totalCount` to help with pagination.
+    properties:
+      referrals:
+        type: array
+        description: A list of Referral objects. This is the actual data in this list envelope.
+        items:
+          $ref: "#/definitions/Referral"
+      count:
+        type: integer
+        description: The number of results returned in this list, see `totalCount` for all rows.
+      totalCount:
+        type: integer
+        description: The total number of results available overall, see `count` for the number of rows in this list.
+
+      
   RewardDebitResponse:
     description: Details about a successful Reward Balance Debit transaction.
     properties:
@@ -2597,8 +2783,121 @@ definitions:
         type: string
         example: cents
         description: The type of credit that was just debitted.
+  
+  ExportList:
+    description: A list of Export objects with additional data for pagination.
+    properties:
+      data:
+        type: array
+        description: A list of Export objects. This is the actual data in this list envelope.
+        items:
+          $ref: "#/definitions/Export"
+      count:
+        type: integer
+        description: The number of results returned in this list, see `totalCount` for all rows.
+        example: 10
+      totalCount:
+        type: integer
+        description: The total number of results available overall, see `count` for the number of rows in this list.
+        example: 2415
 
- #
+  Export:
+    description: An Export lets you get your customer data out of your Referral SaaSquatch tenant. There are exports for returning Users, Referrals and Reward Balances.
+    required:
+      - type
+    properties:
+      type:
+        description: The type of Export that's being requested.
+        type: string
+        enum:
+          - REFERRAL
+          - REWARD_BALANCE
+          - USER
+        example: REFERRAL
+      format:
+        description: The format of the Export
+        type: string
+        default: CSV
+        example: CSV
+        enum:
+          - CSV
+
+      name:
+        description: A user-friendly name for this report. Useful for keeping track of which report is which.
+        type: string
+      requester: 
+        description: Detail on the service or user that requested this report.
+        type: string
+        example: "Referral SaaSquatch for Salesforce"
+      
+      params:
+        description: |
+          Filter parameters for limiting the types of results returned. When parameters are included, their are grouped by a logical "AND" so
+          it's possible to create situations that return no results. 
+        type: object
+        properties:
+          createdSince:
+            description: Filters for results that have been **created since this date**
+            type: integer
+            format: int64
+          createdBefore:
+            description: Filters for results that have been **created before this date**
+            type: integer
+            format: int64
+          updatedSince:
+            description: Filters for results that have been **updated since this date**
+            type: integer
+            format: int64
+          updatedBefore:
+            description: Filters for results that have been **updated before this date**
+            type: integer
+            format: int64
+          createdOrUpdatedSince:
+            description: Filters for results that have been **created or updated since this date**. Useful for doing incremental exports into a data warehouse.
+            type: integer
+            format: int64
+            example: 1471486152087
+          createdOrUpdatedBefore:
+            description: Filters for results that have been **created or updated before this date**. Useful for doing incremental exports into a data warehouse.
+            type: integer
+            format: int64
+            example: 1471486452087
+
+      ### -- Read-only fields below here -- ###
+      id:
+        description: A unique ID used to keep track of an export's life. Can be used to lookup an exports status.
+        type: string
+        readOnly: true
+        example: 57b519f4e4b057c1b63925df
+      status:
+        description: The status of this export.
+        type: string
+        readOnly: true
+        example: PENDING
+        enum:
+          - PENDING
+          - COMPLETED
+          - EXPIRED
+      dateCreated:
+        description: The timestamp when this request was created. This field will never change.
+        type: integer
+        format: int64
+        readOnly: true
+        example: 1471486452362
+      dateCompleted:
+        description: The timestamp when this report finished processing and had it's `status` set to `COMPLETED`.
+        type: integer
+        format: int64
+        readOnly: true
+        example: 1474510479612
+      dateExpires:
+        description: The timestamp when this report will expire. By default all reports will eventually expire.
+        type: integer
+        format: int64
+        readOnly: true
+        example: 1471486479612
+
+
   # ========== Request Types ==============
   #
   # Only REST request objects included in this section.

@@ -3,23 +3,70 @@
 
 {% macro outputProperties(schema, collapse) %}
 
-    <div class="{%if collapse %}js-docs-collapsabletable js-docs-collapsabletable-hidden{% endif %}">
+    <div class="{%if collapse %}js-docs-collapse js-docs-collapse-hidden{% endif %}">
     <table class="table table-hover apidocs-args">
     {% for prop in schema.properties | default(schema.items.properties) %}
          <tr>
             <th class="docs-monospace">
                 {{loop.key}}<br>
-                <span class="muted">{{prop.type | default("object") }}</span>
+                <span class="muted">{{prop.type | default("object") }}</span><br>
+                {% if prop.readOnly %}<span class="muted">readonly</span>{% endif %}
             </th>
-            <td>{% if schema.required and (loop.key in schema.required) %}<span class="label">Required</span>{% endif %}</td>
             <td>
                 {{prop.description | markdown}}
                 
                 {% if prop.properties %}{{outputProperties(prop, true)}}{% endif %}
                 {% if prop.items %}{{outputProperties(prop.items, true)}}{% endif %}
-
+                {% if prop.enum %}
+                <p>Possible values:
+                    {% for enumVal in prop.enum %}
+                        {% if loop.last %}or{% endif %} <code>{{enumVal}}</code>{% if loop.last == false %},{% endif %}
+                    {% endfor %}
+                </p>
+                {% endif %}
             </td>
           </tr>
+    {% endfor %}
+    </table>
+    </div>
+{% endmacro %}
+
+
+{# 
+    Outputs properties for making Requests.
+    
+    - does not include `readOnly` properties
+    - shows which schema fields are `required`
+#}
+{% macro outputRequestProperties(schema, collapse) %}
+
+    <div class="{%if collapse %}js-docs-collapse js-docs-collapse-hidden{% endif %}">
+    <table class="table table-hover apidocs-args">
+    {% for prop in schema.properties | default(schema.items.properties) %}
+         {% if prop.readOnly %}
+             {# Note: doesn't render readOnly properties #}
+         {% else %}
+         <tr>
+            <td>{% if schema.required.length > 0 && schema.required.indexOf(loop.key) > -1 %}<span class="label">Required</span>{% endif %}</td>
+            <th class="docs-monospace">
+                {{loop.key}}<br>
+                <span class="muted">{{prop.type | default("object") }}</span>
+            </th>
+            <td>
+                {{prop.description | markdown}}
+                
+                {% if prop.properties %}{{outputRequestProperties(prop, true)}}{% endif %}
+                {% if prop.items %}{{outputRequestProperties(prop.items, true)}}{% endif %}
+                {% if prop.enum %}
+                <p><b>Possible values:</b>
+                    {% for enumVal in prop.enum %}
+                        {% if loop.last %}or{% endif %} <code>{{enumVal}}</code>{% if loop.last == false %},{% endif %}
+                    {% endfor %}
+                </p>
+                {% endif %}
+            </td>
+          </tr>
+          {% endif %}
     {% endfor %}
     </table>
     </div>
