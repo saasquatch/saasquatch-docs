@@ -6,9 +6,6 @@ var jQuery = require('jquery');
 var smoothScroll = require('smooth-scroll');
 var hljs = require('highlight.js');
 
-// Non import friendly
-var magnific = require('magnific-popup');
-
 // LV: JSON View breaks Webpack
 // var jsonview = require('jquery-jsonview');
 
@@ -19,6 +16,8 @@ window.jQuery = jQuery;
 
 
 jQuery(document).ready(function() {
+
+    var magnific = require('magnific-popup');
     
     initializeScolling(); // Scrolling is first, because it's a dependency of nav
     nav();
@@ -35,6 +34,11 @@ jQuery(document).ready(function() {
             content.toggle();
         });
         content.before(toggler);
+    });
+    
+    // Uses Bootstrap tooltips
+    jQuery('.js-tooltip').tooltip({
+        placement: 'bottom'
     });
     
     jQuery('[data-lightbox]').magnificPopup({

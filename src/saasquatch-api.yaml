@@ -24,11 +24,11 @@ securityDefinitions:
     type: basic
     description: Authorize your requests using a tenant's API Key. Use this method of security only in server-to-server interactions.
   ## Describes the method of using JWT tokens for the Open API
-  UserToken:
+  UserJWT:
     type: apiKey
     in: header
     name: X-SaaSquatch-User-Token
-    description: Authorize your requests using a JSON Web Token (JWT) for a given user. Useful for client-server authorization, such as the Mobile and Web SDKs. Used in Open Endpoints.
+    description: Authorize your requests using a JWT (JSON Web Token) for a given user. Useful for client-server authorization, such as the Mobile and Web SDKs. Used in Open Endpoints.
     x-scopes:
       - read
       - write
@@ -77,6 +77,9 @@ tags:
  -
   name: Open Endpoint
   description: Open Endpoints are special methods designed specifically for Client-facing applications like the Mobile SDK and Javascript SDK.
+ -
+  name: Webhook
+  description: Webhooks can be used to do real time actions and data synchronization from SaaSquatch.
  -
   name: Export
   description: Exports are used to do bulk data dumps from your SaaSquatch account.
@@ -142,9 +145,7 @@ paths:
         - Account
       security:
         - APIKey: []
-        # - UserToken:
-        #   - read
-        #   - write
+
       description: |
         Looks up an Account based upon `id` and returns the stored account information.
         This method just returns the details of the account in question, and not all associated properties like Rewards, ShareLinks, Balances or Referrals.
@@ -227,9 +228,7 @@ paths:
         - User
       security:
         - APIKey: []
-        # - UserToken:
-        #   - read
-        #   - write
+
       description: |
         Looks up a user based upon their `ReferralCode` and returns their personal information.
         This method is useful for retrieving the user when only the Referral Code is available. For example when a referred user enters a Referral Code during checkout and you want to find out who this Referral Code belongs to.
@@ -302,9 +301,7 @@ paths:
         - User
       security:
         - APIKey: []
-        # - UserToken:
-        #   - read
-        #   - write
+
       description: |
         Gets the share links for a user. Share links are the links that people use to refer their friends and are the same links used in the Referral SaaSquatch widgets. The main
         use case for this method is to look up share links to include in other channels like email marketing, CRM and product integration when a widget or mobile webview can't be
@@ -402,9 +399,7 @@ paths:
         - Referral Code
       security:
         - APIKey: []
-        # - UserToken:
-        #   - read
-        #   - write
+
       description: |
         Looks up a referral code and the attached details
       parameters:
@@ -443,9 +438,7 @@ paths:
         - Referral
       security:
         - APIKey: []
-        # - UserToken:
-        #   - read
-        #   - write
+
       description: |
         List all of the referrals in your Referral SaaSquatch tenant. This method is the primary way of getting a full list of everyone that has made a referral and everyone that has been referred,
         and supports pagination using the parameters for `limit` and `offset` to iterate through a very large list of records.
@@ -533,9 +526,7 @@ paths:
         - Referral
       security:
         - APIKey: []
-        # - UserToken:
-        #   - read
-        #   - write
+
       description: |
         Looks up a single Referral object by it's associated `id`. This method is helpful for looking into a particular referral of interest. Since it requires the `id` of the referral to
         be specified, it isn't applicable for querying all referrals to find those made by a particular user or account. To query for those referrals use the [list referrals](#list_referrals) endpoint instead
@@ -585,9 +576,7 @@ paths:
         - Referral
       security:
         - APIKey: []
-        # - UserToken:
-        #   - read
-        #   - write
+
       description: |
         Moderates one or several referrals by either approving or denying.
         Moderation can apply to one side of a referral, the other side, or both sides (Referrer and Referred).
@@ -618,9 +607,7 @@ paths:
         - Reward Balance
       security:
         - APIKey: []
-        # - UserToken:
-        #   - read
-        #   - write
+
       description: |
         Looks up the balance for all rewards of the same type and units.
       parameters:
@@ -679,9 +666,7 @@ paths:
         - Reward Balance
       security:
         - APIKey: []
-        # - UserToken:
-        #   - read
-        #   - write
+
       description: "Used to redeem the credit earned from a referral program. Permanently debits an account balance. Works with: `TIME_CREDIT` and `CREDIT`"
       parameters:
         - name: debit
@@ -713,9 +698,7 @@ paths:
         - Reward
       security:
         - APIKey: []
-        # - UserToken:
-        #   - read
-        #   - write
+
       description: |
         Looks up a list of single rewards
       parameters:
@@ -792,9 +775,7 @@ paths:
         - Reward
       security:
         - APIKey: []
-        # - UserToken:
-        #   - read
-        #   - write
+
       description: |
         Used to create a reward for a specified user. Note that the reward will only be redeemed automatically
         if the default program supports automatic redemption for the provided reward type (see the [install guides](/guides/)
@@ -839,9 +820,11 @@ paths:
         - Open Endpoint
       security:
         - APIKey: []
-        - UserToken: []
+        - UserJWT: []
       description: |
-        This method creates a user and an account in one call. Because this call creates a user, it requires either a [write token](../openendpoints/) or an API key. By default, this endpoint is disabled. Contact support to enable the open endpoints.
+        This method creates a user and an account in one call. Because this call creates a user, it requires either a [write token](../openendpoints/) or an API key.
+        
+        This is an [Open Endpoint](../openendpoints/) and disabled by default. Contact support to enable the open endpoints.
       parameters:
         - name: accountId
           in: path
@@ -899,11 +882,12 @@ paths:
         - Open Endpoint
       security:
         - APIKey: []
-        - UserToken: []
+        - UserJWT: []
       description: |
-        Looks up a user based upon their `id` and returns their personal information including sharelinks. This endpoint requires a [read token](../openendpoints/) or an API key. By default, this endpoint is disabled. Contact support to enable the open endpoints.
+        Looks up a user based upon their `id` and returns their personal information including sharelinks. This endpoint requires a [read token](../openendpoints/) or an API key.
+        
+        This is an [Open Endpoint](../openendpoints/) and disabled by default. Contact support to enable the open endpoints.
       parameters:
-        - $ref: "#/parameters/tenant_alias"
         - name: accountId
           in: path
           description: A valid Account ID that a user is associated with
@@ -914,6 +898,7 @@ paths:
           description: A valid User ID
           required: true
           type: string
+        - $ref: "#/parameters/tenant_alias"
       responses:
         200:
           description: User found
@@ -955,11 +940,11 @@ paths:
       tags:
         - User
         - Open Endpoint
-      security: []
-        # - APIKey: []
-        # - UserToken: []
+      security: [] # Unauthenticated
       description: |
-        Looks up a user based upon their `ReferralCode` and returns their personal information. This method is useful for retrieving the user when only the Referral Code is available, for example when a referred user enters a Referral Code during checkout and you want to find out who this Referral Code belongs to. By default, this endpoint is disabled. Contact support to enable the open endpoints.
+        Looks up a user based upon their `ReferralCode` and returns their personal information. This method is useful for retrieving the user when only the Referral Code is available, for example when a referred user enters a Referral Code during checkout and you want to find out who this Referral Code belongs to.
+        
+        This is an [Open Endpoint](../openendpoints/) and disabled by default. Contact support to enable the open endpoints.
       parameters:
         - name: referralCode
           in: query
@@ -994,13 +979,11 @@ paths:
       tags:
         - Referral Code
         - Open Endpoint
-      security: []
-      #   - APIKey: []
-      #   - UserToken:
-      #     - read
-      #     - write
+      security: [] # Unauthenticated
       description: |
-        Looks up a referral code and the details of the attached reward. By default, this endpoint is disabled. Contact support to enable the open endpoints.
+        Looks up a referral code and the details of the attached reward.
+                
+        This is an [Open Endpoint](../openendpoints/) and disabled by default. Contact support to enable the open endpoints.
       parameters:
         - name: referral_code
           in: path
@@ -1038,26 +1021,28 @@ paths:
         - Open Endpoint
       security:
         - APIKey: []
-        - UserToken: []
+        - UserJWT: []
       description: |
-        Apply a `ReferralCode` to an account, automatically rewarding both sides of the referral. This endpoint requires a [write token](../openendpoints/) or an API key. By default, this endpoint is disabled. Contact support to enable the open endpoints.
+        Apply a `ReferralCode` to an account, automatically rewarding both sides of the referral. This endpoint requires a [write token](../openendpoints/) or an API key.
+        
+        This is an [Open Endpoint](../openendpoints/) and disabled by default. Contact support to enable the open endpoints.
       parameters:
-        - $ref: "#/parameters/tenant_alias"
         - name: referral_code
           in: path
-          description: 'Referral code to apply to user account'
+          description: 'Referral code to apply to user account.'
           required: true
           type: string
         - name: account_id
           in: path
-          description: 'Account to apply referral code to'
+          description: 'Account to apply referral code to. This account will be marked as "referred by" the owner of the `referral_code`'
           required: true
           type: string
         - name: user_id
           in: path
-          description: 'User to apply referral code to'
+          description: 'User to apply referral code to. This user will be marked as "referred by" the owner of the `referral_code`'
           required: true
           type: string
+        - $ref: "#/parameters/tenant_alias"
       responses:
         200:
           description: Referral code applied
@@ -1096,18 +1081,22 @@ paths:
         - Open Endpoint
       security:
         - APIKey: []
-        - UserToken: []
+        - UserJWT: []
       description: |
         List all of the referrals involving the given user. This method is the primary way of getting a list of everyone that has made a referral and everyone that has been referred, and supports pagination using the parameters for `limit` and `offset` to iterate through a very large list of records.
-        When authenticating with a [write token](../openendpoints/), the `referringAccountId` and `referringUserId` parameters are required. These filter the list of referrals to only include those made by the given user. By default, this endpoint is disabled. Contact support to enable the open endpoints.
+        When authenticating with a [write token](../openendpoints/), the `referringAccountId` and `referringUserId` parameters are required. These filter the list of referrals to only include those made by the given user.
+        
+        This is an [Open Endpoint](../openendpoints/) and disabled by default. Contact support to enable the open endpoints.
       parameters:
         - name: referringAccountId
           in: query
           type: string
+          required: true
           description: "When included, filters the results to only referrals that were referred users with this `AccountId`"
         - name: referringUserId
           in: query
           type: string
+          required: true
           description: "When included, filters the results to only referrals that were referred users with this `UserId`"
         - name: dateReferralPaid
           in: query
@@ -1238,9 +1227,7 @@ paths:
         - Webhook
       security:
         - APIKey: []
-        # - UserToken:
-        #   - read
-        #   - write
+
       description: |
         Subscribes a URL to receive events via webhooks
       parameters:
@@ -1263,9 +1250,7 @@ paths:
         - Webhook
       security:
         - APIKey: []
-        # - UserToken:
-        #   - read
-        #   - write
+
       description: |
         Lists all the URLs that are currently subscribed to receive events via webhooks
       parameters:
@@ -1294,9 +1279,7 @@ paths:
         - Webhook
       security:
         - APIKey: []
-        # - UserToken:
-        #   - read
-        #   - write
+
       description: |
         Removes a URL from receiving events via webhooks
       parameters:
@@ -1321,7 +1304,7 @@ paths:
         - Webhook
       security:
         - APIKey: []
-        - UserToken: []
+        - UserJWT: []
       description: |
         Sends a test event to the specified webhook
       parameters:
@@ -1347,9 +1330,7 @@ paths:
         - Export
       security:
         - APIKey: []
-        # - UserToken:
-        #   - read
-        #   - write
+
       description: |
         Creates an asynchronous request for an Exports. Depending on the size of the Export and other exports in the export pipeline, it may take awhile for an
         export request to complete. Once the Export is completed, it can be downloaded as a CSV file using the download url endpoint. 
@@ -1383,9 +1364,6 @@ paths:
         - Export
       security:
         - APIKey: []
-        # - UserToken:
-        #   - read
-        #   - write
       description: |
         Looks up an Export to check it's status. Useful when you're generating exports to check when an export is no longer `PENDING`
         so that you can begin it's download.
@@ -1414,9 +1392,6 @@ paths:
         - Export
       security:
         - APIKey: []
-        # - UserToken:
-        #   - read
-        #   - write
       description: |
         The endpoint to download a completed export. This method can only be used when an export is `COMPLETED`. Exports are not always immediately available to download
         after they have been created, often exports are large files that take time to process and prepare. If you want to check if an export is ready to be downloaded,
@@ -1444,9 +1419,6 @@ paths:
         - Export
       security:
         - APIKey: []
-        # - UserToken:
-        #   - read
-        #   - write
       description: |
         List all of the exports in a tenant. Useful for tracking down exports 
       produces:
@@ -1480,9 +1452,6 @@ paths:
         - Theme
       security:
         - APIKey: []
-        # - UserToken:
-        #   - read
-        #   - write
       description: |
         Returns the variables schema object that is defined in the tenant theme repository.
         This will be a [JSON Schema](http://json-schema.org/) standards compliant definition.
@@ -1510,9 +1479,7 @@ paths:
         - Theme
       security:
         - APIKey: []
-        # - UserToken:
-        #   - read
-        #   - write
+
       description: |
         Returns the current variables values stored for the schema object that is defined in the tenant theme repository.
       produces:
@@ -1538,9 +1505,7 @@ paths:
         - Theme
       security:
         - APIKey: []
-        # - UserToken:
-        #   - read
-        #   - write
+
       description: |
         Replaces all of the previously set values. Use this operation only when your
         goal is to completely replace all variable values, including deleting previous
@@ -1570,7 +1535,7 @@ paths:
         - Theme
       security:
         - APIKey: []
-        - UserToken: []
+        - UserJWT: []
       description: |
         Updates the previously stored values for the variables included in this request.
         Will not override, nullify or delete the other variable values that are not included.
@@ -1603,9 +1568,7 @@ paths:
         - Theme
       security:
         - APIKey: []
-        # - UserToken:
-        #   - read
-        #   - write
+
       description: |
         Generates preview content for a themed email. If the `sendTo` parameter is set this content will be sent to the provided *email address* otherwise the content will be returned in the response.
       produces:
@@ -1658,9 +1621,7 @@ paths:
         - Discount
       security:
         - APIKey: []
-        # - UserToken:
-        #   - read
-        #   - write
+
       description: |
         This method lets you look up the details of a referral code and to ensure that it is valid. Works with `PCT_DISCOUNT`
       parameters:
@@ -1724,9 +1685,7 @@ paths:
         - Discount
       security:
         - APIKey: []
-        # - UserToken:
-        #   - read
-        #   - write
+
       description: |
         This method information about an account's discount, if any, and what that discount would look like with a `couponCode` applied. Works with `PCT_DISCOUNT`
       parameters:

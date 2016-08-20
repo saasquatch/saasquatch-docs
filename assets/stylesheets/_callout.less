@@ -7,25 +7,33 @@
 
 /* Base styles (regardless of theme) */
 
+blockquote,
 .bs-callout {
     margin: 20px 0;
     padding: 15px 30px 15px 15px;
     border-left: 5px solid #eee;
+
+    h4 {
+        margin-top: 0;
+    }
+
+    p:last-child {
+        margin-bottom: 0;
+    }
+
+    code,
+    .highlight {
+        background-color: #fff;
+    }
 }
 
-.bs-callout h4 {
-    margin-top: 0;
+// Resets other default styles from Bootstrap
+blockquote p {
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    margin: inherit;
 }
-
-.bs-callout p:last-child {
-    margin-bottom: 0;
-}
-
-.bs-callout code,
-.bs-callout .highlight {
-    background-color: #fff;
-}
-
 
 /* Themes for different contexts */
 
@@ -34,6 +42,7 @@
     border-color: #dFb5b4;
 }
 
+blockquote,
 .bs-callout-warning {
     background-color: #fefbed;
     border-color: #f1e7bc;

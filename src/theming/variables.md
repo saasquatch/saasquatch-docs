@@ -52,14 +52,13 @@ in the [theme context](/themes/fields).
 }
 ```
 
-<div class="bs-callout bs-callout-warning">
-  <h4>JSON Schema Validation</h4>
-  
-  The `variables.json` file in the root of the theme is validated against the [JSON Schema Spec](http://json-schema.org/) when the theme is [published](/themes/publish/). If the schema is invalid, an error will be thrown and the publish
-  will be rejected. If you're publishing using [saasquatch-cli](https://github.com/saasquatch/saasquatch-cli), then you will be able to see the validation error messages that
-  need to be fixed.
-  
-</div>
+
+>    #### JSON Schema Validation
+>
+>    The `variables.json` file in the root of the theme is validated against the [JSON Schema Spec](http://json-schema.org/) when the theme is [published](/themes/publish/). If the schema is invalid, an error will be thrown and the publish
+>    will be rejected. If you're publishing using [saasquatch-cli](https://github.com/saasquatch/saasquatch-cli), then you will be able to see the validation error messages that
+>    need to be fixed.
+
 
 
 ### Values
@@ -77,20 +76,11 @@ are available to be [looked up via the SaaSquatch REST API](/api/methods/#lookup
 ```
 
 
-<div class="bs-callout bs-callout-warning">
-  <h4>Context references</h4>
-  
-  Note that this examples includes references to other fields from the general [theme context](/themes/fields), like `companyName` and `programDetails.referredRewardDetails.discountPercent`.
-  Context references like these will be replaced by the actual context values in templates using the `variables` helper. The example usage of `variables` in templates and
-  the output shown in the examples below show how these context references are replaced.
-</div>
-
-<div class="bs-callout bs-callout-warning">
-  <h4>Short Tags in Context references</h4>
-  
-  [Short tags](/themes/short-tags/) are aliases for context references. When editting from [the portal](https://app.referralsaasquatch.com), context references in theme variables are 
-  replaced by their corresponding [short tags](/themes/short-tags/). These short tag replacements **are not persisted** and they are not valid syntax in the API or templates.
-</div>
+>  #### Context references
+>  
+>  Note that this examples includes references to other fields from the general [theme context](/themes/fields), like `companyName` and `programDetails.referredRewardDetails.discountPercent`.
+>  Context references like these will be replaced by the actual context values in templates using the `variables` helper. The example usage of `variables` in templates and
+>  the output shown in the examples below show how these context references are replaced.
 
 
 ### Template
@@ -115,3 +105,10 @@ The variables value will appear in the template rendering output. Note how the v
   <p>Get Example Co. for 10% less!</p>
 </div>
 ```
+
+
+>  #### Short Tags in Context references
+>  
+>  [Short tags](/themes/short-tags/) are aliases for context references. When editting from [the portal](https://app.referralsaasquatch.com), context references in theme variables are 
+>  replaced by their corresponding [short tags](/themes/short-tags/). These short tag replacements **are not persisted** and they are not valid syntax in the API or templates.
+

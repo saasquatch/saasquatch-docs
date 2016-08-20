@@ -36,7 +36,7 @@
       <dd>{{secDef.description | markdown }}</dd>
   {% endfor %}
   <dt><span class="label">Unauthenticated</span></dt>
-  <dd>Does not require any type of authentication.</dd>
+  <dd>Does not require any type of authentication to make this API call.</dd>
 </dl>
 
 
@@ -65,24 +65,26 @@
             <p>
                 <b>Tags</b>: 
                 {% for tag in method.tags %}
-                    <span class="label">{{tag }}</span>
+                    {% set tagDesc = tagMap[tag] %}
+                    <span class="label js-tooltip" title="{{ tagDesc.description}}">{{tag}}</span>
                 {% endfor %}
                 
-                <b>Auth</b>: 
+                <b>Authentication</b>: 
                 {% for sec in method.security %}
                   {% for secScopes in sec %}
                       {% set secName = loop.key %}
+                      {% set secDef = swagger.securityDefinitions[secName] %}
                       {% if secScopes.length %}
                           {% for scope in secScopes %}
-                          <span class="label">{{secName}}:{{scope}}</span>
+                          <span class="label js-tooltip" title="{{secDef.description}}">{{secName}}:{{scope}}</span>
                           {% endfor %}
                       {% else %}
-                          <span class="label">{{secName}}</span>
+                          <span class="label js-tooltip" title="{{secDef.description}}">{{secName}}</span>
                       {% endif %}
                   {% endfor %}
                 {% endfor %}
                 {% if method.security.length < 1 %}
-                    <span class="label">Unauthenticated</span>
+                    <span class="label js-tooltip" title="Does not require any type of authentication to make this API call.">Unauthenticated</span>
                 {% endif %}
             </p>
 
