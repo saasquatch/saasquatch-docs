@@ -12,12 +12,13 @@ published: true
 
 ### Use Cases
 
-The Open Endpoints are designed for client-server interactions like the Mobile SDK and Javascript SDK. Most of the use cases for the Open Endpoints are for looking up information about a User or who referred them.10
+The Open Endpoints are designed for client-server interactions like the Mobile SDK and Javascript SDK. Most of the use cases for the Open Endpoints are for looking up information about a User or who referred them.
 
 Here are some examples:
- - Lookup up referrals to display a list of referred friends
- - Lookup up share links to display a custom sharing dialog
  - Lookup a referral code after app install to display a dialog about who referred them
+ - Register a new user in the referral program
+ - Lookup up share links to display a custom sharing dialog
+ - Lookup up referrals to display a list of referred friends
 
 > #### Enable Open Endpoints
 >

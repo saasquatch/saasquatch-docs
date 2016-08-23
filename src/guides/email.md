@@ -65,7 +65,43 @@ The content of the emails sent to your customers through Referral SaaSquatch can
 
 By default, notifications are sent using Referral SaaSquatch's internal email service provider (ESP) [SendGrid](https://sendgrid.com/). 
 
+<table class="table">
+<tr>
+<th style="width:50%">Name</th>
+<th>Formatting</th>
+<th>Delivery</th>
+</tr>
+<tr>
+<td>
+  <b>We format & we deliver</b> <span class="label">Default</span> <br/>
+  <small>Emails are formatted by the SaaSquatch Theme Engine and 
+  sent using SaaSquatch's default email service provider.</small>
+</td>
+<td>SaaSquatch</td>
+<td>SaaSquatch</td>
+</tr>
+<tr>
+<td>
+  <b>We format & you deliver</b><br/>
+  <small>Emails are formatted by the SaaSquatch Theme Engine and 
+  sent using via your email servers using SMTP or Webhooks.</small>
+</td>
+<td>SaaSquatch</td>
+<td>You</td>
+</tr>
+<tr>
+<td>
+  <b>You format & you deliver</b><br/>
+  <small>Intended for advanced use cases. Emails are formatted and delivered
+  entirely by you building off the SaaSquatch API or Webhooks</small>
+</td>
+<td>You</td>
+<td>You</td></tr>
+</table>
+
+
 In addition to the default email notification option, the Pro and Enterprise plans provide the ability to setup more advanced email functionality. There are three options for more advanced email notification functionality; SMTP, Webhooks, and SPF Record setup. Setup instructions, examples, and the advantage of each of these options will be covered below:
+
 
 #### SMTP
 

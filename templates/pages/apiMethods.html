@@ -59,8 +59,10 @@
                 <span class="label docs-label-{{httpMethod | lower}}">{{httpMethod | upper}}</span>
                 <code>{{swagger.basePath}}{{methodPath}}</code>
             </h2>
-
-            {{method.description | markdown}} 
+            
+            <div class="lead">
+                {{method.description | markdown}} 
+            </div>
 
             <p>
                 <b>Tags</b>: 

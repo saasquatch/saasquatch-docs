@@ -80,9 +80,9 @@ tags:
  -
   name: Webhook
   description: Webhooks can be used to do real time actions and data synchronization from SaaSquatch.
- -
-  name: Export
-  description: Exports are used to do bulk data dumps from your SaaSquatch account.
+# -
+#   name: Export
+#   description: Exports are used to do bulk data dumps from your SaaSquatch account.
  -
   name: Theme
   description: Themes control the look and feel of your program's widgets.
@@ -1321,127 +1321,127 @@ paths:
         default:
           $ref: "#/responses/GeneralError"
 
-  "/{tenant_alias}/export":
-    post:
-      summary: Create an Export
-      operationId: createExport
-      x-docs-anchor: create_export
-      tags:
-        - Export
-      security:
-        - APIKey: []
+  # "/{tenant_alias}/export":
+  #   post:
+  #     summary: Create an Export
+  #     operationId: createExport
+  #     x-docs-anchor: create_export
+  #     tags:
+  #       - Export
+  #     security:
+  #       - APIKey: []
 
-      description: |
-        Creates an asynchronous request for an Exports. Depending on the size of the Export and other exports in the export pipeline, it may take awhile for an
-        export request to complete. Once the Export is completed, it can be downloaded as a CSV file using the download url endpoint. 
+  #     description: |
+  #       Creates an asynchronous request for an Exports. Depending on the size of the Export and other exports in the export pipeline, it may take awhile for an
+  #       export request to complete. Once the Export is completed, it can be downloaded as a CSV file using the download url endpoint. 
         
-        Here are a few ways to check for when an export is ready.
+  #       Here are a few ways to check for when an export is ready.
         
-        - **Polling** - While an export is being prepared you can check it's status using it's `id`. Make sure you store the `id` of the export when you request it.
-        - **Webhooks** - When an export is complete, a webhook event will be fired. Make sure you create a webhook endpoint subscription before you create your export.
-        - **Listing** - You can use the API to list recent exports, and check their status.
+  #       - **Polling** - While an export is being prepared you can check it's status using it's `id`. Make sure you store the `id` of the export when you request it.
+  #       - **Webhooks** - When an export is complete, a webhook event will be fired. Make sure you create a webhook endpoint subscription before you create your export.
+  #       - **Listing** - You can use the API to list recent exports, and check their status.
         
-      parameters:
-        - name: export
-          in: body
-          description: Details of the export to be created
-          schema:
-            $ref: "#/definitions/Export"
-        - $ref: "#/parameters/tenant_alias"
-      responses:
-        201:
-          description: Export created
-          schema:
-            $ref: "#/definitions/Export"
-        default:
-          $ref: "#/responses/GeneralError"
-  "/{tenant_alias}/export/{exportId}":
-    get:
-      summary: Lookup an Export
-      operationId: getExport
-      x-docs-anchor: get_export
-      tags:
-        - Export
-      security:
-        - APIKey: []
-      description: |
-        Looks up an Export to check it's status. Useful when you're generating exports to check when an export is no longer `PENDING`
-        so that you can begin it's download.
-      parameters:
-        - name: exportId
-          in: path
-          type: string
-          required: true
-          description: The `id` of the export to look up
-        - $ref: "#/parameters/tenant_alias"
-      responses:
-        200:
-          description: Export found
-          schema:
-            $ref: "#/definitions/Export"
-        404:
-          description: Export NOT found
-        default:
-          $ref: "#/responses/GeneralError"
-  "/{tenant_alias}/export/{exportId}/download":
-    get:
-      summary: Download an Export
-      operationId: downloadExport
-      x-docs-anchor: download_export
-      tags:
-        - Export
-      security:
-        - APIKey: []
-      description: |
-        The endpoint to download a completed export. This method can only be used when an export is `COMPLETED`. Exports are not always immediately available to download
-        after they have been created, often exports are large files that take time to process and prepare. If you want to check if an export is ready to be downloaded,
-        use the API method to lookup an export or to list exports.
-      produces:
-        - 'text/csv' ## CSV file downloads
-      parameters:
-        - name: exportId
-          in: path
-          type: string
-          required: true
-          description: The `id` of the export to look up
-        - $ref: "#/parameters/tenant_alias"
-      responses:
-        200:
-          description: Export ready
-        default:
-          $ref: "#/responses/GeneralError"
-  "/{tenant_alias}/export/history/list":
-    get:
-      summary: List Exports
-      operationId: listExports
-      x-docs-anchor: list_exports
-      tags:
-        - Export
-      security:
-        - APIKey: []
-      description: |
-        List all of the exports in a tenant. Useful for tracking down exports 
-      produces:
-        - 'text/csv' ## CSV file downloads
-      parameters:
-        - name: limit
-          in: query
-          type: integer
-          default: 10
-          description: A limit on the maximum number of results to return, defaults to `10`.
-        - name: offset
-          in: query
-          type: integer
-          default: 0
-          description: The row number of the first result to return, defaults to `0`.
-        - $ref: "#/parameters/tenant_alias"
-      responses:
-        200:
-          description: List of Exports found
-          schema:
-            $ref: "#/definitions/ExportList"
-        default:
-          $ref: "#/responses/GeneralError"
+  #     parameters:
+  #       - name: export
+  #         in: body
+  #         description: Details of the export to be created
+  #         schema:
+  #           $ref: "#/definitions/Export"
+  #       - $ref: "#/parameters/tenant_alias"
+  #     responses:
+  #       201:
+  #         description: Export created
+  #         schema:
+  #           $ref: "#/definitions/Export"
+  #       default:
+  #         $ref: "#/responses/GeneralError"
+  # "/{tenant_alias}/export/{exportId}":
+  #   get:
+  #     summary: Lookup an Export
+  #     operationId: getExport
+  #     x-docs-anchor: get_export
+  #     tags:
+  #       - Export
+  #     security:
+  #       - APIKey: []
+  #     description: |
+  #       Looks up an Export to check it's status. Useful when you're generating exports to check when an export is no longer `PENDING`
+  #       so that you can begin it's download.
+  #     parameters:
+  #       - name: exportId
+  #         in: path
+  #         type: string
+  #         required: true
+  #         description: The `id` of the export to look up
+  #       - $ref: "#/parameters/tenant_alias"
+  #     responses:
+  #       200:
+  #         description: Export found
+  #         schema:
+  #           $ref: "#/definitions/Export"
+  #       404:
+  #         description: Export NOT found
+  #       default:
+  #         $ref: "#/responses/GeneralError"
+  # "/{tenant_alias}/export/{exportId}/download":
+  #   get:
+  #     summary: Download an Export
+  #     operationId: downloadExport
+  #     x-docs-anchor: download_export
+  #     tags:
+  #       - Export
+  #     security:
+  #       - APIKey: []
+  #     description: |
+  #       The endpoint to download a completed export. This method can only be used when an export is `COMPLETED`. Exports are not always immediately available to download
+  #       after they have been created, often exports are large files that take time to process and prepare. If you want to check if an export is ready to be downloaded,
+  #       use the API method to lookup an export or to list exports.
+  #     produces:
+  #       - 'text/csv' ## CSV file downloads
+  #     parameters:
+  #       - name: exportId
+  #         in: path
+  #         type: string
+  #         required: true
+  #         description: The `id` of the export to look up
+  #       - $ref: "#/parameters/tenant_alias"
+  #     responses:
+  #       200:
+  #         description: Export ready
+  #       default:
+  #         $ref: "#/responses/GeneralError"
+  # "/{tenant_alias}/export/history/list":
+  #   get:
+  #     summary: List Exports
+  #     operationId: listExports
+  #     x-docs-anchor: list_exports
+  #     tags:
+  #       - Export
+  #     security:
+  #       - APIKey: []
+  #     description: |
+  #       List all of the exports in a tenant. Useful for tracking down exports 
+  #     produces:
+  #       - 'text/csv' ## CSV file downloads
+  #     parameters:
+  #       - name: limit
+  #         in: query
+  #         type: integer
+  #         default: 10
+  #         description: A limit on the maximum number of results to return, defaults to `10`.
+  #       - name: offset
+  #         in: query
+  #         type: integer
+  #         default: 0
+  #         description: The row number of the first result to return, defaults to `0`.
+  #       - $ref: "#/parameters/tenant_alias"
+  #     responses:
+  #       200:
+  #         description: List of Exports found
+  #         schema:
+  #           $ref: "#/definitions/ExportList"
+  #       default:
+  #         $ref: "#/responses/GeneralError"
 
   "/{tenant_alias}/theme/variables/schema":
     get:
@@ -1678,6 +1678,7 @@ paths:
           $ref: "#/responses/GeneralError"
   "/{tenant_alias}/account/{accountId}/discount":
     get:
+      deprecated: true
       summary: Lookup an account discount
       operationId: getAccountDiscount
       x-docs-anchor: get_account_reward
@@ -2676,11 +2677,6 @@ definitions:
           The user's locale, used for [Internationalization](/themes/internationalization). The locale must be of the format 'language_COUNTRY' where the language code must be lowercase and the country code must be uppercase. The separator must be an underscore.
           
         
-#
-# ========== Response / Envelope Types ==============
-#
-# Only REST response envelopers included in this section.
-#
 
   ListEnvelope:
     description: A generic base model to help with paginating lists. The `count` counts the number in this list, and `totalCount` gives the total available results.
@@ -2692,6 +2688,11 @@ definitions:
         type: integer
         description: The total number of results available overall, see `count` for the number of rows in this list.
 
+#
+# ========== Response / Envelope Types ==============
+#
+# Only REST response envelopers included in this section.
+#
 
   UserList:
     type: object
