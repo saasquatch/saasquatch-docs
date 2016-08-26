@@ -4,8 +4,7 @@
  *
  */
 
-var contentful = require('contentful');
-
+const contentful = require('contentful');
 
 
 /**

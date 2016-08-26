@@ -72,7 +72,11 @@ function site(baseplugin){
   var ms = Metalsmith(path.resolve(__dirname, "../"));
 
   if(baseplugin){
-    ms = ms.use(baseplugin);
+    if(baseplugin instanceof Array){
+      baseplugin.map((plug)=>ms.use(plug));
+    }else{
+      ms = ms.use(baseplugin);
+    }
     debug("Using base plugin");
   }
   /**
