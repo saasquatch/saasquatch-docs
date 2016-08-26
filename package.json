@@ -7,7 +7,7 @@
     "type": "git",
     "url": "http://github.com/saasquatch/saasquatch-docs.git"
   },
-  "engine": {
+  "engines": {
     "node": "6.4.0"
   },
   "scripts": {
