@@ -7,7 +7,7 @@
     "type": "git",
     "url": "http://github.com/saasquatch/saasquatch-docs.git"
   },
-  "engine": {
+  "engines": {
     "node": "6.4.0"
   },
   "scripts": {
@@ -28,7 +28,7 @@
     "deploy:firebase": "firebase use default --token \"$FIREBASETOKEN\" && firebase deploy --token \"$FIREBASETOKEN\"",
     "test": "./node_modules/.bin/mocha --reporter spec"
   },
-  "cacheDirectories": ["node_modules", "build"]
+  "cacheDirectories": ["node_modules", "build"],
   "dependencies": {
     "browser-sync": "^2.13.0",
     "chai": "^3.5.0",
