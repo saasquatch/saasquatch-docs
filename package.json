@@ -13,7 +13,7 @@
   "scripts": {
     "production": "gulp production && npm run build:js",
     "local": "npm run watch & NODE_ENV=development nodemon --exec 'npm run build:dev && npm run browser_sync_reload'",
-    "server": "npm run build:dev & node previewServer.js",
+    "server": "npm run build:dev && node previewServer.js",
     "watch": "npm run browser_sync & node contentful-watch.js",
     "build:dev": "gulp & gulp metalsmithDev & npm run build:js & wait",
     "build:js": "npm run build:webpack && npm run build:uglifyjs",
