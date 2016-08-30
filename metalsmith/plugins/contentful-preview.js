@@ -24,28 +24,41 @@ module.exports = plugin;
 
 function plugin(opts) {
 
-  return function(files, metalsmith, done) {
-    var client = contentful.createClient({
-      space: opts.spaceId,
-      accessToken: opts.accessKey,
-      host: 'preview.contentful.com'
-    });
-    
-    var entryId = opts.entryId;
-    client.getEntry(entryId)
-    .then((entry) => {
-      let file = contentfulpagifier(entry, false);
-      file.slug = 'preview/' + file.id;// Overrides the Preview ID;
-      if(file.id != entryId){
-        done(new Error("Pageification of preview artile ID failed..."));
-      }
-      let out = path.join('preview', file.id + ".md");
-      // console.log(file);
-      files[out]=file;
-      done();
-    })
-    .catch((err)=>{
-      done(err);
-    });
-  };
+    return function(files, metalsmith, done) {
+        var client = contentful.createClient({
+            space: opts.spaceId,
+            accessToken: opts.accessKey,
+            host: 'preview.contentful.com'
+        });
+
+        var entryId = opts.entryId;
+        client.getEntries({
+                'sys.id': entryId,
+                locale: '*',
+                resolveLinks: true
+            })
+            // .getEntry(entryId, {
+            //     resolveLinks: true
+            //   })
+            .then((response) => {
+                // console.log(response);
+                let entries = response.items;
+                for (var i in entries) {
+                    var entry = entries[i];
+                    // console.log(entry);
+                    let file = contentfulpagifier(entry);
+                    if(file){
+                        file.slug = 'preview/' + file.id; // Overrides the Preview ID;
+                        if (file.id != entryId) {
+                            done(new Error("Pageification of preview artile ID failed..."));
+                        }
+                        let out = path.join('preview', entry.sys.id + ".md");
+                        // console.log(file);
+                        files[out] = file;
+                    }
+                }
+                done();
+            })
+            .catch((err) => done(err));
+    };
 }
