@@ -13,15 +13,15 @@ Interacting with third party APIs like Referral SaaSquatch often suffers from tw
  - Some events, like coupon created events, are not the result of a direct API request
 
 
-Webhooks solve these problems by letting you register a URL that we will POST anytime an event happens in your account. When the event 
-occurs, for example when a vanity coupon code is created for a new user, Referral SaaSquatch creates an event object. This object contains all the relevant 
-information, including the type of event and the data associated with that event. Referral SaaSquatch then sends an HTTP POST request with the event object 
+Webhooks solve these problems by letting you register a URL that we will POST anytime an event happens in your account. When the event
+occurs, for example when a vanity coupon code is created for a new user, Referral SaaSquatch creates an event object. This object contains all the relevant
+information, including the type of event and the data associated with that event. Referral SaaSquatch then sends an HTTP POST request with the event object
 to any URLs in your account's webhook settings. You can find a full list of all event types below.
 
 
-**Retry Policy** - Rest hooks are delivered immediately after an event is triggered. If the endpoint does not successfully respond to a delivery 
-attempt (<em>i.e. respond with a status code other than 200</em>), the delivery will be considered as failed. Failed deliveries will be 
-reattempted every hour after the previous failed attempt until either a successful delivery is made or until 72 attempts have 
+**Retry Policy** - Rest hooks are delivered immediately after an event is triggered. If the endpoint does not successfully respond to a delivery
+attempt (<em>i.e. respond with a status code other than 200</em>), the delivery will be considered as failed. Failed deliveries will be
+reattempted every hour after the previous failed attempt until either a successful delivery is made or until 72 attempts have
 been made (<em>approximately 3 days at the rate of 1 retry per hour</em>).
 
 
@@ -82,6 +82,12 @@ endpoint urls will simply result in one subscription being created for that url.
     <td class="docs-monospace">referral.started</td>
     <td>
         Sent whenever a new referred user signs up for a new (trial) account.
+    </td>
+</tr>
+<tr>
+    <td class="docs-monospace">referral.automoderation.complete</td>
+    <td>
+        Sent after a referral is first moderated automatically.
     </td>
 </tr>
 <tr>
@@ -188,10 +194,10 @@ An abitrary JSON object containing data related to this event
 </table>
 
 
-**Payload Security** - Payloads can be verified by checking the request headers. The `X-Hook-Signature` header is set with a value based upon a HMAC-SHA1 (RFC 2104 compliant) hash 
-computed from the hook's body contents. The signature used is the tenant's current API key. This can be used to verify the authenticity of hooks upon receipt. Careful! Although 
+**Payload Security** - Payloads can be verified by checking the request headers. The `X-Hook-Signature` header is set with a value based upon a HMAC-SHA1 (RFC 2104 compliant) hash
+computed from the hook's body contents. The signature used is the tenant's current API key. This can be used to verify the authenticity of hooks upon receipt. Careful! Although
 you can verify the hook's authenticity via the signature, you still may need to verify the state of the 'data' by making an API call. Hook delivery order is not guaranteed. For
-example, consider the scenario where an object is updated multiple times in quick succession. The related REST hooks may be delivered in a different order than the update events 
+example, consider the scenario where an object is updated multiple times in quick succession. The related REST hooks may be delivered in a different order than the update events
 which generated them, so relying on their contents may lead you to build a different final state.
 
 <table class="table table-hover">
@@ -204,7 +210,7 @@ which generated them, so relying on their contents may lead you to build a diffe
 
 ## Webhooks Event Types
 
-After a webhook subscription is created, it will immediately start receiving webhooks payloads. Each payload has a noted 'type' field which can be used to differentiate between 
+After a webhook subscription is created, it will immediately start receiving webhooks payloads. Each payload has a noted 'type' field which can be used to differentiate between
 events. New event types may be added to the API, so avoid building logic that assumes it knows all event types.
 
 ### user.created
@@ -305,7 +311,7 @@ Sent in response to a new referral coupon being created.
 
 ### reward.created
 
-Sent whenever a new reward is created. Data is a single <a href="/api/methods#list_rewards">Reward Object</a> that is returned 
+Sent whenever a new reward is created. Data is a single <a href="/api/methods#list_rewards">Reward Object</a> that is returned
 from the <a href="/api/methods#list_rewards">List Rewards REST API Endpoint</a>
 
 
@@ -397,7 +403,42 @@ Sent whenever a new referred user signs up for a new (trial) account.
         "dateReferralEnded":null,
         "dateModerated":1467156286882,
         "referredModerationStatus":"PENDING",
-        "referrerModerationStatus":"PENDING"
+        "referrerModerationStatus":"PENDING",
+        "fraudSignals": null
+    }
+}
+```
+
+### referral.automoderation.complete
+
+Sent after a referral is first moderated automatically.
+
+```json
+{  
+    "id":"5773073fe4b066c5cb171900",
+    "type":"referral.started",
+    "tenantAlias":"aohgcctyskc0p",
+    "live":true,
+    "created":1467156287085,
+    "data":{  
+        "id":"5773073ee4b066c5cb1718fc",
+        "referredUser":"5773073ee4b08b14ab979fb8",
+        "referrerUser":"577306eae4b08b14ab979f70",
+        "referredReward":null,
+        "referrerReward":null,
+        "moderationStatus":"PENDING",
+        "dateReferralStarted":1467156286882,
+        "dateReferralPaid":null,
+        "dateReferralEnded":null,
+        "dateModerated":1467156286882,
+        "referredModerationStatus":"PENDING",
+        "referrerModerationStatus":"PENDING",
+        "fraudSignals": {
+          "name": {
+            "message": "Referrer and referred have very similar names",
+            "score": 50
+          }
+        }
     }
 }
 ```
@@ -425,7 +466,13 @@ Sent whenever a new referred user upgrades to a paid subscription.
         "dateReferralEnded":null,
         "dateModerated":1467161411027,
         "referredModerationStatus":"PENDING",
-        "referrerModerationStatus":"PENDING"
+        "referrerModerationStatus":"PENDING",
+        "fraudSignals": {
+          "name": {
+            "message": "Referrer and referred have very similar names",
+            "score": 50
+          }
+        }
     }
 }
 ```
