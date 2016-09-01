@@ -101,8 +101,8 @@ paths:
       security:
         - APIKey: []
       description: |
-        Use this method to update SaaSquatch when the status of an account changes or when a new account is created. 
-        
+        Use this method to update SaaSquatch when the status of an account changes or when a new account is created.
+
         This call is only available on an API-only program. Making this call on a payment provider program will fail and return a 403 error indicating the call is incompatible with your type of program.
       parameters:
         - name: account
@@ -149,7 +149,7 @@ paths:
       description: |
         Looks up an Account based upon `id` and returns the stored account information.
         This method just returns the details of the account in question, and not all associated properties like Rewards, ShareLinks, Balances or Referrals.
-        
+
         This call is only available on an API-only program. Making this call on a payment provider program will fail and return a 403 error indicating the call is incompatible with your type of program.
       parameters:
         - name: accountId
@@ -165,7 +165,7 @@ paths:
             "application/json":
               id: "89842"
               currency: "USD"
-              subscription: 
+              subscription:
                 status: "PAID"
                 value: 29.99
                 billingIntervalType: "MONTH"
@@ -354,7 +354,7 @@ paths:
       tags:
         - User
       security:
-        - APIKey: []      
+        - APIKey: []
       description: |
         List all of the Users in your Referral SaaSquatch tenant. This method is the primary way of getting a full list of everyone that has been identified through the API, Squatch.js or mobile widgets.
         This method supports pagination using the parameters for `limit` and `offset` to iterate through a very large list of records.
@@ -514,7 +514,10 @@ paths:
                   dateModerated: 1427410131029
                   referredModerationStatus: "APPROVED"
                   referrerModerationStatus: "APPROVED"
-
+                  fraudSignals:
+                    ip:
+                      message: "Referrer and referred came from the same IP"
+                      score: 50
         default:
           $ref: "#/responses/GeneralError"
   "/{tenant_alias}/referrals/{referralId}":
@@ -561,6 +564,7 @@ paths:
               dateModerated: 1427410131029
               referredModerationStatus: "APPROVED"
               referrerModerationStatus: "APPROVED"
+              fraudSignals: null
         404:
           description: Referral NOT found
           schema:
@@ -803,9 +807,9 @@ paths:
           schema:
             $ref: "#/definitions/Reward"
           examples:
-            "application/json":  
+            "application/json":
               $ref: "#/definitions/Reward/example"
-             
+
         default:
           $ref: "#/responses/GeneralError"
 
@@ -823,7 +827,7 @@ paths:
         - UserJWT: []
       description: |
         This method creates a user and an account in one call. Because this call creates a user, it requires either a [write token](../openendpoints/) or an API key.
-        
+
         This is an [Open Endpoint](../openendpoints/) and disabled by default. Contact support to enable the open endpoints.
       parameters:
         - name: accountId
@@ -885,7 +889,7 @@ paths:
         - UserJWT: []
       description: |
         Looks up a user based upon their `id` and returns their personal information including sharelinks. This endpoint requires a [read token](../openendpoints/) or an API key.
-        
+
         This is an [Open Endpoint](../openendpoints/) and disabled by default. Contact support to enable the open endpoints.
       parameters:
         - name: accountId
@@ -943,7 +947,7 @@ paths:
       security: [] # Unauthenticated
       description: |
         Looks up a user based upon their `ReferralCode` and returns their personal information. This method is useful for retrieving the user when only the Referral Code is available, for example when a referred user enters a Referral Code during checkout and you want to find out who this Referral Code belongs to.
-        
+
         This is an [Open Endpoint](../openendpoints/) and disabled by default. Contact support to enable the open endpoints.
       parameters:
         - name: referralCode
@@ -982,7 +986,7 @@ paths:
       security: [] # Unauthenticated
       description: |
         Looks up a referral code and the details of the attached reward.
-                
+
         This is an [Open Endpoint](../openendpoints/) and disabled by default. Contact support to enable the open endpoints.
       parameters:
         - name: referral_code
@@ -1024,7 +1028,7 @@ paths:
         - UserJWT: []
       description: |
         Apply a `ReferralCode` to an account, automatically rewarding both sides of the referral. This endpoint requires a [write token](../openendpoints/) or an API key.
-        
+
         This is an [Open Endpoint](../openendpoints/) and disabled by default. Contact support to enable the open endpoints.
       parameters:
         - name: referral_code
@@ -1085,7 +1089,7 @@ paths:
       description: |
         List all of the referrals involving the given user. This method is the primary way of getting a list of everyone that has made a referral and everyone that has been referred, and supports pagination using the parameters for `limit` and `offset` to iterate through a very large list of records.
         When authenticating with a [write token](../openendpoints/), the `referringAccountId` and `referringUserId` parameters are required. These filter the list of referrals to only include those made by the given user.
-        
+
         This is an [Open Endpoint](../openendpoints/) and disabled by default. Contact support to enable the open endpoints.
       parameters:
         - name: referringAccountId
@@ -1165,6 +1169,7 @@ paths:
                   dateModerated: 1427410131006
                   referredModerationStatus: "APPROVED"
                   referrerModerationStatus: "APPROVED"
+                  fraudSignals: null
                 -
                   id: "546270a6e4b0c1871186a920"
                   referredUser:
@@ -1214,7 +1219,10 @@ paths:
                   dateModerated: 1427410131029
                   referredModerationStatus: "APPROVED"
                   referrerModerationStatus: "APPROVED"
-
+                  fraudSignals:
+                    name:
+                      message: "Referrer and referred have very similar names"
+                      score: 50
         default:
           $ref: "#/responses/GeneralError"
 
@@ -1333,14 +1341,14 @@ paths:
 
   #     description: |
   #       Creates an asynchronous request for an Exports. Depending on the size of the Export and other exports in the export pipeline, it may take awhile for an
-  #       export request to complete. Once the Export is completed, it can be downloaded as a CSV file using the download url endpoint. 
-        
+  #       export request to complete. Once the Export is completed, it can be downloaded as a CSV file using the download url endpoint.
+
   #       Here are a few ways to check for when an export is ready.
-        
+
   #       - **Polling** - While an export is being prepared you can check it's status using it's `id`. Make sure you store the `id` of the export when you request it.
   #       - **Webhooks** - When an export is complete, a webhook event will be fired. Make sure you create a webhook endpoint subscription before you create your export.
   #       - **Listing** - You can use the API to list recent exports, and check their status.
-        
+
   #     parameters:
   #       - name: export
   #         in: body
@@ -1420,7 +1428,7 @@ paths:
   #     security:
   #       - APIKey: []
   #     description: |
-  #       List all of the exports in a tenant. Useful for tracking down exports 
+  #       List all of the exports in a tenant. Useful for tracking down exports
   #     produces:
   #       - 'text/csv' ## CSV file downloads
   #     parameters:
@@ -1718,7 +1726,7 @@ paths:
             $ref: "#/definitions/Error"
         default:
           $ref: "#/responses/GeneralError"
-          
+
 definitions:
   ## General object details
   Account:
@@ -2014,7 +2022,7 @@ definitions:
       rewardSource: "REFERRED"
       discountPercent: 20
       unit: "%"
-        
+
   UserStub:
     title: A User object stub
     description: The basic information about a User used when you want to create a new user, called a UserStub.
@@ -2108,31 +2116,31 @@ definitions:
         example: "Testerson"
         description: |
           The user's last name
-      firstSeenIP: 
+      firstSeenIP:
         type: string
         readOnly: true
         example: "10.230.163.157"
         description: |
           The user's IP address on indentification
-      lastSeenIP: 
+      lastSeenIP:
         type: string
         readOnly: true
         example: "184.66.242.57"
         description: |
           The user's last known IP address
-      dateCreated: 
+      dateCreated:
         type: integer
         readOnly: true
         example: 1467222395030
         description: |
           The Unix time stamp of when the user was created
-      emailHash: 
+      emailHash:
         type: string
         readOnly: true
         example: "180bc1412a038746af9b37fb782724a2"
         description: |
           The hash of the user's email address
-      referralSource: 
+      referralSource:
         type: string
         readOnly: true
         example: "http://unifiedtestapp.herokuapp.com/"
@@ -2162,7 +2170,7 @@ definitions:
       locale: null
       shareLinks:
         $ref: "#/definitions/Sharelink/example"
-      
+
   RewardBalance:
     description: Details of the balance of several individual rewards.
     properties:
@@ -2248,9 +2256,11 @@ definitions:
           - PENDING
           - APPROVED
           - DENIED
+      fraudSignals:
+        $ref: "#/definitions/FraudSignals"
       dateReferralStarted:
         type: integer
-        format: 
+        format:
         description: "Timestamp of when this referral was started."
       dateReferralPaid:
         type: integer
@@ -2261,6 +2271,28 @@ definitions:
       dateModerated:
         type: integer
         description: "Timestamp of when this referral was last moderated."
+
+  FraudSignals:
+    description: Information about signals of potential fraud on the referral
+    properties:
+      name:
+        $ref: "#/definitions/FraudSignal"
+      ip:
+        $ref: "#/definitions/FraudSignal"
+      email:
+        $ref: "#/definitions/FraudSignal"
+      rate:
+        $ref: "#/definitions/FraudSignal"
+
+  FraudSignal:
+    description: Information about an individual fraud signal on the referral
+    properties:
+      message:
+        type: String
+        description: "A human readable description of the fraud signal. For example: 'Referrer and referred have very similar names'"
+      score:
+        type: integer
+        description: "A numeric score that describes the severity of the fraud signal."
 
   ThemeReward:
     description: Details of an individual reward.
@@ -2395,40 +2427,40 @@ definitions:
       mobileEmailShareLink:
         type: string
         description: "The Share Link for Email on mobile devices."
-      EMBED: 
+      EMBED:
         description: An individual user's Share links for use in EMBED.
         properties:
-          shareLink: 
+          shareLink:
             type: string
             description: The unique share link the user can refer their friends with. The Share Link contains the Referral Code for making referrals and a source for Analytics purposes.
-          facebookShareLink: 
+          facebookShareLink:
             type: string
             description: "The Share Link for Facebook."
-          twitterShareLink: 
+          twitterShareLink:
             type: string
             description: "The Share Link for Twitter."
-          emailShareLink: 
+          emailShareLink:
             type: string
             description: "The Share Link for Email."
-          linkedinShareLink: 
+          linkedinShareLink:
             type: string
             description: "The Share Link for linkedin."
-      POPUP: 
+      POPUP:
         description: An individual user's Share links for use in POPUP.
         properties:
-          shareLink: 
+          shareLink:
             type: string
             description: The unique share link the user can refer their friends with. The Share Link contains the Referral Code for making referrals and a source for Analytics purposes.
-          facebookShareLink: 
+          facebookShareLink:
             type: string
             description: "The Share Link for Facebook."
-          twitterShareLink: 
+          twitterShareLink:
             type: string
             description: "The Share Link for Twitter."
-          emailShareLink: 
+          emailShareLink:
             type: string
             description: "The Share Link for Email."
-          linkedinShareLink: 
+          linkedinShareLink:
             type: string
             description: "The Share Link for linkedin."
       HOSTED:
@@ -2437,55 +2469,55 @@ definitions:
           shareLink:
             type: string
             description: The unique share link the user can refer their friends with. The Share Link contains the Referral Code for making referrals and a source for Analytics purposes.
-          facebookShareLink: 
+          facebookShareLink:
             type: string
             description: "The Share Link for Facebook."
-          twitterShareLink: 
+          twitterShareLink:
             type: string
             description: "The Share Link for Twitter."
-          emailShareLink: 
+          emailShareLink:
             type: string
             description: "The Share Link for Email."
-          linkedinShareLink: 
+          linkedinShareLink:
             type: string
             description: "The Share Link for linkedin."
-      MOBILE: 
+      MOBILE:
         description: An individual user's Share links for use in MOBILE.
         properties:
           shareLink:
             type: string
             description: The unique share link the user can refer their friends with. The Share Link contains the Referral Code for making referrals and a source for Analytics purposes.
-          facebookShareLink: 
+          facebookShareLink:
             type: string
             description: "The Share Link for Facebook."
-          twitterShareLink: 
+          twitterShareLink:
             type: string
             description: "The Share Link for Twitter."
-          emailShareLink: 
+          emailShareLink:
             type: string
             description: "The Share Link for Email."
-          linkedinShareLink: 
+          linkedinShareLink:
             type: string
             description: "The Share Link for linkedin."
-      EMAIL: 
+      EMAIL:
         description: An individual user's Share links for use in EMAIL.
         properties:
           shareLink:
             type: string
             description: The unique share link the user can refer their friends with. The Share Link contains the Referral Code for making referrals and a source for Analytics purposes.
-          facebookShareLink: 
+          facebookShareLink:
             type: string
             description: "The Share Link for Facebook."
-          twitterShareLink: 
+          twitterShareLink:
             type: string
             description: "The Share Link for Twitter."
-          emailShareLink: 
+          emailShareLink:
             type: string
             description: "The Share Link for Email."
-          linkedinShareLink: 
+          linkedinShareLink:
             type: string
             description: "The Share Link for linkedin."
-    
+
     example:
       shareLink: "http://ssqt.co/mvbcF5"
       facebookShareLink: "http://ssqt.co/mmbcF5"
@@ -2496,36 +2528,36 @@ definitions:
       mobileFacebookShareLink: "http://ssqt.co/mnbcF5"
       mobileTwitterShareLink: "http://ssqt.co/mCbcF5"
       mobileEmailShareLink: "http://ssqt.co/mEbcF5"
-      
-      EMBED: 
+
+      EMBED:
         shareLink: "http://ssqt.co/mQbcF5"
         facebookShareLink: "http://ssqt.co/mwbcF5"
         twitterShareLink: "http://ssqt.co/mcbcF5"
         emailShareLink: "http://ssqt.co/mJbcF5"
         linkedinShareLink: "http://ssqt.co/mHbcF5"
-      
-      POPUP: 
+
+      POPUP:
         shareLink: "http://ssqt.co/m5bcF5"
         facebookShareLink: "http://ssqt.co/m9bcF5"
         twitterShareLink: "http://ssqt.co/mMbcF5"
         emailShareLink: "http://ssqt.co/mobcF5"
         linkedinShareLink: "http://ssqt.co/m7bcF5"
-      
+
       HOSTED:
         shareLink: "http://ssqt.co/mtbcF5"
         facebookShareLink: "http://ssqt.co/mubcF5"
         twitterShareLink: "http://ssqt.co/mSbcF5"
         emailShareLink: "http://ssqt.co/mlbcF5"
         linkedinShareLink: "http://ssqt.co/mYbcF5"
-      
-      MOBILE: 
+
+      MOBILE:
         shareLink: "http://ssqt.co/mebcF5"
         facebookShareLink: "http://ssqt.co/mnbcF5"
         twitterShareLink: "http://ssqt.co/mCbcF5"
         emailShareLink: "http://ssqt.co/mEbcF5"
         linkedinShareLink: "http://ssqt.co/m3bcF5"
-      
-      EMAIL: 
+
+      EMAIL:
         shareLink: "http://ssqt.co/mPbcF5"
         facebookShareLink: "http://ssqt.co/mTbcF5"
         twitterShareLink: "http://ssqt.co/mGbcF5"
@@ -2675,8 +2707,8 @@ definitions:
         example: "en_US"
         description: |
           The user's locale, used for [Internationalization](/themes/internationalization). The locale must be of the format 'language_COUNTRY' where the language code must be lowercase and the country code must be uppercase. The separator must be an underscore.
-          
-        
+
+
 
   ListEnvelope:
     description: A generic base model to help with paginating lists. The `count` counts the number in this list, and `totalCount` gives the total available results.
@@ -2710,7 +2742,7 @@ definitions:
         type: integer
         description: The total number of results available overall, see `count` for the number of rows in this list.
 
-      
+
   ReferralList:
     type: object
     description: A list of Referral objects as `referrals`, with the fields `count` and `totalCount` to help with pagination.
@@ -2727,7 +2759,7 @@ definitions:
         type: integer
         description: The total number of results available overall, see `count` for the number of rows in this list.
 
-      
+
   RewardDebitResponse:
     description: Details about a successful Reward Balance Debit transaction.
     properties:
@@ -2743,7 +2775,7 @@ definitions:
         type: string
         example: cents
         description: The type of credit that was just debitted.
-  
+
   ExportList:
     description: A list of Export objects with additional data for pagination.
     properties:
@@ -2785,15 +2817,15 @@ definitions:
       name:
         description: A user-friendly name for this report. Useful for keeping track of which report is which.
         type: string
-      requester: 
+      requester:
         description: Detail on the service or user that requested this report.
         type: string
         example: "Referral SaaSquatch for Salesforce"
-      
+
       params:
         description: |
           Filter parameters for limiting the types of results returned. When parameters are included, their are grouped by a logical "AND" so
-          it's possible to create situations that return no results. 
+          it's possible to create situations that return no results.
         type: object
         properties:
           createdSince:
