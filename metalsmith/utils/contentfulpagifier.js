@@ -35,12 +35,19 @@ function pageify(entry, i18n){
             highlights: fields.highlights,
             contents: fields.content,
             slug: fields.slug,
-            
+             
             fields: fields,
             id: entry.sys.id,
             sectionType: metalsmithSection,
             template: "hasTableOfContents.html"
         };
+        if(fields.coverImage){
+            let coverFields = resolveI18n(fields.coverImage.fields);
+            file.coverImage = {
+                url: coverFields.file.url,
+                name: coverFields.title
+            };
+        }
     }else if("faqCategory" == entry.sys.contentType.sys.id){
         file = {
             title: fields.name + " FAQ",

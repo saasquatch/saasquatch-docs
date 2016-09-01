@@ -28,16 +28,19 @@ function plugin(opts) {
     // console.log("createContentfulClient...");
     var client = createContentfulClient(opts.accessKey, opts.spaceId);
     // console.log("createContentfulClient...done");
-    client.sync({initial: true})
-    .then(function(response){
-      metadata['contentful'] = response.entries;
-      // console.log("contentful content", response);
-      done();
-    },function(error){
-      // console.log("error", error);
-      done(error);
-    });
-  // console.log("contentful Bootstrapped");
+    client.sync({
+        initial: true,
+        resolveLinks: true
+      })
+      .then(function(response) {
+        metadata['contentful'] = response.entries;
+        // console.log("contentful content", response);
+        done();
+      }, function(error) {
+        // console.log("error", error);
+        done(error);
+      });
+    // console.log("contentful Bootstrapped");
   };
 }
 

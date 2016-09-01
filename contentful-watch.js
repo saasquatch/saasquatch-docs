@@ -28,7 +28,8 @@ var localStorage = {};
 
 console.log("Starting up contentful-watch...");
 client.sync({
-        initial: true
+        initial: true,
+        resolveLinks: true
     })
     .then((response) => {
         return write(response.entries, response);
@@ -47,7 +48,8 @@ function runIncrementalSync() {
     var start = now();
     var prev = now();
     client.sync({
-            nextSyncToken: localStorage.contentfulSyncToken
+            nextSyncToken: localStorage.contentfulSyncToken,
+            resolveLinks: true
         })
         .then((response) => {
             var oldEntries = localStorage.contentfulEntries;

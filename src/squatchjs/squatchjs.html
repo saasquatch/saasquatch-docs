@@ -239,6 +239,12 @@ _sqh.push(['init', {
 // Include squatch.js
 (function(){function l(){var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src=location.protocol+"//d2rcp9ak152ke1.cloudfront.net/assets/javascripts/squatch.min.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(s,t)}if(window.attachEvent){window.attachEvent("onload",l)}else{window.addEventListener("load",l,false)}})();
 &lt;/script&gt;</code></pre>
+
+    <h4>Troubleshooting</h4>
+    <p>Having trouble making a successful Squatch JS init call? When loading the Referral Widget in <code>EMBED</code> or <code>POPUP</code> mode, it can return a screen showing that the Referral Program is temporarily unavailable. Please see an example of this screen below. If you are running Squatch JS init in <code>NOCONTENT</code> mode, you can open your browser's console to retrieve this error code.</p>
+    <img src="/assets/images/squatchjs_error_code.jpg" alt="Example of the Squatch JS error screen" />
+    <br /><br />
+    <p>In the screenshot above, look for the <b>error code</b> in the <b>right bottom corner</b> and reference this code in our <a href="/squatchjs/issue/">issue code list</a> to diagnose why the Squatch JS init call failed. If you are still experiencing problems, please don't hesitate to <a href="mailto:support@saasquat.ch" target="_BLANK">contact our Support team</a>.</p>
 </section>
 
 <section id="autofill" class="apidocs-section">
