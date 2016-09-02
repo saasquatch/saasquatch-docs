@@ -9,7 +9,7 @@ keyFeatures:
  - Centralizes your email templates and analytics in Silverpop
  - Ensures deliverability through your existing email systems
 moreInfo:
- - "[Guide to Email](/topics/email)"
+ - "[Guide to Email](/topics/email/#silverpop)"
 category: landingPage
 template: intergrationLander.html
 ---
