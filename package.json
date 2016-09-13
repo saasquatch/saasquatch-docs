@@ -25,7 +25,7 @@
     "heroku-postbuild": "npm run build:dev",
     "deploy:production": "npm run deploy:firebase && npm run deploy:maxcdn",
     "deploy:maxcdn": "node ./node_modules/maxcdn-purge/purge.js --alias referralsaasquat --key $MAXCDN_KEY  --secret $MAXCDN_SECRET --pull 136632 && echo \"Purged MaxCDN zone\"",
-    "deploy:firebase": "firebase use default --token \"$FIREBASETOKEN\" && firebase deploy --token \"$FIREBASETOKEN\"",
+    "deploy:firebase": "firebase use default --token \"$FIREBASETOKEN\" && firebase deploy --token \"$FIREBASETOKEN\" --debug",
     "test": "./node_modules/.bin/mocha --reporter spec"
   },
   "cacheDirectories": ["node_modules", "build"],
@@ -39,7 +39,7 @@
     "del": "^2.2.1",
     "express": "^4.14.0",
     "extend": "^3.0.0",
-    "firebase-tools": "3.0.5",
+    "firebase-tools": "3.0.4",
     "get-folder-size": "^1.0.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
