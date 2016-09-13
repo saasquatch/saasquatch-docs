@@ -1,24 +1,17 @@
-{% extends '../hasSearchBox.html' %}
-{% block content %}
-<section>
-  
-  {% if hero %}<div class="hero-unit article {{category}}">{% endif %}
+{% extends '../hasTableOfContents.html' %}
 
-  <div class="page-header">
-    <h1>{{title}}</h1>
-  </div>
-  {% if highlights %}
-  <div class="lead">
-    {{ highlights | markdown }}
-  </div>
-  {% endif %}
 
-  {% if hero %}</div><!-- end hero block -->{% endif %}
-  
+{% block articleContent %}
 
-  {% block articleContent %}
-  {{ contents | safe }}
-  {% endblock articleContent %}
-  
-</section>
-{% endblock content %}
+<div class="well">
+    Latest version: <b>{{version}}</b> | <a href="https://github.com/saasquatch/squatch-js/releases">Previous Versions</a> | 
+    <a href="https://github.com/saasquatch/squatch-js/"><i class="fa fa-github" aria-hidden="true"></i> View Source</a>
+</div>
+<div class="well">
+    <h1>Table of Contents</h1>
+    {{ markdownToc.content | markdown |safe}}
+</div>
+<div id="squatchjs-reference">
+    {{ tocContents.content | safe }}
+</div>
+{% endblock articleContent %}

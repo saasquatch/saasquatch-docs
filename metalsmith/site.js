@@ -5,18 +5,19 @@ var markdown = require('metalsmith-markdown');
 var templates = require('metalsmith-templates');
 var collections = require('metalsmith-collections');
 var define = require('metalsmith-define');
-var request = require('metalsmith-request');
+// var request = require('metalsmith-request');
 var path = require('path');
 
 var swig = require('swig');
-var extras = require('swig-extras');
+// var extras = require('swig-extras');
 
 var permalinks = require('./plugins/rawpaths.js');
 var swagger = require('./plugins/swagger.js');
 var metadata = require('./plugins/metadata.js');
 var pageify = require('./plugins/pageify.js');
 var categoryManager = require('./plugins/categoryManager.js');
-var dumplog = require('./plugins/dumplog.js');
+// var dumplog = require('./plugins/dumplog.js');
+var squatchjsAutoInclude = require('./plugins/squatchjsAutoInclude.js');
 
 
 var exampleSwaggerSchemaFilter = require('./filters/exampleSwaggerSchemaFilter.js');
@@ -50,7 +51,7 @@ function site(baseplugin){
   swig.setFilter('slug', slugFilter);
   swig.setFilter('exampleSwaggerSchema', exampleSwaggerSchemaFilter);
   swig.setFilter('tableOfContents', tocFilter);
-  
+
   var baseMetadata = {
     "robots": process.env.ROBOTS || "true",
     "jsTrackers":  process.env.JSTRACKERS || "true",
@@ -79,18 +80,32 @@ function site(baseplugin){
     }
     debug("Using base plugin");
   }
-  /**
+
+  ms = ms
+  /*
    *  Build up all the metadata
    */
-  ms = ms.use(define(baseMetadata))
+  .use(define(baseMetadata))
   .use(swagger({
       path: "saasquatch-api.yaml"
     }))
-  .use(dumplog('pageify'))
+  .use(metadata({
+      shorttags: 'metadata/shorttags.yaml',
+      shorttagsMap: 'metadata/shorttagmap.json',
+      branchFields: 'metadata/branchFields.yaml',
+      integrations: 'metadata/integrations.yaml',
+      }))
+
+  /*
+  * Automatic page generation
+  */
   .use(pageify())
-  .use(dumplog('categoryManager'))
+  .use(squatchjsAutoInclude())
+
+  /*
+  * Page grouping and whatnot
+  */
   .use(categoryManager())
-  .use(dumplog('collections'))
   .use(collections({
     "issues": {
       pattern: 'issues/rs*.*',
@@ -100,22 +115,12 @@ function site(baseplugin){
       }
     } 
   }))
-  .use(dumplog('metadata'))
-  .use(metadata({
-      shorttags: 'metadata/shorttags.yaml',
-      shorttagsMap: 'metadata/shorttagmap.json',
-      branchFields: 'metadata/branchFields.yaml',
-      integrations: 'metadata/integrations.yaml',
-      }))
 
   /**
    *    Formats contents and urls
    */
-  .use(dumplog('markdown'))
   .use(markdown())
-  .use(dumplog('permalinks'))
   .use(permalinks())
-  .use(dumplog('templates'))
   .use(templates({
           engine: "swig",
           directory: 'templates'

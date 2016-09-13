@@ -1,0 +1,84 @@
+---
+title: squatch.js
+highlights: squatch.js is the Referral SaaSquatch javascript SDK and a one-stop shop to integrate a referral program into your website or web app. It can show referral widgets on any website, track users, generate unique referral short links and referral codes, and more.
+slug: squatchjs/home
+sectionType: jsReference
+template: article.html
+---
+
+<div class="docs-integrations-list">
+   <div class="row-fluid">
+        <div class="docs-integration span4">
+            <div class="text-center" style="max-height: 120px;">
+                <a href="/guides/saas-intro" class="docs-integration-logo">
+                  <i class="fa fa-html5" align="middle" style="font-size:100px; justify-content:center; color:#6EB5E2;" aria-hidden="true"></i>
+                </a>
+            </div>
+            <h3 class="text-center">Squatch.js Version 2</h3>
+            <p>
+                Squatch.js Version 2 is based on the latest Javascript standards. Version 2 has functionality
+                to let you make REST API calls, embed widgets, and track referrals. It is modular, works in both 
+                the browser and node, and compatible with libraries such as React, Webpack and Browserify.
+            </p>
+            <ul>
+                <li><a href="/squatchjs/v2/">Version 2 Quickstart</a></li>
+                <li><a href="/squatchjs/v2/reference/">Version 2 API Reference</a></li>
+            </ul>
+            <b>Example</b>
+            <pre><code>window.squatch.ready(function(){
+            
+    squatch.init({
+        tenantAlias: 'test_bpinhag9yagag'
+    });
+    
+    squatch.api.createUser({
+        id: '5678',
+        accountId: 'abc',
+        email: 'bob@example.com',
+        firstName: 'Bob'
+    });
+
+});</code></pre>
+        </div>
+        <div class="docs-integration span4">
+            <div class="text-center" style="max-height: 120px;">
+                <a href="#" class="docs-integration-logo">
+                    <i class="fa fa-html5" style="font-size:100px; color:#6EB5E2;" aria-hidden="true"></i>
+                </a>
+            </div>
+            <h3 class="text-center">Squatch.js Version 1</h3>
+            <p>
+                Squatch.js Version 1 is an asynchronous tracking library similar to Google Analytics. It uses
+                the global <code>window._sqh</code> queue for asynchronous API calls. Version 1 has a limited API and can
+                only be used to embed a single widget on a page.
+            </p>
+            <ul>
+                <li><a href="/app-integration/">Version 1 Quickstart</a></li>
+                <li><a href="/squatchjs/">Version 1 API Reference</a></li>
+            </ul>
+            <b>Example</b>
+            <pre><code>window._sqh = window._sqh | [];
+            
+_sqh.push(['init',{
+    tenant_alias: 'test_bpinhag9yagag',
+    user_id: '5678',
+    account_id: 'abc',
+    email: 'bob@example.com',
+    first_name: 'Bob'
+});
+</code></pre>
+        </div>
+        <div class="docs-integration span4">
+            <h3 class="text-center">Which one?</h3>
+            <p>
+                We recommend that new sites use Squatch.js <b>Version 2</b>. If you started using SaaSquatch before October 2016, you may be using Version 1,
+                and you might want to upgrade.
+            </p>
+            <b>Which one am I already using?</b>
+            <ul>
+                <li><code>window.squatch?</code> - you're using Version 2</li>
+                <li><code>window._sqh?</code> - you're using Version 1</li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -11,3 +11,6 @@ build
 
 # Ignores log files
 npm-debug.log
+
+# Ignore cached file
+src/contentful.json

@@ -35,9 +35,6 @@
         <div class="toc-title">In this Article:</div>
         
         {%if markdownToc.content %}
-          <ul style="margin-bottom:0">
-            <li><a href="#top">Introduction</a></li>
-          </ul>
           {{ markdownToc.content | markdown |safe}}
         {% else %}
           <ul>

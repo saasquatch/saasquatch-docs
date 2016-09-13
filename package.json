@@ -26,7 +26,8 @@
     "deploy:production": "npm run deploy:firebase && npm run deploy:maxcdn",
     "deploy:maxcdn": "node ./node_modules/maxcdn-purge/purge.js --alias referralsaasquat --key $MAXCDN_KEY  --secret $MAXCDN_SECRET --pull 136632 && echo \"Purged MaxCDN zone\"",
     "deploy:firebase": "firebase use default --token \"$FIREBASETOKEN\" && firebase deploy --token \"$FIREBASETOKEN\" --debug",
-    "test": "./node_modules/.bin/mocha --reporter spec"
+    "test": "./node_modules/.bin/mocha --reporter spec",
+    "test:watch": "./node_modules/.bin/mocha --reporter spec --watch"
   },
   "cacheDirectories": [
     "node_modules",
@@ -82,6 +83,7 @@
     "nodemon": "^1.10.0",
     "performance-now": "^0.2.0",
     "promise": "^7.1.1",
+    "request-promise": "^4.1.1",
     "slug": "0.9.1",
     "smooth-scroll": "cferdinandi/smooth-scroll",
     "superstatic": "^4.0.3",
