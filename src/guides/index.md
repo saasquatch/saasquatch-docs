@@ -1,14 +1,67 @@
 ---
 title: Guides
 highlights: |
-    Referral SaaSquatch supports some types of referral programs using the REST API and Squatch.js, and others by native payment system integrations. Our guides show you how to use SaaSquatch 
-    to create some of the most popular referral programs, like those used by Dropbox, Uber and Typeform. These guides just scratch the surface of what's possible with the SaaSquatch platform.
+    The Referral SaaSquatch Guides show you how to use our tools; like the payment provider integrations, Rest API, and Squatch.js library, to create your own world-class referral program. 
 slug: guides
 sectionType: guide
 template: article.html
 hero: true
 ---
 
+### Business Model Examples
+
+<div class="docs-integrations-list">
+   <div class="row-fluid">
+        <div class="docs-integration span3">
+            <h3 class="text-center">SaaS</h3>
+            <div class="text-center" style="max-height: 120px;">
+                <a href="/guides/saas" class="docs-integration-logo">
+                  <i class="fa fa-cloud" align="middle" style="font-size:100px; justify-content:center; color:#6EB5E2;" aria-hidden="true"></i>
+                </a>
+            </div>
+              Setting up a Custom Referral Program tailored for your SaaS business.
+            <a href="/guides/saas">Get started by reading our Guide Introduction</a>
+        </div>
+        <div class="docs-integration span3">
+            
+            <h3 class="text-center">eCommerce</h3>
+            <div class="text-center" style="max-height: 120px;">
+                <a href="/guides" class="docs-integration-logo">
+                    <i class="fa fa-shopping-cart" style="font-size:100px; color:#6EB5E2;" aria-hidden="true"></i>
+                </a>
+            </div>
+              Setting up a Custom Referral Program tailored for your eCommerce business.
+            <a href="#">Guide coming soon</a>
+        </div>
+        <div class="docs-integration span3">
+            
+            <h3 class="text-center">Financial Services</h3>
+            <div class="text-center" style="max-height: 120px;">
+                <a href="/guides" class="docs-integration-logo">
+                  <i class="fa fa-university" style="font-size:90px; color:#6EB5E2;" aria-hidden="true"></i>
+                </a>
+                </div>
+              Setting up a Custom Referral Program tailored for your Financial Services business.
+            <a href="/guides">Guide coming soon</a>
+        </div>
+        <div class="docs-integration span3">
+            
+            <h3 class="text-center">Mobile</h3>
+            <div class="text-center" style="max-height: 120px;">
+                <a href="/guides" class="docs-integration-logo">
+                  <i class="fa fa-mobile" style="font-size:120px; color:#6EB5E2;" aria-hidden="true"></i>
+                </a>
+            </div>
+              Setting up a Custom Referral Program for your mobile app using our mobile SDK.
+            <a href="/guides">Guide coming soon</a>
+        </div>
+    </div>
+</div>
+        
+
+<hr>
+
+### Reward-based Guides
 
 <table class="table docs-guide-summary">
 <colgroup span=1 class="docs-guide-program">
