@@ -15,18 +15,18 @@ hero: true
         <div class="docs-integration span3">
             <h3 class="text-center">SaaS</h3>
             <div class="text-center" style="max-height: 120px;">
-                <a href="/guides/saas" class="docs-integration-logo">
+                <a href="/guides/saas-intro" class="docs-integration-logo">
                   <i class="fa fa-cloud" align="middle" style="font-size:100px; justify-content:center; color:#6EB5E2;" aria-hidden="true"></i>
                 </a>
             </div>
               Setting up a Custom Referral Program tailored for your SaaS business.
-            <a href="/guides/saas">Get started by reading our Guide Introduction</a>
+            <a href="/guides/saas-intro">Get started by reading our Guide Introduction</a>
         </div>
         <div class="docs-integration span3">
             
             <h3 class="text-center">eCommerce</h3>
             <div class="text-center" style="max-height: 120px;">
-                <a href="/guides" class="docs-integration-logo">
+                <a href="#" class="docs-integration-logo">
                     <i class="fa fa-shopping-cart" style="font-size:100px; color:#6EB5E2;" aria-hidden="true"></i>
                 </a>
             </div>
@@ -37,23 +37,23 @@ hero: true
             
             <h3 class="text-center">Financial Services</h3>
             <div class="text-center" style="max-height: 120px;">
-                <a href="/guides" class="docs-integration-logo">
+                <a href="#" class="docs-integration-logo">
                   <i class="fa fa-university" style="font-size:90px; color:#6EB5E2;" aria-hidden="true"></i>
                 </a>
                 </div>
               Setting up a Custom Referral Program tailored for your Financial Services business.
-            <a href="/guides">Guide coming soon</a>
+            <a href="#">Guide coming soon</a>
         </div>
         <div class="docs-integration span3">
             
             <h3 class="text-center">Mobile</h3>
             <div class="text-center" style="max-height: 120px;">
-                <a href="/guides" class="docs-integration-logo">
+                <a href="#" class="docs-integration-logo">
                   <i class="fa fa-mobile" style="font-size:120px; color:#6EB5E2;" aria-hidden="true"></i>
                 </a>
             </div>
               Setting up a Custom Referral Program for your mobile app using our mobile SDK.
-            <a href="/guides">Guide coming soon</a>
+            <a href="#">Guide coming soon</a>
         </div>
     </div>
 </div>
@@ -100,8 +100,8 @@ hero: true
      ----<br/>
      <a href="/guides/percent-discount-nojs" ><i class="fa fa-book"></i> Alternative (No JS)</a>
     </td>
-    <td><a href="/stripe"><i class="fa fa-2x fa-book"></i></a></td>
-    <td><a href="/recurly"><i class="fa fa-2x fa-book"></i></a></td>
+    <td><a href="/developer/stripe"><i class="fa fa-2x fa-book"></i></a></td>
+    <td><a href="/developer/recurly"><i class="fa fa-2x fa-book"></i></a></td>
     <td><a href="/braintree"><i class="fa fa-2x fa-book"></i></a></td>
     <td><a href="/zuora"><i class="fa fa-2x fa-book"></i></a></td>
 </tr>
@@ -111,8 +111,8 @@ hero: true
      <a href="https://www.uber.com/">Uber</a>, <a href="https://www.airbnb.ca/">AirBnb</a>, <a href="https://slack.com/">Slack</a> &amp; <a href="https://www.snapwi.re/">Snapwire</a></div>
     </td>
     <td><a href="/guides/dollar-credit"><i class="fa fa-2x fa-book"></i> Start Here</a></td>
-    <td><a href="/stripe/#dollar-credit-rewards"><i class="fa fa-2x fa-book"></i></a></td>
-    <td><a href="/recurly/#dollar-credit-rewards"><i class="fa fa-2x fa-book"></i></a></td>
+    <td><a href="/developer/stripe/#Dollar-Credit-Rewards"><i class="fa fa-2x fa-book"></i></a></td>
+    <td><a href="/developer/recurly/#Dollar-Credit-Rewards"><i class="fa fa-2x fa-book"></i></a></td>
     <td><i class="fa fa-2x fa-circle"></i></td>
     <td><a href="/zuora"><i class="fa fa-2x fa-book"></i></a></td>
 </tr>
@@ -121,8 +121,8 @@ hero: true
     <div class="muted">This incentive is used in the referral programs of companies like <a href="https://www.dropbox.com/">Dropbox</a> &amp; <a href="https://muut.com/">Muut</a></div>
     </td>
     <td><a href="/guides/point-reward"><i class="fa fa-2x fa-book"></i> Start Here</a></td>
-    <td><a href="/stripe/#arbitrary-rewards"><i class="fa fa-2x fa-book"></i></a></td>
-    <td><a href="/recurly/#arbitrary-rewards"><i class="fa fa-2x fa-book"></i></a></td>
+    <td><a href="/developer/stripe/#Arbitrary-Rewards"><i class="fa fa-2x fa-book"></i></a></td>
+    <td><a href="/developer/recurly/#Arbitrary-Rewards"><i class="fa fa-2x fa-book"></i></a></td>
     <td><i class="fa fa-2x fa-circle"></i></td>
     <td><a href="/zuora"><i class="fa fa-2x fa-book"></i></a></td>
 </tr>
@@ -131,8 +131,8 @@ hero: true
     <div class="muted">Give a free month</div>
     </td>
     <td><a href="/guides/time-reward"><i class="fa fa-2x fa-book"></i> Start Here</a></td>
-    <td><a href="/stripe/#arbitrary-rewards"><i class="fa fa-2x fa-book"></i></a></td>
-    <td><a href="/recurly/#arbitrary-rewards"><i class="fa fa-2x fa-book"></i></a></td>
+    <td><a href="/developer/stripe/#Arbitrary-Rewards"><i class="fa fa-2x fa-book"></i></a></td>
+    <td><a href="/developer/recurly/#Arbitrary-Rewards"><i class="fa fa-2x fa-book"></i></a></td>
     <td><i class="fa fa-2x fa-circle"></i></td>
     <td><a href="/zuora"><i class="fa fa-2x fa-book"></i></a></td>
 </tr>
@@ -141,8 +141,8 @@ hero: true
     <div class="muted">Gift cards, swag</div>
     </td>
     <td><i class="fa fa-3x fa-book fa-grey"></i></td>
-    <td><a href="/stripe/#arbitrary-rewards"><i class="fa fa-2x fa-book"></i></a></td>
-    <td><a href="/recurly/#arbitrary-rewards"><i class="fa fa-2x fa-book"></i></a></td>
+    <td><a href="/developer/stripe/#Arbitrary-Rewards"><i class="fa fa-2x fa-book"></i></a></td>
+    <td><a href="/developer/recurly/#Arbitrary-Rewards"><i class="fa fa-2x fa-book"></i></a></td>
     <td><i class="fa fa-2x fa-circle"></i></td>
     <td><a href="/zuora"><i class="fa fa-2x fa-book"></i></a></td>
 </tr>
