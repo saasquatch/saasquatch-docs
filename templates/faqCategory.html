@@ -3,17 +3,17 @@
 {% block articleContent %}
 
 <ul class="js-faq-list">
-{% for faq in fields.answers['en-US'] %}
-    <li><a href="#{{faq.fields.question['en-US'] | slug}}">{{faq.fields.question['en-US']}}</a></li>
+{% for faq in fields.answers %}
+    <li><a href="#{{faq.fields.question | slug}}">{{faq.fields.question}}</a></li>
 {% endfor %}
 </ul>
 
 <hr/>
 
-{% for faq in fields.answers['en-US'] %}
-<div class="docs-faq-question" id="{{faq.fields.question['en-US'] | slug}}">
-    <h3>{{faq.fields.question['en-US']}}</h3>
-    <p>{{faq.fields.answer['en-US'] | markdown | safe }}</p>
+{% for faq in fields.answers %}
+<div class="docs-faq-question" id="{{faq.fields.question | slug}}">
+    <h3>{{faq.fields.question}}</h3>
+    <p>{{faq.fields.answer | markdown | safe }}</p>
 </div>
 {% endfor %}
 

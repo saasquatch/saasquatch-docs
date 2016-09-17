@@ -1,5 +1,5 @@
 var _ = require('lodash');
-
+var resolveI18n = require('./resolveI18n');
 
 module.exports = pageify;
 
@@ -11,19 +11,12 @@ var sectionTypeMap = {
 /**
  *  Pageifies a single Contentful entry
  */
-function pageify(entry, i18n){
+function pageify(entryRaw, i18n){
     let file;
-    function resolveI18n(flds){
-        if(i18n === false){
-            return flds;
-        }
-        return _.transform(flds, function(result, value, key) {
-            result[key] = value['en-US'];
-        }, {});
-    }
-    
-    let fields = resolveI18n(entry.fields);
 
+    let entry = resolveI18n(entryRaw);
+    let fields = entry.fields;
+    
     if ("article" == entry.sys.contentType.sys.id) {
         var contentfulSection = fields.sectionType;
         var metalsmithSection = sectionTypeMap[contentfulSection];

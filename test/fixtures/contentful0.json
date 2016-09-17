@@ -1,0 +1,27 @@
+{
+    "sys": {
+        "space": {
+            "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "s68ib1kj8k5n"
+            }
+        },
+        "id": "1mbdhjQDq4Uc0eKoY2ioSi",
+        "type": "Entry",
+        "createdAt": "2016-04-04T22:19:20.743Z",
+        "updatedAt": "2016-04-04T22:19:20.743Z",
+        "revision": 1,
+        "contentType": {
+            "sys": {
+                "type": "Link",
+                "linkType": "ContentType",
+                "id": "faq"
+            }
+        }
+    },
+    "fields": {
+        "question": "How does Referral SaaSquatch know that a referral has been made?",
+        "answer": "Referral SaaSquatch uses integration with your subscription management system, link tracking, cookie tracking and JavaScript widgets to track from first interaction right to payment. Since we get notified when actual dollars are transfered, you'll only end up giving discounts for real quantifiable new revenue."
+    }
+}
