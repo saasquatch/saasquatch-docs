@@ -843,30 +843,14 @@ paths:
         - name: user
           in: body
           schema:
-            $ref: "#/definitions/OpenUser"
+            $ref: "#/definitions/OpenUserStub"
         - $ref: "#/parameters/tenant_alias"
       responses:
         200:
           description: Information about the newly created user
           examples:
             "application/json":
-              "id": "876343"
-              "accountId": "613611"
-              "email": "bob@example.com"
-              "firstName": "Bob"
-              "lastName": "Testerson"
-              "locale": "en_US"
-              "referralCode": "BOBTESTERSON"
-              "imageUrl": ""
-              "shareLinks":
-                "shareLink": ""
-                "facebookShareLink": ""
-                "twitterShareLink": ""
-                "emailShareLink": ""
-                "mobileShareLink": ""
-                "mobileFacebookShareLink": ""
-                "mobileTwitterShareLink": ""
-                "mobileEmailShareLink": ""
+              $ref: "#/definitions/OpenUser/example"
           schema:
             $ref: "#/definitions/OpenUser"
         403:
@@ -907,23 +891,8 @@ paths:
         200:
           description: User found
           examples:
-            application/json:
-              id: '876343'
-              accountId: '613611'
-              email: bob@example.com
-              firstName: Bob
-              lastName: Testerson
-              referralCode: BOBTESTERSON
-              imageUrl: ''
-              shareLinks:
-                shareLink: 'http://ssqt.co/pZVp'
-                facebookShareLink: 'http://ssqt.co/pZVq'
-                twitterShareLink: 'http://ssqt.co/pZVr'
-                emailShareLink: 'http://ssqt.co/pZVs'
-                mobileShareLink: 'http://ssqt.co/pZVt'
-                mobileFacebookShareLink: 'http://ssqt.co/pZVu'
-                mobileTwitterShareLink: 'http://ssqt.co/pZVv'
-                mobileEmailShareLink: 'http://ssqt.co/pZVw'
+            "application/json":
+              $ref: "#/definitions/OpenUser/example"
         401:
           description: Unauthorized
           schema:
@@ -961,11 +930,12 @@ paths:
           description: Found user
           examples:
             application/json:
-              id: '876344'
-              accountId: '613612'
-              firstName: Bill
-              lastInitial: T
-              referralCode: BILLTESTERSON
+              id: '876343'
+              accountId: '613611'
+              email: bob@example.com
+              firstName: Bob
+              lastName: Testerson
+              referralCode: BOBTESTERSON
               imageUrl: ''
         403:
           description: Endpoint disabled
@@ -1088,7 +1058,7 @@ paths:
         - UserJWT: []
       description: |
         List all of the referrals involving the given user. This method is the primary way of getting a list of everyone that has made a referral and everyone that has been referred, and supports pagination using the parameters for `limit` and `offset` to iterate through a very large list of records.
-        When authenticating with a [write token](../openendpoints/), the `referringAccountId` and `referringUserId` parameters are required. These filter the list of referrals to only include those made by the given user.
+        The `referringAccountId` and `referringUserId` parameters are required, along with a [read token](../openendpoints/) for authenticaion. This proides a list of referrals made by the given user.
 
         This is an [Open Endpoint](../openendpoints/) and disabled by default. Contact support to enable the open endpoints.
       parameters:
@@ -1134,33 +1104,11 @@ paths:
                 -
                   id: "5462600de4b09b1c41108f28"
                   referredUser:
-                    id: "876343"
-                    accountId: "613611"
-                    email: "logan@example.com"
-                    firstName: "Logan"
-                    lastName: "Volker"
-                    referralCode: "LOGANVOLKER"
-                    imageUrl: ""
+                    $ref: "#/definitions/User/example"
                   referrerUser:
-                    id: "14125"
-                    accountId: "89842"
-                    email: "mark@example.com"
-                    firstName: "Mark"
-                    lastName: "Smellerson"
-                    referralCode: "MARKSMELLERSON"
-                    imageUrl: ""
+                    $ref: "#/definitions/User/example"
                   referredReward:
-                    type: "PCT_DISCOUNT"
-                    id: "5462600de4b09b1c41108f2e"
-                    dateGiven: 1415733261275
-                    dateExpires: null
-                    dateCancelled: null
-                    accountId: "613611"
-                    userId: "876343"
-                    cancellable: true
-                    rewardSource: "REFERRED"
-                    discountPercent: 20
-                    unit: "%"
+                    $ref: "#/definitions/Reward/example"
                   referrerReward: null
                   moderationStatus: "ACTIONED"
                   dateReferralStarted: 1415733261238
@@ -1169,49 +1117,16 @@ paths:
                   dateModerated: 1427410131006
                   referredModerationStatus: "APPROVED"
                   referrerModerationStatus: "APPROVED"
-                  fraudSignals: null
                 -
                   id: "546270a6e4b0c1871186a920"
                   referredUser:
-                    id: "898746321"
-                    accountId: "987321"
-                    email: "hello@example.com"
-                    firstName: "Henk"
-                    lastName: "Thompson"
-                    referralCode: "HENKTHOMPSON"
-                    imageUrl: ""
+                    $ref: "#/definitions/User/example"
                   referrerUser:
-                    id: "14125"
-                    accountId: "89842"
-                    email: "mark@example.com"
-                    firstName: "Mark"
-                    lastName: "Smellerson"
-                    referralCode: "MARKSMELLERSON"
-                    imageUrl: ""
+                    $ref: "#/definitions/User/example"
                   referredReward:
-                    type: "PCT_DISCOUNT"
-                    id: "546270a6e4b0c1871186a926"
-                    dateGiven: 1415737510458
-                    dateExpires: null
-                    dateCancelled: null
-                    accountId: "987321"
-                    userId: "898746321"
-                    cancellable: true
-                    rewardSource: "REFERRED"
-                    discountPercent: 20
-                    unit: "%"
+                    $ref: "#/definitions/Reward/example"
                   referrerReward:
-                    type: "PCT_DISCOUNT"
-                    id: "546270d5e4b0c1871186a93a"
-                    dateGiven: 1415737557271
-                    dateExpires: null
-                    dateCancelled: null
-                    accountId: "89842"
-                    userId: "14125"
-                    cancellable: true
-                    rewardSource: "FRIEND_SIGNUP"
-                    discountPercent: 20
-                    unit: "%"
+                    $ref: "#/definitions/Reward/example"
                   moderationStatus: "ACTIONED"
                   dateReferralStarted: 1415737510411
                   dateReferralPaid: 1415737557217
@@ -1220,8 +1135,8 @@ paths:
                   referredModerationStatus: "APPROVED"
                   referrerModerationStatus: "APPROVED"
                   fraudSignals:
-                    name:
-                      message: "Referrer and referred have very similar names"
+                    ip:
+                      message: "Referrer and referred came from the same IP"
                       score: 50
         default:
           $ref: "#/responses/GeneralError"
@@ -2707,8 +2622,74 @@ definitions:
         example: "en_US"
         description: |
           The user's locale, used for [Internationalization](/themes/internationalization). The locale must be of the format 'language_COUNTRY' where the language code must be lowercase and the country code must be uppercase. The separator must be an underscore.
+      shareLinks:
+        readOnly: true
+        $ref: "#/definitions/Sharelink"
+    example:
+      id: "898746321"
+      accountId: "987321"
+      email: "hello@example.com"
+      firstName: "Henk"
+      lastName: "Thompson"
+      locale: null
+      referralCode: "HENKTHOMPSON"
+      imageUrl: ""
+      shareLinks:
+        $ref: "#/definitions/Sharelink/example"
 
-
+  OpenUserStub:
+    title: A Open User object stub
+    description: An object describing an individual user submitted to an open endpoint when you want to create a new user, called a OpenUserStub.
+    required:
+      - id
+      - accountId
+      - firstName
+    properties:
+      id:
+        type: string
+        example: "219065"
+        description: The unique identifier provided for this user.
+      accountId:
+        type: string
+        example: "accc9065"
+        description: The unique identifier of the Account that this user belongs to.
+      referralCode:
+        type: string
+        example: "BOBTESTERSON"
+        description: The referral code *used for sharing by this user*
+      email:
+        type: string
+        example: "bob@example.com"
+        description: The email address provided for the user. SaaSquatch uses this to notify someone when they have a successful referral.
+      imageUrl:
+        type: string
+        example: "https://www.example.com/profile/ab5111251125"
+        description: |
+          Optionally used in widgets, emails, and themes. If you provide a absolute profile image URL the minimum image size is 80px x 80px.
+      firstName:
+        type: string
+        example: "Bob"
+        description: |
+          The user's first name
+      lastName:
+        type: string
+        example: "Testerson"
+        description: |
+          The user's last name
+      locale:
+        type: string
+        example: "en_US"
+        description: |
+          The user's locale, used for [Internationalization](/themes/internationalization). The locale must be of the format 'language_COUNTRY' where the language code must be lowercase and the country code must be uppercase. The separator must be an underscore.
+    example:
+      id: "898746321"
+      accountId: "987321"
+      email: "hello@example.com"
+      firstName: "Henk"
+      lastName: "Thompson"
+      locale: null
+      referralCode: "HENKTHOMPSON"
+      imageUrl: ""
 
   ListEnvelope:
     description: A generic base model to help with paginating lists. The `count` counts the number in this list, and `totalCount` gives the total available results.
