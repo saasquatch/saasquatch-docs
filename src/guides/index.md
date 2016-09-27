@@ -61,6 +61,36 @@ hero: true
 
 <hr>
 
+### Platform Integration Examples
+
+<div class="docs-integrations-list">
+   <div class="row-fluid">
+        <div class="docs-integration span3">
+            
+            <div class="text-center" style="max-height: 120px;">
+                <a href="/developer/segment/quickstart" class="docs-integration-logo">
+                  <img align="middle" style="justify-content:center;" src="/assets/images/integrations/segment-integration.png" />
+                </a>
+            </div>
+              Setting up a Custom Referral Program using our Segment.io Integration.
+            <a href="/developer/segment/quickstart">Get started by reading our Quickstart Guide</a>
+        </div>
+        <div class="docs-integration span3">
+   
+            <div class="text-center" style="max-height: 120px;">
+                <a href="/guides/using-gtm" class="docs-integration-logo">
+                    <img align="middle" style="justify-content:center;" src="/assets/images/integrations/gtm-integration.png" />
+                    
+                </a>
+            </div>
+              Setting up a Custom Referral Program using Google Tag Manager.
+            <a href="/guides/using-gtm">Get started by reading our Quickstart Guide</a>
+        </div>
+    </div>
+</div>
+
+<hr>
+
 ### Reward-based Guides
 
 <table class="table docs-guide-summary">
