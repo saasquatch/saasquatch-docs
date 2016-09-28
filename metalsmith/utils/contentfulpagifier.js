@@ -1,4 +1,4 @@
-var _ = require('lodash');
+var markdownToc = require('markdown-toc');
 var resolveI18n = require('./resolveI18n');
 
 module.exports = pageify;
@@ -27,6 +27,8 @@ function pageify(entryRaw, i18n){
             title: fields.title,
             highlights: fields.highlights,
             contents: fields.content,
+            markdownToc: markdownToc(fields.content),
+            
             slug: fields.slug,
              
             fields: fields,

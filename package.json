@@ -28,7 +28,10 @@
     "deploy:firebase": "firebase use default --token \"$FIREBASETOKEN\" && firebase deploy --token \"$FIREBASETOKEN\" --debug",
     "test": "./node_modules/.bin/mocha --reporter spec"
   },
-  "cacheDirectories": ["node_modules", "build"],
+  "cacheDirectories": [
+    "node_modules",
+    "build"
+  ],
   "dependencies": {
     "browser-sync": "^2.13.0",
     "chai": "^3.5.0",
@@ -64,6 +67,7 @@
     "less": "^2.7.1",
     "lodash": "^4.13.1",
     "magnific-popup": "^1.1.0",
+    "markdown-toc": "^0.13.0",
     "marked": "^0.3.5",
     "maxcdn-purge": "0.0.1",
     "metalsmith": "^2.1.0",

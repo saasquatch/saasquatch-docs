@@ -33,12 +33,20 @@
 <div class="span3" id="toc-holder">
     <div id="toc-content" data-spy="affix" data-offset-top="90" data-clampedwidth="#toc-holder" class="hidden-mobile">
         <div class="toc-title">In this Article:</div>
-        <ul>
+        
+        {%if markdownToc.content %}
+          <ul style="margin-bottom:0">
             <li><a href="#top">Introduction</a></li>
-        {% for heading in tocContents.headings %}
-            <li><a href="#{{heading.id}}">{{heading.text}}</a></li>
-        {% endfor %}
-        </ul>
+          </ul>
+          {{ markdownToc.content | markdown |safe}}
+        {% else %}
+          <ul>
+              <li><a href="#top">Introduction</a></li>
+          {% for heading in tocContents.headings %}
+              <li><a href="#{{heading.id}}">{{heading.text}}</a></li>
+          {% endfor %}
+          </ul>
+        {% endif %}
     </div>
 </div>
 {% endblock content %}
