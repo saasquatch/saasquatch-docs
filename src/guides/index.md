@@ -48,12 +48,12 @@ hero: true
             
             <h3 class="text-center">Mobile</h3>
             <div class="text-center" style="max-height: 120px;">
-                <a href="#" class="docs-integration-logo">
+                <a href="/guides/mobile-intro" class="docs-integration-logo">
                   <i class="fa fa-mobile" style="font-size:120px; color:#6EB5E2;" aria-hidden="true"></i>
                 </a>
             </div>
               Setting up a Custom Referral Program for your mobile app using our mobile SDK.
-            <a href="#">Guide coming soon</a>
+            <a href="/guides/mobile-intro">Get started by reading our guide introduction</a>
         </div>
     </div>
 </div>
