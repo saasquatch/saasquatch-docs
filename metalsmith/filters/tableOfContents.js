@@ -18,7 +18,7 @@ module.exports = function (input) {
     var headings = [];
     $('h1,h2,h3,h3').each(function(){
         var text = $(this).text();
-        var id = slug(text);
+        var id = slug(text.toLowerCase());
         $(this).attr('id', id);
         headings.push({
             text: text,
