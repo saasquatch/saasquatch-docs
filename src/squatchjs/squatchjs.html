@@ -3,7 +3,7 @@ title: squatch.js
 highlights: squatch.js is the Referral SaaSquatch javascript SDK and a one-stop shop to integrate a referral program into your website or web app. It can show referral widgets on any website, track users, generate unique referral short links and referral codes, and more.
 slug: squatchjs
 sectionType: jsReference
-template: article.html
+template: pages/squatchjsReference.html
 hero: true
 ---
 
@@ -28,8 +28,8 @@ hero: true
 <!--</div>-->
 <!--</div>-->
 
-<section id="init" class="apidocs-section">
-  <h2>init <small>squatch.js function reference</small></h2>
+<section class="apidocs-section">
+  <h2 id="init" class="js-apidocs-methodname">init <small>squatch.js function reference</small></h2>
 
   <p>
   The <code>init</code> function is the core of Squatch.js.
@@ -247,9 +247,9 @@ _sqh.push(['init', {
     <p>In the screenshot above, look for the <b>error code</b> in the <b>right bottom corner</b> and reference this code in our <a href="/squatchjs/issue/">issue code list</a> to diagnose why the Squatch JS init call failed. If you are still experiencing problems, please don't hesitate to <a href="mailto:support@saasquat.ch" target="_BLANK">contact our Support team</a>.</p>
 </section>
 
-<section id="autofill" class="apidocs-section">
+<section class="apidocs-section">
 
-    <h2>autofill <small>squatch.js function reference</small></h2>
+    <h2 id="autofill" class="js-apidocs-methodname">autofill <small>squatch.js function reference</small></h2>
 
     <p>Use autofill on your payment page to connect a referral's coupon code to your payment form. Coupon code input elements can be hidden elements.</p>
     <pre><code class="lang-js">_sqh.push(['autofill', jQuerySelector]);
@@ -302,8 +302,8 @@ _sqh.push(['autofill', '#my_coupon']);
 &lt;input type="text" name="Coupon" id="my_coupon" value="" /&gt; &lt;!-- This input box will get autofilled --&gt; </code></pre>
 </section>
 
-<section id="open" class="apidocs-section">
-    <h1>open <small>squatch.js function reference</small></h1>
+<section class="apidocs-section">
+    <h1 id="open" class="js-apidocs-methodname">open <small>squatch.js function reference</small></h1>
 
     <p>You can programatically open the referral program widget on any page of your application where Referral SaaSquatch javascript has been <a href="#init">initialized</a>.</p>
     <h4>Example</h4>
@@ -319,8 +319,8 @@ _sqh.push(['autofill', '#my_coupon']);
 
 </section>
 
-<section id="close" class="apidocs-section">
-    <h2>close <small>squatch.js function reference</small></h2>
+<section class="apidocs-section">
+    <h2 id="close" class="js-apidocs-methodname">close <small>squatch.js function reference</small></h2>
 
     <p>You can programatically open the referral program widget on any page of your application where Referral SaaSquatch javascript has been <a href="#init">initialized</a>.</p>
     <h4>Example</h4>
@@ -329,8 +329,8 @@ _sqh.push(['autofill', '#my_coupon']);
 &lt;/script&gt;</code></pre>
 </section>
 
-<section id="subscribe" class="apidocs-section">
-    <h2>subscribe <small>squatch.js function reference</small></h2>
+<section class="apidocs-section">
+    <h2 id="subscribe" class="js-apidocs-methodname">subscribe <small>squatch.js function reference</small></h2>
     <p>Subscribes the provided callback to the given event; any time an event of the provided name (eventName) is <a href="/themes/widgetjs">published via the widget</a>, this subscribe call will be triggered. </p>
 
     <pre><code class="lang-js">_sqh.push(['subscribe', String eventName, function([payload]) {
@@ -361,8 +361,8 @@ _sqh.push(['autofill', '#my_coupon']);
 
 </section>
 
-<section id="getReward" class="apidocs-section">
-    <h2>getReward <small>REMOVED</small></h2>
+<section class="apidocs-section">
+    <h2 id="getReward" class="js-apidocs-methodname">getReward <small>REMOVED</small></h2>
 
     <div class="bs-callout bs-callout-danger">
       <h4>Removed</h4>
@@ -449,8 +449,8 @@ _sqh.push(['getReward', function(reward){
     </div>
 </section>
 
-<section id="getRewardBalance" class="apidocs-section">
-    <h2>getRewardBalance <small>REMOVED</small></h2>
+<section class="apidocs-section">
+    <h2 id="getRewardBalance" class="js-apidocs-methodname">getRewardBalance <small>REMOVED</small></h2>
 
     <div class="bs-callout bs-callout-danger">
       <h4>Removed</h4>

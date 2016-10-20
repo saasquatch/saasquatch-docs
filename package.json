@@ -33,6 +33,7 @@
     "build"
   ],
   "dependencies": {
+    "anchor-js": "^3.2.2",
     "browser-sync": "^2.13.0",
     "chai": "^3.5.0",
     "cheerio": "^0.20.0",

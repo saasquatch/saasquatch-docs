@@ -52,9 +52,7 @@
 
             <div class="apidocs-section">
             
-            <a id="{{method['x-docs-anchor']}}" name="{{method['x-docs-anchor']}}" class="section-anchor">&nbsp;</a>
-            
-            <h2>
+            <h2 id="{{method['x-docs-anchor']}}" name="{{method['x-docs-anchor']}}" class="js-apidocs-methodname">
                 {{method.summary}}
                 <span class="label docs-label-{{httpMethod | lower}}">{{httpMethod | upper}}</span>
                 <code>{{swagger.basePath}}{{methodPath}}</code>

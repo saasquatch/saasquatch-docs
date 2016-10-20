@@ -6,6 +6,8 @@ var jQuery = require('jquery');
 var smoothScroll = require('smooth-scroll');
 var hljs = require('highlight.js');
 
+var anchorJS = require('anchor-js');
+
 // LV: JSON View breaks Webpack
 // var jsonview = require('jquery-jsonview');
 
@@ -16,6 +18,23 @@ window.jQuery = jQuery;
 
 
 jQuery(document).ready(function() {
+    
+    /*
+    *   Auto anchor links for article pages
+    */
+    var anchors = new anchorJS();
+    anchors.options.placement = 'left';
+    anchors.add('.article-content h2, .article-content h3, .article-content h4');
+    
+    /*
+    *   Auto anchor links for the REST API and Squatch.js Docs
+    */
+    var apiReferenceAnchors = new anchorJS();
+    apiReferenceAnchors.options = {
+      visible: 'always',
+      placement: 'left'
+    };
+    apiReferenceAnchors.add('.js-apidocs-methodname');
 
     var magnific = require('magnific-popup');
     
