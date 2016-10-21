@@ -1839,7 +1839,7 @@ definitions:
           - CREDIT
       dateExpires:
         type: integer
-        description: "Timestamp of when this reward was earned. Works with: `PCT_DISCOUNT` or `FEATURE`"
+        description: "Timestamp of when this reward is set to expire. Works with: `PCT_DISCOUNT` or `FEATURE`"
         example: 1471028988000
       cancellable:
         type: boolean
