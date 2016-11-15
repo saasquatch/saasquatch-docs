@@ -120,9 +120,9 @@ paths:
               currency: USD
               subscription:
                 status: PAID
-                value: 99.99
+                value: 1
                 billingIntervalType: DAY
-                billingIntervalValue: 30
+                billingIntervalValue: 1
               referral:
                 code: 3j033r
           schema:
@@ -1703,7 +1703,7 @@ definitions:
     properties:
       status:
         type: string
-        description: The status of the subscription. One of `PAID`, `TRIAL`, `FREE` or `CANCELLED`
+        description: "The status of the subscription."
         example: PAID
         enum:
           - PAID
@@ -1712,7 +1712,7 @@ definitions:
           - CANCELLED
       billingIntervalType:
         type: string
-        description: "Type of billing interval. One of `DAY`, `WEEK`, `MONTH`, `QUARTER`, `SEMI_ANNUAL` or `YEAR`. Required when `status: 'PAID'`."
+        description: "Type of billing interval. <br>Required when `status: PAID`. <br>Use a placeholder value of `DAY` for Referral SaaSquatch programs with non-CPA billing"
         example: DAY
         enum:
           - DAY
@@ -1723,12 +1723,13 @@ definitions:
           - YEAR
       billingIntervalValue:
         type: integer
-        description: "The value of billing interval. Required when `status: PAID`. Example billing intervals"
+        description: "The value of billing interval. <br>Required when `status: PAID`. <br>Use a placeholder value of `1` for Referral SaaSquatch programs with non-CPA billing"
+        example: 1
       value:
         type: number
         format: double
-        example: 99.99
-        description: "Dollar value of the subscription per renewal. Required when `status: PAID`"
+        example: 1
+        description: "Dollar value of the subscription per renewal. <br>Required when `status: PAID`. <br>Use a placeholder value of `1` for Referral SaaSquatch programs with non-CPA billing"
   AccountReferral:
     description: Info about who referred this account. Use this on first signup.
     properties:
