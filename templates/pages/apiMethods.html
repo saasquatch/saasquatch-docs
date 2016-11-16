@@ -49,6 +49,8 @@
             {% set methodPath = loop.key %}
             {% for method in path %}
             {% set httpMethod = loop.key %}
+            
+            {% set firstQuery = true %}
 
             <div class="apidocs-section">
             
