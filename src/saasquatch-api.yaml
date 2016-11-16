@@ -419,7 +419,7 @@ paths:
               dateCreated: 1411600868797
               referrerName: "Bob Testerson"
               reward:
-                $ref: "#/definitions/Reward/example"
+                $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
           schema:
             $ref: "#/definitions/Code"
         404:
@@ -488,7 +488,7 @@ paths:
                   referrerUser:
                     $ref: "#/definitions/User/example"
                   referredReward:
-                    $ref: "#/definitions/Reward/example"
+                    $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
                   referrerReward: null
                   moderationStatus: "ACTIONED"
                   dateReferralStarted: 1415733261238
@@ -504,9 +504,9 @@ paths:
                   referrerUser:
                     $ref: "#/definitions/User/example"
                   referredReward:
-                    $ref: "#/definitions/Reward/example"
+                    $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
                   referrerReward:
-                    $ref: "#/definitions/Reward/example"
+                    $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
                   moderationStatus: "ACTIONED"
                   dateReferralStarted: 1415737510411
                   dateReferralPaid: 1415737557217
@@ -554,9 +554,9 @@ paths:
               referrerUser:
                 $ref: "#/definitions/User/example"
               referredReward:
-                $ref: "#/definitions/Reward/example"
+                $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
               referrerReward:
-                $ref: "#/definitions/Reward/example"
+                $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
               moderationStatus: "ACTIONED"
               dateReferralStarted: 1415737510411
               dateReferralPaid: 1415737557217
@@ -642,23 +642,8 @@ paths:
               $ref: "#/definitions/RewardBalance"
           examples:
             "application/json":
-              -
-                type: FEATURE
-                featureType: storage
-                count: 8
-                totalQuantity: 500
-                unit: MB
-              -
-                type: CREDIT
-                count: 4
-                totalAssignedCredit: 10000
-                totalRedeemedCredit: 0
-                unit: cents
-              -
-                type: PCT_DISCOUNT
-                totalDiscountPercent: 30
-                referredDiscountPercent: 10
-                referrerDiscountPercent: 20
+              - $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
+              - $ref: "#/definitions/Reward/example/CREDIT"
         default:
           $ref: "#/responses/GeneralError"
   "/{tenant_alias}/credit/bulkredeem":
@@ -733,7 +718,7 @@ paths:
               $ref: "#/definitions/Reward"
           examples:
             "application/json":
-              $ref: "#/definitions/Reward/example"
+              - $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
         default:
           $ref: "#/responses/GeneralError"
   "/{tenant_alias}/credit/{id}/redeem":
@@ -808,7 +793,7 @@ paths:
             $ref: "#/definitions/Reward"
           examples:
             "application/json":
-              $ref: "#/definitions/Reward/example"
+              $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
 
         default:
           $ref: "#/responses/GeneralError"
@@ -1108,7 +1093,7 @@ paths:
                   referrerUser:
                     $ref: "#/definitions/User/example"
                   referredReward:
-                    $ref: "#/definitions/Reward/example"
+                    $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
                   referrerReward: null
                   moderationStatus: "ACTIONED"
                   dateReferralStarted: 1415733261238
@@ -1124,9 +1109,9 @@ paths:
                   referrerUser:
                     $ref: "#/definitions/User/example"
                   referredReward:
-                    $ref: "#/definitions/Reward/example"
+                    $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
                   referrerReward:
-                    $ref: "#/definitions/Reward/example"
+                    $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
                   moderationStatus: "ACTIONED"
                   dateReferralStarted: 1415737510411
                   dateReferralPaid: 1415737557217
@@ -1790,7 +1775,7 @@ definitions:
       type:
         type: string
         example: CREDIT
-        description: "The type of reward. One of either the following: `PCT_DISCOUNT`, `FEATURE`, `TIME_CREDIT`, `CREDIT`"
+        description: "The type of reward."
         enum:
           - PCT_DISCOUNT
           - FEATURE
@@ -1831,7 +1816,7 @@ definitions:
     properties:
       type:
         type: string
-        description: "The type of reward. One of either of the following: `PCT_DISCOUNT` `FEATURE` `TIME_CREDIT` or `CREDIT`"
+        description: "The type of reward."
         example: PCT_DISCOUNT
         enum:
           - PCT_DISCOUNT
@@ -1874,7 +1859,7 @@ definitions:
         description: The unique identifier for this reward
       type:
         type: string
-        description: "The type of reward. One of either of the following: `PCT_DISCOUNT` `FEATURE` `TIME_CREDIT` or `CREDIT`"
+        description: "The type of reward."
         enum:
           - PCT_DISCOUNT
           - FEATURE
@@ -1894,7 +1879,7 @@ definitions:
         description: "If a reward is cancellable then it may be revoked. If it has been cancelled then `dateCancelled` will be non-null."
       rewardSource:
         type: string
-        description: "The type of the source of the reward. One of either `FRIEND_SIGNUP`, `REFERRED` or `MANUAL`."
+        description: "The type of the source of the reward."
         enum:
           - FRIEND_SIGNUP
           - REFERRED
@@ -1927,17 +1912,33 @@ definitions:
         type: string
         description: "For programs that require a currency. Works with: `CREDIT`"
     example:
-      type: "PCT_DISCOUNT"
-      id: "5462600de4b09b1c41108f2e"
-      dateGiven: 1415733261275
-      dateExpires: null
-      dateCancelled: null
-      accountId: "613611"
-      userId: "876343"
-      cancellable: true
-      rewardSource: "REFERRED"
-      discountPercent: 20
-      unit: "%"
+      PCT_DISCOUNT:
+        id: "5462600de4b09b1c41108f2e"
+        type: "PCT_DISCOUNT"
+        dateGiven: 1415733261275
+        dateExpires: null
+        dateCancelled: null
+        accountId: "613611"
+        userId: "876343"
+        cancellable: true
+        rewardSource: "REFERRED"
+        discountPercent: 20
+        unit: "%"
+      CREDIT:
+        id: "582142aae4b05442a5fa01a5",
+        type: "CREDIT",
+        dateGiven: 1478574762838,
+        dateExpires: null,
+        dateCancelled: null,
+        accountId: "613611",
+        userId: "876343",
+        cancellable: true,
+        rewardSource: "REFERRED",
+        unit: "CENTS",
+        assignedCredit: 2500,
+        redeemedCredit: 0,
+        name: "Dollar Credit",
+        currency: null
 
   UserStub:
     title: A User object stub
@@ -2093,7 +2094,7 @@ definitions:
       type:
         type: string
         example: CREDIT
-        description: "The type of reward. One of either the following: `PCT_DISCOUNT`, `FEATURE`, `TIME_CREDIT`, `CREDIT`"
+        description: "The type of reward."
         enum:
           - PCT_DISCOUNT
           - FEATURE
@@ -2257,7 +2258,7 @@ definitions:
         type: string
         example: PENDING
         description: |
-          "One of `PENDING` or `ACTIONED`. When referrals are manually managed, each referral has a `PENDING` state until it is explicitly moderated."
+          "When referrals are manually managed, each referral has a `PENDING` state until it is explicitly moderated."
         enum:
           - PENDING
           - ACTIONED
@@ -2265,7 +2266,7 @@ definitions:
         type: string
         example: PENDING
         description: |
-          "One of `PENDING`, `APPROVED` or `DENIED`. Used to identify the *referred* user's moderation status and affect Reward cancellation."
+          "Used to identify the *referred* user's moderation status and affect Reward cancellation."
         enum:
           - PENDING
           - APPROVED
@@ -2274,7 +2275,7 @@ definitions:
         type: string
         example: PENDING
         description: |
-          "One of `PENDING`, `APPROVED` or `DENIED`. Used to identify the *referrer* user's moderation status and affect Reward cancellation."
+          "Used to identify the *referrer* user's moderation status and affect Reward cancellation."
         enum:
           - PENDING
           - APPROVED
@@ -2957,7 +2958,7 @@ definitions:
       action:
         type: string
         example: REFERRED_DENIED
-        description: "The type of moderation action. One of `APPROVED`, `DENIED`, `REFERRER_DENIED`, `REFERRED_DENIED`, `REFERRER_APPROVED`, `REFERRED_APPROVED`"
+        description: "The type of moderation action."
         enum:
           - APPROVED
           - DENIED
