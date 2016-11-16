@@ -1925,19 +1925,19 @@ definitions:
         discountPercent: 20
         unit: "%"
       CREDIT:
-        id: "582142aae4b05442a5fa01a5",
-        type: "CREDIT",
-        dateGiven: 1478574762838,
-        dateExpires: null,
-        dateCancelled: null,
-        accountId: "613611",
-        userId: "876343",
-        cancellable: true,
-        rewardSource: "REFERRED",
-        unit: "CENTS",
-        assignedCredit: 2500,
-        redeemedCredit: 0,
-        name: "Dollar Credit",
+        id: "582142aae4b05442a5fa01a5"
+        type: "CREDIT"
+        dateGiven: 1478574762838
+        dateExpires: null
+        dateCancelled: null
+        accountId: "613611"
+        userId: "876343"
+        cancellable: true
+        rewardSource: "REFERRED"
+        unit: "CENTS"
+        assignedCredit: 2500
+        redeemedCredit: 0
+        name: "Dollar Credit"
         currency: null
 
   UserStub:
