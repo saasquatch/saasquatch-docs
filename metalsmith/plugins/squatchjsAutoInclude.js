@@ -18,7 +18,7 @@ function plugin() {
     var squatchJsReferenceFile = {
       title: 'squatch.js Version 2 Reference',
       highlights: 'squatch.js is the Referral SaaSquatch javascript SDK and a one-stop shop to integrate a referral program into your website or web app. It can show referral widgets on any website, track users, generate unique referral short links and referral codes, and more.',
-      slug: 'squatchjs/v2/reference',
+      slug: 'developer/squatchjs/v2/reference',
       sectionType: 'jsReference',
       template: 'pages/squatchjsReference.html'
       // hero: true
