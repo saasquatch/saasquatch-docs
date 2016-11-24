@@ -9,7 +9,7 @@ var markdownToc = require('markdown-toc');
 // TODO: Switch to: https://unpkg.com/
 // e.g. Squatch.js v1 = https://unpkg.com/squatch-js^1.x/
 // e.g. Squatch.js v2 = https://unpkg.com/squatch-js^2.x/
-var packageSrc = 'https://innocent-gate.surge.sh';
+var packageSrc = 'https://squathjsv2.surge.sh';
 
 module.exports = plugin;
 
