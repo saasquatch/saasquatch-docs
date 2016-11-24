@@ -50,6 +50,22 @@
       "type": 301,
       "source": "/faq/pricing",
       "destination": "http://www.referralsaasquatch.com/pricing/"
+    }, {
+      "type": 301,
+      "source": "/squatchjs/issue",
+      "destination": "/developer/squatchjs/issue"
+    }, {
+      "type": 301,
+      "source": "/app-integration",
+      "destination": "/developer/squatchjs/v1/app-integration"
+    }, {
+      "type": 301,
+      "source": "/squatchjs/signed-requests",
+      "destination": "/developer/squatchjs/signed-requests"
+    }, {
+      "type": 301,
+      "source": "/squatchjs",
+      "destination": "/developer/squatchjs/v1/reference"
     }]
   }
 }
