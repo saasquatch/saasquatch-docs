@@ -7,9 +7,9 @@ var rp = require('request-promise');
 var markdownToc = require('markdown-toc');
 
 // TODO: Switch to: https://unpkg.com/
-// e.g. Squatch.js v1 = https://unpkg.com/squatch-js^1.x/
-// e.g. Squatch.js v2 = https://unpkg.com/squatch-js^2.x/
-var packageSrc = 'https://squathjsv2.surge.sh';
+// e.g. Squatch.js v1 = https://unpkg.com/@saasquatch/squatch-js@^1
+// e.g. Squatch.js v2 = https://unpkg.com/@saasquatch/squatch-js@^2
+var packageSrc = 'https://unpkg.com/@saasquatch/squatch-js@^2';
 
 module.exports = plugin;
 
