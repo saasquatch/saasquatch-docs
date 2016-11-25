@@ -12,7 +12,6 @@ module.exports = plugin;
  * Metalsmith plugin that turns metadata into a list of pages.
  * 
  */
-
 function plugin(options) {
 
     return function(files, metalsmith, done) {
