@@ -1,5 +1,5 @@
-var assert = require('chai').assert
-var pathToUrl = require('../pathToUrl')
+import {assert} from 'chai';
+import pathToUrl from '../pathToUrl';
 
 describe('pathToUrl', function() {
   it('converts Windows paths to a url path', function() {

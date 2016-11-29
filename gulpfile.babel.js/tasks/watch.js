@@ -1,7 +1,7 @@
-var config = require('../config');
-var gulp   = require('gulp');
-var path   = require('path');
-var watch  = require('gulp-watch');
+import config from '../config';
+import gulp from 'gulp';
+import path from 'path';
+import watch from 'gulp-watch';
 
 var watchTask = function() {
   var watchableTasks = ['images', 'css'];
@@ -18,4 +18,4 @@ var watchTask = function() {
 };
 
 gulp.task('watch', ['browserSync'], watchTask);
-module.exports = watchTask;
+export default watchTask;

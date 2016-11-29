@@ -1,6 +1,6 @@
-var gulp   = require('gulp')
-var del    = require('del')
-var config = require('../config')
+import gulp from 'gulp';
+import del from 'del';
+import config from '../config';
 
 var cleanTask = function (cb) {
   del([config.root.dest]).then(function (paths) {
@@ -9,4 +9,4 @@ var cleanTask = function (cb) {
 }
 
 gulp.task('clean', cleanTask)
-module.exports = cleanTask
+export default cleanTask;

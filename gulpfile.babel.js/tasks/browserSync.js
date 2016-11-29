@@ -1,11 +1,13 @@
-if(global.production) return
+if(global.production) throw new Error("Cannot run in production mode");
 
-var browserSync       = require('browser-sync')
-var gulp              = require('gulp')
+import browserSync from 'browser-sync';
+import gulp from 'gulp';
+
 // var webpack           = require('webpack')
 // var webpackMultiConfig = require('../lib/webpack-multi-config')
-var config            = require('../config')
-var pathToUrl         = require('../lib/pathToUrl')
+import config from '../config';
+
+import pathToUrl from '../lib/pathToUrl';
 
 var browserSyncTask = function() {
 
@@ -33,4 +35,4 @@ var browserSyncTask = function() {
 }
 
 gulp.task('browserSync', browserSyncTask)
-module.exports = browserSyncTask
+export default browserSyncTask;

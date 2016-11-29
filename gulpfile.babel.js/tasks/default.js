@@ -1,9 +1,9 @@
-var gulp            = require('gulp');
-var gulpSequence    = require('gulp-sequence');
+import gulp from 'gulp';
+import gulpSequence from 'gulp-sequence';
 
 var defaultTask = function(cb) {
   gulpSequence('images', 'static', 'css', 'javascript', cb);
 };
 
 gulp.task('default', defaultTask);
-module.exports = defaultTask;
+export default defaultTask;

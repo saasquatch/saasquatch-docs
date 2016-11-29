@@ -1,6 +1,6 @@
-var config       = require('../config')
-var gulp         = require('gulp')
-var gulpSequence = require('gulp-sequence')
+import config from '../config';
+import gulp from 'gulp';
+import gulpSequence from 'gulp-sequence';
 
 var productionTask = function(cb) {
   global.production = true
@@ -8,4 +8,4 @@ var productionTask = function(cb) {
 }
 
 gulp.task('production', productionTask)
-module.exports = productionTask
+export default productionTask;

@@ -1,12 +1,12 @@
-var config = require('../config')
-if(!config.tasks.js) return
+import config from '../config';
+if(!config.tasks.js) throw new Error("config.tasks.js not defined!");
 
-var path            = require('path')
-var pathToUrl       = require('./pathToUrl')
-var webpack         = require('webpack')
-var webpackManifest = require('./webpackManifest')
+import path from 'path';
+import pathToUrl from './pathToUrl';
+import webpack from 'webpack';
+import webpackManifest from './webpackManifest';
 
-module.exports = function(env) {
+export default function(env) {
   var jsSrc = path.resolve(config.root.src, config.tasks.js.src)
   var jsDest = path.resolve(config.root.dest, config.tasks.js.dest)
   var publicPath = pathToUrl(config.tasks.js.dest, '/')
@@ -87,4 +87,4 @@ module.exports = function(env) {
   }
 
   return webpackConfig
-}
+};

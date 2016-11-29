@@ -16,10 +16,10 @@
 // // Require all tasks in gulpfile.js/tasks, including subfolders
 // requireDir('./tasks', { recurse: true })
 
-require('./tasks/clean.js');
-require('./tasks/css.js');
-require('./tasks/javascript.js');
-require('./tasks/static.js');
+import './tasks/clean.js';
+import './tasks/css.js';
+import './tasks/javascript.js';
+import './tasks/static.js';
 require('./tasks/images.js');
 require('./tasks/sizereport.js');
 

@@ -1,10 +1,11 @@
-var config = require('../config')
-if(!config.tasks.js) return
+import config from '../config';
+
+if(!config.tasks.js) throw new Error("config.tasks.js not defined!");
 
 var config  = require('../lib/webpack-multi-config')('production')
-var gulp    = require('gulp')
-var logger  = require('../lib/compileLogger')
-var webpack = require('webpack')
+import gulp from 'gulp';
+import logger from '../lib/compileLogger';
+import webpack from 'webpack';
 
 var webpackProductionTask = function(callback) {
   webpack(config, function(err, stats) {
@@ -14,4 +15,4 @@ var webpackProductionTask = function(callback) {
 }
 
 gulp.task('webpack:production', webpackProductionTask)
-module.exports = webpackProductionTask
+export default webpackProductionTask;

@@ -1,7 +1,7 @@
-var path = require('path')
-var fs   = require('fs')
+import path from 'path';
+import fs from 'fs';
 
-module.exports = function(publicPath, dest, filename) {
+export default function(publicPath, dest, filename) {
   filename = filename || 'rev-manifest.json'
 
   return function() {
@@ -21,4 +21,4 @@ module.exports = function(publicPath, dest, filename) {
       )
     })
   }
-}
+};

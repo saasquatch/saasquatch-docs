@@ -1,11 +1,13 @@
-var config      = require('../config');
-if(!config.tasks.images) return;
+import config from '../config';
+if(!config.tasks.images) throw new Error("config.tasks.images not defined!");
 
-var gulp        = require('gulp');
+import gulp from 'gulp';
+
 // var browserSync = require('browser-sync');
-var changed     = require('gulp-changed');
-var imagemin    = require('gulp-imagemin');
-var path        = require('path');
+import changed from 'gulp-changed';
+
+import imagemin from 'gulp-imagemin';
+import path from 'path';
 
 var paths = {
   src: path.join(config.root.src, config.tasks.images.src, '/**/*.{' + config.tasks.images.extensions + '}'),
@@ -21,4 +23,4 @@ var imagesTask = function() {
 };
 
 gulp.task('images', imagesTask);
-module.exports = imagesTask;
+export default imagesTask;

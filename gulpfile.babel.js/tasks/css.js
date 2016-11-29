@@ -1,16 +1,19 @@
-var config       = require('../config')
-if(!config.tasks.css) return
+import config from '../config'
 
-var gulp         = require('gulp')
-var gulpif       = require('gulp-if')
+if(!config.tasks.css) throw new Error("config.tasks.css not defined!");
+
+import gulp from 'gulp';
+import gulpif from 'gulp-if';
+
 // var browserSync  = require('browser-sync')
-var sourcemaps   = require('gulp-sourcemaps')
-var lessChanged = require('gulp-less-changed');
-var less         = require('gulp-less');
-var handleErrors = require('../lib/handleErrors')
-var autoprefixer = require('gulp-autoprefixer')
-var path         = require('path')
-var cssnano      = require('gulp-cssnano')
+import sourcemaps from 'gulp-sourcemaps';
+
+import lessChanged from 'gulp-less-changed';
+import less from 'gulp-less';
+import handleErrors from '../lib/handleErrors';
+import autoprefixer from 'gulp-autoprefixer';
+import path from 'path';
+import cssnano from 'gulp-cssnano';
 
 var paths = {
   src: [
@@ -34,4 +37,4 @@ var cssTask = function () {
 }
 
 gulp.task('css', cssTask)
-module.exports = cssTask
+export default cssTask;

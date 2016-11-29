@@ -1,7 +1,7 @@
-var config  = require('../config');
-var changed = require('gulp-changed');
-var gulp    = require('gulp');
-var path    = require('path');
+import config from '../config';
+import changed from 'gulp-changed';
+import gulp from 'gulp';
+import path from 'path';
 
 var paths = {
   src: [
@@ -18,4 +18,4 @@ var staticTask = function() {
 };
 
 gulp.task('static', staticTask);
-module.exports = staticTask;
+export default staticTask;
