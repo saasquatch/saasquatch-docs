@@ -4,14 +4,15 @@
 *
 */
 
-var extname = require('path').extname;
-var yaml = require('js-yaml');
+import {extname} from 'path';
+
+import yaml from 'js-yaml';
 
 /**
  * Expose `plugin`.
  */
 
-module.exports = plugin;
+export default plugin;
 
 /**
  * Supported metadata parsers.

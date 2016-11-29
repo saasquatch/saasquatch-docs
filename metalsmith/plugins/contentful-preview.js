@@ -4,16 +4,16 @@
  *
  */
 
-const contentful = require('contentful');
-const path = require('path');
+import contentful from 'contentful';
 
-const contentfulpagifier = require('../utils/contentfulpagifier');
+import path from 'path';
+import contentfulpagifier from '../utils/contentfulpagifier';
 
 /**
  * Expose `plugin`.
  */
 
-module.exports = plugin;
+export default plugin;
 
 /**
  * Metalsmith plugin to create pages from Contentful drafts

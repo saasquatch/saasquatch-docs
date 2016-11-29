@@ -1,7 +1,6 @@
-var markdownToc = require('markdown-toc');
-var resolveI18n = require('./resolveI18n');
-
-module.exports = pageify;
+import markdownToc from 'markdown-toc';
+import resolveI18n from './resolveI18n';
+export default pageify;
 
 var sectionTypeMap = {
     "Developer Guide": "guide",

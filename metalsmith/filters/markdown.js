@@ -1,4 +1,4 @@
-var marked = require('marked');
+import marked from 'marked';
 
 /**
  * Convert a variable's contents from Markdown to HTML.
@@ -10,8 +10,8 @@ var marked = require('marked');
  * @param  {string} input
  * @return {string}       HTML
  */
-module.exports = function (input) {
+export default function (input) {
   return marked(input);
 };
 
-module.exports.safe = true;
+export var safe = true;

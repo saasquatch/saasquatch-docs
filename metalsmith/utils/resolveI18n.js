@@ -1,6 +1,6 @@
-var _ = require('lodash');
+import _ from 'lodash';
 
-module.exports = function resolveI18n(flds, locale = 'en-US', stripLocale = false) {
+export default function resolveI18n(flds, locale = 'en-US', stripLocale = false) {
     let out;
     if (_.isArray(flds)) {
         out = _.map(flds, function square(val) {

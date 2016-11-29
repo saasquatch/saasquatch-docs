@@ -12,12 +12,10 @@
   },
   "scripts": {
     "production": "gulp production && npm run build:js",
-    "local": "npm run watch & NODE_ENV=development nodemon --exec 'npm run build:dev && npm run browser_sync_reload'",
-    "server": "npm run build:dev && node previewServer.js",
-    "watch": "npm run browser_sync & node contentful-watch.js",
+    "local": "npm run browser_sync & NODE_ENV=development nodemon --exec 'npm run build:dev && npm run browser_sync_reload'",
+    "server": "npm run build:dev && babel-node ./scripts/previewServer.js",
     "build:dev": "gulp & gulp metalsmithDev & npm run build:js & wait",
-    "build:js": "npm run build:webpack && npm run build:uglifyjs",
-    "build:webpack": "webpack",
+    "build:js": "webpack && npm run build:uglifyjs",
     "build:uglifyjs": "uglifyjs --output ./build/assets/js/bundle.min.js ./build/assets/js/bundle.js ",
     "browser_sync": "browser-sync start --server build --port $PORT --host $IP",
     "browser_sync_reload": "browser-sync reload --port $PORT --host $IP",
@@ -95,6 +93,7 @@
     "webpack": "^1.13.1"
   },
   "devDependencies": {
+    "babel-cli": "^6.18.0",
     "babel-core": "^6.18.2",
     "babel-preset-es2015": "^6.18.0"
   }

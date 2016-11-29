@@ -1,30 +1,41 @@
-"use strict";
+const debug = require('debug')('contentful-watch');
+import now from "performance-now";
+import contentful from 'contentful';
+import fs from 'fs';
+import Promise from 'promise';
+const writeFile = Promise.denodeify(fs.writeFile);
 
-var debug = require('debug')('contentful-watch');
-var now = require("performance-now");
-
-var contentful = require('contentful');
-var fs = require('fs');
-var Promise = require('promise');
-var writeFile = Promise.denodeify(fs.writeFile);
+/***
+ * 
+ * 
+ *      DEPRECATED
+ * 
+ * 
+ *      Previously was used to automatically download Contentful content locally
+ *      through polling.
+ * 
+ *      LV: Mostly kept around "just in case" we need to return to this approach.
+ * 
+ * 
+ */
 
 function writeJson(file, jsonF) {
     return writeFile(file, JSON.stringify(jsonF, null, 4));
 }
 
-var client = contentful.createClient({
+const client = contentful.createClient({
     space: 's68ib1kj8k5n',
     accessToken: 'ae31ffc9de0831d887cff9aa3c72d861c323bd09de2a4cafd763c205393976c9'
 });
 
-var opts = {
+const opts = {
     destination: 'src/contentful.json',
     logging: 'logs/',
     useLogging: false,
     syncPeriod: 60 * 1000, // Every 60 seconds
 };
 
-var localStorage = {};
+const localStorage = {};
 
 console.log("Starting up contentful-watch...");
 client.sync({
@@ -42,31 +53,31 @@ client.sync({
     .catch((err) => console.error("Contentful: Uncaught error in initial sync", err));
 
 // Later....
-var consecutiveErrors = 0;
+let consecutiveErrors = 0;
 function runIncrementalSync() {
     debug("Incr sync...");
-    var start = now();
-    var prev = now();
+    const start = now();
+    const prev = now();
     client.sync({
             nextSyncToken: localStorage.contentfulSyncToken,
             resolveLinks: true
         })
         .then((response) => {
-            var oldEntries = localStorage.contentfulEntries;
-            var done ={
+            let oldEntries = localStorage.contentfulEntries;
+            const done ={
                 numInBlock: response.entries.length + response.deletedEntries.length,
                 numModified: 0
             };
             if(done.numInBlock>0){
                 console.log("Time since:", now()-prev) && prev == now();
                 oldEntries = oldEntries.map((existing) => {
-                    var thisId = existing.sys.id;
-                    var deletedEntry = response.deletedEntries.find(e=>e.sys.id==thisId);
+                    const thisId = existing.sys.id;
+                    const deletedEntry = response.deletedEntries.find(e=>e.sys.id==thisId);
                     if(deletedEntry){
                         done.numModified++;
                         return null;
                     }
-                    var newOne = response.entries.find(e=>e.sys.id==thisId);
+                    const newOne = response.entries.find(e=>e.sys.id==thisId);
                     if(newOne){
                         
                         done.numModified++;
@@ -80,7 +91,7 @@ function runIncrementalSync() {
                 return Promise.resolve(done);
             }
         }).then((x) => {
-            var end = now();
+            const end = now();
             if(x.numInBlock > 0){
                 console.log("Detected", x.numInBlock, " and modified", x.numModified, "entries in", (end-start), "ms.", localStorage.contentfulEntries.length, "entries up to date.");
                 console.log("Watching for changes...");

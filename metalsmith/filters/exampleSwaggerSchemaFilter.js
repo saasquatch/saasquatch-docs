@@ -1,9 +1,9 @@
-var extend = require('extend');
+import extend from 'extend';
 
 /**
  * Exposes `exampleSwaggerSchema`.
  */
-module.exports = exampleSwaggerSchema;
+export default exampleSwaggerSchema;
 
 function exampleSwaggerSchema(baseSchema) {
   var myOutput = {};

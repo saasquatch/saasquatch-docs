@@ -1,10 +1,10 @@
-var debugBuilder = require('debug');
+import debugBuilder from 'debug';
 
 /**
  * Expose `plugin`.
  */
 
-module.exports = plugin;
+export default plugin;
 
 /**
  * Metalsmith plugin to hide drafts from the output.

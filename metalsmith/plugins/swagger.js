@@ -1,15 +1,15 @@
-var extname = require('path').extname;
-var parser = require("swagger-parser");
-var yaml = require('js-yaml');
+import {extname} from 'path';
+import parser from "swagger-parser";
+import yaml from 'js-yaml';
+import resolveAllOf from 'json-schema-resolve-allof';
 
-var resolveAllOf = require('json-schema-resolve-allof');
-var swaggerUtils = require('../utils/swaggerUtils.js');
+import * as swaggerUtils from '../utils/swaggerUtils';
 
 /**
  * Expose `plugin`.
  */
 
-module.exports = plugin;
+export default plugin;
 
 var parsers = {
   '.json': JSON.parse,
@@ -53,6 +53,9 @@ function plugin(opts){
         return done(new Error('Swagger parse error in "' + file + '":' + e.name + e.message));
     }
 
+    if(!swaggerUtils || !swaggerUtils['methodsByTag']){
+      throw new Error('Failed to import SwaggerUtils');
+    }
     parser
     .dereference(data)
     .then(function(spec) {

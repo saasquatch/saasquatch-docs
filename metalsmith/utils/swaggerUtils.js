@@ -1,10 +1,10 @@
-const _ = require('lodash');
+import _ from 'lodash';
 
 /**
  * Groups Swagger methods by Tag. If a method has multiple tags, it will be listed in each one.
  * 
  */
-module.exports.methodsByTag = function(swagger) {
+export function methodsByTag(swagger) {
     return _.transform(swagger.paths, (result, methodsAtPath, path) => {
         _.forEach(methodsAtPath, (method, httpType) => {
             _.forEach(method.tags, (tag) => {
@@ -15,13 +15,13 @@ module.exports.methodsByTag = function(swagger) {
             });
         });
     }, {});
-};
+}
 
-module.exports.tagMap = function(swagger){
+export function tagMap(swagger) {
     // console.log(swagger.tags);
     return _.reduce(swagger.tags, (result, val) => {
         result[val.name] = val;
         return result;
     }, {});
     
-};
+}

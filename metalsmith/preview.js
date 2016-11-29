@@ -4,10 +4,9 @@
 const debug = require('debug')('saasquatch-docs');
 debug('Loading modules');
 
-const site = require('./site');
-const contentfulPreview = require('./plugins/contentful-preview');
-// const contentful = require('./plugins/contentful.js');
-const metadata = require('./plugins/metadata.js');
+import site from './site';
+import contentfulPreview from './plugins/contentful-preview';
+
 
 function preview(id, callback){
   
@@ -31,18 +30,8 @@ function preview(id, callback){
       spaceId: "s68ib1kj8k5n"
   });
   
-  const livePlugin = metadata({
-        contentful: 'contentful.json'
-  });
-  
-  // contentful({
-  //     accessKey: "ae31ffc9de0831d887cff9aa3c72d861c323bd09de2a4cafd763c205393976c9",
-  //     spaceId: "s68ib1kj8k5n"
-  // });
-  
   debug('Firing off build');
   site([
-      livePlugin,
       previewPlugin
     ])
   .clean(false)
@@ -58,4 +47,4 @@ function preview(id, callback){
 }
 
 
-module.exports = preview;
+export default preview;

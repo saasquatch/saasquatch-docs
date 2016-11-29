@@ -1,4 +1,4 @@
-var path = require('path');
+import path from 'path';
 
 var extname = path.extname;
 
@@ -6,7 +6,7 @@ var extname = path.extname;
  * Expose `plugin`.
  */
 
-module.exports = plugin;
+export default plugin;
 
 var sectionsToCategories = {
     guide: 'developerCenter',

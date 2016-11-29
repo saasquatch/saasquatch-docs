@@ -4,8 +4,8 @@
 var debug = require('debug')('saasquatch-docs');
 
 debug('Loading modules');
-var site = require('./site.js');
-var metadata = require('./plugins/metadata.js');
+import site from './site.js';
+import metadata from './plugins/metadata.js';
 
 function dev(callback){
   // process.env.GOOGLE_SITE_ID = "ynZGJlNk33o1bpcfo2rLxaty1CgbwBt1SOLVtBtOdn4";
@@ -23,9 +23,7 @@ function dev(callback){
   process.env.TYPEKIT_ID = "none";
   
   debug('Firing off build');
-  site(metadata({
-        contentful: 'contentful.json'
-  }))
+  site()
   .clean(false)
   .build(function(err, files) {
     if (err){
@@ -39,4 +37,4 @@ function dev(callback){
 }
 
 
-module.exports = dev;
+export default dev;

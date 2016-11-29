@@ -1,12 +1,11 @@
 const debug = require('debug')('pageify-plugin');
-const path = require('path');
-
-const contentfulpagifier = require('../utils/contentfulpagifier');
+import path from 'path';
+import contentfulpagifier from '../utils/contentfulpagifier';
 
 /**
  * Expose `plugin`.
  */
-module.exports = plugin;
+export default plugin;
 
 /**
  * Metalsmith plugin that turns metadata into a list of pages.
@@ -18,13 +17,14 @@ function plugin(options) {
         var numProcessed =0, numIgnored =0;
         
         var data = metalsmith.metadata()['contentful'];
-
+        if(!data) throw new Error("Needed Contentful data loaded to do pagination but we got none.");
+        
         // JSON raw output
         var jsonfile = {
             contents: JSON.stringify(data)
         };
         files['contentful-processed.json'] = jsonfile;
-
+        
         debug("Iterating entries", Object.keys(data).length);
         for(var i in data) {
             var entry = data[i];

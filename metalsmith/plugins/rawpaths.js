@@ -1,5 +1,5 @@
 var debug = require('debug')('rawpaths-plugin');
-var path = require('path');
+import path from 'path';
 // var slug = require('slug-component');
 // var substitute = require('substitute');
 
@@ -12,7 +12,7 @@ var join = path.join;
  * Expose `plugin`.
  */
 
-module.exports = plugin;
+export default plugin;
 
 /**
  * Metalsmith plugin that renames files so that they're permalinked properly

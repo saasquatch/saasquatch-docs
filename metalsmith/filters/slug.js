@@ -1,4 +1,4 @@
-var slug = require('slug');
+import slug from 'slug';
 
 /**
  * Convert a variable's to a URL-friendly slug
@@ -10,7 +10,7 @@ var slug = require('slug');
  * @param  {string} input
  * @return {string} slugified
  */
-module.exports = function (input) {
+export default function (input) {
   return slug(input);
 };
 

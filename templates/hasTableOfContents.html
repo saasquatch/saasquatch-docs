@@ -17,7 +17,7 @@
       {% endif %}
       {% if highlights %}
       <div class="lead">
-        {{ highlights | markdown }}
+        {{ highlights | markdown | safe }}
       </div>
       {% endif %}
       

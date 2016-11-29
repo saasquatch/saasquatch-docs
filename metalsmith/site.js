@@ -1,31 +1,34 @@
 var debug = require('debug')('saasquatch-docs');
 
-var Metalsmith = require('metalsmith');
-var markdown = require('metalsmith-markdown');
-var templates = require('metalsmith-templates');
-var collections = require('metalsmith-collections');
-var define = require('metalsmith-define');
-// var request = require('metalsmith-request');
-var path = require('path');
+import Metalsmith from 'metalsmith';
+import markdown from 'metalsmith-markdown';
+import templates from 'metalsmith-templates';
+import collections from 'metalsmith-collections';
+import define from 'metalsmith-define';
 
-var swig = require('swig');
+// var request = require('metalsmith-request');
+import path from 'path';
+
+import swig from 'swig';
+
 // var extras = require('swig-extras');
 
-var permalinks = require('./plugins/rawpaths.js');
-var swagger = require('./plugins/swagger.js');
-var metadata = require('./plugins/metadata.js');
-var pageify = require('./plugins/pageify.js');
-var categoryManager = require('./plugins/categoryManager.js');
+import permalinks from './plugins/rawpaths.js';
+
+import swagger from './plugins/swagger.js';
+import metadata from './plugins/metadata.js';
+import contentful from './plugins/contentful.js';
+import pageify from './plugins/pageify.js';
+import categoryManager from './plugins/categoryManager.js';
+
 // var dumplog = require('./plugins/dumplog.js');
-var squatchjsAutoInclude = require('./plugins/squatchjsAutoInclude.js');
+import squatchjsAutoInclude from './plugins/squatchjsAutoInclude.js';
 
+import exampleSwaggerSchemaFilter from './filters/exampleSwaggerSchemaFilter.js';
+import mardownFilter from './filters/markdown.js';
+import slugFilter from './filters/slug.js';
+import tocFilter from './filters/tableOfContents.js';
 
-var exampleSwaggerSchemaFilter = require('./filters/exampleSwaggerSchemaFilter.js');
-var mardownFilter = require('./filters/markdown.js');
-var slugFilter = require('./filters/slug.js');
-var tocFilter = require('./filters/tableOfContents.js');
-
-module.exports = site;
 
 /**
  * SaaSquatch-Docs MetalSmith site
@@ -41,7 +44,7 @@ module.exports = site;
  * 
  * @author loganv
  */
-function site(baseplugin){
+function site(baseplugin=null){
 
   debug("Bootstrapping the Docs build process using Metalsmith");
 
@@ -52,7 +55,7 @@ function site(baseplugin){
   swig.setFilter('exampleSwaggerSchema', exampleSwaggerSchemaFilter);
   swig.setFilter('tableOfContents', tocFilter);
 
-  var baseMetadata = {
+  const baseMetadata = {
     "robots": process.env.ROBOTS || "true",
     "jsTrackers":  process.env.JSTRACKERS || "true",
     "useTypekit":  (process.env.TYPEKIT_ID != "none"),
@@ -70,22 +73,26 @@ function site(baseplugin){
     }
   };
   
-  var ms = Metalsmith(path.resolve(__dirname, "../"));
+  const ms = Metalsmith(path.resolve(__dirname, "../"));
 
   if(baseplugin){
     if(baseplugin instanceof Array){
       baseplugin.map((plug)=>ms.use(plug));
     }else{
-      ms = ms.use(baseplugin);
+      ms.use(baseplugin);
     }
     debug("Using base plugin");
   }
 
-  ms = ms
+  ms
   /*
    *  Build up all the metadata
    */
   .use(define(baseMetadata))
+  .use(contentful({
+      accessKey: "ae31ffc9de0831d887cff9aa3c72d861c323bd09de2a4cafd763c205393976c9",
+      spaceId: "s68ib1kj8k5n"
+  }))
   .use(swagger({
       path: "saasquatch-api.yaml"
     }))
@@ -130,3 +137,5 @@ function site(baseplugin){
 
   return ms;
 }
+
+export default site;

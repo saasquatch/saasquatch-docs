@@ -3,15 +3,16 @@
  * 
  * 
  */
-var rp = require('request-promise');
-var markdownToc = require('markdown-toc');
+import rp from 'request-promise';
+
+import markdownToc from 'markdown-toc';
 
 // TODO: Switch to: https://unpkg.com/
 // e.g. Squatch.js v1 = https://unpkg.com/@saasquatch/squatch-js@^1
 // e.g. Squatch.js v2 = https://unpkg.com/@saasquatch/squatch-js@^2
 var packageSrc = 'https://unpkg.com/@saasquatch/squatch-js@^2';
 
-module.exports = plugin;
+export default plugin;
 
 function plugin() {
   return function(files, metalsmith, done) {

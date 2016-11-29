@@ -1,5 +1,5 @@
-var cheerio = require('cheerio');
-var slug = require('slug');
+import cheerio from 'cheerio';
+import slug from 'slug';
 
 /**
  * Convert a variable's contents from Markdown to HTML.
@@ -11,7 +11,7 @@ var slug = require('slug');
  * @param  {string} input
  * @return {string}       HTML
  */
-module.exports = function (input) {
+export default function (input) {
 
     var $ = cheerio.load(input);
     
@@ -33,4 +33,4 @@ module.exports = function (input) {
     };
 };
 
-module.exports.safe = true;
+export var safe = true;
