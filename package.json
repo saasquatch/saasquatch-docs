@@ -33,6 +33,10 @@
   ],
   "dependencies": {
     "anchor-js": "^3.2.2",
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.18.2",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-register": "^6.18.0",
     "browser-sync": "^2.13.0",
     "chai": "^3.5.0",
     "cheerio": "^0.20.0",
@@ -91,11 +95,5 @@
     "swig-extras": "0.0.1",
     "uglifyjs": "^2.4.10",
     "webpack": "^1.13.1"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.18.0",
-    "babel-core": "^6.18.2",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-register": "^6.18.0"
   }
 }
