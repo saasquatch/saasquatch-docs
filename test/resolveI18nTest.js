@@ -1,14 +1,14 @@
-const expect = require("chai").expect;
-var _ = require('lodash');
+import {expect} from "chai";
+import _ from 'lodash';
 
-const resolveI18n = require('../metalsmith/utils/resolveI18n');
+import resolveI18n from '../metalsmith/utils/resolveI18n';
 
 const fixtures = require('./fixtures/contentful');
 const expected0 = require('./fixtures/contentful0');
 const expected1 = require('./fixtures/contentful1');
 
 
-describe("Built site", function() {
+describe("resolveI18n utility", function() {
 
     it("Should resolve simple objects",function() {
        expect(resolveI18n(fixtures[0])).to.deep.equal(expected0);
