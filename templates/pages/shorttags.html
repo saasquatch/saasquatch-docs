@@ -24,7 +24,7 @@
             <small><span class="muted"><b>{{ shorttag.example }}</b></span></small>
           </td>            
           <td>
-            {{ shorttag.description | markdown }}
+            {{ shorttag.description | markdown | safe }}
             
           </td>
           {% if shorttag['x-program'] %}

@@ -13,7 +13,7 @@
                 {% if prop.readOnly %}<span class="muted">readonly</span>{% endif %}
             </th>
             <td>
-                {{prop.description | markdown}}
+                {{prop.description | markdown | safe}}
                 
                 {% if prop.properties %}{{outputProperties(prop, true)}}{% endif %}
                 {% if prop.items %}{{outputProperties(prop.items, true)}}{% endif %}
@@ -53,7 +53,7 @@
                 <span class="muted">{{prop.type | default("object") }}</span>
             </th>
             <td>
-                {{prop.description | markdown}}
+                {{prop.description | markdown | safe}}
                 
                 {% if prop.properties %}{{outputRequestProperties(prop, true)}}{% endif %}
                 {% if prop.items %}{{outputRequestProperties(prop.items, true)}}{% endif %}

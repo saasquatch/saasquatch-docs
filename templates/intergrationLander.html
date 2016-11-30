@@ -11,7 +11,7 @@
   
     <div class="row-fluid">
       <div class="lead span8 offset2">
-        {{ highlights | markdown }}
+        {{ highlights | markdown | safe }}
       </div>
     </div>
   </div>
@@ -24,7 +24,7 @@
     
     <ul>
     {% for feature in keyFeatures %}
-    <li>{{feature | markdown }}</li>
+    <li>{{feature | markdown | safe }}</li>
     {% endfor %}
     </ul>
   
@@ -36,7 +36,7 @@
     
     <ul>
     {% for info in moreInfo %}
-    <li>{{ info | markdown }}</li>
+    <li>{{ info | markdown | safe }}</li>
     {% endfor %}
     </ul>
 

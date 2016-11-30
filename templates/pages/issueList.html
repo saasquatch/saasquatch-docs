@@ -21,7 +21,7 @@
                     <a href="/squatchjs/issue/{{ issue.title }}">{{ issue.title }}</a>
                 </td>
                 <td>
-                    {{ issue.highlights | markdown }}
+                    {{ issue.highlights | markdown | safe }}
                 </td>
             </tr>
            {% endfor %}

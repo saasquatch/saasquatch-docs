@@ -11,7 +11,7 @@
       <h1>{{title}}</h1>
   </div>
   <div class="lead">
-    {{ swagger.info.description | markdown}}
+    {{ swagger.info.description | markdown | safe}}
   </div>
 
   <h3>Tag Summary</h3>
@@ -21,7 +21,7 @@
 <dl class="dl-horizontal">
   {% for tag in tagMap %}
       <dt><span class="label">{{tag.name}}</span></dt>
-      <dd>{{tag.description |markdown }}</dd>
+      <dd>{{tag.description | markdown | safe }}</dd>
   {% endfor %}
 </dl>
 
@@ -33,7 +33,7 @@
 <dl class="dl-horizontal">
   {% for secDef in swagger.securityDefinitions %}
       <dt><span class="label">{{loop.key}}</span></dt>
-      <dd>{{secDef.description | markdown }}</dd>
+      <dd>{{secDef.description | markdown | safe}}</dd>
   {% endfor %}
   <dt><span class="label">Unauthenticated</span></dt>
   <dd>Does not require any type of authentication to make this API call.</dd>
@@ -61,7 +61,7 @@
             </h2>
             
             <div class="lead">
-                {{method.description | markdown}} 
+                {{method.description | markdown | safe}} 
             </div>
 
             <p>
@@ -106,7 +106,7 @@
                             {% endif %}
                         </th>
                         <td>
-                            {{param.description | markdown}}
+                            {{param.description | markdown | safe}}
                             
                             {% if param.schema %}{{swaggerMacros.outputRequestProperties(param.schema)}}{% endif %}
                         </td>

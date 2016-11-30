@@ -17,7 +17,7 @@
           <img src="/assets/images/integrations/{{ intg.logo }}" />
         </a>
 
-          {{ intg.summary | markdown }}
+          {{ intg.summary | markdown | safe }}
           
         <a href="{{ intg.slug }}">Read more about {{ loop.key }}</a>
       </div>
