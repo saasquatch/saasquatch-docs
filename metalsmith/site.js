@@ -22,7 +22,7 @@ import pageify from './plugins/pageify.js';
 import categoryManager from './plugins/categoryManager.js';
 
 // var dumplog = require('./plugins/dumplog.js');
-import squatchjsAutoInclude from './plugins/squatchjsAutoInclude.js';
+//import squatchjsAutoInclude from './plugins/squatchjsAutoInclude.js';
 
 import exampleSwaggerSchemaFilter from './filters/exampleSwaggerSchemaFilter.js';
 import mardownFilter from './filters/markdown.js';
@@ -107,7 +107,7 @@ function site(baseplugin=null){
   * Automatic page generation
   */
   .use(pageify())
-  .use(squatchjsAutoInclude())
+  //.use(squatchjsAutoInclude())
 
   /*
   * Page grouping and whatnot
