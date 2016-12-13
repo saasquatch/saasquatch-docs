@@ -3,7 +3,7 @@ title: RS001
 highlights: 
 slug: squatchjs/issue/RS0xx
 sectionType: jsReference
-template: article.html
+template: pages/rscode.html
 ---
 
 ### Tips To Fix This
