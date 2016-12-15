@@ -1,0 +1,17 @@
+---
+title: Google Tag Manager Integration
+integrationName: Google Tag Manager
+slug: gtm
+highlights: |
+    Google Tag Manager helps you manage website tags all in one place. Referral SaaSquatch's GTM integration leverages your existing GTM setup to install your referral program without needing to edit your website.
+keyFeatures:
+ - Drag-and-Drop code snippet install
+ - Leverage existing Google Tag Manager setup
+ - No webpage editing required
+ - Completely configure your referral program through the SaaSquatch Portal.
+moreInfo:
+ - "[Google Tag Manager Quickstart Guide](/developer/using-gtm)"
+ - "[Install Guide for Marketers](/guides/morp-install)"
+category: landingPage
+template: intergrationLander.html
+---

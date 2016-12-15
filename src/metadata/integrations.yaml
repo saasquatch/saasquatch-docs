@@ -16,6 +16,22 @@ Recurly:
     summary: |
         The Referral SaaSquatch integration with Recurly powers automatic referral tracking, fulfillment and conversion through Recurly coupons, push notifications, and direct API access.
 
+Salesforce:
+    slug: /salesforce
+    logo: salesforce-integration.png
+    summary: |
+        Referral SaaSquatch for Salesforce is a managed package for Salesforce built on the Force.com platform. It provides synchronization of Referrals, Rewards and User Profiles as native Force.com custom objects.
+Google Tag Manager:
+    slug: /gtm
+    logo: gtm-integration.png
+    summary: |
+        Google Tag Manager helps you manage website tags all in one place. Referral SaaSquatch's GTM integration leverages your existing GTM setup to install your referral program without needing to edit your website.
+Giftbit:
+    slug: /giftbit
+    logo: giftbit-integration.png
+    summary: |
+        Giftbit allows you to buy, send, and track digital gift card orders. Referral SaaSquatch's Giftbit integration enables you to automatically reward your referral participants with gift cards.
+
 Segment:
     slug: /segment
     logo: segment-integration.png
@@ -27,19 +43,11 @@ Braintree:
     logo: braintree-integration.png
     summary: |
         The Referral SaaSquatch integration with Braintree powers automatic referral tracking, fulfillment and conversion using Braintree custom fields, discounts and direct API access.
-
 Zuora:
     slug: /zuora
     logo: zuora-integration.jpg
     summary: |
         The Referral SaaSquatch integration with Zuora powers automatic referral tracking, fulfillment and conversion through Zuora Subscription Tracking, Product Rate Plans and direct API access.
-
-Salesforce:
-    slug: /salesforce
-    logo: salesforce-integration.png
-    summary: |
-        Referral SaaSquatch for Salesforce is a managed package for Salesforce built on the Force.com platform. It provides synchronization of Referrals, Rewards and User Profiles as native Force.com custom objects.
-
 Silverpop:
     slug: /silverpop
     logo: silverpop-integration.png
