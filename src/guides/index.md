@@ -86,6 +86,39 @@ hero: true
               Setting up a Custom Referral Program using Google Tag Manager.
             <a href="/guides/using-gtm">Get started by reading our Quickstart Guide</a>
         </div>
+        <div class="docs-integration span3">
+   
+            <div class="text-center" style="max-height: 120px;">
+                <a href="/guides/hubspot" class="docs-integration-logo">
+                    <img align="middle" style="justify-content:center;" src="/assets/images/integrations/hubspot-integration.png" />
+                    
+                </a>
+            </div>
+              A quickstart guide for setting up your referral program using Hubspot.
+            <a href="/guides/hubspot">Get started by reading our Quickstart Guide</a>
+        </div>
+        <div class="docs-integration span3">
+   
+            <div class="text-center" style="max-height: 120px;">
+                <a href="/guides/squarespace" class="docs-integration-logo">
+                    <img align="middle" style="justify-content:center;" src="/assets/images/integrations/squarespace-integration.png" />
+                    
+                </a>
+            </div>
+              A quickstart guide for setting up your referral program on your Squarespace website.
+            <a href="/guides/squarespace">Get started by reading our Quickstart Guide</a>
+        </div>
+        <div class="docs-integration span3">
+   
+            <div class="text-center" style="max-height: 120px;">
+                <a href="/developer/giftbit" class="docs-integration-logo">
+                    <img align="middle" style="justify-content:center;" src="/assets/images/integrations/giftbit-integration.png" />
+                    
+                </a>
+            </div>
+              Referral SaaSquatch's Giftbit integration enables you to automatically reward your referral participants with gift cards.
+            <a href="/developer/giftbit">Get started by reading our Quickstart Guide</a>
+        </div>
     </div>
 </div>
 

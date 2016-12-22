@@ -1,26 +1,18 @@
-Stripe:
-    slug: /stripe
-    logo: stripe-integration.png
-    summary: |
-        The Referral SaaSquatch integration with Stripe powers automatic referral tracking, fulfillment and conversion through Stripe Connect, coupons and invoice line items.
-
-Branch:
-    slug: /branch-metrics
-    logo: branch-integration.png
-    summary: |
-        Referral SaaSquatch integrates with Branch Metrics to provide additional attribution, personalization and analytics by using Branch's deep links.
-
-Recurly:
-    slug: /recurly
-    logo: recurly-integration.png
-    summary: |
-        The Referral SaaSquatch integration with Recurly powers automatic referral tracking, fulfillment and conversion through Recurly coupons, push notifications, and direct API access.
-
 Salesforce:
     slug: /salesforce
     logo: salesforce-integration.png
     summary: |
         Referral SaaSquatch for Salesforce is a managed package for Salesforce built on the Force.com platform. It provides synchronization of Referrals, Rewards and User Profiles as native Force.com custom objects.
+Hubspot:
+    slug: /hubspot
+    logo: hubspot-integration.png
+    summary: |
+        Referral SaaSquatch's Hubspot integration leverages your existing Hubspot setup to install your referral program using your existing Hubspot Webpages.
+Squarespace:
+    slug: /squarespace
+    logo: squarespace-integration.png
+    summary: |
+        Referral SaaSquatch's Squarespace integration leverages your existing Squarespace website to install your referral program without editing any code.
 Google Tag Manager:
     slug: /gtm
     logo: gtm-integration.png
@@ -31,7 +23,23 @@ Giftbit:
     logo: giftbit-integration.png
     summary: |
         Giftbit allows you to buy, send, and track digital gift card orders. Referral SaaSquatch's Giftbit integration enables you to automatically reward your referral participants with gift cards.
+Stripe:
+    slug: /stripe
+    logo: stripe-integration.png
+    summary: |
+        The Referral SaaSquatch integration with Stripe powers automatic referral tracking, fulfillment and conversion through Stripe Connect, coupons and invoice line items.
+Recurly:
+    slug: /recurly
+    logo: recurly-integration.png
+    summary: |
+        The Referral SaaSquatch integration with Recurly powers automatic referral tracking, fulfillment and conversion through Recurly coupons, push notifications, and direct API access.
 
+Branch:
+    slug: /branch-metrics
+    logo: branch-integration.png
+    summary: |
+        Referral SaaSquatch integrates with Branch Metrics to provide additional attribution, personalization and analytics by using Branch's deep links.
+        
 Segment:
     slug: /segment
     logo: segment-integration.png
