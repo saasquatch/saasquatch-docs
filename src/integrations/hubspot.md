@@ -10,7 +10,7 @@ keyFeatures:
  - Simple install using Webpage Template Module
  - Completely configure your referral program through the SaaSquatch Portal.
 moreInfo:
- - "[Hubspot Quickstart Guide](/developer/hubspot)"
+ - "[Hubspot Quickstart Guide](/guides/hubspot)"
  - "[Install Guide for Marketers](/guides/morp-install)"
 category: landingPage
 template: intergrationLander.html

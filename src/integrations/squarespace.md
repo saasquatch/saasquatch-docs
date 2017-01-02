@@ -10,7 +10,7 @@ keyFeatures:
  - No editing of website code required
  - Completely configure your referral program through the SaaSquatch Portal.
 moreInfo:
- - "[Squarespace Quickstart Guide](/developer/squarespace)"
+ - "[Squarespace Quickstart Guide](/guides/squarespace)"
  - "[Install Guide for Marketers](/guides/morp-install)"
 category: landingPage
 template: intergrationLander.html
