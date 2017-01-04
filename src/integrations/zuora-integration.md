@@ -1,6 +1,8 @@
 ---
 title: Zuora Integration
 integrationName: Zuora
+logo: zuora-integration.jpg
+isHighlighted: false
 highlights: |
     Zuora is the premier enterprise SaaS billing platform. Referral SaaSquatch can be integrated with Zuora integration to automatically track subscriptions and give discounts.
 subtitle: Referral SaaSquatch automates fulfillment with Zuora

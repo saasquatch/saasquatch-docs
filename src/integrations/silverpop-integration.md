@@ -1,6 +1,8 @@
 ---
 title: Silverpop Integration
 integrationName: Silverpop
+logo: silverpop-integration.png
+isHighlighted: false
 slug: silverpop
 highlights: |
     Silverpop is an email marketing automation platform. Referral SaaSquatch supports integration with Silverpop for sending notification emails.
@@ -12,4 +14,4 @@ moreInfo:
  - "[Guide to Email](/topics/email/#silverpop)"
 category: landingPage
 template: intergrationLander.html
----
+--- 

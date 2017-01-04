@@ -100,7 +100,7 @@ function site(baseplugin=null){
       shorttags: 'metadata/shorttags.yaml',
       shorttagsMap: 'metadata/shorttagmap.json',
       branchFields: 'metadata/branchFields.yaml',
-      integrations: 'metadata/integrations.yaml',
+      //integrations: 'metadata/integrations.yaml',
       }))
 
   /*
@@ -119,6 +119,13 @@ function site(baseplugin=null){
       sortBy: 'title',
       metadata:{
         name: 'Issues List',
+      }
+    },
+    "integrationsList": {
+      pattern: 'integrations/*-integration.*',
+      sortBy: 'title',
+      metadata:{
+        name: 'Integration List',
       }
     } 
   }))

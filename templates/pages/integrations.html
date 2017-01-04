@@ -7,21 +7,41 @@
   
 
   <div class="docs-integrations-list">
+    <h3>Featured Integrations</h3>
     <div class="row-fluid">
-  {% for intg in integrations %}
+  {% for item in collections.integrationsList %}
+      {% if item.isHighlighted == true %}
+        {% if (loop.index0 != 0 && loop.index0 % 3 == 0) %}
+        </div><div class="row-fluid">
+        {% endif %}
+        <div class="docs-integration span4">
+          <a href="/{{ item.slug }}" class="docs-integration-logo">
+            <img src="/assets/images/integrations/{{ item.logo }}" />
+          </a>
+  
+            {{ item.highlights | markdown | safe }}
+            
+          <a href="/{{ item.slug }}">Read more about {{ item.integrationName }}</a>
+        </div>
+      {% endif %}
+  {% endfor %}
+    </div>
+    <hr>
+    
+    <div class="row-fluid">
+  {% for integration in collections.integrationsList %}
       {% if (loop.index0 != 0 && loop.index0 % 3 == 0) %}
       </div><div class="row-fluid">
       {% endif %}
       <div class="docs-integration span4">
-        <a href="{{ intg.slug }}" class="docs-integration-logo">
-          <img src="/assets/images/integrations/{{ intg.logo }}" />
+        <a href="/{{ integration.slug }}" class="docs-integration-logo">
+          <img src="/assets/images/integrations/{{ integration.logo }}" />
         </a>
 
-          {{ intg.summary | markdown | safe }}
+          {{ integration.highlights | markdown | safe }}
           
-        <a href="{{ intg.slug }}">Read more about {{ loop.key }}</a>
+        <a href="/{{ integration.slug }}">Read more about {{ integration.integrationName }}</a>
       </div>
-
   {% endfor %}
     </div>
   </div>
