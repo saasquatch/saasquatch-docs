@@ -68,12 +68,12 @@ hero: true
         <div class="docs-integration span3">
             
             <div class="text-center" style="max-height: 120px;">
-                <a href="/developer/segment/quickstart" class="docs-integration-logo">
-                  <img align="middle" style="justify-content:center;" src="/assets/images/integrations/segment-integration.png" />
+                <a href="/guides/tealium" class="docs-integration-logo">
+                  <img align="middle" style="justify-content:center;" src="/assets/images/integrations/tealium-integration.png" />
                 </a>
             </div>
-              Setting up a Custom Referral Program using our Segment.io Integration.
-            <a href="/developer/segment/quickstart">Get started by reading our Quickstart Guide</a>
+              Setting up a Custom Referral Program using our Tealium Integration.
+            <a href="/guides/tealium">Get started by reading our Quickstart Guide</a>
         </div>
         <div class="docs-integration span3">
    
@@ -107,6 +107,16 @@ hero: true
             </div>
               A quickstart guide for setting up your referral program on your Squarespace website.
             <a href="/guides/squarespace">Get started by reading our Quickstart Guide</a>
+        </div>
+        <div class="docs-integration span3">
+            
+            <div class="text-center" style="max-height: 120px;">
+                <a href="/developer/segment/quickstart" class="docs-integration-logo">
+                  <img align="middle" style="justify-content:center;" src="/assets/images/integrations/segment-integration.png" />
+                </a>
+            </div>
+              Setting up a Custom Referral Program using our Segment.io Integration.
+            <a href="/developer/segment/quickstart">Get started by reading our Quickstart Guide</a>
         </div>
         <div class="docs-integration span3">
    
