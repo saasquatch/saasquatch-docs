@@ -3,7 +3,9 @@ title: Tealium Enterprise Tag Manager Integration
 integrationName: Tealium
 logo: tealium-integration.png
 slug: tealium
-isHighlighted: true
+categories: 
+ - tag-manager
+ - featured
 highlights: |
     Referral SaaSquatch's Tealium Enterprise Tag Management integration leverages your existing Tealium setup to install your referral program without needing to edit your website.
 keyFeatures:

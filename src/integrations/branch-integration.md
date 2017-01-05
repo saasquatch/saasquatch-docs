@@ -3,7 +3,6 @@ title: Branch Metrics Integration
 integrationName: Branch
 logo: branch-integration.png
 slug: branch-metrics
-isHighlighted: false
 highlights: |
     Branch Metrics is a free mobile attribution platform. Referral SaaSquatch integrates with Branch Metrics to provide a better user experience, additional attribution, personalization and analytics by using Branch's deep links.
 subtitle: Referral SaaSquatch creates deeplinks with Branch Metrics

@@ -2,7 +2,8 @@
 title: Braintree Integration
 integrationName: Braintree
 logo: braintree-integration.png
-isHighlighted: false
+categories: 
+ - payment-provider
 highlights: |
     Braintree is a great payment layer. Referral SaaSquatch's Braintree integration uses Referral SaaSquatch's Braintree integration uses Braintree's API and Braintree's Custom Fields to automatically track subscriptions and give discounts.
 subtitle: Referral SaaSquatch automates fulfillment with Braintree

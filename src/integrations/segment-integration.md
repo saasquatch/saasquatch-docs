@@ -2,8 +2,9 @@
 title: Segment Integration
 integrationName: Segment
 logo: segment-integration.png
-isHighlighted: false
 slug: segment
+categories: 
+ - tag-manager
 highlights: |
     Segment is central analytics API and customer data hub. Segment customers can use analytics.js instead of directly using the Squatch.js javascript library
 keyFeatures:

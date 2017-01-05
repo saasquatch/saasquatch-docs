@@ -2,6 +2,9 @@
 title: Hubspot Integration
 integrationName: Hubspot
 logo: hubspot-integration.png
+categories: 
+ - crm
+ - landing-page
 slug: hubspot
 highlights: |
     Referral SaaSquatch's Hubspot integration leverages your existing Hubspot setup to install your referral program using your existing Hubspot Webpages.
