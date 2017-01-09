@@ -1,6 +1,16 @@
 
+.mainSite{
+    background:#003B45;
+}
+.helpCenter{
+    background:#003B45;
+    color: #65BD60;
+    font-size: 14px;
+    text-align: center;
+    font: nova
+}
 .successCenter{
-    .colorCoded(#fba772, 'Success Center Article');
+    .colorCoded(#003B45, 'Success Center Article');
 }
 .developerCenter{
     .colorCoded(#6eb5e2, 'Developer Center Article');
@@ -17,15 +27,15 @@
     // &.mm-listview,
     ul.baseMenu > li&,
     div &.mm-panel {
-        background:@categoryColor;
-        color: #FFF;
+        background:#fff;
+        color: #003B45;
         text-shadow: rgba(0,0,0,0.1) 1px 1px;
     }
     
     // Hero / landing page color coding
     &.docs-home-category{
         a{
-            background: @categoryColor;
+            background: #fff;
             color: #FFF
         }
         a:hover {
@@ -34,11 +44,11 @@
     }
     
     &.hero-unit {
-        background: @categoryColor;
-        background: url('/assets/images/marketing-website/footerbackgroundrs2.jpg');
-        color: #FFF;
+        background: #fff;
+        //background: url('/assets/images/marketing-website/footerbackgroundrs2.jpg');
+        color: #000;
         a {
-            color: #FFF;
+            color: #000;
         }
     }
     
@@ -65,17 +75,20 @@
     body& {
         .fa-rounded,
         .docs-sections a .fa {
-            background: @categoryColor;
+            //section index page icon colour
+            background: #003B45;
+            color: #65BD60;
         }
         
         .page-header{
-            border-bottom: 3px solid @categoryColor;
+            //title underline
+            border-bottom: 3px solid #65BD60;
             position: relative;
 
             // Shows the article title for Page Headers
             &::after{
                 content: @categoryName;
-                color: @categoryColor;
+                color: #65BD60;
                 position: absolute;
                 right: 0;
                 bottom: 0;
