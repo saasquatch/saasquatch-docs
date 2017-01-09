@@ -13,7 +13,7 @@ keyFeatures:
  - Completely configure your referral program through the SaaSquatch Portal.
 moreInfo:
  - "[Google Tag Manager Quickstart Guide](/guides/using-gtm)"
- - "[Install Guide for Marketers](/guides/morp-install)"
+ - "[Drag-and-Drop Integration Configuration](/guides/integration-quickstart)"
 category: landingPage
 template: intergrationLander.html
 ---

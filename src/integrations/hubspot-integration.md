@@ -12,7 +12,7 @@ keyFeatures:
  - Completely configure your referral program through the SaaSquatch Portal.
 moreInfo:
  - "[Hubspot Quickstart Guide](/guides/hubspot)"
- - "[Install Guide for Marketers](/guides/morp-install)"
+ - "[Drag-and-Drop Integration Configuration](/guides/integration-quickstart)"
 category: landingPage
 template: intergrationLander.html
 ---
