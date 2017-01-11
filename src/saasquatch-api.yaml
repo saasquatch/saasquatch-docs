@@ -265,7 +265,7 @@ paths:
         - APIKey: []
       description: |
         Looks up a user based upon their `id` and returns their personal information.
-        This method just returns the details of the user in question, and not all associated properties like Rewards, ShareLinks, Balances or Referrals.
+        This method just returns the details of the user in question, and not all associated properties like Rewards, Balances, or Referrals.
       parameters:
         - name: accountId
           in: path
