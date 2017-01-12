@@ -9,7 +9,7 @@
         font-size: 12px;
         line-height: 12px;
     }
-    
+
     // Makes the NavSections bigger
     ul.baseMenu > li{
         & span,
@@ -19,7 +19,7 @@
             padding-top: 20px;
             padding-bottom: 20px;
         }
-        
+
         &.successCenter span:after{
             content: "Learn how to use Referral SaaSquatch";
             font-size: 12px;
@@ -33,7 +33,22 @@
             font-size: 12px;
         }
     }
-    
+}
+
+ul > li.mainSite {
+  padding: 5px;
+
+  a {
+    line-height: 30px;
+    font-size: 16px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    .logo {
+      max-width: 160px;
+      margin: 0 auto;
+    }
+  }
 }
 
 
@@ -43,12 +58,12 @@
     @mmenuFaded3: rgba(255, 255, 255, 0.25);
     @mmenuFaded2: rgba(255, 255, 255, 0.2);
     @mmenuFaded4: rgba(255, 255, 255, 0.15);
-    
+
     //nav background
     background: #fff;
     //non-colour coordinated menu item text colour
     color: #003B45;
-    
+
     & .mm-list> li:after {
         border-color: @mmenuFaded2;
     }

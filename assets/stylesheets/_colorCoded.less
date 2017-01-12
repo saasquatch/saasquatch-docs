@@ -1,6 +1,9 @@
 
 .mainSite{
     background:#003B45;
+    a {
+      padding: 20px;
+    }
 }
 .helpCenter{
     background:#003B45;
@@ -21,7 +24,7 @@
 
 .colorCoded(@categoryColor, @categoryName){
     @categoryFontColor: darken(@categoryColor, 10%);
-    
+
     // Sidenav color coding
     // .mm-listview > &,
     // &.mm-listview,
@@ -31,7 +34,7 @@
         color: #003B45;
         text-shadow: rgba(0,0,0,0.1) 1px 1px;
     }
-    
+
     // Hero / landing page color coding
     &.docs-home-category{
         a{
@@ -42,7 +45,7 @@
             background: darken(@categoryColor, 5%);
         }
     }
-    
+
     &.hero-unit {
         background: #fff;
         //background: url('/assets/images/marketing-website/footerbackgroundrs2.jpg');
@@ -51,7 +54,7 @@
             color: #000;
         }
     }
-    
+
     // Search results color coding.
     &.search-results-item{
         a .search-results-title{
@@ -79,7 +82,7 @@
             background: #003B45;
             color: #65BD60;
         }
-        
+
         .page-header{
             //title underline
             border-bottom: 3px solid #65BD60;
