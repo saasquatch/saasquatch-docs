@@ -1,7 +1,7 @@
 ---
 title: Zuora Integration
 integrationName: Zuora
-logo: zuora-integration.jpg
+logo: zuora-integration.png
 isHighlighted: false
 categories: 
  - payment-provider

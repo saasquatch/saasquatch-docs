@@ -5,125 +5,7 @@
 
   {{ contents | safe }}
   
-<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
-
-
-
-<style>
-
-* { box-sizing: border-box; }
-
-body {
-  font-family: sans-serif;
-}
-
-/* ---- button ---- */
-
-.isotope-button {
-  display: inline-block;
-  padding: 10px 18px;
-  margin-bottom: 10px;
-  background: #EEE;
-  border: none;
-  border-radius: 7px;
-  background-image: linear-gradient( to bottom, hsla(0, 0%, 0%, 0), hsla(0, 0%, 0%, 0.2) );
-  color: #222;
-  font-family: sans-serif;
-  font-size: 16px;
-  text-shadow: 0 1px white;
-  cursor: pointer;
-}
-
-.isotope-button:hover {
-  background-color: #8CF;
-  text-shadow: 0 1px hsla(0, 0%, 100%, 0.5);
-  color: #222;
-}
-
-.isotope-button:active,
-.isotope-button.is-checked {
-  background-color: #28F;
-}
-
-.isotope-button.is-checked {
-  color: white;
-  text-shadow: 0 -1px hsla(0, 0%, 0%, 0.8);
-}
-
-.isotope-button:active {
-  box-shadow: inset 0 1px 10px hsla(0, 0%, 0%, 0.8);
-}
-
-/* ---- isotope-button-group ---- */
-
-.isotope-button-group:after {
-  content: '';
-  display: block;
-  clear: both;
-}
-
-.isotope-button-group .isotope-button {
-  float: left;
-  border-radius: 0;
-  margin-left: 0;
-  margin-right: 1px;
-}
-
-.isotope-button-group .isotope-button:first-child { border-radius: 0.5em 0 0 0.5em; }
-.isotope-button-group .isotope-button:last-child { border-radius: 0 0.5em 0.5em 0; }
-
-/* ---- isotope ---- */
-
-
-
-/* clear fix */
-.grid:after {
-  content: '';
-  display: block;
-  clear: both;
-}
-
-/* ---- .integration-item ---- */
-
-.integration-item {
-  position: relative;
-  float: left;
-  width: 330px;
-  height: 300px;
-  margin: 5px;
-  padding: 5px;
-  color: #333;
-}
-
-.integration-item > * {
-  margin: 0;
-  padding: 0;
-}
-
-/* ---- saasquatch integration items ---- */
-
-.integration-item .image {
-  display: block;
-  margin: auto;
-  
-}
-
-.integration-item .link {
-  position: absolute;
-  left: 10px;
-  top: 270px;
-  font-size: 14px;
-}
-
-.integration-item .highlights {
-  position: absolute;
-  left: 10px;
-  top: 170px;
-  font-size: 14px;
-}
-
-
-</style>
+<script src="/assets/lib/isotope.pkgd.min.js"></script>
 
 <div class="isotope-button-group filters-isotope-button-group">
   <button class="isotope-button is-checked" data-filter="*">All</button>
@@ -137,10 +19,11 @@ body {
 <div class="grid">
   {% for integration in collections.integrationsList %}
       <div class="integration-item {% for category in integration.categories %}{{ category }} {% endfor %}">
-        <a class="imageLink" href="/{{ integration.slug }}">
-          <img class="image" src="/assets/images/integrations/{{ integration.logo }}" />
-        </a>
-
+        <div class="integration-image">
+          <a class="imageLink" href="/{{ integration.slug }}">
+            <img class="image" src="/assets/images/integrations/{{ integration.logo }}" />
+          </a>
+        </div>
         <p class="highlights">{{ integration.highlights }}</p>
           
         <a class="link" href="/{{ integration.slug }}">Read more about {{ integration.integrationName }}</a>
