@@ -41,10 +41,10 @@ cite{ color:#999;}
 
  /* Typography */
 
-/* TODO: Add a better color than black or twitter default blue link color 
+/* TODO: Add a better color than black or twitter default blue link color
  a, a:link, a:visited, a:active, a:hover {color:#000;}
  a, a:hover {color:#000;} */
- 
+
  a.row { display: block;}
 
  h1.page-title { font-size: 40px; text-transform: uppercase; line-height: 100%; margin: 0 0 60px 0; }
@@ -77,25 +77,25 @@ cite{ color:#999;}
  #works,  #news { padding-bottom: 60px;}
  .stripe { top:0; left:0; right:0; position:absolute; height:240px; z-index: -1;}
  .page.pt_page_parallax { background: fixed;}
- 
+
  .page-id-2535,  .page-id-2325,  .page-id-59, .page-id-2167, .page-id-2008, .page-id-2006, .page-id-1999, .page-id-2003, .page-id-1882, .page-id-952, .page-id-1727, .page-id-65, .page-id-1839 {padding-bottom: 0px; padding-left:0px !important; padding-right:0px !important;}
 
  .page-id-2535,  .page-id-2325,  .page-id-59, .page-id-2167, .page-id-2008, .page-id-2006, .page-id-1999, .page-id-2003, .page-id-1727, .page-id-1839 {padding-top: 0px !important;}
- 
+
 
  .page-id-2597 {padding-bottom: 0px; padding-left:0px !important; padding-right:0px !important;}
  .page-id-2597 {padding-top: 0px !important;}
   .page-id-3660, .page-id-2821 {padding: 0px !important;}
- 
+
  /* Page Home */
 
 /*.page:first-of-type { padding-top: 0px;}*/
 
 
  /* Nav Header */
- 
+
 .navbar { color: #000; }
-.navbar-inner { border:none;  background: transparent; background-color: #fff; background-color: rgba(255,255,255,0.95);  }
+.navbar-inner { border:none;  background: transparent; background-color: #fff; background-color: rgba(255,255,255,0.95); box-shadow: none; }
 .navbar .brand { padding: 43px 0px 0px 0; font-size: 36px; color: #333; font-weight: 600; }
 .navbar .nav { float: right; }
 .navbar .nav > li > a { color:#000; font-size: 17px; padding: 50px 10px 20px 10px; position: relative; text-shadow: none; }
@@ -115,8 +115,8 @@ header .dropdown-menu li > a:hover, .dropdown-menu .active > a, .dropdown-menu .
 
 #gallery img { display: block; background-color: #000; -webkit-border-radius: 3px; border-radius: 3px; border-width: 1px; border-style: solid; border-color: #bbb; margin-bottom: 15px; margin-top:15px;}
 
- 
- 
+
+
  /* Testing Stuff */
 
 
@@ -132,7 +132,7 @@ header .dropdown-menu li > a:hover, .dropdown-menu .active > a, .dropdown-menu .
     margin-bottom: 40px;
 }
 
- 
+
 #footer{
     background: url('/assets/images/marketing-website/footerbackgroundrs2.jpg');
     background-position: 50% 0%;
@@ -156,11 +156,11 @@ header .dropdown-menu li > a:hover, .dropdown-menu .active > a, .dropdown-menu .
 #top-sidebar{
     margin-top: 46px;
 }
- 
+
 #bottom-sidebar{
     padding: 0px;
-} 
- 
+}
+
 
 #respond .logged-in-as { opacity: 0.8; }
 #respond #reply-title { margin-bottom: 0; }
@@ -204,7 +204,7 @@ footer .copyright { padding-bottom:60px;}
 
 .hero{text-align:center;}
 .hero h2{font-size:40px;font-weight:700;margin-bottom:0;}
-.hero h3{font-size:25px;font-weight:300;opacity:0.8; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";} 
+.hero h3{font-size:25px;font-weight:300;opacity:0.8; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";}
 
 .services-list .icon, .services-icons{font-family:entypo;font-size:50px;text-align:center;line-height:50px;}
 .services-list h5, h5.services-icon{margin:0;}
@@ -296,7 +296,7 @@ input.error, textarea.error { border-color: #E9322D; box-shadow: 0 0 6px #F8B9B7
 
 /* IE */
 
-            
+
 /**
             *
             *					ALL sorts of custom CSS here, like for SaaSquatch custom fonts and shit
@@ -525,12 +525,12 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 
 .squatch-blog-footer{
     padding-top: 160px;
-    padding-bottom: 100px;    
+    padding-bottom: 100px;
 }
 
 .squatch-banner-blog-footer{
     padding-top: 50px;
-    padding-bottom: 0px;    
+    padding-bottom: 0px;
 }
 
 .squatch-blog-footer-squatchhead{
@@ -543,9 +543,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 
 @media (max-width:1200px)  {
     .small-desktop h2 {font-size: 34px !important; color: #FFF; text-shadow: rgba(0,0,0,0.7) 0 0 5px; line-height: 40px;}
-    
+
     .home-header {height:236px;}
 
 }
-    
-    

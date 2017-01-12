@@ -118,12 +118,13 @@ button#open-sidenav {
     .hamburger-inner:before{
         width: 4px;
     }
-    
+
     .navbar-inner {
         border: none;
         background: transparent;
         background-color: #fff;
         background-color: rgba(255, 255, 255, 0.95);
+        box-shadow: none;
     }
 
     .navbar .brand {
@@ -132,11 +133,11 @@ button#open-sidenav {
     }
 
     .nav> li> a {
-        color: #000;
+        color: #003B45;
         text-shadow: none;
         font-weight: bold;
     }
-    
+
     .nav-collapse.in.collapse {
         text-align: right; // Right-aligns the nav-collapse dropdown items
     }
@@ -154,16 +155,16 @@ button#open-sidenav {
         border-right: 7px solid transparent;
         border-left: 7px solid transparent;
     }
-    
+
     .dropdown-menu {
         border: none;
         box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
     }
-    
+
     .dropdown-menu li> a {
         color: #fff;
     }
-    
+
     .dropdown-menu li> a:hover,
     .dropdown-menu .active> a,
     .dropdown-menu .active> a:hover {
@@ -171,4 +172,26 @@ button#open-sidenav {
         color: #000;
         background: transparent;
     }
+}
+
+.mm-navbar {
+  // display: none !important;
+}
+
+.mm-menu .mm-btn:after, .mm-menu .mm-btn:before {
+  border-color: #fff;
+  margin-top: 47px;
+}
+
+.mm-panels>.mm-panel.mm-hasnavbar {
+  padding-top: 0 !important;
+}
+
+.mm-btn.mm-prev {
+  height: 106px;
+}
+
+.not-active {
+  pointer-events: none;
+  cursor: default;
 }
