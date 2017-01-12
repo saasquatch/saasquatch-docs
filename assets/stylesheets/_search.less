@@ -1,22 +1,6 @@
 .docs-searchbox-full {
-    position: relative;
-    border: 1px solid #CCC;
-    border-width: 1px 1px 0 1px;
-    border-radius: 5px 5px 0 0;
-    text-align: center;
-    padding: 20px;
-    background: #EEE;
-    margin-top: 160px;
-    &:before {
-        content: "";
-        background: url("/assets/images/peeker.png");
-        width: 155px;
-        height: 120px;
-        position: absolute;
-        top: -116px;
-        left: 50%;
-        margin-left: -77px;
-    }
+    position: absolute;
+    top: 10px;
 }
 
 .search-page {
@@ -24,15 +8,6 @@
     min-height: 160px;
     margin: 0 auto;
     position: relative;
-    &:before {
-        content: "";
-        background: url("/assets/images/side-peeker.png");
-        width: 97px;
-        height: 141px;
-        position: absolute;
-        top: 10px;
-        left: -87px;
-    }
 }
 
 .search-results {
@@ -57,7 +32,7 @@
         }
         .search-results-body {
             color: #333;
-            
+
             br {
                 display: none; // Hide line breaks that Google injects
             }
