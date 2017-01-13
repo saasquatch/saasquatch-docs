@@ -187,7 +187,12 @@ button#open-sidenav {
 }
 
 .mm-navbar {
-  // display: none !important;
+  border: 0 !important;
+  height: 0;
+
+  .mm-title {
+    display: none !important;
+  }
 }
 
 .mm-menu .mm-btn:after, .mm-menu .mm-btn:before {
@@ -214,4 +219,25 @@ h1, h2, h3, h4, h5, h6, body {
 
 .form-search .input-append .search-query {
   border-radius: 14px;
+}
+
+.help-center-logo {
+  background: #003b45;
+  text-align: center;
+
+  img {
+    max-width: 175px;
+    margin-bottom: 15px;
+  }
+}
+
+.main-site-logo {
+  background: #003b45;
+  text-align: center;
+
+  img {
+    max-width: 160px;
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
 }
