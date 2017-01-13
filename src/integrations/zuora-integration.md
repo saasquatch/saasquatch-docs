@@ -2,7 +2,6 @@
 title: Zuora Integration
 integrationName: Zuora
 logo: zuora-integration.png
-isHighlighted: false
 categories: 
  - payment-provider
 highlights: |
