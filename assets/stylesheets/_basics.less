@@ -226,13 +226,21 @@ h1, h2, h3, h4, h5, h6, body {
   font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.form-search .input-append .search-query {
-  border-radius: 14px;
+.form-search .input-append {
+  width: 100%;
+
+  .search-query {
+    border-radius: 14px;
+    width: 80%;
+    max-width: 230px;
+  }
 }
 
 .help-center-logo {
   background: #003b45;
   text-align: center;
+  border: 0;
+  margin-top: -1px;
 
   img {
     max-width: 175px;
