@@ -17,6 +17,7 @@ keyFeatures:
 moreInfo:
  - "[Hubspot Quickstart Guide](/guides/hubspot)"
  - "[Drag-and-Drop Integration Configuration](/guides/integration-quickstart)"
+guideLink: /guides/hubspot
 category: landingPage
 template: intergrationLander.html
 ---

@@ -44,13 +44,13 @@
       {% if category == "payment-provider" || category == "reward" || category == "tag-manager" %}
         <div class="guides-item integration {% for type in integration.categories %}{{ type }} {% endfor %}">
           <div class="guides-image">
-            <a class="imageLink" href="{{ integration.slug }}">
+            <a class="imageLink" href="{{ integration.guideLink }}">
               <img class="image" src="/assets/images/integrations/{{ integration.logo }}" />
             </a>
           </div>
           <p class="highlights guides-image-highlights">{{ integration.highlights }}</p>
           
-          <a class="link" href="/{{ integration.slug }}">Read more about {{ integration.integrationName }}</a>
+          <a class="link" href="{{ integration.guideLink }}">Read more about {{ integration.integrationName }}</a>
         </div>
       {% endif %}
     {% endfor %}

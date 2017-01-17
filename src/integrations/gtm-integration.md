@@ -16,6 +16,7 @@ keyFeatures:
 moreInfo:
  - "[Google Tag Manager Quickstart Guide](/guides/using-gtm)"
  - "[Drag-and-Drop Integration Configuration](/guides/integration-quickstart)"
+guideLink: /guides/using-gtm
 category: landingPage
 template: intergrationLander.html
 ---

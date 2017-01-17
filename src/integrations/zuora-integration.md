@@ -14,6 +14,7 @@ keyFeatures:
  - Detect cancelled subscriptions to automatically update referral rewards
 moreInfo:
  - "[Zuora Tech Installation Guide](/developer/zuora)"
+guideLink: /developer/zuora
 category: landingPage
 template: intergrationLander.html
 ---

@@ -13,6 +13,7 @@ keyFeatures:
  - Uses a native integration built by SaaSquatch directly on Giftbit's API
 moreInfo:
  - "[Giftbit Quickstart Guide](/developer/giftbit)"
+guideLink: /developer/giftbit
 category: landingPage
 template: intergrationLander.html
 ---

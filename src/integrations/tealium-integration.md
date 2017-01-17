@@ -16,6 +16,7 @@ keyFeatures:
 moreInfo:
  - "[Tealium Tag Manager Quickstart Guide](/guides/tealium)"
  - "[Drag-and-Drop Integration Configuration](/guides/integration-quickstart)"
+guideLink: /guides/tealium
 category: landingPage
 template: intergrationLander.html
 ---

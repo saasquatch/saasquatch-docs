@@ -11,6 +11,7 @@ keyFeatures:
  - Ensures deliverability through your existing email systems
 moreInfo:
  - "[Guide to Email](/topics/email/#silverpop)"
+guideLink: /topics/email/#silverpop
 category: landingPage
 template: intergrationLander.html
 --- 

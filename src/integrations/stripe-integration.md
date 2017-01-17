@@ -14,6 +14,7 @@ keyFeatures:
  - Uses a native integration built by SaaSquatch directly on Stripe Connect
 moreInfo:
  - "[Stripe Tech Installation Guide](/developer/stripe)"
+guideLink: /developer/stripe
 integrationName: Stripe
 category: landingPage
 template: intergrationLander.html

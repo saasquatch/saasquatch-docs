@@ -13,6 +13,7 @@ keyFeatures:
 moreInfo:
  - "[Weebly Quickstart Guide](/guides/weebly)"
  - "[Drag-and-Drop Integration Configuration](/guides/integration-quickstart)"
+guideLink: /guides/weebly
 category: landingPage
 template: intergrationLander.html
 ---

@@ -16,6 +16,7 @@ keyFeatures:
 moreInfo:
  - "[Segment Quickstart Guide](/developer/segment/quickstart)"
  - "[Segment Tech Reference](/developer/segment)"
+guideLink: /developer/segment/quickstart
 category: landingPage
 template: intergrationLander.html
 ---

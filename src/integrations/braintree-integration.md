@@ -15,6 +15,7 @@ keyFeatures:
  - Uses a native integration built by SaaSquatch directly on Braintree's API 
 moreInfo:
  - "[Braintree Tech Installation Guide](/developer/braintree)"
+guideLink: /developer/braintree
 category: landingPage
 template: intergrationLander.html
 ---

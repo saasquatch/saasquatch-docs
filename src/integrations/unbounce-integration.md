@@ -15,6 +15,7 @@ keyFeatures:
 moreInfo:
  - "[Unbounce Quickstart Guide](/guides/unbounce)"
  - "[Drag-and-Drop Integration Configuration](/guides/integration-quickstart)"
+guideLink: /guides/unbounce
 category: landingPage
 template: intergrationLander.html
 ---

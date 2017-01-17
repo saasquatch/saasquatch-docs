@@ -14,6 +14,7 @@ keyFeatures:
  - Uses a native integration built by SaaSquatch directly on Recurly's API 
 moreInfo:
  - "[Recurly Tech Installation Guide](/developer/recurly)"
+guideLink: /developer/recurly
 integrationName: Recurly
 category: landingPage
 template: intergrationLander.html

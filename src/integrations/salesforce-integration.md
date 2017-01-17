@@ -18,6 +18,7 @@ keyFeatures:
 moreInfo:
  - "[Salesforce FAQ](/salesforce/faq)"
  - "[Salesforce Install Guide](/salesforce/install-guide)"
+guideLink: /salesforce/faq
 category: landingPage
 template: intergrationLander.html
 ---
