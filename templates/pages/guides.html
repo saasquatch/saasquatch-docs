@@ -1,0 +1,105 @@
+{% import "../macros/swaggerMacros.html" as swaggerMacros %}
+
+{% extends '../article.html' %}
+{% block articleContent %}
+
+  {{ contents | safe }}
+  
+<script src="/assets/lib/isotope.pkgd.min.js"></script>
+
+
+
+
+<div class="isotope-integration-button-group filters-isotope-integration-button-group">
+  <button class="isotope-integration-button is-checked" data-filter="*">All</button>
+  <button class="isotope-integration-button" data-filter=".business-model">Business Models</button>
+  <button class="isotope-integration-button" data-filter=".library">Libraries</button>
+  <button class="isotope-integration-button" data-filter=".integration">Integrations</button>
+  <button class="isotope-integration-button" data-filter=".payment-provider">Payment Providers</button>
+  <button class="isotope-integration-button" data-filter=".reward">Rewards</button>
+  <button class="isotope-integration-button" data-filter=".feature">Features</button>
+</div>
+
+<div class="grid">
+  {% for guide in guides %}
+    <div class="guides-item {% for type in guide.types %}{{ type }} {% endfor %}">
+      <h3 class="text-center no-anchor">{{ guide.name }}</h3>
+      <div class="guides-image">
+        <a class="imageLink" href="{{ guide.slug }}">
+          {% if guide.icon %}
+          <i class="icon fa fa-6 {{ guide.icon }}" aria-hidden="true"></i>
+          {% endif %}
+          {% if guide.image %}
+          <img class="image" src="/assets/images/integrations/{{ guide.image }}" />
+          {% endif %}
+        </a>
+      </div>
+      <p class="highlights guides-icon-highlights">{{ guide.summary }} </p>
+      
+      <a class="link" href="{{ guide.slug }}">{{ guide.linkText }}. </a></p>
+    </div>
+  {% endfor %}
+  {% for integration in collections.integrationsList %}
+    {% for category in integration.categories %}
+      {% if category == "payment-provider" || category == "reward" || category == "tag-manager" %}
+        <div class="guides-item integration {% for type in integration.categories %}{{ type }} {% endfor %}">
+          <div class="guides-image">
+            <a class="imageLink" href="{{ integration.slug }}">
+              <img class="image" src="/assets/images/integrations/{{ integration.logo }}" />
+            </a>
+          </div>
+          <p class="highlights guides-image-highlights">{{ integration.highlights }}</p>
+          
+          <a class="link" href="/{{ integration.slug }}">Read more about {{ integration.integrationName }}</a>
+        </div>
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+</div> 
+
+
+
+
+<script> 
+
+// init Isotope
+var iso = new Isotope( '.grid', {
+  itemSelector: '.guides-item',
+  layoutMode: 'fitRows',
+  //filter: '.business-model'
+});
+
+// bind filter isotope-integration-button click
+var filtersIntegration = document.querySelector('.filters-isotope-integration-button-group');
+filtersIntegration.addEventListener( 'click', function( event ) {
+  // only work with isotope-integration-buttons
+  if ( !matchesSelector( event.target, 'button' ) ) {
+    return;
+  }
+  var filterValue = event.target.getAttribute('data-filter');
+  // use matching filter function
+  //filterValue = filterFns[ filterValue ] || filterValue;
+  iso.arrange({ filter: filterValue });
+});
+
+// change is-checked class on isotope-integration-buttons
+var buttonGroups = document.querySelectorAll('.isotope-integration-button-group');
+for ( var i=0, len = buttonGroups.length; i < len; i++ ) {
+  var buttonGroup = buttonGroups[i];
+  radioButtonGroup( buttonGroup );
+}
+
+function radioButtonGroup( buttonGroup ) {
+  buttonGroup.addEventListener( 'click', function( event ) {
+    // only work with buttons
+    if ( !matchesSelector( event.target, 'button' ) ) {
+      return;
+    }
+    buttonGroup.querySelector('.is-checked').classList.remove('is-checked');
+    event.target.classList.add('is-checked');
+  });
+}
+
+</script>
+  
+{% endblock articleContent %}

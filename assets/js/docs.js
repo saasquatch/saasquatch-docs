@@ -25,6 +25,7 @@ jQuery(document).ready(function() {
     var anchors = new anchorJS();
     anchors.options.placement = 'left';
     anchors.add('.article-content h2, .article-content h3, .article-content h4');
+    anchors.remove('.no-anchor');
     
     /*
     *   Auto anchor links for the REST API and Squatch.js Docs

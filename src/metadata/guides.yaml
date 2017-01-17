@@ -1,0 +1,138 @@
+API:
+    name: API
+    linkText: Read more about our SaaSquatch REST API
+    slug: /api
+    types:
+     - library
+    icon: fa-code
+    summary: |
+        The Referral SaaSquatch REST API lets you build your own custom logic on top of your referral program.
+Squatch.js:
+    name: Squatch.js
+    linkText: Read more about our Squatch.js Javascript Library
+    slug: /developer/squatchjs
+    types:    
+     - library
+    icon: fa-code
+    summary: |
+        squatch.js is the Referral SaaSquatch JavaScript SDK and a one-stop shop to integrate a referral program into your website or web app.
+Mobile SDK:
+    name: Mobile SDK
+    linkText: Read more about our Mobile SDK
+    slug: /mobile
+    types:    
+     - library
+    icon: fa-code
+    summary: |
+        The Referral SaaSquatch mobile SDK integrates a referral program natively into your iOS or Android app.
+        
+SaaS:
+    name: SaaS
+    linkText: Read more about our SaaS Guide
+    slug: /guides/saas-installation
+    types: 
+     - business-model
+    icon: fa-cloud
+    summary: |
+        Setting up a Custom Referral Program tailored for your SaaS business.
+eCommerce:
+    name: eCommerce
+    linkText: Guide coming soon
+    slug: #
+    types: 
+     - business-model
+    icon: fa-shopping-cart
+    summary: |
+        Setting up a Custom Referral Program tailored for your eCommerce business.
+Finance:
+    name: Finance
+    linkText: Guide coming soon
+    slug: #
+    types:
+     - business-model
+    icon: fa-university
+    summary: |
+        Setting up a Custom Referral Program tailored for your Financial Services business.
+Mobile:
+    name: Mobile
+    linkText: Read more about our Mobile Guide
+    slug: /guides/mobile-installation
+    types: 
+     - business-model
+    icon: fa-mobile
+    summary: |
+        Setting up a Custom Referral Program for your mobile app using our mobile SDK.
+        
+Email:
+    name: Email
+    linkText: Read more about our email functionality
+    slug: /topics/email
+    types: 
+     - feature
+    icon: fa-envelope-o
+    summary: |
+        Referral SaaSquatch uses email for three separate things: Identifying users, sharing between users, and notifications of referrals.
+Custom Link Domains:
+    name: Custom Link Domains
+    linkText: Read more about our custom link domains
+    slug: /customshortdomainguide
+    types: 
+     - feature
+    icon: fa-link
+    summary: |
+        Referral SaaSquatch supports the use of Custom Short Domains which allow you to change the format of the referral links shared by your users.
+Security Management System:
+    name: Referral Security
+    linkText: Read more about our security management system
+    slug: /developer/referral-security/
+    types: 
+     - feature
+    icon: fa-lock
+    summary: |
+        Referral SaaSquatch's Security Management System protects your program from unwanted referral activity.
+Account Structure:
+    name: Account Structure
+    linkText: Read more about our shared vs. solo accounts
+    slug: /shared-vs-solo-accounts/
+    types: 
+     - feature
+    icon: fa-user-circle-o
+    summary: |
+        Referral SaaSquatch provides flexible options for structuring how participants are grouped in your referral program.
+
+JSON:
+    name: JSON Web Tokens
+    linkText: Read more about our JWTs
+    slug: /topics/json-web-tokens
+    types: 
+     - features
+    icon: fa-code
+    summary: |
+        JSON Web Tokens are used to validate the data being supplied to Referral SaaSquatch in Signed Requests made through squatch.js and Open Endpoints.
+Percentage Rewards:
+    name: Percentage Rewards
+    linkText: Read more about our percentage rewards
+    slug: /guides/percent-discount
+    types: 
+     - reward
+    icon: fa-percent
+    summary: |
+        Give your referral participants a percentage discount off a current or upcoming invoice.
+Dollar Rewards:
+    name: Dollar Rewards
+    linkText: Read more about our dollar rewards
+    slug: /guides/dollar-credit
+    types: 
+     - reward
+    icon: fa-usd
+    summary: |
+        Give your referral participants a dollar credit on a current or upcoming invoice.
+Free Time Rewards:
+    name: Free Time Rewards
+    linkText: Read more about our free time rewards
+    slug: /guides/time-reward
+    types: 
+     - reward
+    icon: fa-clock-o
+    summary: |
+        Give your referral participants a free time credit on a current or upcoming invoice.

@@ -7,13 +7,13 @@
   
 <script src="/assets/lib/isotope.pkgd.min.js"></script>
 
-<div class="isotope-button-group filters-isotope-button-group">
-  <button class="isotope-button is-checked" data-filter="*">All</button>
-  <button class="isotope-button" data-filter=".featured">Featured</button>
-  <button class="isotope-button" data-filter=".tag-manager">Tag Managers</button>
-  <button class="isotope-button" data-filter=".crm">CRMs</button>
-  <button class="isotope-button" data-filter=".payment-provider">Payment Providers</button>
-  <button class="isotope-button" data-filter=".landing-page">Landing Pages</button>
+<div class="isotope-integration-button-group filters-isotope-integration-button-group">
+  <button class="isotope-integration-button" data-filter="*">All</button>
+  <button class="isotope-integration-button is-checked" data-filter=".featured">Featured</button>
+  <button class="isotope-integration-button" data-filter=".tag-manager">Tag Managers</button>
+  <button class="isotope-integration-button" data-filter=".crm">CRMs</button>
+  <button class="isotope-integration-button" data-filter=".payment-provider">Payment Providers</button>
+  <button class="isotope-integration-button" data-filter=".landing-page">Landing Pages</button>
 </div>
 
 <div class="grid">
@@ -36,11 +36,12 @@
 // init Isotope
 var iso = new Isotope( '.grid', {
   itemSelector: '.integration-item',
-  layoutMode: 'fitRows'
+  layoutMode: 'fitRows',
+  filter: '.featured'
 });
 
 // bind filter isotope-button click
-var filtersIntegration = document.querySelector('.filters-isotope-button-group');
+var filtersIntegration = document.querySelector('.filters-isotope-integration-button-group');
 filtersIntegration.addEventListener( 'click', function( event ) {
   // only work with isotope-buttons
   if ( !matchesSelector( event.target, 'button' ) ) {
@@ -53,7 +54,7 @@ filtersIntegration.addEventListener( 'click', function( event ) {
 });
 
 // change is-checked class on isotope-buttons
-var buttonGroups = document.querySelectorAll('.isotope-button-group');
+var buttonGroups = document.querySelectorAll('.isotope-integration-button-group');
 for ( var i=0, len = buttonGroups.length; i < len; i++ ) {
   var buttonGroup = buttonGroups[i];
   radioButtonGroup( buttonGroup );

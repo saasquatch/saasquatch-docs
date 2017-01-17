@@ -101,6 +101,7 @@ function site(baseplugin=null){
       shorttagsMap: 'metadata/shorttagmap.json',
       branchFields: 'metadata/branchFields.yaml',
       //integrations: 'metadata/integrations.yaml',
+      guides: 'metadata/guides.yaml',
       }))
 
   /*

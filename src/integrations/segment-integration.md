@@ -5,6 +5,7 @@ logo: segment-integration.png
 slug: segment
 categories: 
  - tag-manager
+ - featured
 highlights: |
     Segment is central analytics API and customer data hub. Segment customers can use analytics.js instead of directly using the Squatch.js javascript library
 keyFeatures:
