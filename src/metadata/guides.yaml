@@ -16,15 +16,24 @@ Squatch.js:
     icon: fa-code
     summary: |
         squatch.js is the Referral SaaSquatch JavaScript SDK and a one-stop shop to integrate a referral program into your website or web app.
-Mobile SDK:
-    name: Mobile SDK
-    linkText: Read more about our Mobile SDK
-    slug: /mobile
+iOS SDK:
+    name: iOS SDK
+    linkText: Read more about our iOS SDK
+    slug: /mobile/ios
     types:    
      - library
-    icon: fa-code
+    icon: fa-apple
     summary: |
-        The Referral SaaSquatch mobile SDK integrates a referral program natively into your iOS or Android app.
+        The Referral SaaSquatch iOS SDK integrates a referral program natively into your iOS app.
+Android SDK:
+    name: Android SDK
+    linkText: Read more about our Android SDK
+    slug: /mobile/android
+    types:    
+     - library
+    icon: fa-android
+    summary: |
+        The Referral SaaSquatch Android SDK integrates a referral program natively into your Android app.
         
 SaaS:
     name: SaaS
