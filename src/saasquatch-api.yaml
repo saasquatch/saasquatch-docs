@@ -982,7 +982,9 @@ paths:
         - APIKey: []
         - UserJWT: []
       description: |
-        Apply a `ReferralCode` to an account, automatically rewarding both sides of the referral. This endpoint requires a [write token](../openendpoints/) or an API key.
+        Apply a `ReferralCode` to a referred account to attribute a referral. 
+        
+        This endpoint requires a [write token](../openendpoints/) or an API key.
 
         This is an [Open Endpoint](../openendpoints/) and disabled by default. Contact support to enable the open endpoints.
       parameters:
