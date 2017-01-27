@@ -14,6 +14,7 @@ var sectionsToCategories = {
     apiReference: 'developerCenter',
     mobile: 'developerCenter',
     
+    designerArticle: 'designerCenter',
     themes: 'designerCenter',
 
     faq: 'successCenter',

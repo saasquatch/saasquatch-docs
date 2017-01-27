@@ -4,7 +4,8 @@ export default pageify;
 
 var sectionTypeMap = {
     "Developer Guide": "guide",
-    "Marketer Guide": "successArticle"
+    "Marketer Guide": "successArticle",
+    "Designer Guide": "designerArticle"
 };
 
 /**
