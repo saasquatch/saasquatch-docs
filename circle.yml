@@ -7,15 +7,15 @@ dependencies:
   override:
     - yarn
   post:
-    - yarn run production
+    - "yarn run production"
 test:
   override:
-    - yarn test
+    - "yarn test"
 deployment:
   production:
     branch: production # TODO: Change to production once new branch is merged
     commands:
-      - yarn run deploy:production
+      - "yarn run deploy:production"
 general:
   artifacts:
     - "build" # Saves the built site in CircleCi artifacts
