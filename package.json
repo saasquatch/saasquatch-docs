@@ -11,6 +11,7 @@
     "node": "6.4.0"
   },
   "scripts": {
+    "buildprod": "gulp production && yarn run build:js",
     "production": "gulp production && yarn run build:js",
     "local": "yarn run browser_sync & NODE_ENV=development nodemon --exec 'yarn run build:dev && yarn run browser_sync_reload'",
     "server": "yarn run build:dev && babel-node ./scripts/previewServer.js",
@@ -95,5 +96,8 @@
     "swig-extras": "0.0.1",
     "uglifyjs": "^2.4.10",
     "webpack": "^1.13.1"
+  },
+  "devDependencies": {
+    "yarn": "^0.19.1"
   }
 }

@@ -7,7 +7,7 @@ dependencies:
   override:
     - yarn
   post:
-    - "yarn run production"
+    - "yarn run buildprod"
 test:
   override:
     - "yarn test"
