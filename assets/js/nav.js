@@ -99,12 +99,13 @@ module.exports = function(){
         
         jQuery("a.nav-onpage, ul.nav-onpage > li > a").click(function(){
             // Trigger this method to set or unset a menu item as "selected".
-            if(!isOnPage(jQuery(this).prop('href'), window.location.href)){
+            var $this = jQuery(this);
+            if(!isOnPage($this.prop('href'), window.location.href)){
                 return true;
             }
-            var $li = jQuery(this).parent('li');
+            var $li = $this.parent('li');
             window.myMenu.setSelected($li);
-            window.smoothScrollTo(this);
+            window.smoothScrollTo($this);
             return false;
         });
         

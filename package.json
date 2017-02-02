@@ -88,14 +88,14 @@
     "promise": "^7.1.1",
     "request-promise": "^4.1.1",
     "slug": "0.9.1",
-    "smooth-scroll": "cferdinandi/smooth-scroll",
     "superstatic": "^4.0.3",
     "swagger-client": "^2.1.15",
     "swagger-parser": "^3.4.1",
     "swig": "1.4.2",
     "swig-extras": "0.0.1",
     "uglifyjs": "^2.4.10",
-    "webpack": "^1.13.1"
+    "webpack": "^1.13.1",
+    "zenscroll": "^3.3.0"
   },
   "devDependencies": {
     "yarn": "^0.19.1"
