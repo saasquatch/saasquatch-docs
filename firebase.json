@@ -66,6 +66,10 @@
       "type": 301,
       "source": "/squatchjs",
       "destination": "/developer/squatchjs/v1/reference"
+    }, {
+      "type": 301,
+      "source": "/testing",
+      "destination": "/developer/testing"
     }]
   }
 }
