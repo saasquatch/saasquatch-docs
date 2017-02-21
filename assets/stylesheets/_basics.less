@@ -81,6 +81,22 @@ a .link {
 
 #footer a:hover {color:#fff; opacity:1;}
 
+#footer .trees {
+  max-width: 400px;
+  top: 38px;
+  position: absolute;
+  right: 0;
+
+  @media (max-width: 1470px){
+    max-width: 250px;
+    top: 105px;
+  }
+
+  @media (max-width: 1250px){
+    display: none;
+  }
+}
+
 
 /**
 *    Framing
@@ -232,7 +248,7 @@ h1, h2, h3, h4, h5, h6, body {
   .search-query {
     border-radius: 14px;
     width: 80%;
-    max-width: 230px;
+    max-width: 193px;
   }
 }
 
@@ -243,8 +259,10 @@ h1, h2, h3, h4, h5, h6, body {
   margin-top: -1px;
 
   img {
-    max-width: 175px;
+    max-width: 140px;
     margin-bottom: 15px;
+    margin-left: 5px;
+    margin-top: -3px;
   }
 }
 
@@ -254,7 +272,8 @@ h1, h2, h3, h4, h5, h6, body {
 
   img {
     max-width: 160px;
-    margin-top: 20px;
+    margin-top: 7px;
     margin-bottom: 0;
+    margin-left: -25px;
   }
 }

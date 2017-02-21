@@ -31,7 +31,7 @@
 .mm-arrow:after,.mm-next:after{border-top:none;border-left:none;right:23px}
 .mm-navbar{border-bottom:1px solid;border-color:inherit;text-align:center;line-height:20px;height:40px;padding:0 40px;margin:0;position:absolute;top:0;left:0;right:0}
 .mm-navbar>*{display:block;padding:10px 0}
-.mm-navbar .mm-btn:first-child{padding-left:20px;left:0}
+.mm-navbar .mm-btn:first-child{padding-left:20px;left:-10px;top:0;}
 .mm-navbar .mm-btn:last-child{text-align:right;padding-right:20px;right:0}
 .mm-panel .mm-navbar{display:none}
 .mm-panel.mm-hasnavbar .mm-navbar{display:block}
