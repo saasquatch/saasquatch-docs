@@ -9,6 +9,17 @@
   font-style: normal;
  }
 
+ @font-face {
+	font-family: 'star';
+	src: url('../fonts/GothamRounded-Medium.eot');
+	src: url('../fonts/GothamRounded-Medium.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/GothamRounded-Medium.woff') format('woff'),
+		url('../fonts/GothamRounded-Medium.ttf') format('truetype'),
+		url('../fonts/GothamRounded-Medium.svg#star') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
 .docs {
     /* .docs is applied to the BODY in documentation to differentiate styles in documentation from that in the website */
     // padding-top: 180px;
@@ -276,4 +287,8 @@ h1, h2, h3, h4, h5, h6, body {
     margin-bottom: 0;
     margin-left: -25px;
   }
+}
+
+.hero-unit h1 {
+  font-family: 'GothamRounded-Medium', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }

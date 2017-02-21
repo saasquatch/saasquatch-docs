@@ -3,17 +3,22 @@ template: fullpage.html
 category: landingPage
 ---
 
-<div class="hero-unit" style="background:transparent">
-    <h1>SaaSquatch Help Center</h1>
+<div class="hero-unit" style="background:transparent;padding-top:0;text-align:center;">
+    <img src="/assets/images/referral-saasquatch-logo-centered-no-slogan-RGB.png" style="max-width: 260px;display:block;margin: 0 auto;">
+    <img src="/assets/images/helpcenter.png" style="max-width:250px;">
     <p></p>
-    <p>We're commited to helping you plan, implement, and manage an effective, engaging, and profitable referral program. We've split our guides into three categories below to help you find the information you need. </p>
+    <p style="margin-top:40px;">We're commited to helping you plan, implement, and manage an effective, engaging, and profitable referral program. Search below or choose a help center section on your left to get started. </p>
+
+    <div class="docs-searchbox-full main-page">
+        <form class="js-search-form form-search" action="/search/">
+          <div class="input-append">
+            <input type="text" class="search-query" placeholder="Search" name="q">
+          </div>
+        </form>
+    </div>
 </div>
 
-<div class="row-fluid">
-    <div class="span4 docs-home-category successCenter"><a href="/success"><i class="fa fa-line-chart"></i> Success Center</a></div>
-    <div class="span4 docs-home-category developerCenter"><a href="/developer"><i class="fa fa-desktop"></i> Developer Center</a></div>
-    <div class="span4 docs-home-category designerCenter"><a href="/designer"><i class="fa fa-paint-brush"></i> Designer Center</a></div>
-</div>
+
 
 <script type="text/javascript">
     // This javascript redirects the anchor tags from www.referralsaasquatch.com/documentation to the new docs.referralsaasquatch.com formats
