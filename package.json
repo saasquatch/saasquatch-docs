@@ -68,7 +68,7 @@
     "jquery-jsonview": "^1.2.3",
     "jquery.mmenu": "^5.6.5",
     "js-yaml": "^3.0.2",
-    "json-schema-resolve-allof": "^1.1.1",
+    "json-schema-resolve-allof": "^1.1.4",
     "less": "^2.7.1",
     "lodash": "^4.13.1",
     "magnific-popup": "^1.1.0",

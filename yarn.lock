@@ -3974,9 +3974,9 @@ json-schema-ref-parser@^1.4.1:
     js-yaml "^3.4.6"
     ono "^2.0.1"
 
-json-schema-resolve-allof@^1.1.1:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/json-schema-resolve-allof/-/json-schema-resolve-allof-1.1.2.tgz#4662fcd7a39a3a706b8d66f450e16cf3c6c74255"
+json-schema-resolve-allof@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/json-schema-resolve-allof/-/json-schema-resolve-allof-1.1.4.tgz#a8a20e62b7dc61429c4b8b7cfe74b545ba163b98"
   dependencies:
     lodash "^4.14.0"
 
