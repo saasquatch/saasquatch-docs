@@ -6,7 +6,6 @@ import templates from 'metalsmith-templates';
 import collections from 'metalsmith-collections';
 import define from 'metalsmith-define';
 
-// var request = require('metalsmith-request');
 import path from 'path';
 
 import swig from 'swig';

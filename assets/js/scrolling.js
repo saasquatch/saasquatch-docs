@@ -5,14 +5,15 @@
  * 
  */
  
-var defaultScroller = require("zenscroll");
+import defaultScroller from "zenscroll";
+import jQuery from 'jquery';
 
-var isNativeSmoothScrollEnabledOn = function (elem) {
+export function isNativeSmoothScrollEnabledOn(elem) {
 	return ("getComputedStyle" in window) &&
-		window.getComputedStyle(elem)["scroll-behavior"] === "smooth"
+		window.getComputedStyle(elem)["scroll-behavior"] === "smooth";
 }
 
-module.exports = function(){
+export function autoZenScroll(){
     // Create listeners for the documentElement only & exclude IE8-
 	if ("addEventListener" in window && !(isNativeSmoothScrollEnabledOn(document.body))) {
 		if ("scrollRestoration" in history) {
@@ -65,3 +66,26 @@ module.exports = function(){
 		}, false)
 	}
 }
+
+
+
+// Extracts the HREF value, and smooth scrolls to that location.
+export function smoothScrollTo(elem){
+    var $this = jQuery(elem);
+    var anchor = $this.attr('href').split("#")[1];
+    var $that = document.getElementById(anchor);
+    if(!$that){ throw new Error("Couldn't smooth scroll to anchor."); }
+    defaultScroller.to($that);
+}
+
+export {
+    defaultScroller
+};
+
+export const scrolling = {
+	autoZenScroll:autoZenScroll,
+	smoothScrollTo:smoothScrollTo,
+	defaultScroller:defaultScroller
+};
+
+export default scrolling;
