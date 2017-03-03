@@ -18,7 +18,6 @@
 
 import './tasks/clean.js';
 import './tasks/css.js';
-import './tasks/javascript.js';
 import './tasks/static.js';
 require('./tasks/images.js');
 require('./tasks/sizereport.js');

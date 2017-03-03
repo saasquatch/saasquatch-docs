@@ -1,9 +1,14 @@
-var jQuery = require('jquery');
-window.mmenu = require('jquery.mmenu');
-window.Hammer = require('hammerjs');
-var isOnPage = require('./isOnPage');
+import jQuery from 'jquery';
+import mmenu from 'jquery.mmenu';
+import Hammer from 'hammerjs';
+import isOnPage from './isOnPage';
 
-module.exports = function(){
+import * as scrolling from './scrolling';
+
+window.mmenu = mmenu;
+window.Hammer = Hammer;
+
+export default function(){
 
     var categories = ["successCenter", "developerCenter", "designerCenter"];
 
@@ -103,9 +108,13 @@ module.exports = function(){
             if(!isOnPage($this.prop('href'), window.location.href)){
                 return true;
             }
-            var $li = $this.parent('li');
-            window.myMenu.setSelected($li);
-            window.smoothScrollTo($this);
+            scrolling.smoothScrollTo($this);
+            try{
+                var $li = $this.parent('li');
+                window.myMenu.setSelected($li);
+            }catch(e){
+                console.error("Couldn't select item", e);
+            }
             return false;
         });
         
