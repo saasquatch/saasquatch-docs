@@ -20,7 +20,7 @@
     "build:js": "webpack && yarn run build:uglifyjs",
     "build:uglifyjs": "uglifyjs --output ./build/assets/js/bundle.min.js ./build/assets/js/bundle.js ",
     "browser_sync": "browser-sync start --server build --port $PORT --host $IP",
-    "browser_sync_reload": "brotwser-sync reload --port $PORT --host $IP",
+    "browser_sync_reload": "browser-sync reload --port $PORT --host $IP",
     "gulp": "gulp",
     "webpack": "webpack",
     "heroku-postbuild": "yarn run build:dev",
