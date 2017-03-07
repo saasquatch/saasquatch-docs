@@ -131,7 +131,7 @@
                     {% for response in method.responses %}
                     {% if loop.key != "default" %}
                     <li {% if loop.first %}class="active"{% endif %}>
-                        <a href="#" data-toggle="tab" data-target=".{{swaggerMacros.responseId(method,loop.key)}}"><span class="label">HTTP {{loop.key}}</span> {{response.description}}</a>
+                        <a class="tab" data-toggle="tab" data-target=".{{swaggerMacros.responseId(method,loop.key)}}"><span class="label">HTTP {{loop.key}}</span> {{response.description}}</a>
                     </li>
                     {% endif %}
                     {% endfor %}
