@@ -1,23 +1,19 @@
 /* 
 == JsHint details here ==
 */
-window.noZensmooth = true;
-
 import jQuery from 'jquery';
-import zenscroll from 'zenscroll';
 import hljs from 'highlight.js';
 import anchorJS from 'anchor-js';
 
 import search from './search';
 import nav from './nav';
-import {autoZenScroll} from './scrolling';
+import scrolling from './scrolling';
 
 const deps = {
-    zenscroll,
+    scrolling,
     hljs,
     anchorJS,
-    jQuery,
-    // scrolling
+    jQuery
 };
 
 export {
@@ -53,7 +49,7 @@ export function init(){
         
         nav();
         search();
-        autoZenScroll();
+        scrolling.init();
         
         jQuery('.js-docs-collapse').each(function() {
             var content = jQuery(this);
@@ -98,9 +94,10 @@ export function init(){
         jQuery("#js-location-path").text(document.location.pathname);
     
     
-        // Non-necessary highlighting
+        // Non-necessary highlighting. Executes asynchronously for faster page load
         setTimeout(function(){
-            // TODO: LV: Move these highlighting functions server-side to improve page render time or bundle the JS
+            
+            // TODO: LV: Move these highlighting functions server-side to improve page render time or bundle the JS?
             jQuery('.jsonview').each(function() {
                 // parse -> sort -> JSONView
                 var each = jQuery(this);

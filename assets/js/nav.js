@@ -1,9 +1,6 @@
 import jQuery from 'jquery';
 import mmenu from 'jquery.mmenu';
 import Hammer from 'hammerjs';
-import isOnPage from './isOnPage';
-
-import * as scrolling from './scrolling';
 
 window.mmenu = mmenu;
 window.Hammer = Hammer;
@@ -101,23 +98,7 @@ export default function(){
         categories.map(function(category){
             jQuery(".mm-panel > ul." + category, menuDom).parent(".mm-panel").addClass(category);
         });
-        
-        jQuery("a.nav-onpage, ul.nav-onpage > li > a").click(function(){
-            // Trigger this method to set or unset a menu item as "selected".
-            var $this = jQuery(this);
-            if(!isOnPage($this.prop('href'), window.location.href)){
-                return true;
-            }
-            scrolling.smoothScrollTo($this);
-            try{
-                var $li = $this.parent('li');
-                window.myMenu.setSelected($li);
-            }catch(e){
-                console.error("Couldn't select item", e);
-            }
-            return false;
-        });
-        
+
         jQuery("#open-sidenav").click(function(e){
 			e.preventDefault();
 			if ( jQuery('html').hasClass( 'mm-opened' ) ){

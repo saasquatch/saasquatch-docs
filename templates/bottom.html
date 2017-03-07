@@ -111,9 +111,11 @@
 
     {% include "./partials/navigationSidebar.html" %}
 
-
+    <script>
+        // LV: Disables auto-zenscroll so that we can highjack it later
+        window.noZensmooth = true;
+    </script>
     <script type='text/javascript' src='/assets/js/bundle.js'></script>
-
     <script type='text/javascript' src='/assets/lib/bootstrap.min.js'></script>
     <script type='text/javascript' src='/assets/lib/jquery-migrate.min.js'></script>
     <script type='text/javascript' src='/assets/lib/jquery.jsonview.js'></script>
