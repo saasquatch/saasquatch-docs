@@ -1,8 +1,8 @@
-var getParameterByName = require('./getParameterByName');
-var jQuery = require('jquery');
-var Handlebars = require('handlebars/dist/handlebars');
+import getParameterByName from './getParameterByName';
+import jQuery from 'jquery';
+import Handlebars from 'handlebars/dist/handlebars';
 
-module.exports = function(){
+export default function(){
     /**
      * 
      *  Docs Search
