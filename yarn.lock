@@ -5041,20 +5041,6 @@ math-expression-evaluator@^1.2.14:
   version "1.2.16"
   resolved "https://registry.yarnpkg.com/math-expression-evaluator/-/math-expression-evaluator-1.2.16.tgz#b357fa1ca9faefb8e48d10c14ef2bcb2d9f0a7c9"
 
-maxcdn-purge@0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/maxcdn-purge/-/maxcdn-purge-0.0.1.tgz#76643be99f50009d1eab96a2fb15d842936e06ed"
-  dependencies:
-    async "~0.2.10"
-    maxcdn "~0.1.1"
-    subarg "0.0.1"
-
-maxcdn@~0.1.1:
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/maxcdn/-/maxcdn-0.1.6.tgz#8aaba1d711aab9c44c0c47407859d600fe754f39"
-  dependencies:
-    oauth "~0.9.11"
-
 media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
@@ -5234,7 +5220,7 @@ minimatch@^2.0.1:
   dependencies:
     brace-expansion "^1.0.0"
 
-minimist@0.0.8, minimist@~0.0.1, minimist@~0.0.7:
+minimist@0.0.8, minimist@~0.0.1:
   version "0.0.8"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-0.0.8.tgz#857fcabfc3397d2625b8228262e86aa7a011b05d"
 
@@ -5532,10 +5518,6 @@ number-is-nan@^1.0.0:
 oauth-sign@~0.8.0, oauth-sign@~0.8.1:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.8.2.tgz#46a6ab7f0aead8deae9ec0565780b7d4efeb9d43"
-
-oauth@~0.9.11:
-  version "0.9.15"
-  resolved "https://registry.yarnpkg.com/oauth/-/oauth-0.9.15.tgz#bd1fefaf686c96b75475aed5196412ff60cfb9c1"
 
 object-assign@4.1.0:
   version "4.1.0"
@@ -7235,12 +7217,6 @@ strip-outer@^1.0.0:
   resolved "https://registry.yarnpkg.com/strip-outer/-/strip-outer-1.0.0.tgz#aac0ba60d2e90c5d4f275fd8869fd9a2d310ffb8"
   dependencies:
     escape-string-regexp "^1.0.2"
-
-subarg@0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/subarg/-/subarg-0.0.1.tgz#3d56b07dacfbc45bbb63f7672b43b63e46368e3a"
-  dependencies:
-    minimist "~0.0.7"
 
 sum-up@^1.0.1:
   version "1.0.3"
