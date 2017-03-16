@@ -1233,7 +1233,7 @@ paths:
 
   "/{tenant_alias}/export":
     post:
-      summary: Create an Export
+      summary: Create a CSV Export
       operationId: createExport
       x-docs-anchor: create_export
       tags:
@@ -1247,7 +1247,7 @@ paths:
 
         Here are a few ways to check for when an export is ready.
 
-        - **Polling** - While an export is being prepared you can check it's status using it's `id`. Make sure you store the `id` of the export when you request it.
+        - **Polling** - While an export is being prepared you can check the status using the `id`. Make sure you store the `id` of the export when you request it.
         - **Webhooks** - When an export is complete, a webhook event will be fired. Make sure you create a webhook endpoint subscription before you create your export.
         - **Listing** - You can use the API to list recent exports, and check their status.
 
@@ -1267,7 +1267,7 @@ paths:
           $ref: "#/responses/GeneralError"
   "/{tenant_alias}/export/{exportId}":
     get:
-      summary: Lookup an Export
+      summary: Lookup a CSV Export
       operationId: getExport
       x-docs-anchor: get_export
       tags:
@@ -1275,8 +1275,8 @@ paths:
       security:
         - APIKey: []
       description: |
-        Looks up an Export to check it's status. Useful when you're generating exports to check when an export is no longer `PENDING`
-        so that you can begin it's download.
+        Looks up an Export to check its status. Useful when you're generating exports to check when an export is complete. When the status is no longer `PENDING`
+        so that you can begin to download the export.
       parameters:
         - name: exportId
           in: path
@@ -1295,7 +1295,7 @@ paths:
           $ref: "#/responses/GeneralError"
   "/{tenant_alias}/export/{exportId}/download":
     get:
-      summary: Download an Export
+      summary: Download a CSV Export
       operationId: downloadExport
       x-docs-anchor: download_export
       tags:
@@ -1322,7 +1322,7 @@ paths:
           $ref: "#/responses/GeneralError"
   "/{tenant_alias}/export/history/list":
     get:
-      summary: List Exports
+      summary: List CSV Exports
       operationId: listExports
       x-docs-anchor: list_exports
       tags:
@@ -1331,8 +1331,6 @@ paths:
         - APIKey: []
       description: |
         List all of the exports in a tenant. Useful for tracking down exports
-      produces:
-        - 'text/csv' ## CSV file downloads
       parameters:
         - name: limit
           in: query
