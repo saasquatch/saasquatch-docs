@@ -145,3 +145,21 @@ Free Time Rewards:
     icon: fa-clock-o
     summary: |
         Give your referral participants a free time credit on a current or upcoming invoice.
+Blocked Email Domains:
+    name: Blocked Email Domains
+    linkText: Read more about options for blocking email domains
+    slug: /developer/blocked-email-domains
+    types: 
+     - feature
+    icon: fa-ban
+    summary: |
+        Referral SaaSquatch provides the ability to check referrals against a list of suspicious email domains.
+Program Reports:
+    name: Program Reports
+    linkText: Read more about the available program reports
+    slug: /features/reports
+    types: 
+     - feature
+    icon: fa-file-text-o
+    summary: |
+        Downloadable Referral Program reports with participant, reward, and referral information.
