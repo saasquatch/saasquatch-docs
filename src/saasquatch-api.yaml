@@ -800,6 +800,55 @@ paths:
 
   ## Open API Endpoints
   "/{tenant_alias}/open/account/{accountId}/user/{userId}":
+    put:
+      summary: User Upsert
+      operationId: openUserUpsert
+      x-docs-anchor: open_user_upsert
+      tags:
+        - User
+        - Open Endpoint
+      security:
+        - APIKey: []
+        - UserJWT: []
+      description: |
+        This method updates/creates a user and an account and returns the user object representing that newly created user/account.
+        
+        Because this call creates a user, it requires either a [write token](../openendpoints/) or an API key.
+
+      parameters:
+        - name: accountId
+          in: path
+          description: The account to upsert
+          required: true
+          type: string
+        - name: userId
+          in: path
+          required: true
+          description: The user to upsert
+          type: string
+        - name: user
+          in: body
+          schema:
+            $ref: "#/definitions/OpenUserStub"
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        200:
+          description: Information about the upserted user
+          examples:
+            "application/json":
+              $ref: "#/definitions/OpenUser/example"
+          schema:
+            $ref: "#/definitions/OpenUser"
+        403:
+          description: Endpoint disabled
+          schema:
+            $ref: "#/definitions/Error"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: "#/definitions/Error"
+    
+    
     post:
       summary: Create a user and account
       operationId: openCreateUser
@@ -811,9 +860,9 @@ paths:
         - APIKey: []
         - UserJWT: []
       description: |
-        This method creates a user and an account in one call. Because this call creates a user, it requires either a [write token](../openendpoints/) or an API key.
-
-        This is an [Open Endpoint](../openendpoints/) and disabled by default. Contact support to enable the open endpoints.
+        This method creates a user and an account and returns the user object representing that newly created user/account. 
+        
+        Because this call creates a user, it requires either a [write token](../openendpoints/) or an API key.
       parameters:
         - name: accountId
           in: path
@@ -890,6 +939,46 @@ paths:
           description: Account not found
           schema:
             $ref: "#/definitions/Error"
+  
+  "/api/v1/{tenant_alias}/open/user/cookie_user":
+    put:
+      summary: Create Cookie User
+      operationId: createCookieUser
+      x-docs-anchor: create_cookie_user
+      tags:
+        - User
+        - Open Endpoint
+      security:
+        - APIKey: []
+        - UserJWT: []
+      description: |
+        Generates a cookie account/user and returns a user object representing that newly created cookie user/account.
+        
+        By default this method requires no authentication. If [Secure Mode](/developer/squatchjs/signed-requests/#changing-signed-request-settings) for this method is enabled then you will need to include a [JWT](/topics/json-web-tokens) with a payload containing `{allowAnonymous:true}`
+      parameters:
+        - name: user
+          in: body
+          schema:
+            $ref: "#/definitions/OpenCookieUserStub"
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        200:
+          description: Information about the upserted user
+          examples:
+            "application/json":
+              $ref: "#/definitions/OpenUser/example"
+          schema:
+            $ref: "#/definitions/OpenUser"
+        403:
+          description: Endpoint disabled
+          schema:
+            $ref: "#/definitions/Error"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: "#/definitions/Error"
+  
+  
   "/{tenant_alias}/open/user":
     get:
       summary: Get a user by a referral code
@@ -3235,24 +3324,15 @@ definitions:
       id:
         type: string
         example: "219065"
-        description: The unique identifier provided for this user.
+        description: The unique identifier for this user.
+      cookieId:
+        type: string
+        example: "2523423436323"
+        description: A unique identifier for this participant.
       accountId:
         type: string
         example: "accc9065"
         description: The unique identifier of the Account that this user belongs to.
-      referralCode:
-        type: string
-        example: "BOBTESTERSON"
-        description: The referral code *used for sharing by this user*
-      email:
-        type: string
-        example: "bob@example.com"
-        description: The email address provided for the user. SaaSquatch uses this to notify someone when they have a successful referral.
-      imageUrl:
-        type: string
-        example: "https://www.example.com/profile/ab5111251125"
-        description: |
-          Optionally used in widgets, emails, and themes. If you provide a absolute profile image URL the minimum image size is 80px x 80px.
       firstName:
         type: string
         example: "Bob"
@@ -3263,22 +3343,56 @@ definitions:
         example: "Testerson"
         description: |
           The user's last name
+      email:
+        type: string
+        example: "bob@example.com"
+        description: The email address provided for the user. SaaSquatch uses this to notify someone when they have a successful referral.
+      referralCode:
+        type: string
+        example: "BOBTESTERSON"
+        description: The referral code *used for sharing by this user*
       locale:
         type: string
         example: "en_US"
         description: |
           The user's locale, used for [Internationalization](/themes/internationalization). The locale must be of the format 'language_COUNTRY' where the language code must be lowercase and the country code must be uppercase. The separator must be an underscore.
+      referredBy:
+        type: object
+        description: An object containing information about who referred this user.
+        properties:
+          code:
+            type: string
+            example: "JONDOE1234"
+            description: The referral code of the person that referred this account.
+          isConverted:
+            type: bool
+            example: true
+            description: Whether or not this referred user has hit to goal post and the referral should be converted to kick of reward creation for the referrer.
+          newlyReferred:
+            type: bool
+            example: true
+            description: Whether or not this referred user was referred recently.
+      imageUrl:
+        type: string
+        example: "https://www.example.com/profile/ab5111251125"
+        description: |
+          Optionally used in widgets, emails, and themes. If you provide a absolute profile image URL the minimum image size is 80px x 80px.
       shareLinks:
         readOnly: true
         $ref: "#/definitions/Sharelink"
     example:
       id: "898746321"
+      cookieId: "2523423436323"
       accountId: "987321"
       email: "hello@example.com"
       firstName: "Henk"
       lastName: "Thompson"
       locale: null
       referralCode: "HENKTHOMPSON"
+      referredBy: 
+        code: "JONDOE1234"
+        isConverted: true
+        newlyReferred: false
       imageUrl: ""
       shareLinks:
         $ref: "#/definitions/Sharelink/example"
@@ -3289,7 +3403,6 @@ definitions:
     required:
       - id
       - accountId
-      - firstName
     properties:
       id:
         type: string
@@ -3299,19 +3412,6 @@ definitions:
         type: string
         example: "accc9065"
         description: The unique identifier of the Account that this user belongs to.
-      referralCode:
-        type: string
-        example: "BOBTESTERSON"
-        description: The referral code *used for sharing by this user*
-      email:
-        type: string
-        example: "bob@example.com"
-        description: The email address provided for the user. SaaSquatch uses this to notify someone when they have a successful referral.
-      imageUrl:
-        type: string
-        example: "https://www.example.com/profile/ab5111251125"
-        description: |
-          Optionally used in widgets, emails, and themes. If you provide a absolute profile image URL the minimum image size is 80px x 80px.
       firstName:
         type: string
         example: "Bob"
@@ -3322,11 +3422,36 @@ definitions:
         example: "Testerson"
         description: |
           The user's last name
+      email:
+        type: string
+        example: "bob@example.com"
+        description: The email address provided for the user. SaaSquatch uses this to notify someone when they have a successful referral.
+      referralCode:
+        type: string
+        example: "BOBTESTERSON"
+        description: The referral code *used for sharing by this user*
       locale:
         type: string
         example: "en_US"
         description: |
           The user's locale, used for [Internationalization](/themes/internationalization). The locale must be of the format 'language_COUNTRY' where the language code must be lowercase and the country code must be uppercase. The separator must be an underscore.
+      referredBy:
+        type: object
+        description: An object containing information about who referred this user.
+        properties:
+          code:
+            type: string
+            example: "JONDOE1234"
+            description: The referral code of the person that referred this account.
+          isConverted:
+            type: bool
+            example: true
+            description: Whether or not this referred user has hit to goal post and the referral should be converted to kick of reward creation for the referrer.
+      imageUrl:
+        type: string
+        example: "https://www.example.com/profile/ab5111251125"
+        description: |
+          Optionally used in widgets, emails, and themes. If you provide a absolute profile image URL the minimum image size is 80px x 80px.
     example:
       id: "898746321"
       accountId: "987321"
@@ -3335,6 +3460,70 @@ definitions:
       lastName: "Thompson"
       locale: null
       referralCode: "HENKTHOMPSON"
+      referredBy: 
+        code: "JONDOE1234"
+        isConverted: true
+      imageUrl: ""
+      
+  OpenCookieUserStub:
+    title: A Open Cookie User object stub
+    description: An object describing an individual user submitted to an open endpoint when you want to create a new cookie user, called a OpenCookieUserStub.
+    properties:
+      firstName:
+        type: string
+        example: "Bob"
+        description: |
+          The user's first name
+      lastName:
+        type: string
+        example: "Testerson"
+        description: |
+          The user's last name
+      email:
+        type: string
+        example: "bob@example.com"
+        description: The email address provided for the user. SaaSquatch uses this to notify someone when they have a successful referral.
+      referralCode:
+        type: string
+        example: "BOBTESTERSON"
+        description: The referral code *used for sharing by this user*
+      locale:
+        type: string
+        example: "en_US"
+        description: |
+          The user's locale, used for [Internationalization](/themes/internationalization). The locale must be of the format 'language_COUNTRY' where the language code must be lowercase and the country code must be uppercase. The separator must be an underscore.
+      payementProviderId:
+        type: string
+        example: "cus_dk3hj3k3sfj8987"
+        description: |
+          The user's Stripe Customer ID, the Recurly Account ID, the Braintree Account ID, or the Zuora Account ID. This value is not updatable and can only be set once. This field can be left out if not explicitly setting the value.
+      referredBy:
+        type: object
+        description: An object containing information about who referred this user.
+        properties:
+          code:
+            type: string
+            example: "JONDOE1234"
+            description: The referral code of the person that referred this account.
+          isConverted:
+            type: bool
+            example: true
+            description: Whether or not this referred user has hit to goal post and the referral should be converted to kick of reward creation for the referrer.
+      imageUrl:
+        type: string
+        example: "https://www.example.com/profile/ab5111251125"
+        description: |
+          Optionally used in widgets, emails, and themes. If you provide a absolute profile image URL the minimum image size is 80px x 80px.
+    example:
+      firstName: ""
+      lastName: ""
+      email: ""
+      referralCode: "HENKTHOMPSON"
+      paymentProviderId: ""
+      locale: ""
+      referredBy: 
+        code: "JONDOE1234"
+        isConverted: true
       imageUrl: ""
 
   ListEnvelope:
