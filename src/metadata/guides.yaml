@@ -163,3 +163,21 @@ Program Reports:
     icon: fa-file-text-o
     summary: |
         Downloadable Referral Program reports with participant, reward, and referral information.
+Marketo Forms:
+    name: Marketo Forms
+    linkText: Read more about our support for Marketo Forms
+    slug: /guides/marketo-form
+    types: 
+     - integration
+    image: marketo-integration.png
+    summary: |
+        Leveraging your existing Marketo Forms to automatically add Referred Sigunps into your referral program.
+Instapage Forms:
+    name: Instapages Forms
+    linkText: Read more about our support for Instapage Forms
+    slug: /guides/instapage-form
+    types: 
+     - integration
+    image: instapage-integration.png
+    summary: |
+        Leveraging your existing Instapage Forms to automatically add Referred Signups into your referral program.

@@ -23,7 +23,7 @@
 <div class="grid">
   {% for guide in guides %}
     <div class="guides-item {% for type in guide.types %}{{ type }} {% endfor %}">
-      <h3 class="text-center no-anchor">{{ guide.name }}</h3>
+      {% if guide.icon %}<h3 class="text-center no-anchor">{{ guide.name }}</h3>{% endif %}
       <div class="guides-image">
         <a class="imageLink" href="{{ guide.slug }}">
           {% if guide.icon %}
