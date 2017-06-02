@@ -1,0 +1,108 @@
+Chipolo:
+    name: Chipolo
+    types:
+     - embedded
+    image: Chipolo_Widget_Example.png
+    isLive: true
+Chipolo Email:
+    name: Chipolo Email
+    types:
+     - email
+    image: Chipolo_Email_Example.png
+    isLive: true
+Parkwhiz:
+    name: Parkwhiz
+    types:    
+     - popup
+    image: ParkWhiz_Widget_Example.png
+    isLive: true
+Tile:
+    name: Tile
+    types:    
+     - mobile
+    image: Tile_Widget_Example.png
+    isLive: true
+Digicel:
+    name: Digicel
+    types:    
+     - mobile
+    image: Digicel_Widget_Example.png
+    isLive: true
+Digicel Email:
+    name: Digicel Email
+    types:    
+     - email
+    image: Digicel_Email_Example.png
+    isLive: true
+99-taxis:
+    name: 99 Taxis
+    types:    
+     - mobile
+    image: 99Taxis_Widget_Example.png
+    isLive: false
+99-taxis Email:
+    name: 99 Taxis Email
+    types:    
+     - email
+    image: 99_Taxis_Email_Example.png
+    isLive: false
+Bambora:
+    name: Bambora
+    types:    
+     - embedded
+    image: Bambora_Widget_Example.png
+    isLive: true
+Datacamp:
+    name: Datacamp
+    types:    
+     - desktop
+    image: Datacamp_Widget_Example.png
+    isLive: true
+Invision_popup:
+    name: Invision
+    types:    
+     - popup
+    image: InVision_Popup_Widget_Example.png
+    isLive: false
+Invision_email:
+    name: Invision Email
+    types:    
+     - email
+    image: InVision_Email_Example.png
+    isLive: false
+Tweaknews:
+    name: Tweaknews
+    types:    
+     - embedded
+    image: Tweaknews_Widget_Example.png
+    isLive: true
+TinyTorch:
+    name: TinyTorch
+    types:    
+     - embedded
+    image: Tiny_Torch_Widget_Example.png
+    isLive: true
+TinyTorch Email:
+    name: TinyTorch Email
+    types:    
+     - email
+    image: Tiny_Torch_Email_Example.png
+    isLive: true
+Parkwhiz Email:
+    name: parkwhiz Email
+    types:    
+     - email
+    image: Parkwhiz_Email_Example.png
+    isLive: true
+Choose Energy Email:
+    name: Choose Energy Email
+    types:    
+     - email
+    image: Choose_Energy_Email_Example.png
+    isLive: true
+Panda Email:
+    name: Panda Email
+    types:    
+     - email
+    image: Panda_Email_Example.png
+    isLive: true

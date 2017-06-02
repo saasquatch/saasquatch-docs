@@ -101,6 +101,7 @@ function site(baseplugin=null){
       branchFields: 'metadata/branchFields.yaml',
       //integrations: 'metadata/integrations.yaml',
       guides: 'metadata/guides.yaml',
+      themeGallery: 'metadata/themeGallery.yaml',
       }))
 
   /*
@@ -127,7 +128,7 @@ function site(baseplugin=null){
       metadata:{
         name: 'Integration List',
       }
-    } 
+    }
   }))
 
   /**
