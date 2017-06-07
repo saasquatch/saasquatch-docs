@@ -12,9 +12,11 @@
       <div class="page-header">
         <h1 id="top">{{title}}</h1>
       </div>
+      
       {% if coverImage %}
-        <img src="{{coverImage.url}}" alt="{{coverImage.name}}" />
+        <img src="{{coverImage.url}}" alt="{{coverImage.name}}" id="coverImage"/>
       {% endif %}
+      
       {% if highlights %}
       <div class="lead">
         {{ highlights | markdown | safe }}
