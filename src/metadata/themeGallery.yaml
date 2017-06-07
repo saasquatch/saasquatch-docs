@@ -63,13 +63,19 @@ Invision_popup:
     types:    
      - popup
     image: InVision_Popup_Widget_Example.png
-    isLive: false
+    isLive: true
+Invision_embedded:
+    name: Invision Embedded
+    types:    
+     - embedded
+    image: InVision_Embedded_Widget_Example.png
+    isLive: true
 Invision_email:
     name: Invision Email
     types:    
      - email
     image: InVision_Email_Example.png
-    isLive: false
+    isLive: true
 Tweaknews:
     name: Tweaknews
     types:    
@@ -105,4 +111,28 @@ Panda Email:
     types:    
      - email
     image: Panda_Email_Example.png
+    isLive: true
+Ballpark Email:
+    name: Ballpark Email Email
+    types:    
+     - email
+    image: email-ballpark-referral-done.png
+    isLive: true
+Kobo_Email_Done:
+    name: Kobo Email
+    types:    
+     - email
+    image: email-kobo-referral-done.png
+    isLive: true
+Kobo Email:
+    name: Kobo Email
+    types:    
+     - email
+    image: email-kobo-share.png
+    isLive: true
+Snapwire Email:
+    name: Snapwire Email
+    types:    
+     - email
+    image: email-snapwire-referral-started.png
     isLive: true
