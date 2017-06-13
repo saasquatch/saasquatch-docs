@@ -940,7 +940,7 @@ paths:
           schema:
             $ref: "#/definitions/Error"
   
-  "/api/v1/{tenant_alias}/open/user/cookie_user":
+  "/{tenant_alias}/open/user/cookie_user":
     put:
       summary: Create Cookie User
       operationId: createCookieUser
