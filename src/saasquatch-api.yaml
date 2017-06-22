@@ -2036,7 +2036,6 @@ definitions:
     required:
       - id
       - accountId
-      - firstName
     properties:
       id:
         type: string
@@ -3430,6 +3429,10 @@ definitions:
         type: string
         example: "BOBTESTERSON"
         description: The referral code *used for sharing by this user*
+      paymentProviderId:
+        type: string
+        example: "cus_8rVOAthabctvT6"
+        description: The paymentProviderId is either the Stripe Customer ID, the Recurly Account ID, the Braintree Account ID or the Zuora Account ID. This field cannot be updated. Do not include this arguement on an API-only program, or unless looking to set it.
       locale:
         type: string
         example: "en_US"
