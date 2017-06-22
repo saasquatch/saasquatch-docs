@@ -1,12 +1,13 @@
 ---
-title: Google Tag Manager Integration
+title: Google Tag Manager Referral Software Integration | Referral Saasquatch
 integrationName: Google Tag Manager
 logo: gtm-integration.png
 categories: 
  - tag-manager
  - featured
 slug: gtm
-highlights: |
+highlights: Looking for Google Tag Manager referral software integration? Referral SaaSquatch leverages GTM to install your referral program without editing your website.
+integrationDescription: |
     Google Tag Manager helps you manage website tags all in one place. Referral SaaSquatch's GTM integration leverages your existing GTM setup to install your referral program without needing to edit your website.
 keyFeatures:
  - Drag-and-Drop code snippet install

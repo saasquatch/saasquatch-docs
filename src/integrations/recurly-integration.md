@@ -1,9 +1,10 @@
 ---
-title: Recurly Integration
+title: Recurly Referral Software Integration | Referral Saasquatch
 logo: recurly-integration.png
 categories: 
  - payment-provider
-highlights: |
+highlights: Looking for Recurly referral software integration? Referral SaaSquatch enables Recurly to create new codes, track referred subscriptions and give discounts.
+integrationDescription: |
     Recurly is a fantastic subscrition management tool. Referral SaaSquatch's Recurly integration uses Recurly to automatically create new referral codes, track referred subscriptions and give people discounts.
 subtitle: Referral SaaSquatch automates fulfillment with Recurly
 slug: recurly

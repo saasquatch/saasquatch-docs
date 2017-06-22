@@ -1,9 +1,10 @@
 ---
-title: Squarespace Integration
+title: Squarespace Referral Software Integration | Referral Saasquatch
 integrationName: Squarespace
 logo: squarespace-integration.png
 slug: squarespace
-highlights: |
+highlights: Looking for Squarespace referral software integration? Referral SaaSquatch enables you to easily install your referral program on your Squarespace site.
+integrationDescription: |
     Referral SaaSquatch's Squarespace integration leverages your existing Squarespace website to install your referral program without editing any code.
 keyFeatures:
  - Drag-and-Drop code snippet install

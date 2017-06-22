@@ -1,11 +1,12 @@
 ---
-title: Unbounce Integration
+title: Unbounce Referral Software Integration | Referral Saasquatch
 integrationName: Unbounce
 logo: unbounce-integration.png
 categories: 
  - landing-page
 slug: unbounce
-highlights: |
+highlights: Looking for Unbounce referral software integration? Referral SaaSquatch uses your Unbounce landing pages to install your referral program without editing code.
+integrationDescription: |
     Referral SaaSquatch's Unbounce integration leverages your existing Unbounce website and landing pages to install your referral program without editing any code.
 keyFeatures:
  - Drag-and-Drop code snippet install

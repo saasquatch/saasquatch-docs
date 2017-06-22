@@ -1,9 +1,10 @@
 ---
-title: Weebly Integration
+title: Weebly Referral Software Integration | Referral Saasquatch
 integrationName: Weebly
 logo: weebly-integration.png
 slug: weebly
-highlights: |
+highlights: Looking for Weebly referral software integration? Referral SaaSquatch enables you to install your referral program on your Weebly website without editing code.
+integrationDescription: |
     Referral SaaSquatch's Weebly integration leverages your existing Weebly website to install your referral program without editing any code.
 keyFeatures:
  - Drag-and-Drop code snippet install

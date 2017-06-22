@@ -1,12 +1,13 @@
 ---
-title: Referral SaaSquatch for Salesforce
+title: Salesforce Referral Software Integration | Referral Saasquatch
 integrationName: Salesforce
 logo: salesforce-integration.png
 slug: salesforce
 categories: 
  - crm
  - featured
-highlights: |
+highlights: Looking for Salesforce referral software integration? Referral SaaSquatch for Salesforce is a managed package that lets you track your referrals in Salesforce.
+integrationDescription: |
     Salesforce is the world's leading cloud CRM. Referral SaaSquatch for Salesforce is a managed package built on the Force.com that lets you track your referrals in Salesforce.
 subtitle: Referral SaaSquatch automates referrals in Salesforce
 keyFeatures:

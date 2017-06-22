@@ -1,11 +1,12 @@
 ---
-title: Giftbit Integration
+title: Giftbit Referral Software Integration | Referral Saasquatch
 integrationName: Giftbit
 logo: giftbit-integration.png
 slug: giftbit
 categories: 
  - reward
-highlights: |
+highlights: Looking forGiftbit referral software integration? Referral SaaSquatch's integration enables you to automatically reward your participants with gift cards.
+integrationDescription: |
     Giftbit allows you to buy, send, and track digital gift card orders. Referral SaaSquatch's Giftbit integration enables you to automatically reward your referral participants with gift cards.
 keyFeatures:
  - Hands-off reward generation, fullfillment, and redemption.

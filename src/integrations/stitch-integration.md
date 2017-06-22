@@ -1,12 +1,13 @@
 ---
-title: Stitch Integration
+title: Stitch Referral Software Integration | Referral Saasquatch
 integrationName: Stitch
 logo: stitch-integration.png
 slug: stitch
 categories: 
  - data-pipe
  - featured
-highlights: |
+highlights: Looking for Stitch referral software integration? Referral SaaSquatch works with Stitch to connect your referral program data to your date warehouse.
+integrationDescription: |
     Stitch is a data pipe that connects to your business data sources, like your SaaSquatch program data, to your data warehouse.
 keyFeatures:
  - Imports SaaSquatch data into your Amazon Redshift, Google BigQuery, MySQL, or Postgres data warehouse.
