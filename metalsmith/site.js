@@ -57,18 +57,14 @@ function site(baseplugin=null){
   const baseMetadata = {
     "robots": process.env.ROBOTS || "true",
     "jsTrackers":  process.env.JSTRACKERS || "true",
-    "useTypekit":  (process.env.TYPEKIT_ID != "none"),
     "googleSiteId": process.env.GOOGLE_SITE_ID || "240GodHWd0rPOGqZxZo3-fDym0MeTAYYHSnkwZV9xSE",
     "windowDotEnv": {
       // Google Custom Search (GCSE) params
       "GCSE_CX": process.env.GCSE_CX || "012261857935385488279:zvjz-tcsjnm",
       "GCSE_KEY": process.env.GCSE_KEY || "AIzaSyCMGfdDaSfjqv5zYoS0mTJnOT3e9MURWkU",
-      "ROLLBAR_ID": process.env.ROLLBAR_ID || "c8fd34f79430479a98f49007397a11db",
+      "ROLLBAR_TOKEN": process.env.ROLLBAR_TOKEN || "a865008ca04947acb3d0a1c719e2d93c",
       "PINGDOM_ID": process.env.PINGDOM_ID || "52c61993abe53d650f000000",
-      "ANALYTICSJS_ID": process.env.ANALYTICSJS_ID || "kjj37zev7u",
-      "GA_ACCOUNT": process.env.GA_ACCOUNT || "UA-39831433-1",
-      "GA_PREFIX": process.env.GA_PREFIX || "/docs/",
-      "TYPEKIT_ID": process.env.TYPEKIT_ID || "hqf0oje"
+      "GTMID": process.env.GTMID || "GTM-PK98FJF"
     }
   };
   

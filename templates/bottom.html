@@ -30,8 +30,6 @@
     <meta property="og:type" content="article" />
     <meta property="og:title" content="{{title}} | SaaSquatch Documentation" />
     <meta property="og:description" content="{{highlights | markdown | striptags }}" />
-    <meta property="og:url" content="http://docs.referralsaasquatch.com/" />
-    <meta property="og:site_name" content="SaaSquatch" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@getSaaSquatch" />
     <meta name="twitter:domain" content="SaaSquatch" />
@@ -63,30 +61,17 @@
     <!-- JS Trackers are disabled -->
     {% endif %}
 
-    {% if useTypekit %}
-    <!-- TypeKit fonts -->
-    <script type="text/javascript">
-    (function(d) {
-    var config = {
-    kitId: window.env.TYPEKIT_ID,
-    scriptTimeout: 3000,
-    async: true
-    },
-    h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(
-    /\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement(
-    "script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";
-    tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadyst
-    atechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;
-    f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
-    })(document);
-    </script>
-    <!-- end TypeKit Fonts -->
-    {% endif %}
-
 </head>
 
 
 <body style="padding-bottom: 0" id="{{pageId}}" class="docs sectionType-{{sectionType}} {{category}}">
+
+    {% if jsTrackers == 'true' %}
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{windowDotEnv.GTMID}}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    {% endif %}
+    
     <div id="my-page">
         <!-- Begin Header / Nav -->
         {% include "./partials/navigationHeader.html" %}
