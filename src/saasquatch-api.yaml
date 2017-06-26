@@ -642,8 +642,9 @@ paths:
               $ref: "#/definitions/RewardBalance"
           examples:
             "application/json":
-              - $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
-              - $ref: "#/definitions/Reward/example/CREDIT"
+              - $ref: "#/definitions/RewardBalance/example/CREDIT"
+              - $ref: "#/definitions/RewardBalance/example/PCT_DISCOUNT"
+              - $ref: "#/definitions/RewardBalance/example/FEATURE"
         default:
           $ref: "#/responses/GeneralError"
   "/{tenant_alias}/credit/bulkredeem":
@@ -2220,6 +2221,24 @@ definitions:
       referrerDiscountPercent:
         type: integer
         description: "The total discountPercent from rewards with `rewardSource = FRIEND_SIGNUP` Only works with types: `PCT_DISCOUNT`"
+    example:
+      FEATURE:
+        type: "FEATURE"
+        featureType: "storage"
+        count: "8"
+        totalQuantity: "500"
+        unit: "MB"
+      CREDIT:
+        type: "CREDIT"
+        count: "4"
+        totalAssignedCredit: "10000"
+        totalRedeemedCredit: "0"
+        unit: "cents"
+      PCT_DISCOUNT:
+        type: "PCT_DISCOUNT"
+        totalDiscountPercent: "30"
+        referredDiscountPercent: "10"
+        referrerDiscountPercent: "20"
 
   Referral:
     description: A link between the user/account of the referrer and the new referred user/account. The authoritative source of who has referred whom. Not all referrals result in a Reward or a RewardBalance being created, such as in-progress referrals.
