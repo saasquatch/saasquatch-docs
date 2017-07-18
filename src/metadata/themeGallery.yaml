@@ -39,13 +39,13 @@ Digicel Email:
     types:    
      - mobile
     image: 99Taxis_Widget_Example.png
-    isLive: false
+    isLive: true
 99-taxis Email:
     name: 99 Taxis Email
     types:    
      - email
     image: 99_Taxis_Email_Example.png
-    isLive: false
+    isLive: true
 Bambora:
     name: Bambora
     types:    
@@ -136,3 +136,15 @@ Snapwire Email:
      - email
     image: email-snapwire-referral-started.png
     isLive: true
+Norad Email:
+    name: Norad Email
+    types:    
+     - email
+    image: Norad_Email_Example.png
+    isLive: true
+Order-In Widget:
+    name: Order-In Widget
+    types:    
+     - embedded
+    image: Order-In_Widget_Example.png
+    isLive: false
