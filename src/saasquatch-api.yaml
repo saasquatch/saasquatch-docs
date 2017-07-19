@@ -89,6 +89,9 @@ tags:
  -
   name: Discount
   description: Endpoints for working with discounts. **Most of these are deprecated** in favor of using Reward endpoints.
+ -
+  name: Deprecated
+  description: Endpoints that have been deprecated.
 
 paths:
   "/{tenant_alias}/accountsync":
@@ -294,6 +297,7 @@ paths:
           $ref: "#/responses/GeneralError"
   "/{tenant_alias}/account/{accountId}/user/{userId}/sharelinks":
     get:
+      deprecated: true
       summary: Lookup a user's share links
       operationId: getSharelinks
       x-docs-anchor: get_sharelinks
@@ -340,6 +344,63 @@ paths:
           examples:
             "application/json":
               $ref: "#/definitions/Sharelink/example"
+        404:
+          description: User/Account not found
+          schema:
+            $ref: "#/definitions/Error"
+        default:
+          $ref: "#/responses/GeneralError"
+  "/{tenant_alias}/account/{accountId}/user/{userId}/shareurls":
+    get:
+      summary: Lookup a user's share URLs
+      operationId: getShareURLs
+      x-docs-anchor: get_shareurls
+      tags:
+        - User
+      security:
+        - APIKey: []
+
+      description: |
+        This API method returns the full list of referral share links for a user. Optional filter parameters are available to return only links of a specific share or engagement medium.
+
+        Share links are made available to a Referrer to provide to their friends and family to click and be directed to your referral program landing page.
+
+        The sharelinks are segmented by Engagement Medium, which is the channel the Referrer accessed the program to be able to share out their referral through. For each Engagment Medium, like `EMBED`, a link is provided for each available Share Medium. This segmentation is used to power the [SaaSquatch analytics platform](/features/analytics/) to provide information about how, and where, your users are interacting with your referral program.
+        For example, The `WHATSAPP` link from the `MOBILE` section is intended to be used to indicated to our system that the Referrer accessed the referral program from a mobile device and shared their referral with their friend using Whatsapp. More information about available [Engagement Mediums](/success/touchpoints/) and [Share Mediums](/success/share-options/) can be found in our success center.
+
+        Share links work by dropping a tracking cookie in the user's browser when the user clicks the link and is directed to your referral program's landing page. This cookie includes the referral code of the Referrer that shared it. Once on your website this cookie can be read using the squatch.js [autofill](/developer/squatchjs/v2/#3-autofill-the-referral-code) method and is also automatically picked up by our squatch.js library to connect referrals.
+
+        The referral code is also passed along to your referral program landing page as the URL parameter `rsCode`. For example `http://ssqt.co/pZVp` redirects to `https://www.google.ca/?rsCode=JOHNDOE`.
+      parameters:
+        - $ref: "#/parameters/tenant_alias"
+        - name: accountId
+          in: path
+          description: The ID of the account to look up
+          required: true
+          type: string
+        - name: userId
+          in: path
+          description: Filters share urls by `user.id`.
+          required: true
+          type: string
+        - name: engagementMedium
+          in: path
+          description: Filters share urls by `engagementMedium`.
+          required: false
+          type: string
+        - name: shareMedium
+          in: path
+          description: Filters share urls by `shareMedium`.
+          required: false
+          type: string
+      responses:
+        200:
+          description: A list of share urls
+          schema:
+            $ref: "#/definitions/Shareurls"
+          examples:
+            "application/json":
+              $ref: "#/definitions/Shareurls/example"
         404:
           description: User/Account not found
           schema:
@@ -940,6 +1001,71 @@ paths:
           description: Account not found
           schema:
             $ref: "#/definitions/Error"
+            
+  "/{tenant_alias}/open/account/{accountId}/user/{userId}/shareurls":
+    get:
+      summary: Lookup a user's share URLs
+      operationId: openGetShareURLs
+      x-docs-anchor: open_get_shareurls
+      tags:
+        - User
+        - Open Endpoint
+      security:
+        - APIKey: []
+        - UserJWT: []
+      description: |
+        This API method returns the full list of referral share links for a user. Optional filter parameters are available to return only links of a specific share or engagement medium.
+
+        Share links are made available to a Referrer to provide to their friends and family to click and be directed to your referral program landing page.
+
+        The sharelinks are segmented by Engagement Medium, which is the channel the Referrer accessed the program to be able to share out their referral through. For each Engagment Medium, like `EMBED`, a link is provided for each available Share Medium. This segmentation is used to power the [SaaSquatch analytics platform](/features/analytics/) to provide information about how, and where, your users are interacting with your referral program.
+        For example, The `WHATSAPP` link from the `MOBILE` section is intended to be used to indicated to our system that the Referrer accessed the referral program from a mobile device and shared their referral with their friend using Whatsapp. More information about available [Engagement Mediums](/success/touchpoints/) and [Share Mediums](/success/share-options/) can be found in our success center.
+
+        Share links work by dropping a tracking cookie in the user's browser when the user clicks the link and is directed to your referral program's landing page. This cookie includes the referral code of the Referrer that shared it. Once on your website this cookie can be read using the squatch.js [autofill](/developer/squatchjs/v2/#3-autofill-the-referral-code) method and is also automatically picked up by our squatch.js library to connect referrals.
+
+        The referral code is also passed along to your referral program landing page as the URL parameter `rsCode`. For example `http://ssqt.co/pZVp` redirects to `https://www.google.ca/?rsCode=JOHNDOE`.
+      parameters:
+        - $ref: "#/parameters/tenant_alias"
+        - name: accountId
+          in: path
+          description: The ID of the account to look up
+          required: true
+          type: string
+        - name: userId
+          in: path
+          description: Filters share urls by `user.id`.
+          required: true
+          type: string
+        - name: engagementMedium
+          in: path
+          description: Filters share urls by `engagementMedium`.
+          required: false
+          type: string
+        - name: shareMedium
+          in: path
+          description: Filters share urls by `shareMedium`.
+          required: false
+          type: string
+      responses:
+        200:
+          description: A list of share urls
+          schema:
+            $ref: "#/definitions/Shareurls"
+          examples:
+            "application/json":
+              $ref: "#/definitions/Shareurls/example"
+        401:
+          description: Unauthorized
+          schema:
+            $ref: "#/definitions/Error"
+        403:
+          description: Endpoint disabled
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: Account not found
+          schema:
+            $ref: "#/definitions/Error"
   
   "/{tenant_alias}/open/user/cookie_user":
     put:
@@ -1020,6 +1146,9 @@ paths:
           description: Not Found
           schema:
             $ref: "#/definitions/Error"
+            
+  
+  
   "/{tenant_alias}/open/code/{referral_code}":
     get:
       summary: Lookup a referral code
@@ -1620,7 +1749,6 @@ paths:
         - Discount
       security:
         - APIKey: []
-
       description: |
         This method lets you look up the details of a referral code and to ensure that it is valid. Works with `PCT_DISCOUNT`
       parameters:
@@ -2588,6 +2716,305 @@ definitions:
         twitterShareLink: "http://ssqt.co/mGbcF5"
         emailShareLink: "http://ssqt.co/mbbcF5"
         linkedinShareLink: "http://ssqt.co/m1bcF5"
+        
+  Shareurls:
+    description: Share urls for an individual user.
+    properties:
+      shareLinks:
+        type: string
+        description: The unique share link the user can refer their friends with. The Share Link contains the Referral Code for making referrals and a source for Analytics purposes.
+        properties:
+          EMAIL:
+            description: An individual user's Share links for use in the EMAIL engagementMedium.
+            properties:              
+              EMAIL:
+                type: string
+                description: "The Share Link for the Email shareMedium."
+              FACEBOOK:
+                type: string
+                description: "The Share Link for the Facebook shareMedium."
+              PINTEREST:
+                type: string
+                description: "The Share Link for the Pinterest shareMedium."
+              TWITTER:
+                type: string
+                description: "The Share Link for the Twitter shareMedium."
+              DIRECT:
+                type: string
+                description: "The Share Link for the Direct shareMedium."
+              WHATSAPP:
+                type: string
+                description: "The Share Link for the Whatsapp shareMedium."
+              LINEMESSENGER:
+                type: string
+                description: "The Share Link for the Line Messenger shareMedium."
+              SMS:
+                type: string
+                description: "The Share Link for the SMS shareMedium."
+              FBMESSENGER:
+                type: string
+                description: "The Share Link for the Facebook Messenger shareMedium."
+              UNKNOWN:
+                type: string
+                description: "The Share Link for an unknown shareMedium."
+              LINKEDIN:
+                type: string
+                description: "The Share Link for the linkedIn shareMedium."
+          MOBILE:
+            description: An individual user's Share links for use in the MOBILE engagementMedium.
+            properties:              
+              EMAIL:
+                type: string
+                description: "The Share Link for the Email shareMedium."
+              FACEBOOK:
+                type: string
+                description: "The Share Link for the Facebook shareMedium."
+              PINTEREST:
+                type: string
+                description: "The Share Link for the Pinterest shareMedium."
+              TWITTER:
+                type: string
+                description: "The Share Link for the Twitter shareMedium."
+              DIRECT:
+                type: string
+                description: "The Share Link for the Direct shareMedium."
+              WHATSAPP:
+                type: string
+                description: "The Share Link for the Whatsapp shareMedium."
+              LINEMESSENGER:
+                type: string
+                description: "The Share Link for the Line Messenger shareMedium."
+              SMS:
+                type: string
+                description: "The Share Link for the SMS shareMedium."
+              FBMESSENGER:
+                type: string
+                description: "The Share Link for the Facebook Messenger shareMedium."
+              UNKNOWN:
+                type: string
+                description: "The Share Link for an unknown shareMedium."
+              LINKEDIN:
+                type: string
+                description: "The Share Link for the linkedIn shareMedium."
+          EMBED:
+            description: An individual user's Share links for use in the EMBED engagementMedium.
+            properties:              
+              EMAIL:
+                type: string
+                description: "The Share Link for the Email shareMedium."
+              FACEBOOK:
+                type: string
+                description: "The Share Link for the Facebook shareMedium."
+              PINTEREST:
+                type: string
+                description: "The Share Link for the Pinterest shareMedium."
+              TWITTER:
+                type: string
+                description: "The Share Link for the Twitter shareMedium."
+              DIRECT:
+                type: string
+                description: "The Share Link for the Direct shareMedium."
+              WHATSAPP:
+                type: string
+                description: "The Share Link for the Whatsapp shareMedium."
+              LINEMESSENGER:
+                type: string
+                description: "The Share Link for the Line Messenger shareMedium."
+              SMS:
+                type: string
+                description: "The Share Link for the SMS shareMedium."
+              FBMESSENGER:
+                type: string
+                description: "The Share Link for the Facebook Messenger shareMedium."
+              UNKNOWN:
+                type: string
+                description: "The Share Link for an unknown shareMedium."
+              LINKEDIN:
+                type: string
+                description: "The Share Link for the linkedIn shareMedium."
+          POPUP:
+            description: An individual user's Share links for use in the POPUP engagementMedium.
+            properties:              
+              EMAIL:
+                type: string
+                description: "The Share Link for the Email shareMedium."
+              FACEBOOK:
+                type: string
+                description: "The Share Link for the Facebook shareMedium."
+              PINTEREST:
+                type: string
+                description: "The Share Link for the Pinterest shareMedium."
+              TWITTER:
+                type: string
+                description: "The Share Link for the Twitter shareMedium."
+              DIRECT:
+                type: string
+                description: "The Share Link for the Direct shareMedium."
+              WHATSAPP:
+                type: string
+                description: "The Share Link for the Whatsapp shareMedium."
+              LINEMESSENGER:
+                type: string
+                description: "The Share Link for the Line Messenger shareMedium."
+              SMS:
+                type: string
+                description: "The Share Link for the SMS shareMedium."
+              FBMESSENGER:
+                type: string
+                description: "The Share Link for the Facebook Messenger shareMedium."
+              UNKNOWN:
+                type: string
+                description: "The Share Link for an unknown shareMedium."
+              LINKEDIN:
+                type: string
+                description: "The Share Link for the linkedIn shareMedium."
+          UNKNOWN:  
+            description: An individual user's Share links for use in an UNKNOWN engagementMedium.
+            properties:              
+              EMAIL:
+                type: string
+                description: "The Share Link for the Email shareMedium."
+              FACEBOOK:
+                type: string
+                description: "The Share Link for the Facebook shareMedium."
+              PINTEREST:
+                type: string
+                description: "The Share Link for the Pinterest shareMedium."
+              TWITTER:
+                type: string
+                description: "The Share Link for the Twitter shareMedium."
+              DIRECT:
+                type: string
+                description: "The Share Link for the Direct shareMedium."
+              WHATSAPP:
+                type: string
+                description: "The Share Link for the Whatsapp shareMedium."
+              LINEMESSENGER:
+                type: string
+                description: "The Share Link for the Line Messenger shareMedium."
+              SMS:
+                type: string
+                description: "The Share Link for the SMS shareMedium."
+              FBMESSENGER:
+                type: string
+                description: "The Share Link for the Facebook Messenger shareMedium."
+              UNKNOWN:
+                type: string
+                description: "The Share Link for an unknown shareMedium."
+              LINKEDIN:
+                type: string
+                description: "The Share Link for the linkedIn shareMedium."
+          HOSTED:
+            description: An individual user's Share links for use in the HOSTED engagementMedium.
+            properties:              
+              EMAIL:
+                type: string
+                description: "The Share Link for the Email shareMedium."
+              FACEBOOK:
+                type: string
+                description: "The Share Link for the Facebook shareMedium."
+              PINTEREST:
+                type: string
+                description: "The Share Link for the Pinterest shareMedium."
+              TWITTER:
+                type: string
+                description: "The Share Link for the Twitter shareMedium."
+              DIRECT:
+                type: string
+                description: "The Share Link for the Direct shareMedium."
+              WHATSAPP:
+                type: string
+                description: "The Share Link for the Whatsapp shareMedium."
+              LINEMESSENGER:
+                type: string
+                description: "The Share Link for the Line Messenger shareMedium."
+              SMS:
+                type: string
+                description: "The Share Link for the SMS shareMedium."
+              FBMESSENGER:
+                type: string
+                description: "The Share Link for the Facebook Messenger shareMedium."
+              UNKNOWN:
+                type: string
+                description: "The Share Link for an unknown shareMedium."
+              LINKEDIN:
+                type: string
+                description: "The Share Link for the linkedIn shareMedium."
+
+    example:
+      shareLinks:
+        EMAIL:
+          TWITTER: "http://ssqt.co/mGbZbgC"
+          UNKNOWN: "http://ssqt.co/mVbZbgC"
+          PINTEREST: "http://ssqt.co/RLbZbgC"
+          WHATSAPP: "http://ssqt.co/mibZbgC"
+          FACEBOOK: "http://ssqt.co/mTbZbgC"
+          LINKEDIN: "http://ssqt.co/m1bZbgC"
+          DIRECT: "http://ssqt.co/mPbZbgC"
+          LINEMESSENGER: "http://ssqt.co/mybZbgC"
+          FBMESSENGER: "http://ssqt.co/m4bZbgC"
+          SMS: "http://ssqt.co/mObZbgC"
+          EMAIL: "http://ssqt.co/mbbZbgC"
+        POPUP:
+          WHATSAPP: "http://ssqt.co/mFbZbgC"
+          TWITTER: "http://ssqt.co/mMbZbgC"
+          UNKNOWN: "http://ssqt.co/mBbZbgC"
+          PINTEREST: "http://ssqt.co/RzbZbgC"
+          FACEBOOK: "http://ssqt.co/m9bZbgC"
+          LINKEDIN: "http://ssqt.co/m7bZbgC"
+          DIRECT: "http://ssqt.co/m5bZbgC"
+          LINEMESSENGER: "http://ssqt.co/mDbZbgC"
+          SMS: "http://ssqt.co/mabZbgC"
+          FBMESSENGER: "http://ssqt.co/mhbZbgC"
+          EMAIL: "http://ssqt.co/mobZbgC"
+        MOBILE:
+          TWITTER: "http://ssqt.co/mCbZbgC"
+          UNKNOWN: "http://ssqt.co/mjbZbgC"
+          PINTEREST: "http://ssqt.co/RRbZbgC"
+          WHATSAPP: "http://ssqt.co/msbZbgC"
+          FACEBOOK: "http://ssqt.co/mnbZbgC"
+          LINKEDIN: "http://ssqt.co/m3bZbgC"
+          DIRECT: "http://ssqt.co/mebZbgC"
+          LINEMESSENGER: "http://ssqt.co/mdbZbgC"
+          FBMESSENGER: "http://ssqt.co/mUbZbgC"
+          SMS: "http://ssqt.co/mNbZbgC"
+          EMAIL: "http://ssqt.co/mEbZbgC"
+        HOSTED:
+          TWITTER: "http://ssqt.co/mSbZbgC"
+          WHATSAPP: "http://ssqt.co/mrbZbgC"
+          PINTEREST: "http://ssqt.co/RmbZbgC"
+          UNKNOWN: "http://ssqt.co/mAbZbgC"
+          FACEBOOK: "http://ssqt.co/mubZbgC"
+          LINKEDIN: "http://ssqt.co/mYbZbgC"
+          DIRECT: "http://ssqt.co/mtbZbgC"
+          LINEMESSENGER: "http://ssqt.co/mWbZbgC"
+          SMS: "http://ssqt.co/mqbZbgC"
+          FBMESSENGER: "http://ssqt.co/mKbZbgC"
+          EMAIL: "http://ssqt.co/mlbZbgC"
+        UNKNOWN:
+          UNKNOWN: "http://ssqt.co/mzbZbgC"
+          TWITTER: "http://ssqt.co/mRbZbgC"
+          WHATSAPP: "http://ssqt.co/mIbZbgC"
+          PINTEREST: "http://ssqt.co/mpbZbgC"
+          FACEBOOK: "http://ssqt.co/mmbZbgC"
+          LINKEDIN: "http://ssqt.co/m6bZbgC"
+          DIRECT: "http://ssqt.co/mvbZbgC"
+          LINEMESSENGER: "http://ssqt.co/m8bZbgC"
+          FBMESSENGER: "http://ssqt.co/m0bZbgC"
+          SMS: "http://ssqt.co/mkbZbgC"
+          EMAIL: "http://ssqt.co/mLbZbgC"
+        EMBED:
+          WHATSAPP: "http://ssqt.co/mZbZbgC"
+          UNKNOWN: "http://ssqt.co/mXbZbgC"
+          PINTEREST: "http://ssqt.co/mfbZbgC"
+          TWITTER: "http://ssqt.co/mcbZbgC"
+          FACEBOOK: "http://ssqt.co/mwbZbgC"
+          LINKEDIN: "http://ssqt.co/mHbZbgC"
+          DIRECT: "http://ssqt.co/mQbZbgC"
+          LINEMESSENGER: "http://ssqt.co/mxbZbgC"
+          SMS: "http://ssqt.co/m2bZbgC"
+          FBMESSENGER: "http://ssqt.co/mgbZbgC"
+          EMAIL: "http://ssqt.co/mJbZbgC"
 
   WebhookEndpoint:
     description: An endpoint to receive events
