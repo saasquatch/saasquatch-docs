@@ -60,7 +60,8 @@ export function smoothScrollToHref(elem){
     var anchor = $this.attr('href').split("#")[1];
     var $that = document.getElementById(anchor);
     if(!$that){ throw new Error("Couldn't smooth scroll to anchor." + anchor); }
-    zenscroll.to($that);
+    zenscroll.to($that, null,function () { window.location.hash = anchor; });
+    
 }
 
 export {
