@@ -60,8 +60,8 @@ function site(baseplugin=null){
     "googleSiteId": process.env.GOOGLE_SITE_ID || "240GodHWd0rPOGqZxZo3-fDym0MeTAYYHSnkwZV9xSE",
     "windowDotEnv": {
       // Google Custom Search (GCSE) params
-      "GCSE_CX": process.env.GCSE_CX || "012261857935385488279:zvjz-tcsjnm",
-      "GCSE_KEY": process.env.GCSE_KEY || "AIzaSyCMGfdDaSfjqv5zYoS0mTJnOT3e9MURWkU",
+      "GCSE_CX": process.env.GCSE_CX || "012261857935385488279:90grrsobq40",
+      "GCSE_KEY": process.env.GCSE_KEY || "AIzaSyC3Lc2HenETRKNS3VIsHAMobTYhnKYG6dE",
       "ROLLBAR_TOKEN": process.env.ROLLBAR_TOKEN || "a865008ca04947acb3d0a1c719e2d93c",
       "PINGDOM_ID": process.env.PINGDOM_ID || "52c61993abe53d650f000000",
       "GTMID": process.env.GTMID || "GTM-PK98FJF"
