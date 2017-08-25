@@ -98,6 +98,7 @@ function site(baseplugin=null){
       //integrations: 'metadata/integrations.yaml',
       guides: 'metadata/guides.yaml',
       themeGallery: 'metadata/themeGallery.yaml',
+      productNews: 'metadata/productNews.yaml',
       }))
 
   /*

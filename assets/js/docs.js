@@ -31,7 +31,9 @@ export function init(){
         */
         var anchors = new anchorJS();
         anchors.options.placement = 'left';
+        //anchors.options.visible = 'always';
         anchors.add('.article-content h2, .article-content h3, .article-content h4');
+        anchors.remove('.no-anchor h2, .no-anchor h3, .no-anchor h4');
         anchors.remove('.no-anchor');
         
         /*
