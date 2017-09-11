@@ -407,6 +407,92 @@ paths:
             $ref: "#/definitions/Error"
         default:
           $ref: "#/responses/GeneralError"
+  "/{tenant_alias}/account/{accountId}/user/{userId}/block":
+    post:
+      summary: Block user
+      operationId: blockUser
+      x-docs-anchor: block_user
+      tags:
+        - User
+      security:
+        - APIKey: []
+
+      description: |
+        Block a user from making successful referrals based upon their user and account `id`.
+        More information about blocking users from participating in your referral program can be [found in the SaaSquatch docs](/developer/referral-security/#user-blocking).
+      parameters:
+        - name: accountId
+          in: path
+          description: "The `id` of the Account associated with the User being blocked. See [Shared vs. Solo accounts](/shared-vs-solo-accounts/) for more info."
+          required: true
+          type: string
+        - name: userId
+          in: path
+          description: "The `id` of the User to block"
+          required: true
+          type: string
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        200:
+          description: User blocked successfully
+          examples:
+            "application/json":
+              {}
+          schema:
+            {}
+        403:
+          description: User already blocked
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: User/Account NOT found
+          schema:
+            $ref: "#/definitions/Error"
+        default:
+          $ref: "#/responses/GeneralError"
+  "/{tenant_alias}/account/{accountId}/user/{userId}/unblock":
+    post:
+      summary: Unblock user
+      operationId: unblockUser
+      x-docs-anchor: unblock_user
+      tags:
+        - User
+      security:
+        - APIKey: []
+
+      description: |
+        Unblock a user based upon their user and account `id`.
+        More information about blocking users from participating in your referral program can be [found in the SaaSquatch docs](/developer/referral-security/#user-blocking).
+      parameters:
+        - name: accountId
+          in: path
+          description: "The `id` of the Account associated with the User being unblocked. See [Shared vs. Solo accounts](/shared-vs-solo-accounts/) for more info."
+          required: true
+          type: string
+        - name: userId
+          in: path
+          description: "The `id` of the User to unblock"
+          required: true
+          type: string
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        200:
+          description: User unblocked successfully
+          examples:
+            "application/json":
+              {}
+          schema:
+            {}
+        403:
+          description: User not blocked
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: User/Account NOT found
+          schema:
+            $ref: "#/definitions/Error"
+        default:
+          $ref: "#/responses/GeneralError"
   "/{tenant_alias}/users":
     get:
       summary: List users
@@ -450,6 +536,7 @@ paths:
             $ref: "#/definitions/UserList"
         default:
           $ref: "#/responses/GeneralError"
+
 
   "/{tenant_alias}/code/{code}":
     get:
@@ -780,6 +867,7 @@ paths:
               $ref: "#/definitions/Reward"
           examples:
             "application/json":
+              - $ref: "#/definitions/Reward/example/CREDIT"
               - $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
         default:
           $ref: "#/responses/GeneralError"
@@ -855,7 +943,8 @@ paths:
             $ref: "#/definitions/Reward"
           examples:
             "application/json":
-              $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
+              - $ref: "#/definitions/Reward/example/CREDIT"
+              - $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
 
         default:
           $ref: "#/responses/GeneralError"
@@ -2129,6 +2218,10 @@ definitions:
       redeemedCredit:
         type: integer
         description: "The redeemed quantity of the feature. Works with: `TIME_CREDIT` or `CREDIT`"
+      redemptions:
+        type: array
+        items:
+          $ref: "#/definitions/Redemption"
       currency:
         type: string
         description: "For programs that require a currency. Works with: `CREDIT`"
@@ -2158,9 +2251,32 @@ definitions:
         unit: "CENTS"
         assignedCredit: 2500
         redeemedCredit: 0
+        redemptions:
+          - $ref: "#/definitions/Redemption/example"
         name: "Dollar Credit"
         currency: null
-
+  
+  Redemption:
+    title: A redemption object
+    description: "Details about when a quantity of a reward was redeemed from the SaaSquatch system."
+    properties:
+      id:
+        type: string
+        description: "The unique identifier for this redemption"
+        example: "5462600de4b09b1c41238f2f"
+      dateRedeemed: 
+        type: integer
+        description: "Timestamp of when this redemption took place."
+        example: 1415733261275
+      quantityRedeemed:
+        type: integer
+        description: "the amount of the reward that was redeemed."
+        example: 
+    example:
+      id: "5462600de4b09b1c41238f2f"
+      dateRedeemed: 1415733261275
+      quantityRedeemed: 2000
+  
   UserStub:
     title: A User object stub
     description: The basic information about a User used when you want to create a new user, called a UserStub.
