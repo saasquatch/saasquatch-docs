@@ -905,6 +905,43 @@ paths:
             $ref: "#/definitions/RewardDebitResponse"
         default:
           $ref: "#/responses/GeneralError"
+          
+  "/{tenant_alias}/reward/{id}/cancel":
+    post:
+      summary: Cancel a single reward
+      operationId: cancelReward
+      x-docs-anchor: cancel_reward
+      tags:
+        - Reward
+      security:
+        - APIKey: []
+      description: "Used to cancel an individual reward earned from a referral program. Works with: `CREDIT`, and `PCT_DISCOUNT`"
+      parameters:
+        - name: id
+          in: path
+          description: The ID of the specific reward to be cancelled
+          required: true
+          type: string
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        200:
+          description: Reward cancelled
+          examples:
+            "application/json":
+              $ref: "#/definitions/Reward/example/CREDIT"
+          schema:
+            $ref: "#/definitions/Reward"
+        400:
+          description: Reward is not cancellable
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: Reward does not exist
+          schema:
+            $ref: "#/definitions/Error"
+        default:
+          $ref: "#/responses/GeneralError"
+          
   "/{tenant_alias}/rewards/account/{accountId}/user/{userId}":
     post:
       summary: Create a single reward
