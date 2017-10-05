@@ -70,6 +70,10 @@
       "type": 301,
       "source": "/testing",
       "destination": "/developer/testing"
+    }, {
+      "type": 301,
+      "source": "/developer/giftbit",
+      "destination": "/success/gift-card-rewards"
     }]
   }
 }
