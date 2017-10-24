@@ -32,7 +32,8 @@ function plugin(opts) {
         resolveLinks: true
       })
       .then(function(response) {
-        metadata['contentful'] = response.entries;
+        const metaname = opts.metaname? opts.metaname : 'contentful'
+        metadata[metaname] = response.entries;
         // console.log("contentful content", response);
         done();
       }, function(error) {

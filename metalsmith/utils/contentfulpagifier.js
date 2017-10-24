@@ -28,7 +28,7 @@ function pageify(entryRaw, i18n){
             highlights: fields.highlights,
             contents: fields.content,
             markdownToc: markdownToc(fields.content),
-            
+            tags: fields.tags,
             slug: fields.slug,
              
             fields: fields,

@@ -29,6 +29,11 @@ import slugFilter from './filters/slug.js';
 import tocFilter from './filters/tableOfContents.js';
 
 
+import contentfulpagifier from './utils/contentfulpagifier';
+import productpagifiger from './utils/productSpaceContentfulpagifier';
+
+
+
 /**
  * SaaSquatch-Docs MetalSmith site
  * 
@@ -88,6 +93,11 @@ function site(baseplugin=null){
       accessKey: "ae31ffc9de0831d887cff9aa3c72d861c323bd09de2a4cafd763c205393976c9",
       spaceId: "s68ib1kj8k5n"
   }))
+  .use(contentful({
+      accessKey: "19e2e0a24e24723b36d87e68bf856453a9f136f104c0df0ad2d0376dcf617464",
+      spaceId: "1th1ybv0b2n4",
+      metaname: "contentfulProduct"
+  }))
   .use(swagger({
       path: "saasquatch-api.yaml"
     }))
@@ -104,7 +114,16 @@ function site(baseplugin=null){
   /*
   * Automatic page generation
   */
-  .use(pageify())
+  .use(pageify({
+    metaname: "contentful",
+    pagifier: contentfulpagifier
+  }))
+  .use(pageify({
+    metaname: "contentfulProduct",
+    pagifier: productpagifiger
+  }))
+    
+  
   //.use(squatchjsAutoInclude())
 
   /*
