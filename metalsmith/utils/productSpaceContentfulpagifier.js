@@ -25,12 +25,14 @@ function pageify(entryRaw, i18n){
             contents: fields.longDescription,
             markdownToc: markdownToc(fields.longDescription),
             tags: fields.tags,
-            slug: "marketplace/program/" + fields.slug,
+            slug: "program/" + fields.slug,
+            screenshot: fields.screenshot,
+            //logo: fields.logo,
              
             fields: fields,
             id: entry.sys.id,
             sectionType: "successArticle",
-            template: "hasTableOfContents.html"
+            template: "pages/program.html"
         };
         // if(fields.coverImage){
         //     let coverFields = resolveI18n(fields.coverImage.fields);
@@ -39,6 +41,20 @@ function pageify(entryRaw, i18n){
         //         name: coverFields.title
         //     };
         // }
+        if(fields.logo){
+            let logoFields = resolveI18n(fields.logo.fields);
+            file.logo = {
+                url: logoFields.file.url,
+                name: logoFields.title
+            };
+        }
+        if(fields.screenshot){
+            let screenshotFields = resolveI18n(fields.screenshot.fields);
+            file.screenshot = {
+                url: screenshotFields.file.url,
+                name: screenshotFields.title
+            };
+        }
     }else{
         file = null;
     }

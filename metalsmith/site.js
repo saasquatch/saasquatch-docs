@@ -94,8 +94,8 @@ function site(baseplugin=null){
       spaceId: "s68ib1kj8k5n"
   }))
   .use(contentful({
-      accessKey: "19e2e0a24e24723b36d87e68bf856453a9f136f104c0df0ad2d0376dcf617464",
-      spaceId: "1th1ybv0b2n4",
+      accessKey: "950546088e303e9d2328c21ea448fac45dd469b899a36d739bc7300c70512d3b",
+      spaceId: "48ji72u659z5",
       metaname: "contentfulProduct"
   }))
   .use(swagger({

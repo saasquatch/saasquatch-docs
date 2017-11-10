@@ -10,7 +10,7 @@
       {% if hero %}<div class="hero-unit article {{category}}">{% endif %}
     
       <div class="page-header">
-        <h1 id="top">{{title}}</h1>
+        <h1 id="top">{{title}}</h1>{% for tag in tags %}{% if tag=="Beta" %}<span class="label docs-label-beta">Beta</span>{% endif %}{% endfor %}
       </div>
       
       {% if coverImage %}
@@ -25,7 +25,8 @@
       
       {% if hero %}</div><!-- end hero block -->{% endif %}
       
-    
+      {% for tag in tags %}{% if tag=="Beta" %}<blockquote><p>This feature is currently in Beta. Please contact our <a href="mailto:support@referralsaasquatch.com">support team</a> to learn more about how to enroll.</p></blockquote>{% endif %}{% endfor %}
+
       {% block articleContent %}
       {{ tocContents.content | safe }}
       {% endblock articleContent %}
