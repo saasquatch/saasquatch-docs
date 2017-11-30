@@ -1728,7 +1728,7 @@ paths:
           $ref: "#/responses/GeneralError"
   "/{tenant_alias}/theme/variables/instance":
     get:
-      summary: Lookup variables values
+      summary: Lookup Default Variables Values
       operationId: lookupVariables
       x-docs-anchor: lookup_variables
       tags:
@@ -1737,7 +1737,7 @@ paths:
         - APIKey: []
 
       description: |
-        Returns the current variables values stored for the schema object that is defined in the tenant theme repository.
+        Returns the current default variables values stored for the schema object that is defined in the tenant theme repository.
       produces:
         - "application/json"
       parameters:
@@ -1754,7 +1754,7 @@ paths:
           $ref: "#/responses/GeneralError"
 
     put:
-      summary: Replace Variable Values
+      summary: Replace Default Variable Values
       operationId: replaceVariables
       x-docs-anchor: replace_variables
       tags:
@@ -1763,7 +1763,7 @@ paths:
         - APIKey: []
 
       description: |
-        Replaces all of the previously set values. Use this operation only when your
+        Replaces all of the previously set default variables values. Use this operation only when your
         goal is to completely replace all variable values, including deleting previous
         values of othe fields that you're not setting. Prefer to use a `PATCH` request
         when you only want to update one variable or a subset of variables.
@@ -1771,7 +1771,7 @@ paths:
       parameters:
         - name: instance
           in: body
-          description: The variables object to replace all previously stored values.
+          description: The variables object to replace all previously stored default values.
           schema:
             $ref: "#/definitions/VariablesInstance"
         - $ref: "#/parameters/tenant_alias"
@@ -1784,7 +1784,7 @@ paths:
           $ref: "#/responses/GeneralError"
 
     patch:
-      summary: Update Variable Values
+      summary: Update Default Variable Values
       operationId: updateVariables
       x-docs-anchor: update_variables
       tags:
@@ -1793,7 +1793,7 @@ paths:
         - APIKey: []
         - UserJWT: []
       description: |
-        Updates the previously stored values for the variables included in this request.
+        Updates the previously stored values for the default variables included in this request.
         Will not override, nullify or delete the other variable values that are not included.
         This method can be used to selectively set a single variable. See [theme variables](/themes/variables/) for more info.
       parameters:
@@ -1815,6 +1815,143 @@ paths:
           $ref: "#/responses/VariablesErrorResponse"
         default:
           $ref: "#/responses/GeneralError"
+          
+  "/{tenant_alias}/theme/{locale}/variables/instance":
+    get:
+      summary: Lookup Localized Variables Values
+      operationId: lookupLocaleVariables
+      x-docs-anchor: lookup_locale_variables
+      tags:
+        - Theme
+      security:
+        - APIKey: []
+
+      description: |
+        Returns the current variables values, for a specific locale, stored for the schema object that is defined in the tenant theme repository.
+      produces:
+        - "application/json"
+      parameters:
+        - $ref: "#/parameters/tenant_alias"
+        - name: locale
+          in: path
+          description: The [Locale](/themes/internationalization/) for the variables object being retrieved.
+          required: true
+          type: string
+      responses:
+        200:
+          description: Variables Found
+          schema:
+            $ref: "#/definitions/VariablesInstance"
+          examples:
+            "application/schema+json":
+              $ref: "#/definitions/VariablesInstance/example"
+        default:
+          $ref: "#/responses/GeneralError"
+
+    put:
+      summary: Replace Localized Variable Values
+      operationId: replaceLocaleVariables
+      x-docs-anchor: replace_locale_variables
+      tags:
+        - Theme
+      security:
+        - APIKey: []
+
+      description: |
+        Replaces all of the previously set variables values for a specific locale. Use this operation only when your
+        goal is to completely replace all variable values for a locale, including deleting previous
+        values of othe fields that you're not setting. Prefer to use a `PATCH` request
+        when you only want to update one variable or a subset of variables.
+        See [theme variables](/themes/variables/) for more info.
+      parameters:
+        - name: instance
+          in: body
+          description: The variables object to replace all previously stored values.
+          schema:
+            $ref: "#/definitions/VariablesInstance"
+        - name: locale
+          in: path
+          description: The [Locale](/themes/internationalization/) of the variables object being replaced.
+          required: true
+          type: string
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        204:
+          description: Variables Replaced
+        400:
+          $ref: "#/responses/VariablesErrorResponse"
+        default:
+          $ref: "#/responses/GeneralError"
+
+    patch:
+      summary: Update Localized Variable Values
+      operationId: updateLocaleVariables
+      x-docs-anchor: update_locale_variables
+      tags:
+        - Theme
+      security:
+        - APIKey: []
+        - UserJWT: []
+      description: |
+        Updates the previously stored values for the localized variables included in this request.
+        Will not override, nullify or delete the other variable values that are not included.
+        This method can be used to selectively set a single variable. See [theme variables](/themes/variables/) for more info.
+      parameters:
+        - name: instance
+          in: body
+          description: The variables object that will update fields included here.
+          schema:
+            $ref: "#/definitions/VariablesInstance"
+        - name: locale
+          in: path
+          description: The [Locale](/themes/internationalization/) of the variables object being updated.
+          required: true
+          type: string
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        200:
+          description: Variables Updated
+          schema:
+            $ref: "#/definitions/VariablesInstance"
+          examples:
+            "application/json":
+              $ref: "#/definitions/VariablesInstance/example"
+        400:
+          $ref: "#/responses/VariablesErrorResponse"
+        default:
+          $ref: "#/responses/GeneralError"
+    
+    delete:
+      summary: Delete Localized Variable Values
+      operationId: deleteLocaleVariables
+      x-docs-anchor: delete_locale_variables
+      tags:
+        - Theme
+      security:
+        - APIKey: []
+        - UserJWT: []
+      description: |
+        Delete all variables for a specified locale. See [theme variables](/themes/variables/) for more info.
+      parameters:
+        - name: locale
+          in: path
+          description: The [Locale](/themes/internationalization/) of the variables object to delete.
+          required: true
+          type: string
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        200:
+          description: Variables Deleted
+          schema:
+            $ref: "#/definitions/VariablesInstance"
+          examples:
+            "application/json":
+              $ref: "#/definitions/VariablesInstance/example"
+        400:
+          $ref: "#/responses/VariablesErrorResponse"
+        default:
+          $ref: "#/responses/GeneralError"
+          
   "/{tenant_alias}/theme/email/{email_type}/preview":
     post:
       summary: Preview Theme Email
