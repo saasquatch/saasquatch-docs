@@ -74,6 +74,10 @@
       "type": 301,
       "source": "/developer/giftbit",
       "destination": "/success/gift-card-rewards"
+    }, {
+      "type": 301,
+      "source": "/getting-started",
+      "destination": "/success/intro"
     }]
   }
 }
