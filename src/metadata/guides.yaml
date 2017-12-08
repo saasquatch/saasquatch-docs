@@ -181,3 +181,21 @@ Instapage Forms:
     image: instapage-integration.png
     summary: |
         Leveraging your existing Instapage Forms to automatically add Referred Signups into your referral program.
+Custom User Fields:
+    name: Custom User Fields
+    linkText: Read more about the available custom user fields
+    slug: /features/custom-user-fields
+    types: 
+     - feature
+    icon: fa-user-plus
+    summary: |
+        Include custom information about users in your SaaSquatch Program.
+Referral Widget Types:
+    name: Referral Widget Types
+    linkText: Read more about the available widget types
+    slug: /topics/widget-types
+    types: 
+     - feature
+    icon: fa-window-restore
+    summary: |
+        Display different types of widgets to users in your SaaSquatch Program.

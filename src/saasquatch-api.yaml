@@ -2504,6 +2504,7 @@ definitions:
       imageUrl: ""
       locale: null
 
+
   User:
     title: The User object
     description: An object describing an individual user. Users are used in SaaSquatch to track people/contacts/leads. When a referral happens, it always happens between two Users.
@@ -4118,9 +4119,16 @@ definitions:
         example: "https://www.example.com/profile/ab5111251125"
         description: |
           Optionally used in widgets, emails, and themes. If you provide a absolute profile image URL the minimum image size is 80px x 80px.
+      customFields:
+        type: object
+        description: |
+          An object containing the custom fields for this user.
+          
+          Learn more about the available custom field functionality in our [Custom Fields Developer Guide](/developer/custom-fields)
       shareLinks:
         readOnly: true
         $ref: "#/definitions/Sharelink"
+      
     example:
       id: "898746321"
       cookieId: "2523423436323"
@@ -4136,6 +4144,13 @@ definitions:
         isConverted: true
         newlyReferred: false
       imageUrl: ""
+      customFields: 
+        lastPurchaseDate: 1512152525513
+        plan: "Pro+"
+        phone: 19055551234
+        address: "123 Main st., City, Province, Country, H0H0H0"
+        shoeSize: 12.5
+        currency: "CAD"
       shareLinks:
         $ref: "#/definitions/Sharelink/example"
 
@@ -4202,19 +4217,19 @@ definitions:
         example: "https://www.example.com/profile/ab5111251125"
         description: |
           Optionally used in widgets, emails, and themes. If you provide a absolute profile image URL the minimum image size is 80px x 80px.
-    example:
-      id: "898746321"
-      accountId: "987321"
-      firstName: "Henk"
-      lastName: "Thompson"
-      email: "hello@example.com"
-      referable: true
-      locale: null
-      referralCode: "HENKTHOMPSON"
-      referredBy: 
-        code: "JONDOE1234"
-        isConverted: true
-      imageUrl: ""
+      customFields:
+        type: object
+        description: |
+          An object containing the custom fields for this user.
+          
+          Learn more about the available custom field functionality in our [Custom Fields Developer Guide](/developer/custom-fields)
+        example: 
+          lastPurchaseDate: 1512152525513
+          plan: "Pro+"
+          phone: 19055551234
+          address: "123 Main st., City, Province, Country, H0H0H0"
+          shoeSize: 12.5
+          currency: "CAD"
       
   OpenCookieUserStub:
     title: A Open Cookie User object stub
@@ -4265,17 +4280,19 @@ definitions:
         example: "https://www.example.com/profile/ab5111251125"
         description: |
           Optionally used in widgets, emails, and themes. If you provide a absolute profile image URL the minimum image size is 80px x 80px.
-    example:
-      firstName: ""
-      lastName: ""
-      email: ""
-      referralCode: "HENKTHOMPSON"
-      paymentProviderId: ""
-      locale: ""
-      referredBy: 
-        code: "JONDOE1234"
-        isConverted: true
-      imageUrl: ""
+      customFields:
+        type: object
+        description: |
+          An object containing the custom fields for this user.
+          
+          Learn more about the available custom field functionality in our [Custom Fields Developer Guide](/developer/custom-fields)
+        example: 
+          lastPurchaseDate: 1512152525513
+          plan: "Pro+"
+          phone: 19055551234
+          address: "123 Main st., City, Province, Country, H0H0H0"
+          shoeSize: 12.5
+          currency: "CAD"
 
   ListEnvelope:
     description: A generic base model to help with paginating lists. The `count` counts the number in this list, and `totalCount` gives the total available results.
