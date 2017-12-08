@@ -4124,7 +4124,7 @@ definitions:
         description: |
           An object containing the custom fields for this user.
           
-          Learn more about the available custom field functionality in our [Custom Fields Developer Guide](/developer/custom-fields)
+          Learn more about the available custom field functionality in our [Custom Fields Developer Guide](/features/custom-user-fields)
       shareLinks:
         readOnly: true
         $ref: "#/definitions/Sharelink"
@@ -4222,7 +4222,7 @@ definitions:
         description: |
           An object containing the custom fields for this user.
           
-          Learn more about the available custom field functionality in our [Custom Fields Developer Guide](/developer/custom-fields)
+          Learn more about the available custom field functionality in our [Custom Fields Developer Guide](/features/custom-user-fields)
         example: 
           lastPurchaseDate: 1512152525513
           plan: "Pro+"
@@ -4285,7 +4285,7 @@ definitions:
         description: |
           An object containing the custom fields for this user.
           
-          Learn more about the available custom field functionality in our [Custom Fields Developer Guide](/developer/custom-fields)
+          Learn more about the available custom field functionality in our [Custom Fields Developer Guide](/features/custom-user-fields)
         example: 
           lastPurchaseDate: 1512152525513
           plan: "Pro+"
