@@ -1,0 +1,98 @@
+{% import "../macros/swaggerMacros.html" as swaggerMacros %}
+
+{% extends '../article.html' %}
+{% block articleContent %}
+
+  {{ contents | safe }}
+  
+<script src="/assets/lib/isotope.pkgd.min.js"></script>
+
+
+
+<!--
+<div class="isotope-integration-button-group filters-isotope-integration-button-group">
+  <button class="isotope-integration-button is-checked" data-filter="*">All</button>
+  <button class="isotope-integration-button" data-filter=".acquisition">Acquisition</button>
+  <button class="isotope-integration-button" data-filter=".activation">Activation</button>
+  <button class="isotope-integration-button" data-filter=".retention">Retention</button>
+  <button class="isotope-integration-button" data-filter=".misc">Misc.</button>
+</div>
+-->
+
+<div class="grid">
+  
+  {% for program in contentfulProduct %}
+    {% if program.sys.contentType.sys.id == "programTemplate" %}
+      
+      {% if program.fields.globallyInstallable['en-US'] %}
+        <div class="programs-item {% for tag in program.fields.tags['en-US'] %}{{ tag }} {% endfor %}">
+          <div class="program-item-top-section">
+            <h3 class="text-center no-anchor program-name-title">{{ program.fields.name["en-US"] }}</h3>
+            <div class="programs-image">
+              <a class="programImageLink" href="/program/{{ program.fields.slug['en-US'] }}">
+                <img class="image" src="{{ program.fields.logo['en-US'].fields.file['en-US'].url }}" />
+              </a>
+            </div>
+          </div>
+          <div class="program-item-bottom-section">
+            <div class="program-item-highlights-container">
+              <p class="highlights program-icon-highlights">{{ program.fields.summary['en-US'] }} </p>
+            </div>
+            <div class="moreLink">
+              <a class="learnMoreLink" href="/program/{{ program.fields.slug['en-US'] }}">Learn More. </a></p>
+            </div>
+          </div>
+        </div>  
+      {% endif %}
+      
+    {% endif %}
+  {% endfor %}
+  
+</div> 
+
+
+
+
+<script> 
+
+// init Isotope
+var iso = new Isotope( '.grid', {
+  itemSelector: '.programs-item',
+  layoutMode: 'fitRows',
+  //filter: '.business-model'
+});
+
+// bind filter isotope-integration-button click
+var filtersIntegration = document.querySelector('.filters-isotope-integration-button-group');
+filtersIntegration.addEventListener( 'click', function( event ) {
+  // only work with isotope-integration-buttons
+  if ( !matchesSelector( event.target, 'button' ) ) {
+    return;
+  }
+  var filterValue = event.target.getAttribute('data-filter');
+  // use matching filter function
+  //filterValue = filterFns[ filterValue ] || filterValue;
+  iso.arrange({ filter: filterValue });
+});
+
+// change is-checked class on isotope-integration-buttons
+var buttonGroups = document.querySelectorAll('.isotope-integration-button-group');
+for ( var i=0, len = buttonGroups.length; i < len; i++ ) {
+  var buttonGroup = buttonGroups[i];
+  radioButtonGroup( buttonGroup );
+}
+
+function radioButtonGroup( buttonGroup ) {
+  buttonGroup.addEventListener( 'click', function( event ) {
+    // only work with buttons
+    if ( !matchesSelector( event.target, 'button' ) ) {
+      return;
+    }
+    buttonGroup.querySelector('.is-checked').classList.remove('is-checked');
+    event.target.classList.add('is-checked');
+  });
+}
+
+</script>
+  
+{% endblock articleContent %}

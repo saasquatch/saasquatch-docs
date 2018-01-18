@@ -147,4 +147,46 @@ Order-In Widget:
     types:    
      - embedded
     image: Order-In_Widget_Example.png
-    isLive: false
+    isLive: true
+Griddy Widget:
+    name: Order-In Widget
+    types:    
+     - embedded
+    image: Griddy_Widget_Example.png
+    isLive: true
+Griddy Email:
+    name: Order-In Email
+    types:    
+     - email
+    image: Griddy_Email_Example.png
+    isLive: true
+Hungry Harvest Widget:
+    name: Hungry Harvest Widget
+    types:    
+     - embedded
+    image: Hungry_Harvest_Widget_Example.png
+    isLive: true
+Hungry Harvest Email:
+    name: Hungry Harvest Email
+    types:    
+     - email
+    image: Hungry_Harvest_Email_Example.png
+    isLive: true
+Withlocals Email:
+    name: Withlocals Email
+    types:    
+     - email
+    image: Withlocals_Email_Example.png
+    isLive: true
+QVC Widget:
+    name: QVC Widget
+    types:    
+     - embedded
+    image: QVC_Widget_Example.png
+    isLive: true
+QVC Email:
+    name: QVC Email
+    types:    
+     - email
+    image: QVC_Email_Example.png
+    isLive: true
