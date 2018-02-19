@@ -126,7 +126,7 @@
         <pre><code class="lang-curl">curl -X {{httpMethod|upper}} {{swagger.schemes[0]}}://{{swagger.host}}{{swagger.basePath}}{{methodPath}}{% for param in method.parameters %}{% if param.in == "query" && param.required %}{% if firstQuery %}?{%else%}&{% endif %}{{param.name}}={{param['x-example']|default('')}}{% set firstQuery=false %}{%- endif %}{% endfor %} \
         -u :API_KEY \
         {% if httpMethod == "post" || httpMethod == "put" || httpMethod == "patch" %}-H "Content-Type: application/json" \
-        -d '{% for param in method.parameters %}{% if param.in == "body" %}{{ param.schema | exampleSwaggerSchema | json(4) }}{%- endif %}{% endfor %}'{%- endif %}
+        -d '<script>var bodyParamCount = 0</script>{% for param in method.parameters %}{% if param.in == "body" %}{{ param.schema | exampleSwaggerSchema | json(4) }}<script>bodyParamCount += 1</script>{%- endif %}{% endfor %}<script> if(bodyParamCount < 1){ document.write("{}") }</script>'{%- endif %}
         </code></pre>
                     </div>
         
