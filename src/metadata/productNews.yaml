@@ -104,3 +104,30 @@
         * Create a high quality user experience for your programs, with branded engagement options for web, mobile, and messaging channels
 
         Contact our [Sales](mailto:sales@referralsaasquatch.com?subject=Growth%20Automation) or [Success team](mailto:support@referralsaasquatch.com?subject=Growth%20Automation) to experience the new Growth Automation Platform, and starting building!
+-   title: Internationalization for Growth Automation Programs
+    datePublished: "2018-03-16"
+    tags:
+        - feature-release
+        - product-update
+    content: |
+        <div class="row-fluid">
+            <div class="span9">
+                
+                <p>**Upload your own translations for program emails and widgets based on locale.** This new feature is now available for all Growth Automation programs and provides the ability to upload your own customized sets of translations for both program emails and widgets. 
+        
+                <p>From the “Advanced” tab in your program configuration/set-up, upload and download your translation sets using simple zip files, either individually, or in bulk. 
+                
+                <p>To learn more about this new feature or Growth Automation programs, [contact our sales team](mailto:sales@referralsaasquatch.com).
+                
+                <p>Already a SaaSquatch customer? This feature is currently in Beta. Please [contact our support team](mailto:support@referralsaasquatch.com?subject=Growth%20Automation) to learn more about how to enroll in our Growth Automation Beta program.
+            
+            </div>
+            <div class="span3">
+                <div>
+                    <a class="docs-lightbox" href="//images.ctfassets.net/s68ib1kj8k5n/7IGoBjYBWgQ86sIYs6mkEK/86ddd7498ae25262da4570c2cbc397e1/program_i18n_import.png" data-lightbox="example-set">
+                    ![program i18n import](//images.ctfassets.net/s68ib1kj8k5n/7IGoBjYBWgQ86sIYs6mkEK/86ddd7498ae25262da4570c2cbc397e1/program_i18n_import.png)
+                    <div><i class="fa fa-eye"></i> Preview</div>
+                    </a>
+                </div>
+            </div>
+        </div>
