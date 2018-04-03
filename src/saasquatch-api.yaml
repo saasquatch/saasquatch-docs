@@ -793,6 +793,7 @@ paths:
               - $ref: "#/definitions/RewardBalance/example/CREDIT"
               - $ref: "#/definitions/RewardBalance/example/PCT_DISCOUNT"
               - $ref: "#/definitions/RewardBalance/example/FEATURE"
+              - $ref: "#/definitions/RewardBalance/example/FUELTANK"
         default:
           $ref: "#/responses/GeneralError"
   "/{tenant_alias}/credit/bulkredeem":
@@ -869,8 +870,41 @@ paths:
             "application/json":
               - $ref: "#/definitions/Reward/example/CREDIT"
               - $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
+              - $ref: "#/definitions/Reward/example/FUELTANK"
         default:
           $ref: "#/responses/GeneralError"
+          
+  "/{tenant_alias}/reward/{id}/":
+    get:
+      summary: Lookup a single reward
+      operationId: lookupReward
+      x-docs-anchor: lookup_reward
+      tags:
+        - Reward
+      security:
+        - APIKey: []
+      description: "Used to lookup an individual reward using the ID of the reward. Works with: `CREDIT`, `PCT_DISCOUNT`, and `FUELTANK`"
+      parameters:
+        - name: id
+          in: path
+          description: The ID of the specific reward to lookup
+          required: true
+          type: string
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        201:
+          description: Reward information
+          schema:
+            $ref: "#/definitions/Reward"
+          examples:
+            "application/json":
+              - $ref: "#/definitions/Reward/example/CREDIT"
+              - $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
+              - $ref: "#/definitions/Reward/example/FUELTANK"
+
+        default:
+          $ref: "#/responses/GeneralError"
+          
   "/{tenant_alias}/credit/{id}/redeem":
     post:
       summary: Redeem a single reward
@@ -915,7 +949,7 @@ paths:
         - Reward
       security:
         - APIKey: []
-      description: "Used to cancel an individual reward earned from a referral program. Works with: `CREDIT`, and `PCT_DISCOUNT`"
+      description: "Used to cancel an individual reward earned from a referral program. Works with: `CREDIT`, `PCT_DISCOUNT`, and `FUELTANK`"
       parameters:
         - name: id
           in: path
@@ -982,6 +1016,7 @@ paths:
             "application/json":
               - $ref: "#/definitions/Reward/example/CREDIT"
               - $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
+              - $ref: "#/definitions/Reward/example/FUELTANK"
 
         default:
           $ref: "#/responses/GeneralError"
@@ -2307,6 +2342,7 @@ definitions:
           - FEATURE
           - TIME_CREDIT
           - CREDIT
+          - FUELTANK
       dateExpires:
         type: integer
         description: "Timestamp of when this reward is set to expire. Works with: `PCT_DISCOUNT` or `FEATURE`"
@@ -2334,6 +2370,18 @@ definitions:
       currency:
         type: string
         description: "For programs that require a currency. Works with: `CREDIT`"
+      fuelTankType:
+        type: string
+        description: "The type of reward associated with this fueltank code. Works with: `FUELTANK`"
+        enum:
+          - PCT_DISCOUNT
+          - CREDIT
+      fuelTankCode:
+        type: string
+        description: "The fueltank code associated with this reward. Works with: `FUELTANK`."
+      amount:
+        type: integer
+        description: "The earned quantity of the reward. Works with: `FUELTANK`"
   Reward:
     title: A Reward object.
     description: Rewards are used in SaaSquatch to track the credits, discounts, gift cards and other prizes that a User earns.
@@ -2349,6 +2397,7 @@ definitions:
           - FEATURE
           - TIME_CREDIT
           - CREDIT
+          - FUELTANK
       dateGiven:
         type: integer
         description: "Timestamp of when this reward was earned."
@@ -2399,6 +2448,18 @@ definitions:
       currency:
         type: string
         description: "For programs that require a currency. Works with: `CREDIT`"
+      amount:
+        type: integer
+        description: "The earned quantity of the reward. Works with: `FUELTANK`"
+      fuelTankCode:
+        type: string
+        description: "The fueltank code associated with this reward. Works with: `FUELTANK`"
+      fueltankType:
+        type: string
+        description: "The type of reward associated with this fueltank code. Works with: `FUELTANK`"
+        enum:
+          - PCT_DISCOUNT
+          - CREDIT
     example:
       PCT_DISCOUNT:
         id: "5462600de4b09b1c41108f2e"
@@ -2429,6 +2490,20 @@ definitions:
           - $ref: "#/definitions/Redemption/example"
         name: "Dollar Credit"
         currency: null
+      FUELTANK:
+        id: "12345678e4b1234aff143be5"
+        type: "FUELTANK"
+        dateGiven: 1497907329060
+        dateExpires: null
+        dateCancelled: null
+        accountId: "abc_122"
+        userId: "abc_122"
+        cancellable: true
+        rewardSource: "FRIEND_SIGNUP"
+        fuelTankCode: "CODE8"
+        unit: "CENTS"
+        amount: 1000
+        fueltankType: "CREDIT"
   
   Redemption:
     title: A redemption object
@@ -2611,6 +2686,7 @@ definitions:
           - FEATURE
           - TIME_CREDIT
           - CREDIT
+          - FUELTANK
       unit:
         type: string
         example: cents
@@ -2642,6 +2718,9 @@ definitions:
       referrerDiscountPercent:
         type: integer
         description: "The total discountPercent from rewards with `rewardSource = FRIEND_SIGNUP` Only works with types: `PCT_DISCOUNT`"
+      totalFuelTankCodes:
+        type: integer
+        description: "The number of earned fueltank rewards. Only works with type: `FUELTANK`"
     example:
       FEATURE:
         type: "FEATURE"
@@ -2660,6 +2739,10 @@ definitions:
         totalDiscountPercent: "30"
         referredDiscountPercent: "10"
         referrerDiscountPercent: "20"
+      FUELTANK:
+        type: "FUELTANK"
+        totalFuelTankCodes: 1
+        
 
   Referral:
     description: A link between the user/account of the referrer and the new referred user/account. The authoritative source of who has referred whom. Not all referrals result in a Reward or a RewardBalance being created, such as in-progress referrals.
