@@ -57,7 +57,7 @@ endpoint urls will simply result in one subscription being created for that url.
 <tr>
     <td class="docs-monospace">coupon.created</td>
     <td>
-        Sent whenever a new coupon is created.
+        Sent whenever a new referral code is created.
     </td>
 </tr>
 <tr>
@@ -67,9 +67,15 @@ endpoint urls will simply result in one subscription being created for that url.
     </td>
 </tr>
 <tr>
+    <td class="docs-monospace">email.referred.reward.earned</td>
+    <td>
+        Sent whenever a referred user earns a reward.
+    </td>
+</tr>
+<tr>
     <td class="docs-monospace">email.referral.started</td>
     <td>
-        Sent whenever a new referred user signs up for a new (trial) account.
+        Sent whenever a new referral connection is successfully established.
     </td>
 </tr>
 <tr>
@@ -79,9 +85,9 @@ endpoint urls will simply result in one subscription being created for that url.
     </td>
 </tr>
 <tr>
-    <td class="docs-monospace">referral.started</td>
+    <td class="docs-monospace">email.referral.rewardLimitReached</td>
     <td>
-        Sent whenever a new referred user signs up for a new (trial) account.
+        Sent whenever the referral reward limit is reached.
     </td>
 </tr>
 <tr>
@@ -91,15 +97,21 @@ endpoint urls will simply result in one subscription being created for that url.
     </td>
 </tr>
 <tr>
+    <td class="docs-monospace">referral.started</td>
+    <td>
+        Sent whenever a new referral connection is successfully established.
+    </td>
+</tr>
+<tr>
     <td class="docs-monospace">referral.converted</td>
     <td>
-        Sent whenever a new referred user upgrades to a paid subscription.
+        Sent whenever a referral is converted.
     </td>
 </tr>
 <tr>
     <td class="docs-monospace">referral.ended</td>
     <td>
-        Sent whenever a referred user subscription ended or the referral is cancelled.
+        Sent whenever a referred user, or referral, is cancelled.
     </td>
 </tr>
 <tr>
@@ -108,12 +120,7 @@ endpoint urls will simply result in one subscription being created for that url.
         Sent whenever a theme has been successfully published to a tenant.
     </td>
 </tr>
-<tr>
-    <td class="docs-monospace">email.referral.rewardLimitReached</td>
-    <td>
-        Sent whenever the referral reward limit is reached.
-    </td>
-</tr>
+
 <tr>
     <td class="docs-monospace">export.created</td>
     <td>
@@ -194,9 +201,10 @@ An abitrary JSON object containing data related to this event
 </table>
 
 
-**Payload Security** - Payloads can be verified by checking the request headers. The `X-Hook-Signature` header is set with a value based upon a HMAC-SHA1 (RFC 2104 compliant) hash
-computed from the hook's body contents. The signature used is the tenant's current API key. This can be used to verify the authenticity of hooks upon receipt. Careful! Although
-you can verify the hook's authenticity via the signature, you still may need to verify the state of the 'data' by making an API call. Hook delivery order is not guaranteed. For
+**Payload Security** - Webhook event payloads can be verified by checking the request headers. The `X-Hook-Signature` header is set with a value based upon a HMAC-SHA1 (RFC 2104 compliant) hash
+of the hook's body contents. The signature used is the tenant's current API key. This can be used to verify the authenticity of hooks upon receipt. 
+
+> Careful! Although you can verify the hook's authenticity via the signature, you still may need to verify the state of the 'data' by making an API call. Hook delivery order is not guaranteed. For
 example, consider the scenario where an object is updated multiple times in quick succession. The related REST hooks may be delivered in a different order than the update events
 which generated them, so relying on their contents may lead you to build a different final state.
 
@@ -291,7 +299,7 @@ widget or a batch upload process. Only fires when a new user is created, not for
 
 ### coupon.created
 
-Sent in response to a new referral coupon being created.
+Sent whenever a new referral code is created.
 
 ```json
 {
@@ -338,9 +346,29 @@ from the <a href="/api/methods#list_rewards">List Rewards REST API Endpoint</a>
 }
 ```
 
+### email.referred.reward.earned
+
+Sent whenever a referred user earns a reward.
+
+```json
+{
+    "id": "1337049u0194u2105",
+    "type": "email.referred.reward.earned",
+    "tenantAlias": "AAA111BBB222DDD333",
+    "live": false,
+    "created": 1337001337,   
+    "data": {
+        "recipientUserId": "u1234",
+        "recipientAccountId": "a1234",
+        "subject": "Congratulations! You have earned $10 of free credit!.",
+        "message": "&lt;p&gt;This is rendered HTML content.&lt;/p&gt;"
+    }
+}
+```
+
 ### email.referral.started
 
-Sent whenever a new referred user signs up for a new (trial) account.
+Sent whenever a new referral connection is successfully established.
 
 ```json
 {
@@ -362,7 +390,7 @@ Sent whenever a new referred user signs up for a new (trial) account.
 
 ### email.referral.paid
 
-Sent whenever a new referred user upgrades to a paid subscription.
+Sent whenever a referral is converted.
 
 ```json
 {
@@ -380,31 +408,24 @@ Sent whenever a new referred user upgrades to a paid subscription.
 }
 ```
 
-### referral.started
+### email.referral.rewardLimitReached
 
-Sent whenever a new referred user signs up for a new (trial) account.
+Sent whenever the referral reward limit is reached
 
 ```json
 {  
-    "id":"5773073fe4b066c5cb171900",
-    "type":"referral.started",
+    "id":"57740d8fe4b0cc57c1e2e8b4",
+    "type":"email.referral.rewardLimitReached",
     "tenantAlias":"aohgcctyskc0p",
     "live":true,
-    "created":1467156287085,
+    "created":1467223439081,
     "data":{  
-        "id":"5773073ee4b066c5cb1718fc",
-        "referredUser":"5773073ee4b08b14ab979fb8",
-        "referrerUser":"577306eae4b08b14ab979f70",
-        "referredReward":null,
-        "referrerReward":null,
-        "moderationStatus":"PENDING",
-        "dateReferralStarted":1467156286882,
-        "dateReferralPaid":null,
-        "dateReferralEnded":null,
-        "dateModerated":1467156286882,
-        "referredModerationStatus":"PENDING",
-        "referrerModerationStatus":"PENDING",
-        "fraudSignals": null
+        "recipientUserId":"5774097ae4b0b4869cb4e213",
+        "recipientAccountId":"E6YL0SFGQU9PQG20",
+        "subject":"Will, it looks like you've reached the top!",
+        "message":"Thank you Will,\r\n\r\nThanks for spreading the word about V2 API No Email. You've referred so many new people that you've earned the maximum amount of available credit that we offer. However, you can keep referring new users and giving $20 with your link (http://short.staging.referralsaasquatch.com/mPbcF5), so keep it up!",
+        "mergeVars":null,
+        "referralRewardLimit":4
     }
 }
 ```
@@ -443,9 +464,38 @@ Sent after a referral is first moderated automatically.
 }
 ```
 
+### referral.started
+
+Sent whenever a new referral connection is successfully established.
+
+```json
+{  
+    "id":"5773073fe4b066c5cb171900",
+    "type":"referral.started",
+    "tenantAlias":"aohgcctyskc0p",
+    "live":true,
+    "created":1467156287085,
+    "data":{  
+        "id":"5773073ee4b066c5cb1718fc",
+        "referredUser":"5773073ee4b08b14ab979fb8",
+        "referrerUser":"577306eae4b08b14ab979f70",
+        "referredReward":null,
+        "referrerReward":null,
+        "moderationStatus":"PENDING",
+        "dateReferralStarted":1467156286882,
+        "dateReferralPaid":null,
+        "dateReferralEnded":null,
+        "dateModerated":1467156286882,
+        "referredModerationStatus":"PENDING",
+        "referrerModerationStatus":"PENDING",
+        "fraudSignals": null
+    }
+}
+```
+
 ### referral.converted
 
-Sent whenever a new referred user upgrades to a paid subscription.
+Sent whenever a referral is converted.
 
 ```json
 {  
@@ -479,7 +529,7 @@ Sent whenever a new referred user upgrades to a paid subscription.
 
 ### referral.ended
 
-Sent whenever a referred user subscription ended or the referral is cancelled.
+Sent whenever a referred user, or referral, is cancelled.
 
 ```json
 {  
@@ -518,28 +568,6 @@ Sent whenever a theme has been successfully published to a tenant.
     "created":1467221926388,
     "data":{  
         "newAssetsVersion":"CQOkemZF"
-    }
-}
-```
-
-### email.referral.rewardLimitReached
-
-Sent whenever the referral reward limit is reached
-
-```json
-{  
-    "id":"57740d8fe4b0cc57c1e2e8b4",
-    "type":"email.referral.rewardLimitReached",
-    "tenantAlias":"aohgcctyskc0p",
-    "live":true,
-    "created":1467223439081,
-    "data":{  
-        "recipientUserId":"5774097ae4b0b4869cb4e213",
-        "recipientAccountId":"E6YL0SFGQU9PQG20",
-        "subject":"Will, it looks like you've reached the top!",
-        "message":"Thank you Will,\r\n\r\nThanks for spreading the word about V2 API No Email. You've referred so many new people that you've earned the maximum amount of available credit that we offer. However, you can keep referring new users and giving $20 with your link (http://short.staging.referralsaasquatch.com/mPbcF5), so keep it up!",
-        "mergeVars":null,
-        "referralRewardLimit":4
     }
 }
 ```
