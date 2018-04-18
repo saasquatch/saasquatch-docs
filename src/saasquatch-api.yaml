@@ -776,10 +776,6 @@ paths:
           in: query
           description: Filters rewards by `type`.
           type: string
-        - name: featureTypeFilter
-          in: query
-          description: Filters rewards by feature type. Works with `FEATURE` types.
-          type: string
         - $ref: "#/parameters/tenant_alias"
       responses:
         200:
@@ -792,7 +788,6 @@ paths:
             "application/json":
               - $ref: "#/definitions/RewardBalance/example/CREDIT"
               - $ref: "#/definitions/RewardBalance/example/PCT_DISCOUNT"
-              - $ref: "#/definitions/RewardBalance/example/FEATURE"
               - $ref: "#/definitions/RewardBalance/example/FUELTANK"
         default:
           $ref: "#/responses/GeneralError"
@@ -853,10 +848,6 @@ paths:
         - name: rewardTypeFilter
           in: query
           description: Filters rewards by `type`.
-          type: string
-        - name: featureTypeFilter
-          in: query
-          description: Filters rewards by feature type. Works with `FEATURE` types.
           type: string
         - $ref: "#/parameters/tenant_alias"
       responses:
@@ -2297,14 +2288,13 @@ definitions:
         description: "The type of reward."
         enum:
           - PCT_DISCOUNT
-          - FEATURE
           - TIME_CREDIT
           - CREDIT
       unit:
         type: string
         example: cents
         description: |
-          An identifier for the unit of the reward. E.g. "credit-in-cents", "freemb", "giftcard20", "tshirt", "freemonth". Only works with types `FEATURE`, `TIME_CREDIT`, `CREDIT`
+          An identifier for the unit of the reward. E.g. "credit-in-cents", "freemb", "giftcard20", "tshirt", "freemonth". Only works with types `TIME_CREDIT` or `CREDIT`
       credit:
         type: integer
         example: 2000
@@ -2318,18 +2308,12 @@ definitions:
       monthsDiscountIsValid:
         type: integer
         description: When this reward is set to expire.
-      featureType:
-        type: string
-        description: A unique identifier for the type of feature. Only works with types `FEATURE`
       name:
         type: string
-        description: The human readable name of the feature. Only works with types `FEATURE`
+        description: The human-readable name of the reward.
       description:
         type: string
-        description: The human readable description of the feature. Only works with types `FEATURE`
-      quantity:
-        type: integer
-        description: The quantity of feature that this referral code is valid for.  Only works with types `FEATURE`
+        description: "The human-readable description of the reward. Works with: `INTEGRATION`"
   NewReward:
     description: Details of a new reward to create.
     properties:
@@ -2339,13 +2323,12 @@ definitions:
         example: PCT_DISCOUNT
         enum:
           - PCT_DISCOUNT
-          - FEATURE
           - TIME_CREDIT
           - CREDIT
           - FUELTANK
       dateExpires:
         type: integer
-        description: "Timestamp of when this reward is set to expire. Works with: `PCT_DISCOUNT` or `FEATURE`"
+        description: "Timestamp of when this reward is set to expire. Works with: `PCT_DISCOUNT`"
         example: 1471028988000
       cancellable:
         type: boolean
@@ -2353,20 +2336,14 @@ definitions:
         example: true
       unit:
         type: string
-        description: "An identifier for the unit of the reward. E.g. `'credit-in-cents'`, `'freemb'`, `'giftcard20'`, `'tshirt'`, `'freemonth'` or `'%'`. Works with: `TIME_CREDIT` `FEATURE` or `CREDIT`"
+        description: "An identifier for the unit of the reward. E.g. `'credit-in-cents'`, `'freemb'`, `'giftcard20'`, `'tshirt'`, `'freemonth'` or `'%'`. Works with: `TIME_CREDIT` or `CREDIT`"
       discountPercent:
         type: integer
         description: "The percent discount. E.g. 10 means 10% Works with: `PCT_DISCOUNT`"
         example: 15
-      featureType:
-        type: string
-        description: "A unique identifier for the type of feature. E.g. `'freeSeats'` or `'freeMb'`. Works with: `FEATURE`"
-      quantity:
-        type: integer
-        description: "The earned quantity of the feature Works with:`FEATURE`"
       assignedCredit:
         type: integer
-        description: "The earned quantity of the feature. Works with: `TIME_CREDIT` or `CREDIT`"
+        description: "The earned quantity of the reward. Works with: `TIME_CREDIT` or `CREDIT`"
       currency:
         type: string
         description: "For programs that require a currency. Works with: `CREDIT`"
@@ -2394,7 +2371,6 @@ definitions:
         description: "The type of reward."
         enum:
           - PCT_DISCOUNT
-          - FEATURE
           - TIME_CREDIT
           - CREDIT
           - FUELTANK
@@ -2423,24 +2399,18 @@ definitions:
       discountPercent:
         type: integer
         description: "The percent discount. E.g. 10 means 10% Works with: `PCT_DISCOUNT`"
-      featureType:
-        type: string
-        description: "A unique identifier for the type of feature. E.g. `'freeSeats'` or `'freeMb'`. Works with: `FEATURE`"
       name:
         type: string
-        description: "The name of the feature. e.g. `'Free Seats'` or `'Free Storage'` Works with: `FEATURE`"
+        description: "The human-readable name of the reward."
       description:
         type: string
-        description: "The feature description. e.g. 'Bonus user seats for your account' or 'Extra megabytes of free storage' Works with: `FEATURE`"
-      quantity:
-        type: integer
-        description: "The earned quantity of the feature Works with:`FEATURE`"
+        description: "The human-readable description of the reward. Works with: `INTEGRATION`"
       assignedCredit:
         type: integer
-        description: "The earned quantity of the feature. Works with: `TIME_CREDIT` or `CREDIT`"
+        description: "The earned quantity of the reward. Works with: `TIME_CREDIT` or `CREDIT`"
       redeemedCredit:
         type: integer
-        description: "The redeemed quantity of the feature. Works with: `TIME_CREDIT` or `CREDIT`"
+        description: "The redeemed quantity of the reward. Works with: `TIME_CREDIT` or `CREDIT`"
       redemptions:
         type: array
         items:
@@ -2683,7 +2653,6 @@ definitions:
         description: "The type of reward."
         enum:
           - PCT_DISCOUNT
-          - FEATURE
           - TIME_CREDIT
           - CREDIT
           - FUELTANK
@@ -2691,16 +2660,13 @@ definitions:
         type: string
         example: cents
         description: |
-          An identifier for the unit of the reward. E.g. "credit-in-cents", "freemb", "giftcard20", "tshirt", "freemonth". Only works with types `FEATURE`, `TIME_CREDIT`, `CREDIT`
+          An identifier for the unit of the reward. E.g. "credit-in-cents", "freemb", "giftcard20", "tshirt", "freemonth". Only works with types `TIME_CREDIT`, and `CREDIT`
       count:
         type: integer
         description: |
           "The number of rewards earned. Usually is equal to the number of successful referrals made.
           E.g. An account has $80 of credit due to the referral program. $60 from making referrals, $20 from being referred.
-          The count would be 4 rewards, each worth $20. Only works for `FEATURE`, `TIME_CREDIT`, `CREDIT`"
-      featureType:
-        type: string
-        description: A unique identifier for the type of feature. Only works with types `FEATURE`
+          The count would be 4 rewards, each worth $20. Only works for `TIME_CREDIT`, and `CREDIT`"
       totalAssignedCredit:
         type: integer
         example: 4000
@@ -2722,12 +2688,6 @@ definitions:
         type: integer
         description: "The number of earned fueltank rewards. Only works with type: `FUELTANK`"
     example:
-      FEATURE:
-        type: "FEATURE"
-        featureType: "storage"
-        count: "8"
-        totalQuantity: "500"
-        unit: "MB"
       CREDIT:
         type: "CREDIT"
         count: "4"
