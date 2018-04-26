@@ -4051,6 +4051,10 @@ jquery@^3.1.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.1.1.tgz#347c1c21c7e004115e0a4da32cece041fad3c8a3"
 
+jquery@~2.1.4:
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-2.1.4.tgz#228bde698a0c61431dc2630a6a154f15890d2317"
+
 js-base64@^2.1.9:
   version "2.1.9"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.1.9.tgz#f0e80ae039a4bd654b5f281fc93f04a914a7fcce"
@@ -6296,6 +6300,12 @@ readline2@^1.0.1:
     code-point-at "^1.0.0"
     is-fullwidth-code-point "^1.0.0"
     mute-stream "0.0.5"
+
+readmore-js@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/readmore-js/-/readmore-js-2.1.0.tgz#0cf33cfc6f1f06af2a58e8e4fc4704db8c77fb57"
+  dependencies:
+    jquery "~2.1.4"
 
 rechoir@^0.6.2:
   version "0.6.2"

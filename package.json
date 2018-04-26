@@ -8,7 +8,7 @@
     "url": "http://github.com/saasquatch/saasquatch-docs.git"
   },
   "engines": {
-    "node": "6.4.0"
+    "node": ">6.4.0"
   },
   "scripts": {
     "linkunicode": "cd ./hacks/node-unicodetable && yarn install && yarn link --force && cd ../../ && yarn link unicode",
