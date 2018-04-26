@@ -4128,14 +4128,15 @@ definitions:
         type: string
         example: "bob@example.com"
         description: The email address provided for the user. SaaSquatch uses this to notify someone when they have a successful referral.
-      referable:
-        type: boolean
-        example: true
-        description: Flag used by the SaaSquatch system to determine whether a user is able to be referred.
       referralCode:
         type: string
         example: "BOBTESTERSON"
         description: The referral code *used for sharing by this user*
+      imageUrl:
+        type: string
+        example: "https://www.example.com/profile/ab5111251125"
+        description: |
+          Optionally used in widgets, emails, and themes. If you provide a absolute profile image URL the minimum image size is 80px x 80px.
       locale:
         type: string
         example: "en_US"
@@ -4157,17 +4158,20 @@ definitions:
             type: bool
             example: true
             description: Whether or not this referred user was referred recently.
-      imageUrl:
-        type: string
-        example: "https://www.example.com/profile/ab5111251125"
-        description: |
-          Optionally used in widgets, emails, and themes. If you provide a absolute profile image URL the minimum image size is 80px x 80px.
+      
+      referable:
+        type: boolean
+        example: true
+        description: Flag used by the SaaSquatch system to determine whether a user is able to be referred.
       customFields:
         type: object
         description: |
           An object containing the custom fields for this user.
           
           Learn more about the available custom field functionality in our [Custom Fields Developer Guide](/features/custom-user-fields)
+      segments:
+        type: array
+        description: A list of segments that a user is a member of.
       shareLinks:
         readOnly: true
         $ref: "#/definitions/Sharelink"
@@ -4194,6 +4198,8 @@ definitions:
         address: "123 Main st., City, Province, Country, H0H0H0"
         shoeSize: 12.5
         currency: "CAD"
+      segments:
+        ["segment1", "segment3"]
       shareLinks:
         $ref: "#/definitions/Sharelink/example"
 
@@ -4260,6 +4266,13 @@ definitions:
         example: "https://www.example.com/profile/ab5111251125"
         description: |
           Optionally used in widgets, emails, and themes. If you provide a absolute profile image URL the minimum image size is 80px x 80px.
+      segments:
+        type: array
+        description: | 
+          A list of operations for adding and removing a user from segments. 
+        
+          Details about the supported operators and operations for adding and removing users from a segment can be found in our [User Segmentation](/features/user-segmentation/#saasquatch-api-and-squatchjs-segmentation) article.
+        example: ["segment1", "~segment2"]
       customFields:
         type: object
         description: |
