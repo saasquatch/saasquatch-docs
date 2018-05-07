@@ -11,13 +11,13 @@
 
 
 <div class="isotope-integration-button-group filters-isotope-integration-button-group">
-  <button class="isotope-integration-button is-checked" data-filter="*">All</button>
+  <button id="filterAll" class="isotope-integration-button" data-filter="*">All</button>
   <button class="isotope-integration-button" data-filter=".business-model">Business Models</button>
   <button class="isotope-integration-button" data-filter=".library">Libraries</button>
   <button class="isotope-integration-button" data-filter=".integration">Integrations</button>
   <button class="isotope-integration-button" data-filter=".payment-provider">Payment Providers</button>
   <button class="isotope-integration-button" data-filter=".reward">Rewards</button>
-  <button class="isotope-integration-button" data-filter=".feature">Features</button>
+  <button id="filterFeature" class="isotope-integration-button" data-filter=".feature">Features</button>
 </div>
 
 <div class="grid">
@@ -62,12 +62,41 @@
 
 <script> 
 
-// init Isotope
-var iso = new Isotope( '.grid', {
-  itemSelector: '.guides-item',
-  layoutMode: 'fitRows',
-  //filter: '.business-model'
-});
+
+//pickup arguements from URL
+var getQueryString = function ( field, url ) {
+    var href = url ? url : window.location.href;
+    var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
+    var string = reg.exec(href);
+    return string ? string[1] : null;
+};
+
+//check whether the link to the guides page is from the success center
+isSuccessCenter = getQueryString('isSuccessCenter');
+console.log(isSuccessCenter)
+
+if(isSuccessCenter == "true"){
+  var temp = document.getElementById("filterFeature");
+  temp.classList.add("is-checked");
+  
+    // init Isotope
+  var iso = new Isotope( '.grid', {
+    itemSelector: '.guides-item',
+    layoutMode: 'fitRows',
+    filter: '.feature'
+  });
+}
+
+else {
+  var temp = document.getElementById("filterAll");
+  temp.classList.add("is-checked");
+  // init Isotope
+  var iso = new Isotope( '.grid', {
+    itemSelector: '.guides-item',
+    layoutMode: 'fitRows'
+  });
+}
+
 
 // bind filter isotope-integration-button click
 var filtersIntegration = document.querySelector('.filters-isotope-integration-button-group');

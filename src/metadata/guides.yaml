@@ -6,7 +6,7 @@ API:
      - library
     icon: fa-code
     summary: |
-        The Referral SaaSquatch REST API lets you build your own custom logic on top of your referral program.
+        The SaaSquatch REST API lets you build your own custom logic on top of your referral program.
 Squatch.js:
     name: Squatch.js
     linkText: Read more about our Squatch.js Javascript Library
@@ -15,7 +15,7 @@ Squatch.js:
      - library
     icon: fa-code
     summary: |
-        squatch.js is the Referral SaaSquatch JavaScript SDK and a one-stop shop to integrate a referral program into your website or web app.
+        squatch.js is the SaaSquatch JavaScript SDK, and provides an easy way to integrate into your website or web app.
 iOS SDK:
     name: iOS SDK
     linkText: Read more about our iOS SDK
@@ -24,7 +24,7 @@ iOS SDK:
      - library
     icon: fa-apple
     summary: |
-        The Referral SaaSquatch iOS SDK integrates a referral program natively into your iOS app.
+        The SaaSquatch iOS SDK integrates natively into your iOS app.
 Android SDK:
     name: Android SDK
     linkText: Read more about our Android SDK
@@ -33,7 +33,7 @@ Android SDK:
      - library
     icon: fa-android
     summary: |
-        The Referral SaaSquatch Android SDK integrates a referral program natively into your Android app.
+        The SaaSquatch Android SDK integrates natively into your Android app.
         
 SaaS:
     name: SaaS
@@ -64,13 +64,13 @@ Finance:
         Setting up a Custom Referral Program tailored for your Financial Services business.
 Mobile:
     name: Mobile
-    linkText: Read more about our Mobile Guide
+    linkText: Read more in our Mobile Guide
     slug: /guides/mobile-installation
     types: 
      - business-model
     icon: fa-mobile
     summary: |
-        Setting up a Custom Referral Program for your mobile app using our mobile SDK.
+        Connect your SaaSquatch project with your mobile app using our mobile SDK.
         
 Email:
     name: Email
@@ -80,7 +80,7 @@ Email:
      - feature
     icon: fa-envelope-o
     summary: |
-        Referral SaaSquatch uses email for three separate things: Identifying users, sharing between users, and notifications of referrals.
+        The SaaSquatch platform enables you to configure when emails are sent to participants throughout the customer life cycle.
 Custom Link Domains:
     name: Custom Link Domains
     linkText: Read more about our custom link domains
@@ -89,7 +89,7 @@ Custom Link Domains:
      - feature
     icon: fa-link
     summary: |
-        Referral SaaSquatch supports the use of Custom Short Domains which allow you to change the format of the referral links shared by your users.
+        The SaaSquatch system supports the use of Custom Short Domains which allow you to change the format of the referral links shared by your users.
 Security Management System:
     name: Referral Security
     linkText: Read more about our security management system
@@ -98,7 +98,7 @@ Security Management System:
      - feature
     icon: fa-lock
     summary: |
-        Referral SaaSquatch's Security Management System protects your program from unwanted referral activity.
+        SaaSquatch's Security Management System protects your program from unwanted referral activity.
 Account Structure:
     name: Account Structure
     linkText: Read more about our shared vs. solo accounts
@@ -107,7 +107,7 @@ Account Structure:
      - feature
     icon: fa-user-circle-o
     summary: |
-        Referral SaaSquatch provides flexible options for structuring how participants are grouped in your referral program.
+        The SaaSquatch system provides flexible options for structuring how participants are grouped in your project.
 
 JSON:
     name: JSON Web Tokens
@@ -126,16 +126,16 @@ Percentage Rewards:
      - reward
     icon: fa-percent
     summary: |
-        Give your referral participants a percentage discount off a current or upcoming invoice.
+        Give your successful program participants a percentage discount off their bill or purchase.
 Dollar Rewards:
     name: Dollar Rewards
-    linkText: Read more about our dollar rewards
+    linkText: Read more about our currency rewards
     slug: /guides/dollar-credit
     types: 
      - reward
     icon: fa-usd
     summary: |
-        Give your referral participants a dollar credit on a current or upcoming invoice.
+        Give your successful program participants a credit towards their bill or purchase.
 Free Time Rewards:
     name: Free Time Rewards
     linkText: Read more about our free time rewards
@@ -144,7 +144,7 @@ Free Time Rewards:
      - reward
     icon: fa-clock-o
     summary: |
-        Give your referral participants a free time credit on a current or upcoming invoice.
+        Give your successful program participants a free time credit on their bill or purchase.
 Blocked Email Domains:
     name: Blocked Email Domains
     linkText: Read more about options for blocking email domains
@@ -153,7 +153,7 @@ Blocked Email Domains:
      - feature
     icon: fa-ban
     summary: |
-        Referral SaaSquatch provides the ability to check referrals against a list of suspicious email domains.
+        SaaSquatch provides the ability to check referrals against a list of suspicious email domains.
 Program Reports:
     name: Program Reports
     linkText: Read more about the available program reports
@@ -162,7 +162,7 @@ Program Reports:
      - feature
     icon: fa-file-text-o
     summary: |
-        Downloadable Referral Program reports with participant, reward, and referral information.
+        Downloadable program reports with participant, reward, and referral information.
 Marketo Forms:
     name: Marketo Forms
     linkText: Read more about our support for Marketo Forms
@@ -189,7 +189,7 @@ Custom User Fields:
      - feature
     icon: fa-user-plus
     summary: |
-        Include custom information about users in your SaaSquatch Program.
+        Include custom information about users in your SaaSquatch project.
 Referral Widget Types:
     name: Referral Widget Types
     linkText: Read more about the available widget types
@@ -199,3 +199,22 @@ Referral Widget Types:
     icon: fa-window-restore
     summary: |
         Display different types of widgets to users in your SaaSquatch Program.
+Custom Rewards Fuel Tank:
+    name: Custom Rewards Fuel Tank
+    linkText: Find out more about our Fuel Tank functionality
+    slug: /features/rewards-fuel-tank
+    types: 
+     - feature
+     - reward
+    icon: fa-ticket
+    summary: |
+        Provide your program participants with Custom Reward Codes.
+User Segmentation:
+    name: User Segmentation
+    linkText: Learn more about User Segmentation
+    slug: /features/user-segmentation
+    types: 
+     - feature
+    icon: fa-users
+    summary: |
+        Create and manage intelligent segments of participants within your SaaSquatch project.
