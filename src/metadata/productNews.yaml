@@ -131,3 +131,62 @@
                 </div>
             </div>
         </div>
+-   title: New Participants Page Design
+    datePublished: "2018-05-09"
+    tags:
+        - product-update
+    content: |
+        We’ve updated our participants section in the SaaSquatch portal to provide improved data accessibility and a better user experience. 
+
+        A new key feature that you’ll notice is the option to **DELETE a user**. This is part of our recent changes to ensure that the SaaSquatch platform remains GDPR compliant. You can can read more about our GDPR updates [here](/features/participant-deletion). 
+        
+        Updated portal pages include: 
+        * All Users list
+        * Participants list
+        * User Profile Page
+
+        <h4>User Profile Updates</h4>
+        
+        ![Participant profile improvements](//images.ctfassets.net/s68ib1kj8k5n/XtNuoy2w6WeWSussmqmE6/cbde512dbfe9eca0555479c33b1b45fe/Participant_profile_improvements.png)
+
+        Changes you’ll notice on the User Profile Page include: 
+        
+        <div class="row-fluid">
+            <div class="span6">
+                <ol>
+                    <li>A new **'User Summary'** screen with improved user management functionality and most importantly, the option to __**DELETE a User**__. [Click here](/features/participant-deletion) to learn more.</li>
+                    <li>An improved and more data-rich **'User Details'** display 
+                    <li>Quickview of users current **active Segments** 
+                    <li>Updated **Rewards list** that provides: 
+                    <ol type="a">
+                        <li>High level summary of each users rewards, for quicker analysis
+                        <li>Individual rewards management
+                        <li>Additional reward details for a more complete review
+                    </ol>
+                    <li>Updated **Referral details** and activity views
+                </ol>
+            </div>
+            <div class="span3">
+                ![Participant profile delete user](//images.ctfassets.net/s68ib1kj8k5n/6H7Cy8iKgEm8SScMA8gwGa/1d5d807d11d3ad57ea449686f4622c69/Participant_profile_delete_user.png)
+            </div>
+            <div class="span3">
+                <div>
+                    <a class="docs-lightbox" href="//images.ctfassets.net/s68ib1kj8k5n/5x0WiLHCqAe6CoA2eAckEQ/2e709b6b42b99f3b39addc6498eb6816/Participant_profile_reward_details.png" data-lightbox="example-set">
+                    ![Participant profile reward details](//images.ctfassets.net/s68ib1kj8k5n/5x0WiLHCqAe6CoA2eAckEQ/2e709b6b42b99f3b39addc6498eb6816/Participant_profile_reward_details.png)
+                    <div><i class="fa fa-eye"></i> Preview</div>
+                    </a>
+                </div>
+            </div>
+            
+            
+        </div>
+
+        
+    
+        
+        <h4>Participant Lists</h4>
+
+        Changes to the **All Users** and **Referral Participant** lists include: 
+        1. Updated styling 
+        2. Refined User ID display 
+        3. Updated search functionality 
