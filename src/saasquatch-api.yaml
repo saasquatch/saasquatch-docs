@@ -295,6 +295,50 @@ paths:
             $ref: "#/definitions/Error"
         default:
           $ref: "#/responses/GeneralError"
+          
+  "/{tenant_alias}/account/{accountId}/user/{userId}/pii":
+    get:
+      summary: Lookup a user PII
+      operationId: getUserPII
+      x-docs-anchor: get_user_pii
+      tags:
+        - User
+      security:
+        - APIKey: []
+      description: |
+        Returns details of the Personally identifiable information stored in the SaaSquatch system for a specific SaaSquatch user.
+        
+        > **Warning!** This method should only be used in connection with data protection and privacy compliance. 
+        > 
+        > For programatically looking up information about users within your SaaSquatch project, please use the [Lookup User endpoint](#open_get_user)
+      parameters:
+        - name: accountId
+          in: path
+          description: "The `id` of the Account to lookup"
+          required: true
+          type: string
+        - name: userId
+          in: path
+          description: "The `id` of the User to lookup"
+          required: true
+          type: string
+        - $ref: "#/parameters/tenant_alias"
+      responses:
+        200:
+          description: User found
+          examples:
+            "application/json":
+              $ref: "#/definitions/UserPII/example"
+          schema:
+            $ref: "#/definitions/UserPII"
+        404:
+          description: User NOT found
+          schema:
+            $ref: "#/definitions/Error"
+        default:
+          $ref: "#/responses/GeneralError"
+          
+      
   "/{tenant_alias}/account/{accountId}/user/{userId}/sharelinks":
     get:
       deprecated: true
@@ -695,24 +739,25 @@ paths:
           schema:
             $ref: "#/definitions/Referral"
           examples:
-            "application/json":
-              id: "546270a6e4b0c1871186a920"
-              referredUser:
-                $ref: "#/definitions/User/example"
-              referrerUser:
-                $ref: "#/definitions/User/example"
-              referredReward:
-                $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
-              referrerReward:
-                $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
-              moderationStatus: "ACTIONED"
-              dateReferralStarted: 1415737510411
-              dateReferralPaid: 1415737557217
-              dateReferralEnded: null
-              dateModerated: 1427410131029
-              referredModerationStatus: "APPROVED"
-              referrerModerationStatus: "APPROVED"
-              fraudSignals: null
+            $ref: "#/definitions/Referral/example"
+            # "application/json":
+            #   id: "546270a6e4b0c1871186a920"
+            #   referredUser:
+            #     $ref: "#/definitions/User/example"
+            #   referrerUser:
+            #     $ref: "#/definitions/User/example"
+            #   referredReward:
+            #     $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
+            #   referrerReward:
+            #     $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
+            #   moderationStatus: "ACTIONED"
+            #   dateReferralStarted: 1415737510411
+            #   dateReferralPaid: 1415737557217
+            #   dateReferralEnded: null
+            #   dateModerated: 1427410131029
+            #   referredModerationStatus: "APPROVED"
+            #   referrerModerationStatus: "APPROVED"
+            #   fraudSignals: null
         404:
           description: Referral NOT found
           schema:
@@ -1062,7 +1107,6 @@ paths:
           schema:
             $ref: "#/definitions/Error"
     
-    
     post:
       summary: Create a user and account
       operationId: openCreateUser
@@ -1153,6 +1197,49 @@ paths:
             $ref: "#/definitions/Error"
         404:
           description: Account not found
+          schema:
+            $ref: "#/definitions/Error"
+    
+    delete:
+      summary: Delete a user
+      operationId: openDeleteUser
+      x-docs-anchor: open_delete_user
+      tags:
+        - User
+        - Open Endpoint
+      security:
+        - APIKey: []
+      description: |
+        Delete a user in your SaaSquatch project. This endpoint will only delete a User on an Account (and not the Account itself). Learn more about Accounts vs. Users in our article on [Account Structure](/shared-vs-solo-accounts/).
+        
+        To delete both the Account (and all the users on the account), use the [Delete Account endpoint](#open_delete_account).
+        
+        Learn more about deleting participants within your SaaSquatch project in our article on [Participant Deletion](/features/participant-deletion)
+        
+        Include the `doNotTrack` query parameter as `true` to indicate to the SaaSquatch system that the user should not be able to be re-registered. Learn more about `doNotTrack` in our article on [Participant Deletion](/features/participant-deletion)
+
+      parameters:
+        - $ref: "#/parameters/tenant_alias"
+        - name: accountId
+          in: path
+          description: The ID of the account to be deleted
+          required: true
+          type: string
+        - name: userId
+          in: path
+          description: The ID of the user to be deleted
+          required: true
+          type: string
+        - name: doNotTrack
+          in: query
+          description: Do not track this user (this user cannot be re-registered in SaaSquatch). Learn more about `doNotTrack` in our article on [Participant Deletion](/features/participant-deletion)
+          type: boolean
+
+      responses:
+        204:
+          description: User successfully deleted
+        404:
+          description: No user found for the provided id
           schema:
             $ref: "#/definitions/Error"
             
@@ -1259,7 +1346,6 @@ paths:
           schema:
             $ref: "#/definitions/Error"
   
-  
   "/{tenant_alias}/open/user":
     get:
       summary: Get a user by a referral code
@@ -1300,8 +1386,6 @@ paths:
           description: Not Found
           schema:
             $ref: "#/definitions/Error"
-            
-  
   
   "/{tenant_alias}/open/code/{referral_code}":
     get:
@@ -1461,45 +1545,86 @@ paths:
               count: 2
               totalCount: 4
               referrals:
-                -
-                  id: "5462600de4b09b1c41108f28"
-                  referredUser:
-                    $ref: "#/definitions/User/example"
-                  referrerUser:
-                    $ref: "#/definitions/User/example"
-                  referredReward:
-                    $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
-                  referrerReward: null
-                  moderationStatus: "ACTIONED"
-                  dateReferralStarted: 1415733261238
-                  dateReferralPaid: null
-                  dateReferralEnded: null
-                  dateModerated: 1427410131006
-                  referredModerationStatus: "APPROVED"
-                  referrerModerationStatus: "APPROVED"
-                -
-                  id: "546270a6e4b0c1871186a920"
-                  referredUser:
-                    $ref: "#/definitions/User/example"
-                  referrerUser:
-                    $ref: "#/definitions/User/example"
-                  referredReward:
-                    $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
-                  referrerReward:
-                    $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
-                  moderationStatus: "ACTIONED"
-                  dateReferralStarted: 1415737510411
-                  dateReferralPaid: 1415737557217
-                  dateReferralEnded: null
-                  dateModerated: 1427410131029
-                  referredModerationStatus: "APPROVED"
-                  referrerModerationStatus: "APPROVED"
-                  fraudSignals:
-                    ip:
-                      message: "Referrer and referred came from the same IP"
-                      score: 50
+                - $ref: "#/definitions/Referral/example"
+                - $ref: "#/definitions/Referral/example"
+                # -
+                #   id: "5462600de4b09b1c41108f28"
+                #   referredUser:
+                #     $ref: "#/definitions/User/example"
+                #   referrerUser:
+                #     $ref: "#/definitions/User/example"
+                #   referredReward:
+                #     $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
+                #   referrerReward: null
+                #   moderationStatus: "ACTIONED"
+                #   dateReferralStarted: 1415733261238
+                #   dateReferralPaid: null
+                #   dateReferralEnded: null
+                #   dateModerated: 1427410131006
+                #   referredModerationStatus: "APPROVED"
+                #   referrerModerationStatus: "APPROVED"
+                # -
+                #   id: "546270a6e4b0c1871186a920"
+                #   referredUser:
+                #     $ref: "#/definitions/User/example"
+                #   referrerUser:
+                #     $ref: "#/definitions/User/example"
+                #   referredReward:
+                #     $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
+                #   referrerReward:
+                #     $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
+                #   moderationStatus: "ACTIONED"
+                #   dateReferralStarted: 1415737510411
+                #   dateReferralPaid: 1415737557217
+                #   dateReferralEnded: null
+                #   dateModerated: 1427410131029
+                #   referredModerationStatus: "APPROVED"
+                #   referrerModerationStatus: "APPROVED"
+                #   fraudSignals:
+                #     ip:
+                #       message: "Referrer and referred came from the same IP"
+                #       score: 50
         default:
           $ref: "#/responses/GeneralError"
+  
+  "/{tenant_alias}/open/account/{accountId}":
+    delete:
+      summary: Delete an account
+      operationId: openDeleteAccount
+      x-docs-anchor: open_delete_account
+      tags:
+        - Account
+        - Open Endpoint
+      security:
+        - APIKey: []
+      description: |
+        Delete an account in your SaaSquatch project. This endpoint will delete the account and all users on the account. Learn more about Accounts vs. Users in our article on [Account Structure](/shared-vs-solo-accounts/).
+        
+        To delete only a specific User on the Account use the [Delete User endpoint](#open_delete_user).
+        
+        Learn more about deleting participants within your SaaSquatch project in our article on [Participant Deletion](/features/participant-deletion)
+        
+        Include the `doNotTrack` query parameter as `true` to indicate to the SaaSquatch system that all Users on this Account should not be able to be re-registered. Learn more about `doNotTrack` in our article on [Participant Deletion](/features/participant-deletion)
+
+      parameters:
+        - $ref: "#/parameters/tenant_alias"
+        - name: accountId
+          in: path
+          description: The ID of the account to be deleted
+          required: true
+          type: string
+        - name: doNotTrack
+          in: query
+          description: Do not track the user (this user cannot be re-registered in SaaSquatch). Learn more about `doNotTrack` in our article on [Participant Deletion](/features/participant-deletion)
+          type: boolean
+      responses:
+        204:
+          description: Account successfully deleted
+        404:
+          description: No account found for the provided id
+          schema:
+            $ref: "#/definitions/Error"
+  
 
   "/{tenant_alias}/subscription":
     post:
@@ -2549,7 +2674,6 @@ definitions:
       imageUrl: ""
       locale: null
 
-
   User:
     title: The User object
     description: An object describing an individual user. Users are used in SaaSquatch to track people/contacts/leads. When a referral happens, it always happens between two Users.
@@ -2643,7 +2767,213 @@ definitions:
       locale: null
       shareLinks:
         $ref: "#/definitions/Sharelink/example"
-
+        
+  UserPII:
+    title: The User object
+    description: An object containing the PII stored in the SaaSquatch system for a specific SaaSquatch user.
+    required:
+      - id
+      - accountId
+      - firstName
+    properties:
+      id:
+        type: string
+        example: "219065"
+        description: The unique identifier provided for this user.
+      accountId:
+        type: string
+        example: "accc9065"
+        description: The unique identifier of the Account that this user belongs to.
+      firstName:
+        type: string
+        example: "Bob"
+        description: |
+          The user's first name
+      lastName:
+        type: string
+        example: "Testerson"
+        description: |
+          The user's last name
+      lastInitial:
+        type: string
+        example: "T"
+        description: |
+          The user's last name initial
+      referralCode:
+        type: string
+        example: "BOBTESTERSON"
+        description: The referral code *used for sharing by this user*
+      imageUrl:
+        type: string
+        example: "https://www.example.com/profiled/ab5111251125"
+        description: |
+          Optionally used in widgets, emails, and themes. If you provide a absolute profile image URL the minimum image size is 80px x 80px.
+      email:
+        type: string
+        example: "bob@example.com"
+        description: The email address provided for the user. SaaSquatch uses this to notify someone when they have a successful referral.
+      cookieId:
+        type: string
+        example: "2523423436323"
+        description: A unique identifier for this participant.
+      paymentProviderId:
+        type: string
+        example: "cus_8rVOAthabctvT6"
+        description: The paymentProviderId is either the Stripe Customer ID, the Recurly Account ID, the Braintree Account ID or the Zuora Account ID. This field cannot be updated. Do not include this arguement on an API-only program, or unless looking to set it.
+      locale:
+        type: string
+        example: "`en` or `en_US` or `zh_CN`"
+        description: |
+          The user's locale, used for [Internationalization](/themes/internationalization). The locale must be of the format 'language_COUNTRY' where the language code must be lowercase and the country code must be uppercase. The separator must be an underscore.
+      referable:
+        type: boolean
+        example: true
+        description: Flag used by the SaaSquatch system to determine whether a user is able to be referred.
+      customFields:
+        type: object
+        description: |
+          An object containing the custom fields for this user.
+          
+          Learn more about the available custom field functionality in our [Custom Fields Developer Guide](/features/custom-user-fields)
+      firstSeenIP:
+        type: string
+        readOnly: true
+        example: "10.230.163.157"
+        description: |
+          The user's IP address on indentification
+      lastSeenIP:
+        type: string
+        readOnly: true
+        example: "184.66.242.57"
+        description: |
+          The user's last known IP address
+      firstSeenIPLocation:
+        properties:
+          lat:
+            type: float
+            example: 48.4765
+            description: |
+              The latitude of the user's first seen IP address
+          lon:
+            type: float
+            example: -123.3145
+            description: |
+              The longitude of the user's first seen IP address
+      lastSeenIPLocation:
+        properties:
+          lat:
+            type: float
+            example: 48.4765
+            description: |
+              The latitude of the user's last known IP address
+          lon:
+            type: float
+            example: -123.3145
+            description: |
+              The longitude of the user's last known IP address
+      firstSeenUserAgent:
+        type: string
+        readOnly: true
+        example: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36"
+        description: |
+          The user's browser user agent on indentification
+      lastSeenUserAgent:
+        type: string
+        readOnly: true
+        example: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36"
+        description: |
+          The latest user agent seen for the user
+      dateCreated:
+        type: integer
+        readOnly: true
+        example: 1467222395030
+        description: |
+          The Unix time stamp of when the user was created
+      emailHash:
+        type: string
+        readOnly: true
+        example: "180bc1412a038746af9b37fb782724a2"
+        description: |
+          The hash of the user's email address
+      referralSource:
+        type: string
+        readOnly: true
+        example: "http://unifiedtestapp.herokuapp.com/"
+        description: |
+          The domain from which the user was registered
+      shareLinks:
+        readOnly: true
+        $ref: "#/definitions/Sharelink"
+      referredByReferral:
+        $ref: "#/definitions/Referral"
+      rewards:
+        properties:
+          totalCount:
+            type: integer
+            description: The number of rewards earned by the user
+          data:
+            type: array
+            items:
+              $ref: "#/definitions/Reward"
+      rewardBalances:
+        type: array
+        items:
+          $ref: "#/definitions/RewardBalance"
+      referrals:
+        properties:
+          totalCount:
+            type: integer
+            description: A list of the referrals made by the user.
+          data:
+            type: array
+            items:
+              $ref: "#/definitions/ReferralList"
+      segments:
+        type: array
+        description: A list of segments that a user is a member of.
+    example:
+      id: abc_132
+      accountId: abc_132
+      firstName: John
+      lastName: Doe
+      lastInitial: D
+      referralCode: JOHNDOECODE
+      imageUrl: ''
+      email: john@example.com
+      cookieId: 
+      paymentProviderId: 
+      locale: 
+      referable: true
+      customFields: {}
+      firstSeenIP: 207.194.49.162
+      lastSeenIP: 207.194.49.162
+      firstSeenIPLocation:
+        lat: 48.4765
+        lon: -123.3145
+      lastSeenIPLocation:
+        lat: 48.4765
+        lon: -123.3145
+      firstSeenUserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36
+      lastSeenUserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36
+      dateCreated: 1521477982534
+      emailHash: d4c74594d841139328695756648b6bd6
+      referralSource: UNKNOWN
+      shareLinks:
+        $ref: "#/definitions/Sharelink/example"
+      referredByReferral:
+        $ref: "#/definitions/Referral/example"
+      rewards:
+        totalCount: 1
+        data: 
+          - $ref: "#/definitions/Reward/example/CREDIT"
+      rewardBalances:
+        - $ref: "#/definitions/RewardBalance/example/CREDIT"
+      referrals:
+        totalCount: 1
+        data:
+          - $ref: "#/definitions/Referral/example"
+        segments: []
+        
   RewardBalance:
     description: Details of the balance of several individual rewards.
     properties:
@@ -2703,7 +3033,6 @@ definitions:
         type: "FUELTANK"
         totalFuelTankCodes: 1
         
-
   Referral:
     description: A link between the user/account of the referrer and the new referred user/account. The authoritative source of who has referred whom. Not all referrals result in a Reward or a RewardBalance being created, such as in-progress referrals.
     properties:
@@ -2760,6 +3089,27 @@ definitions:
       dateModerated:
         type: integer
         description: "Timestamp of when this referral was last moderated."
+    example:
+      id: "546270a6e4b0c1871186a920"
+      referredUser:
+        $ref: "#/definitions/User/example"
+      referrerUser:
+        $ref: "#/definitions/User/example"
+      referredReward:
+        $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
+      referrerReward:
+        $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
+      moderationStatus: "ACTIONED"
+      dateReferralStarted: 1415737510411
+      dateReferralPaid: 1415737557217
+      dateReferralEnded: null
+      dateModerated: 1427410131029
+      referredModerationStatus: "APPROVED"
+      referrerModerationStatus: "APPROVED"
+      fraudSignals:
+        ip:
+          message: "Referrer and referred came from the same IP"
+          score: 50
 
   FraudSignals:
     description: Information about signals of potential fraud on the referral
