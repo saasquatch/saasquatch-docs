@@ -4525,6 +4525,14 @@ definitions:
         type: string
         example: "BOBTESTERSON"
         description: The referral code *used for sharing by this user*
+      referralCodes:
+        type: object
+        items:
+          type: string
+        example:
+          classic: "BOBTESTERSON"
+          fakeProgram1: "BOBTESTERSON123"
+        description: The referral codes across all programs that the user currently has.
       imageUrl:
         type: string
         example: "https://www.example.com/profile/ab5111251125"
@@ -4551,7 +4559,6 @@ definitions:
             type: bool
             example: true
             description: Whether or not this referred user was referred recently.
-
       referable:
         type: boolean
         example: true
@@ -4633,6 +4640,14 @@ definitions:
         type: string
         example: "BOBTESTERSON"
         description: The referral code *used for sharing by this user*
+      referralCodes:
+        type: object
+        items:
+          type: string
+        example:
+          classic: "BOBTESTERSON"
+          fakeProgram1: "BOBTESTERSON123"
+        description: The custom referral codes for different programs.
       paymentProviderId:
         type: string
         example: "cus_8rVOAthabctvT6"
@@ -4702,6 +4717,14 @@ definitions:
         type: string
         example: "BOBTESTERSON"
         description: The referral code *used for sharing by this user*
+      referralCodes:
+        type: object
+        items:
+          type: string
+        example:
+          classic: "BOBTESTERSON"
+          fakeProgram1: "BOBTESTERSON123"
+        description: The custom referral codes for different programs.
       locale:
         type: string
         example: "en_US"
