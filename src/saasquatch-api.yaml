@@ -4559,6 +4559,11 @@ definitions:
             type: bool
             example: true
             description: Whether or not this referred user was referred recently.
+      referredByCodes:
+        type: array
+        items:
+          type: string
+        description: An array of referral codes used to refer this account.
       referable:
         type: boolean
         example: true
@@ -4586,10 +4591,15 @@ definitions:
       referable: true
       locale: null
       referralCode: "HENKTHOMPSON"
+      referralCodes:
+        classic: "HENKTHOMPSON"
+        fakeProgram1: "HENKTHOMPSON123"
       referredBy:
         code: "JONDOE1234"
         isConverted: true
         newlyReferred: false
+      referredByCodes:
+        - "JONDOE1234"
       imageUrl: ""
       customFields:
         lastPurchaseDate: 1512152525513
@@ -4669,6 +4679,14 @@ definitions:
             type: bool
             example: true
             description: Whether or not this referred user has hit to goal post and the referral should be converted to kick of reward creation for the referrer.
+      referredByCodes:
+        type: array
+        items:
+          type: string
+        description: An array of referral codes used to refer this account.
+        example:
+          - "JONDOE1234"
+          - "JOHNDOECODE"
       imageUrl:
         type: string
         example: "https://www.example.com/profile/ab5111251125"
@@ -4747,6 +4765,14 @@ definitions:
             type: bool
             example: true
             description: Whether or not this referred user has hit to goal post and the referral should be converted to kick of reward creation for the referrer.
+      referredByCodes:
+        type: array
+        items:
+          type: string
+        description: An array of referral codes used to refer this account.
+        example:
+          - "JONDOE1234"
+          - "JOHNDOECODE"
       imageUrl:
         type: string
         example: "https://www.example.com/profile/ab5111251125"
