@@ -55,6 +55,31 @@ parameters:
     type: integer
     description: "When included offsets the first result returns in the list. Use this to paginate through a long list of results. Defaults to `0`"
     default: 0
+  fields:
+    name: fields
+    in: query
+    type: string
+    required: false
+    description: >
+      The fields to be included in the response.
+      Cannot coexist with `extraFields`.
+      E.g. `"firstName"`, `"givenName:firstName"`,
+      or `fakeProgramReferralCode:referralCode(programId:"fakeProgram")`.
+    collectionFormat: multi
+    default: null
+  extraFields:
+    name: extraFields
+    in: query
+    type: string
+    required: false
+    description: >
+      The fields to be included in the response in addition to all the default fields.
+      To select from default fields, use `fields`.
+      Cannot coexist with `fields`.
+      E.g. `"firstName"`, `"givenName:firstName"`,
+      or `fakeProgramReferralCode:referralCode(programId:"fakeProgram")`.
+    collectionFormat: multi
+    default: null
 tags:
  -
   name: Account
@@ -295,7 +320,7 @@ paths:
             $ref: "#/definitions/Error"
         default:
           $ref: "#/responses/GeneralError"
-          
+
   "/{tenant_alias}/account/{accountId}/user/{userId}/pii":
     get:
       summary: Lookup a user PII
@@ -307,9 +332,9 @@ paths:
         - APIKey: []
       description: |
         Returns details of the Personally identifiable information stored in the SaaSquatch system for a specific SaaSquatch user.
-        
-        > **Warning!** This method should only be used in connection with data protection and privacy compliance. 
-        > 
+
+        > **Warning!** This method should only be used in connection with data protection and privacy compliance.
+        >
         > For programatically looking up information about users within your SaaSquatch project, please use the [Lookup User endpoint](#open_get_user)
       parameters:
         - name: accountId
@@ -337,8 +362,8 @@ paths:
             $ref: "#/definitions/Error"
         default:
           $ref: "#/responses/GeneralError"
-          
-      
+
+
   "/{tenant_alias}/account/{accountId}/user/{userId}/sharelinks":
     get:
       deprecated: true
@@ -428,13 +453,18 @@ paths:
           required: true
           type: string
         - name: engagementMedium
-          in: path
+          in: query
           description: Filters share urls by `engagementMedium`.
           required: false
           type: string
         - name: shareMedium
-          in: path
+          in: query
           description: Filters share urls by `shareMedium`.
+          required: false
+          type: string
+        - name: programId
+          in: query
+          description: The ID of the program
           required: false
           type: string
       responses:
@@ -909,7 +939,7 @@ paths:
               - $ref: "#/definitions/Reward/example/FUELTANK"
         default:
           $ref: "#/responses/GeneralError"
-          
+
   "/{tenant_alias}/reward/{id}/":
     get:
       summary: Lookup a single reward
@@ -940,7 +970,7 @@ paths:
 
         default:
           $ref: "#/responses/GeneralError"
-          
+
   "/{tenant_alias}/credit/{id}/redeem":
     post:
       summary: Redeem a single reward
@@ -975,7 +1005,7 @@ paths:
             $ref: "#/definitions/RewardDebitResponse"
         default:
           $ref: "#/responses/GeneralError"
-          
+
   "/{tenant_alias}/reward/{id}/cancel":
     post:
       summary: Cancel a single reward
@@ -1011,7 +1041,7 @@ paths:
             $ref: "#/definitions/Error"
         default:
           $ref: "#/responses/GeneralError"
-          
+
   "/{tenant_alias}/rewards/account/{accountId}/user/{userId}":
     post:
       summary: Create a single reward
@@ -1071,7 +1101,7 @@ paths:
         - UserJWT: []
       description: |
         This method updates/creates a user and an account and returns the user object representing that newly created user/account.
-        
+
         Because this call creates a user, it requires either a [write token](../openendpoints/) or an API key.
 
       parameters:
@@ -1090,6 +1120,8 @@ paths:
           schema:
             $ref: "#/definitions/OpenUserStub"
         - $ref: "#/parameters/tenant_alias"
+        - $ref: "#/parameters/fields"
+        - $ref: "#/parameters/extraFields"
       responses:
         200:
           description: Information about the upserted user
@@ -1106,7 +1138,7 @@ paths:
           description: Unexpected error
           schema:
             $ref: "#/definitions/Error"
-    
+
     post:
       summary: Create a user and account
       operationId: openCreateUser
@@ -1118,8 +1150,8 @@ paths:
         - APIKey: []
         - UserJWT: []
       description: |
-        This method creates a user and an account and returns the user object representing that newly created user/account. 
-        
+        This method creates a user and an account and returns the user object representing that newly created user/account.
+
         Because this call creates a user, it requires either a [write token](../openendpoints/) or an API key.
       parameters:
         - name: accountId
@@ -1137,6 +1169,8 @@ paths:
           schema:
             $ref: "#/definitions/OpenUserStub"
         - $ref: "#/parameters/tenant_alias"
+        - $ref: "#/parameters/fields"
+        - $ref: "#/parameters/extraFields"
       responses:
         200:
           description: Information about the newly created user
@@ -1179,6 +1213,8 @@ paths:
           required: true
           type: string
         - $ref: "#/parameters/tenant_alias"
+        - $ref: "#/parameters/fields"
+        - $ref: "#/parameters/extraFields"
       responses:
         200:
           description: User found
@@ -1199,7 +1235,7 @@ paths:
           description: Account not found
           schema:
             $ref: "#/definitions/Error"
-    
+
     delete:
       summary: Delete a user
       operationId: openDeleteUser
@@ -1211,11 +1247,11 @@ paths:
         - APIKey: []
       description: |
         Delete a user in your SaaSquatch project. This endpoint will only delete a User on an Account (and not the Account itself). Learn more about Accounts vs. Users in our article on [Account Structure](/shared-vs-solo-accounts/).
-        
+
         To delete both the Account (and all the users on the account), use the [Delete Account endpoint](#open_delete_account).
-        
+
         Learn more about deleting participants within your SaaSquatch project in our article on [Participant Deletion](/features/participant-deletion)
-        
+
         Include the `doNotTrack` query parameter as `true` to indicate to the SaaSquatch system that the user should not be able to be re-registered. Learn more about `doNotTrack` in our article on [Participant Deletion](/features/participant-deletion)
 
       parameters:
@@ -1242,7 +1278,7 @@ paths:
           description: No user found for the provided id
           schema:
             $ref: "#/definitions/Error"
-            
+
   "/{tenant_alias}/open/account/{accountId}/user/{userId}/shareurls":
     get:
       summary: Lookup a user's share URLs
@@ -1278,13 +1314,18 @@ paths:
           required: true
           type: string
         - name: engagementMedium
-          in: path
+          in: query
           description: Filters share urls by `engagementMedium`.
           required: false
           type: string
         - name: shareMedium
-          in: path
+          in: query
           description: Filters share urls by `shareMedium`.
+          required: false
+          type: string
+        - name: programId
+          in: query
+          description: The ID of the program
           required: false
           type: string
       responses:
@@ -1307,7 +1348,7 @@ paths:
           description: Account not found
           schema:
             $ref: "#/definitions/Error"
-  
+
   "/{tenant_alias}/open/user/cookie_user":
     put:
       summary: Create Cookie User
@@ -1321,7 +1362,7 @@ paths:
         - UserJWT: []
       description: |
         Generates a cookie account/user and returns a user object representing that newly created cookie user/account.
-        
+
         By default this method requires no authentication. If [Secure Mode](/developer/squatchjs/signed-requests/#changing-signed-request-settings) for this method is enabled then you will need to include a [JWT](/topics/json-web-tokens) with a payload containing `{allowAnonymous:true}`
       parameters:
         - name: user
@@ -1329,6 +1370,8 @@ paths:
           schema:
             $ref: "#/definitions/OpenCookieUserStub"
         - $ref: "#/parameters/tenant_alias"
+        - $ref: "#/parameters/fields"
+        - $ref: "#/parameters/extraFields"
       responses:
         200:
           description: Information about the upserted user
@@ -1345,7 +1388,7 @@ paths:
           description: Unexpected error
           schema:
             $ref: "#/definitions/Error"
-  
+
   "/{tenant_alias}/open/user":
     get:
       summary: Get a user by a referral code
@@ -1386,7 +1429,7 @@ paths:
           description: Not Found
           schema:
             $ref: "#/definitions/Error"
-  
+
   "/{tenant_alias}/open/code/{referral_code}":
     get:
       summary: Lookup a referral code
@@ -1439,8 +1482,8 @@ paths:
         - APIKey: []
         - UserJWT: []
       description: |
-        Apply a `ReferralCode` to a referred account to attribute a referral. 
-        
+        Apply a `ReferralCode` to a referred account to attribute a referral.
+
         This endpoint requires a [write token](../openendpoints/) or an API key.
 
         This is an [Open Endpoint](../openendpoints/) and disabled by default. Contact support to enable the open endpoints.
@@ -1586,7 +1629,7 @@ paths:
                 #       score: 50
         default:
           $ref: "#/responses/GeneralError"
-  
+
   "/{tenant_alias}/open/account/{accountId}":
     delete:
       summary: Delete an account
@@ -1599,11 +1642,11 @@ paths:
         - APIKey: []
       description: |
         Delete an account in your SaaSquatch project. This endpoint will delete the account and all users on the account. Learn more about Accounts vs. Users in our article on [Account Structure](/shared-vs-solo-accounts/).
-        
+
         To delete only a specific User on the Account use the [Delete User endpoint](#open_delete_user).
-        
+
         Learn more about deleting participants within your SaaSquatch project in our article on [Participant Deletion](/features/participant-deletion)
-        
+
         Include the `doNotTrack` query parameter as `true` to indicate to the SaaSquatch system that all Users on this Account should not be able to be re-registered. Learn more about `doNotTrack` in our article on [Participant Deletion](/features/participant-deletion)
 
       parameters:
@@ -1624,7 +1667,7 @@ paths:
           description: No account found for the provided id
           schema:
             $ref: "#/definitions/Error"
-  
+
 
   "/{tenant_alias}/subscription":
     post:
@@ -1861,7 +1904,7 @@ paths:
       description: |
         Returns the variables schema object that is defined in the tenant theme repository.
         This will be a [JSON Schema](http://json-schema.org/) standards compliant definition.
-        
+
         For the list of current variable values, see the [theme variables](/themes/variables/) for more info.
       produces:
         - "application/schema+json"
@@ -1966,7 +2009,7 @@ paths:
           $ref: "#/responses/VariablesErrorResponse"
         default:
           $ref: "#/responses/GeneralError"
-          
+
   "/{tenant_alias}/theme/{locale}/variables/instance":
     get:
       summary: Lookup Localized Variables Values
@@ -2071,7 +2114,7 @@ paths:
           $ref: "#/responses/VariablesErrorResponse"
         default:
           $ref: "#/responses/GeneralError"
-    
+
     delete:
       summary: Delete Localized Variable Values
       operationId: deleteLocaleVariables
@@ -2102,7 +2145,7 @@ paths:
           $ref: "#/responses/VariablesErrorResponse"
         default:
           $ref: "#/responses/GeneralError"
-          
+
   "/{tenant_alias}/theme/email/{email_type}/preview":
     post:
       summary: Preview Theme Email
@@ -2599,7 +2642,7 @@ definitions:
         unit: "CENTS"
         amount: 1000
         fueltankType: "CREDIT"
-  
+
   Redemption:
     title: A redemption object
     description: "Details about when a quantity of a reward was redeemed from the SaaSquatch system."
@@ -2608,19 +2651,19 @@ definitions:
         type: string
         description: "The unique identifier for this redemption"
         example: "5462600de4b09b1c41238f2f"
-      dateRedeemed: 
+      dateRedeemed:
         type: integer
         description: "Timestamp of when this redemption took place."
         example: 1415733261275
       quantityRedeemed:
         type: integer
         description: "the amount of the reward that was redeemed."
-        example: 
+        example:
     example:
       id: "5462600de4b09b1c41238f2f"
       dateRedeemed: 1415733261275
       quantityRedeemed: 2000
-  
+
   UserStub:
     title: A User object stub
     description: The basic information about a User used when you want to create a new user, called a UserStub.
@@ -2767,7 +2810,7 @@ definitions:
       locale: null
       shareLinks:
         $ref: "#/definitions/Sharelink/example"
-        
+
   UserPII:
     title: The User object
     description: An object containing the PII stored in the SaaSquatch system for a specific SaaSquatch user.
@@ -2833,7 +2876,7 @@ definitions:
         type: object
         description: |
           An object containing the custom fields for this user.
-          
+
           Learn more about the available custom field functionality in our [Custom Fields Developer Guide](/features/custom-user-fields)
       firstSeenIP:
         type: string
@@ -2940,9 +2983,9 @@ definitions:
       referralCode: JOHNDOECODE
       imageUrl: ''
       email: john@example.com
-      cookieId: 
-      paymentProviderId: 
-      locale: 
+      cookieId:
+      paymentProviderId:
+      locale:
       referable: true
       customFields: {}
       firstSeenIP: 207.194.49.162
@@ -2964,7 +3007,7 @@ definitions:
         $ref: "#/definitions/Referral/example"
       rewards:
         totalCount: 1
-        data: 
+        data:
           - $ref: "#/definitions/Reward/example/CREDIT"
       rewardBalances:
         - $ref: "#/definitions/RewardBalance/example/CREDIT"
@@ -2973,7 +3016,7 @@ definitions:
         data:
           - $ref: "#/definitions/Referral/example"
         segments: []
-        
+
   RewardBalance:
     description: Details of the balance of several individual rewards.
     properties:
@@ -3032,7 +3075,7 @@ definitions:
       FUELTANK:
         type: "FUELTANK"
         totalFuelTankCodes: 1
-        
+
   Referral:
     description: A link between the user/account of the referrer and the new referred user/account. The authoritative source of who has referred whom. Not all referrals result in a Reward or a RewardBalance being created, such as in-progress referrals.
     properties:
@@ -3402,7 +3445,7 @@ definitions:
         twitterShareLink: "http://ssqt.co/mGbcF5"
         emailShareLink: "http://ssqt.co/mbbcF5"
         linkedinShareLink: "http://ssqt.co/m1bcF5"
-        
+
   Shareurls:
     description: Share urls for an individual user.
     properties:
@@ -3412,7 +3455,7 @@ definitions:
         properties:
           EMAIL:
             description: An individual user's Share links for use in the EMAIL engagementMedium.
-            properties:              
+            properties:
               EMAIL:
                 type: string
                 description: "The Share Link for the Email shareMedium."
@@ -3448,7 +3491,7 @@ definitions:
                 description: "The Share Link for the linkedIn shareMedium."
           MOBILE:
             description: An individual user's Share links for use in the MOBILE engagementMedium.
-            properties:              
+            properties:
               EMAIL:
                 type: string
                 description: "The Share Link for the Email shareMedium."
@@ -3484,7 +3527,7 @@ definitions:
                 description: "The Share Link for the linkedIn shareMedium."
           EMBED:
             description: An individual user's Share links for use in the EMBED engagementMedium.
-            properties:              
+            properties:
               EMAIL:
                 type: string
                 description: "The Share Link for the Email shareMedium."
@@ -3520,7 +3563,7 @@ definitions:
                 description: "The Share Link for the linkedIn shareMedium."
           POPUP:
             description: An individual user's Share links for use in the POPUP engagementMedium.
-            properties:              
+            properties:
               EMAIL:
                 type: string
                 description: "The Share Link for the Email shareMedium."
@@ -3554,9 +3597,9 @@ definitions:
               LINKEDIN:
                 type: string
                 description: "The Share Link for the linkedIn shareMedium."
-          UNKNOWN:  
+          UNKNOWN:
             description: An individual user's Share links for use in an UNKNOWN engagementMedium.
-            properties:              
+            properties:
               EMAIL:
                 type: string
                 description: "The Share Link for the Email shareMedium."
@@ -3592,7 +3635,7 @@ definitions:
                 description: "The Share Link for the linkedIn shareMedium."
           HOSTED:
             description: An individual user's Share links for use in the HOSTED engagementMedium.
-            properties:              
+            properties:
               EMAIL:
                 type: string
                 description: "The Share Link for the Email shareMedium."
@@ -4243,7 +4286,7 @@ definitions:
       - jsOptions
       - widget
       - email
-          
+
   VariablesInstance:
     description: The stored values for the variables.  See [theme variables](/themes/variables) for more info.
     type: object
@@ -4508,7 +4551,7 @@ definitions:
             type: bool
             example: true
             description: Whether or not this referred user was referred recently.
-      
+
       referable:
         type: boolean
         example: true
@@ -4517,7 +4560,7 @@ definitions:
         type: object
         description: |
           An object containing the custom fields for this user.
-          
+
           Learn more about the available custom field functionality in our [Custom Fields Developer Guide](/features/custom-user-fields)
       segments:
         type: array
@@ -4525,7 +4568,7 @@ definitions:
       shareLinks:
         readOnly: true
         $ref: "#/definitions/Sharelink"
-      
+
     example:
       id: "898746321"
       cookieId: "2523423436323"
@@ -4536,12 +4579,12 @@ definitions:
       referable: true
       locale: null
       referralCode: "HENKTHOMPSON"
-      referredBy: 
+      referredBy:
         code: "JONDOE1234"
         isConverted: true
         newlyReferred: false
       imageUrl: ""
-      customFields: 
+      customFields:
         lastPurchaseDate: 1512152525513
         plan: "Pro+"
         phone: 19055551234
@@ -4618,25 +4661,25 @@ definitions:
           Optionally used in widgets, emails, and themes. If you provide a absolute profile image URL the minimum image size is 80px x 80px.
       segments:
         type: array
-        description: | 
-          A list of operations for adding and removing a user from segments. 
-        
+        description: |
+          A list of operations for adding and removing a user from segments.
+
           Details about the supported operators and operations for adding and removing users from a segment can be found in our [User Segmentation](/features/user-segmentation/#saasquatch-api-and-squatchjs-segmentation) article.
         example: ["segment1", "~segment2"]
       customFields:
         type: object
         description: |
           An object containing the custom fields for this user.
-          
+
           Learn more about the available custom field functionality in our [Custom Fields Developer Guide](/features/custom-user-fields)
-        example: 
+        example:
           lastPurchaseDate: 1512152525513
           plan: "Pro+"
           phone: 19055551234
           address: "123 Main st., City, Province, Country, H0H0H0"
           shoeSize: 12.5
           currency: "CAD"
-      
+
   OpenCookieUserStub:
     title: A Open Cookie User object stub
     description: An object describing an individual user submitted to an open endpoint when you want to create a new cookie user, called a OpenCookieUserStub.
@@ -4690,9 +4733,9 @@ definitions:
         type: object
         description: |
           An object containing the custom fields for this user.
-          
+
           Learn more about the available custom field functionality in our [Custom Fields Developer Guide](/features/custom-user-fields)
-        example: 
+        example:
           lastPurchaseDate: 1512152525513
           plan: "Pro+"
           phone: 19055551234
