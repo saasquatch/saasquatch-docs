@@ -63,8 +63,7 @@ parameters:
     description: >
       The fields to be included in the response.
       Cannot coexist with `extraFields`.
-      E.g. `"firstName"`, `"givenName:firstName"`,
-      or `fakeProgramReferralCode:referralCode(programId:"fakeProgram")`.
+      E.g. `"firstName,lastName,dateBlocked"`
     collectionFormat: multi
     default: null
   extraFields:
@@ -76,8 +75,7 @@ parameters:
       The fields to be included in the response in addition to all the default fields.
       To select from default fields, use `fields`.
       Cannot coexist with `fields`.
-      E.g. `"firstName"`, `"givenName:firstName"`,
-      or `fakeProgramReferralCode:referralCode(programId:"fakeProgram")`.
+      E.g. `"firstName,lastName,dateBlocked"`
     collectionFormat: multi
     default: null
 tags:
