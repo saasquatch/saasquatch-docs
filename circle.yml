@@ -15,6 +15,7 @@ deployment:
   production:
     branch: production # TODO: Change to production once new branch is merged
     commands:
+      - "yarn add global firebase-tools"
       - "yarn run deploy:production"
 general:
   artifacts:

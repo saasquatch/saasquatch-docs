@@ -3,7 +3,7 @@ c9-installed-software
 .c9
 
 .DS_Store
-
+.cache 
 #Ignore Node / Metalsmith
 
 logs
