@@ -1849,7 +1849,6 @@ paths:
         - Webhook
       security:
         - APIKey: []
-        - UserJWT: []
       description: |
         Sends a test event to the specified webhook
       parameters:
@@ -2079,7 +2078,6 @@ paths:
         - Theme
       security:
         - APIKey: []
-        - UserJWT: []
       description: |
         Updates the previously stored values for the default variables included in this request.
         Will not override, nullify or delete the other variable values that are not included.
@@ -2179,7 +2177,6 @@ paths:
         - Theme
       security:
         - APIKey: []
-        - UserJWT: []
       description: |
         Updates the previously stored values for the localized variables included in this request.
         Will not override, nullify or delete the other variable values that are not included.
@@ -2217,7 +2214,6 @@ paths:
         - Theme
       security:
         - APIKey: []
-        - UserJWT: []
       description: |
         Delete all variables for a specified locale. See [theme variables](/themes/variables/) for more info.
       parameters:
