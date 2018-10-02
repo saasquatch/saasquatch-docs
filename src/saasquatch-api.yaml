@@ -377,7 +377,7 @@ paths:
         - UserJWT: []
 
       description: |
-        Track's an event for a user. This is can be used to track when users make purchases, download items, or take other meaningful actions that you want to use to trigger your programs.
+        This method can be used to track when users make purchases, download items, or take other meaningful actions that you want to use to trigger your programs. 
       parameters:
         - name: accountId
           in: path
@@ -404,9 +404,11 @@ paths:
               userId:
                 description: "The `id` of the User being tracked"
                 type: string
+                example: "someUserId"
               accountId:
                 description: "The `id` of the Account associated with the User being tracked. See [Shared vs. Solo accounts](/shared-vs-solo-accounts/) for more info."
                 type: string
+                example: "someAccountId"
               events:
                 description: An array of events
                 type: array
@@ -419,6 +421,7 @@ paths:
                     key:
                       description: The unique name of the event
                       type: string
+                      example: "purchase"
                     fields:
                       description: |
                         Additional fields about the event.
@@ -426,6 +429,7 @@ paths:
                         Arrays of arrays are not supported.
                       type: object
                       additionalProperties: true
+                      example: { currency: CAD }
                     dateTriggered:
                       description: The date the event was triggered
                       type: number
