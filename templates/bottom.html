@@ -51,7 +51,7 @@
 
     <!-- The equivalent to `process.env` but for clientside variables -->
     <script type='text/javascript'>
-        window.env = {{windowDotEnv | json(2) | safe}};
+        window.env = {{ windowDotEnv | json(2) | safe }};
     </script>
 
     {% if jsTrackers == 'true' %}
@@ -68,10 +68,11 @@
 
     {% if jsTrackers == 'true' %}
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{windowDotEnv.GTMID}}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{windowDotEnv.GTMID}}" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     {% endif %}
-    
+
     <div id="my-page">
         <!-- Begin Header / Nav -->
         {% include "./partials/navigationHeader.html" %}
@@ -100,10 +101,14 @@
         // LV: Disables auto-zenscroll so that we can highjack it later
         window.noZensmooth = true;
     </script>
-    <script type='text/javascript' src='/assets/js/docs.js'></script>
+    <script src="https://code.jquery.com/jquery-3.1.0.js" integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+    <script type='text/javascript' src='/assets/js/bundle.js'></script>
     <script type='text/javascript' src='/assets/lib/bootstrap.min.js'></script>
     <script type='text/javascript' src='/assets/lib/jquery-migrate.min.js'></script>
     <script type='text/javascript' src='/assets/lib/jquery.jsonview.js'></script>
 
 </body>
+
 </html>

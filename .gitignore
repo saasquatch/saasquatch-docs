@@ -6,6 +6,7 @@ c9-installed-software
 .cache 
 #Ignore Node / Metalsmith
 
+*.log
 logs
 node_modules
 build

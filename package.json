@@ -17,10 +17,10 @@
     "production": "yarn run linkunicode && gulp production && yarn run build:js",
     "server": "babel-node ./scripts/previewServer.js",
     "local": "serve build",
-    "build": "run-s build:assets build:css build:js build:html",
+    "build": "run-p build:assets build:css build:js build:html",
     "build:assets": "copyfiles assets/**/*.* build",
     "build:css": "lessc assets/stylesheets/docs.less build/assets/stylesheets/docs.css",
-    "build:js": "parcel build assets/js/docs.js -d build/assets/js",
+    "build:js": "webpack",
     "build:html": "babel-node metalsmith/run.js",
     "heroku-postbuild": "yarn run production",
     "deploy:production": "yarn run deploy:firebase",
@@ -67,16 +67,20 @@
     "mocha": "^3.0.0",
     "nodemon": "^1.10.0",
     "npm-run-all": "^4.1.3",
-    "parcel": "^1.10.1",
     "performance-now": "^0.2.0",
     "promise": "^7.1.1",
+    "request": "^2.88.0",
     "request-promise": "^4.1.1",
     "serve": "^10.0.2",
     "slug": "0.9.1",
     "swagger-parser": "^3.4.1",
     "swig": "1.4.2",
     "swig-extras": "0.0.1",
+    "webpack": "^4.20.2",
+    "webpack-visualizer-plugin": "^0.1.11",
     "zenscroll": "^3.3.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "webpack-cli": "^3.1.2"
+  }
 }
