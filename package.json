@@ -12,9 +12,9 @@
   },
   "browserslist": "> 0.25%",
   "scripts": {
-    "linkunicode": "cd ./hacks/node-unicodetable && yarn install && yarn link --force && cd ../../ && yarn link unicode",
-    "buildprod": "yarn run linkunicode && gulp production && yarn run build:js",
-    "production": "yarn run linkunicode && gulp production && yarn run build:js",
+    "linkunicode": "echo \"linkunicode has been removed\"",
+    "buildprod": "run-s build",
+    "production": "run-s build",
     "server": "babel-node ./scripts/previewServer.js",
     "local": "serve build",
     "build": "run-p build:assets build:css build:js build:html",
@@ -22,8 +22,8 @@
     "build:css": "lessc assets/stylesheets/docs.less build/assets/stylesheets/docs.css",
     "build:js": "webpack",
     "build:html": "babel-node metalsmith/run.js",
-    "heroku-postbuild": "yarn run production",
-    "deploy:production": "yarn run deploy:firebase",
+    "heroku-postbuild": "run-s production",
+    "deploy:production": "run-s deploy:firebase",
     "deploy:firebase": "firebase use default --token \"$FIREBASETOKEN\" && firebase deploy --token \"$FIREBASETOKEN\" --debug",
     "test": "./node_modules/.bin/mocha --reporter spec --compilers js:babel-register",
     "test:watch": "./node_modules/.bin/mocha --reporter spec --compilers js:babel-register --watch"
