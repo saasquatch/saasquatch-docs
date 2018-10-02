@@ -86,6 +86,9 @@ tags:
   name: User
   description: Users are the people in your program. In other places a User might also be called a Contact, Lead or Participant.
  -
+  name: User Event
+  description: Events are a way to send SaaSquatch additional information about users. For example, whenever someone makes a purchase or downloads an item.
+ -
   name: Referral Code
   description: Referral Codes are unique ids used to track referrals.
  -
@@ -361,6 +364,81 @@ paths:
         default:
           $ref: "#/responses/GeneralError"
 
+  "/{tenant_alias}/account/{accountId}/user/{userId}/events":
+    post:
+      summary: Track User Event
+      operationId: trackEvent
+      x-docs-anchor: trackEvent
+      tags:
+        - User Event
+      security:
+        - APIKey: []
+
+      description: |
+        Track's an event for a user. This is can be used to track when users make purchases, download items, or take other meaningful actions that you want to use to trigger your programs.
+      parameters:
+        - name: accountId
+          in: path
+          description: "The `id` of the Account associated with the User being tracked. See [Shared vs. Solo accounts](/shared-vs-solo-accounts/) for more info."
+          required: true
+          type: string
+        - name: userId
+          in: path
+          description: "The `id` of the User being tracked"
+          required: true
+          type: string
+        - $ref: "#/parameters/tenant_alias"
+        - name: body
+          in: body
+          description: Details of the events to be tracked
+          required: true
+          schema:
+            type: object
+            required:
+              - userId
+              - accountId
+              - events
+            properties:
+              userId: 
+                title: "The `id` of the User being tracked"
+                type: string
+              accountId:
+                title: "The `id` of the Account associated with the User being tracked. See [Shared vs. Solo accounts](/shared-vs-solo-accounts/) for more info."
+                type: string
+              events: 
+                title: An array of events
+                type: array
+                items:
+                  type: object
+                  title: Event Payload
+                  required:
+                   - key
+                  properties:
+                    key: 
+                      title: The unique name of the event
+                      type: string
+                    fields: 
+                      title: Additional fields about the event
+                      type: object
+                      additionalProperties: true
+                    dateTriggered: 
+                      title: The date the event was triggered
+                      type: number
+                  
+      responses:
+        200:
+          description: Event tracked
+          examples:
+            "application/json":
+              {}
+          schema:
+            {}
+        404:
+          description: User/Account NOT found
+          schema:
+            $ref: "#/definitions/Error"
+        default:
+          $ref: "#/responses/GeneralError"
 
   "/{tenant_alias}/account/{accountId}/user/{userId}/sharelinks":
     get:
