@@ -8,7 +8,7 @@
     "url": "http://github.com/saasquatch/saasquatch-docs.git"
   },
   "engines": {
-    "node": ">=6.9.0"
+    "node": ">=8.12.0"
   },
   "browserslist": "> 0.25%",
   "scripts": {
