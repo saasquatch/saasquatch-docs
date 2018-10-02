@@ -25,8 +25,8 @@
     "heroku-postbuild": "run-s production",
     "deploy:production": "run-s deploy:firebase",
     "deploy:firebase": "firebase use default --token \"$FIREBASETOKEN\" && firebase deploy --token \"$FIREBASETOKEN\" --debug",
-    "test": "./node_modules/.bin/mocha --reporter spec --compilers js:babel-register",
-    "test:watch": "./node_modules/.bin/mocha --reporter spec --compilers js:babel-register --watch"
+    "test": "./node_modules/.bin/mocha --reporter spec --compilers js:@babel/register",
+    "test:watch": "./node_modules/.bin/mocha --reporter spec --compilers js:@babel/register --watch"
   },
   "cacheDirectories": [
     "node_modules",
@@ -36,6 +36,7 @@
     "@babel/core": "^7.1.2",
     "@babel/node": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
+    "@babel/register": "^7.0.0",
     "anchor-js": "^3.2.2",
     "chai": "^3.5.0",
     "cheerio": "^0.22.0",
