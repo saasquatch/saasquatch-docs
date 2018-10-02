@@ -364,15 +364,17 @@ paths:
         default:
           $ref: "#/responses/GeneralError"
 
-  "/{tenant_alias}/account/{accountId}/user/{userId}/events":
+  "/{tenant_alias}/open/account/{accountId}/user/{userId}/events":
     post:
       summary: Track User Event
       operationId: trackEvent
       x-docs-anchor: trackEvent
       tags:
         - User Event
+        - Open Endpoint
       security:
         - APIKey: []
+        - UserJWT: []
 
       description: |
         Track's an event for a user. This is can be used to track when users make purchases, download items, or take other meaningful actions that you want to use to trigger your programs.
@@ -399,38 +401,50 @@ paths:
               - accountId
               - events
             properties:
-              userId: 
-                title: "The `id` of the User being tracked"
+              userId:
+                description: "The `id` of the User being tracked"
                 type: string
               accountId:
-                title: "The `id` of the Account associated with the User being tracked. See [Shared vs. Solo accounts](/shared-vs-solo-accounts/) for more info."
+                description: "The `id` of the Account associated with the User being tracked. See [Shared vs. Solo accounts](/shared-vs-solo-accounts/) for more info."
                 type: string
-              events: 
-                title: An array of events
+              events:
+                description: An array of events
                 type: array
                 items:
                   type: object
-                  title: Event Payload
+                  description: Event Payload
                   required:
                    - key
                   properties:
-                    key: 
-                      title: The unique name of the event
+                    key:
+                      description: The unique name of the event
                       type: string
-                    fields: 
-                      title: Additional fields about the event
+                    fields:
+                      description: |
+                        Additional fields about the event.
+                        Strings longer than 1500 UTF-8 bytes are not supported.
+                        Arrays of arrays are not supported.
                       type: object
                       additionalProperties: true
-                    dateTriggered: 
-                      title: The date the event was triggered
+                    dateTriggered:
+                      description: The date the event was triggered
                       type: number
-                  
+
       responses:
         200:
           description: Event tracked
           examples:
             "application/json":
-              {}
+              userId: "someUserId"
+              accountId: "someAccountId"
+              events:
+                - id: "5bb3978dbd8bfe821a5f26f3"
+                  key: "purchase"
+                  fields:
+                    currency: "CAD"
+                  dateTriggered: 1538496397475
+                  dateReceived: 1538496397475
+                  dateProcessed: 1538496397479
           schema:
             {}
         404:
