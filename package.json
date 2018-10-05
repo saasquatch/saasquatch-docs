@@ -23,6 +23,7 @@
     "build:js": "webpack",
     "build:html": "babel-node metalsmith/run.js",
     "heroku-postbuild": "run-s production",
+    "deploy:fromlocal": "echo \"Hayward make sure to login first\" && firebase use default && firebase deploy --debug",
     "deploy:production": "run-s deploy:firebase",
     "deploy:firebase": "firebase use default --token \"$FIREBASETOKEN\" && firebase deploy --token \"$FIREBASETOKEN\" --debug",
     "test": "./node_modules/.bin/mocha --reporter spec --compilers js:@babel/register",
