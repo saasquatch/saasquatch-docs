@@ -4,7 +4,7 @@
 *
 */
 
-import {extname} from 'path';
+import {extname, } from 'path';
 
 import yaml from 'js-yaml';
 
@@ -32,18 +32,24 @@ var parsers = {
 
 function plugin(opts){
   opts = opts || {};
-
   return function(files, metalsmith, done){
+    var hasErrors = false;
     var metadata = metalsmith.metadata();
     var exts = Object.keys(parsers);
 
     for (var key in opts) {
       var file = opts[key];
       var ext = extname(file);
-      if (!~exts.indexOf(ext)) throw new Error('unsupported metadata type "' + ext + '"');
+      if (!~exts.indexOf(ext)){
+        console.error('unsupported metadata type "' + ext + '"', file);
+        hasErrors = true;
+        continue;
+      }
+      
       if (!files[file]){
         console.error('file "' + file + '" not found');
-        return done();
+        hasErrors = true;
+        continue;
       }
       
       var parse = parsers[ext];
@@ -53,12 +59,18 @@ function plugin(opts){
       try {
         var data = parse(str);
       } catch (e) {
-        return done(new Error('malformed data in "' + file + '"'));
+        console.error('malformed data in "' + file + '"');
+        hasErrors = true;
+        continue;
       }
 
       metadata[key] = data;
     }
 
-    done();
+    if(hasErrors){
+      done(new Error("One or several bad files!"))
+    }else{
+      done();
+    }
   };
 }
