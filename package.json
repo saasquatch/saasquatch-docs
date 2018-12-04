@@ -18,7 +18,7 @@
     "server": "babel-node ./scripts/previewServer.js",
     "local": "serve build",
     "build": "run-p build:assets build:css build:js build:html",
-    "build:assets": "copyfiles assets/**/*.* build",
+    "build:assets": "copyfiles assets/**/*.* assets/**/**/*.* build",
     "build:css": "lessc assets/stylesheets/docs.less build/assets/stylesheets/docs.css",
     "build:js": "webpack",
     "build:html": "babel-node metalsmith/run.js",
