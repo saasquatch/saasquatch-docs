@@ -1346,8 +1346,7 @@ paths:
 
         Learn more about deleting participants within your SaaSquatch project in our article on [Participant Deletion](/features/participant-deletion)
 
-        Include the `doNotTrack` query parameter as `true` to indicate to the SaaSquatch system that the user should not be able to be re-registered. Learn more about `doNotTrack` in our article on [Participant Deletion](/features/participant-deletion)
-
+        Include the `doNotTrack` query parameter as `true` to indicate to the SaaSquatch system that the user should not be able to be re-registered on the same account. Learn more about `doNotTrack` in our article on [Participant Deletion](/features/participant-deletion)
       parameters:
         - $ref: "#/parameters/tenant_alias"
         - name: accountId
@@ -1362,7 +1361,7 @@ paths:
           type: string
         - name: doNotTrack
           in: query
-          description: Do not track this user (this user cannot be re-registered in SaaSquatch). Learn more about `doNotTrack` in our article on [Participant Deletion](/features/participant-deletion)
+          description: Do not track this user (this user cannot be re-registered in SaaSquatch on the same account). Learn more about `doNotTrack` in our article on [Participant Deletion](/features/participant-deletion)
           type: boolean
 
       responses:
@@ -1752,8 +1751,7 @@ paths:
 
         Learn more about deleting participants within your SaaSquatch project in our article on [Participant Deletion](/features/participant-deletion)
 
-        Include the `doNotTrack` query parameter as `true` to indicate to the SaaSquatch system that all Users on this Account should not be able to be re-registered. Learn more about `doNotTrack` in our article on [Participant Deletion](/features/participant-deletion)
-
+        Include the `doNotTrack` query parameter as `true` to indicate to the SaaSquatch system that all currently-registered Users on this Account should not be able to be re-registered on the same Account. Learn more about `doNotTrack` in our article on [Participant Deletion](/features/participant-deletion)
       parameters:
         - $ref: "#/parameters/tenant_alias"
         - name: accountId
@@ -1878,7 +1876,7 @@ paths:
 
   "/{tenant_alias}/export":
     post:
-      summary: Create a CSV Export
+      summary: Create an Export
       operationId: createExport
       x-docs-anchor: create_export
       tags:
@@ -1888,7 +1886,7 @@ paths:
 
       description: |
         Creates an asynchronous request for an Exports. Depending on the size of the Export and other exports in the export pipeline, it may take awhile for an
-        export request to complete. Once the Export is completed, it can be downloaded as a CSV file using the download url endpoint.
+        export request to complete. Once the Export is completed, it can be downloaded in the requested format (CSV or zipped XLSX) using the download url endpoint.
 
         Here are a few ways to check for when an export is ready.
 
@@ -1912,7 +1910,7 @@ paths:
           $ref: "#/responses/GeneralError"
   "/{tenant_alias}/export/{exportId}":
     get:
-      summary: Lookup a CSV Export
+      summary: Lookup an Export
       operationId: getExport
       x-docs-anchor: get_export
       tags:
@@ -1940,7 +1938,7 @@ paths:
           $ref: "#/responses/GeneralError"
   "/{tenant_alias}/export/{exportId}/download":
     get:
-      summary: Download a CSV Export
+      summary: Download an Export
       operationId: downloadExport
       x-docs-anchor: download_export
       tags:
@@ -1967,7 +1965,7 @@ paths:
           $ref: "#/responses/GeneralError"
   "/{tenant_alias}/export/history/list":
     get:
-      summary: List CSV Exports
+      summary: List Exports
       operationId: listExports
       x-docs-anchor: list_exports
       tags:
@@ -4985,9 +4983,11 @@ definitions:
         description: The type of Export that's being requested.
         type: string
         enum:
-          - REFERRAL
-          - REWARD_BALANCE
           - USER
+          - USER_REFERRAL
+          - REFERRAL
+          - USER_REWARD_BALANCE
+          - REWARD_BALANCE
         example: REFERRAL
       format:
         description: The format of the Export
@@ -4996,7 +4996,7 @@ definitions:
         example: CSV
         enum:
           - CSV
-
+          - XLSX
       name:
         description: A user-friendly name for this report. Useful for keeping track of which report is which.
         type: string
@@ -5037,6 +5037,10 @@ definitions:
             type: integer
             format: int64
             example: 1471486452087
+          programId:
+            description: The ID of the program that each user's sharelinks and referral code should be populated from. Only works with reports of type `USER`.
+            type: string
+            example: my-program-id
 
       ### -- Read-only fields below here -- ###
       id:
