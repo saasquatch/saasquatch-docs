@@ -122,6 +122,7 @@ tags:
 paths:
   "/{tenant_alias}/accountsync":
     post:
+      deprecated: true
       summary: Create or Update an account
       operationId: upsertAccount
       x-docs-anchor: account_sync
