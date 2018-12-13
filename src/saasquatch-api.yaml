@@ -1058,10 +1058,10 @@ paths:
           schema:
             $ref: "#/definitions/Reward"
           examples:
-            "application/json":
-              - $ref: "#/definitions/Reward/example/CREDIT"
-              - $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
-              - $ref: "#/definitions/Reward/example/FUELTANK"
+            - $ref: "#/definitions/Reward/example/CREDIT"
+            - $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
+            - $ref: "#/definitions/Reward/example/FUELTANK"
+
 
         default:
           $ref: "#/responses/GeneralError"
@@ -2598,6 +2598,9 @@ definitions:
         type: integer
         description: "Timestamp of when this reward is set to expire. Works with: `PCT_DISCOUNT`"
         example: 1471028988000
+      dateScheduledFor:
+        type: integer
+        description: "Timestamp of when the reward is sheduled to become available."
       cancellable:
         type: boolean
         description: "If a reward is cancellable then it may be revoked. If it has been cancelled then dateCancelled will be non-null."
@@ -2651,6 +2654,9 @@ definitions:
       dateCancelled:
         type: integer
         description: "Timestamp if the reward is cancellable and has been cancelled, the date it was cancelled on. Null if not never cancelled."
+      dateScheduledFor:
+        type: integer
+        description: "Timestamp of when the reward is sheduled to become available."
       cancellable:
         type: boolean
         description: "If a reward is cancellable then it may be revoked. If it has been cancelled then `dateCancelled` will be non-null."
@@ -2717,6 +2723,7 @@ definitions:
         dateGiven: 1478574762838
         dateExpires: null
         dateCancelled: null
+        dateScheduledFor: null
         accountId: "613611"
         userId: "876343"
         cancellable: true
