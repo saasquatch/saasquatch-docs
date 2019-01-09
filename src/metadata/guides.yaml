@@ -218,3 +218,12 @@ User Segmentation:
     icon: fa-users
     summary: |
         Create and manage intelligent segments of participants within your SaaSquatch project.
+Bulk User Import:
+    name: Bulk User Import
+    linkText: Learn more about our User Import functionality
+    slug: /guides/user-import
+    types: 
+     - feature
+    icon: fa-upload
+    summary: |
+        Upload users into your SaaSquatch project to create or update user information.
