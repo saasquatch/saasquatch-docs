@@ -1900,7 +1900,7 @@ paths:
           in: body
           description: Details of the export to be created
           schema:
-            $ref: "#/definitions/Export"
+            $ref: "#/definitions/ExportStub"
         - $ref: "#/parameters/tenant_alias"
       responses:
         201:
@@ -4982,6 +4982,74 @@ definitions:
         description: The total number of results available overall, see `count` for the number of rows in this list.
         example: 2415
 
+  ExportStub:
+    description: An Export lets you get your customer data out of your Referral SaaSquatch tenant. There are exports for returning Users, Referrals and Reward Balances.
+    required:
+      - type
+    properties:
+      type:
+        description: The type of Export that's being requested.
+        type: string
+        enum:
+          - USER
+          - USER_REFERRAL
+          - REFERRAL
+          - USER_REWARD_BALANCE
+          - REWARD_BALANCE
+        example: REFERRAL
+      format:
+        description: The format of the Export
+        type: string
+        default: CSV
+        example: CSV
+        enum:
+          - CSV
+          - XLSX
+      name:
+        description: A user-friendly name for this report. Useful for keeping track of which report is which.
+        type: string
+      requester:
+        description: Detail on the service or user that requested this report.
+        type: string
+        example: "Referral SaaSquatch for Salesforce"
+
+      params:
+        description: |
+          Filter parameters for limiting the types of results returned. When parameters are included, their are grouped by a logical "AND" so
+          it's possible to create situations that return no results.
+        type: object
+        properties:
+          createdSince:
+            description: Filters for results that have been **created since this date**
+            type: integer
+            format: int64
+          createdBefore:
+            description: Filters for results that have been **created before this date**
+            type: integer
+            format: int64
+          updatedSince:
+            description: Filters for results that have been **updated since this date**
+            type: integer
+            format: int64
+          updatedBefore:
+            description: Filters for results that have been **updated before this date**
+            type: integer
+            format: int64
+          createdOrUpdatedSince:
+            description: Filters for results that have been **created or updated since this date**. Useful for doing incremental exports into a data warehouse.
+            type: integer
+            format: int64
+            example: 1471486152087
+          createdOrUpdatedBefore:
+            description: Filters for results that have been **created or updated before this date**. Useful for doing incremental exports into a data warehouse.
+            type: integer
+            format: int64
+            example: 1471486452087
+          programId:
+            description: The ID of the program that each user's sharelinks and referral code should be populated from. Only works with reports of type `USER`.
+            type: string
+            example: my-program-id
+  
   Export:
     description: An Export lets you get your customer data out of your Referral SaaSquatch tenant. There are exports for returning Users, Referrals and Reward Balances.
     required:
