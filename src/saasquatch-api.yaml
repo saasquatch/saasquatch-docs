@@ -731,12 +731,16 @@ paths:
         200:
           description: Referral code found
           examples:
-            "application/json":
-              code: "BOBTESTERSON"
-              dateCreated: 1411600868797
-              referrerName: "Bob Testerson"
-              reward:
-                $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
+          - code: "BOBTESTERSON"
+            dateCreated: 1411600868797
+            referrerName: "Bob T"
+            reward:
+              $ref: "#/definitions/RewardTemplate/example/CREDIT"
+          - code: "BOBTESTERSON"
+            dateCreated: 1411600868797
+            referrerName: "Bob T"
+            reward:
+              $ref: "#/definitions/RewardTemplate/example/PCT_DISCOUNT"
           schema:
             $ref: "#/definitions/Code"
         404:
@@ -1548,14 +1552,18 @@ paths:
         200:
           description: Referral code found
           examples:
-            application/json:
-              code: "BOBTESTERSON"
-              dateCreated: 1411600868797
-              referrerName: "Bob T"
-              reward:
-                type: "PCT_DISCOUNT"
-                discountPercent: 10
-                monthsDiscountIsValid: 12
+          - code: "BOBTESTERSON"
+            dateCreated: 1411600868797
+            referrerName: "Bob T"
+            reward:
+              $ref: "#/definitions/RewardTemplate/example/CREDIT"
+          - code: "BOBTESTERSON"
+            dateCreated: 1411600868797
+            referrerName: "Bob T"
+            reward:
+              $ref: "#/definitions/RewardTemplate/example/PCT_DISCOUNT"
+          schema:
+            $ref: "#/definitions/Code"
         403:
             description: Endpoint disabled
             schema:
@@ -2556,8 +2564,9 @@ definitions:
         description: "The type of reward."
         enum:
           - PCT_DISCOUNT
-          - TIME_CREDIT
+          - FUELTANK
           - CREDIT
+          - INTENGRATION
       unit:
         type: string
         example: cents
@@ -2575,13 +2584,23 @@ definitions:
           The percent discount that the referral code is valid for. E.g. "10" for "10%". Only works with `PCT_DISCOUNT`
       monthsDiscountIsValid:
         type: integer
-        description: When this reward is set to expire.
-      name:
-        type: string
-        description: The human-readable name of the reward.
-      description:
-        type: string
-        description: "The human-readable description of the reward. Works with: `INTEGRATION`"
+        description: "When this reward is set to expire.  Only works with `PCT_DISCOUNT`"
+      valueInCents:
+        type: integer
+        description: "The value of the reward in cents. Works with: `INTEGRATION`"
+      rewardDetails:
+        type: JSON
+        description: "JSON object containing details about the reward. Works with: `INTEGRATION`"
+    example:
+      CREDIT:
+        type: "CREDIT"
+        unit: "CENTS"
+        credit: 2500
+      PCT_DISCOUNT:
+        type: "PCT_DISCOUNT"
+        discountPercent: 20
+        unit: "%"    
+    
   NewReward:
     description: Details of a new reward to create.
     properties:
@@ -2749,7 +2768,7 @@ definitions:
         unit: "CENTS"
         amount: 1000
         fueltankType: "CREDIT"
-
+  
   Redemption:
     title: A redemption object
     description: "Details about when a quantity of a reward was redeemed from the SaaSquatch system."
