@@ -227,3 +227,12 @@ Bulk User Import:
     icon: fa-upload
     summary: |
         Upload users into your SaaSquatch project to create or update user information.
+Bulk Reward Redemption:
+    name: Bulk Reward Redemption
+    linkText: Learn more about our Bulk Reward Redemption functionality
+    slug: /guides/bulk-reward-redemption
+    types: 
+     - feature
+    icon: fa-money
+    summary: |
+        Fulfill multiple rewards at once using our batch export/import process.
