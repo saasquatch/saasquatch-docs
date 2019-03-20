@@ -1,4 +1,4 @@
--   title: Product Updates August 2017
+ -   title: Product Updates August 2017
     datePublished: "2017-08-16"
     tags:
         - feature-release
@@ -155,15 +155,15 @@
             <div class="span6">
                 <ol>
                     <li>A new **'User Summary'** screen with improved user management functionality and most importantly, the option to __**DELETE a User**__. [Click here](/features/participant-deletion) to learn more.</li>
-                    <li>An improved and more data-rich **'User Details'** display 
-                    <li>Quickview of users current **active Segments** 
-                    <li>Updated **Rewards list** that provides: 
+                    <li>An improved and more data-rich **'User Details'** display </li>
+                    <li>Quickview of users current **active Segments** </li>
+                    <li>Updated **Rewards list** that provides: </li>
                     <ol type="a">
-                        <li>High level summary of each users rewards, for quicker analysis
-                        <li>Individual rewards management
-                        <li>Additional reward details for a more complete review
+                        <li>High level summary of each users rewards, for quicker analysis</li>
+                        <li>Individual rewards management</li>
+                        <li>Additional reward details for a more complete review</li>
                     </ol>
-                    <li>Updated **Referral details** and activity views
+                    <li>Updated **Referral details** and activity views</li>
                 </ol>
             </div>
             <div class="span3">
