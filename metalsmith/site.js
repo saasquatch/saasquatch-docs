@@ -109,6 +109,7 @@ function site(baseplugin=null){
       guides: 'metadata/guides.yaml',
       themeGallery: 'metadata/themeGallery.yaml',
       productNews: 'metadata/productNews.yaml',
+      purchaseEventSchema: 'metadata/purchaseEventSchema.json'
       }))
 
   /*
