@@ -236,3 +236,12 @@ Bulk Reward Redemption:
     icon: fa-money
     summary: |
         Fulfill multiple rewards at once using our batch export/import process.
+Message Links:
+    name: Message Links
+    linkText: Learn more about Message Link functionality
+    slug: /features/message-links
+    types: 
+     - feature
+    icon: fa-comments
+    summary: |
+        The SaaSquatch system offers dynamic capability to build share buttons for each of your programs and share mediums.        
