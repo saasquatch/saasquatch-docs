@@ -31,6 +31,7 @@ import tocFilter from './filters/tableOfContents.js';
 
 import contentfulpagifier from './utils/contentfulpagifier';
 import productpagifiger from './utils/productSpaceContentfulpagifier';
+import installguidepagifier from './utils/installguidepagifier';
 
 
 
@@ -122,6 +123,10 @@ function site(baseplugin=null){
   .use(pageify({
     metaname: "contentfulProduct",
     pagifier: productpagifiger
+  }))
+  .use(pageify({
+    metaname: "installGuide",
+    pagifier: installguidepagifier
   }))
     
   
