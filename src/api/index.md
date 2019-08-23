@@ -40,5 +40,5 @@ The following examples are just some of what is possible through our REST API:
 - [Attribute](/api/methods/#account_sync), [lookup](/api/methods/#get_referral), [list](/api/methods/#list_referrals), and [moderate](/api/methods/#moderate_referrals) referrals
 - [Create](/api/methods/#create_reward), [List balance](/api/methods/#list_balances), and [redeem](/api/methods/#debit_balance) rewards
 
-<div class="well ">**Note:** Please be aware that the Referral SaaSquatch API is not currenlty supported when making use of one of our direct payment provider integrations. However, it is still possible to connect up your referral program to your payment provider through your existing business flow with the use of our API. Please check out one of our many guides to get stated setting up your referral program.
+<div class="well ">**Note:** Please be aware that the Referral SaaSquatch API is not currently supported when making use of one of our direct payment provider integrations. However, it is still possible to connect up your referral program to your payment provider through your existing business flow with the use of our API. Please check out one of our many guides to get stated setting up your referral program.
 </div>
