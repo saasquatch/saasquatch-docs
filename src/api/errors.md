@@ -21,7 +21,6 @@ template: article.html
     <li><strong>404</strong> Not Found - The requested item doesn't exist.</li>
     <li><strong>500, 502, 503, 504</strong> Server errors - something went wrong on Referral SaaSquatch's end.</li>
 </ul>
-<p>
-<p>
+---
 If you require further assistance with any error codes you are experiencing, please feel free to reach out to our [Success Team](mailto:success@referralsaasquatch.com) who will be more than happy to help.<p>
 For quicker troubleshooting, include a copy of the call that was made and the full error message that was received.
