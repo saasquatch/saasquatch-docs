@@ -6,15 +6,15 @@ sectionType: apiReference
 template: hasTableOfContents.html
 ---
 
-Interacting with third party APIs like Referral SaaSquatch often suffers from two important problems:
+Interacting with third party APIs like SaaSquatch often suffers from two important problems:
 
 
  - Services not directly responsible for making an API request may still need to know the response
  - Some events, like coupon created events, are not the result of a direct API request
 
 
-Webhooks solve these problems by letting you register a URL that we will POST anytime an event happens in your account. When the event
-occurs, for example when a vanity coupon code is created for a new user, Referral SaaSquatch creates an event object. This object contains all the relevant
+Webhooks solve these problems by letting you register a URL that we will POST to anytime an event happens in your account. When the event
+occurs, for example when a vanity coupon code is created for a new user, SaaSquatch creates an event object. This object contains all the relevant
 information, including the type of event and the data associated with that event. Referral SaaSquatch then sends an HTTP POST request with the event object
 to any URLs in your account's webhook settings. You can find a full list of all event types below.
 
@@ -202,7 +202,7 @@ An abitrary JSON object containing data related to this event
 
 
 **Payload Security** - Webhook event payloads can be verified by checking the request headers. The `X-Hook-Signature` header is set with a value based upon a HMAC-SHA1 (RFC 2104 compliant) hash
-of the hook's body contents. The signature used is the tenant's current API key. This can be used to verify the authenticity of hooks upon receipt. 
+of the hook's body contents. The signature used is the tenant's current API key. This can be used to verify the authenticity of hooks upon receipt.
 
 > Careful! Although you can verify the hook's authenticity via the signature, you still may need to verify the state of the 'data' by making an API call. Hook delivery order is not guaranteed. For
 example, consider the scenario where an object is updated multiple times in quick succession. The related REST hooks may be delivered in a different order than the update events
