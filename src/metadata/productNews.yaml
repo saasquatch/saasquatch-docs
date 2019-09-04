@@ -1,3 +1,36 @@
+-   title: Custom Events
+    datePublished: "2019-08-23"
+    tags:
+        - feature-release
+        - product-update
+    content: |
+        <div class="row-fluid">
+            <div class="span7">
+                
+                <p>The quest to build a flexible and robust Growth Automation platform took a big step forward today as we launched the ability to convert referrals based on Custom Events.Your programs can now be set up to trigger on a custom event, such as user actions like “subscription renewal” or “product upgrade.” Simply follow these steps to create your own Custom Event driven Referral Program:
+               
+               <p><ol><li>Create a new Referral Program</li>
+               <li>In the Rules section, change ‘Convert referral on’ to “Custom Event” and enter in your event key (eg. `subscription`)</li>
+               <li>You can also set it to convert on a custom event field value by specifying the field value name (eg. `status`) and the field value that will cause the conversion (eg. `renewed`). </li></ol>
+
+            
+            </div>
+            <div class="span5">
+                <a href="http://www.saasquatch.com/wp-content/uploads/2019/09/Custom-Events.png" target="_blank">![custom-events](http://www.saasquatch.com/wp-content/uploads/2019/09/Custom-Events.png)</a> 
+            </div>
+        </div>
+        
+
+-   title: Updated Segment Integration
+    datePublished: "2019-08-28"
+    tags:
+        - feature-release
+        - product-update
+    content: |
+        With our new V2 Segment integration, communication between SaaSquatch and Segment is now a two-way street; SaaSquatch can update your users in Segment and Segment can update your users in SaaSquatch. With Segment available as a source, you can accomplish Identification, Attribution and Conversion via Segment!
+        
+        This new integration is in beta and opt-in only while we ensure it is working optimally, so if you are interested in making use of it along with your existing SaaSquatch program please contact the Success Team. If you would like to find out how SaaSquatch can improve upon your existing Segment implementation, click here to schedule a product demo.
+
 -   title: Manual and One-Time Actions
     datePublished: "2019-08-07"
     tags:
