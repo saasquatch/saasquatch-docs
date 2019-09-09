@@ -12,15 +12,49 @@ template: article.html
 
 ### HTTP Status Code Summary
 
-<ul class="unstyled docs-monospace">
-    <li><strong>200</strong> OK - Everything worked as expected.</li>
-    <li><strong>400</strong> Bad Request - Often missing a required parameter.</li>
-    <li><strong>401</strong> Unauthorized - No valid API key provided.</li>
-    <li><strong>402</strong> Request Failed - Parameters were valid but request failed.</li>
-    <li><strong>403</strong> Forbidden - Returned by open endpoints if they are disabled.</li>
-    <li><strong>404</strong> Not Found - The requested item doesn't exist.</li>
-    <li><strong>500, 502, 503, 504</strong> Server errors - something went wrong on Referral SaaSquatch's end.</li>
-</ul>
+<table class="table">
+<thead>
+<tr>
+    <th >
+        Error
+    </th>
+    <th>
+        Detail
+    </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+    <td class="docs-monospace">200</td>
+    <td>OK - Everything worked as expected.</td>
+</tr>
+<tr>
+    <td class="docs-monospace">400</td>
+    <td>Bad Request - Often missing a required parameter.</td>
+</tr>
+<tr>
+    <td class="docs-monospace">401</td>
+    <td>Unauthorized - No valid API key provided.</td>
+</tr>
+<tr>
+    <td class="docs-monospace">402</td>
+    <td>Request Failed - Parameters were valid but request failed.</td>
+</tr>
+<tr>
+    <td class="docs-monospace">403</td>
+    <td>Forbidden - Returned by open endpoints if they are disabled.</td>
+</tr>
+<tr>
+    <td class="docs-monospace">404</td>
+    <td>Not Found - The requested item doesn't exist.</td>
+</tr>
+<tr>
+    <td class="docs-monospace">500, 502, 503, 504</td>
+    <td>Server errors - something went wrong on Referral SaaSquatch's end.</td>
+</tr>
+</tbody>
+</table>
+
 ---
 If you require further assistance with any error codes you are experiencing, please feel free to reach out to our [Success Team](mailto:success@referralsaasquatch.com) who will be more than happy to help.<p>
 For quicker troubleshooting, include a copy of the call that was made and the full error message that was received.
