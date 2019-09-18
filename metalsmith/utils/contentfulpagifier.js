@@ -23,6 +23,7 @@ function pageify(entryRaw, i18n){
         if(!metalsmithSection){
             throw new Error(`Missing or undefined section type. ${JSON.stringify(contentfulSection)} mapped to ${metalsmithSection}`);
         }
+        
         file = {
             title: fields.title,
             highlights: fields.highlights,
@@ -36,6 +37,13 @@ function pageify(entryRaw, i18n){
             sectionType: metalsmithSection,
             template: "hasTableOfContents.html"
         };
+        
+        if(fields.tags && fields.tags.includes("integrations")) {
+            console.log('tags', fields.tags);
+            file.logo = `${fields.slug}-integration.png`;
+            file.template = "intergrationLanderIntro.html";
+        }
+        
         if(fields.coverImage){
             let coverFields = resolveI18n(fields.coverImage.fields);
             file.coverImage = {
