@@ -1,7 +1,7 @@
 ---
 title: Branch Metrics Reference
 highlights: |
-    Referral SaaSquatch integrates with [Branch Metrics](http://branch.io). This technical reference explains the specifics fields, features, API calls and functionality that is used in the integration.
+    SaaSquatch integrates with [Branch Metrics](http://branch.io). This technical reference explains the specifics fields, features, API calls and functionality that is used in the integration.
 slug: mobile/branch-metrics/reference
 template: pages/branchReference.html
 sectionType: mobile
@@ -19,17 +19,17 @@ sectionType: mobile
 
 ### How it Works
 
-The Referral SaaSquatch integrates with [Branch Metrics](http://branch.io) works as follows:
+The SaaSquatch integration with [Branch Metrics](http://branch.io) works as follows:
 
  - SaaSquatch referral links (e.g. ssqt.co/h126b21) will start redirecting to Branch links
- - Referral SaaSquatch will [create branch links dynamically](https://dev.branch.io/references/http_api/#creating-a-deep-linking-url) and set values for `data`, `channel`, `tags` and `desktop_url`
- - Branch deep link `data` will include details of the referral code, the referrer and reward (See field reference below)
+ - SaaSquatch will [create branch links dynamically](https://dev.branch.io/references/http_api/#creating-a-deep-linking-url) and set values for `data`, `channel`, `tags` and `desktop_url`
+ - Branch deep link `data` will include details of the referral code, the Referrer and reward (See field reference below)
  - Analytics Tags will be added to help you track the performance of different platforms.
 	 - `channel`: the referral medium. One of `FACEBOOK`, `TWITTER`, `EMAIL`, `DIRECT`, `REMINDER`, `UNKNOWN`  
 	 - `tags`: the source of the referral. One of `STANDARD`, `MOBILE`, `UNKNOWN`  
 
 
-By default Referral SaaSquatch will send all link clicks through Branch, but will continue to send redirect desktop traffic to your web/desktop site you configured. This is done by 
+By default SaaSquatch will send all link clicks through Branch, but will continue to send redirect desktop traffic to your web/desktop site you configured. This is done by 
 setting the Branch value for `desktop_url`.
 
  - `desktop_url`: the landing page you set in our portal when you created your program. If you set a desktop url for your app in Branch, it will be overwritten.
@@ -40,7 +40,7 @@ setting the Branch value for `desktop_url`.
 
 ### Example Deeplink
 
-When Referral SaaSquatch creates links [dynamically in branch](https://dev.branch.io/references/http_api/#creating-a-deep-linking-url) the resulting link, including analytics tags, redirects and
+When SaaSquatch creates links [dynamically in branch](https://dev.branch.io/references/http_api/#creating-a-deep-linking-url) the resulting link, including analytics tags, redirects and
 custom metadata produce a deep link like the following example:
 
 ```json
@@ -73,5 +73,5 @@ custom metadata produce a deep link like the following example:
   
 ### Data Fields
 
-When Referral SaaSquatch creates links [dynamically in branch](https://dev.branch.io/references/http_api/#creating-a-deep-linking-url/), it includes a number of metadata fields in the `data` field.
+When SaaSquatch creates links [dynamically in branch](https://dev.branch.io/references/http_api/#creating-a-deep-linking-url/), it includes a number of metadata fields in the `data` field.
 These includes fields from the **User**, **Referral Code** and **Reward** objects.
