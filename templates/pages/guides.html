@@ -12,11 +12,9 @@
 
 <div class="isotope-integration-button-group filters-isotope-integration-button-group">
   <button id="filterAll" class="isotope-integration-button" data-filter="*">All</button>
-  <button class="isotope-integration-button" data-filter=".business-model">Business Models</button>
   <button class="isotope-integration-button" data-filter=".library">Libraries</button>
   <button class="isotope-integration-button" data-filter=".integration">Integrations</button>
   <button class="isotope-integration-button" data-filter=".payment-provider">Payment Providers</button>
-  <button class="isotope-integration-button" data-filter=".reward">Rewards</button>
   <button id="filterFeature" class="isotope-integration-button" data-filter=".feature">Features</button>
 </div>
 
@@ -41,7 +39,7 @@
   {% endfor %}
   {% for integration in collections.integrationsList %}
     {% for category in integration.categories %}
-      {% if category == "payment-provider" || category == "reward" || category == "tag-manager" %}
+      {% if category == "payment-provider" || category == "tag-manager" %}
         <div class="guides-item integration {% for type in integration.categories %}{{ type }} {% endfor %}">
           <div class="guides-image">
             <a class="imageLink" href="{{ integration.guideLink }}">

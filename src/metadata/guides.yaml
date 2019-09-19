@@ -16,61 +16,6 @@ Squatch.js:
     icon: fa-code
     summary: |
         squatch.js is the SaaSquatch JavaScript SDK, and provides an easy way to integrate into your website or web app.
-iOS SDK:
-    name: iOS SDK
-    linkText: Read more about our iOS SDK
-    slug: /mobile/ios
-    types:    
-     - library
-    icon: fa-apple
-    summary: |
-        The SaaSquatch iOS SDK integrates natively into your iOS app.
-Android SDK:
-    name: Android SDK
-    linkText: Read more about our Android SDK
-    slug: /mobile/android
-    types:    
-     - library
-    icon: fa-android
-    summary: |
-        The SaaSquatch Android SDK integrates natively into your Android app.
-        
-SaaS:
-    name: SaaS
-    linkText: Read more about our SaaS Guide
-    slug: /guides/saas-installation
-    types: 
-     - business-model
-    icon: fa-cloud
-    summary: |
-        Setting up a Custom Referral Program tailored for your SaaS business.
-eCommerce:
-    name: eCommerce
-    linkText: Guide coming soon
-    slug: #
-    types: 
-     - business-model
-    icon: fa-shopping-cart
-    summary: |
-        Setting up a Custom Referral Program tailored for your eCommerce business.
-Finance:
-    name: Finance
-    linkText: Guide coming soon
-    slug: #
-    types:
-     - business-model
-    icon: fa-university
-    summary: |
-        Setting up a Custom Referral Program tailored for your Financial Services business.
-Mobile:
-    name: Mobile
-    linkText: Read more in our Mobile Guide
-    slug: /guides/mobile-installation
-    types: 
-     - business-model
-    icon: fa-mobile
-    summary: |
-        Connect your SaaSquatch project with your mobile app using our mobile SDK.
         
 Email:
     name: Email
@@ -118,33 +63,7 @@ JSON:
     icon: fa-code
     summary: |
         JSON Web Tokens are used to validate the data being supplied to Referral SaaSquatch in Signed Requests made through squatch.js and Open Endpoints.
-Percentage Rewards:
-    name: Percentage Rewards
-    linkText: Read more about our percentage rewards
-    slug: /guides/percent-discount
-    types: 
-     - reward
-    icon: fa-percent
-    summary: |
-        Give your successful program participants a percentage discount off their bill or purchase.
-Dollar Rewards:
-    name: Dollar Rewards
-    linkText: Read more about our currency rewards
-    slug: /guides/dollar-credit
-    types: 
-     - reward
-    icon: fa-usd
-    summary: |
-        Give your successful program participants a credit towards their bill or purchase.
-Free Time Rewards:
-    name: Free Time Rewards
-    linkText: Read more about our free time rewards
-    slug: /guides/time-reward
-    types: 
-     - reward
-    icon: fa-clock-o
-    summary: |
-        Give your successful program participants a free time credit on their bill or purchase.
+
 Blocked Email Domains:
     name: Blocked Email Domains
     linkText: Read more about options for blocking email domains
