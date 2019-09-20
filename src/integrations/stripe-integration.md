@@ -1,11 +1,12 @@
 ---
-title: Stripe Referral Software Integration | Referral Saasquatch
+title: Stripe Software Integration | Saasquatch
 logo: stripe-integration.png
 categories: 
  - payment-provider
-highlights: Looking for Stripe referral software integration? Referral SaaSquatch uses Stripe Connect to create referral new codes, track subscriptions and give discounts.
+ - featured
+highlights: Looking for Stripe software integration? SaaSquatch uses Stripe Connect to create referral new codes, track subscriptions and give discounts.
 integrationDescription: |
-    Stripe is a fantastic payment platform built for developers. Referral SaaSquatch's Stripe integration uses Stripe Connect to automatically create new referral codes, track referred subscriptions and give people discounts.
+    Stripe is a fantastic payment platform built for developers. SaaSquatch's Stripe integration uses Stripe Connect to automatically create new referral codes, track referred subscriptions and give people discounts.
 subtitle: Referral SaaSquatch automates fulfillment with Stripe
 slug: stripe
 keyFeatures:
