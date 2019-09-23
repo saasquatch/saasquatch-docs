@@ -39,7 +39,6 @@ function pageify(entryRaw, i18n){
         };
         
         if(fields.tags && fields.tags.includes("integrations")) {
-            console.log('tags', fields.tags);
             file.logo = `${fields.slug}-integration.png`;
             file.template = "intergrationLanderIntro.html";
         }
