@@ -1,6 +1,6 @@
 ---
 title: Custom Short Domain Guide
-highlights: SaaSquatch supports the use of Custom Short Domains which allow you to change the format of the referral links shared by your users. Instead of the standard link format ([ssqt.co/barYS](http://ssqt.co/barYS)) you can create your own ([referral.your-domain.com/barYS](http://referral.your-domain.com/barYS)).
+highlights: SaaSquatch supports the use of Custom Short Domains which allow you to change the format of the referral links shared by your users. Instead of the standard link format ('ssqt.co/barYS') you can create your own ('referral.your-domain.com/barYS').
 slug: customshortdomainguide
 sectionType: guide
 template: hasTableOfContents.html
