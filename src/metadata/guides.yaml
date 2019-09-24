@@ -11,17 +11,17 @@ Squatch.js:
     name: Squatch.js
     linkText: Read more about our Squatch.js Javascript Library
     slug: /developer/squatchjs
-    types:    
+    types:
      - library
     icon: fa-code
     summary: |
         squatch.js is the SaaSquatch JavaScript SDK, and provides an easy way to integrate into your website or web app.
-        
+
 Email:
     name: Email
     linkText: Read more about our email functionality
     slug: /topics/email
-    types: 
+    types:
      - feature
     icon: fa-envelope-o
     summary: |
@@ -30,7 +30,7 @@ Custom Link Domains:
     name: Custom Link Domains
     linkText: Read more about our custom link domains
     slug: /customshortdomainguide
-    types: 
+    types:
      - feature
     icon: fa-link
     summary: |
@@ -39,7 +39,7 @@ Security Management System:
     name: Referral Security
     linkText: Read more about our security management system
     slug: /developer/referral-security/
-    types: 
+    types:
      - feature
     icon: fa-lock
     summary: |
@@ -48,7 +48,7 @@ Account Structure:
     name: Account Structure
     linkText: Read more about our shared vs. solo accounts
     slug: /shared-vs-solo-accounts/
-    types: 
+    types:
      - feature
     icon: fa-user-circle-o
     summary: |
@@ -58,7 +58,7 @@ JSON:
     name: JSON Web Tokens
     linkText: Read more about our JWTs
     slug: /topics/json-web-tokens
-    types: 
+    types:
      - features
     icon: fa-code
     summary: |
@@ -68,7 +68,7 @@ Blocked Email Domains:
     name: Blocked Email Domains
     linkText: Read more about options for blocking email domains
     slug: /developer/blocked-email-domains
-    types: 
+    types:
      - feature
     icon: fa-ban
     summary: |
@@ -77,7 +77,7 @@ Program Reports:
     name: Program Reports
     linkText: Read more about the available program reports
     slug: /features/reports
-    types: 
+    types:
      - feature
     icon: fa-file-text-o
     summary: |
@@ -86,7 +86,7 @@ Marketo Forms:
     name: Marketo Forms
     linkText: Read more about our support for Marketo Forms
     slug: /guides/marketo-form
-    types: 
+    types:
      - integration
     image: marketo-integration.png
     summary: |
@@ -95,7 +95,7 @@ Instapage Forms:
     name: Instapages Forms
     linkText: Read more about our support for Instapage Forms
     slug: /guides/instapage-form
-    types: 
+    types:
      - integration
     image: instapage-integration.png
     summary: |
@@ -104,7 +104,7 @@ Custom User Fields:
     name: Custom User Fields
     linkText: Read more about the available custom user fields
     slug: /features/custom-user-fields
-    types: 
+    types:
      - feature
     icon: fa-user-plus
     summary: |
@@ -113,7 +113,7 @@ Referral Widget Types:
     name: Referral Widget Types
     linkText: Read more about the available widget types
     slug: /topics/widget-types
-    types: 
+    types:
      - feature
     icon: fa-window-restore
     summary: |
@@ -122,7 +122,7 @@ Custom Rewards Fuel Tank:
     name: Custom Rewards Fuel Tank
     linkText: Find out more about our Fuel Tank functionality
     slug: /features/rewards-fuel-tank
-    types: 
+    types:
      - feature
      - reward
     icon: fa-ticket
@@ -132,7 +132,7 @@ User Segmentation:
     name: User Segmentation
     linkText: Learn more about User Segmentation
     slug: /features/user-segmentation
-    types: 
+    types:
      - feature
     icon: fa-users
     summary: |
@@ -141,7 +141,7 @@ Bulk User Import:
     name: Bulk User Import
     linkText: Learn more about our User Import functionality
     slug: /guides/user-import
-    types: 
+    types:
      - feature
     icon: fa-upload
     summary: |
@@ -150,7 +150,7 @@ Bulk Reward Redemption:
     name: Bulk Reward Redemption
     linkText: Learn more about our Bulk Reward Redemption functionality
     slug: /guides/bulk-reward-redemption
-    types: 
+    types:
      - feature
     icon: fa-money
     summary: |
@@ -159,8 +159,8 @@ Message Links:
     name: Message Links
     linkText: Learn more about Message Link functionality
     slug: /features/message-links
-    types: 
+    types:
      - feature
     icon: fa-comments
     summary: |
-        The SaaSquatch system offers dynamic capability to build share buttons for each of your programs and share mediums.        
+        The SaaSquatch system offers dynamic capability to build share buttons for each of your programs and share mediums.
