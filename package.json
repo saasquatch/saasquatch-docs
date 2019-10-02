@@ -83,6 +83,7 @@
     "zenscroll": "^3.3.0"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.11.2",
     "webpack-cli": "^3.1.2"
   }
 }
