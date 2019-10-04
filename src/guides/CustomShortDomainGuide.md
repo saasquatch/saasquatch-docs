@@ -37,7 +37,7 @@ With the A Record set correctly, contact a member of the success team with the C
 
 ### Step 5: Verify
 
-As a precaution, we will make the change to the new Custom Short Domain on the Test tenant before making changes to the Live Tenant.
+As a precaution, we will make the change to the new Custom Short Domain on your [Test tenant](/success/using-referral-saasquatch/#test-vs-live) before making changes to the Live Tenant.
 
 Confirm with a member of the SaaSquatch Success team that the new links in your Test tenant are being generated correctly.
 
