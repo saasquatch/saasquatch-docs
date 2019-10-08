@@ -1,6 +1,6 @@
 ---
 title: API Webhooks
-highlights: The Referral SaaSquatch Webhooks API closely matches that described by the [RestHooks](http://resthooks.org/docs/) guidelines.
+highlights: The SaaSquatch Webhooks API closely matches that described by the [RestHooks](http://resthooks.org/docs/) guidelines.
 slug: 'api/webhooks'
 sectionType: apiReference
 template: hasTableOfContents.html
@@ -15,11 +15,11 @@ Interacting with third party APIs like SaaSquatch often suffers from two importa
 
 Webhooks solve these problems by letting you register a URL that we will POST to anytime an event happens in your account. When the event
 occurs, for example when a vanity coupon code is created for a new user, SaaSquatch creates an event object. This object contains all the relevant
-information, including the type of event and the data associated with that event. Referral SaaSquatch then sends an HTTP POST request with the event object
+information, including the type of event and the data associated with that event. SaaSquatch then sends an HTTP POST request with the event object
 to any URLs in your account's webhook settings. You can find a full list of all event types below.
 
 
-**Retry Policy** - Rest hooks are delivered immediately after an event is triggered. If the endpoint does not successfully respond to a delivery
+> **Retry Policy** - Rest hooks are delivered immediately after an event is triggered. If the endpoint does not successfully respond to a delivery
 attempt (<em>i.e. respond with a status code other than 200</em>), the delivery will be considered as failed. Failed deliveries will be
 reattempted every hour after the previous failed attempt until either a successful delivery is made or until 72 attempts have
 been made (<em>approximately 3 days at the rate of 1 retry per hour</em>).
@@ -69,7 +69,7 @@ endpoint urls will simply result in one subscription being created for that url.
 <tr>
     <td class="docs-monospace">email.referred.reward.earned</td>
     <td>
-        Sent whenever a referred user earns a reward.
+        Sent whenever a Referred User earns a reward.
     </td>
 </tr>
 <tr>
@@ -81,7 +81,7 @@ endpoint urls will simply result in one subscription being created for that url.
 <tr>
     <td class="docs-monospace">email.referral.paid</td>
     <td>
-        Sent whenever a new referred user upgrades to a paid subscription.
+        Sent whenever a new Referred User upgrades to a paid subscription. <span class="label">Classic only</span>
     </td>
 </tr>
 <tr>
@@ -111,7 +111,7 @@ endpoint urls will simply result in one subscription being created for that url.
 <tr>
     <td class="docs-monospace">referral.ended</td>
     <td>
-        Sent whenever a referred user, or referral, is cancelled.
+        Sent whenever a Referred User, or referral, is cancelled.
     </td>
 </tr>
 <tr>
@@ -183,7 +183,7 @@ String - The tenant used to create this data
 <tr>
 <th class="docs-monospace">live</th>
 <td>
-Boolean - True for live tenants and false for test tenants
+Boolean - True for Live tenants and false for Test tenants
 </td>
 </tr>
 <tr>
@@ -388,7 +388,7 @@ Sent whenever a new referral connection is successfully established.
 ```
 
 
-### email.referral.paid
+### <span class="label">Classic only</span> email.referral.paid
 
 Sent whenever a referral is converted.
 

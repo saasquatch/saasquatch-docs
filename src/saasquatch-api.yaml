@@ -1,11 +1,11 @@
-# This is a swagger.io definition for the Referral SaaSquatch Rest API
+# This is a swagger.io definition for the SaaSquatch Rest API
 swagger: "2.0"
 info:
-  title: Referral SaaSquatch REST API Reference
+  title: SaaSquatch REST API Reference
   description: |
-    The Referral SaaSquatch API is organized around REST. Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP authentication and HTTP verbs, which can be understood by off-the-shelf HTTP clients. JSON will be returned in all responses from the API, including errors.
+    The SaaSquatch API is organized around REST. Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP authentication and HTTP verbs, which can be understood by off-the-shelf HTTP clients. JSON will be returned in all responses from the API, including errors.
 
-    To make the Referral SaaSquatch API as explorable as possible, accounts have test-mode API keys as well as live-mode API keys. These keys are both active at the same time. Data created with test-mode credentials will use your payment system's respective test mode.
+    To make the SaaSquatch API as explorable as possible, accounts have test-mode API keys as well as live-mode API keys. These keys are both active at the same time. Data created with test-mode credentials will use your payment system's respective test mode.
   version: 1.0.0
 # the domain of the service
 host: app.referralsaasquatch.com
@@ -33,7 +33,7 @@ securityDefinitions:
       - read
       - write
 externalDocs:
-  description: "Official Referral SaaSquatch documentation"
+  description: "Official SaaSquatch documentation"
   url: "http://docs.referralsaasquatch.com/api"
 parameters:
   tenant_alias:
