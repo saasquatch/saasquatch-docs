@@ -3,11 +3,11 @@
 {% extends '../article.html' %}
 {% block articleContent %}
 
-<p>The SaaSquatch system is configured to accept being sent a wide range of event data about actions users take within your product. This event information will power the loyalty programs within your SaaSquatch project, and can be used to trigger sending emails and providing rewards.
+<p>The SaaSquatch system is configured to accept being sent a wide range of <a href="/growth/ga-mechanisms/#user-events">event data</a> about actions users take within your product. This event information will power the programs within your SaaSquatch project, and can be used to <a href="/growth/ga-mechanisms/#program-rules">trigger</a> sending emails and providing rewards.
 
-<p>This purchase event can be sent to SaaSquatch through our <a href="/api/methods/#trackEvent">REST API</a> or squatch.js Javascript Library.
+<p>Events can be sent to SaaSquatch through our <a href="/api/methods/#trackEvent">REST API</a> or squatch.js Javascript Library.
 
-<p>The puchase event is a reserved user event type within the SaaSquatch system, and requires information to be sent to SaaSquatch in a defined format. This format is as follows:
+<p>The `puchase` event is a reserved user event type within the SaaSquatch system, and requires information to be sent to SaaSquatch in a defined format. This format is as follows:
 
 <h4>Fields</h4>
 <div>
