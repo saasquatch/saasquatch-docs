@@ -1271,7 +1271,7 @@ paths:
         - $ref: "#/parameters/fields"
         - $ref: "#/parameters/extraFields"
       responses:
-        200:
+        201:
           description: Information about the newly created user
           examples:
             "application/json":
