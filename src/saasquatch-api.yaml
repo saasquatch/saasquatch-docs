@@ -260,7 +260,7 @@ paths:
         - APIKey: []
 
       description: |
-        Looks up a user based upon their `ReferralCode` and returns their personal information.
+        Looks up a user based upon their `referralCode` and returns their personal information.
         This method is useful for retrieving the user when only the Referral Code is available. For example when a referred user enters a Referral Code during checkout and you want to find out who this Referral Code belongs to.
       parameters:
         - name: referralCode
