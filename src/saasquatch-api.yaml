@@ -378,7 +378,7 @@ paths:
         - UserJWT: []
 
       description: |
-        This method can be used to track when users make purchases, download items, or take other meaningful actions that you want to use to trigger your programs. 
+        This method can be used to track when users <a href="/developer/purchase-object/">make purchases</a>, download items, or take other meaningful actions that you want to use to trigger your programs. 
       parameters:
         - name: accountId
           in: path
@@ -975,7 +975,7 @@ paths:
       security:
         - APIKey: []
 
-      description: "Used to redeem the credit earned from a referral program. Permanently debits an account balance. Works with: `TIME_CREDIT` and `CREDIT`"
+      description: "Used to redeem the credit earned from a referral program. Permanently debits an account balance. Works with: `CREDIT`"
       parameters:
         - name: debit
           in: body
@@ -1079,7 +1079,7 @@ paths:
         - Reward
       security:
         - APIKey: []
-      description: "Used to redeem an individual credit earned from a referral program. Works with: `TIME_CREDIT` and `CREDIT`"
+      description: "Used to redeem an individual credit earned from a referral program. Works with: `CREDIT`"
       parameters:
         - name: id
           in: path
@@ -2571,13 +2571,13 @@ definitions:
         type: string
         example: cents
         description: |
-          An identifier for the unit of the reward. E.g. "credit-in-cents", "freemb", "giftcard20", "tshirt", "freemonth". Only works with types `TIME_CREDIT` or `CREDIT`
+          An identifier for the unit of the reward. E.g. "credit-in-cents", "freemb", "giftcard20", "tshirt", "freemonth". Only works with `CREDIT`
       credit:
         type: integer
         example: 2000
         description: |
           The amount of credit that this referral code is valid for. e.g. for $20 this
-          object would have credit=2000, unit="cents". Only works for `TIME_CREDIT`, `CREDIT`
+          object would have credit=2000, unit="cents". Only works for `CREDIT`
       discountPercent:
         type: integer
         description: |
@@ -2610,7 +2610,6 @@ definitions:
         example: PCT_DISCOUNT
         enum:
           - PCT_DISCOUNT
-          - TIME_CREDIT
           - CREDIT
           - FUELTANK
       dateExpires:
@@ -2626,14 +2625,14 @@ definitions:
         example: true
       unit:
         type: string
-        description: "An identifier for the unit of the reward. E.g. `'credit-in-cents'`, `'freemb'`, `'giftcard20'`, `'tshirt'`, `'freemonth'` or `'%'`. Works with: `TIME_CREDIT` or `CREDIT`"
+        description: "An identifier for the unit of the reward. E.g. `'credit-in-cents'`, `'freemb'`, `'giftcard20'`, `'tshirt'`, `'freemonth'` or `'%'`. Works with: `CREDIT`"
       discountPercent:
         type: integer
         description: "The percent discount. E.g. 10 means 10% Works with: `PCT_DISCOUNT`"
         example: 15
       assignedCredit:
         type: integer
-        description: "The earned quantity of the reward. Works with: `TIME_CREDIT` or `CREDIT`"
+        description: "The earned quantity of the reward. Works with: `CREDIT`"
       currency:
         type: string
         description: "For programs that require a currency. Works with: `CREDIT`"
@@ -2661,7 +2660,6 @@ definitions:
         description: "The type of reward."
         enum:
           - PCT_DISCOUNT
-          - TIME_CREDIT
           - CREDIT
           - FUELTANK
       dateGiven:
@@ -2700,10 +2698,10 @@ definitions:
         description: "The human-readable description of the reward. Works with: `INTEGRATION`"
       assignedCredit:
         type: integer
-        description: "The earned quantity of the reward. Works with: `TIME_CREDIT` or `CREDIT`"
+        description: "The earned quantity of the reward. Works with: `CREDIT`"
       redeemedCredit:
         type: integer
-        description: "The redeemed quantity of the reward. Works with: `TIME_CREDIT` or `CREDIT`"
+        description: "The redeemed quantity of the reward. Works with: `CREDIT`"
       redemptions:
         type: array
         items:
@@ -3152,28 +3150,27 @@ definitions:
         description: "The type of reward."
         enum:
           - PCT_DISCOUNT
-          - TIME_CREDIT
           - CREDIT
           - FUELTANK
       unit:
         type: string
         example: cents
         description: |
-          An identifier for the unit of the reward. E.g. "credit-in-cents", "freemb", "giftcard20", "tshirt", "freemonth". Only works with types `TIME_CREDIT`, and `CREDIT`
+          An identifier for the unit of the reward. E.g. "credit-in-cents", "freemb", "giftcard20", "tshirt", "freemonth". Only works with `CREDIT`
       count:
         type: integer
         description: |
           "The number of rewards earned. Usually is equal to the number of successful referrals made.
           E.g. An account has $80 of credit due to the referral program. $60 from making referrals, $20 from being referred.
-          The count would be 4 rewards, each worth $20. Only works for `TIME_CREDIT`, and `CREDIT`"
+          The count would be 4 rewards, each worth $20. Only works for `CREDIT`"
       totalAssignedCredit:
         type: integer
         example: 4000
-        description: "The total assignedCredit for all reward credits of the same unit type. Only works with types: `TIME_CREDIT`, `CREDIT`"
+        description: "The total assignedCredit for all reward credits of the same unit type. Only works with types: `CREDIT`"
       totalRedeemedCredit:
         type: integer
         example: 1490
-        description: "The total redeemedCredit for all reward credits of the same unit type. Only works with types: `TIME_CREDIT`, `CREDIT`"
+        description: "The total redeemedCredit for all reward credits of the same unit type. Only works with types: `CREDIT`"
       totalDiscountPercent:
         type: integer
         description: "The total discountPercent from all rewards. Only works with types: `PCT_DISCOUNT`"
