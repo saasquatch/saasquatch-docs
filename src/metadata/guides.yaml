@@ -17,8 +17,8 @@ Squatch.js:
     summary: |
         squatch.js is the SaaSquatch JavaScript SDK, and provides an easy way to integrate into your website or web app.
 
-Email:
-    name: Email
+SaaSquatch & Emails:
+    name: SaaSquatch & Emails
     linkText: Read more about our email functionality
     slug: /topics/email
     types:
@@ -26,9 +26,9 @@ Email:
     icon: fa-envelope-o
     summary: |
         The SaaSquatch platform enables you to configure when emails are sent to participants throughout the customer life cycle.
-Custom Link Domains:
-    name: Custom Link Domains
-    linkText: Read more about our custom link domains
+Custom Short Domains:
+    name: Custom Short Domains
+    linkText: Read more about our custom short domains
     slug: /customshortdomainguide
     types:
      - feature
@@ -109,8 +109,8 @@ Custom User Fields:
     icon: fa-user-plus
     summary: |
         Include custom information about users in your SaaSquatch project.
-Referral Widget Types:
-    name: Referral Widget Types
+User Widget Types:
+    name: User Widget Types
     linkText: Read more about the available widget types
     slug: /topics/widget-types
     types:

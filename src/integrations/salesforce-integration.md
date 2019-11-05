@@ -17,9 +17,9 @@ keyFeatures:
  - Uses a native integration built by SaaSquatch directly on Salesforce 
  - Uses the Professional, Enterprise and Unlimited editions
 moreInfo:
- - "[Salesforce FAQ](/salesforce/faq)"
- - "[Salesforce Install Guide](/salesforce/install-guide)"
- - "[Salesforce User Guide](/salesforce/user-guide)"
+ - "[Salesforce Integration FAQ](/salesforce/faq)"
+ - "[Salesforce Integration Install Guide](/salesforce/install-guide)"
+ - "[Salesforce Integration User Guide](/salesforce/user-guide)"
 guideLink: /salesforce/faq
 category: landingPage
 template: intergrationLander.html
