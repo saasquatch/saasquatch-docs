@@ -12,7 +12,7 @@ export default () => (
     <section className="page">
       <div className="text-center">
         <h1>Page Not Found</h1>
-        <h3 className="visible-desktop" style="padding-top:43px">
+        <h3 className="visible-desktop" style={{paddingTop:"43px"}}>
           Looks like you found the missing link!
         </h3>
         <h3 className="hidden-desktop">

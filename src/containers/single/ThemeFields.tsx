@@ -3,7 +3,7 @@ import { useRouteData } from "react-static";
 
 import TocFrame from "../../components/TocFrame";
 import { Properties } from "../../components/Properties";
-import exampleSwaggerSchema from "metalsmith/filters/exampleSwaggerSchemaFilter";
+import exampleSwaggerSchema from "../../../metalsmith/filters/exampleSwaggerSchemaFilter";
 
 const entry = {
   title: "Theme Field Reference",

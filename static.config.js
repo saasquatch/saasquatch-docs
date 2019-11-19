@@ -25,7 +25,7 @@ const TEMPLATES = {
   "pages/program.html": "src/containers/Program",
   "pages/branchReference.html": "src/containers/single/BranchMetrics",
   "pages/themeGallery.html": "src/containers/single/themeGallery",
-  "pages/shorttags.html": "src/containers/shortTags.tsx"
+  "pages/shorttags.html": "src/containers/single/shortTags.tsx"
 };
 
 const INTEGRATIONS = [

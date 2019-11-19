@@ -284,6 +284,7 @@ function isotope() {
     if (!matchesSelector(event.target, "button")) {
       return;
     }
+    // @ts-ignore -- assume an HTML element
     var filterValue = event.target.getAttribute("data-filter");
     // use matching filter function
     //filterValue = filterFns[ filterValue ] || filterValue;

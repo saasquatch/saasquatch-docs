@@ -2,7 +2,6 @@ import React from "react";
 
 import { Properties } from "../../components/Properties";
 
-//@ts-ignore
 import PurchaseEvent from "@saasquatch/schema/json/PurchaseEventFields.schema.json";
 
 // ---
@@ -45,7 +44,7 @@ export default function render() {
 
       <h4>Fields</h4>
       <div>
-        <Properties schema={PurchaseEvent.proprerties} />
+        <Properties schema={PurchaseEvent.properties} />
       </div>
     </>
   );
