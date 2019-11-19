@@ -1,9 +1,0 @@
-{% extends '../article.html' %}
-
-{% block articleContent %}
-
-  {{ contents | safe }}
-  
-  If you are still encountering issues, please contact our <a href=mailto:support@referralsaasquatch.com?Subject={{ title }}%20Error:%20{{ highlights | url_encode}} >support team</a> and include the details of the call being made (e.g. <code>tenant_alias</code>, <code>user_id</code>, <code>account_id</code>).
-
-{% endblock articleContent %}
