@@ -172,7 +172,7 @@ export default () => {
   const { entry }: any = useRouteData();
 
   return (
-    <TocFrame entry={entry}>
+    <PageHeader entry={entry}>
       <>
         <table className="table table-hover apidocs-args">
           <thead>
@@ -250,7 +250,7 @@ export default () => {
           {Object.keys(shorttags.properties)
             .map(key => {
               const mappedTo = shorttagmap[key];
-              if (mappedTo) return null;
+              if (!mappedTo) return null;
               return (
                 <tr>
                   <td>
@@ -268,6 +268,6 @@ export default () => {
             .filter(x => x)}
         </table>
       </>
-    </TocFrame>
+    </PageHeader>
   );
 };
