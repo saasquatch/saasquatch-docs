@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import $RefParser from "json-schema-ref-parser";
 
-import PurchaseEvent from "@saasquatch/schema/json/PurchaseEventFields.schema.json";
+import PurchaseEventRaw from "@saasquatch/schema/json/PurchaseEventFields.schema.json";
 
 import { Properties } from "../../components/Properties";
 import PageHeader from "../../components/PageHeader";
@@ -14,6 +15,7 @@ const entry = {
 };
 
 export default function render() {
+  const PurchaseEvent = useSchema(PurchaseEventRaw);
   return (
     <PageHeader {...entry}>
       <>
@@ -39,10 +41,29 @@ export default function render() {
         </p>
 
         <h4>Fields</h4>
-        <div>
-          <Properties schema={PurchaseEvent} />
-        </div>
+        <div>{PurchaseEvent && <Properties schema={PurchaseEvent} />}</div>
       </>
     </PageHeader>
   );
+}
+
+/**
+ * Parses a JSON schema, dereferneces $ref entries
+ *
+ * @param schema schema to dereference
+ */
+function useSchema(schema) {
+  const [value, setValue] = useState(null);
+
+  useEffect(() => {
+    let parser = new $RefParser();
+    parser
+      .dereference(schema, {
+        resolve: {
+          file: false
+        }
+      })
+      .then(setValue);
+  }, schema);
+  return value;
 }
