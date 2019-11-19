@@ -172,7 +172,7 @@ export default () => {
   const { entry }: any = useRouteData();
 
   return (
-    <PageHeader entry={entry}>
+    <PageHeader {...entry}>
       <>
         <table className="table table-hover apidocs-args">
           <thead>
