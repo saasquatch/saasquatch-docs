@@ -1,24 +1,19 @@
-import axios from "axios";
 import path from "path";
 import parser from "swagger-parser";
 import yaml from "js-yaml";
 import resolveAllOf from "json-schema-resolve-allof";
 import contentful from "contentful";
-// import markdownToc from "markdown-toc";
-import minimatch from "minimatch";
-
-import contentfulpagifier from "./metalsmith/utils/contentfulpagifier";
-import productSpaceContentfulpagifier from "./metalsmith/utils/productSpaceContentfulpagifier";
-
-import productpagifiger from "./metalsmith/utils/productSpaceContentfulpagifier";
-import * as swaggerUtils from "./metalsmith/utils/swaggerUtils";
-
-import { Bottom } from "./src/templates/bottom";
-// Typescript support in static.config.js is not yet supported, but is coming in a future update!
-
 import fs from "mz/fs";
 import globby from "globby";
 
+import contentfulpagifier from "./metalsmith/utils/contentfulpagifier";
+import productSpaceContentfulpagifier from "./metalsmith/utils/productSpaceContentfulpagifier";
+import * as swaggerUtils from "./metalsmith/utils/swaggerUtils";
+import { Bottom } from "./src/templates/bottom";
+
+/**
+ * Map of legacy SWIG to REACT templates
+ */
 const TEMPLATES = {
   "article.html": "src/containers/Article",
   "faqCategory.html": "src/containers/FaqCategory",
@@ -136,6 +131,16 @@ async function getSwagger() {
 export default {
   Document: Bottom,
   entry: path.join(__dirname, "src", "index.tsx"),
+  paths: {
+    root: process.cwd(), // The root of your project. Don't change this unless you know what you're doing.
+    src: 'src', // The source directory. Must include an index.js entry file.
+    temp: 'tmp', // Temp output directory for build files not to be published.
+    dist: 'build', // The production output directory.
+    devDist: 'tmp/dev-server', // The development scratch directory.
+    public: 'public', // The public directory (files copied to dist during build)
+    assets: 'build', // The output directory for bundled JS and CSS
+    buildArtifacts: 'artifacts', // The output directory for generated (internal) resources
+  },
   getSiteData() {
     return {
       robots: process.env.ROBOTS || "true",
@@ -156,118 +161,8 @@ export default {
       }
     };
   },
-  getRoutes: async () => {
-    const spec = await getSwagger();
-    const entries = await getContentful({
-      accessKey:
-        "ae31ffc9de0831d887cff9aa3c72d861c323bd09de2a4cafd763c205393976c9",
-      spaceId: "s68ib1kj8k5n"
-    });
-    const productNews = await getYaml("metadata/productNews.yaml");
-    const guides = await getYaml("metadata/guides.yaml");
-    const shorttags = await getYaml("metadata/shorttags.yaml");
-    const branchFields = await getYaml("metadata/branchFields.yaml");
-
-    const contentfulProduct = await getContentful({
-      accessKey:
-        "950546088e303e9d2328c21ea448fac45dd469b899a36d739bc7300c70512d3b",
-      spaceId: "48ji72u659z5"
-    });
-    const programs = contentfulProduct
-      .map(productSpaceContentfulpagifier)
-      .filter(e => e);
-
-    const rawFiles = await getRawFiles();
-
-    // TODO: Move this to a plugin, to allow content to me moved to contentful, or `src` directory
-    const issues = rawFiles
-      // .filter(r => multimatch([r.path], ["issues/rs*.*"]).length > 0)
-      .filter(
-        r => r.path.includes("squatchjs/issue") && !r.path.includes("template")
-      )
-      .map(r => r.getData().entry);
-
-    const integrations = rawFiles
-      // .filter(r => minimatch(r.path, "**/*integrations/*-integration.*"))
-      // .filter(r => r.path.includes("integrations/"))
-      .map(r => r.getData().entry)
-      .filter(d => INTEGRATIONS.some(i => d.slug == i));
-
-    const staticPages = [
-      {
-        path: "/api/methods",
-        getData: () => spec,
-        template: "src/containers/single/api"
-      },
-      {
-        path: "/product-news",
-        getData: async () => ({ productNews }),
-        template: "src/containers/single/product-news"
-      },
-      {
-        path: "/program/library",
-        getData: async () => ({ programs }),
-        template: "src/containers/single/programLibrary"
-      },
-      {
-        path: "/developer/squatchjs/issue",
-        getData: () => ({ issues }),
-        template: "src/containers/single/issues"
-      },
-      {
-        path:"/themes/fields",
-        getData: () => ({ThemeContext: swagger.definitions.ThemeContext}),
-        template: "src/containers/single/Themefields"
-      },
-      {
-        path: "/integrations",
-        getData: () => ({ integrations }),
-        template: "src/containers/single/integrations"
-      },
-      {
-        path: "/guides",
-        getData: () => ({ guides, integrations }),
-        template: "src/containers/single/guides"
-      }
-    ];
-    const contentfulPages = entries
-      .map(contentfulpagifier)
-      .filter(e => e)
-      .map(entry => {
-        return {
-          path: entry.slug,
-          getData: () => {
-            return {
-              entry
-              // tocContents: markdownToc(entry.content).content
-            };
-          },
-          template: getTemplate(entry.template)
-        };
-      });
-
-    const contentfulProductPages = programs.map(entry => {
-      return {
-        path: entry.slug,
-        getData: () => {
-          return {
-            entry
-            // tocContents: markdownToc(entry.content).content
-          };
-        },
-        template: getTemplate(entry.template)
-      };
-    });
-
-    return [
-      ...rawFiles,
-      ...contentfulPages,
-      ...contentfulProductPages,
-      ...staticPages
-    ];
-  },
+  getRoutes: getRoutes,
   plugins: [
-    // Anonymous inline plugin for Webpack customizations
     [
       "saasquatch-webpack",
       {
@@ -308,4 +203,124 @@ function createContentfulClient(accessToken, spaceId) {
     space: spaceId,
     accessToken: accessToken
   });
+}
+
+/**
+ *  Most of the magic happens here.
+ * 
+ *  
+ * 1) Download lots of things
+ * 2) Load lots of things from the filesystem
+ * 3) Build a big array of files
+ * 
+ */
+async function getRoutes(){
+  const spec = await getSwagger();
+  const entries = await getContentful({
+    accessKey:
+      "ae31ffc9de0831d887cff9aa3c72d861c323bd09de2a4cafd763c205393976c9",
+    spaceId: "s68ib1kj8k5n"
+  });
+  const productNews = await getYaml("metadata/productNews.yaml");
+  const guides = await getYaml("metadata/guides.yaml");
+  const shorttags = await getYaml("metadata/shorttags.yaml");
+  const branchFields = await getYaml("metadata/branchFields.yaml");
+
+  const contentfulProduct = await getContentful({
+    accessKey:
+      "950546088e303e9d2328c21ea448fac45dd469b899a36d739bc7300c70512d3b",
+    spaceId: "48ji72u659z5"
+  });
+  const programs = contentfulProduct
+    .map(productSpaceContentfulpagifier)
+    .filter(e => e);
+
+  const rawFiles = await getRawFiles();
+
+  // TODO: Move this to a plugin, to allow content to me moved to contentful, or `src` directory
+  const issues = rawFiles
+    // .filter(r => multimatch([r.path], ["issues/rs*.*"]).length > 0)
+    .filter(
+      r => r.path.includes("squatchjs/issue") && !r.path.includes("template")
+    )
+    .map(r => r.getData().entry);
+
+  const integrations = rawFiles
+    // .filter(r => minimatch(r.path, "**/*integrations/*-integration.*"))
+    // .filter(r => r.path.includes("integrations/"))
+    .map(r => r.getData().entry)
+    .filter(d => INTEGRATIONS.some(i => d.slug == i));
+
+  const staticPages = [
+    {
+      path: "/api/methods",
+      getData: () => spec,
+      template: "src/containers/single/api"
+    },
+    {
+      path: "/product-news",
+      getData: async () => ({ productNews }),
+      template: "src/containers/single/product-news"
+    },
+    {
+      path: "/program/library",
+      getData: async () => ({ programs }),
+      template: "src/containers/single/programLibrary"
+    },
+    {
+      path: "/developer/squatchjs/issue",
+      getData: () => ({ issues }),
+      template: "src/containers/single/issues"
+    },
+    {
+      path:"/themes/fields",
+      getData: () => ({ThemeContext: swagger.definitions.ThemeContext}),
+      template: "src/containers/single/Themefields"
+    },
+    {
+      path: "/integrations",
+      getData: () => ({ integrations }),
+      template: "src/containers/single/integrations"
+    },
+    {
+      path: "/guides",
+      getData: () => ({ guides, integrations }),
+      template: "src/containers/single/guides"
+    }
+  ];
+  const contentfulPages = entries
+    .map(contentfulpagifier)
+    .filter(e => e)
+    .map(entry => {
+      return {
+        path: entry.slug,
+        getData: () => {
+          return {
+            entry
+            // tocContents: markdownToc(entry.content).content
+          };
+        },
+        template: getTemplate(entry.template)
+      };
+    });
+
+  const contentfulProductPages = programs.map(entry => {
+    return {
+      path: entry.slug,
+      getData: () => {
+        return {
+          entry
+          // tocContents: markdownToc(entry.content).content
+        };
+      },
+      template: getTemplate(entry.template)
+    };
+  });
+
+  return [
+    ...rawFiles,
+    ...contentfulPages,
+    ...contentfulProductPages,
+    ...staticPages
+  ];
 }
