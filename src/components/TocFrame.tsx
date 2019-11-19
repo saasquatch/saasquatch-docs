@@ -35,7 +35,7 @@ export default function render({
     <StickyContainer>
       <div className="row-fluid">
         <div className="span9">
-          <PageHeader {...entry} />
+          <PageHeader {...entry} children={children}/>
         </div>
         <div className="span3">
           <Sticky>
