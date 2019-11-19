@@ -28,7 +28,7 @@ export default () => (
 
         <img
           src="http://d2vi0firws6omr.cloudfront.net/img/http-404.jpg"
-          style="max-width: 500px; margin: 0 auto"
+          style={{maxWidth: "500px", margin: "0 auto"}}
           alt="The Missing Link 404 Page"
         />
 
