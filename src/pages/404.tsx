@@ -27,7 +27,7 @@ export default () => (
         </p>
 
         <img
-          src="http://d2vi0firws6omr.cloudfront.net/img/http-404.jpg"
+          src="https://d2vi0firws6omr.cloudfront.net/img/http-404.jpg"
           style={{maxWidth: "500px", margin: "0 auto"}}
           alt="The Missing Link 404 Page"
         />
