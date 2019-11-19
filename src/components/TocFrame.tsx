@@ -42,7 +42,7 @@ export default function render({
             {({ style }: any) => {
               return (
                 <div style={style}>
-                  <div className="hidden-mobile">
+                  <div className="hidden-phone">
                     <div className="toc-title">In this Article:</div>
 
                     {entry.contents && <TOC source={entry.contents} />}
