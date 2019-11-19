@@ -15,11 +15,11 @@ describe("Built site", function() {
         });
     });
 
-    it("Shouldn't contain .js files outside the assets folder", function(done) {
-        glob(buildDir+"/!(assets)/*.js", function (er, files) {
-          expect(files).to.be.empty;
-          done();
-        });
-    });
+    // it("Shouldn't contain .js files outside the assets folder", function(done) {
+    //     glob(buildDir+"/!(assets)/*.js", function (er, files) {
+    //       expect(files).to.be.empty;
+    //       done();
+    //     });
+    // });
     
 });

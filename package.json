@@ -1,5 +1,5 @@
 {
-  "name": "react-static-example-typescript",
+  "name": "saasquatch-docs",
   "private": true,
   "scripts": {
     "start": "react-static start",
