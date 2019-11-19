@@ -2,6 +2,11 @@
 c9-installed-software
 .c9
 
+# == react-static stuff ==
+artifacts
+tmp
+dist
+
 .DS_Store
 .cache 
 #Ignore Node / Metalsmith

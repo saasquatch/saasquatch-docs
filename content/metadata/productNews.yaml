@@ -1,0 +1,413 @@
+-   title: Custom Events
+    datePublished: "2019-08-23"
+    tags:
+        - feature-release
+        - product-update
+    content: |
+        <div class="row-fluid">
+            <div class="span7">
+                
+                <p>The quest to build a flexible and robust Growth Automation platform took a big step forward today as we launched the ability to convert referrals based on Custom Events.Your programs can now be set up to trigger on a custom event, such as user actions like “subscription renewal” or “product upgrade.” Simply follow these steps to create your own Custom Event driven Referral Program:
+               
+               <p><ol><li>Create a new Referral Program</li>
+               <li>In the Rules section, change ‘Convert referral on’ to “Custom Event” and enter in your event key (eg. `subscription`)</li>
+               <li>You can also set it to convert on a custom event field value by specifying the field value name (eg. `status`) and the field value that will cause the conversion (eg. `renewed`). </li></ol>
+
+            
+            </div>
+            <div class="span5">
+                <a href="http://www.saasquatch.com/wp-content/uploads/2019/09/Custom-Events.png" target="_blank">![custom-events](http://www.saasquatch.com/wp-content/uploads/2019/09/Custom-Events.png)</a> 
+            </div>
+        </div>
+        
+
+-   title: Updated Segment Integration
+    datePublished: "2019-08-28"
+    tags:
+        - feature-release
+        - product-update
+    content: |
+        With our new V2 Segment integration, communication between SaaSquatch and Segment is now a two-way street; SaaSquatch can update your users in Segment and Segment can update your users in SaaSquatch. With Segment available as a source, you can accomplish Identification, Attribution and Conversion via Segment!
+        
+        This new integration is in beta and opt-in only while we ensure it is working optimally, so if you are interested in making use of it along with your existing SaaSquatch program please contact the Success Team. If you would like to find out how SaaSquatch can improve upon your existing Segment implementation, click here to schedule a product demo.
+
+-   title: Manual and One-Time Actions
+    datePublished: "2019-08-07"
+    tags:
+        - feature-release
+        - product-update
+    content: |
+        SaaSquatch’s newest feature allows you to quickly record actions such as Events for users from directly within the portal. If for any reason a user Event was not captured or sent by your system, you can now directly enter the relevant details by clicking the plus+ button on the Events list within the participants profile:
+
+        ![manual](http://www.saasquatch.com/wp-content/uploads/2019/08/One-Time-Event.png)
+        
+        From there, the **Add [Event type]** window will appear allowing you to enter the various purchase details. Simply add the details and click the [Add] button to record the Event for the user. 
+        
+        Once the Event has been entered, the SaaSquatch system will treat it like any other Event, logging the information and triggering conversions and generating rewards as appropriate.
+
+        Combined with the ability to manually attribute referrals and one-time rewards, manual events rounds out our Manual and One-Time Actions platform. All three of these will empower you and your support staff to quickly resolve any referral issues that may arise.
+
+        *You can read more about to perform these [Manual and One-Time Actions on our accompanying guide](https://docs.referralsaasquatch.com/guides/one-time/).*
+        
+-   title: Detailed Participants Page Update
+    datePublished: "2019-07-05"
+    tags:
+        - feature-release
+        - product-update
+    content: |
+        
+        
+        <div class="row-fluid">
+            <div class="span6">
+
+                <p>We have rebuilt our Participants page from the ground up to provide quicker access to critical information about all registered users within SaaSquatch.
+
+                <p>The addition of valuable data such as **Generated Revenue** and **Converted Referrals** combined with the ability to sort and filter the list allows you to quickly drill down and analyze your participants with unprecedented depth. With a single click of a button, you can easily see who your top referrers are, who is driving the most traffic to your site, and even who has generated the most revenue.
+
+                
+            
+            </div>
+            <div class="span5">
+                    ![part-update](https://www.saasquatch.com/wp-content/uploads/2019/08/Participants-Page.gif)
+            </div>
+        </div>
+
+        <br></br>
+
+        Along with **Flags** and **Date** Added, the following columns are now also included in the Participants List:
+
+        * **Traffic**
+
+        The number of people who have clicked on the participant’s share links
+
+        * **Referrals**
+
+        Number of referrals started by this participant’s sharelinks
+
+        * **Converted Referrals**
+
+        The number of successfully converted (completed) referrals made by this participant’s sharelinks
+
+        * **Goals**
+
+        Number of times this user has achieved a program goal
+
+        * **Generated Revenue**
+
+        The amount of revenue generated directly by this user through any of your programs.
+
+
+-   title: New Referral Feed
+    datePublished: "2019-06-13"
+    tags:
+        - product-update
+    content: |
+        We've redesigned the Referral Feed page to allow for easier and more effective monitoring of your referral programs and their activity. **New features include:**
+
+        #### Your Referral Activity In One Place
+        
+        View your most recently active referrals with information on the referring user, referred user, referral status and when the referral data was last updated.
+        
+        #### Powerful Filtering
+        
+        Better understand how your program is performing by using our quick filters to refine your referral feed based on referral status, program type, and date range. 
+
+        #### See Key Details and Manage Referrals
+        
+        Drill down on specific users and referrals with easy navigation to participant profiles and referral data. Click on either the referrer or referee’s name to review and manage their individual referral activity and rewards.  
+
+-   title: Partner Program
+    datePublished: "2018-12-05"
+    tags:
+        - feature-release
+        - product-update
+    content: |
+        
+        
+        <div class="row-fluid">
+            <div class="span7">
+                
+                <p>As SaaSquatch continues to expand our [Growth Automation platform](https:/docs.referralsaasquatch.com/growth/saasquatch-ga), you can now engage your business affiliates with our all encompassing **Partner Program**! 
+        
+                <p>Partner Programs enable you to generate dynamic percentage rewards OR static pre-configured reward values. This supports commission rewards where reward amounts will vary.
+        
+                <p>You can also now define your own metrics to update a user’s information fields, and moderate actions that have been previously performed; e.g. when a refund for a purchase is issued, any rewards associated with that purchase can be canceled. 
+
+                <p>Additionally, participant profile pages have been updated, including the display of the formatted reward `name` which will now distinguish the reward in a human readable format (i.e. cash from credit rewards). 
+
+                <h4>New Partner Widget</h4>
+
+                <p>Finally, a brand new **Partner Widget** is now available to boost the visibility of your program and show reward balances to your affiliates.
+
+                ![pp-widget](http://www.saasquatch.com/wp-content/uploads/2019/08/Partner-Program-Widget.png) 
+                <p>If you’re interested in getting started with a [Partner Program](mailto: support@referralsaasquatch.com?subject=Partner Program) and would like some tips and tricks, your Support team is happy to help!
+            
+            </div>
+            <div class="span5">
+                    ![pp-rules](http://www.saasquatch.com/wp-content/uploads/2019/08/Partner-Program-Rules.png)
+            </div>
+        </div>
+
+-   title: Win Back and VIP Program
+    datePublished: "2019-01-30"
+    tags:
+        - feature-release
+        - product-update
+    content: |
+        SaaSquatch is proud to announce the launch of two new Growth Automation Programs: **Win Back** and **VIP**.
+        
+        Win Back allows you to actively target past customers who have not been active for a predetermined amount of time. Simply set the length of time and our system will automatically contact users on your behalf after it has elapsed. Using this program, you can entice customers to return to your site with a discount or credit incentive.
+        
+        The VIP Program is a great way to reward your most loyal customers. You can set up this program to automatically reward customers for making a certain amount of purchases on your site, or for achieving a custom goal that you define directly within the program such as number of purchases or buying a specific item(s). 
+        
+        *You can read more about all of our Growth Automation Programs in our [Program Library](https://docs.referralsaasquatch.com/program/library/)*.
+
+-   title: Partners V2 - Bulk Redemption
+    datePublished: "2019-02-19"
+    tags:
+        - product-update
+        - feature-release
+    content: |
+        We’re excited to announce the launch of our updated Bulk Redemption component allowing you to quickly and easily update the reward balances of your customers. Simply download a report from our Bulk Redemption page, update the file with your balance changes, and upload the file back to us. As the file is processed, you’ll see the changes update for each user. 
+        
+        We also took the opportunity to improve your experience by updating our user interface and making it faster to load.
+        
+        *You can read more about this feature on our [Bulk Reward Redemption guide](https://docs.referralsaasquatch.com/guides/bulk-reward-redemption/)*.
+
+-   title: Regional Signup Program
+    datePublished: "2019-04-12"
+    tags:
+        - feature-release
+        - product-update
+    content: |
+        With the introduction of our new **Regional Signup Program**, you now have a way to reward new customers signing up from a specific region. 
+        
+        The system will compare the location of all new customer’s IP addresses against the location selected for the program and issue rewards when it finds a match. This allows you to ensure that only customers from certain locations are granted awards. 
+        
+        *You can read more about the [Regional Signup Program here](https://docs.referralsaasquatch.com/program/regional-signup/)*.
+
+-   title: Program Setup Flow
+    datePublished: "2019-05-08"
+    tags:
+        - feature-release
+        - product-update
+    content: |
+        Our customers spoke up and we listened: Welcome to our newly designed **Program Setup Flow**!
+        
+        We set out to create a way for admins and marketers to easily configure and launch new programs on their own. When creating a new program, you will now be led step-by-step through the process to ensure that all required components are set up and ready to go. 
+        
+        While these changes will make the platform more accessible, they are just the beginning as we strive to make SaaSquatch your go-to for customer loyalty and incentive programs.
+
+-   title: Global Analytics Overview Page
+    datePublished: "2019-05-16"
+    tags:
+        - feature-release
+        - product-update
+    content: |
+        <div class="row-fluid">
+            <div class="span7">
+                
+                <p>We’re excited to bring you a brand new Analytics component that allows you to quickly and easily view the overall health and performance of your Growth Automation (GA) programs. 
+               
+               <p>From this page you will be able to view all traffic visiting your program(s), goals achieved by participants in your program(s), total rewards redeemed as well as revenue generated by your program(s).
+        
+               <p>*You can find out more information about Analytics by referring to the [help page](https://docs.referralsaasquatch.com/success/ga-analytics/)*.
+            
+            </div>
+            <div class="span5">
+                ![global-analytics](http://www.saasquatch.com/wp-content/uploads/2019/08/Analytics-Revamp.gif) 
+            </div>
+        </div>
+        
+-   title: Product Updates August 2017
+    datePublished: "2017-08-16"
+    tags:
+        - feature-release
+        - product-update
+    content: |
+        #### Custom Themes Gallery
+        We’ve created a gallery displaying a selection of  custom themes created to date. Use these examples to help provide some inspiration for your own referral program, or get our custom theme team to help you build the best design that embodies your company's brand. See the gallery [here](https://docs.referralsaasquatch.com/themes/custom-theme-gallery/). 
+        
+        #### Additional values added to Rewards Reporting
+        
+        To simplify reward balance tracking we’ve added 2 new values to our reports. Now you can take daily snapshots of the reward balances SaaSquatch is holding onto, for better reward management.
+        
+        Add the following values to your Reward Balance report in the SaaSquatch portal to get better tracking results: 
+        - Current Available Credit
+        - totalAssignedCredit (*New*)
+        - totalRedeemedCredit (*New*)
+        
+        #### Lookup a users share URL’s
+        
+        We’ve added a quick way to lookup a full list of all of a user's share links. This new API method returns the full list of referral share links for a user. Optional filter parameters are available to return only links of a specific share or engagement medium. See how in our developer documentation [here](https://docs.referralsaasquatch.com/api/methods/#lookup-a-users-share-urls). 
+        
+        #### Improved referral share tracking
+        
+        More information has been made available through additional UTM parameters, which provides a more granular insight into your participants referral activity. This has been implemented in the SaaSquatch system and requires no additional changes by the customer. Read more in our Success Centre Docs [here](https://docs.referralsaasquatch.com/success/share-options/). 
+        
+        #### Widget Referral Ordering
+        
+        We've updated the widget data to order referrals by date instead of what was previously a more random ordering. This provides participants with a more logical and engaging view of their referral progress. The ordering change has been implemented in the SaaSquatch system and requires no additional changes by the customer. To review the widgets and touch points used in a referral program, see our [success docs](https://docs.referralsaasquatch.com/success/touchpoints/).
+        
+        #### Simplify User Creation in Portal
+        
+        We've eased back the restrictions for creating new users in the portal, making the process simple and more efficient for all users. Now participants or program administrators can add new users by last name only. 
+        
+        #### User Blocking 
+        
+        To minimize fraud, a new security feature has been added that allows campaign managers to block specific users by IP Address or name. This feature can be enabled or disabled at anytime through the Security settings directly in the portal.
+
+-   title: June 2017 Release Recap
+    datePublished: "2017-07-05"
+    tags:
+        - monthly-update
+    content: |
+        It has been a busy kick off to the summer for SaaSquatch, and this past June turned out to be one of the busiest on record with a few highlights worth mentioning:
+        
+        We saw a record breaking number of new customer sign-ups
+        SaaSquatch launched programs on 4 continents
+        A new client program saw a user base increase of +20,000 in its first month (new PB!)
+        Our newest reward customization feature, Fuel Tank, is now available on all plans
+        
+        ![yay](https://www.referralsaasquatch.com/wp-content/uploads/2017/07/Badge-1-150x150.png)
+        
+        As things continue to ramp up for SaaSquatch, we’ll be sure to keep you posted on what’s new in the monthly Release Recaps. Here’s our top feature updates and releases from this past month.
+        
+        #### Mobile – Universal SDK’s
+        
+        The SaaSquatch mobile SDKs, Android and iOS, have all been updated. With these updates you can now compile your app both for emulators and physical devices without changing your environment settings. Additionally they have been updated to support the newest SaaSquatch open APIs. Read more…
+        
+        #### Fraud Prevention – Global Reward Limit
+        
+        This new fraud prevention feature allows you to limit your liability without sacrificing the average end user’s experience. The new fraud filter places a limit on the maximum number of rewards the SaaSquatch system will give out in a single day.
+        
+        #### Program Experience – Broken Program Detection
+        
+        A new feature has been added to our system for all users that detects broken installations and alerts our success team so we can pre-emptively assist with installation issues.
+        
+        #### Portal – Enhanced Portal Pagination
+        
+        We understand that there are some real power portal users out there who have to manage a lot of data. To help these users out a bit, we’ve added a new pagination control that lets program administrators manage more records at a time.
+        
+        #### Referral Widget – User-Only Referral Data
+        
+        This feature improvement allows customers to enable personalized widgets that only show referrals specific to individual users and not the shared account referrals. This is particularly useful for any customer offering gift cards as a referral reward.
+        
+        #### Referral Widget – Self-identified Widgets
+        
+        The self-identify feature in the widget has been upgraded so that customers, both referring and referred, can provide their first and last name. Additionally, there are new options in the theme section to control which self-identify fields will appear in the widget.
+        
+        #### Program Experience – Short Link Fallback URL
+        
+        Customers who use custom short links may have noticed that when you visit their custom short link domain without referral details you get a blank page. Now all customers with custom short links can configure a URL where users get redirected to instead of the error.
+        
+        #### Infrastructure  – Automated Widget Regression Tests
+        
+        SaaSquatch is committed to the highest possible system uptime. In response to a short, temporary outage event last month, we have added automated mechanisms that will detect future widget outages to limit widget downtime and keep programs running smoothly.
+        
+        Stay tuned for more exciting releases and updates on our blog! Have questions or comments? We’d love to hear from you!
+-   title: SaaSquatch Growth Automation Platform Release
+    datePublished: "2018-01-17"
+    tags:
+        - feature-release
+    content: |
+        SaaSquatch is excited to announce the launch of the brand new Growth Automation Platform. Now you can create automated growth marketing programs in just minutes, that can truly engage new and existing customers. 
+        
+        <iframe width="560" height="315" style="margin:15px 15%;" src="https://www.youtube.com/embed/i4bSTjiSH-8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        
+        The SaaSquatch platform gives marketing and success teams the ability to create growth programs without custom development or other resources. After integration, your growth programs can be rapidly built, managed and optimized all within the SaaSquatch administration portal.
+        
+        Some key features of the new platform include: 
+        * Build your own growth program in just minutes with our [javascript based program builder](/growth/quickstart), or…
+        * Choose from a list of pre-built programs in our [ever-expanding library](/program/library)
+        * A great selection of reward offerings, including custom coupons, percent discount, dollar credits and more
+        * Send more customer data to the platform so growth programs can encourage almost any customer behaviour
+        * Create a high quality user experience for your programs, with branded engagement options for web, mobile, and messaging channels
+
+        Contact our [Sales](mailto:sales@referralsaasquatch.com?subject=Growth%20Automation) or [Success team](mailto:support@referralsaasquatch.com?subject=Growth%20Automation) to experience the new Growth Automation Platform, and starting building!
+-   title: Internationalization for Growth Automation Programs
+    datePublished: "2018-03-16"
+    tags:
+        - feature-release
+        - product-update
+    content: |
+        <div class="row-fluid">
+            <div class="span9">
+                
+                <p>**Upload your own translations for program emails and widgets based on locale.** This new feature is now available for all Growth Automation programs and provides the ability to upload your own customized sets of translations for both program emails and widgets. 
+        
+                <p>From the “Advanced” tab in your program configuration/set-up, upload and download your translation sets using simple zip files, either individually, or in bulk. 
+                
+                <p>To learn more about this new feature or Growth Automation programs, [contact our sales team](mailto:sales@referralsaasquatch.com).
+                
+                <p>Already a SaaSquatch customer? This feature is currently in Beta. Please [contact our support team](mailto:support@referralsaasquatch.com?subject=Growth%20Automation) to learn more about how to enroll in our Growth Automation Beta program.
+            
+            </div>
+            <div class="span3">
+                <div>
+                    <a class="docs-lightbox" href="//images.ctfassets.net/s68ib1kj8k5n/7IGoBjYBWgQ86sIYs6mkEK/86ddd7498ae25262da4570c2cbc397e1/program_i18n_import.png" data-lightbox="example-set">
+                    ![program i18n import](//images.ctfassets.net/s68ib1kj8k5n/7IGoBjYBWgQ86sIYs6mkEK/86ddd7498ae25262da4570c2cbc397e1/program_i18n_import.png)
+                    <div><i class="fa fa-eye"></i> Preview</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+-   title: New Participants Page Design
+    datePublished: "2018-05-09"
+    tags:
+        - product-update
+    content: |
+        We’ve updated our participants section in the SaaSquatch portal to provide improved data accessibility and a better user experience. 
+
+        A new key feature that you’ll notice is the option to **DELETE a user**. This is part of our recent changes to ensure that the SaaSquatch platform remains GDPR compliant. You can can read more about our GDPR updates [here](/features/participant-deletion). 
+        
+        Updated portal pages include: 
+        * All Users list
+        * Participants list
+        * User Profile Page
+
+        <h4>User Profile Updates</h4>
+        
+        ![Participant profile improvements](//images.ctfassets.net/s68ib1kj8k5n/XtNuoy2w6WeWSussmqmE6/cbde512dbfe9eca0555479c33b1b45fe/Participant_profile_improvements.png)
+
+        Changes you’ll notice on the User Profile Page include: 
+        
+        <div class="row-fluid">
+            <div class="span6">
+                <ol>
+                    <li>A new **'User Summary'** screen with improved user management functionality and most importantly, the option to __**DELETE a User**__. [Click here](/features/participant-deletion) to learn more.</li>
+                    <li>An improved and more data-rich **'User Details'** display </li>
+                    <li>Quickview of users current **active Segments** </li>
+                    <li>Updated **Rewards list** that provides: </li>
+                    <ol type="a">
+                        <li>High level summary of each users rewards, for quicker analysis</li>
+                        <li>Individual rewards management</li>
+                        <li>Additional reward details for a more complete review</li>
+                    </ol>
+                    <li>Updated **Referral details** and activity views</li>
+                </ol>
+            </div>
+            <div class="span3">
+                ![Participant profile delete user](//images.ctfassets.net/s68ib1kj8k5n/6H7Cy8iKgEm8SScMA8gwGa/1d5d807d11d3ad57ea449686f4622c69/Participant_profile_delete_user.png)
+            </div>
+            <div class="span3">
+                <div>
+                    <a class="docs-lightbox" href="//images.ctfassets.net/s68ib1kj8k5n/5x0WiLHCqAe6CoA2eAckEQ/2e709b6b42b99f3b39addc6498eb6816/Participant_profile_reward_details.png" data-lightbox="example-set">
+                    ![Participant profile reward details](//images.ctfassets.net/s68ib1kj8k5n/5x0WiLHCqAe6CoA2eAckEQ/2e709b6b42b99f3b39addc6498eb6816/Participant_profile_reward_details.png)
+                    <div><i class="fa fa-eye"></i> Preview</div>
+                    </a>
+                </div>
+            </div>
+            
+            
+        </div>
+
+        
+    
+        
+        <h4>Participant Lists</h4>
+
+        Changes to the **All Users** and **Referral Participant** lists include: 
+        1. Updated styling 
+        2. Refined User ID display 
+        3. Updated search functionality 

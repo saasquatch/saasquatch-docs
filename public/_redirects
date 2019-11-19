@@ -1,0 +1,31 @@
+#
+# =====================
+#
+#   Netlify Redirects
+#
+# ======================
+#
+# Redirects from what the browser requests to what we serve
+#
+# See: https://docs.netlify.com/routing/redirects/#syntax-for-the-redirects-file
+#
+# Should match what was in firebase.json for redirects
+
+/squatchjs          /developer/squatchjs/v1/reference     
+/theming            /themes     
+/api-guide          /guides     
+/faq/general        /faq     
+/pricing             http://www.referralsaasquatch.com/pricing/     
+/contact             http://www.referralsaasquatch.com/contact-us/     
+/about               http://www.referralsaasquatch.com/about/     
+/squatchjs/issues    /squatchjs/issue     
+/segment-io          /segment     
+/how-it-works        /success     
+/faq/pricing         http://www.referralsaasquatch.com/pricing/     
+/squatchjs/issue     /developer/squatchjs/issue     
+/app-integration     /developer/squatchjs/v1     
+/squatchjs/signed-requests     /developer/squatchjs/signed-requests     
+/squatchjs           /developer/squatchjs/v1/reference     
+/testing            /developer/testing     
+/developer/giftbit  /success/gift-card-rewards
+/getting-started    /success/intro

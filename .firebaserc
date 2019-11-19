@@ -1,7 +1,0 @@
-{
-  "projects": {
-    "default": "saasquatch-doc",
-    "staging": "saasquatch-doc",
-    "prod": "saasquatch-doc"
-  }
-}
