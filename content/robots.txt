@@ -1,4 +1,0 @@
----
-permalinks: false
-template: robots.txt
----
