@@ -16,12 +16,14 @@
     "skipLibCheck": true,
     "noEmit": true,
     "baseUrl": ".",
+    "resolveJsonModule": true,
     "paths": {
-      "components/*": ["code/components/*"],
-      "containers/*": ["code/containers/*"],
+      "components/*": ["src/components/*"],
+      "containers/*": ["src/containers/*"],
+      "src/*": ["src/*"],
       "types/*": ["types/*"]
     },
     "lib": ["dom", "es2015", "es2016"]
   },
-  "exclude": ["artifacts/**/*", "dist/**/*", "public/**/*", "node_modules"]
+  "exclude": ["artifacts/**/*", "dist/**/*", "build/**/*", "public/**/*", "node_modules"]
 }

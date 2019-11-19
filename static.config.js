@@ -25,7 +25,7 @@ const TEMPLATES = {
   "pages/program.html": "src/containers/Program",
   "pages/branchReference.html": "src/containers/single/BranchMetrics",
   "pages/themeGallery.html": "src/containers/single/themeGallery",
-  "pages/shorttags.html": "src/contianers/shortTags.tsx"
+  "pages/shorttags.html": "src/containers/shortTags.tsx"
 };
 
 const INTEGRATIONS = [
@@ -223,8 +223,6 @@ async function getRoutes(){
   });
   const productNews = await getYaml("metadata/productNews.yaml");
   const guides = await getYaml("metadata/guides.yaml");
-  const shorttags = await getYaml("metadata/shorttags.yaml");
-  const branchFields = await getYaml("metadata/branchFields.yaml");
 
   const contentfulProduct = await getContentful({
     accessKey:
@@ -274,8 +272,8 @@ async function getRoutes(){
     },
     {
       path:"/themes/fields",
-      getData: () => ({ThemeContext: swagger.definitions.ThemeContext}),
-      template: "src/containers/single/Themefields"
+      getData: () => ({ThemeContext: spec.definitions.ThemeContext}),
+      template: "src/containers/single/ThemeFields"
     },
     {
       path: "/integrations",
