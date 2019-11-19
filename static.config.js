@@ -1,3 +1,4 @@
+// @ts-check
 import path from "path";
 import parser from "swagger-parser";
 import yaml from "js-yaml";
@@ -47,7 +48,11 @@ function getTemplate(legacy) {
   const newTemplate = TEMPLATES[legacy];
   if (!newTemplate) {
     // return "src/containers/HasTOC";
-    throw new Error("Unhanlded template!" + legacy + " -- either add an entry in TEMPLATES in static.config.js or refactor some code");
+    throw new Error(
+      "Unhanlded template!" +
+        legacy +
+        " -- either add an entry in TEMPLATES in static.config.js or refactor some code"
+    );
   }
   return newTemplate;
 }
@@ -133,13 +138,13 @@ export default {
   entry: path.join(__dirname, "src", "index.tsx"),
   paths: {
     root: process.cwd(), // The root of your project. Don't change this unless you know what you're doing.
-    src: 'src', // The source directory. Must include an index.js entry file.
-    temp: 'tmp', // Temp output directory for build files not to be published.
-    dist: 'build', // The production output directory.
-    devDist: 'tmp/dev-server', // The development scratch directory.
-    public: 'public', // The public directory (files copied to dist during build)
-    assets: 'build', // The output directory for bundled JS and CSS
-    buildArtifacts: 'artifacts', // The output directory for generated (internal) resources
+    src: "src", // The source directory. Must include an index.js entry file.
+    temp: "tmp", // Temp output directory for build files not to be published.
+    dist: "build", // The production output directory.
+    devDist: "tmp/dev-server", // The development scratch directory.
+    public: "public", // The public directory (files copied to dist during build)
+    assets: "build", // The output directory for bundled JS and CSS
+    buildArtifacts: "artifacts" // The output directory for generated (internal) resources
   },
   getSiteData() {
     return {
@@ -207,14 +212,14 @@ function createContentfulClient(accessToken, spaceId) {
 
 /**
  *  Most of the magic happens here.
- * 
- *  
+ *
+ *
  * 1) Download lots of things
  * 2) Load lots of things from the filesystem
  * 3) Build a big array of files
- * 
+ *
  */
-async function getRoutes(){
+async function getRoutes() {
   const spec = await getSwagger();
   const entries = await getContentful({
     accessKey:
@@ -247,7 +252,13 @@ async function getRoutes(){
     // .filter(r => minimatch(r.path, "**/*integrations/*-integration.*"))
     // .filter(r => r.path.includes("integrations/"))
     .map(r => r.getData().entry)
-    .filter(d => INTEGRATIONS.some(i => d.slug == i));
+    .filter(d =>
+      INTEGRATIONS.some(
+        i =>
+          // @ts-ignore
+          d.slug == i
+      )
+    );
 
   const staticPages = [
     {
@@ -271,8 +282,8 @@ async function getRoutes(){
       template: "src/containers/single/issues"
     },
     {
-      path:"/themes/fields",
-      getData: () => ({ThemeContext: spec.definitions.ThemeContext}),
+      path: "/themes/fields",
+      getData: () => ({ ThemeContext: spec.swagger.definitions.ThemeContext }),
       template: "src/containers/single/ThemeFields"
     },
     {
