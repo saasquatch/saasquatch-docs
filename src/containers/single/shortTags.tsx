@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouteData } from "react-static";
 
-import TocFrame from "../../components/TocFrame";
+import PageHeader from "../../components/PageHeader";
 import Markdown from "src/components/Markdown";
 
 const shorttagmap = {
