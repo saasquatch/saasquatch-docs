@@ -1,28 +1,33 @@
 @font-face {
   font-family: 'entypo';
   src: url('//staticcdn.referralsaasquatch.com/fonts/entypo/entypo.eot');
-  src: url('//staticcdn.referralsaasquatch.com/fonts/entypo/entypo.eot?#iefix') format('embedded-opentype'),
-  url('//staticcdn.referralsaasquatch.com/fonts/entypo/entypo.woff') format('woff'),
-  url('//staticcdn.referralsaasquatch.com/fonts/entypo/entypo.ttf') format('truetype'),
-  url('//staticcdn.referralsaasquatch.com/fonts/entypo/entypo.svg#entypo') format('svg');
+  src: url('//staticcdn.referralsaasquatch.com/fonts/entypo/entypo.eot?#iefix')
+      format('embedded-opentype'),
+    url('//staticcdn.referralsaasquatch.com/fonts/entypo/entypo.woff')
+      format('woff'),
+    url('//staticcdn.referralsaasquatch.com/fonts/entypo/entypo.ttf')
+      format('truetype'),
+    url('//staticcdn.referralsaasquatch.com/fonts/entypo/entypo.svg#entypo')
+      format('svg');
   font-weight: normal;
   font-style: normal;
- }
+}
 
- @font-face {
-	font-family: 'star';
-	src: url('../fonts/GothamRounded-Medium.eot');
-	src: url('../fonts/GothamRounded-Medium.eot?#iefix') format('embedded-opentype'),
-		url('../fonts/GothamRounded-Medium.woff') format('woff'),
-		url('../fonts/GothamRounded-Medium.ttf') format('truetype'),
-		url('../fonts/GothamRounded-Medium.svg#star') format('svg');
-	font-weight: normal;
-	font-style: normal;
+@font-face {
+  font-family: 'star';
+  src: url('../fonts/GothamRounded-Medium.eot');
+  src: url('../fonts/GothamRounded-Medium.eot?#iefix')
+      format('embedded-opentype'),
+    url('../fonts/GothamRounded-Medium.woff') format('woff'),
+    url('../fonts/GothamRounded-Medium.ttf') format('truetype'),
+    url('../fonts/GothamRounded-Medium.svg#star') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 
 .docs {
-    /* .docs is applied to the BODY in documentation to differentiate styles in documentation from that in the website */
-    // padding-top: 180px;
+  /* .docs is applied to the BODY in documentation to differentiate styles in documentation from that in the website */
+  // padding-top: 180px;
 }
 
 // LV: This breaks scrolling!
@@ -30,12 +35,11 @@
 //   height: 100%;
 // }
 
-
 /* OVERRIDES default h2 styling from the website */
 
 .docs h2 {
-    font-size: 36px;
-    font-weight: 600;
+  font-size: 36px;
+  font-weight: 600;
 }
 
 // Headings that follow paragraphs have margin at the top
@@ -43,72 +47,80 @@ h2,
 h3,
 h4,
 h5 {
-    margin-top: 1.5em;
+  margin-top: 1.5em;
 }
 
 a .link {
-    background-color: #fff;
+  background-color: #fff;
 }
 
 a:link {
-color: #65BD60;
+  color: #65bd60;
 }
 a:visited {
-color: #999999;
+  color: #999999;
 }
 a:hover {
-color: #003B45;
+  color: #003b45;
 }
 
-.lead{
-    font-size: 17px;
-    line-height: 26px;
+.lead {
+  font-size: 17px;
+  line-height: 26px;
 }
 
-#coverImage{
-    padding-bottom: 25px;
+#coverImage {
+  padding-bottom: 25px;
 }
 
 /** HIDES the border around code blocks for both PRE and CODE tags, which removes some jarringness */
 
 .docs pre,
 .docs code {
-    border: none;
+  border: none;
 }
 
 .docs code {
-    color: darken(#dd1144, 20%);
+  color: darken(#dd1144, 20%);
 }
 
 // Monospace spans are used for URLs and other pseudo-code like blocks
 .docs-monospace {
-    font-family: Monaco, Consolas, "Lucida Console", monospace;
-    font-size: 12px;
-    text-align: -webkit-left;
-    // LV: Removed to fix https://docs.referralsaasquatch.com/api/errors/
-    // width: 20pt;
+  font-family: Monaco, Consolas, 'Lucida Console', monospace;
+  font-size: 12px;
+  text-align: -webkit-left;
+  // LV: Removed to fix https://docs.referralsaasquatch.com/api/errors/
+  // width: 20pt;
 }
-
 
 // Padding between <section>s
-.docs .container{
-    section { padding-top: 60px; }
-    section:first-child { padding-top: 0; }
+.docs .container {
+  section {
+    padding-top: 60px;
+  }
+  section:first-child {
+    padding-top: 0;
+  }
 }
 
-
-#footer{
-    padding-top: 20px;
-    background: #003B45;
-    //position: absolute;
-    bottom: 0;
-    min-height: 223px;
-    width: 100%;
+#footer {
+  padding-top: 20px;
+  background: #003b45;
+  //position: absolute;
+  bottom: 0;
+  min-height: 223px;
+  width: 100%;
 }
 
-#footer a {color:#fff; opacity:0.7;}
+#footer a {
+  color: #fff;
+  opacity: 0.7;
+}
 
-#footer a:hover {color:#fff; opacity:1;}
+#footer a:hover {
+  color: #fff;
+  opacity: 1;
+}
 
 #footer .trees {
   max-width: 400px;
@@ -116,139 +128,156 @@ color: #003B45;
   position: absolute;
   right: 0;
 
-  @media (max-width: 1700px){
+  @media (max-width: 1700px) {
     max-width: 250px;
     //top: 105px;
   }
 
-  @media (max-width: 1280px){
+  @media (max-width: 1280px) {
     display: none;
   }
 }
-
 
 /**
 *    Framing
 */
 #my-page {
-    overflow: hidden;
-    background: white;
-    min-height: 100%;
-    position: relative;
+  overflow: hidden;
+  background: white;
+  min-height: 100%;
+  position: relative;
 }
 
-#my-content{
-    max-width: 1170px;
-    margin-left: auto;
-    margin-right: auto;
-    //padding-bottom: 360px;
-    padding-bottom: 60px;
-    
-    min-height: 63vh;
-    
-    // @media (min-width: 1200px){
-    //     max-width: 250px;
-    //     //top: 105px;
-    //   }
-    
-    //padding-bottom: calc(20%);
+#my-content {
+  max-width: 1170px;
+  margin-left: auto;
+  margin-right: auto;
+  //padding-bottom: 360px;
+  padding-bottom: 60px;
+
+  min-height: 63vh;
+
+  // @media (min-width: 1200px){
+  //     max-width: 250px;
+  //     //top: 105px;
+  //   }
+
+  //padding-bottom: calc(20%);
 }
 
 #my-menu {
-    // width: 20%;
-    // position: fixed;
-}
+  // width: 20%;
+  // position: fixed;
+  .back-link {
+    font-size: 0.9em;
+    background-color: #fafafa;
+    padding: 5px 10px 5px 20px;
+  }
+  .fa {
+    vertical-align: middle;
+    margin-right: 0.5em;
+    &.big {
+      width: 23px;
+    }
+    &.small {
+      padding-bottom: 4px; // Alignment fix
+    }
+  }
 
+  .mm-navbar {
+    display: none;
+  }
+}
 
 // Hamburger that opens docs nav
 button#open-sidenav {
-    padding-left: 0;
+  padding-left: 0;
 }
-#mm-blocker{
-    left: -12px; // Stupid spacing that I have NO idea what is causing...
+#mm-blocker {
+  left: -12px; // Stupid spacing that I have NO idea what is causing...
 }
 
 .navbar {
-    color: #000;
+  color: #000;
 
-    @media (max-width: 979px){
-        .brand {
-            padding-right: 0;
-            padding-left: 5px;
-        }
-        .navbar-inner{
-            padding-left: 0;
-            padding-right: 0;
-        }
+  @media (max-width: 979px) {
+    .brand {
+      padding-right: 0;
+      padding-left: 5px;
     }
-    .hamburger{
-        padding-right: 0;
-    }
-    .hamburger-box{
-        width: 10px;
-        padding-left: 10px;
-    }
-    .hamburger-inner,
-    .hamburger-inner:after,
-    .hamburger-inner:before{
-        width: 4px;
-    }
-
     .navbar-inner {
-        border: none;
-        background: transparent;
-        background-color: #fff;
-        background-color: rgba(255, 255, 255, 0.95);
-        box-shadow: none;
+      padding-left: 0;
+      padding-right: 0;
     }
+  }
+  .hamburger {
+    padding-right: 0;
+  }
+  .hamburger-box {
+    width: 10px;
+    padding-left: 10px;
+  }
+  .hamburger-inner,
+  .hamburger-inner:after,
+  .hamburger-inner:before {
+    width: 4px;
+  }
 
-    .navbar .brand {
-        color: #333;
-        font-weight: 600;
-    }
+  .navbar-inner {
+    border: none;
+    background: transparent;
+    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: none;
+  }
 
-    .nav> li> a {
-        padding-top: 15px;
-        padding-right: 40px;
-        color: #003B45;
-        text-shadow: none;
-        font-weight: bold;
-    }
+  .navbar .brand {
+    color: #333;
+    font-weight: 600;
+  }
 
-    .nav-collapse.in.collapse {
-        text-align: right; // Right-aligns the nav-collapse dropdown items
-    }
+  .nav > li > a {
+    padding-top: 15px;
+    padding-right: 40px;
+    color: #003b45;
+    text-shadow: none;
+    font-weight: bold;
+  }
 
-    .nav li.dropdown.open> .dropdown-toggle,
-    .nav li.dropdown.open.active> .dropdown-toggle {
-        background-color: transparent;
-    }
+  .nav-collapse.in.collapse {
+    text-align: right; // Right-aligns the nav-collapse dropdown items
+  }
 
-    .nav> li> .dropdown-menu:before {
-        display: none;
-    }
+  .nav li.dropdown.open > .dropdown-toggle,
+  .nav li.dropdown.open.active > .dropdown-toggle {
+    background-color: transparent;
+  }
 
-    .nav> li> .dropdown-menu:after {
-        border-right: 7px solid transparent;
-        border-left: 7px solid transparent;
-    }
+  .nav > li > .dropdown-menu:before {
+    display: none;
+  }
 
-    .dropdown-menu {
-        border: none;
-        box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
-    }
+  .nav > li > .dropdown-menu:after {
+    border-right: 7px solid transparent;
+    border-left: 7px solid transparent;
+  }
 
-    .dropdown-menu li> a {
-        color: #fff;
-    }
+  .dropdown-menu {
+    border: none;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  }
 
-    .dropdown-menu li> a:hover,
-    .dropdown-menu .active> a,
-    .dropdown-menu .active> a:hover {
-        background-color: transparent;
-        color: #000;
-        background: transparent;
-    }
+  .dropdown-menu li > a {
+    color: #fff;
+  }
+
+  .dropdown-menu li > a:hover,
+  .dropdown-menu .active > a,
+  .dropdown-menu .active > a:hover {
+    background-color: transparent;
+    color: #000;
+    background: transparent;
+  }
 }
 
 .mm-navbar {
@@ -260,12 +289,13 @@ button#open-sidenav {
   }
 }
 
-.mm-menu .mm-btn:after, .mm-menu .mm-btn:before {
+.mm-menu .mm-btn:after,
+.mm-menu .mm-btn:before {
   border-color: #fff;
   margin-top: 47px;
 }
 
-.mm-panels>.mm-panel.mm-hasnavbar {
+.mm-panels > .mm-panel.mm-hasnavbar {
   padding-top: 0 !important;
 }
 
@@ -280,8 +310,14 @@ button#open-sidenav {
   cursor: default;
 }
 
-h1, h2, h3, h4, h5, h6, body {
-  font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+body {
+  font-family: 'proxima-nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .form-search .input-append {
@@ -325,10 +361,11 @@ h1, h2, h3, h4, h5, h6, body {
 }
 
 .hero-unit h1 {
-  font-family: 'GothamRounded-Medium', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'GothamRounded-Medium', 'Helvetica Neue', Helvetica, Arial,
+    sans-serif;
 }
 
 //attempt to solve top margin issue in blockquotes in articles
 body blockquote p {
-    margin-top: 0;
+  margin-top: 0;
 }
