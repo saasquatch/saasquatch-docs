@@ -82,7 +82,7 @@ async function getRawFiles() {
         return null;
       }
       return {
-        path: parsed.data.slug,
+        path: parsed.data.slug.toLowerCase(),
         getData() {
           return {
             entry: {
@@ -302,7 +302,7 @@ async function getRoutes() {
     .filter(e => e)
     .map(entry => {
       return {
-        path: entry.slug,
+        path: entry.slug.toLowerCase(),
         getData: () => {
           return {
             entry

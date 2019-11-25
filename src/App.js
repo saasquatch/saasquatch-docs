@@ -279,7 +279,7 @@ function NavigationFooter() {
   );
 }
 function NavigationSidebar() {
-  const sidebar = sidebarRaw.replace("<APILIST/>", apiList);
+  const sidebar = sidebarRaw.replace("<APILIST/>", apiList).replace("<APILIST />", apiList);
   return <HTML source={sidebar} />;
 }
 
