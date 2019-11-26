@@ -33,7 +33,7 @@ export default function render() {
                 <div className="programs-image">
                   <a
                     className="programImageLink"
-                    href={program.slug}
+                    href={"/" + program.slug}
                   >
                     <img className="image" src={program.logo.url} />
                   </a>
@@ -48,7 +48,7 @@ export default function render() {
                 <div className="moreLink">
                   <a
                     className="learnMoreLink"
-                    href={program.slug}
+                    href={"/" + program.slug}
                   >
                     Learn More.{" "}
                   </a>
