@@ -23,8 +23,13 @@ export default function render(
     return marked(s);
   }
 
-  const title =
-    props.title + " | SaaSquatch " + (props.categoryName || "Documentation");
+  let title;
+  if(props.title){
+    title = props.title + " | SaaSquatch " + (props.categoryName || "Documentation");
+  }else{
+    title = "SaaSquatch Help Center";
+  }
+    
   const plainHighlights = striptags(markdown(props.highlights));
   return (
     <Head>
