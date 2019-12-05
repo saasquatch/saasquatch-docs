@@ -23,7 +23,7 @@ export default function render(
     return marked(s);
   }
 
-  let title;
+  let title:string;
   if(props.title){
     title = props.title + " | SaaSquatch " + (props.categoryName || "Documentation");
   }else{

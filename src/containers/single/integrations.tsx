@@ -81,7 +81,7 @@ export default function render() {
                 <a className="imageLink" href={"/" + integration.slug}>
                   <img
                     className="image"
-                    src={"/assets/images/integrations/" + integration.logo}
+                    src={integration.logo.url}
                   />
                 </a>
               </div>

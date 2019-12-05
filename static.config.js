@@ -29,18 +29,6 @@ const TEMPLATES = {
   "pages/shorttags.html": "src/containers/single/shortTags.tsx"
 };
 
-const INTEGRATIONS = [
-  "stripe",
-  "branch-metrics",
-  "silverpop",
-  "recurly",
-  "segment",
-  "stitch",
-  "stripe",
-  "tangocard",
-  "salesforce"
-];
-
 /**
  * Gets the React-static template from the old metalsmith/swig template path.
  */
@@ -140,7 +128,7 @@ export default {
     // root: process.cwd(), // The root of your project. Don't change this unless you know what you're doing.
     // src: "src", // The source directory. Must include an index.js entry file.
     // temp: "tmp", // Temp output directory for build files not to be published.
-    dist: "build", // The production output directory.
+    dist: "build" // The production output directory.
     // devDist: "tmp/dev-server", // The development scratch directory.
     // public: "public", // The public directory (files copied to dist during build)
     // assets: "build2", // The output directory for bundled JS and CSS
@@ -248,17 +236,10 @@ async function getRoutes() {
     )
     .map(r => r.getData().entry);
 
-  const integrations = rawFiles
-    // .filter(r => minimatch(r.path, "**/*integrations/*-integration.*"))
-    // .filter(r => r.path.includes("integrations/"))
-    .map(r => r.getData().entry)
-    .filter(d =>
-      INTEGRATIONS.some(
-        i =>
-          // @ts-ignore
-          d.slug == i
-      )
-    );
+  const integrations = entries
+    .map(contentfulpagifier)
+    .filter(x=>x)
+    .filter(d => d.tags && d.tags.some(i => i == "in-directory"));
 
   const staticPages = [
     {
