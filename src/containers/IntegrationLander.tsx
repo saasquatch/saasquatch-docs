@@ -14,10 +14,16 @@ export default function render() {
     feature,
     info,
     moreInfo,
-    contents,
+    articleContent,
     keyFeatures
   } = entry;
 
+  let logoUrl;
+  if(typeof logo !== "string"){
+    logoUrl = logo.url;
+  }else{
+    logoUrl = "/assets/images/integrations/" + logo;
+  }
   return (
     <>
       <Meta {...entry} />
@@ -25,7 +31,7 @@ export default function render() {
         <div className="page-header">
           <h1 className="integrationHeader">
             <img
-              src={"/assets/images/integrations/" + logo}
+              src={logoUrl}
               alt={integrationName}
             />
             {" + "}
@@ -42,7 +48,7 @@ export default function render() {
           </div>
         </div>
 
-        <div className="row-fluid">
+        {!articleContent && <div className="row-fluid">
           <div className="span7">
             <h3>Key features</h3>
 
@@ -52,23 +58,8 @@ export default function render() {
                   <Markdown source={f} />
                 </li>
               ))}
-            </ul>
+              </ul>
 
-            <h3>{integrationName} Software Integration Questions?</h3>
-
-            <a
-              type="button"
-              className="btn"
-              style={{
-                  color: "#000"
-              }}
-              href={
-                "https://www.referralsaasquatch.com/integration-inquiry/?integration=" +
-                integrationName
-              }
-            >
-              Find out more
-            </a>
           </div>
 
           <div className="span5 well">
@@ -81,24 +72,10 @@ export default function render() {
               ))}
             </ul>
 
-            <h3>Additional Help Center Articles</h3>
-            <ul>
-              <li>
-                <a href="/success/intro/">Getting Started with SaaSquatch</a>
-              </li>
-              <li>
-                <a href="/success/core-topics/">How Referral Programs Work</a>
-              </li>
-              <li>
-                <a href="/success/using-referral-saasquatch/">
-                  Using the SaaSquatch Portal
-                </a>
-              </li>
-            </ul>
           </div>
-        </div>
+        </div>}
 
-        {contents && <Markdown source={contents} />}
+        {articleContent && <Markdown source={articleContent} />}
       </section>
     </>
   );

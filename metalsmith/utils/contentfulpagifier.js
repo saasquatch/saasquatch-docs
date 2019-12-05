@@ -39,6 +39,7 @@ function pageify(entryRaw, i18n){
         };
         
         if(fields.tags && fields.tags.includes("integrations")) {
+            return null;
             file.logo = `${fields.slug}-integration.png`;
             file.template = "intergrationLanderIntro.html";
         }
@@ -61,6 +62,18 @@ function pageify(entryRaw, i18n){
             
             template: "faqCategory.html",
             sectionType: "faq"
+        };
+    }else if ("integration" == entry.sys.contentType.sys.id) {        
+        let logoFields = resolveI18n(fields.logo.fields);
+        file = {
+            ...fields,
+            fields: fields,
+            logo: {
+                url: logoFields.file.url,
+                name: logoFields.title
+            },
+            id: entry.sys.id,
+            template: "intergrationLander.html"
         };
     }else{
         file = null;

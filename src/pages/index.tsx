@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 
+import Meta from "../components/Meta";
+
 const Hero = styled.div`
   background: transparent;
   padding: 0;
@@ -24,6 +26,8 @@ export default function render() {
     if (document) legacyAnchors();
   });
   return (
+    <>
+    <Meta title={null} />
     <Hero className="hero-unit">
       <Logo src="/assets/images/saasquatch-logo-centered-no-slogan-RGB-300dpi.png" />
       <Sublogo src="/assets/images/helpcenter.png" />
@@ -47,6 +51,7 @@ export default function render() {
         </form>
       </div>
     </Hero>
+    </>
   );
 }
 
