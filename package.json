@@ -9,7 +9,7 @@
     "export": "react-static export",
     "serve": "serve dist -p $PORT -s",
     "heroku-postbuild": "echo \"No Build\"",
-    "heroku": "serve public -p $PORT"
+    "heroku": "serve saasquatch-docs-preview-herokuapp -p $PORT"
   },
   "dependencies": {
     "@reach/router": "^1.2.1",
