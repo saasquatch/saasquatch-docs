@@ -7,7 +7,8 @@
     "build": "react-static build",
     "bundle": "react-static bundle",
     "export": "react-static export",
-    "serve": "serve dist -p $PORT -s"
+    "serve": "serve dist -p $PORT -s",
+    "heroku": "serve public -p $PORT -s"
   },
   "dependencies": {
     "@reach/router": "^1.2.1",
