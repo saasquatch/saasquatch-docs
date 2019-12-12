@@ -69,13 +69,13 @@ endpoint urls will simply result in one subscription being created for that url.
 <tr>
     <td class="docs-monospace">email.referred.reward.earned</td>
     <td>
-        Sent whenever a Referred User earns a reward.
+        Sent whenever a Referred User earns a reward. <span class="label">Classic only</span>
     </td>
 </tr>
 <tr>
     <td class="docs-monospace">email.referral.started</td>
     <td>
-        Sent whenever a new referral connection is successfully established.
+        Sent whenever a new referral connection is successfully established. <span class="label">Classic only</span>
     </td>
 </tr>
 <tr>
@@ -346,7 +346,7 @@ from the <a href="/api/methods#list_rewards">List Rewards REST API Endpoint</a>
 }
 ```
 
-### email.referred.reward.earned
+### <span class="label">Classic only</span> email.referred.reward.earned
 
 Sent whenever a referred user earns a reward.
 
@@ -366,7 +366,7 @@ Sent whenever a referred user earns a reward.
 }
 ```
 
-### email.referral.started
+### <span class="label">Classic only</span> email.referral.started
 
 Sent whenever a new referral connection is successfully established.
 
