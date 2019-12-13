@@ -15,7 +15,8 @@ export default function render() {
     info,
     moreInfo,
     articleContent,
-    keyFeatures
+    keyFeatures,
+    tags
   } = entry;
 
   let logoUrl;
@@ -48,6 +49,8 @@ export default function render() {
           </div>
         </div>
 
+        {tags && tags.some(t=>t==="deprecated") && <div className="alert alert-warning">This integration has been <b>deprecated</b>. It will continue working for exitsing customers, but is not recommended for new customers.</div>}
+        {tags && tags.some(t=>t==="classic-only") && <div className="alert alert-warning"><span className="label label-default">Classic Only</span> This integration only works for Classic referral programs. It is not recommended for new customers.</div>}
         {!articleContent && <div className="row-fluid">
           <div className="span7">
             <h3>Key features</h3>
