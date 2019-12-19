@@ -38,7 +38,11 @@ const MD = styled.div`
   margin: 0 auto;
   display: block;
 }
+.mermaid-center svg .label{
+  text-shadow: none; /* Overrides bootstrap CSS class conflict*/
+}
 `
+
 renderer.code = function (code?:string, language?:string) {
   if(language && language.toLowerCase() === "mermaid"){
     if(typeof document === "undefined"){
