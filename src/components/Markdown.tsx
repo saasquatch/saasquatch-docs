@@ -2,6 +2,8 @@ import React from "react";
 // @ts-ignore no types for marked
 import marked from "marked";
 import styled from "styled-components"
+import { mermaidAPI } from "mermaid";
+import uuid from "uuid";
 
 // Get reference
 const renderer = new marked.Renderer();
@@ -26,7 +28,19 @@ const MD = styled.div`
 *:hover > .heading-anchor, .heading-anchor:focus {
   opacity: 1;
 }
+.mermaid-center svg{
+  margin: 0 auto;
+  display: block;
+}
 `
+renderer.code = function (code, language) {
+  if(language.toLowerCase() === "mermaid"){
+      const svg = mermaidAPI.render(uuid(), code);
+      return '<div class="mermaid-center">'+svg+'</div>';
+  } else {
+      return '<pre><code class="lang-' + language + '">'+code+'</code></pre>';
+  }
+};
 
 // TODO: add anchor- &#x1F517;
 // Override function
