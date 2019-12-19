@@ -2,8 +2,14 @@ import React from "react";
 // @ts-ignore no types for marked
 import marked from "marked";
 import styled from "styled-components"
-import { mermaidAPI } from "mermaid";
 import uuid from "uuid";
+
+let mermaidAPI;
+if(typeof document === "undefined"){
+  mermaidAPI = null;
+}else{
+  mermaidAPI = require("mermaid").mermaidAPI;
+}
 
 // Get reference
 const renderer = new marked.Renderer();
@@ -33,10 +39,19 @@ const MD = styled.div`
   display: block;
 }
 `
-renderer.code = function (code, language) {
-  if(language.toLowerCase() === "mermaid"){
+renderer.code = function (code?:string, language?:string) {
+  if(language && language.toLowerCase() === "mermaid"){
+    if(typeof document === "undefined"){
+      // Don't render mermaid server-side. It's not friendly / requires puppeteer. (see: https://github.com/mermaid-js/mermaid/issues/593)
+      return '<pre><code class="lang-' + language + '">'+code+'</code></pre>';
+    }
+    try{
       const svg = mermaidAPI.render(uuid(), code);
       return '<div class="mermaid-center">'+svg+'</div>';
+    }catch(e){
+      console.error("Error in rendering chart", e, code);
+      return '<pre><code class="lang-' + language + '">'+code+'</code></pre>';
+    }
   } else {
       return '<pre><code class="lang-' + language + '">'+code+'</code></pre>';
   }
@@ -47,7 +62,7 @@ renderer.code = function (code, language) {
 renderer.heading = function (text:string, level:number, raw:string, slugger:any)
 {
   const slug = raw.toLowerCase().replace(/[^\w]+/g, '-');
-  // TODO: Upgade to newer Marked for better slug support
+  // TODO: Upgade to newer Marked for better slug support. Newer slugger supports duplicate slugs better by adding numbers (e.g. `head`, `head1`, `head2`)
   // const slug = slugger.slug(raw);
 
   return `
