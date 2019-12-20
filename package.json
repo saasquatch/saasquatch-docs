@@ -7,7 +7,9 @@
     "build": "react-static build",
     "bundle": "react-static bundle",
     "export": "react-static export",
-    "serve": "serve dist -p 3000 -s"
+    "serve": "serve dist -p $PORT -s",
+    "heroku-postbuild": "echo \"No Build\"",
+    "heroku": "serve saasquatch-docs-preview-herokuapp -p $PORT"
   },
   "dependencies": {
     "@reach/router": "^1.2.1",
