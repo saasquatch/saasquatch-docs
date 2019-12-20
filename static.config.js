@@ -9,6 +9,7 @@ import globby from "globby";
 
 import contentfulpagifier from "./metalsmith/utils/contentfulpagifier";
 import productSpaceContentfulpagifier from "./metalsmith/utils/productSpaceContentfulpagifier";
+import installguidepagifier from "./metalsmith/utils/installguidepagifier";
 import * as swaggerUtils from "./metalsmith/utils/swaggerUtils";
 import { Bottom } from "./src/templates/bottom";
 
@@ -238,7 +239,7 @@ async function getRoutes() {
 
   const integrations = entries
     .map(contentfulpagifier)
-    .filter(x=>x)
+    .filter(x => x)
     .filter(d => d.tags && d.tags.some(i => i == "in-directory"));
 
   const staticPages = [
@@ -281,36 +282,31 @@ async function getRoutes() {
   const contentfulPages = entries
     .map(contentfulpagifier)
     .filter(e => e)
-    .map(entry => {
-      return {
-        path: entry.slug.toLowerCase(),
-        getData: () => {
-          return {
-            entry
-            // tocContents: markdownToc(entry.content).content
-          };
-        },
-        template: getTemplate(entry.template)
-      };
-    });
+    .map(legacyPagifierToStatic);
 
-  const contentfulProductPages = programs.map(entry => {
-    return {
-      path: entry.slug,
-      getData: () => {
-        return {
-          entry
-          // tocContents: markdownToc(entry.content).content
-        };
-      },
-      template: getTemplate(entry.template)
-    };
-  });
+  const contentfulProductPages = programs
+    .map(legacyPagifierToStatic);
+
+  const installGuides = contentfulProduct
+    .map(installguidepagifier)
+    .filter(e => e)
+    .map(legacyPagifierToStatic);
+
 
   return [
     ...rawFiles,
     ...contentfulPages,
     ...contentfulProductPages,
+    ...installGuides,
     ...staticPages
   ];
+}
+
+// TODO: Update all the pagifiers to incorporate this functionality directly there
+function legacyPagifierToStatic(entry){
+  return {
+    path: entry.slug.toLowerCase(),
+    getData: () => ({ entry }),
+    template: getTemplate(entry.template)
+  };
 }

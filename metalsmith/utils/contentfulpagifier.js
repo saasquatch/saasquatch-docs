@@ -1,4 +1,3 @@
-import markdownToc from 'markdown-toc';
 import resolveI18n from './resolveI18n';
 export default pageify;
 
@@ -28,7 +27,6 @@ function pageify(entryRaw, i18n){
             title: fields.title,
             highlights: fields.highlights,
             contents: fields.content,
-            markdownToc: markdownToc(fields.content),
             tags: fields.tags,
             slug: fields.slug,
              

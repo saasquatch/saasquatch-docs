@@ -9,36 +9,23 @@ function pageify(entryRaw, i18n){
 
     let entry = resolveI18n(entryRaw);
     let fields = entry.fields;
-    
-    if ("programTemplate" == entry.sys.contentType.sys.id) {
-        
-        
-        if(!fields.globallyInstallable){
-            // Don't show docs for non-globally installable things
-            return null;
-        }
+    console.log('fields ', fields);
+
+    if ("programTemplate" == entry.sys.contentType.sys.id && fields.installGuide != undefined) {
 
         file = {
-            title: fields.name,
+            title: fields.name + " Setup Guide",
             highlights: fields.summary,
-            contents: fields.longDescription,
+            contents: fields.installGuide,
             tags: fields.tags,
-            slug: "program/" + fields.slug,
-            screenshot: fields.screenshot,
-            //logo: fields.logo,
-             
+            slug: "program/" + fields.slug + "/setup-guide",
+
             fields: fields,
             id: entry.sys.id,
             sectionType: "successArticle",
-            template: "pages/program.html"
+            template: "hasTableOfContents.html"
         };
-        // if(fields.coverImage){
-        //     let coverFields = resolveI18n(fields.coverImage.fields);
-        //     file.coverImage = {
-        //         url: coverFields.file.url,
-        //         name: coverFields.title
-        //     };
-        // }
+
         if(fields.logo){
             let logoFields = resolveI18n(fields.logo.fields);
             file.logo = {
