@@ -60,9 +60,11 @@ function useMermaid() {
         var insertSvg = function(svgCode:string, bindFunctions) {
           element.innerHTML = svgCode;
         };
+        // Disposable temporary container for mermaid
+        const tempContainer = document.createElement("div");
         try{
           var graphDefinition = element.innerText;
-          mermaidAPI.render("graphDiv", graphDefinition, insertSvg);  
+          mermaidAPI.render("graphDiv", graphDefinition, insertSvg, tempContainer);  
         }catch(e){
           // Ignore errors
         }
