@@ -9,6 +9,7 @@ import globby from "globby";
 
 import contentfulpagifier from "./metalsmith/utils/contentfulpagifier";
 import productSpaceContentfulpagifier from "./metalsmith/utils/productSpaceContentfulpagifier";
+import installguidepagifier from "./metalsmith/utils/installguidepagifier";
 import * as swaggerUtils from "./metalsmith/utils/swaggerUtils";
 import { Bottom } from "./src/templates/bottom";
 
