@@ -201,22 +201,26 @@ An abitrary JSON object containing data related to this event
 </table>
 
 
-**Payload Security** - Webhook event payloads can be verified by checking the request headers. The `X-Hook-Signature` header is set with a value based upon a HMAC-SHA1 (RFC 2104 compliant) hash
-of the hook's body contents. The signature used is the tenant's current API key. This can be used to verify the authenticity of hooks upon receipt.
-
-> Careful! Although you can verify the hook's authenticity via the signature, you still may need to verify the state of the 'data' by making an API call. Hook delivery order is not guaranteed. For
-example, consider the scenario where an object is updated multiple times in quick succession. The related REST hooks may be delivered in a different order than the update events
-which generated them, so relying on their contents may lead you to build a different final state.
-
-<table class="table table-hover">
-<tr>
-<th class="docs-monospace">X-Hook-Signature</th>
-<td>A Sha1 hash of the hooks body contents signed by the tenant's API key</td>
-</tr>
-</table>
+### Payload Security
 
 
-## Webhooks Event Types
+Webhook event payloads can be verified by [checking the request headers](/api/webhooks/security). This guarantees that the message
+came from SaaSquatch and hasn't been tampered with.
+
+```mermaid
+graph LR;
+    A-->B-->C;
+    
+A[Receive Webhook]
+B[Check Headers]
+C[Validate JWS]
+```
+
+See also:
+
+ - [Webhook Security Guide](/api/webhooks/security)
+
+### Webhooks Event Types
 
 After a webhook subscription is created, it will immediately start receiving webhooks payloads. Each payload has a noted 'type' field which can be used to differentiate between
 events. New event types may be added to the API, so avoid building logic that assumes it knows all event types.

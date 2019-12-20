@@ -84,6 +84,7 @@
     "json-ref-parser": "^1.0.0",
     "json-schema-ref-parser": "^7.1.2",
     "marked": "^0.3.5",
+    "mermaid": "^8.4.4",
     "minimatch": "^3.0.4",
     "multimatch": "^4.0.0",
     "mz": "^2.7.0",
@@ -95,6 +96,7 @@
     "serve": "^11.1.0",
     "styled-components": "^4.4.1",
     "typescript": "^3.5.3",
+    "uuid": "^3.3.3",
     "yaml-loader": "^0.5.0"
   }
 }
