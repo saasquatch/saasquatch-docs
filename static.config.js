@@ -12,6 +12,7 @@ import productSpaceContentfulpagifier from "./metalsmith/utils/productSpaceConte
 import installguidepagifier from "./metalsmith/utils/installguidepagifier";
 import * as swaggerUtils from "./metalsmith/utils/swaggerUtils";
 import { Bottom } from "./src/templates/bottom";
+import resolveI18n from "./metalsmith/utils/resolveI18n";
 
 /**
  * Map of legacy SWIG to REACT templates
@@ -215,7 +216,15 @@ async function getRoutes() {
       "ae31ffc9de0831d887cff9aa3c72d861c323bd09de2a4cafd763c205393976c9",
     spaceId: "s68ib1kj8k5n"
   });
-  const productNews = await getYaml("metadata/productNews.yaml");
+  const productNews = entries.reduce((acc,entryRaw) =>{
+    const entry = resolveI18n(entryRaw);
+    let fields = entry.fields;
+    if ("productNews" !== entry.sys.contentType.sys.id) {
+      return acc;
+    }
+    const newsItem = fields;
+    return [...acc, newsItem]
+  }, [])
   const guides = await getYaml("metadata/guides.yaml");
 
   const contentfulProduct = await getContentful({
