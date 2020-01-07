@@ -12,6 +12,7 @@ import productSpaceContentfulpagifier from "./metalsmith/utils/productSpaceConte
 import installguidepagifier from "./metalsmith/utils/installguidepagifier";
 import * as swaggerUtils from "./metalsmith/utils/swaggerUtils";
 import { Bottom } from "./src/templates/bottom";
+import resolveI18n from "./metalsmith/utils/resolveI18n";
 
 /**
  * Map of legacy SWIG to REACT templates
@@ -215,7 +216,20 @@ async function getRoutes() {
       "ae31ffc9de0831d887cff9aa3c72d861c323bd09de2a4cafd763c205393976c9",
     spaceId: "s68ib1kj8k5n"
   });
-  const productNews = await getYaml("metadata/productNews.yaml");
+
+  // Sorted list of news items
+  const productNews = entries
+    .reduce((acc, entryRaw) => {
+      const entry = resolveI18n(entryRaw);
+      let fields = entry.fields;
+      if ("productNews" !== entry.sys.contentType.sys.id) {
+        return acc;
+      }
+      const newsItem = fields;
+      return [...acc, newsItem];
+    }, [])
+    .sort((a, b) => a.datePublished > b.datePublished);
+
   const guides = await getYaml("metadata/guides.yaml");
 
   const contentfulProduct = await getContentful({
@@ -284,14 +298,12 @@ async function getRoutes() {
     .filter(e => e)
     .map(legacyPagifierToStatic);
 
-  const contentfulProductPages = programs
-    .map(legacyPagifierToStatic);
+  const contentfulProductPages = programs.map(legacyPagifierToStatic);
 
   const installGuides = contentfulProduct
     .map(installguidepagifier)
     .filter(e => e)
     .map(legacyPagifierToStatic);
-
 
   return [
     ...rawFiles,
@@ -303,7 +315,7 @@ async function getRoutes() {
 }
 
 // TODO: Update all the pagifiers to incorporate this functionality directly there
-function legacyPagifierToStatic(entry){
+function legacyPagifierToStatic(entry) {
   return {
     path: entry.slug.toLowerCase(),
     getData: () => ({ entry }),
