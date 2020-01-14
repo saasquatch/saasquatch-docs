@@ -244,7 +244,7 @@ export default function render() {
             if (!galleryItem.isLive) return <div />;
 
             return (
-              <div className="gallery-item {% for type in galleryItem.types %}{{ type }} {% endfor %}">
+              <div className={"gallery-item " + galleryItem.types.join(" ")}>
                 <a
                   className="docs-lightbox"
                   href={"/assets/images/theme-gallery/" + galleryItem.image }
