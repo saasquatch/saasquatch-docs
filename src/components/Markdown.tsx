@@ -78,7 +78,7 @@ renderer.code = function(code?: string, language?: string) {
   if (language && language.toLowerCase() === "mermaid") {
     return '<div class="mermaid">' + code + "</div>";
   } else {
-    return '<pre><code class="lang-' + language + '">' + code + "</code></pre>";
+    return marked.Renderer.prototype.code.apply(this, arguments);
   }
 };
 
