@@ -55,6 +55,12 @@ endpoint urls will simply result in one subscription being created for that url.
     </td>
 </tr>
 <tr>
+    <td class="docs-monospace">user.reward.balance.changed</td>
+    <td>
+        Sent whenever a rewards balance is updated from new rewards, redemption, cancellation or expiry. Only works with all <code>unit</code> types for <code>CREDIT</code> rewards, including <code>POINTS</code>, <code>CASH/USD</code> and others.
+    </td>
+</tr>
+<tr>
     <td class="docs-monospace">coupon.created</td>
     <td>
         Sent whenever a new referral code is created.
@@ -298,6 +304,70 @@ widget or a batch upload process. Only fires when a new user is created, not for
             }
         }
     }
+}
+```
+
+### user.reward.balance.changed
+
+Sent whenever a rewards balance is updated. Only works with all `unit` types for `CREDIT` rewards, including `POINTS`, `CASH/USD`, `CENTS` and others.
+
+Examples of what might change a balance:
+
+ - a credit reward is given to a user
+ - a pending credit reward is made available to a user
+ - a user's reward expires
+ - a user's reward is cancelled
+ - a user's reward is fully redeemed
+ - a user's reward is partially redeemed 
+
+Other rules to consider:
+
+ - The `user.reward.balance.changed` webhook only applies to `CREDIT` rewards. `PCT_DISCOUNT`, `FUELTANK` and `INTEGRATION` rewards won't trigger this webhook
+ - The creation of a pending reward will not trigger a balance update because it doesn't affect the balance
+ - This webhook is per unit balance changed (we don't combine balances in a single webhook)
+ - This webhook contains an available balance value calculated after (not exactly at) the time of the trigger
+ - No balance update webhook is sent when a user is deleted and any external user balance will remain at its last known value
+
+**Eventual consistency**
+
+Webhooks can also arrive at your application out-of-order. This can be due to issues such as network delays or webhook failures. However, you can order the events by examining the `resourceVersion` attribute of the resource sent by the webhook to ensure [Eventual Consistency](https://en.wikipedia.org/wiki/Eventual_consistency).
+
+Since `resourceVersion` is incremented for changes made to the balance, you can only accept the latest data, and ignore old data.
+
+```mermaid
+graph TD
+
+A[Receive Webhook]
+B[Check resourceVersion<br>from webhook body]
+C[Incoming >= stored value?]
+D[Process webhook<br>Store newer resourceVersion]
+I[Ignore<br>Stale data]
+X[Your Database]
+
+A-->B-->C
+
+C--yes-->D
+C--no-->I
+
+X--load-->B
+D--save-->X
+```
+
+
+```json
+{
+  "id": "577303ece4b066c5cb171835",
+  "type": "user.reward.balance.changed",
+  "tenantAlias": "aohgcctyskc0p",
+  "live": true,
+  "created": 1467155436449,
+  "data": {
+    "userId": "user123",
+    "accountId": "account123",
+    "unit": "CENTS",
+    "availableValue": 4500,
+    "resourceVersion": 1579030928001
+  }
 }
 ```
 
