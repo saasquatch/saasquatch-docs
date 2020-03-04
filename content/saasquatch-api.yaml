@@ -5141,13 +5141,14 @@ definitions:
         readOnly: true
         example: 57b519f4e4b057c1b63925df
       status:
-        description: The status of this export.
+        description: The status of this export. `PENDING` while queued or running, `COMPLETED` when done, and `ABORTED` if there are unrecoverable errors.
         type: string
         readOnly: true
         example: PENDING
         enum:
           - PENDING
           - COMPLETED
+          - ABORTED
           - EXPIRED
       dateCreated:
         description: The timestamp when this request was created. This field will never change.
