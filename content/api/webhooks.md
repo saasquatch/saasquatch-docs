@@ -93,7 +93,7 @@ endpoint urls will simply result in one subscription being created for that url.
 <tr>
     <td class="docs-monospace">email.referral.rewardLimitReached</td>
     <td>
-        Sent whenever the referral reward limit is reached.
+        Sent whenever the referral reward limit is reached. <span class="label">Classic only</span> 
     </td>
 </tr>
 <tr>
@@ -482,7 +482,7 @@ Sent whenever a referral is converted.
 }
 ```
 
-### email.referral.rewardLimitReached
+### <span class="label">Classic only</span> email.referral.rewardLimitReached
 
 Sent whenever the referral reward limit is reached
 
