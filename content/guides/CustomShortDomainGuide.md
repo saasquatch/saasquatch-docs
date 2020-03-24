@@ -1,6 +1,8 @@
 ---
 title: Custom Short Domains
-highlights: SaaSquatch supports the use of Custom Short Domains which allow you to change the format of the referral links shared by your users. Instead of the standard link format `1ssqt.co/barYS` you can create your own `referral.your-domain.com/barYS`.
+highlights: SaaSquatch supports the use of Custom Short Domains which allow you to change the format of the referral links shared by your users. Instead of the standard link format `ssqt.co/barYS` you can create your own `referral.your-domain.com/barYS`.
+
+Custom short domains support secure link generation through HTTPS, which requires an HTTPS certificate. SaaSquatch will automatically issue and manage this certificate for you.
 slug: customshortdomainguide
 sectionType: guide
 template: hasTableOfContents.html
@@ -18,22 +20,30 @@ For example, if you are already using your-domain.com for your website, you cann
 ### Step 1: Pick your Domain
 Confirm which domain or subdomain you want to use, making sure that it conforms to the restrictions outlined above.
 
-### Step 2: Setup Domain A Record
-Point the A Record of the domain you will be using to SaaSquatch. Please contact the [Success Team](mailto:success@referralsaasquatch.com) to get the correct IP address for this step.
+### Step 2: Setup Domain CNAME or A Records
+To point your chosen domain at SaaSquatch's URL shortener service, you will need to create or modify the DNS record for your chosen domain.
 
-> A change to a domain’s A Record can take anywhere from minutes all the way up to 24 hours to take effect. If after 24 hours there is still no change then the A Record was not changed correctly and is not pointing at our IP address.
+There are two major options for doing this, which depend on the domain that you have chosen:
+- **CNAME record:** If your chosen domain is a subdomain of a domain that you own, like `referral.your-domain.com` then you can create a CNAME record in your DNS configuration. Please contact the [Success Team](mailto:success@referralsaasquatch.com) to obtain the destination for your CNAME record.
+- **A records:** If your chosen domain is an "apex" domain without a subdomain, like `your-domain.io` or `your-domain.ca` you will need to create A records in your DNS configuration, as most DNS management systems do not allow CNAME records to be added for the apex domain. Please contact the [Success Team](mailto:success@referralsaasquatch.com) to obtain the destination IP addresses for your A records.
 
-### Step 3: Testing A Record Change
-Before we continue with the setup of your Custom Short Domain we need to confirm that the domain’s A Record has been correctly changed to point to our IP address.
+> A change to a domain’s A or CNAME records can take anywhere from minutes all the way up to 24 hours to take effect. If after 24 hours there is still no change then the A or CNAME records was not changed correctly and is not pointing at the right location.
 
-To test whether the A Record has been changed correctly take a working referral link from your program with the existing SaaSquatch Short Domain, like `ssqt.co/barY`, and remove our domain and substitute in your own. This should leave you with a URL that looks something like `referral.your-domain.com/barYS`.
+### Step 3: Testing DNS Record Change
+Before we continue with the setup of your Custom Short Domain we need to confirm that the domain’s DNS records have been correctly changed to point to the correct destinations.
 
-If this new link takes you to the landing page that was set for the tenant then your A Record is correctly setup. If the link does not take you to your tenant’s landing page allow for the full 24 hours needed to reflect the A Record change. If after 24 hours the link still doesn’t work then the A Record has not been set correctly.
+To test whether the DNS records have been changed correctly take a working referral link from your program with the existing SaaSquatch Short Domain, like `ssqt.co/barY`, and remove our domain and substitute in your own. This should leave you with a URL that looks something like `referral.your-domain.com/barYS`.
+
+If this new link takes you to the landing page that was set for the tenant then your DNS records are correctly setup. If the link does not take you to your tenant’s landing page allow for the full 24 hours needed to reflect the DNS record changes. If after 24 hours the link still doesn’t work then the DNS records have not been set correctly.
 
 ### Step 4: Inform SaaSquatch
-Only once the A Record is setup correctly we can make the necessary changes on our end to move forward with setting up your Custom Short Domain. Make sure you have correctly completed Step 3 otherwise all the links generated going forward will be broken.
+Only once the DNS records are setup correctly we can make the necessary changes on our end to move forward with setting up your Custom Short Domain. Make sure you have correctly completed Step 3 otherwise all the links generated going forward will be broken.
 
-With the A Record set correctly, contact a member of the success team with the Custom Short Domain you wish to use so that SaaSquatch can change your program to make use of this Custom Short Domain. SaaSquatch will notify you when the changes on our end are complete and another step of setting up your Custom Short Domains is completed.
+With the DNS Records set correctly, contact a member of the success team with the Custom Short Domain you wish to use so that SaaSquatch can change your program to make use of this Custom Short Domain.
+
+> If you wish to use HTTPS short links, please let the success team know. There will be an additional step required to verify the new certificate SaaSquatch will issue and manage for you, and we will walk you through the process of completing this setup.
+
+SaaSquatch will notify you when the changes on our end are complete and another step of setting up your Custom Short Domains is completed.
 
 ### Step 5: Verify
 
