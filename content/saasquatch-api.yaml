@@ -1510,6 +1510,8 @@ paths:
       responses:
         200:
           description: Found user
+          schema:
+            $ref: "#/definitions/UserByCode"
           examples:
             application/json:
               id: '876343'
@@ -4735,6 +4737,35 @@ definitions:
         ["segment1", "segment3"]
       shareLinks:
         $ref: "#/definitions/Sharelink/example"
+
+  UserByCode:
+    title: Subset of user information
+    description: A subset of user information that is publicly visible via someone's referral code.
+    properties:
+      id:
+        type: string
+        example: "219065"
+        description: The unique identifier provided for this user.
+      accountId:
+        type: string
+        example: "accc9065"
+        description: The unique identifier of the Account that this user belongs to.
+      firstName:
+        type: string
+        example: "Bob"
+        description: |
+          The user's first name
+      lastInitial:
+        type: string
+        description: The first initial of the user's last name
+      referralCode:
+        type: string
+        description: The referral code used to look up this user
+      imageUrl:
+        type: string
+        example: "https://www.example.com/profile/ab5111251125"
+        description: |
+          Optionally used in widgets, emails, and themes. If you provide a absolute profile image URL the minimum image size is 80px x 80px.
 
   OpenUserStub:
     title: A Open User object stub
