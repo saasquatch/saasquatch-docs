@@ -7,6 +7,7 @@ import PageHeader from "../../components/PageHeader";
 import Markdown from "../../components/Markdown";
 import exampleSwaggerSchema from "../../../metalsmith/filters/exampleSwaggerSchemaFilter";
 import { Properties } from "../../components/Properties";
+import useVersion from "../../components/useVersion";
 
 const HTTPMethod = styled.span`
   text-transform: uppercase;
@@ -109,6 +110,7 @@ export default function render(){
 
 function Page({ swagger, tagMap, methodsByTag }){
 
+  const [version] = useVersion();
   const entry = {
     title: "Rest API Reference",
     highlights: swagger.info.description,
@@ -189,6 +191,10 @@ function Page({ swagger, tagMap, methodsByTag }){
               const method = methods[httpMethod];
 
               const anchor = "#" + method["x-docs-anchor"];
+
+              if(!method.tags.includes("Classic")){
+                return <tr/>
+              }
 
               return (
                 <tr>

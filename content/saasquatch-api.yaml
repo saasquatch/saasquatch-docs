@@ -106,6 +106,8 @@ tags:
  -
   name: Webhook
   description: Webhooks can be used to do real time actions and data synchronization from SaaSquatch.
+ - name: Classic
+   description: An endpoint or attribute that only works with the Classic referral programs, and no other programs.
 # -
 #   name: Export
 #   description: Exports are used to do bulk data dumps from your SaaSquatch account.
@@ -466,6 +468,7 @@ paths:
       operationId: getSharelinks
       x-docs-anchor: get_sharelinks
       tags:
+        - Classic
         - User
       security:
         - APIKey: []

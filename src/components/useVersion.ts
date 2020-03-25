@@ -9,21 +9,23 @@ type ElementType<T extends ReadonlyArray<unknown>> = T extends ReadonlyArray<
   : never;
 type Version = ElementType<typeof VERSIONS>;
 
-function useVersion(): [Version, (next: Version) => void] {
-  const [innerVersion, setInnerVersion] = useCookie<Version>("docs-version", "hybrid");
+export default function useVersion(): [Version, (next: Version) => void] {
+  const [innerVersion, setInnerVersion] = useCookie("docs-version", "hybrid");
 
   // Adds validation
   const setVersion = (v: Version) => {
-    if (!VERSIONS.includes(innerVersion))
+    // @ts-ignore
+    if (!VERSIONS.includes(v))
       throw new Error("Invalid version" + v);
     setInnerVersion(v);
   };
 
+    // @ts-ignore
   if (!VERSIONS.includes(innerVersion)) {
     // Override default;
     setVersion("hybrid");
     return ["hybrid", setVersion];
   }
 
-  return [innerVersion, setVersion];
+  return [innerVersion as Version, setVersion];
 }
