@@ -20,6 +20,7 @@
     "connect": "^3.4.1",
     "contentful": "^3.5.0",
     "copyfiles": "^2.1.0",
+    "d3": "^5.15.0",
     "debug": "^2.2.0",
     "del": "^2.2.1",
     "express": "^4.14.0",
@@ -88,7 +89,7 @@
     "json-ref-parser": "^1.0.0",
     "json-schema-ref-parser": "^7.1.2",
     "marked": "^0.3.5",
-    "mermaid": "^8.4.4",
+    "mermaid": "^8.4.8",
     "minimatch": "^3.0.4",
     "multimatch": "^4.0.0",
     "mz": "^2.7.0",
@@ -100,7 +101,7 @@
     "serve": "^11.1.0",
     "styled-components": "^4.4.1",
     "typescript": "^3.5.3",
-    "uuid": "^3.3.3",
+    "uuid": "^3.4.0",
     "yaml-loader": "^0.5.0"
   }
 }
