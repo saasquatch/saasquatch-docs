@@ -7,15 +7,17 @@ import moment from "moment";
 
 const Timeline = styled.div`
   border-left: 2px solid #003b45;
-  margin: 0 30px;
+  margin: 20px 30px;
+  margin-left: 140px;
   padding: 0 15px;
   /* padding-top: 30px; */
 `;
 
 const ChangeWrapper = styled.div`
   display: flex;
+  flex-direction: row;
   position: relative;
-  padding-left: 70px;
+  padding-left: 40px;
   margin-bottom: 50px;
 
   &:last-child {
@@ -25,15 +27,37 @@ const ChangeWrapper = styled.div`
 
 const Deadline = styled.span`
   width: 80px;
-  background: white;
-  height: 50px;
   text-align: center;
-  line-height: 50px;
+  height: 20px;
   position: absolute;
-  left: -50px;
+  left: -130px;
+  top: 15px;
 
   font-weight: bold;
-  color: #03b450;
+  color: #003b45;
+
+  & .deadline {
+    color: #c3c3c3;
+  }
+`;
+
+const Dot = styled.div`
+  position: absolute;
+  left: -26px;
+  top: 14px;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  background: #003b45;
+  z-index: 3;
+`;
+
+const Connector = styled.div`
+  position: absolute;
+  border-top: 1px solid black;
+  width: 38px;
+  left: -17px;
+  top: 24px;
 `;
 
 const Body = styled.div`
@@ -48,7 +72,7 @@ const Body = styled.div`
 
 const Name = styled.span`
   flex: 0.1;
-  text-align: right;
+  text-align: left;
   font-weight: bold;
   margin-right: 20px;
 `;
@@ -81,25 +105,27 @@ export default function render() {
     const daysUntil = (date: string) => {
       const momDate = moment(date);
       const momToday = moment();
-      return momDate.diff(momToday, "days");
+      const diff = momDate.diff(momToday, "days");
+      return diff > 1 ? `In ${diff} Days` : `In ${diff} day`;
     };
     return (
       <ChangeWrapper>
-        <Deadline>{deadline}</Deadline>
+        <Deadline>
+          <p className="days">{daysUntil(deadline)}</p>
+          <p className="deadline">{deadline}</p>
+        </Deadline>
+        <Dot />
+        <Connector />
         <Body>
           <div>
-            <Name>Title</Name>
+            {/* <Name>Title</Name> */}
             <Text>
               <b>{title}</b>
             </Text>
           </div>
           <div>
-            <Name>Description</Name>
+            {/* <Name>Description</Name> */}
             <Text>{description}</Text>
-          </div>
-          <div>
-            <Name>Days Until</Name>
-            <Text>{daysUntil(deadline)} days</Text>
           </div>
           <div>
             <Name>Timeline</Name>
@@ -148,7 +174,7 @@ export default function render() {
         <Timeline>
           {CHANGES.map((c, i) => {
             const mermaidMd = c.timeline
-              ? "```mermaid\n" + c.timeline + "\n```"
+              ? "\n```mermaid\n" + c.timeline + "\n```"
               : undefined;
             return (
               <Change
