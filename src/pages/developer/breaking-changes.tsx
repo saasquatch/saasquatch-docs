@@ -2,6 +2,60 @@ import React from "react";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
 import Markdown from "../../components/Markdown";
 import PageHeader from "../../components/PageHeader";
+import styled from "styled-components";
+import moment from "moment";
+
+const Timeline = styled.div`
+  border-left: 2px solid #003b45;
+  margin: 0 30px;
+  padding: 0 15px;
+  /* padding-top: 30px; */
+`;
+
+const ChangeWrapper = styled.div`
+  display: flex;
+  position: relative;
+  padding-left: 70px;
+  margin-bottom: 50px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+`;
+
+const Deadline = styled.span`
+  width: 80px;
+  background: white;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  position: absolute;
+  left: -50px;
+
+  font-weight: bold;
+  color: #03b450;
+`;
+
+const Body = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  & > div {
+    padding-top: 15px;
+    display: flex;
+  }
+`;
+
+const Name = styled.span`
+  flex: 0.1;
+  text-align: right;
+  font-weight: bold;
+  margin-right: 20px;
+`;
+
+const Text = styled.span`
+  flex: 1;
+`;
 
 const url = "//xxxx.us13.list-manage.com/subscribe/post?u=zefzefzef&id=fnfgn";
 
@@ -17,6 +71,51 @@ const entry = {
 };
 
 export default function render() {
+  type ChangeProps = {
+    mermaidMd: any;
+    title: string;
+    description: string;
+    deadline: string;
+  };
+  const Change = ({ mermaidMd, title, description, deadline }: ChangeProps) => {
+    const daysUntil = (date: string) => {
+      const momDate = moment(date);
+      const momToday = moment();
+      return momDate.diff(momToday, "days");
+    };
+    return (
+      <ChangeWrapper>
+        <Deadline>{deadline}</Deadline>
+        <Body>
+          <div>
+            <Name>Title</Name>
+            <Text>
+              <b>{title}</b>
+            </Text>
+          </div>
+          <div>
+            <Name>Description</Name>
+            <Text>{description}</Text>
+          </div>
+          <div>
+            <Name>Days Until</Name>
+            <Text>{daysUntil(deadline)} days</Text>
+          </div>
+          <div>
+            <Name>Timeline</Name>
+            <Text>
+              {mermaidMd && (
+                <div className="mermaid-markdown">
+                  <Markdown source={mermaidMd} />
+                </div>
+              )}
+            </Text>
+          </div>
+        </Body>
+      </ChangeWrapper>
+    );
+  };
+
   return (
     <PageHeader {...entry}>
       <>
@@ -46,7 +145,23 @@ export default function render() {
         </ul>
 
         <h3>Upcoming Changes</h3>
-        <table className="table">
+        <Timeline>
+          {CHANGES.map((c, i) => {
+            const mermaidMd = c.timeline
+              ? "```mermaid\n" + c.timeline + "\n```"
+              : undefined;
+            return (
+              <Change
+                key={i}
+                mermaidMd={mermaidMd}
+                deadline={c.deadline}
+                title={c.title}
+                description={c.description}
+              />
+            );
+          })}
+        </Timeline>
+        {/* <table className="table">
           <thead>
             <tr>
               <th>Deadline</th>
@@ -55,19 +170,15 @@ export default function render() {
           </thead>
           <tbody>
             {CHANGES.map((c, i) => {
-              const mermaidMd = c.timeline
-                ? "**Timeline**\n\n```mermaid\n" + c.timeline + "\n```"
-                : undefined;
+              console.debug(mermaidMd);
               return (
                 <tr key={i}>
                   <td>{c.deadline}</td>
                   <td>
-                    <b>
-                    {c.title}
-                    </b>
+                    <b>{c.title}</b>
                     <p>{c.description}</p>
                     {mermaidMd && (
-                      <div>
+                      <div className="mermiad-markdown">
                         <Markdown source={mermaidMd} />
                       </div>
                     )}
@@ -76,7 +187,7 @@ export default function render() {
               );
             })}
           </tbody>
-        </table>
+        </table> */}
       </>
     </PageHeader>
   );
