@@ -95,12 +95,15 @@ const CHANGES: Change[] = [
     title: "Short domain IP address migration",
     description:
       "We are moving the service that powers custom domains for share links (ssqt.co). As part of this migration customers will be required to update their DNS settings to remove the deprecated static IP.",
-    timeline: `graph TD
-        A[Christmas] -->|Get money| B(Go shopping)
-        B --> C{Let me think}
-        C -->|One| D[Laptop]
-        C -->|Two| E[iPhone]
-        C -->|Three| F[fa:fa-car Car]
+    timeline: `gantt
+	title A Gantt Diagram
+	dateFormat  YYYY-MM-DD
+	section Section
+	A task           :a1, 2014-01-01, 30d
+	Another task     :after a1  , 20d
+	section Another
+	Task in sec      :2014-01-12  , 12d
+	another task      : 24d
                         `
   },
   {

@@ -2,6 +2,7 @@ import React, { useLayoutEffect, useRef } from "react";
 // @ts-ignore no types for marked
 import marked from "marked";
 import styled from "styled-components";
+import uuidv4 from "uuid/v4";
 
 let mermaidAPI;
 if(typeof document === "undefined"){
@@ -53,19 +54,20 @@ function useMermaid() {
   useLayoutEffect(() => {
     if (ref && ref.current && mermaidAPI) {
       const charts = ref.current.querySelectorAll(".mermaid");
-      charts.forEach(element => {
+      charts.forEach((element:HTMLDivElement) => {
         if(element.querySelector("svg")){
           return; // Already rendered
         }
-        var insertSvg = function(svgCode:string, bindFunctions) {
-          element.innerHTML = svgCode;
-        };
-        // Disposable temporary container for mermaid
-        const tempContainer = document.createElement("div");
         try{
-          var graphDefinition = element.innerText;
-          mermaidAPI.render("graphDiv", graphDefinition, insertSvg, tempContainer);  
+          var graphDefinition = element.dataset.graph;
+          const insertSvg = (svg:string)=>{
+            element.innerHTML = svg;
+          }
+          const tempId = "graphDiv"+uuidv4()
+
+          mermaidAPI.render(tempId, graphDefinition, insertSvg);  
         }catch(e){
+          console.error("Failed to render mermaid", e);
           // Ignore errors
         }
       });
@@ -74,9 +76,26 @@ function useMermaid() {
   return [ref];
 }
 
+function quoteattr(s, preserveCR?:string) {
+  preserveCR = preserveCR ? '&#13;' : '\n';
+  return ('' + s) /* Forces the conversion to string. */
+      .replace(/&/g, '&amp;') /* This MUST be the 1st replacement. */
+      .replace(/'/g, '&apos;') /* The 4 other predefined entities, required. */
+      .replace(/"/g, '&quot;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      /*
+      You may add other replacements here for HTML only 
+      (but it's not necessary).
+      Or for XML, only if the named entities are defined in its DTD.
+      */ 
+      .replace(/\r\n/g, preserveCR) /* Must be before the next replacement. */
+      .replace(/[\r\n]/g, preserveCR);
+      ;
+}
 renderer.code = function(code?: string, language?: string) {
   if (language && language.toLowerCase() === "mermaid") {
-    return '<div class="mermaid">' + code + "</div>";
+    return '<div class="mermaid" data-graph="'+quoteattr(code)+'"></div>';
   } else {
     return marked.Renderer.prototype.code.apply(this, arguments);
   }
