@@ -181,7 +181,7 @@ export default function render() {
           </div>
           <div>
             {/* <Name>Description</Name> */}
-            <Text>{description}</Text>
+            <Text><Markdown source={description}/></Text>
           </div>
           <div>
             <Name>Timeline</Name>
