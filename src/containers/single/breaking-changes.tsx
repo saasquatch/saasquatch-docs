@@ -4,6 +4,7 @@ import Markdown from "../../components/Markdown";
 import PageHeader from "../../components/PageHeader";
 import styled from "styled-components";
 import moment from "moment";
+import { PrimaryButton } from "../../components/Buttons";
 import { useRouteData } from "react-static";
 
 const Timeline = styled.div`
@@ -110,34 +111,64 @@ const FormStyle = styled.div`
     margin: 15px;
     width: 250px;
   }
+
   & button {
     margin: 15px;
-    border-radius: 20px;
-    min-width: 100px;
-    padding: 3px 19px;
-    background: #f5a841;
-    border: 1px solid #f5a841;
-    color: #fff;
-    font-weight: 600;
-    font-size: 13px;
-    outline: none;
-    cursor: pointer;
-
-    &:hover {
-      background: #d88d27;
-      border: 1px solid #d88d27;
-    }
   }
 `;
 
 const url = "//ReferralSaaSquatch.us4.list-manage.com/subscribe/post?u=4ea25ef0489446654b07fd1a1&id=7f070539cb";
 
 // simplest form (only email)
-const SimpleForm = () => (
-  <FormStyle>
-    <MailchimpSubscribe url={url} />
-  </FormStyle>
-);
+type FormProps = {
+  status: "sending" | "error" | "success";
+  message: string;
+  onValidated: (param: { EMAIL: string }) => void;
+};
+const CustomForm = ({ status, message, onValidated }: FormProps) => {
+  let email = { value: "" };
+  const submit = () => {
+    email &&
+      email.value.indexOf("@") > -1 &&
+      onValidated({
+        EMAIL: email.value
+      });
+  };
+
+  const loading = status === "sending";
+  const buttonText = status === "sending" ? "Sending..." : "Subscribe";
+  const successColor = status === "success" ? "#57AC59" : "";
+
+  return (
+    <FormStyle>
+      <input
+        ref={node => (email = node)}
+        type="email"
+        placeholder="Your Email"
+      />
+      {status === "error" && (
+        <div
+          style={{ color: "red", marginLeft: "15px" }}
+          dangerouslySetInnerHTML={{ __html: message }}
+        />
+      )}
+      {status === "success" && (
+        <div
+          style={{ color: "green" }}
+          dangerouslySetInnerHTML={{ __html: message }}
+        />
+      )}
+      <PrimaryButton
+        loading={loading}
+        onClick={() => submit()}
+        buttonColor={successColor}
+        darkercolor={successColor}
+      >
+        {buttonText}
+      </PrimaryButton>
+    </FormStyle>
+  );
+};
 
 const entry = {
   title: "Breaking Changes",
@@ -148,7 +179,6 @@ const entry = {
 };
 
 export default function render() {
-
   const { breakingChanges } = useRouteData();
 
   type ChangeProps = {
@@ -174,14 +204,14 @@ export default function render() {
         <Connector />
         <Body>
           <div>
-            {/* <Name>Title</Name> */}
             <Text>
               <b>{title}</b>
             </Text>
           </div>
           <div>
-            {/* <Name>Description</Name> */}
-            <Text><Markdown source={description}/></Text>
+            <Text>
+              <Markdown source={description} />
+            </Text>
           </div>
           <div>
             <Name>Timeline</Name>
@@ -235,13 +265,22 @@ export default function render() {
             <SubscribeP>
               We will notify you when breaking changes are made
             </SubscribeP>
-            <SimpleForm />
+            <MailchimpSubscribe
+              url={url}
+              render={({ subscribe, status, message }) => (
+                <CustomForm
+                  status={status}
+                  message={message}
+                  onValidated={formData => subscribe(formData)}
+                />
+              )}
+            />
           </Well>
         </div>
 
         <h3>Upcoming Changes</h3>
         <Timeline>
-          {breakingChanges.map((c:Change, i) => {
+          {breakingChanges.map((c: Change, i) => {
             const mermaidMd = c.timeline
               ? "\n```mermaid\n" + c.timeline + "\n```"
               : undefined;
