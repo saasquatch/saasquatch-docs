@@ -43,12 +43,12 @@ const Deadline = styled.span`
 
 const Dot = styled.div`
   position: absolute;
-  left: -26px;
-  top: 14px;
+  left: -23px;
+  top: 17px;
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  background: #003b45;
+  width: 15px;
+  height: 15px;
+  background: #f5a841;
   z-index: 3;
 `;
 
@@ -81,10 +81,62 @@ const Text = styled.span`
   flex: 1;
 `;
 
+const Well = styled.div`
+  padding: 30px;
+  background: white;
+  border: 2px solid #eaeaea;
+  border-radius: 5px;
+  width: 350px;
+`;
+
+const SubscribeText = styled.p`
+  margin: 15px auto;
+  font-size: 18px;
+  font-weight: bold;
+  max-width: 270px;
+`;
+
+const SubscribeP = styled.p`
+  margin: 15px auto;
+  padding-top: 10px;
+  font-size: 14px;
+  color: grey;
+  max-width: 270px;
+`;
+
+const FormStyle = styled.div`
+  & input {
+    margin: 15px;
+    width: 250px;
+  }
+  & button {
+    margin: 15px;
+    border-radius: 20px;
+    min-width: 100px;
+    padding: 3px 19px;
+    background: #f5a841;
+    border: 1px solid #f5a841;
+    color: #fff;
+    font-weight: 600;
+    font-size: 13px;
+    outline: none;
+    cursor: pointer;
+
+    &:hover {
+      background: #d88d27;
+      border: 1px solid #d88d27;
+    }
+  }
+`;
+
 const url = "//xxxx.us13.list-manage.com/subscribe/post?u=zefzefzef&id=fnfgn";
 
 // simplest form (only email)
-const SimpleForm = () => <MailchimpSubscribe url={url} />;
+const SimpleForm = () => (
+  <FormStyle>
+    <MailchimpSubscribe url={url} />
+  </FormStyle>
+);
 
 const entry = {
   title: "Breaking Changes",
@@ -145,30 +197,43 @@ export default function render() {
   return (
     <PageHeader {...entry}>
       <>
-        <div className="well">
-          <p>Subscribe to Breaking Changes</p>
-          <SimpleForm />
+        <div
+          style={{
+            display: "flex",
+            alignItems: "flex-start",
+            marginRight: "60px"
+          }}
+        >
+          <div style={{ paddingRight: "50px" }}>
+            <h3>Breaking Change Policy</h3>
+            <p>
+              While advancing the SaaSquatch platform we do our best to ensure
+              we meet the needs of current, new and future customers.
+            </p>
+            <ul>
+              <li>
+                We try to maintain backwards compatibility for customers as long
+                as possible.
+              </li>
+              <li>
+                When we remove functionality, existing customers may be
+                "grandfathered" in.
+              </li>
+              <li>
+                If a breaking change can be rolled our slowly, we start disabing
+                the feature for a portion of traffic before turning it off
+                completely.
+              </li>
+            </ul>
+          </div>
+          <Well>
+            <SubscribeText>Subscribe to Breaking Changes</SubscribeText>
+            <SubscribeP>
+              We will notify you when breaking changes are made
+            </SubscribeP>
+            <SimpleForm />
+          </Well>
         </div>
-
-        <h3>Breaking Change Policy</h3>
-        <p>
-          While advancing the SaaSquatch platform we do our best to ensure we
-          meet the needs of current, new and future customers.
-        </p>
-        <ul>
-          <li>
-            We try to maintain backwards compatibility for customers as long as
-            possible.
-          </li>
-          <li>
-            When we remove functionality, existing customers may be
-            "grandfathered" in.
-          </li>
-          <li>
-            If a breaking change can be rolled our slowly, we start disabing the
-            feature for a portion of traffic before turning it off completely.
-          </li>
-        </ul>
 
         <h3>Upcoming Changes</h3>
         <Timeline>
@@ -187,33 +252,6 @@ export default function render() {
             );
           })}
         </Timeline>
-        {/* <table className="table">
-          <thead>
-            <tr>
-              <th>Deadline</th>
-              <th>Breaking Change</th>
-            </tr>
-          </thead>
-          <tbody>
-            {CHANGES.map((c, i) => {
-              console.debug(mermaidMd);
-              return (
-                <tr key={i}>
-                  <td>{c.deadline}</td>
-                  <td>
-                    <b>{c.title}</b>
-                    <p>{c.description}</p>
-                    {mermaidMd && (
-                      <div className="mermiad-markdown">
-                        <Markdown source={mermaidMd} />
-                      </div>
-                    )}
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table> */}
       </>
     </PageHeader>
   );
