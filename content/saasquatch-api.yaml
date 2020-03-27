@@ -261,7 +261,9 @@ paths:
 
       description: |
         Looks up a user based upon their `referralCode` and returns their personal information.
-        This method is useful for retrieving the user when only the Referral Code is available. For example when a referred user enters a Referral Code during checkout and you want to find out who this Referral Code belongs to.
+        This method is useful for retrieving the user when only the Referral Code is available.
+        For example when a referred user enters a Referral Code during checkout and you want to find out who this Referral Code belongs to.
+        `referralCode` and `shareLinks` in the response are for the classic referral program.
       parameters:
         - name: referralCode
           in: query
@@ -378,7 +380,7 @@ paths:
         - UserJWT: []
 
       description: |
-        This method can be used to track when users <a href="/developer/purchase-object/">make purchases</a>, download items, or take other meaningful actions that you want to use to trigger your programs. 
+        This method can be used to track when users <a href="/developer/purchase-object/">make purchases</a>, download items, or take other meaningful actions that you want to use to trigger your programs.
       parameters:
         - name: accountId
           in: path
@@ -1510,13 +1512,15 @@ paths:
       responses:
         200:
           description: Found user
+          schema:
+            $ref: "#/definitions/UserByCode"
           examples:
             application/json:
               id: '876343'
               accountId: '613611'
               email: bob@example.com
               firstName: Bob
-              lastName: Testerson
+              lastInitial: T
               referralCode: BOBTESTERSON
               imageUrl: ''
         403:
@@ -1647,10 +1651,10 @@ paths:
         - UserJWT: []
       description: |
         Lists all of the referrals involving the given user. This method is the primary way of getting a list of everyone that has made a referral and everyone that has been referred, and supports pagination using the parameters for `limit` and `offset` to iterate through a very large list of records.
-        
+
         **Note:** Either the `referringAccountId` and `referringUserId` or `referredAccountId` and `referredUserId` parameters are required, along with a [read token](../openendpoints/) for authenticaion.
 
-        This is an [Open Endpoint](../openendpoints/) and disabled by default. Contact support to enable the open endpoints. 
+        This is an [Open Endpoint](../openendpoints/) and disabled by default. Contact support to enable the open endpoints.
       parameters:
         - name: referringAccountId
           in: query
@@ -2599,8 +2603,8 @@ definitions:
       PCT_DISCOUNT:
         type: "PCT_DISCOUNT"
         discountPercent: 20
-        unit: "%"    
-    
+        unit: "%"
+
   NewReward:
     description: Details of a new reward to create.
     properties:
@@ -2766,7 +2770,7 @@ definitions:
         unit: "CENTS"
         amount: 1000
         fueltankType: "CREDIT"
-  
+
   Redemption:
     title: A redemption object
     description: "Details about when a quantity of a reward was redeemed from the SaaSquatch system."
@@ -4736,6 +4740,35 @@ definitions:
       shareLinks:
         $ref: "#/definitions/Sharelink/example"
 
+  UserByCode:
+    title: Subset of user information
+    description: A subset of user information that is publicly visible via someone's referral code.
+    properties:
+      id:
+        type: string
+        example: "219065"
+        description: The unique identifier provided for this user.
+      accountId:
+        type: string
+        example: "accc9065"
+        description: The unique identifier of the Account that this user belongs to.
+      firstName:
+        type: string
+        example: "Bob"
+        description: |
+          The user's first name
+      lastInitial:
+        type: string
+        description: The first initial of the user's last name
+      referralCode:
+        type: string
+        description: The referral code used to look up this user
+      imageUrl:
+        type: string
+        example: "https://www.example.com/profile/ab5111251125"
+        description: |
+          Optionally used in widgets, emails, and themes. If you provide a absolute profile image URL the minimum image size is 80px x 80px.
+
   OpenUserStub:
     title: A Open User object stub
     description: An object describing an individual user submitted to an open endpoint when you want to create a new user, called a OpenUserStub.
@@ -5065,7 +5098,7 @@ definitions:
             description: The ID of the program that each user's sharelinks and referral code should be populated from. Only works with reports of type `USER`.
             type: string
             example: my-program-id
-  
+
   Export:
     description: An Export lets you get your customer data out of your Referral SaaSquatch tenant. There are exports for returning Users, Referrals and Reward Balances.
     required:
