@@ -8,7 +8,21 @@ import Markdown from "../../components/Markdown";
 import exampleSwaggerSchema from "../../../metalsmith/filters/exampleSwaggerSchemaFilter";
 import { Properties } from "../../components/Properties";
 import useVersion from "../../components/useVersion";
-import { ToggleButton } from "components/ToggleButton";
+
+const FilterHeader = styled.div`
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 20px;
+`;
+
+const VersionLabel = styled.span`
+  height: 20px;
+  padding: 5px 5px 0 5px;
+  margin-bottom: 15px;
+  margin-left: 15px;
+  font-size: 16px;
+`;
 
 const HTTPMethod = styled.span`
   text-transform: uppercase;
@@ -109,12 +123,24 @@ export default function render() {
 }
 
 function Page({ swagger, tagMap, methodsByTag }) {
-  const [version] = useVersion();
+  const [version, setVersion] = useVersion();
+  console.log(version);
   const entry = {
     title: "Rest API Reference",
     highlights: swagger.info.description,
     sectionType: "developerCenter"
   };
+
+  const changeVersion = (_version: "classic-only" | "hybrid" | "ga-only") => {
+    setVersion(_version);
+  };
+
+  const versionLabel =
+    version === "classic-only"
+      ? "Classic"
+      : version === "ga-only"
+      ? "GA"
+      : "Hybrid";
 
   return (
     <PageHeader {...entry}>
@@ -172,17 +198,29 @@ function Page({ swagger, tagMap, methodsByTag }) {
           </dd>
         </dl>
 
-        <div style={{ display: "flex", alignItems: "flex-end" }}>
-          <h3>Methods Summary</h3>
-          <ToggleButton
-            initialState={true}
-            style={{ marginBottom: "12px" }}
-            enabledText="Filter by Classic"
-            disabledText="Filter by Non-Classic"
-          >
-            Filter by Something
-          </ToggleButton>
-        </div>
+        <FilterHeader>
+          <div style={{ display: "flex", alignItems: "flex-end" }}>
+            <h3>Methods Summary</h3>
+            <VersionLabel className="label">{versionLabel}</VersionLabel>
+          </div>
+          <div>
+            <label htmlFor="filter">Filter Endpoints by</label>
+            <select
+              name="filter"
+              id="filter"
+              defaultValue={version}
+              onChange={e =>
+                changeVersion(
+                  e.currentTarget.value as "classic-only" | "hybrid" | "ga-only"
+                )
+              }
+            >
+              <option value="classic-only">Classic</option>
+              <option value="ga-only">GA</option>
+              <option value="hybrid">All</option>
+            </select>
+          </div>
+        </FilterHeader>
 
         <table className="table">
           <thead>
@@ -204,7 +242,15 @@ function Page({ swagger, tagMap, methodsByTag }) {
 
                 const anchor = "#" + method["x-docs-anchor"];
 
-                if (method.tags.includes("Classic")) {
+                // TODO One way to do it
+                if (
+                  version === "classic-only" &&
+                  !method.tags.includes("Classic")
+                ) {
+                  return <tr />;
+                }
+
+                if (version === "ga-only" && method.tags.includes("Classic")) {
                   return <tr />;
                 }
 
