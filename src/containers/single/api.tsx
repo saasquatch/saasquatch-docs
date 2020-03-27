@@ -8,13 +8,13 @@ import Markdown from "../../components/Markdown";
 import exampleSwaggerSchema from "../../../metalsmith/filters/exampleSwaggerSchemaFilter";
 import { Properties } from "../../components/Properties";
 import useVersion from "../../components/useVersion";
+import { ToggleButton } from "components/ToggleButton";
 
 const HTTPMethod = styled.span`
   text-transform: uppercase;
 `;
 
 function CodeExample({ method, httpMethod, methodPath, swagger }: any) {
-
   const query =
     method.parameters &&
     method.parameters
@@ -101,233 +101,245 @@ function AuthTags({ method }: any) {
   );
 }
 
-export default function render(){
+export default function render() {
   const { swagger, tagMap, methodsByTag } = useRouteData();
   // Performance optimization. See: https://github.com/facebook/react/issues/15156
   // Don't remove this line!
-  return <Page swagger={swagger} tagMap={tagMap} methodsByTag={methodsByTag} />
+  return <Page swagger={swagger} tagMap={tagMap} methodsByTag={methodsByTag} />;
 }
 
-function Page({ swagger, tagMap, methodsByTag }){
-
+function Page({ swagger, tagMap, methodsByTag }) {
   const [version] = useVersion();
   const entry = {
     title: "Rest API Reference",
     highlights: swagger.info.description,
     sectionType: "developerCenter"
-  }
-  
-  return (
+  };
 
+  return (
     <PageHeader {...entry}>
       <>
-      <h3>Tag Summary</h3>
+        <h3>Tag Summary</h3>
 
-      <p>
-        API methods are organized by <b>tags</b> of similar functionality. If
-        you're in a hurry to understand how the SaaSquatch REST API works, then
-        understanding the tags is a great place to start.
-      </p>
+        <p>
+          API methods are organized by <b>tags</b> of similar functionality. If
+          you're in a hurry to understand how the SaaSquatch REST API works,
+          then understanding the tags is a great place to start.
+        </p>
 
-      <dl className="dl-horizontal">
-        {Object.keys(tagMap).map((k: any) => {
-          const tag = tagMap[k];
-          return (
-            <>
-              <dt>
-                <span className="label">{tag.name}</span>
-              </dt>
-              <dd><Markdown source={tag.description}/></dd>
-            </>
-          );
-        })}
-      </dl>
+        <dl className="dl-horizontal">
+          {Object.keys(tagMap).map((k: any) => {
+            const tag = tagMap[k];
+            return (
+              <>
+                <dt>
+                  <span className="label">{tag.name}</span>
+                </dt>
+                <dd>
+                  <Markdown source={tag.description} />
+                </dd>
+              </>
+            );
+          })}
+        </dl>
 
-      <h3>Authentication Summary</h3>
+        <h3>Authentication Summary</h3>
 
-      <p>
-        API methods may be used with one or several authentication schemes as
-        defined in this table:
-      </p>
+        <p>
+          API methods may be used with one or several authentication schemes as
+          defined in this table:
+        </p>
 
-      <dl className="dl-horizontal">
-        {Object.keys(swagger.securityDefinitions).map((key: string) => {
-          const secDef = swagger.securityDefinitions[key];
-          return (
-            <>
-              <dt>
-                <span className="label">{key}</span>
-              </dt>
-              <dd><Markdown source={secDef.description}/></dd>
-            </>
-          );
-        })}
-        <dt>
-          <span className="label">Unauthenticated</span>
-        </dt>
-        <dd>
-          Does not require any type of authentication to make this API call.
-        </dd>
-      </dl>
+        <dl className="dl-horizontal">
+          {Object.keys(swagger.securityDefinitions).map((key: string) => {
+            const secDef = swagger.securityDefinitions[key];
+            return (
+              <>
+                <dt>
+                  <span className="label">{key}</span>
+                </dt>
+                <dd>
+                  <Markdown source={secDef.description} />
+                </dd>
+              </>
+            );
+          })}
+          <dt>
+            <span className="label">Unauthenticated</span>
+          </dt>
+          <dd>
+            Does not require any type of authentication to make this API call.
+          </dd>
+        </dl>
 
-      <h3>Methods Summary</h3>
+        <div style={{ display: "flex", alignItems: "flex-end" }}>
+          <h3>Methods Summary</h3>
+          <ToggleButton
+            initialState={true}
+            style={{ marginBottom: "12px" }}
+            enabledText="Filter by Classic"
+            disabledText="Filter by Non-Classic"
+          >
+            Filter by Something
+          </ToggleButton>
+        </div>
 
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Method</th>
-            <th>Route</th>
-            <th>Description</th>
-            <th>Auth</th>
-            <th>Tags</th>
-          </tr>
-        </thead>
-        <tbody>
-          {Object.keys(swagger.paths).map((path: string) => {
-            const methodPath = path;
-            const methods = swagger.paths[path];
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Method</th>
+              <th>Route</th>
+              <th>Description</th>
+              <th>Auth</th>
+              <th>Tags</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Object.keys(swagger.paths).map((path: string) => {
+              const methodPath = path;
+              const methods = swagger.paths[path];
 
-            return Object.keys(methods).map((httpMethod: string) => {
-              const method = methods[httpMethod];
+              return Object.keys(methods).map((httpMethod: string) => {
+                const method = methods[httpMethod];
 
-              const anchor = "#" + method["x-docs-anchor"];
+                const anchor = "#" + method["x-docs-anchor"];
 
-              if(!method.tags.includes("Classic")){
-                return <tr/>
-              }
+                if (method.tags.includes("Classic")) {
+                  return <tr />;
+                }
 
-              return (
-                <tr>
-                  <td>
-                    <HTTPMethod>{httpMethod}</HTTPMethod>
-                  </td>
-                  <td className="docs-monospace">
+                return (
+                  <tr>
+                    <td>
+                      <HTTPMethod>{httpMethod}</HTTPMethod>
+                    </td>
+                    <td className="docs-monospace">
+                      {swagger.basePath}
+                      {methodPath}
+                    </td>
+                    <td>
+                      <a href={anchor} className="nav-onpage">
+                        {method.summary}
+                      </a>
+                    </td>
+                    <td>
+                      <AuthTags method={method} />
+                    </td>
+                    <td>
+                      <Tags method={method} />
+                    </td>
+                  </tr>
+                );
+              });
+            })}
+          </tbody>
+        </table>
+
+        {Object.keys(swagger.paths).map((path: string) => {
+          const methodPath = path;
+          const methods = swagger.paths[path];
+
+          return Object.keys(methods).map((httpMethod: string) => {
+            const method = methods[httpMethod];
+
+            return (
+              <div id={method["x-docs-anchor"]} className="apidocs-section">
+                <div className="js-apidocs-method-title">
+                  <h2 className="js-apidocs-methodname {%if method['deprecated'] %}js-apidocs-method-deprecated{% endif %}">
+                    {method.summary}
+                  </h2>
+
+                  <HTTPMethod className="label js-apidocs-method-type docs-label-{{httpMethod | lower}}">
+                    {httpMethod}
+                  </HTTPMethod>
+                  <code className="js-apidocs-method-code">
                     {swagger.basePath}
                     {methodPath}
-                  </td>
-                  <td>
-                    <a href={anchor} className="nav-onpage">
-                      {method.summary}
-                    </a>
-                  </td>
-                  <td>
-                    <AuthTags method={method} />
-                  </td>
-                  <td>
-                    <Tags method={method} />
-                  </td>
-                </tr>
-              );
-            });
-          })}
-        </tbody>
-      </table>
-
-      {Object.keys(swagger.paths).map((path: string) => {
-        const methodPath = path;
-        const methods = swagger.paths[path];
-
-        return Object.keys(methods).map((httpMethod: string) => {
-          const method = methods[httpMethod];
-
-          return (
-            <div id={method["x-docs-anchor"]} className="apidocs-section">
-              <div className="js-apidocs-method-title">
-                <h2 className="js-apidocs-methodname {%if method['deprecated'] %}js-apidocs-method-deprecated{% endif %}">
-                  {method.summary}
-                </h2>
-
-                <HTTPMethod className="label js-apidocs-method-type docs-label-{{httpMethod | lower}}">
-                  {httpMethod}
-                </HTTPMethod>
-                <code className="js-apidocs-method-code">
-                  {swagger.basePath}
-                  {methodPath}
-                </code>
-              </div>
-
-              {method["deprecated"] && (
-                <div className="deprecated-label-box">
-                  <span className="label deprecated-label">Deprecated</span>
+                  </code>
                 </div>
-              )}
 
-              <div className="lead">
-                <Markdown source={method.description} />
-              </div>
-
-              <p>
-                <b>Tags</b>:
-                <Tags method={method} /> <b>Authentication</b>:
-                <AuthTags method={method} />
-              </p>
-
-              <details>
-                <summary>View Method Details</summary>
-                <div>
-                  <h4 style={{ marginTop: "40px" }}>Arguments</h4>
-                  <div>
-                    <table className="table table-hover apidocs-args">
-                      {method.parameters.map((param: any) => {
-                        const signature =
-                          param.in == "body" ? (
-                            <>
-                              {" "}
-                              {param.name}
-                              <br />
-                              <span className="muted">JSON&nbsp;Body</span>
-                            </>
-                          ) : (
-                            <>
-                              {param.name}
-                              <br />
-                              <span className="muted">
-                                {param.type || "object"}
-                              </span>
-                            </>
-                          );
-
-                        return (
-                          <tr>
-                            <td>
-                              {(param.required || param.in == "body") && (
-                                <span className="label">Required</span>
-                              )}
-                            </td>
-                            <th className="docs-monospace">{signature}</th>
-                            <td>
-                              <Markdown source={param.description} />
-
-                              <Properties schema={param.schema} />
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </table>
-
-                    <p>
-                      <b>Example Curl Request</b>
-                    </p>
-                    <CodeExample
-                      method={method}
-                      httpMethod={httpMethod}
-                      methodPath={methodPath}
-                      swagger={swagger}
-                    />
+                {method["deprecated"] && (
+                  <div className="deprecated-label-box">
+                    <span className="label deprecated-label">Deprecated</span>
                   </div>
-                  <h4 style={{ marginTop: "40px" }}>Returns</h4>
-                    
-                  <ResponseTabs method={method} />                  
+                )}
+
+                <div className="lead">
+                  <Markdown source={method.description} />
                 </div>
-              </details>
-            </div>
-          );
-        });
-      })}
+
+                <p>
+                  <b>Tags</b>:
+                  <Tags method={method} /> <b>Authentication</b>:
+                  <AuthTags method={method} />
+                </p>
+
+                <details>
+                  <summary>View Method Details</summary>
+                  <div>
+                    <h4 style={{ marginTop: "40px" }}>Arguments</h4>
+                    <div>
+                      <table className="table table-hover apidocs-args">
+                        {method.parameters.map((param: any) => {
+                          const signature =
+                            param.in == "body" ? (
+                              <>
+                                {" "}
+                                {param.name}
+                                <br />
+                                <span className="muted">JSON&nbsp;Body</span>
+                              </>
+                            ) : (
+                              <>
+                                {param.name}
+                                <br />
+                                <span className="muted">
+                                  {param.type || "object"}
+                                </span>
+                              </>
+                            );
+
+                          return (
+                            <tr>
+                              <td>
+                                {(param.required || param.in == "body") && (
+                                  <span className="label">Required</span>
+                                )}
+                              </td>
+                              <th className="docs-monospace">{signature}</th>
+                              <td>
+                                <Markdown source={param.description} />
+
+                                <Properties schema={param.schema} />
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </table>
+
+                      <p>
+                        <b>Example Curl Request</b>
+                      </p>
+                      <CodeExample
+                        method={method}
+                        httpMethod={httpMethod}
+                        methodPath={methodPath}
+                        swagger={swagger}
+                      />
+                    </div>
+                    <h4 style={{ marginTop: "40px" }}>Returns</h4>
+
+                    <ResponseTabs method={method} />
+                  </div>
+                </details>
+              </div>
+            );
+          });
+        })}
       </>
     </PageHeader>
   );
-};
+}
 
 function JsonCode({ object }: any) {
   const highlighted = useMemo(() => {
@@ -349,63 +361,55 @@ function responseId(method: any, responseKey: string) {
   return method.operationId + "-" + responseKey;
 }
 
-
-function ResponseTabs({method}){
-
+function ResponseTabs({ method }) {
   const [active, setActive] = useState(0);
 
-  return <div className="tabbable">
-  <ul className="nav nav-tabs">
-    {Object.keys(method.responses).map(
-      (key: string, idx: number) => {
-        const className = idx === active ? "active" : null;
-        if (key === "default") {
-          return <></>;
-        }
-        const response = method.responses[key];
-        const target = "." + responseId(method, key);
-        return (
-          <li className={className}>
-            <a
-              className="tab"
-              onClick={()=> setActive(idx)}
-            >
-              <span className="label">HTTP {key}</span>{" "}
-              {response.description}
-            </a>
-          </li>
-        );
-      }
-    )}
-  </ul>
+  return (
+    <div className="tabbable">
+      <ul className="nav nav-tabs">
+        {Object.keys(method.responses).map((key: string, idx: number) => {
+          const className = idx === active ? "active" : null;
+          if (key === "default") {
+            return <></>;
+          }
+          const response = method.responses[key];
+          const target = "." + responseId(method, key);
+          return (
+            <li className={className}>
+              <a className="tab" onClick={() => setActive(idx)}>
+                <span className="label">HTTP {key}</span> {response.description}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
 
-  <div className="tab-content">
-    {Object.keys(method.responses).map(
-      (key: string, idx: number) => {
-        if (key === "default") {
-          return <></>;
-        }
-        const display = idx === active ? "block" : "none";
-        const response = method.responses[key];
-        let className = "tab-pane" + responseId(method, key);
-        return (
-          <div className={className} style={{display}}>
-            <Properties schema={response.schema} />
-            <p>
-              <b>Example Response</b>
-            </p>
-            <pre>HTTP {key}</pre>
-            {response.examples &&
-              Object.keys(response.examples)
-                .filter(mime => mime === "application/json")
-                .map((mime: any) => {
-                  const example = response.examples[mime];
-                  return <JsonCode object={example} />;
-                })}
-          </div>
-        );
-      }
-    )}
-  </div>
-</div>
+      <div className="tab-content">
+        {Object.keys(method.responses).map((key: string, idx: number) => {
+          if (key === "default") {
+            return <></>;
+          }
+          const display = idx === active ? "block" : "none";
+          const response = method.responses[key];
+          let className = "tab-pane" + responseId(method, key);
+          return (
+            <div className={className} style={{ display }}>
+              <Properties schema={response.schema} />
+              <p>
+                <b>Example Response</b>
+              </p>
+              <pre>HTTP {key}</pre>
+              {response.examples &&
+                Object.keys(response.examples)
+                  .filter(mime => mime === "application/json")
+                  .map((mime: any) => {
+                    const example = response.examples[mime];
+                    return <JsonCode object={example} />;
+                  })}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
 }
