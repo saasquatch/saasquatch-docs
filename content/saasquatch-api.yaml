@@ -106,8 +106,9 @@ tags:
  -
   name: Webhook
   description: Webhooks can be used to do real time actions and data synchronization from SaaSquatch.
- - name: Classic
-   description: An endpoint or attribute that only works with the Classic referral programs, and no other programs.
+ -
+  name: Classic
+  description: An endpoint or attribute that only works with the Classic referral programs, and no other programs.
 # -
 #   name: Export
 #   description: Exports are used to do bulk data dumps from your SaaSquatch account.
@@ -130,6 +131,7 @@ paths:
       x-docs-anchor: account_sync
       tags:
         - Account
+        - Classic
       security:
         - APIKey: []
       description: |
@@ -175,6 +177,7 @@ paths:
       x-docs-anchor: get_account
       tags:
         - Account
+        - Classic
       security:
         - APIKey: []
 
@@ -227,6 +230,7 @@ paths:
       x-docs-anchor: create_user
       tags:
         - User
+        - Classic
       security:
         - APIKey: []
       description: |
@@ -295,6 +299,7 @@ paths:
       x-docs-anchor: get_user
       tags:
         - User
+        - Classic
       security:
         - APIKey: []
       description: |
@@ -674,6 +679,7 @@ paths:
       x-docs-anchor: list_users
       tags:
         - User
+        - Classic
       security:
         - APIKey: []
       description: |
@@ -905,6 +911,7 @@ paths:
       x-docs-anchor: moderate_referrals
       tags:
         - Referral
+        - Classic
       security:
         - APIKey: []
 
@@ -2017,6 +2024,7 @@ paths:
       x-docs-anchor: lookup_variables_schema
       tags:
         - Theme
+        - Classic
       security:
         - APIKey: []
       description: |
@@ -2045,6 +2053,7 @@ paths:
       x-docs-anchor: lookup_variables
       tags:
         - Theme
+        - Classic
       security:
         - APIKey: []
 
@@ -2071,6 +2080,7 @@ paths:
       x-docs-anchor: replace_variables
       tags:
         - Theme
+        - Classic
       security:
         - APIKey: []
 
@@ -2101,6 +2111,7 @@ paths:
       x-docs-anchor: update_variables
       tags:
         - Theme
+        - Classic
       security:
         - APIKey: []
       description: |
@@ -2134,6 +2145,7 @@ paths:
       x-docs-anchor: lookup_locale_variables
       tags:
         - Theme
+        - Classic
       security:
         - APIKey: []
 
@@ -2165,6 +2177,7 @@ paths:
       x-docs-anchor: replace_locale_variables
       tags:
         - Theme
+        - Classic
       security:
         - APIKey: []
 
@@ -2200,6 +2213,7 @@ paths:
       x-docs-anchor: update_locale_variables
       tags:
         - Theme
+        - Classic
       security:
         - APIKey: []
       description: |
@@ -2237,6 +2251,7 @@ paths:
       x-docs-anchor: delete_locale_variables
       tags:
         - Theme
+        - Classic
       security:
         - APIKey: []
       description: |
@@ -2268,6 +2283,7 @@ paths:
       x-docs-anchor: preview_theme_email
       tags:
         - Theme
+        - Classic
       security:
         - APIKey: []
 
@@ -2321,6 +2337,7 @@ paths:
       x-docs-anchor: get_coupon
       tags:
         - Discount
+        - Classic
       security:
         - APIKey: []
       description: |
@@ -2357,6 +2374,7 @@ paths:
       x-docs-anchor: set_coupon
       tags:
         - Discount
+        - Classic
       security:
         - APIKey: []
       description: |
@@ -2385,6 +2403,7 @@ paths:
       x-docs-anchor: get_account_reward
       tags:
         - Discount
+        - Classic
       security:
         - APIKey: []
 
