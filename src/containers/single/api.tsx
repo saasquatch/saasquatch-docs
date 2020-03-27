@@ -7,7 +7,7 @@ import PageHeader from "../../components/PageHeader";
 import Markdown from "../../components/Markdown";
 import exampleSwaggerSchema from "../../../metalsmith/filters/exampleSwaggerSchemaFilter";
 import { Properties } from "../../components/Properties";
-import useVersion from "../../components/useVersion";
+import { VersionContext } from "../../components/useVersion";
 
 const FilterHeader = styled.div`
   display: flex;
@@ -123,24 +123,21 @@ export default function render() {
 }
 
 function Page({ swagger, tagMap, methodsByTag }) {
-  const [version, setVersion] = useVersion();
-  console.log(version);
+  const { version } = VersionContext.useContainer();
+  console.log("version", version);
+
   const entry = {
     title: "Rest API Reference",
     highlights: swagger.info.description,
     sectionType: "developerCenter"
   };
 
-  const changeVersion = (_version: "classic-only" | "hybrid" | "ga-only") => {
-    setVersion(_version);
-  };
-
   const versionLabel =
     version === "classic-only"
-      ? "Classic"
+      ? "Works With Classic"
       : version === "ga-only"
-      ? "GA"
-      : "Hybrid";
+      ? "No Classic"
+      : "All";
 
   return (
     <PageHeader {...entry}>
@@ -203,7 +200,7 @@ function Page({ swagger, tagMap, methodsByTag }) {
             <h3>Methods Summary</h3>
             <VersionLabel className="label">{versionLabel}</VersionLabel>
           </div>
-          <div>
+          {/* <div>
             <label htmlFor="filter">Filter Endpoints by</label>
             <select
               name="filter"
@@ -219,7 +216,7 @@ function Page({ swagger, tagMap, methodsByTag }) {
               <option value="ga-only">GA</option>
               <option value="hybrid">All</option>
             </select>
-          </div>
+          </div> */}
         </FilterHeader>
 
         <table className="table">
@@ -244,13 +241,9 @@ function Page({ swagger, tagMap, methodsByTag }) {
 
                 // TODO One way to do it
                 if (
-                  version === "classic-only" &&
-                  !method.tags.includes("Classic")
+                  version === "ga-only" &&
+                  method.tags.includes("Classic Only")
                 ) {
-                  return <tr />;
-                }
-
-                if (version === "ga-only" && method.tags.includes("Classic")) {
                   return <tr />;
                 }
 
@@ -291,6 +284,9 @@ function Page({ swagger, tagMap, methodsByTag }) {
             return (
               <div id={method["x-docs-anchor"]} className="apidocs-section">
                 <div className="js-apidocs-method-title">
+                  <a href="#" style={{ float: "right" }}>
+                    Back to List
+                  </a>
                   <h2 className="js-apidocs-methodname {%if method['deprecated'] %}js-apidocs-method-deprecated{% endif %}">
                     {method.summary}
                   </h2>

@@ -1,18 +1,46 @@
 import React, { useLayoutEffect } from "react";
 import { Root, Routes, addPrefetchExcludes } from "react-static";
+import { VersionContext } from "./components/useVersion";
 // import { Link, Router } from "@reach/router";
 import styled from "styled-components";
 
 import "./assets/stylesheets/docs.less";
 
-let init = ()=>{};
+const Personalisation = styled.span`
+  position: fixed;
+  font-weight: bold;
+  color: #003b45;
+  width: calc(100% - 315px);
+  top: 0;
+  left: 264px;
+  height: 40px;
+  padding: 5px 30px;
+  background: #fafafa;
+  border-bottom: 1px solid #eaeaea;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 5;
+
+  & label {
+    display: flex;
+    align-items: center;
+    height: 50px;
+
+    select {
+      margin-top: 15px;
+      margin-left: 15px;
+    }
+  }
+`;
+
+let init = () => {};
 if (typeof document !== "undefined") {
   init = require("./assets/js/docs").init;
 }
 
 const sidebarRaw = require("html-loader!./templates/sidebar.html");
 const apiList = require("html-loader!./templates/apilist.html");
-
 
 // Any routes that start with 'dynamic' will be treated as non-static routes
 addPrefetchExcludes(["dynamic"]);
@@ -51,26 +79,27 @@ function App() {
     // }, 2000);
 
     // window.onhashchange = scrollToAnchor;
-
   }, []);
 
   return (
     <Root>
-      <div id="my-page">
-        <NavigationHeader />
-        <div id="my-content" className="container-fluid">
-          <React.Suspense fallback={<em>Loading...</em>}>
-            {/* <Router> */}
+      <VersionContext.Provider>
+        <div id="my-page">
+          <NavigationHeader />
+          <div id="my-content" className="container-fluid">
+            <React.Suspense fallback={<em>Loading...</em>}>
+              {/* <Router> */}
               {/* <Dynamic path="dynamic" /> */}
               <Routes default />
-            {/* </Router> */}
-          </React.Suspense>
+              {/* </Router> */}
+            </React.Suspense>
+          </div>
+          <div id="my-footer">
+            <NavigationFooter />
+          </div>
         </div>
-        <div id="my-footer">
-          <NavigationFooter />
-        </div>
-      </div>
-      <NavigationSidebar />
+        <NavigationSidebar />
+      </VersionContext.Provider>
     </Root>
   );
 }
@@ -78,8 +107,17 @@ function App() {
 export default App;
 
 function NavigationHeader() {
+  const { version, setVersion } = VersionContext.useContainer();
+
+  const headerText =
+    version === "classic-only"
+      ? "work with Classic programs"
+      : version === "ga-only"
+      ? "work with non-Classic programs"
+      : "work with all programs";
+
   return (
-    <header id="my-header">
+    <header id="my-header" style={{ marginTop: "60px" }}>
       <div className="navbar navbar-top">
         <div className="navbar-inner">
           <div className="container-fluid">
@@ -95,6 +133,22 @@ function NavigationHeader() {
             </button>
 
             <div className="nav-collapse collapse" id="navigation">
+              <Personalisation>
+                <span>Docs are being personalised to {headerText}</span>
+                <label htmlFor="filter">
+                  Change Filter:
+                  <select
+                    id="fitler"
+                    name="filter"
+                    defaultValue={version}
+                    onChange={e => setVersion(e.currentTarget.value)}
+                  >
+                    <option value="classic-only">Works With Classic</option>
+                    <option value="ga-only">No Classic</option>
+                    <option value="hybrid">Show Everything</option>
+                  </select>
+                </label>
+              </Personalisation>
               <ul id="menu-primary-navigation" className="nav pull-right">
                 <li>
                   <a href="https://www.referralsaasquatch.com/">
@@ -140,11 +194,10 @@ function NavigationHeader() {
 }
 
 const FooterUL = styled.ul`
-list-style-type: none; 
-color: white;
-font-weight:300;
-`
-
+  list-style-type: none;
+  color: white;
+  font-weight: 300;
+`;
 
 function NavigationFooter() {
   return (
@@ -262,7 +315,10 @@ function NavigationFooter() {
               </FooterUL>
             </div>
           </div>
-          <div className="span12 text-center" style={{color: "white", marginLeft:"0px"}}>
+          <div
+            className="span12 text-center"
+            style={{ color: "white", marginLeft: "0px" }}
+          >
             <p style={{ opacity: 0.7 }}>
               Copyright © {new Date().getFullYear()} Referral SaaSquatch.com.
               All rights reserved.
@@ -279,7 +335,9 @@ function NavigationFooter() {
   );
 }
 function NavigationSidebar() {
-  const sidebar = sidebarRaw.replace("<APILIST/>", apiList).replace("<APILIST />", apiList);
+  const sidebar = sidebarRaw
+    .replace("<APILIST/>", apiList)
+    .replace("<APILIST />", apiList);
   return <HTML source={sidebar} />;
 }
 

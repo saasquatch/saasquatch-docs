@@ -1,4 +1,5 @@
 import useCookie from "./useCookie";
+import { createContainer } from "unstated-next";
 
 const VERSIONS = ["classic-only", "hybrid", "ga-only"] as const;
 
@@ -9,18 +10,17 @@ type ElementType<T extends ReadonlyArray<unknown>> = T extends ReadonlyArray<
   : never;
 type Version = ElementType<typeof VERSIONS>;
 
-export default function useVersion(): [Version, (next: Version) => void] {
+export function useVersion(): [Version, (next: Version) => void] {
   const [innerVersion, setInnerVersion] = useCookie("docs-version", "hybrid");
 
   // Adds validation
   const setVersion = (v: Version) => {
     // @ts-ignore
-    if (!VERSIONS.includes(v))
-      throw new Error("Invalid version" + v);
+    if (!VERSIONS.includes(v)) throw new Error("Invalid version" + v);
     setInnerVersion(v);
   };
 
-    // @ts-ignore
+  // @ts-ignore
   if (!VERSIONS.includes(innerVersion)) {
     // Override default;
     setVersion("hybrid");
@@ -29,3 +29,14 @@ export default function useVersion(): [Version, (next: Version) => void] {
 
   return [innerVersion as Version, setVersion];
 }
+
+function useVersionContext() {
+  let [version, setVersion] = useVersion();
+
+  return {
+    version,
+    setVersion
+  };
+}
+
+export const VersionContext = createContainer(useVersionContext);

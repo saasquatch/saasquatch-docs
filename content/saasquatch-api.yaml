@@ -79,48 +79,35 @@ parameters:
     collectionFormat: multi
     default: null
 tags:
- -
-  name: Account
-  description: Accounts can be shared between users and accumulate credit.
- -
-  name: User
-  description: Users are the people in your program. In other places a User might also be called a Contact, Lead or Participant.
- -
-  name: User Event
-  description: Events are a way to send SaaSquatch additional information about users. For example, whenever someone makes a purchase or downloads an item.
- -
-  name: Referral Code
-  description: Referral Codes are unique ids used to track referrals.
- -
-  name: Referral
-  description: A Referral tracks who has referred whom.
- -
-  name: Reward Balance
-  description: Reward Balances summarizes the Rewards in someone's account.
- -
-  name: Reward
-  description: A Reward keeps track of a prize, discount or credit that someone has received.
- -
-  name: Open Endpoint
-  description: Open Endpoints are special methods designed specifically for Client-facing applications like the Mobile SDK and Javascript SDK.
- -
-  name: Webhook
-  description: Webhooks can be used to do real time actions and data synchronization from SaaSquatch.
- -
-  name: Classic
-  description: An endpoint or attribute that only works with the Classic referral programs, and no other programs.
-# -
-#   name: Export
-#   description: Exports are used to do bulk data dumps from your SaaSquatch account.
- -
-  name: Theme
-  description: Themes control the look and feel of your program's widgets.
- -
-  name: Discount
-  description: Endpoints for working with discounts. **Most of these are deprecated** in favor of using Reward endpoints.
- -
-  name: Deprecated
-  description: Endpoints that have been deprecated.
+  - name: Account
+    description: Accounts can be shared between users and accumulate credit.
+  - name: User
+    description: Users are the people in your program. In other places a User might also be called a Contact, Lead or Participant.
+  - name: User Event
+    description: Events are a way to send SaaSquatch additional information about users. For example, whenever someone makes a purchase or downloads an item.
+  - name: Referral Code
+    description: Referral Codes are unique ids used to track referrals.
+  - name: Referral
+    description: A Referral tracks who has referred whom.
+  - name: Reward Balance
+    description: Reward Balances summarizes the Rewards in someone's account.
+  - name: Reward
+    description: A Reward keeps track of a prize, discount or credit that someone has received.
+  - name: Open Endpoint
+    description: Open Endpoints are special methods designed specifically for Client-facing applications like the Mobile SDK and Javascript SDK.
+  - name: Webhook
+    description: Webhooks can be used to do real time actions and data synchronization from SaaSquatch.
+  - name: Classic Only
+    description: An endpoint or attribute that only works with the Classic referral programs, and no other programs.
+  # -
+  #   name: Export
+  #   description: Exports are used to do bulk data dumps from your SaaSquatch account.
+  - name: Theme
+    description: Themes control the look and feel of your program's widgets.
+  - name: Discount
+    description: Endpoints for working with discounts. **Most of these are deprecated** in favor of using Reward endpoints.
+  - name: Deprecated
+    description: Endpoints that have been deprecated.
 
 paths:
   "/{tenant_alias}/accountsync":
@@ -131,7 +118,7 @@ paths:
       x-docs-anchor: account_sync
       tags:
         - Account
-        - Classic
+        - Classic Only
       security:
         - APIKey: []
       description: |
@@ -177,7 +164,7 @@ paths:
       x-docs-anchor: get_account
       tags:
         - Account
-        - Classic
+        - Classic Only
       security:
         - APIKey: []
 
@@ -230,7 +217,7 @@ paths:
       x-docs-anchor: create_user
       tags:
         - User
-        - Classic
+        - Classic Only
       security:
         - APIKey: []
       description: |
@@ -299,7 +286,7 @@ paths:
       x-docs-anchor: get_user
       tags:
         - User
-        - Classic
+        - Classic Only
       security:
         - APIKey: []
       description: |
@@ -426,7 +413,7 @@ paths:
                   type: object
                   description: Event Payload
                   required:
-                   - key
+                    - key
                   properties:
                     key:
                       description: The unique name of the event
@@ -459,8 +446,7 @@ paths:
                   dateTriggered: 1538496397475
                   dateReceived: 1538496397475
                   dateProcessed: 1538496397479
-          schema:
-            {}
+          schema: {}
         404:
           description: User/Account NOT found
           schema:
@@ -475,7 +461,7 @@ paths:
       operationId: getSharelinks
       x-docs-anchor: get_sharelinks
       tags:
-        - Classic
+        - Classic Only
         - User
       security:
         - APIKey: []
@@ -615,10 +601,8 @@ paths:
         200:
           description: User blocked successfully
           examples:
-            "application/json":
-              {}
-          schema:
-            {}
+            "application/json": {}
+          schema: {}
         403:
           description: User already blocked
           schema:
@@ -658,10 +642,8 @@ paths:
         200:
           description: User unblocked successfully
           examples:
-            "application/json":
-              {}
-          schema:
-            {}
+            "application/json": {}
+          schema: {}
         403:
           description: User not blocked
           schema:
@@ -679,7 +661,7 @@ paths:
       x-docs-anchor: list_users
       tags:
         - User
-        - Classic
+        - Classic Only
       security:
         - APIKey: []
       description: |
@@ -702,8 +684,7 @@ paths:
               count: 1
               totalCount: 1
               users:
-                -
-                  id: "14125"
+                - id: "14125"
                   accountId: "89842"
                   email: "mark@example.com"
                   firstName: "Mark"
@@ -716,7 +697,6 @@ paths:
             $ref: "#/definitions/UserList"
         default:
           $ref: "#/responses/GeneralError"
-
 
   "/{tenant_alias}/code/{code}":
     get:
@@ -731,8 +711,7 @@ paths:
       description: |
         Looks up a referral code and the attached details
       parameters:
-        -
-          name: code
+        - name: code
           in: path
           description: The referral code to look up. E.g. "BOBTESTERSON"
           required: true
@@ -742,16 +721,16 @@ paths:
         200:
           description: Referral code found
           examples:
-          - code: "BOBTESTERSON"
-            dateCreated: 1411600868797
-            referrerName: "Bob T"
-            reward:
-              $ref: "#/definitions/RewardTemplate/example/CREDIT"
-          - code: "BOBTESTERSON"
-            dateCreated: 1411600868797
-            referrerName: "Bob T"
-            reward:
-              $ref: "#/definitions/RewardTemplate/example/PCT_DISCOUNT"
+            - code: "BOBTESTERSON"
+              dateCreated: 1411600868797
+              referrerName: "Bob T"
+              reward:
+                $ref: "#/definitions/RewardTemplate/example/CREDIT"
+            - code: "BOBTESTERSON"
+              dateCreated: 1411600868797
+              referrerName: "Bob T"
+              reward:
+                $ref: "#/definitions/RewardTemplate/example/PCT_DISCOUNT"
           schema:
             $ref: "#/definitions/Code"
         404:
@@ -813,8 +792,7 @@ paths:
               count: 2
               totalCount: 4
               referrals:
-                -
-                  id: "5462600de4b09b1c41108f28"
+                - id: "5462600de4b09b1c41108f28"
                   referredUser:
                     $ref: "#/definitions/User/example"
                   referrerUser:
@@ -829,8 +807,7 @@ paths:
                   dateModerated: 1427410131006
                   referredModerationStatus: "APPROVED"
                   referrerModerationStatus: "APPROVED"
-                -
-                  id: "546270a6e4b0c1871186a920"
+                - id: "546270a6e4b0c1871186a920"
                   referredUser:
                     $ref: "#/definitions/User/example"
                   referrerUser:
@@ -911,7 +888,7 @@ paths:
       x-docs-anchor: moderate_referrals
       tags:
         - Referral
-        - Classic
+        - Classic Only
       security:
         - APIKey: []
 
@@ -1077,7 +1054,6 @@ paths:
             - $ref: "#/definitions/Reward/example/CREDIT"
             - $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
             - $ref: "#/definitions/Reward/example/FUELTANK"
-
 
         default:
           $ref: "#/responses/GeneralError"
@@ -1526,13 +1502,13 @@ paths:
             $ref: "#/definitions/UserByCode"
           examples:
             application/json:
-              id: '876343'
-              accountId: '613611'
+              id: "876343"
+              accountId: "613611"
               email: bob@example.com
               firstName: Bob
               lastInitial: T
               referralCode: BOBTESTERSON
-              imageUrl: ''
+              imageUrl: ""
         403:
           description: Endpoint disabled
           schema:
@@ -1566,28 +1542,28 @@ paths:
         200:
           description: Referral code found
           examples:
-          - code: "BOBTESTERSON"
-            dateCreated: 1411600868797
-            referrerName: "Bob T"
-            reward:
-              $ref: "#/definitions/RewardTemplate/example/CREDIT"
-          - code: "BOBTESTERSON"
-            dateCreated: 1411600868797
-            referrerName: "Bob T"
-            reward:
-              $ref: "#/definitions/RewardTemplate/example/PCT_DISCOUNT"
+            - code: "BOBTESTERSON"
+              dateCreated: 1411600868797
+              referrerName: "Bob T"
+              reward:
+                $ref: "#/definitions/RewardTemplate/example/CREDIT"
+            - code: "BOBTESTERSON"
+              dateCreated: 1411600868797
+              referrerName: "Bob T"
+              reward:
+                $ref: "#/definitions/RewardTemplate/example/PCT_DISCOUNT"
           schema:
             $ref: "#/definitions/Code"
         403:
-            description: Endpoint disabled
-            schema:
-              $ref: "#/definitions/Error"
+          description: Endpoint disabled
+          schema:
+            $ref: "#/definitions/Error"
         404:
           description: Not Found
           schema:
             $ref: "#/definitions/Error"
-  "/{tenant_alias}/open/code/{referral_code}/account/{account_id}/user/{user_id}":
-    post:
+  ? "/{tenant_alias}/open/code/{referral_code}/account/{account_id}/user/{user_id}"
+  : post:
       summary: Apply a referral code
       operationId: openApplyCode
       x-docs-anchor: open_apply_code
@@ -1606,7 +1582,7 @@ paths:
       parameters:
         - name: referral_code
           in: path
-          description: 'Referral code to apply to user account.'
+          description: "Referral code to apply to user account."
           required: true
           type: string
         - name: account_id
@@ -1641,9 +1617,9 @@ paths:
           schema:
             $ref: "#/definitions/Error"
         403:
-            description: Endpoint disabled
-            schema:
-              $ref: "#/definitions/Error"
+          description: Endpoint disabled
+          schema:
+            $ref: "#/definitions/Error"
         404:
           description: Not Found
           schema:
@@ -1793,7 +1769,6 @@ paths:
           description: No account found for the provided id
           schema:
             $ref: "#/definitions/Error"
-
 
   "/{tenant_alias}/subscription":
     post:
@@ -1973,7 +1948,7 @@ paths:
         after they have been created, often exports are large files that take time to process and prepare. If you want to check if an export is ready to be downloaded,
         use the API method to lookup an export or to list exports.
       produces:
-        - 'text/csv' ## CSV file downloads
+        - "text/csv" ## CSV file downloads
       parameters:
         - name: exportId
           in: path
@@ -2024,7 +1999,7 @@ paths:
       x-docs-anchor: lookup_variables_schema
       tags:
         - Theme
-        - Classic
+        - Classic Only
       security:
         - APIKey: []
       description: |
@@ -2053,7 +2028,7 @@ paths:
       x-docs-anchor: lookup_variables
       tags:
         - Theme
-        - Classic
+        - Classic Only
       security:
         - APIKey: []
 
@@ -2080,7 +2055,7 @@ paths:
       x-docs-anchor: replace_variables
       tags:
         - Theme
-        - Classic
+        - Classic Only
       security:
         - APIKey: []
 
@@ -2111,7 +2086,7 @@ paths:
       x-docs-anchor: update_variables
       tags:
         - Theme
-        - Classic
+        - Classic Only
       security:
         - APIKey: []
       description: |
@@ -2145,7 +2120,7 @@ paths:
       x-docs-anchor: lookup_locale_variables
       tags:
         - Theme
-        - Classic
+        - Classic Only
       security:
         - APIKey: []
 
@@ -2177,7 +2152,7 @@ paths:
       x-docs-anchor: replace_locale_variables
       tags:
         - Theme
-        - Classic
+        - Classic Only
       security:
         - APIKey: []
 
@@ -2213,7 +2188,7 @@ paths:
       x-docs-anchor: update_locale_variables
       tags:
         - Theme
-        - Classic
+        - Classic Only
       security:
         - APIKey: []
       description: |
@@ -2251,7 +2226,7 @@ paths:
       x-docs-anchor: delete_locale_variables
       tags:
         - Theme
-        - Classic
+        - Classic Only
       security:
         - APIKey: []
       description: |
@@ -2283,7 +2258,7 @@ paths:
       x-docs-anchor: preview_theme_email
       tags:
         - Theme
-        - Classic
+        - Classic Only
       security:
         - APIKey: []
 
@@ -2313,16 +2288,15 @@ paths:
         200:
           description: Preview Response
           examples:
-            "text/html":
-              <html>
-                <head>
-                  ...
-                </head>
-                <body>
-                  <h1>Congratulations Mike</h1>
-                  Your friend John has accepted your referral. You will now receive 10% off your next bill.
-                  ...
-                </body>
+            "text/html": <html>
+              <head>
+              ...
+              </head>
+              <body>
+              <h1>Congratulations Mike</h1>
+              Your friend John has accepted your referral. You will now receive 10% off your next bill.
+              ...
+              </body>
               </body>
         204:
           description: SendTo Response
@@ -2337,7 +2311,7 @@ paths:
       x-docs-anchor: get_coupon
       tags:
         - Discount
-        - Classic
+        - Classic Only
       security:
         - APIKey: []
       description: |
@@ -2354,10 +2328,10 @@ paths:
           description: Information about the coupon/referral code
           examples:
             "application/json":
-              "couponCode" : "BOBTESTERSON"
-              "discountPercentage" : 20
-              "dateCreated" : 1377727546528
-              "discountId" : "saasquatch_discount"
+              "couponCode": "BOBTESTERSON"
+              "discountPercentage": 20
+              "dateCreated": 1377727546528
+              "discountId": "saasquatch_discount"
           schema:
             $ref: "#/definitions/DiscountCode"
         404:
@@ -2374,7 +2348,7 @@ paths:
       x-docs-anchor: set_coupon
       tags:
         - Discount
-        - Classic
+        - Classic Only
       security:
         - APIKey: []
       description: |
@@ -2403,7 +2377,7 @@ paths:
       x-docs-anchor: get_account_reward
       tags:
         - Discount
-        - Classic
+        - Classic Only
       security:
         - APIKey: []
 
@@ -2470,8 +2444,8 @@ definitions:
         type: integer
         example: 10
         description: |
-            An integer representing the total discount percentage from the referral program.
-            e.g. For 10% would return the number 10. `discountPercentage` = `referredDiscountPercent` + `referrerDiscountPercent`
+          An integer representing the total discount percentage from the referral program.
+          e.g. For 10% would return the number 10. `discountPercentage` = `referredDiscountPercent` + `referrerDiscountPercent`
       referredDiscountPercent:
         type: integer
         description: |
@@ -3131,7 +3105,7 @@ definitions:
       lastName: Doe
       lastInitial: D
       referralCode: JOHNDOECODE
-      imageUrl: ''
+      imageUrl: ""
       email: john@example.com
       cookieId:
       paymentProviderId:
@@ -3925,12 +3899,12 @@ definitions:
                   title: Default Widget Type
                   default: REFERRER_WIDGET
                   enum:
-                  - REFERRER_WIDGET
-                  - CONVERSION_WIDGET
+                    - REFERRER_WIDGET
+                    - CONVERSION_WIDGET
                   options:
                     enum_titles:
-                    - Referrer's Widget
-                    - Referred User Widget
+                      - Referrer's Widget
+                      - Referred User Widget
             conversionUrls:
               type: array
               items:
@@ -3949,12 +3923,12 @@ definitions:
                   widgetType:
                     type: string
                     enum:
-                    - REFERRER_WIDGET
-                    - CONVERSION_WIDGET
+                      - REFERRER_WIDGET
+                      - CONVERSION_WIDGET
                     options:
                       enum_titles:
-                      - Referrer's Widget
-                      - Referred User Widget
+                        - Referrer's Widget
+                        - Referred User Widget
         widget:
           type: object
           properties:
@@ -3969,52 +3943,55 @@ definitions:
                   properties:
                     widgetCustomization:
                       allOf:
-                      - title: Customize Referral Widget
-                        properties:
-                          widgetFont:
-                            default: '"Helvetica Neue",Helvetica,Arial,sans-serif'
-                          headerColor:
-                            default: "#4486E1"
-                          heading:
-                            default: Give ${{math programDetails.referredRewardDetails.credit
-                              ' / 100'}} and Get ${{math programDetails.referrerRewardDetails.credit
-                              ' / 100'}}!
-                          headerDetails:
-                            default: Give a friend ${{math programDetails.referredRewardDetails.credit
-                              ' / 100'}} credit off {{companyName}} and receive ${{math
-                              programDetails.referrerRewardDetails.credit ' / 100'}} for
-                              yourself when they pay their first bill.
-                          shareCodeDetails:
-                            type: string
-                            format: markdown
-                            title: Call To Action Text
-                            default: Share the link below or use the code **{{user.referralCode}}**
-                            options:
-                              input_height: 100px
-                              validate:
-                              - handlebars
-                          registrationHeader:
-                            type: string
-                            format: markdown
-                            title: Registration Header
-                            default: Thanks for sending your first referral!<br>Give us
-                              your email to ensure you get rewarded when your referral is
-                              used.
-                            options:
-                              input_height: 100px
-                              validate:
-                              - handlebars
-                      - "$ ref": "#/definitions/widget/definitions/content/definitions/generalBody"
+                        - title: Customize Referral Widget
+                          properties:
+                            widgetFont:
+                              default: '"Helvetica Neue",Helvetica,Arial,sans-serif'
+                            headerColor:
+                              default: "#4486E1"
+                            heading:
+                              default:
+                                Give ${{math programDetails.referredRewardDetails.credit
+                                ' / 100'}} and Get ${{math programDetails.referrerRewardDetails.credit
+                                ' / 100'}}!
+                            headerDetails:
+                              default:
+                                Give a friend ${{math programDetails.referredRewardDetails.credit
+                                ' / 100'}} credit off {{companyName}} and receive ${{math
+                                programDetails.referrerRewardDetails.credit ' / 100'}} for
+                                yourself when they pay their first bill.
+                            shareCodeDetails:
+                              type: string
+                              format: markdown
+                              title: Call To Action Text
+                              default: Share the link below or use the code **{{user.referralCode}}**
+                              options:
+                                input_height: 100px
+                                validate:
+                                  - handlebars
+                            registrationHeader:
+                              type: string
+                              format: markdown
+                              title: Registration Header
+                              default:
+                                Thanks for sending your first referral!<br>Give us
+                                your email to ensure you get rewarded when your referral is
+                                used.
+                              options:
+                                input_height: 100px
+                                validate:
+                                  - handlebars
+                        - "$ ref": "#/definitions/widget/definitions/content/definitions/generalBody"
                     shareMessaging:
                       allOf:
-                      - "$ ref": "#/definitions/widget/definitions/content/definitions/shareContent"
-                      - required:
-                        - emailShareBody
-                        - emailShareSubject
-                        - facebookShareSubject
-                        - facebookShareBody
-                        - twitterShareBody
-                        - smsShareBody
+                        - "$ ref": "#/definitions/widget/definitions/content/definitions/shareContent"
+                        - required:
+                            - emailShareBody
+                            - emailShareSubject
+                            - facebookShareSubject
+                            - facebookShareBody
+                            - twitterShareBody
+                            - smsShareBody
                 cta:
                   type: object
                   properties:
@@ -4022,10 +3999,10 @@ definitions:
                       "$ ref": "#/definitions/widget/definitions/cta/definitions/configuration"
                     content:
                       allOf:
-                      - properties:
-                          buttonText:
-                            default: Refer Friends For Rewards
-                      - "$ ref": "#/definitions/widget/definitions/cta/definitions/content"
+                        - properties:
+                            buttonText:
+                              default: Refer Friends For Rewards
+                        - "$ ref": "#/definitions/widget/definitions/cta/definitions/content"
             CONVERSION_WIDGET:
               type: object
               properties:
@@ -4037,30 +4014,31 @@ definitions:
                   properties:
                     widgetCustomization:
                       allOf:
-                      - title: Customize Referred Widget
-                        properties:
-                          widgetHeaderImage:
-                            type: string
-                            format: text
-                            minLength: 1
-                            title: 'Heading Image Url:'
-                            default: "{{assets 'images/conversion.png'}}"
-                          widgetFont:
-                            default: '"Helvetica Neue",Helvetica,Arial,sans-serif'
-                          headerColor:
-                            default: "#444"
-                          heading:
-                            default: You were Successfully Referred to {{companyName}}
-                          headerDetails:
-                            default: Use the Referral Code<br><span id="squatch-share-code">{{referredBy.referredByUser.referralCode}}</span><br>at
-                              checkout to receive your referral discount
-                          buttonCopy:
-                            type: string
-                            format: text
-                            minLength: 1
-                            title: Button Copy
-                            default: COPY CODE
-                      - "$ ref": "#/definitions/widget/definitions/content/definitions/generalBody"
+                        - title: Customize Referred Widget
+                          properties:
+                            widgetHeaderImage:
+                              type: string
+                              format: text
+                              minLength: 1
+                              title: "Heading Image Url:"
+                              default: "{{assets 'images/conversion.png'}}"
+                            widgetFont:
+                              default: '"Helvetica Neue",Helvetica,Arial,sans-serif'
+                            headerColor:
+                              default: "#444"
+                            heading:
+                              default: You were Successfully Referred to {{companyName}}
+                            headerDetails:
+                              default:
+                                Use the Referral Code<br><span id="squatch-share-code">{{referredBy.referredByUser.referralCode}}</span><br>at
+                                checkout to receive your referral discount
+                            buttonCopy:
+                              type: string
+                              format: text
+                              minLength: 1
+                              title: Button Copy
+                              default: COPY CODE
+                        - "$ ref": "#/definitions/widget/definitions/content/definitions/generalBody"
                 cta:
                   type: object
                   properties:
@@ -4068,10 +4046,10 @@ definitions:
                       "$ ref": "#/definitions/widget/definitions/cta/definitions/configuration"
                     content:
                       allOf:
-                      - properties:
-                          buttonText:
-                            default: Get Rewarded
-                      - "$ ref": "#/definitions/widget/definitions/cta/definitions/content"
+                        - properties:
+                            buttonText:
+                              default: Get Rewarded
+                        - "$ ref": "#/definitions/widget/definitions/cta/definitions/content"
         email:
           type: object
           properties:
@@ -4080,87 +4058,93 @@ definitions:
               properties:
                 configuration:
                   allOf:
-                  - properties:
-                      subject:
-                        default: You have hit the reward limit!
-                      themeMapping:
-                        default: emails/referrer-reward-limit
-                  - "$ ref": "#/definitions/email/definitions/configuration"
+                    - properties:
+                        subject:
+                          default: You have hit the reward limit!
+                        themeMapping:
+                          default: emails/referrer-reward-limit
+                    - "$ ref": "#/definitions/email/definitions/configuration"
                 content:
                   allOf:
-                  - properties:
-                      headerImageUrl:
-                        default: "{{assets 'images/email/reward-limit-header.png'}}"
-                      headerContent:
-                        default: |-
-                          #Reward Limit
-                          You have successfully referred the maximum!
-                      bodyContent:
-                        default: Thanks for spreading the word about {{companyName}}. You've
-                          referred so many new people that you've earned the maximum amount
-                          of available credit.
-                      shareCTA:
-                        default: However, you can keep referring new users and giving ${{programDetails.referrerRewardDetails.credit}}
-                          off with your code. - **{{user.referralCode}}**
-                  - "$ ref": "#/definitions/email/definitions/generalContent"
-                  - "$ ref": "#/definitions/email/definitions/shareContent"
+                    - properties:
+                        headerImageUrl:
+                          default: "{{assets 'images/email/reward-limit-header.png'}}"
+                        headerContent:
+                          default: |-
+                            #Reward Limit
+                            You have successfully referred the maximum!
+                        bodyContent:
+                          default:
+                            Thanks for spreading the word about {{companyName}}. You've
+                            referred so many new people that you've earned the maximum amount
+                            of available credit.
+                        shareCTA:
+                          default:
+                            However, you can keep referring new users and giving ${{programDetails.referrerRewardDetails.credit}}
+                            off with your code. - **{{user.referralCode}}**
+                    - "$ ref": "#/definitions/email/definitions/generalContent"
+                    - "$ ref": "#/definitions/email/definitions/shareContent"
             REFERRAL_CONVERTED:
               type: object
               properties:
                 configuration:
                   allOf:
-                  - properties:
-                      subject:
-                        default: Congrats! You have earned ${{math programDetails.referrerRewardDetails.credit
-                          ' / 100'}} of free credit with {{companyName}}
-                      themeMapping:
-                        default: emails/referral-converted
-                  - "$ ref": "#/definitions/email/definitions/configuration"
+                    - properties:
+                        subject:
+                          default:
+                            Congrats! You have earned ${{math programDetails.referrerRewardDetails.credit
+                            ' / 100'}} of free credit with {{companyName}}
+                        themeMapping:
+                          default: emails/referral-converted
+                    - "$ ref": "#/definitions/email/definitions/configuration"
                 content:
                   allOf:
-                  - properties:
-                      headerImageUrl:
-                        default: "{{assets 'images/email/referral-converted-header.png'}}"
-                      headerContent:
-                        default: |-
-                          #Congratulations
-                          Your friend has signed up for a {{companyName}} Account!
-                      bodyContent:
-                        default: You have now earned ${{math programDetails.referrerRewardDetails.credit
-                          ' / 100'}} of free credit with {{companyName}}. Refer more friends
-                          to save even more!
-                  - "$ ref": "#/definitions/email/definitions/generalContent"
-                  - "$ ref": "#/definitions/email/definitions/shareContent"
+                    - properties:
+                        headerImageUrl:
+                          default: "{{assets 'images/email/referral-converted-header.png'}}"
+                        headerContent:
+                          default: |-
+                            #Congratulations
+                            Your friend has signed up for a {{companyName}} Account!
+                        bodyContent:
+                          default:
+                            You have now earned ${{math programDetails.referrerRewardDetails.credit
+                            ' / 100'}} of free credit with {{companyName}}. Refer more friends
+                            to save even more!
+                    - "$ ref": "#/definitions/email/definitions/generalContent"
+                    - "$ ref": "#/definitions/email/definitions/shareContent"
             REFERRAL_STARTED:
               type: object
               properties:
                 configuration:
                   allOf:
-                  - properties:
-                      subject:
-                        default: "​{{stringEmptyHandler newReferral.referredUser.firstName
-                          onEmpty='A friend'}}​ helped you get one step closer to free credit
-                          with {{companyName}}​!"
-                      themeMapping:
-                        default: emails/referral-started
-                  - "$ ref": "#/definitions/email/definitions/configuration"
+                    - properties:
+                        subject:
+                          default:
+                            "​{{stringEmptyHandler newReferral.referredUser.firstName
+                            onEmpty='A friend'}}​ helped you get one step closer to free credit
+                            with {{companyName}}​!"
+                        themeMapping:
+                          default: emails/referral-started
+                    - "$ ref": "#/definitions/email/definitions/configuration"
                 content:
                   allOf:
-                  - properties:
-                      headerImageUrl:
-                        default: "{{assets 'images/email/referral-started-header.png'}}"
-                      headerContent:
-                        default: |-
-                          #Good News!
-                          Your friend has signed up for a free account with {{companyName}}!
-                      bodyContent:
-                        default: "{{stringEmptyHandler newReferral.referredUser.firstName
-                          onEmpty='A friend'}}​ is currently trying out {{companyName}}.
-                          As a thank you from us, if they become a paying user, you will
-                          automatically receive ${{math programDetails.referrerRewardDetails.credit
-                          ' / 100'}} of free credit with {{companyName}}"
-                  - "$ ref": "#/definitions/email/definitions/generalContent"
-                  - "$ ref": "#/definitions/email/definitions/shareContent"
+                    - properties:
+                        headerImageUrl:
+                          default: "{{assets 'images/email/referral-started-header.png'}}"
+                        headerContent:
+                          default: |-
+                            #Good News!
+                            Your friend has signed up for a free account with {{companyName}}!
+                        bodyContent:
+                          default:
+                            "{{stringEmptyHandler newReferral.referredUser.firstName
+                            onEmpty='A friend'}}​ is currently trying out {{companyName}}.
+                            As a thank you from us, if they become a paying user, you will
+                            automatically receive ${{math programDetails.referrerRewardDetails.credit
+                            ' / 100'}} of free credit with {{companyName}}"
+                    - "$ ref": "#/definitions/email/definitions/generalContent"
+                    - "$ ref": "#/definitions/email/definitions/shareContent"
       definitions:
         widget:
           definitions:
@@ -4171,52 +4155,52 @@ definitions:
                   properties:
                     widgetFont:
                       type: string
-                      title: 'Widget Font:'
+                      title: "Widget Font:"
                       enum:
-                      - '"Helvetica Neue",Helvetica,Arial,sans-serif'
-                      - "'Lato',sans-serif"
-                      - "'Times New Roman'"
-                      - Arial
-                      - Courier
-                      - Tahoma
-                      - Verdana
-                      - Georgia
-                      options:
-                        enum_titles:
-                        - Helvetica Neue
-                        - Lato
-                        - Times New Roman
+                        - '"Helvetica Neue",Helvetica,Arial,sans-serif'
+                        - "'Lato',sans-serif"
+                        - "'Times New Roman'"
                         - Arial
                         - Courier
                         - Tahoma
                         - Verdana
                         - Georgia
+                      options:
+                        enum_titles:
+                          - Helvetica Neue
+                          - Lato
+                          - Times New Roman
+                          - Arial
+                          - Courier
+                          - Tahoma
+                          - Verdana
+                          - Georgia
                     headerColor:
                       type: string
                       format: text
                       minLength: 1
-                      title: 'Heading Text Color (hex code):'
+                      title: "Heading Text Color (hex code):"
                       options:
                         validate:
-                        - hex-color
+                          - hex-color
                     heading:
                       type: string
                       minLength: 1
                       format: markdown
-                      title: 'Heading Text:'
+                      title: "Heading Text:"
                       options:
                         input_height: 100px
                         validate:
-                        - handlebars
+                          - handlebars
                     headerDetails:
                       type: string
                       minLength: 1
                       format: markdown
-                      title: 'Body Text:'
+                      title: "Body Text:"
                       options:
                         input_height: 100px
                         validate:
-                        - handlebars
+                          - handlebars
                 shareContent:
                   title: Share Messaging
                   type: object
@@ -4225,44 +4209,50 @@ definitions:
                       type: string
                       description: Email share subject
                       minLength: 4
-                      default: Get ${{math programDetails.referredRewardDetails.credit '
+                      default:
+                        Get ${{math programDetails.referredRewardDetails.credit '
                         / 100'}} off {{companyName}}
                     emailShareBody:
                       type: string
                       description: Email share body
                       minLength: 4
-                      default: Sign up for a {{companyName}} account and we both get ${{math
+                      default:
+                        Sign up for a {{companyName}} account and we both get ${{math
                         programDetails.referredRewardDetails.credit ' / 100'}} free credit.
                         Use this link {{shareLinks.emailShareLink}}
                     facebookShareImageURL:
                       type: string
                       description: Facebook URL Image
-                      default: ''
+                      default: ""
                     facebookShareSubject:
                       type: string
                       description: Facebook share subject
                       minLength: 4
-                      default: Get ${{math programDetails.referredRewardDetails.credit '
+                      default:
+                        Get ${{math programDetails.referredRewardDetails.credit '
                         / 100'}} off {{companyName}}
                     facebookShareBody:
                       type: string
                       description: Facebook share subject
                       minLength: 4
-                      default: Sign up for a {{companyName}} account and we both get ${{math
+                      default:
+                        Sign up for a {{companyName}} account and we both get ${{math
                         programDetails.referredRewardDetails.credit ' / 100'}} free credit.
                         Use this link {{shareLinks.facebookShareLink}}
                     twitterShareBody:
                       type: string
                       description: Twitter share body
                       minLength: 4
-                      default: Sign up for a {{companyName}} account and we both get ${{math
+                      default:
+                        Sign up for a {{companyName}} account and we both get ${{math
                         programDetails.referredRewardDetails.credit ' / 100'}} free credit.
                         Use this link {{shareLinks.twitterShareLink}}
                     smsShareBody:
                       type: string
                       description: SMS share body
                       minLength: 4
-                      default: Sign up for a {{companyName}} account and we both get ${{math
+                      default:
+                        Sign up for a {{companyName}} account and we both get ${{math
                         programDetails.referredRewardDetails.credit ' / 100'}} free credit.
                         Use this link {{share-link 'SMS'}}
             cta:
@@ -4278,39 +4268,39 @@ definitions:
                   properties:
                     buttonSide:
                       type: string
-                      title: 'Button Side:'
+                      title: "Button Side:"
                       default: right
                       enum:
-                      - left
-                      - right
-                      - center
+                        - left
+                        - right
+                        - center
                       options:
                         enum_titles:
-                        - Left Side
-                        - Right Side
-                        - Center
+                          - Left Side
+                          - Right Side
+                          - Center
                     buttonPosition:
                       type: string
-                      title: 'Button Position:'
+                      title: "Button Position:"
                       default: bottom
                       enum:
-                      - top
-                      - bottom
-                      - middle
+                        - top
+                        - bottom
+                        - middle
                       options:
                         enum_titles:
-                        - Top
-                        - Bottom
-                        - Middle
+                          - Top
+                          - Bottom
+                          - Middle
                     buttonColor:
                       type: string
                       format: text
                       minLength: 1
-                      title: 'Button Color (hex code):'
+                      title: "Button Color (hex code):"
                       default: "#4486E1"
                       options:
                         validate:
-                        - hex-color
+                          - hex-color
                     buttonText:
                       type: string
                       title: Button Text
@@ -4318,7 +4308,7 @@ definitions:
                       propertyOrder: 4
                       options:
                         validate:
-                        - handlebars
+                          - handlebars
                         input_height: 50px
                     buttonWidth:
                       type: integer
@@ -4339,7 +4329,7 @@ definitions:
                   minLength: 1
                   options:
                     validate:
-                    - handlebars
+                      - handlebars
                 fromAddress:
                   type: string
                   title: From Address
@@ -4349,7 +4339,7 @@ definitions:
                   minLength: 5
                   options:
                     validate:
-                    - email
+                      - email
                 subject:
                   type: string
                   title: Subject
@@ -4359,7 +4349,7 @@ definitions:
                   minLength: 1
                   options:
                     validate:
-                    - handlebars
+                      - handlebars
                     input_height: 50px
                 themeMapping:
                   options:
@@ -4373,7 +4363,7 @@ definitions:
                   propertyOrder: 1
                   options:
                     validate:
-                    - handlebars
+                      - handlebars
                 headerContent:
                   type: string
                   title: Header Content
@@ -4381,7 +4371,7 @@ definitions:
                   propertyOrder: 2
                   options:
                     validate:
-                    - handlebars
+                      - handlebars
                     input_height: 50px
                 bodyContent:
                   type: string
@@ -4390,7 +4380,7 @@ definitions:
                   propertyOrder: 3
                   options:
                     validate:
-                    - handlebars
+                      - handlebars
                     input_height: 50px
                 footer:
                   type: string
@@ -4399,7 +4389,7 @@ definitions:
                   propertyOrder: 1001
                   options:
                     validate:
-                    - handlebars
+                      - handlebars
                     input_height: 50px
             shareContent:
               type: object
@@ -4412,7 +4402,7 @@ definitions:
                   default: Keep sharing your code and earn more discounts - **{{user.referralCode}}**
                   options:
                     validate:
-                    - handlebars
+                      - handlebars
                     input_height: 50px
                 hasShareLink:
                   type: boolean
@@ -4425,16 +4415,17 @@ definitions:
                   title: Share Button Header
                   format: markdown
                   propertyOrder: 6
-                  default: Refer and Earn ${{math programDetails.referrerRewardDetails.credit
+                  default:
+                    Refer and Earn ${{math programDetails.referrerRewardDetails.credit
                     ' / 100'}} of Credit
                   options:
                     validate:
-                    - handlebars
+                      - handlebars
                     input_height: 50px
       required:
-      - jsOptions
-      - widget
-      - email
+        - jsOptions
+        - widget
+        - email
 
   VariablesInstance:
     description: The stored values for the variables.  See [theme variables](/themes/variables) for more info.
@@ -4445,12 +4436,12 @@ definitions:
         widget:
           defaultWidgetType: REFERRER_WIDGET
         conversionUrls:
-        - "^https:\\/\\/example\\.com\\/thank\\-you([^a-zA-Z0-9.\\-_~!$&'()*+,;=:@/]+?.*$|$)"
+          - "^https:\\/\\/example\\.com\\/thank\\-you([^a-zA-Z0-9.\\-_~!$&'()*+,;=:@/]+?.*$|$)"
         widgetUrlMappings:
-        - widgetType: CONVERSION_WIDGET
-          showAsCTA: true
-          displayOnLoad: true
-          url: "^https:\\/\\/example\\.com\\/widgetPage\\/([^a-zA-Z0-9.\\-_~!$&'()*+,;=:@/]+?.*$|$)"
+          - widgetType: CONVERSION_WIDGET
+            showAsCTA: true
+            displayOnLoad: true
+            url: "^https:\\/\\/example\\.com\\/widgetPage\\/([^a-zA-Z0-9.\\-_~!$&'()*+,;=:@/]+?.*$|$)"
       widget:
         REFERRER_WIDGET:
           configuration:
@@ -4459,27 +4450,34 @@ definitions:
             widgetCustomization:
               widgetFont: '"Helvetica Neue",Helvetica,Arial,sans-serif'
               headerColor: "#4486E1"
-              heading: Give ${{math programDetails.referredRewardDetails.credit ' / 100'}}
+              heading:
+                Give ${{math programDetails.referredRewardDetails.credit ' / 100'}}
                 and Get ${{math programDetails.referrerRewardDetails.credit ' / 100'}}!
-              headerDetails: Give a friend ${{math programDetails.referredRewardDetails.credit
+              headerDetails:
+                Give a friend ${{math programDetails.referredRewardDetails.credit
                 ' / 100'}} credit off {{companyName}} and receive ${{math programDetails.referrerRewardDetails.credit
                 ' / 100'}} for yourself when they pay their first bill.
               shareCodeDetails: Share the link below or use the code **{{user.referralCode}}**
-              registrationHeader: Thanks for sending your first referral!<br>Give us your
+              registrationHeader:
+                Thanks for sending your first referral!<br>Give us your
                 email to ensure you get rewarded when your referral is used.
             shareMessaging:
-              emailShareSubject: Get ${{math programDetails.referredRewardDetails.credit
+              emailShareSubject:
+                Get ${{math programDetails.referredRewardDetails.credit
                 ' / 100'}} off {{companyName}}
-              emailShareBody: Sign up for a {{companyName}} account and we both get ${{math
+              emailShareBody:
+                Sign up for a {{companyName}} account and we both get ${{math
                 programDetails.referredRewardDetails.credit ' / 100'}} free credit. Use
                 this link {{shareLinks.emailShareLink}}
-              facebookShareImageURL: ''
+              facebookShareImageURL: ""
               facebookShareSubject: Facebook Title in SaaSquatch Portal
               facebookShareBody: Facebook Share body in SaaSquatch Portal
-              twitterShareBody: Sign up for a {{companyName}} account and we both get ${{math
+              twitterShareBody:
+                Sign up for a {{companyName}} account and we both get ${{math
                 programDetails.referredRewardDetails.credit ' / 100'}} free credit. Use
                 this link {{shareLinks.twitterShareLink}}
-              smsShareBody: Sign up for a {{companyName}} account and we both get ${{math
+              smsShareBody:
+                Sign up for a {{companyName}} account and we both get ${{math
                 programDetails.referredRewardDetails.credit ' / 100'}} free credit. Use
                 this link {{share-link 'SMS'}}
           cta:
@@ -4500,7 +4498,8 @@ definitions:
               widgetFont: '"Helvetica Neue",Helvetica,Arial,sans-serif'
               headerColor: "#444"
               heading: You were Successfully Referred to {{companyName}}
-              headerDetails: Use the Referral Code<br><span id="squatch-share-code">{{referredBy.referredByUser.referralCode}}</span><br>at
+              headerDetails:
+                Use the Referral Code<br><span id="squatch-share-code">{{referredBy.referredByUser.referralCode}}</span><br>at
                 checkout to receive your referral discount
               buttonCopy: COPY CODE
           cta:
@@ -4520,53 +4519,62 @@ definitions:
             subject: You have hit the reward limit!
             themeMapping: emails/referrer-reward-limit
           content:
-            shareCTA: However, you can keep referring new users and giving ${{programDetails.referrerRewardDetails.credit}}
+            shareCTA:
+              However, you can keep referring new users and giving ${{programDetails.referrerRewardDetails.credit}}
               off with your code. - **{{user.referralCode}}**
             hasShareLink: true
-            shareButtonHeader: Refer and Earn ${{math programDetails.referrerRewardDetails.credit
+            shareButtonHeader:
+              Refer and Earn ${{math programDetails.referrerRewardDetails.credit
               ' / 100'}} of Credit
             headerImageUrl: "{{assets 'images/email/reward-limit-header.png'}}"
             headerContent: |-
               #Reward Limit
               You have successfully referred the maximum!
-            bodyContent: Thanks for spreading the word about {{companyName}}. You've referred
+            bodyContent:
+              Thanks for spreading the word about {{companyName}}. You've referred
               so many new people that you've earned the maximum amount of available credit.
         REFERRAL_CONVERTED:
           configuration:
             fromName: "{{companyName}}"
             fromAddress: referral@mail.saasquat.ch
-            subject: Congrats! You have earned ${{math programDetails.referrerRewardDetails.credit
+            subject:
+              Congrats! You have earned ${{math programDetails.referrerRewardDetails.credit
               ' / 100'}} of free credit with {{companyName}}
             themeMapping: emails/referral-converted
           content:
             shareCTA: Keep sharing your code and earn more discounts - **{{user.referralCode}}**
             hasShareLink: true
-            shareButtonHeader: Refer and Earn ${{math programDetails.referrerRewardDetails.credit
+            shareButtonHeader:
+              Refer and Earn ${{math programDetails.referrerRewardDetails.credit
               ' / 100'}} of Credit
             headerImageUrl: "{{assets 'images/email/referral-converted-header.png'}}"
             headerContent: |-
               #Congratulations
               Your friend has signed up for a {{companyName}} Account!
-            bodyContent: You have now earned ${{math programDetails.referrerRewardDetails.credit
+            bodyContent:
+              You have now earned ${{math programDetails.referrerRewardDetails.credit
               ' / 100'}} of free credit with {{companyName}}. Refer more friends to save
               even more!
         REFERRAL_STARTED:
           configuration:
             fromName: "{{companyName}}"
             fromAddress: referral@mail.saasquat.ch
-            subject: "​{{stringEmptyHandler newReferral.referredUser.firstName onEmpty='A
+            subject:
+              "​{{stringEmptyHandler newReferral.referredUser.firstName onEmpty='A
               friend'}}​ helped you get one step closer to free credit with {{companyName}}​!"
             themeMapping: emails/referral-started
           content:
             shareCTA: Keep sharing your code and earn more discounts - **{{user.referralCode}}**
             hasShareLink: true
-            shareButtonHeader: Refer and Earn ${{math programDetails.referrerRewardDetails.credit
+            shareButtonHeader:
+              Refer and Earn ${{math programDetails.referrerRewardDetails.credit
               ' / 100'}} of Credit
             headerImageUrl: "{{assets 'images/email/referral-started-header.png'}}"
             headerContent: |-
               #Good News!
               Your friend has signed up for a free account with {{companyName}}!
-            bodyContent: "{{stringEmptyHandler newReferral.referredUser.firstName onEmpty='A
+            bodyContent:
+              "{{stringEmptyHandler newReferral.referredUser.firstName onEmpty='A
               friend'}}​ is currently trying out {{companyName}}. As a thank you from us,
               if they become a paying user, you will automatically receive ${{math programDetails.referrerRewardDetails.credit
               ' / 100'}} of free credit with {{companyName}}"
@@ -4757,8 +4765,7 @@ definitions:
         address: "123 Main st., City, Province, Country, H0H0H0"
         shoeSize: 12.5
         currency: "CAD"
-      segments:
-        ["segment1", "segment3"]
+      segments: ["segment1", "segment3"]
       shareLinks:
         $ref: "#/definitions/Sharelink/example"
 
@@ -4980,11 +4987,11 @@ definitions:
         type: integer
         description: The total number of results available overall, see `count` for the number of rows in this list.
 
-#
-# ========== Response / Envelope Types ==============
-#
-# Only REST response envelopers included in this section.
-#
+  #
+  # ========== Response / Envelope Types ==============
+  #
+  # Only REST response envelopers included in this section.
+  #
 
   UserList:
     type: object
@@ -5002,7 +5009,6 @@ definitions:
         type: integer
         description: The total number of results available overall, see `count` for the number of rows in this list.
 
-
   ReferralList:
     type: object
     description: A list of Referral objects as `referrals`, with the fields `count` and `totalCount` to help with pagination.
@@ -5018,7 +5024,6 @@ definitions:
       totalCount:
         type: integer
         description: The total number of results available overall, see `count` for the number of rows in this list.
-
 
   RewardDebitResponse:
     description: Details about a successful Reward Balance Debit transaction.
@@ -5224,7 +5229,6 @@ definitions:
         readOnly: true
         example: 1471486479612
 
-
   # ========== Request Types ==============
   #
   # Only REST request objects included in this section.
@@ -5336,7 +5340,7 @@ definitions:
 
   VariablesError:
     allOf:
-      - $ref: '#/definitions/Error'
+      - $ref: "#/definitions/Error"
       - type: object
         properties:
           validationErrors:
@@ -5345,20 +5349,19 @@ definitions:
             items:
               type: string
 
-
 responses:
   GeneralError:
     description: Unexpected Error
     schema:
-      $ref: '#/definitions/Error'
+      $ref: "#/definitions/Error"
   VariablesErrorResponse:
     description: Variables Update Error
     schema:
-      $ref: '#/definitions/VariablesError'
+      $ref: "#/definitions/VariablesError"
     examples:
       "application/json":
         message: "Your request failed to validate against the current variables schema."
         statusCode: 400
         apiErrorCode: "VALIDATION_FAILED"
         validationErrors:
-          - "object has missing required properties ([\"emailShareSubject\",\"facebookShareBody\",\"facebookShareSubject\",\"twitterShareBody\"])"
+          - 'object has missing required properties (["emailShareSubject","facebookShareBody","facebookShareSubject","twitterShareBody"])'
