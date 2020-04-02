@@ -63,6 +63,7 @@ function useMermaid(source) {
       charts.forEach(async (element:HTMLDivElement) => {
         if(element.querySelector("svg")){
           return; // Already rendered
+          // TODO: For dynamic pages, might need to make this just clear content to re-render
         }
         try{
           var graphDefinition = element.dataset.graph;
