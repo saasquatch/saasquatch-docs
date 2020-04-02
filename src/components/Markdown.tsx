@@ -4,11 +4,17 @@ import marked from "marked";
 import styled from "styled-components";
 import uuidv4 from "uuid/v4";
 
+// Stop mermaid for doing th
+const SECRETID = "mermaid2018y125ug1";
+
 let mermaidAPI;
 if(typeof document === "undefined"){
   mermaidAPI = null;
 }else{
-  mermaidAPI = require("mermaid").mermaidAPI
+  const mermaid = require("mermaid");
+  mermaidAPI = mermaid.mermaidAPI
+  // Stops the default behaviour, which registers an `onLoad` listener to scrobble the page
+  mermaidAPI.initialize({ startOnLoad:false })
 }
 // Get reference
 const renderer = new marked.Renderer();
@@ -49,12 +55,12 @@ const MD = styled.div`
   }
 `;
 
-function useMermaid() {
+function useMermaid(source) {
   const ref = useRef(null);
   useLayoutEffect(() => {
     if (ref && ref.current && mermaidAPI) {
-      const charts = ref.current.querySelectorAll(".mermaid");
-      charts.forEach((element:HTMLDivElement) => {
+      const charts = ref.current.querySelectorAll("." + SECRETID);
+      charts.forEach(async (element:HTMLDivElement) => {
         if(element.querySelector("svg")){
           return; // Already rendered
         }
@@ -65,14 +71,14 @@ function useMermaid() {
           }
           const tempId = "graphDiv"+uuidv4()
 
-          mermaidAPI.render(tempId, graphDefinition, insertSvg);  
+          await mermaidAPI.render(tempId, graphDefinition, insertSvg);  
         }catch(e){
           console.error("Failed to render mermaid", e);
           // Ignore errors
         }
       });
     }
-  });
+  },[ref, source]);
   return [ref];
 }
 
@@ -93,9 +99,10 @@ function quoteattr(s, preserveCR?:string) {
       .replace(/[\r\n]/g, preserveCR);
       ;
 }
+
 renderer.code = function(code?: string, language?: string) {
   if (language && language.toLowerCase() === "mermaid") {
-    return '<div class="mermaid" data-graph="'+quoteattr(code)+'"></div>';
+    return `<div class="${SECRETID}" data-graph="${quoteattr(code)}"></div>`;
   } else {
     return marked.Renderer.prototype.code.apply(this, arguments);
   }
@@ -122,7 +129,7 @@ renderer.heading = function(
 
 export default function Markdown({ source }: { source: string }) {
   if (!source) return <div />;
-  const [ref]= useMermaid();
+  const [ref]= useMermaid(source);
 
   var rawMarkup = marked(source, { sanitize: false, renderer: renderer });
   const html = { __html: rawMarkup };
