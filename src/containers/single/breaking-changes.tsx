@@ -117,9 +117,7 @@ const FormStyle = styled.div`
   }
 `;
 
-const url = "//ReferralSaaSquatch.us4.list-manage.com/subscribe/post?u=4ea25ef0489446654b07fd1a1&id=7f070539cb";
-
-// simplest form (only email)
+const url = "//ReferralSaaSquatch.us4.list-manage.com/subscribe/post?u=4ea25ef0489446654b07fd1a1&id=40edd6c3b0";
 type FormProps = {
   status: "sending" | "error" | "success";
   message: string;
