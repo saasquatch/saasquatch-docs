@@ -156,7 +156,7 @@ function Page({ swagger, tagMap, methodsByTag }:RouteData) {
         };
       });
 
-      return [...acc, subEndpoints];
+      return [...acc, ...subEndpoints];
     },
     []
   );
