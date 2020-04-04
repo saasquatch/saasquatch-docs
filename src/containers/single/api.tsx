@@ -168,7 +168,7 @@ function Page({ swagger, tagMap, methodsByTag }:RouteData) {
       ? "No Classic"
       : "All";
 
-  const showMethod = (method) =>
+  const showMethod = (method:Operation) =>
     version === "ga-only" && method.tags.includes("Classic Only");
 
   return (
