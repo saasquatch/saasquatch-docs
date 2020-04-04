@@ -9,6 +9,8 @@ import exampleSwaggerSchema from "../../../metalsmith/filters/exampleSwaggerSche
 import { Properties } from "../../components/Properties";
 import { VersionContext } from "../../components/useVersion";
 
+import {Operation, Spec} from "swagger-schema-official";
+
 const FilterHeader = styled.div`
   display: flex;
   align-items: flex-end;
@@ -115,22 +117,49 @@ function AuthTags({ method }: any) {
   );
 }
 
+type RouteData = {
+  swagger: Spec,
+  tagMap: any,
+  methodsByTag: any
+};
+
 export default function render() {
-  const { swagger, tagMap, methodsByTag } = useRouteData();
+  const { swagger, tagMap, methodsByTag }:RouteData = useRouteData();
   // Performance optimization. See: https://github.com/facebook/react/issues/15156
   // Don't remove this line!
   return <Page swagger={swagger} tagMap={tagMap} methodsByTag={methodsByTag} />;
 }
+type Endpoint = {
+  httpMethod: string
+  path: string
+  method: Operation
+};
 
-function Page({ swagger, tagMap, methodsByTag }) {
+function Page({ swagger, tagMap, methodsByTag }:RouteData) {
   const { version } = VersionContext.useContainer();
   console.log("version", version);
 
   const entry = {
     title: "Rest API Reference",
     highlights: swagger.info.description,
-    sectionType: "developerCenter"
+    sectionType: "developerCenter",
   };
+  const endpoints = Object.keys(swagger.paths).reduce(
+    (acc: Endpoint[], path: string) => {
+      const methods = swagger.paths[path];
+      const subEndpoints = Object.keys(methods).map((httpMethod: string) => {
+        const method = methods[httpMethod];
+        return {
+          httpMethod,
+          path,
+          method,
+        };
+      });
+
+      return [...acc, subEndpoints];
+    },
+    []
+  );
 
   const versionLabel =
     version === "classic-only"
@@ -138,6 +167,9 @@ function Page({ swagger, tagMap, methodsByTag }) {
       : version === "ga-only"
       ? "No Classic"
       : "All";
+
+  const showMethod = (method) =>
+    version === "ga-only" && method.tags.includes("Classic Only");
 
   return (
     <PageHeader {...entry}>
@@ -230,20 +262,14 @@ function Page({ swagger, tagMap, methodsByTag }) {
             </tr>
           </thead>
           <tbody>
-            {Object.keys(swagger.paths).map((path: string) => {
-              const methodPath = path;
-              const methods = swagger.paths[path];
+            {endpoints.map((endpoint: Endpoint) => {
 
-              return Object.keys(methods).map((httpMethod: string) => {
-                const method = methods[httpMethod];
+                const {method, httpMethod, path} = endpoint;
 
                 const anchor = "#" + method["x-docs-anchor"];
 
                 // TODO One way to do it
-                if (
-                  version === "ga-only" &&
-                  method.tags.includes("Classic Only")
-                ) {
+                if (!showMethod(method)!) {
                   return <tr />;
                 }
 
@@ -254,7 +280,7 @@ function Page({ swagger, tagMap, methodsByTag }) {
                     </td>
                     <td className="docs-monospace">
                       {swagger.basePath}
-                      {methodPath}
+                      {path}
                     </td>
                     <td>
                       <a href={anchor} className="nav-onpage">
@@ -269,7 +295,6 @@ function Page({ swagger, tagMap, methodsByTag }) {
                     </td>
                   </tr>
                 );
-              });
             })}
           </tbody>
         </table>
@@ -443,7 +468,7 @@ function ResponseTabs({ method }) {
               <pre>HTTP {key}</pre>
               {response.examples &&
                 Object.keys(response.examples)
-                  .filter(mime => mime === "application/json")
+                  .filter((mime) => mime === "application/json")
                   .map((mime: any) => {
                     const example = response.examples[mime];
                     return <JsonCode object={example} />;

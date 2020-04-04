@@ -76,6 +76,7 @@
     "@types/react-dom": "^16.8.5",
     "@types/react-hot-loader": "^4.1.0",
     "@types/styled-components": "^4.4.0",
+    "@types/swagger-schema-official": "^2.0.21",
     "@types/webpack-env": "^1.14.0",
     "globby": "^10.0.1",
     "graphiql": "^0.16.0",
