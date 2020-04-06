@@ -117,7 +117,8 @@ const FormStyle = styled.div`
   }
 `;
 
-const url = "//ReferralSaaSquatch.us4.list-manage.com/subscribe/post?u=4ea25ef0489446654b07fd1a1&id=40edd6c3b0";
+const url =
+  "//ReferralSaaSquatch.us4.list-manage.com/subscribe/post?u=4ea25ef0489446654b07fd1a1&id=40edd6c3b0";
 type FormProps = {
   status: "sending" | "error" | "success";
   message: string;
@@ -129,7 +130,7 @@ const CustomForm = ({ status, message, onValidated }: FormProps) => {
     email &&
       email.value.indexOf("@") > -1 &&
       onValidated({
-        EMAIL: email.value
+        EMAIL: email.value,
       });
   };
 
@@ -140,7 +141,7 @@ const CustomForm = ({ status, message, onValidated }: FormProps) => {
   return (
     <FormStyle>
       <input
-        ref={node => (email = node)}
+        ref={(node) => (email = node)}
         type="email"
         placeholder="Your Email"
       />
@@ -173,7 +174,7 @@ const entry = {
   highlights:
     "We try our best to ensure backwards compatibility of our products, but some circumstance dictate that we launch breaking changes. Our policy is to notify customers first, and post those changes here.",
   slug: "developer/breaking-changes",
-  sectionType: "developerCenter"
+  sectionType: "developerCenter",
 };
 
 export default function render() {
@@ -211,7 +212,7 @@ export default function render() {
               <Markdown source={description} />
             </Text>
           </div>
-          <div>
+          <div style={{ display: "flex", flexDirection: "column" }}>
             <Name>Timeline</Name>
             <Text>
               {mermaidMd && (
@@ -233,7 +234,7 @@ export default function render() {
           style={{
             display: "flex",
             alignItems: "flex-start",
-            marginRight: "60px"
+            marginRight: "60px",
           }}
         >
           <div style={{ paddingRight: "50px" }}>
@@ -269,7 +270,7 @@ export default function render() {
                 <CustomForm
                   status={status}
                   message={message}
-                  onValidated={formData => subscribe(formData)}
+                  onValidated={(formData) => subscribe(formData)}
                 />
               )}
             />
@@ -278,21 +279,28 @@ export default function render() {
 
         <h3>Upcoming Changes</h3>
         <Timeline>
-          {breakingChanges.map((c: Change, i) => {
-            const mermaidMd = c.timeline
-              ? "\n```mermaid\n" + c.timeline + "\n```"
-              : undefined;
-            return (
-              <Change
-                key={i}
-                mermaidMd={mermaidMd}
-                deadline={c.deadline}
-                title={c.title}
-                description={c.description}
-              />
-            );
-          })}
+          {breakingChanges?.length > 0 &&
+            breakingChanges.map((c: Change, i) => {
+              const mermaidMd = c.timeline
+                ? "\n```mermaid\n" + c.timeline + "\n```"
+                : undefined;
+              return (
+                <Change
+                  key={i}
+                  mermaidMd={mermaidMd}
+                  deadline={c.deadline}
+                  title={c.title}
+                  description={c.description}
+                />
+              );
+            })}
         </Timeline>
+        {breakingChanges.length === 0 && (
+          <p>
+            There are no upcoming breaking changes. Subscribe to the email
+            service above to be notified if any changes are added
+          </p>
+        )}
       </>
     </PageHeader>
   );
