@@ -8,14 +8,26 @@ import uuidv4 from "uuid/v4";
 const SECRETID = "mermaid2018y125ug1";
 
 let mermaidAPI;
-if(typeof document === "undefined"){
+if (typeof document === "undefined") {
   mermaidAPI = null;
-}else{
+} else {
   const mermaid = require("mermaid");
-  mermaidAPI = mermaid.mermaidAPI
+
+  mermaidAPI = mermaid.mermaidAPI;
+
   // Stops the default behaviour, which registers an `onLoad` listener to scrobble the page
-  mermaidAPI.initialize({ startOnLoad:false })
+  mermaidAPI.initialize({
+    startOnLoad: false,
+    gantt: {
+      titleTopMargin: 25,
+      barHeight: 40,
+      barGap: 4,
+      topPadding: 75,
+      sidePadding: 75,
+    },
+  });
 }
+
 // Get reference
 const renderer = new marked.Renderer();
 
@@ -60,48 +72,50 @@ function useMermaid(source) {
   useLayoutEffect(() => {
     if (ref && ref.current && mermaidAPI) {
       const charts = ref.current.querySelectorAll("." + SECRETID);
-      charts.forEach(async (element:HTMLDivElement) => {
-        if(element.querySelector("svg")){
+      charts.forEach(async (element: HTMLDivElement) => {
+        if (element.querySelector("svg")) {
           return; // Already rendered
           // TODO: For dynamic pages, might need to make this just clear content to re-render
         }
-        try{
+        try {
           var graphDefinition = element.dataset.graph;
-          const insertSvg = (svg:string)=>{
+          const insertSvg = (svg: string) => {
             element.innerHTML = svg;
-          }
-          const tempId = "graphDiv"+uuidv4()
+          };
+          const tempId = "graphDiv" + uuidv4();
 
-          await mermaidAPI.render(tempId, graphDefinition, insertSvg);  
-        }catch(e){
+          await mermaidAPI.render(tempId, graphDefinition, insertSvg);
+        } catch (e) {
           console.error("Failed to render mermaid", e);
           // Ignore errors
         }
       });
     }
-  },[ref, source]);
+  }, [ref, source]);
   return [ref];
 }
 
-function quoteattr(s, preserveCR?:string) {
-  preserveCR = preserveCR ? '&#13;' : '\n';
-  return ('' + s) /* Forces the conversion to string. */
-      .replace(/&/g, '&amp;') /* This MUST be the 1st replacement. */
-      .replace(/'/g, '&apos;') /* The 4 other predefined entities, required. */
-      .replace(/"/g, '&quot;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
+function quoteattr(s, preserveCR?: string) {
+  preserveCR = preserveCR ? "&#13;" : "\n";
+  return (
+    ("" + s) /* Forces the conversion to string. */
+      .replace(/&/g, "&amp;") /* This MUST be the 1st replacement. */
+      .replace(/'/g, "&apos;") /* The 4 other predefined entities, required. */
+      .replace(/"/g, "&quot;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
       /*
       You may add other replacements here for HTML only 
       (but it's not necessary).
       Or for XML, only if the named entities are defined in its DTD.
-      */ 
+      */
+
       .replace(/\r\n/g, preserveCR) /* Must be before the next replacement. */
-      .replace(/[\r\n]/g, preserveCR);
-      ;
+      .replace(/[\r\n]/g, preserveCR)
+  );
 }
 
-renderer.code = function(code?: string, language?: string) {
+renderer.code = function (code?: string, language?: string) {
   if (language && language.toLowerCase() === "mermaid") {
     return `<div class="${SECRETID}" data-graph="${quoteattr(code)}"></div>`;
   } else {
@@ -111,7 +125,7 @@ renderer.code = function(code?: string, language?: string) {
 
 // TODO: add anchor- &#x1F517;
 // Override function
-renderer.heading = function(
+renderer.heading = function (
   text: string,
   level: number,
   raw: string,
@@ -130,7 +144,7 @@ renderer.heading = function(
 
 export default function Markdown({ source }: { source: string }) {
   if (!source) return <div />;
-  const [ref]= useMermaid(source);
+  const [ref] = useMermaid(source);
 
   var rawMarkup = marked(source, { sanitize: false, renderer: renderer });
   const html = { __html: rawMarkup };

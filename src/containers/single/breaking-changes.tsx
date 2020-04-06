@@ -12,7 +12,6 @@ const Timeline = styled.div`
   margin: 20px 30px;
   margin-left: 140px;
   padding: 0 15px;
-  /* padding-top: 30px; */
 `;
 
 const ChangeWrapper = styled.div`
@@ -117,6 +116,32 @@ const FormStyle = styled.div`
   }
 `;
 
+const MermaidStyles = styled.div`
+  & rect.task {
+    fill: #f3ffed !important;
+    stroke: #6eaa49 !important;
+  }
+
+  & text.taskText {
+    fill: black !important;
+    font-size: 16px !important;
+    text-height: 50px !important;
+  }
+
+  & text.taskTextOutsideRight {
+    font-size: 16px !important;
+    text-height: 50px !important;
+  }
+
+  & rect.section0 {
+    fill: transparent !important;
+  }
+
+  & .tick > text {
+    font-size: 16px !important;
+  }
+`;
+
 const url =
   "//ReferralSaaSquatch.us4.list-manage.com/subscribe/post?u=4ea25ef0489446654b07fd1a1&id=40edd6c3b0";
 type FormProps = {
@@ -193,6 +218,7 @@ export default function render() {
       const diff = momDate.diff(momToday, "days");
       return diff > 1 ? `In ${diff} Days` : `In ${diff} day`;
     };
+
     return (
       <ChangeWrapper>
         <Deadline>
@@ -215,11 +241,13 @@ export default function render() {
           <div style={{ display: "flex", flexDirection: "column" }}>
             <Name>Timeline</Name>
             <Text>
-              {mermaidMd && (
-                <div className="mermaid-markdown">
-                  <Markdown source={mermaidMd} />
-                </div>
-              )}
+              <MermaidStyles>
+                {mermaidMd && (
+                  <div className="mermaid-markdown">
+                    <Markdown source={mermaidMd} />
+                  </div>
+                )}
+              </MermaidStyles>
             </Text>
           </div>
         </Body>
