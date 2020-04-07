@@ -93,21 +93,27 @@ tags:
     description: Reward Balances summarizes the Rewards in someone's account.
   - name: Reward
     description: A Reward keeps track of a prize, discount or credit that someone has received.
-  - name: Open Endpoint
-    description: Open Endpoints are special methods designed specifically for Client-facing applications like the Mobile SDK and Javascript SDK.
   - name: Webhook
     description: Webhooks can be used to do real time actions and data synchronization from SaaSquatch.
-  - name: Classic Only
-    description: An endpoint or attribute that only works with the Classic referral programs, and no other programs.
   # -
   #   name: Export
   #   description: Exports are used to do bulk data dumps from your SaaSquatch account.
   - name: Theme
     description: Themes control the look and feel of your program's widgets.
+
   - name: Discount
     description: Endpoints for working with discounts. **Most of these are deprecated** in favor of using Reward endpoints.
+    x-deprecated: true    
+    
   - name: Deprecated
     description: Endpoints that have been deprecated.
+    x-meta: true
+  - name: Open Endpoint
+    description: Open Endpoints are special methods designed specifically for Client-facing applications like the Mobile SDK and Javascript SDK.
+    x-meta: true
+  - name: Classic Only
+    description: An endpoint or attribute that only works with the Classic referral programs, and no other programs.
+    x-meta: true
 
 paths:
   "/{tenant_alias}/accountsync":
