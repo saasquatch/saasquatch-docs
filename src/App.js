@@ -2,19 +2,17 @@ import React, { useLayoutEffect } from "react";
 import { Root, Routes, addPrefetchExcludes } from "react-static";
 import { VersionContext } from "./components/useVersion";
 // import { Link, Router } from "@reach/router";
-import styled from "styled-components";
+import {StickyContainer} from "react-sticky"
 
 import "./assets/stylesheets/docs.less";
 import { NavigationHeader } from "./navigation/NavigationHeader";
 import { NavigationFooter } from "./navigation/NavigationFooter";
 import { NavigationSidebar } from "./navigation/NavigationSidebar";
 
-
 let init = () => {};
 if (typeof document !== "undefined") {
   init = require("./assets/js/docs").init;
 }
-
 
 // Any routes that start with 'dynamic' will be treated as non-static routes
 addPrefetchExcludes(["dynamic"]);
@@ -58,20 +56,22 @@ function App() {
   return (
     <Root>
       <VersionContext.Provider>
-        <div id="my-page">
-          <NavigationHeader />
-          <div id="my-content" className="container-fluid">
-            <React.Suspense fallback={<em>Loading...</em>}>
-              {/* <Router> */}
-              {/* <Dynamic path="dynamic" /> */}
-              <Routes default />
-              {/* </Router> */}
-            </React.Suspense>
+        <StickyContainer>
+          <div id="my-page">
+            <NavigationHeader />
+            <div id="my-content" className="container-fluid">
+              <React.Suspense fallback={<em>Loading...</em>}>
+                {/* <Router> */}
+                {/* <Dynamic path="dynamic" /> */}
+                <Routes default />
+                {/* </Router> */}
+              </React.Suspense>
+            </div>
+            <div id="my-footer">
+              <NavigationFooter />
+            </div>
           </div>
-          <div id="my-footer">
-            <NavigationFooter />
-          </div>
-        </div>
+        </StickyContainer>
         <NavigationSidebar />
       </VersionContext.Provider>
     </Root>

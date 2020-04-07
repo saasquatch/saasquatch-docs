@@ -12,6 +12,45 @@ import { VersionContext } from "../../components/useVersion";
 import { Operation, Spec, Response } from "swagger-schema-official";
 import { VersionSwitcher } from "components/VersionSwitcher";
 
+
+import _ from 'lodash';
+
+/**
+ * Groups Swagger methods by Tag. If a method has multiple tags, it will be listed in each one.
+ * 
+ */
+export function methodsByTag(swagger:Spec) {
+    return _.transform(swagger.paths, (result, methodsAtPath, path) => {
+        _.forEach(methodsAtPath, (method, httpType) => {
+            _.forEach(method.tags, (tag) => {
+                let out = {};
+                out[path] = {};
+                out[path][httpType] = method;
+                (result[tag] || (result[tag] = [])).push(out);
+            });
+        });
+    }, {});
+}
+
+export function tagMap(swagger:Spec) {
+    // console.log(swagger.tags);
+    return _.reduce(swagger.tags, (result, val) => {
+        result[val.name] = val;
+        return result;
+    }, {});
+    
+}
+
+function useApiData():APIData{
+  const {swagger} = useRouteData<RouteData>();
+
+  return {
+    swagger,
+    tagMap: tagMap(swagger),
+    methodsByTag: methodsByTag(swagger)
+  }
+}
+
 const FilterHeader = styled.div`
   display: flex;
   align-items: flex-end;
@@ -82,7 +121,7 @@ function CodeExample({ method, httpMethod, methodPath, swagger }: any) {
 
 function Tags({ method }: any) {
   // // @ts-ignore
-  // const { tagMap } = useRouteData<RouteData>();
+  // const { tagMap } = useApiData();
 
   // TODO: Include tag descriptions
   return method.tags.map((tag: string) => (
@@ -93,7 +132,7 @@ function Tags({ method }: any) {
 }
 
 function AuthTags({ method }: Partial<Endpoint>): JSX.Element {
-  const { swagger } = useRouteData<RouteData>();
+  const { swagger } = useApiData();
 
   if (method.security.length < 1) {
     return (
@@ -127,25 +166,32 @@ function AuthTags({ method }: Partial<Endpoint>): JSX.Element {
   );
 }
 
+// Provided in static.config.js
 type RouteData = {
+  swagger: Spec;
+};
+
+type APIData = {
   swagger: Spec;
   tagMap: any;
   methodsByTag: any;
 };
 
-export default function render() {
-  const { swagger, tagMap, methodsByTag } = useRouteData<RouteData>();
-  // Performance optimization. See: https://github.com/facebook/react/issues/15156
-  // Don't remove this line!
-  return <Page swagger={swagger} tagMap={tagMap} methodsByTag={methodsByTag} />;
-}
 type Endpoint = {
   httpMethod: string;
   path: string;
   method: Operation;
 };
 
-function Page({ swagger, tagMap, methodsByTag }: RouteData) {
+
+export default function render() {
+  const { swagger, tagMap, methodsByTag } = useApiData();
+  // Performance optimization. See: https://github.com/facebook/react/issues/15156
+  // Don't remove this line!
+  return <Page swagger={swagger} tagMap={tagMap} methodsByTag={methodsByTag} />;
+}
+
+function Page({ swagger, tagMap, methodsByTag }: APIData) {
   const { version, versionLabel } = VersionContext.useContainer();
   console.log("version", version);
 
@@ -317,12 +363,8 @@ function Page({ swagger, tagMap, methodsByTag }: RouteData) {
         {endpoints.map((endpoint: Endpoint) => {
           const { method, httpMethod, path } = endpoint;
 
-          return (
-            <div
-              id={method["x-docs-anchor"]}
-              className="apidocs-section"
-              key={method["x-docs-anchor"]}
-            >
+          const header = (
+            <>
               <div className="js-apidocs-method-title">
                 <a href="#" style={{ float: "right" }}>
                   Back to List
@@ -339,12 +381,36 @@ function Page({ swagger, tagMap, methodsByTag }: RouteData) {
                   {path}
                 </code>
               </div>
-
               {method["deprecated"] && (
                 <div className="deprecated-label-box">
                   <span className="label deprecated-label">Deprecated</span>
                 </div>
               )}
+            </>
+          );
+
+          if (!showMethod(method)) {
+            return (
+              <div
+                id={method["x-docs-anchor"]}
+                className="apidocs-section"
+                key={method["x-docs-anchor"]}
+              >
+                {header}
+
+                This endpoint is not compatible with {" "}
+                  <b>{versionLabel}</b>. <VersionSwitcher />
+              </div>
+            );
+          }
+
+          return (
+            <div
+              id={method["x-docs-anchor"]}
+              className="apidocs-section"
+              key={method["x-docs-anchor"]}
+            >
+              {header}
 
               <div className="lead">
                 <Markdown source={method.description} />
