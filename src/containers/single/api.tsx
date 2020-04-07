@@ -9,7 +9,7 @@ import exampleSwaggerSchema from "../../../metalsmith/filters/exampleSwaggerSche
 import { Properties } from "../../components/Properties";
 import { VersionContext } from "../../components/useVersion";
 
-import {Operation, Spec} from "swagger-schema-official";
+import { Operation, Spec } from "swagger-schema-official";
 
 const FilterHeader = styled.div`
   display: flex;
@@ -118,26 +118,25 @@ function AuthTags({ method }: any) {
 }
 
 type RouteData = {
-  swagger: Spec,
-  tagMap: any,
-  methodsByTag: any
+  swagger: Spec;
+  tagMap: any;
+  methodsByTag: any;
 };
 
 export default function render() {
-  const { swagger, tagMap, methodsByTag }:RouteData = useRouteData();
+  const { swagger, tagMap, methodsByTag }: RouteData = useRouteData();
   // Performance optimization. See: https://github.com/facebook/react/issues/15156
   // Don't remove this line!
   return <Page swagger={swagger} tagMap={tagMap} methodsByTag={methodsByTag} />;
 }
 type Endpoint = {
-  httpMethod: string
-  path: string
-  method: Operation
+  httpMethod: string;
+  path: string;
+  method: Operation;
 };
 
-function Page({ swagger, tagMap, methodsByTag }:RouteData) {
+function Page({ swagger, tagMap, methodsByTag }: RouteData) {
   const { version } = VersionContext.useContainer();
-  console.log("version", version);
 
   const entry = {
     title: "Rest API Reference",
@@ -163,13 +162,15 @@ function Page({ swagger, tagMap, methodsByTag }:RouteData) {
 
   const versionLabel =
     version === "classic-only"
-      ? "Works With Classic"
+      ? "Classic programs"
       : version === "ga-only"
-      ? "No Classic"
-      : "All";
+      ? "GA programs"
+      : "all programs";
 
-  const showMethod = (method:Operation) =>
-    version === "ga-only" && method.tags.includes("Classic Only");
+  const showMethod = (method: Operation) =>
+    (version === "classic-only" && method.tags.includes("Classic Only")) ||
+    (version === "ga-only" && !method.tags.includes("Classic Only")) ||
+    version === "hybrid";
 
   return (
     <PageHeader {...entry}>
@@ -232,23 +233,6 @@ function Page({ swagger, tagMap, methodsByTag }:RouteData) {
             <h3>Methods Summary</h3>
             <VersionLabel className="label">{versionLabel}</VersionLabel>
           </div>
-          {/* <div>
-            <label htmlFor="filter">Filter Endpoints by</label>
-            <select
-              name="filter"
-              id="filter"
-              defaultValue={version}
-              onChange={e =>
-                changeVersion(
-                  e.currentTarget.value as "classic-only" | "hybrid" | "ga-only"
-                )
-              }
-            >
-              <option value="classic-only">Classic</option>
-              <option value="ga-only">GA</option>
-              <option value="hybrid">All</option>
-            </select>
-          </div> */}
         </FilterHeader>
 
         <table className="table">
@@ -263,38 +247,37 @@ function Page({ swagger, tagMap, methodsByTag }:RouteData) {
           </thead>
           <tbody>
             {endpoints.map((endpoint: Endpoint) => {
+              const { method, httpMethod, path } = endpoint;
 
-                const {method, httpMethod, path} = endpoint;
+              const anchor = "#" + method["x-docs-anchor"];
 
-                const anchor = "#" + method["x-docs-anchor"];
+              // TODO One way to do it
+              if (!showMethod(method)!) {
+                return <tr />;
+              }
 
-                // TODO One way to do it
-                if (!showMethod(method)!) {
-                  return <tr />;
-                }
-
-                return (
-                  <tr>
-                    <td>
-                      <HTTPMethod>{httpMethod}</HTTPMethod>
-                    </td>
-                    <td className="docs-monospace">
-                      {swagger.basePath}
-                      {path}
-                    </td>
-                    <td>
-                      <a href={anchor} className="nav-onpage">
-                        {method.summary}
-                      </a>
-                    </td>
-                    <td>
-                      <AuthTags method={method} />
-                    </td>
-                    <td>
-                      <Tags method={method} />
-                    </td>
-                  </tr>
-                );
+              return (
+                <tr>
+                  <td>
+                    <HTTPMethod>{httpMethod}</HTTPMethod>
+                  </td>
+                  <td className="docs-monospace">
+                    {swagger.basePath}
+                    {path}
+                  </td>
+                  <td>
+                    <a href={anchor} className="nav-onpage">
+                      {method.summary}
+                    </a>
+                  </td>
+                  <td>
+                    <AuthTags method={method} />
+                  </td>
+                  <td>
+                    <Tags method={method} />
+                  </td>
+                </tr>
+              );
             })}
           </tbody>
         </table>
@@ -307,7 +290,14 @@ function Page({ swagger, tagMap, methodsByTag }:RouteData) {
             const method = methods[httpMethod];
 
             return (
-              <div id={method["x-docs-anchor"]} className="apidocs-section">
+              <div
+                id={method["x-docs-anchor"]}
+                className={
+                  showMethod(method)
+                    ? "apidocs-section"
+                    : "apidocs-section-collapsed"
+                }
+              >
                 <div className="js-apidocs-method-title">
                   <a href="#" style={{ float: "right" }}>
                     Back to List
@@ -331,80 +321,101 @@ function Page({ swagger, tagMap, methodsByTag }:RouteData) {
                   </div>
                 )}
 
-                <div className="lead">
-                  <Markdown source={method.description} />
-                </div>
-
-                <p>
-                  <b>Tags</b>:
-                  <Tags method={method} /> <b>Authentication</b>:
-                  <AuthTags method={method} />
-                </p>
-
-                <details>
-                  <summary>View Method Details</summary>
-                  <div>
-                    <h4 style={{ marginTop: "40px" }}>Arguments</h4>
-                    <div>
-                      <table className="table table-hover apidocs-args">
-                        {method.parameters.map((param: any) => {
-                          const signature =
-                            param.in == "body" ? (
-                              <>
-                                {" "}
-                                {param.name}
-                                <br />
-                                <span className="muted">JSON&nbsp;Body</span>
-                              </>
-                            ) : (
-                              <>
-                                {param.name}
-                                <br />
-                                <span className="muted">
-                                  {param.type || "object"}
-                                </span>
-                              </>
-                            );
-
-                          return (
-                            <tr>
-                              <td>
-                                {(param.required || param.in == "body") && (
-                                  <span className="label">Required</span>
-                                )}
-                              </td>
-                              <th className="docs-monospace">{signature}</th>
-                              <td>
-                                <Markdown source={param.description} />
-
-                                <Properties schema={param.schema} />
-                              </td>
-                            </tr>
-                          );
-                        })}
-                      </table>
-
-                      <p>
-                        <b>Example Curl Request</b>
-                      </p>
-                      <CodeExample
-                        method={method}
-                        httpMethod={httpMethod}
-                        methodPath={methodPath}
-                        swagger={swagger}
-                      />
-                    </div>
-                    <h4 style={{ marginTop: "40px" }}>Returns</h4>
-
-                    <ResponseTabs method={method} />
-                  </div>
-                </details>
+                {showMethod(method) ? (
+                  sectionBody(method, httpMethod, swagger, methodPath)
+                ) : (
+                  <details>
+                    <summary style={{ marginBottom: "15px", color: "#999" }}>
+                      This endpoint does not support {versionLabel}. Click to
+                      view anyways
+                    </summary>
+                    {sectionBody(method, httpMethod, swagger, methodPath)}
+                  </details>
+                )}
               </div>
             );
           });
         })}
       </>
     </PageHeader>
+  );
+}
+
+function sectionBody(
+  method: Operation,
+  httpMethod: string,
+  swagger: Spec,
+  methodPath: string
+) {
+  return (
+    <>
+      <div className="lead">
+        <Markdown source={method.description} />
+      </div>
+
+      <p>
+        <b>Tags</b>:
+        <Tags method={method} /> <b>Authentication</b>:
+        <AuthTags method={method} />
+      </p>
+
+      <details>
+        <summary>View Method Details</summary>
+        <div>
+          <h4 style={{ marginTop: "40px" }}>Arguments</h4>
+          <div>
+            <table className="table table-hover apidocs-args">
+              {method.parameters.map((param: any) => {
+                const signature =
+                  param.in == "body" ? (
+                    <>
+                      {" "}
+                      {param.name}
+                      <br />
+                      <span className="muted">JSON&nbsp;Body</span>
+                    </>
+                  ) : (
+                    <>
+                      {param.name}
+                      <br />
+                      <span className="muted">{param.type || "object"}</span>
+                    </>
+                  );
+
+                return (
+                  <tr>
+                    <td>
+                      {(param.required || param.in == "body") && (
+                        <span className="label">Required</span>
+                      )}
+                    </td>
+                    <th className="docs-monospace">{signature}</th>
+                    <td>
+                      <Markdown source={param.description} />
+
+                      <Properties schema={param.schema} />
+                    </td>
+                  </tr>
+                );
+              })}
+            </table>
+
+            <p>
+              <b>Example Curl Request</b>
+            </p>
+            <CodeExample
+              method={method}
+              httpMethod={httpMethod}
+              methodPath={methodPath}
+              swagger={swagger}
+            />
+          </div>
+          <h4 style={{ marginTop: "40px" }}>Returns</h4>
+
+          <ResponseTabs method={method} />
+        </div>
+      </details>
+    </>
   );
 }
 

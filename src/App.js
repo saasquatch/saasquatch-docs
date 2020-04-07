@@ -141,10 +141,10 @@ function NavigationHeader() {
                     id="fitler"
                     name="filter"
                     defaultValue={version}
-                    onChange={e => setVersion(e.currentTarget.value)}
+                    onChange={(e) => setVersion(e.currentTarget.value)}
                   >
-                    <option value="classic-only">Works With Classic</option>
-                    <option value="ga-only">No Classic</option>
+                    <option value="classic-only">Classic Programs</option>
+                    <option value="ga-only">Non-Classic Programs</option>
                     <option value="hybrid">Show Everything</option>
                   </select>
                 </label>
