@@ -1,14 +1,14 @@
 import useCookie from "./useCookie";
 import { createContainer } from "unstated-next";
 
-const VERSIONS = ["classic-only", "hybrid", "ga-only"] as const;
+export const VERSIONS = ["classic-only", "hybrid", "ga-only"] as const;
 
 type ElementType<T extends ReadonlyArray<unknown>> = T extends ReadonlyArray<
   infer ElementType
 >
   ? ElementType
   : never;
-type Version = ElementType<typeof VERSIONS>;
+export type Version = ElementType<typeof VERSIONS>;
 
 export function useVersion(): [Version, (next: Version) => void] {
   const [innerVersion, setInnerVersion] = useCookie("docs-version", "hybrid");
@@ -33,9 +33,17 @@ export function useVersion(): [Version, (next: Version) => void] {
 function useVersionContext() {
   let [version, setVersion] = useVersion();
 
+  const versionLabel =
+    version === "classic-only"
+      ? "Works With Classic"
+      : version === "ga-only"
+      ? "No Classic"
+      : "All";
+
   return {
     version,
-    setVersion
+    versionLabel,
+    setVersion,
   };
 }
 

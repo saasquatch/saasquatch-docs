@@ -9,7 +9,8 @@ import exampleSwaggerSchema from "../../../metalsmith/filters/exampleSwaggerSche
 import { Properties } from "../../components/Properties";
 import { VersionContext } from "../../components/useVersion";
 
-import {Operation, Spec} from "swagger-schema-official";
+import { Operation, Spec, Response } from "swagger-schema-official";
+import { VersionSwitcher } from "components/VersionSwitcher";
 
 const FilterHeader = styled.div`
   display: flex;
@@ -80,63 +81,72 @@ function CodeExample({ method, httpMethod, methodPath, swagger }: any) {
 }
 
 function Tags({ method }: any) {
-  // @ts-ignore
-  const { tagMap } = useRouteData();
+  // // @ts-ignore
+  // const { tagMap } = useRouteData<RouteData>();
 
   // TODO: Include tag descriptions
-  return method.tags.map((tag: string) => <span className="label">{tag}</span>);
+  return method.tags.map((tag: string) => (
+    <span className="label" key={tag}>
+      {tag}
+    </span>
+  ));
 }
 
-function AuthTags({ method }: any) {
-  //@ts-ignore
-  const { swagger, tagMap, methodsByTag } = useRouteData();
+function AuthTags({ method }: Partial<Endpoint>): JSX.Element {
+  const { swagger } = useRouteData<RouteData>();
 
-  return method.security.length < 1 ? (
-    <span
-      className="label"
-      title="Does not require any type of authentication to make this API call."
-    >
-      Unauthenticated
-    </span>
-  ) : (
-    method.security.map((obj: any) => {
-      const secName = Object.keys(obj)[0];
-      const sec = obj[secName];
+  if (method.security.length < 1) {
+    return (
+      <span
+        className="label"
+        title="Does not require any type of authentication to make this API call."
+      >
+        Unauthenticated
+      </span>
+    );
+  }
 
-      const desc = swagger.securityDefinitions[secName].description;
+  return (
+    <>
+      {method.security.map((obj: any, idx: number) => {
+        const secName = Object.keys(obj)[0];
+        const sec = obj[secName];
 
-      return (
-        <span className="label" title={desc}>
-          {secName}
-        </span>
-      );
-      if (sec.length >= 1) {
-        // TODO: Show "scopes". Useful for OAuth.
-      }
-    })
+        const desc = swagger.securityDefinitions[secName].description;
+
+        return (
+          <span className="label" title={desc} key={idx}>
+            {secName}
+          </span>
+        );
+        if (sec.length >= 1) {
+          // TODO: Show "scopes". Useful for OAuth.
+        }
+      })}
+    </>
   );
 }
 
 type RouteData = {
-  swagger: Spec,
-  tagMap: any,
-  methodsByTag: any
+  swagger: Spec;
+  tagMap: any;
+  methodsByTag: any;
 };
 
 export default function render() {
-  const { swagger, tagMap, methodsByTag }:RouteData = useRouteData();
+  const { swagger, tagMap, methodsByTag } = useRouteData<RouteData>();
   // Performance optimization. See: https://github.com/facebook/react/issues/15156
   // Don't remove this line!
   return <Page swagger={swagger} tagMap={tagMap} methodsByTag={methodsByTag} />;
 }
 type Endpoint = {
-  httpMethod: string
-  path: string
-  method: Operation
+  httpMethod: string;
+  path: string;
+  method: Operation;
 };
 
-function Page({ swagger, tagMap, methodsByTag }:RouteData) {
-  const { version } = VersionContext.useContainer();
+function Page({ swagger, tagMap, methodsByTag }: RouteData) {
+  const { version, versionLabel } = VersionContext.useContainer();
   console.log("version", version);
 
   const entry = {
@@ -161,16 +171,13 @@ function Page({ swagger, tagMap, methodsByTag }:RouteData) {
     []
   );
 
-  const versionLabel =
-    version === "classic-only"
-      ? "Works With Classic"
-      : version === "ga-only"
-      ? "No Classic"
-      : "All";
+  const showMethod = (method: Operation) =>
+    (version === "ga-only" && !method.tags.includes("Classic Only")) ||
+    (version === "classic-only" && method.tags.includes("Classic Only")) ||
+    (version === "hybrid" && true);
 
-  const showMethod = (method:Operation) =>
-    version === "ga-only" && method.tags.includes("Classic Only");
-
+  const numHiddenMethods =
+    endpoints.filter(({ method }) => !showMethod(method))?.length || 0;
   return (
     <PageHeader {...entry}>
       <>
@@ -183,17 +190,17 @@ function Page({ swagger, tagMap, methodsByTag }:RouteData) {
         </p>
 
         <dl className="dl-horizontal">
-          {Object.keys(tagMap).map((k: any) => {
+          {Object.keys(tagMap).map((k: any, idx: number) => {
             const tag = tagMap[k];
             return (
-              <>
+              <React.Fragment key={idx}>
                 <dt>
                   <span className="label">{tag.name}</span>
                 </dt>
                 <dd>
                   <Markdown source={tag.description} />
                 </dd>
-              </>
+              </React.Fragment>
             );
           })}
         </dl>
@@ -209,14 +216,14 @@ function Page({ swagger, tagMap, methodsByTag }:RouteData) {
           {Object.keys(swagger.securityDefinitions).map((key: string) => {
             const secDef = swagger.securityDefinitions[key];
             return (
-              <>
+              <React.Fragment key={key}>
                 <dt>
                   <span className="label">{key}</span>
                 </dt>
                 <dd>
                   <Markdown source={secDef.description} />
                 </dd>
-              </>
+              </React.Fragment>
             );
           })}
           <dt>
@@ -263,91 +270,100 @@ function Page({ swagger, tagMap, methodsByTag }:RouteData) {
           </thead>
           <tbody>
             {endpoints.map((endpoint: Endpoint) => {
+              const { method, httpMethod, path } = endpoint;
 
-                const {method, httpMethod, path} = endpoint;
+              const anchor = "#" + method["x-docs-anchor"];
 
-                const anchor = "#" + method["x-docs-anchor"];
+              // TODO One way to do it
+              if (!showMethod(method)) {
+                return <tr key={anchor} />;
+              }
 
-                // TODO One way to do it
-                if (!showMethod(method)!) {
-                  return <tr />;
-                }
-
-                return (
-                  <tr>
-                    <td>
-                      <HTTPMethod>{httpMethod}</HTTPMethod>
-                    </td>
-                    <td className="docs-monospace">
-                      {swagger.basePath}
-                      {path}
-                    </td>
-                    <td>
-                      <a href={anchor} className="nav-onpage">
-                        {method.summary}
-                      </a>
-                    </td>
-                    <td>
-                      <AuthTags method={method} />
-                    </td>
-                    <td>
-                      <Tags method={method} />
-                    </td>
-                  </tr>
-                );
+              return (
+                <tr key={anchor}>
+                  <td>
+                    <HTTPMethod>{httpMethod}</HTTPMethod>
+                  </td>
+                  <td className="docs-monospace">
+                    {swagger.basePath}
+                    {path}
+                  </td>
+                  <td>
+                    <a href={anchor} className="nav-onpage">
+                      {method.summary}
+                    </a>
+                  </td>
+                  <td>
+                    <AuthTags method={method} />
+                  </td>
+                  <td>
+                    <Tags method={method} />
+                  </td>
+                </tr>
+              );
             })}
+
+            {numHiddenMethods > 0 && (
+              <tr>
+                <td colSpan={90}>
+                  {numHiddenMethods} hidden methods not for{" "}
+                  <b>{versionLabel}</b>. <VersionSwitcher />
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
 
-        {Object.keys(swagger.paths).map((path: string) => {
-          const methodPath = path;
-          const methods = swagger.paths[path];
+        {endpoints.map((endpoint: Endpoint) => {
+          const { method, httpMethod, path } = endpoint;
 
-          return Object.keys(methods).map((httpMethod: string) => {
-            const method = methods[httpMethod];
+          return (
+            <div
+              id={method["x-docs-anchor"]}
+              className="apidocs-section"
+              key={method["x-docs-anchor"]}
+            >
+              <div className="js-apidocs-method-title">
+                <a href="#" style={{ float: "right" }}>
+                  Back to List
+                </a>
+                <h2 className="js-apidocs-methodname {%if method['deprecated'] %}js-apidocs-method-deprecated{% endif %}">
+                  {method.summary}
+                </h2>
 
-            return (
-              <div id={method["x-docs-anchor"]} className="apidocs-section">
-                <div className="js-apidocs-method-title">
-                  <a href="#" style={{ float: "right" }}>
-                    Back to List
-                  </a>
-                  <h2 className="js-apidocs-methodname {%if method['deprecated'] %}js-apidocs-method-deprecated{% endif %}">
-                    {method.summary}
-                  </h2>
+                <HTTPMethod className="label js-apidocs-method-type docs-label-{{httpMethod | lower}}">
+                  {httpMethod}
+                </HTTPMethod>
+                <code className="js-apidocs-method-code">
+                  {swagger.basePath}
+                  {path}
+                </code>
+              </div>
 
-                  <HTTPMethod className="label js-apidocs-method-type docs-label-{{httpMethod | lower}}">
-                    {httpMethod}
-                  </HTTPMethod>
-                  <code className="js-apidocs-method-code">
-                    {swagger.basePath}
-                    {methodPath}
-                  </code>
+              {method["deprecated"] && (
+                <div className="deprecated-label-box">
+                  <span className="label deprecated-label">Deprecated</span>
                 </div>
+              )}
 
-                {method["deprecated"] && (
-                  <div className="deprecated-label-box">
-                    <span className="label deprecated-label">Deprecated</span>
-                  </div>
-                )}
+              <div className="lead">
+                <Markdown source={method.description} />
+              </div>
 
-                <div className="lead">
-                  <Markdown source={method.description} />
-                </div>
+              <p>
+                <b>Tags</b>:
+                <Tags method={method} /> <b>Authentication</b>:
+                <AuthTags method={method} />
+              </p>
 
-                <p>
-                  <b>Tags</b>:
-                  <Tags method={method} /> <b>Authentication</b>:
-                  <AuthTags method={method} />
-                </p>
-
-                <details>
-                  <summary>View Method Details</summary>
+              <details>
+                <summary>View Method Details</summary>
+                <div>
+                  <h4 style={{ marginTop: "40px" }}>Arguments</h4>
                   <div>
-                    <h4 style={{ marginTop: "40px" }}>Arguments</h4>
-                    <div>
-                      <table className="table table-hover apidocs-args">
-                        {method.parameters.map((param: any) => {
+                    <table className="table table-hover apidocs-args">
+                      <tbody>
+                        {method.parameters.map((param: any, idx: number) => {
                           const signature =
                             param.in == "body" ? (
                               <>
@@ -367,7 +383,7 @@ function Page({ swagger, tagMap, methodsByTag }:RouteData) {
                             );
 
                           return (
-                            <tr>
+                            <tr key={idx}>
                               <td>
                                 {(param.required || param.in == "body") && (
                                   <span className="label">Required</span>
@@ -382,33 +398,33 @@ function Page({ swagger, tagMap, methodsByTag }:RouteData) {
                             </tr>
                           );
                         })}
-                      </table>
+                      </tbody>
+                    </table>
 
-                      <p>
-                        <b>Example Curl Request</b>
-                      </p>
-                      <CodeExample
-                        method={method}
-                        httpMethod={httpMethod}
-                        methodPath={methodPath}
-                        swagger={swagger}
-                      />
-                    </div>
-                    <h4 style={{ marginTop: "40px" }}>Returns</h4>
-
-                    <ResponseTabs method={method} />
+                    <p>
+                      <b>Example Curl Request</b>
+                    </p>
+                    <CodeExample
+                      method={method}
+                      httpMethod={httpMethod}
+                      methodPath={path}
+                      swagger={swagger}
+                    />
                   </div>
-                </details>
-              </div>
-            );
-          });
+                  <h4 style={{ marginTop: "40px" }}>Returns</h4>
+
+                  <ResponseTabs method={method} />
+                </div>
+              </details>
+            </div>
+          );
         })}
       </>
     </PageHeader>
   );
 }
 
-function JsonCode({ object }: any) {
+function JsonCode({ object }: { object: any }) {
   const highlighted = useMemo(() => {
     const highlightedCode = hljs.highlight(
       "json",
@@ -424,43 +440,44 @@ function JsonCode({ object }: any) {
   );
 }
 
-function responseId(method: any, responseKey: string) {
+function responseId(method: Operation, responseKey: string) {
   return method.operationId + "-" + responseKey;
 }
 
-function ResponseTabs({ method }) {
+function ResponseTabs({ method }: { method: Operation }) {
   const [active, setActive] = useState(0);
 
   return (
     <div className="tabbable">
       <ul className="nav nav-tabs">
-        {Object.keys(method.responses).map((key: string, idx: number) => {
-          const className = idx === active ? "active" : null;
-          if (key === "default") {
-            return <></>;
-          }
-          const response = method.responses[key];
-          const target = "." + responseId(method, key);
-          return (
-            <li className={className}>
-              <a className="tab" onClick={() => setActive(idx)}>
-                <span className="label">HTTP {key}</span> {response.description}
-              </a>
-            </li>
-          );
-        })}
+        {Object.keys(method.responses)
+          .filter((key) => key !== "default")
+          .map((key: string, idx: number) => {
+            const className = idx === active ? "active" : null;
+            // We are using a de-referenced swagger schema
+            const response = method.responses[key] as Response;
+            const target = "." + responseId(method, key);
+            return (
+              <li className={className} key={idx}>
+                <a className="tab" onClick={() => setActive(idx)}>
+                  <span className="label">HTTP {key}</span>{" "}
+                  {response.description}
+                </a>
+              </li>
+            );
+          })}
       </ul>
 
       <div className="tab-content">
         {Object.keys(method.responses).map((key: string, idx: number) => {
           if (key === "default") {
-            return <></>;
+            return <div key={idx} />;
           }
           const display = idx === active ? "block" : "none";
-          const response = method.responses[key];
+          const response = method.responses[key] as Response;
           let className = "tab-pane" + responseId(method, key);
           return (
-            <div className={className} style={{ display }}>
+            <div className={className} style={{ display }} key={idx}>
               <Properties schema={response.schema} />
               <p>
                 <b>Example Response</b>
@@ -469,9 +486,9 @@ function ResponseTabs({ method }) {
               {response.examples &&
                 Object.keys(response.examples)
                   .filter((mime) => mime === "application/json")
-                  .map((mime: any) => {
+                  .map((mime: any, idx: number) => {
                     const example = response.examples[mime];
-                    return <JsonCode object={example} />;
+                    return <JsonCode object={example} key={idx} />;
                   })}
             </div>
           );
