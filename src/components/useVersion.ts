@@ -1,5 +1,6 @@
 import useCookie from "./useCookie";
 import { createContainer } from "unstated-next";
+import { useState } from "react";
 
 export const VERSIONS = ["classic-only", "hybrid", "ga-only"] as const;
 
@@ -32,6 +33,7 @@ export function useVersion(): [Version, (next: Version) => void] {
 
 function useVersionContext() {
   let [version, setVersion] = useVersion();
+  let [open, setOpen] = useState<boolean>(false);
 
   const versionLabel =
     version === "classic-only"
@@ -44,6 +46,9 @@ function useVersionContext() {
     version,
     versionLabel,
     setVersion,
+    modalIsOpen: open,
+    openModal: () => setOpen(true),
+    closeModal: () => setOpen(false),
   };
 }
 

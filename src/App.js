@@ -8,6 +8,7 @@ import "./assets/stylesheets/docs.less";
 import { NavigationHeader } from "./navigation/NavigationHeader";
 import { NavigationFooter } from "./navigation/NavigationFooter";
 import { NavigationSidebar } from "./navigation/NavigationSidebar";
+import VersionSwitcherModal from "./components/VersionSwitcherModal";
 
 let init = () => {};
 if (typeof document !== "undefined") {
@@ -66,6 +67,8 @@ function App() {
                 <Routes default />
                 {/* </Router> */}
               </React.Suspense>
+              <VersionSwitcherModal/>
+
             </div>
             <div id="my-footer">
               <NavigationFooter />

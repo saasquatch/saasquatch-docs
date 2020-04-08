@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
+import Modal from 'react-modal';
 
 // Your top level component
 import App from './App.js'
@@ -11,6 +12,7 @@ export default App
 // Render your app
 if (typeof document !== 'undefined') {
   const target = document.getElementById('root')
+  Modal.setAppElement('#root')
 
   const renderMethod = target.hasChildNodes()
     ? ReactDOM.hydrate
