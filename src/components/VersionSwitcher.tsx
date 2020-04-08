@@ -16,8 +16,8 @@ export function VersionSwitcher() {
             return setVersion(e.currentTarget.value as Version);
         }}
       >
+        <option value="ga-only">New Programs (Hide Classic)</option>
         <option value="classic-only">Works With Classic</option>
-        <option value="ga-only">No Classic</option>
         <option value="hybrid">Show Everything</option>
       </select>
     </label>
