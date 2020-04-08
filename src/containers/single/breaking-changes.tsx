@@ -1,11 +1,12 @@
+import moment from "moment";
 import React from "react";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
+import { useRouteData } from "react-static";
+import styled from "styled-components";
+
+import { PrimaryButton } from "../../components/Buttons";
 import Markdown from "../../components/Markdown";
 import PageHeader from "../../components/PageHeader";
-import styled from "styled-components";
-import moment from "moment";
-import { PrimaryButton } from "../../components/Buttons";
-import { useRouteData } from "react-static";
 
 const Timeline = styled.div`
   border-left: 2px solid #003b45;
@@ -197,63 +198,20 @@ const CustomForm = ({ status, message, onValidated }: FormProps) => {
 const entry = {
   title: "Breaking Changes",
   highlights:
-    "We try our best to ensure backwards compatibility of our products, but some circumstance dictate that we launch breaking changes. Our policy is to notify customers first, and post those changes here.",
+    "We try our best to ensure backwards compatibility of our products, but sometimes we have to launch breaking changes. Our policy is to notify customers first by emailing our Breaking Changes list and posting details on this page.",
   slug: "developer/breaking-changes",
   sectionType: "developerCenter",
 };
 
 export default function render() {
-  const { breakingChanges } = useRouteData();
+  const { breakingChanges = [] } = useRouteData<{
+    breakingChanges: Change[];
+  }>();
 
-  type ChangeProps = {
-    mermaidMd: any;
-    title: string;
-    description: string;
-    deadline: string;
-  };
-  const Change = ({ mermaidMd, title, description, deadline }: ChangeProps) => {
-    const daysUntil = (date: string) => {
-      const momDate = moment(date);
-      const momToday = moment();
-      const diff = momDate.diff(momToday, "days");
-      return diff > 1 ? `In ${diff} Days` : `In ${diff} day`;
-    };
-
-    return (
-      <ChangeWrapper>
-        <Deadline>
-          <p className="days">{daysUntil(deadline)}</p>
-          <p className="deadline">{deadline}</p>
-        </Deadline>
-        <Dot />
-        <Connector />
-        <Body>
-          <div>
-            <Text>
-              <b>{title}</b>
-            </Text>
-          </div>
-          <div>
-            <Text>
-              <Markdown source={description} />
-            </Text>
-          </div>
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <Name>Timeline</Name>
-            <Text>
-              <MermaidStyles>
-                {mermaidMd && (
-                  <div className="mermaid-markdown">
-                    <Markdown source={mermaidMd} />
-                  </div>
-                )}
-              </MermaidStyles>
-            </Text>
-          </div>
-        </Body>
-      </ChangeWrapper>
-    );
-  };
+  // Once a deadline is more than 14 days in the past, hide it.
+  const upcomingChanges = breakingChanges.filter(
+    (c) => numDaysUntil(c.deadline) >= -14
+  );
 
   return (
     <PageHeader {...entry}>
@@ -268,8 +226,9 @@ export default function render() {
           <div style={{ paddingRight: "50px" }}>
             <h3>Breaking Change Policy</h3>
             <p>
-              While advancing the SaaSquatch platform we do our best to ensure
-              we meet the needs of current, new and future customers.
+              Our first priority is to make sure that our products don't change
+              so that nobody has to spend time updating their integrations. In
+              some cases, we have to make backwards incompatible changes.
             </p>
             <ul>
               <li>
@@ -278,19 +237,22 @@ export default function render() {
               </li>
               <li>
                 When we remove functionality, existing customers may be
-                "grandfathered" in.
+                "grandfathered" in to existing behaviour and only new customers
+                get the new behaviour.
               </li>
               <li>
-                If a breaking change can be rolled our slowly, we start disabing
+                If a breaking change can be rolled out slowly, we start disabing
                 the feature for a portion of traffic before turning it off
                 completely.
               </li>
+              <li>Announcements for breaking changes are sent via email.</li>
             </ul>
           </div>
           <Well>
             <SubscribeText>Subscribe to Breaking Changes</SubscribeText>
             <SubscribeP>
-              We will notify you when breaking changes are made
+              We will notify you when breaking changes are announced, and send
+              periodic reminders before they take effect.
             </SubscribeP>
             <MailchimpSubscribe
               url={url}
@@ -307,8 +269,8 @@ export default function render() {
 
         <h3>Upcoming Changes</h3>
         <Timeline>
-          {breakingChanges?.length > 0 &&
-            breakingChanges.map((c: Change, i) => {
+          {upcomingChanges?.length > 0 &&
+            upcomingChanges.map((c, i) => {
               const mermaidMd = c.timeline
                 ? "\n```mermaid\n" + c.timeline + "\n```"
                 : undefined;
@@ -323,10 +285,10 @@ export default function render() {
               );
             })}
         </Timeline>
-        {breakingChanges.length === 0 && (
+        {upcomingChanges.length === 0 && (
           <p>
-            There are no upcoming breaking changes. Subscribe to the email
-            service above to be notified if any changes are added
+            There are no upcoming breaking changes. Subscribe to our email
+            newsletter above to be notified if any changes are announced.
           </p>
         )}
       </>
@@ -340,4 +302,65 @@ type Change = {
   title: string;
   description: string;
   timeline?: string;
+};
+
+type ChangeProps = {
+  mermaidMd: any;
+  title: string;
+  description: string;
+  deadline: string;
+};
+const Change = ({ mermaidMd, title, description, deadline }: ChangeProps) => {
+  return (
+    <ChangeWrapper>
+      <Deadline>
+        <p className="days">{daysUntil(deadline)}</p>
+        <p className="deadline">{deadline}</p>
+      </Deadline>
+      <Dot />
+      <Connector />
+      <Body>
+        <div>
+          <Text>
+            <b>{title}</b>
+          </Text>
+        </div>
+        <div>
+          <Text>
+            <Markdown source={description} />
+          </Text>
+        </div>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <Name>Timeline</Name>
+          <Text>
+            <MermaidStyles>
+              {mermaidMd && (
+                <div className="mermaid-markdown">
+                  <Markdown source={mermaidMd} />
+                </div>
+              )}
+            </MermaidStyles>
+          </Text>
+        </div>
+      </Body>
+    </ChangeWrapper>
+  );
+};
+
+const numDaysUntil = (date: string) => {
+  const momDate = moment(date);
+  const momToday = moment();
+  const diff = momDate.diff(momToday, "days");
+  return diff;
+};
+
+const daysUntil = (date: string) => {
+  const diff = numDaysUntil(date);
+  if (diff < 0) {
+    return diff === -1 ? `${-diff} Day Ago` : `${-diff} Days Ago`;
+  }
+  if (diff === 0) {
+    return "Today";
+  }
+  return diff === 1 ? `In ${diff} Day` : `In ${diff} Days`;
 };
