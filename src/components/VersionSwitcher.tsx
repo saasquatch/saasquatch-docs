@@ -9,9 +9,7 @@ export function VersionSwitcher() {
     <label htmlFor="filter">
       Change Filter:
       <select
-        id="fitler"
-        name="filter"
-        defaultValue={version}
+        value={version}
         onChange={(e) => {
             return setVersion(e.currentTarget.value as Version);
         }}
