@@ -63,7 +63,6 @@
     "swagger-parser": "^3.4.1",
     "swig": "1.4.2",
     "swig-extras": "0.0.1",
-    "unstated-next": "^1.1.0",
     "webpack": "^4.20.2",
     "webpack-visualizer-plugin": "^0.1.11",
     "zenscroll": "^3.3.0"
@@ -107,6 +106,7 @@
     "serve": "^11.1.0",
     "styled-components": "^4.4.1",
     "typescript": "^3.5.3",
+    "unstated-next": "^1.1.0",
     "uuid": "^3.4.0",
     "yaml-loader": "^0.5.0"
   }
