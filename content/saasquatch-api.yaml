@@ -114,6 +114,10 @@ tags:
   - name: Classic Only
     description: An endpoint or attribute that only works with the Classic referral programs, and no other programs.
     x-meta: true
+  - name: Modern Only
+    description: An endpoint or attribute that does not work with the Classic referral program.
+    x-meta: true
+
 
 paths:
   "/{tenant_alias}/accountsync":
@@ -375,6 +379,7 @@ paths:
       tags:
         - User Event
         - Open Endpoint
+        - Modern Only
       security:
         - APIKey: []
         - UserJWT: []

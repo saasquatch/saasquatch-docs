@@ -105,7 +105,7 @@ function useApiData(): APIData {
 
   const showMethod = (method: Operation) =>
     (version === "ga-only" && !method.tags.includes("Classic Only")) ||
-    (version === "classic-only" && method.tags.includes("Classic Only")) ||
+    (version === "classic-only" && !method.tags.includes("Modern Only")) ||
     (version === "hybrid" && true);
 
   return {
@@ -384,6 +384,137 @@ function Page({ swagger, tagMap, endpointByTag, showMethod }: APIData) {
   );
 }
 
+const BootstrapListGroup = styled.ul`
+  //
+  // List groups
+  // --------------------------------------------------
+
+  // Base class
+  //
+  // Easily usable on <ul>, <ol>, or <div>.
+  // No need to set list-style: none; since .list-group-item is block level
+  margin-bottom: 20px;
+  padding-left: 0; // reset padding because ul and ol
+`;
+
+const BootstrapListGroupItem = styled.li`
+  // Individual list items
+  //
+  // Use on li or div within the .list-group parent.
+
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  // Place the border on the list items and negative margin up for better styling
+  margin-bottom: -1px;
+  background-color: #eee;
+  border: 1px solid #ccc;
+
+  // Round the first and last items
+  &:first-child {
+    border-radius: 5px 5px 0 0;
+  }
+  &:last-child {
+    margin-bottom: 0;
+    border-radius: 0 0 5px 5px;
+  }
+`;
+
+// Interactive list items
+//
+// Use anchor or button elements instead of `li`s or `div`s to create interactive items.
+// Includes an extra `.active` modifier class for showing selected items.
+const BootstrapActiveItem = styled(BootstrapListGroupItem)<{
+  disabled: boolean;
+}>`
+  color: @list-group-link-color;
+
+  .list-group-item-heading {
+    color: @list-group-link-heading-color;
+  }
+
+  // Hover state
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    color: @list-group-link-hover-color;
+    background-color: @list-group-hover-bg;
+  }
+
+  button.& {
+    width: 100%;
+    text-align: left;
+  }
+    // Disabled state
+
+    ${({ disabled }) =>
+      disabled &&
+      `
+      &,
+      &:hover,
+      &:focus {
+        background-color: @list-group-disabled-bg;
+        color: @list-group-disabled-color;
+        cursor: @cursor-disabled;
+  
+        // Force color to inherit for custom content
+        .list-group-item-heading {
+          color: inherit;
+        }
+        .list-group-item-text {
+          color: @list-group-disabled-text-color;
+        }
+      }
+      `}
+
+
+    // Active class on item itself, not parent
+    &.active,
+    &.active:hover,
+    &.active:focus {
+      z-index: 2; // Place active items above their siblings for proper border styling
+      color: @list-group-active-color;
+      background-color: @list-group-active-bg;
+      border-color: @list-group-active-border;
+
+      // Force color to inherit for custom content
+      .list-group-item-heading,
+      .list-group-item-heading > small,
+      .list-group-item-heading > .small {
+        color: inherit;
+      }
+      .list-group-item-text {
+        color: @list-group-active-text-color;
+      }
+    }
+  }
+
+  // Contextual variants
+  //
+  // Add modifier classes to change text and background color on individual items.
+  // Organizationally, this must come after the :hover states.
+
+  // .list-group-item-variant(success; @state-success-bg; @state-success-text);
+  // .list-group-item-variant(info; @state-info-bg; @state-info-text);
+  // .list-group-item-variant(warning; @state-warning-bg; @state-warning-text);
+  // .list-group-item-variant(danger; @state-danger-bg; @state-danger-text);
+`;
+
+// Custom content options
+//
+// Extra classes for creating well-formatted content within .list-group-item s.
+const ListGroupItemHeading = styled.div<{ disabled: boolean }>`
+  margin-top: 0;
+  margin-bottom: 5px;
+  ${({ disabled }) => disabled && `color: inherit;`}
+`;
+
+const ListGroupItemText = styled.div<{ disabled: boolean }>`
+  margin-bottom: 0;
+  line-height: 1.3;
+  ${({ disabled }) => disabled && `color: @list-group-disabled-text-color;`}
+`;
+
 function TagSummary({ tag }: { tag: string }): JSX.Element {
   const {
     swagger,
@@ -400,26 +531,39 @@ function TagSummary({ tag }: { tag: string }): JSX.Element {
     .length;
 
   return (
-    <div>
-      <h3>{tagDetails.name}</h3>
-      <p>{tagDetails.description}</p>
+    <div className="row-fluid">
+      <div className="span6">
+        <h3>{tagDetails.name}</h3>
+        <p>{tagDetails.description}</p>
+      </div>
+      <div className="span6">
+        <BootstrapListGroup as="div">
+          <BootstrapListGroupItem as="div">
+            <b>Endpoints</b>
+          </BootstrapListGroupItem>
 
-      <h4>Endpoints</h4>
-      <ul>
-        {endPoints
-          .filter((e) => showMethod(e.method))
-          .map((e) => (
-            <li key={e.method["x-docs-anchor"]}>
-              <a href={e.method["x-docs-anchor"]}>{e.method.summary}</a>
-            </li>
-          ))}
-        {numHiddenMethods > 0 && (
-          <li>
-            {numHiddenMethods} hidden methods not for <b>{versionLabel}</b>.{" "}
-            <VersionSwitcher />
-          </li>
-        )}
-      </ul>
+          {endPoints
+            .filter((e) => showMethod(e.method))
+            .map((e) => (
+              <BootstrapListGroupItem
+                as="a"
+                key={e.method["x-docs-anchor"]}
+                className="list-group-item"
+                href={e.method["x-docs-anchor"]}
+              >
+                {e.method.summary}
+              </BootstrapListGroupItem>
+            ))}
+          {numHiddenMethods > 0 && (
+            <BootstrapListGroupItem as="div">
+              <i className="fa fa-compress"></i> {numHiddenMethods} endpoints hidden for{" "}
+              <VersionSwitcher>
+                <b>{versionLabel}</b>
+              </VersionSwitcher>
+            </BootstrapListGroupItem>
+          )}
+        </BootstrapListGroup>
+      </div>
     </div>
   );
 }
