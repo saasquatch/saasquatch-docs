@@ -52,17 +52,17 @@ const MD = styled.div`
   .heading-anchor:focus {
     opacity: 1;
   }
-  .mermaid {
+  .sq-mrmaid {
     visibility: collapse; /** Hides text until the graph is rendered */
   }
-  .mermaid * {
+  .sq-mrmaid * {
     visibility: visible;
   }
-  .mermaid svg {
+  .sq-mrmaid svg {
     margin: 0 auto;
     display: block;
   }
-  .mermaid svg .label {
+  .sq-mrmaid svg .label {
     text-shadow: none; /* Overrides bootstrap CSS class conflict*/
   }
 `;
@@ -117,7 +117,7 @@ function quoteattr(s, preserveCR?: string) {
 
 renderer.code = function (code?: string, language?: string) {
   if (language && language.toLowerCase() === "mermaid") {
-    return `<div class="${SECRETID}" data-graph="${quoteattr(code)}"></div>`;
+    return `<div class="${SECRETID} sq-mrmaid" data-graph="${quoteattr(code)}"></div>`;
   } else {
     return marked.Renderer.prototype.code.apply(this, arguments);
   }
