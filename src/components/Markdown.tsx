@@ -141,8 +141,8 @@ renderer.heading = function (
   // const slug = slugger.slug(raw);
 
   return `
-          <h${level}>
-            <a name="${slug}" class="heading-anchor" href="#${slug}">&#x1F517;</a>
+          <h${level} id="${slug}">
+            <a class="heading-anchor" href="#${slug}">&#x1F517;</a>
             ${text}
           </h${level}>`;
 };

@@ -10,9 +10,9 @@ export function replace(domNode: any) {
     return <ApiList />;
   }
   if (domNode.name && domNode.name === "a") {
-    // TODO: to support hash links, switch to react router? https://github.com/rafrex/react-router-hash-link
+    const {href, ...rest} = domNode.attribs
     return (
-      <Link to={domNode.attribs.href}>
+      <Link to={href} {...rest}>
         {domToReact(domNode.children, { replace })}
       </Link>
     );
