@@ -1,8 +1,11 @@
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useLayoutEffect, useRef, useMemo } from "react";
 // @ts-ignore no types for marked
 import marked from "marked";
 import styled from "styled-components";
 import uuidv4 from "uuid/v4";
+
+import parse from "html-react-parser";
+import { replace } from "../navigation/replace";
 
 // Stop mermaid for doing th
 const SECRETID = "mermaid2018y125ug1";
@@ -117,7 +120,9 @@ function quoteattr(s, preserveCR?: string) {
 
 renderer.code = function (code?: string, language?: string) {
   if (language && language.toLowerCase() === "mermaid") {
-    return `<div class="${SECRETID} sq-mrmaid" data-graph="${quoteattr(code)}"></div>`;
+    return `<div class="${SECRETID} sq-mrmaid" data-graph="${quoteattr(
+      code
+    )}"></div>`;
   } else {
     return marked.Renderer.prototype.code.apply(this, arguments);
   }
@@ -146,7 +151,12 @@ export default function Markdown({ source }: { source: string }) {
   if (!source) return <div />;
   const [ref] = useMermaid(source);
 
-  var rawMarkup = marked(source, { sanitize: false, renderer: renderer });
-  const html = { __html: rawMarkup };
-  return <MD dangerouslySetInnerHTML={html} ref={ref} />;
+  const comp = useMemo(() => {
+    const rawMarkup = marked(source, { sanitize: false, renderer: renderer });
+    return parse(rawMarkup, { replace });
+  }, [source, renderer]);
+
+  return <MD ref={ref}>{comp}</MD>;
 }
+
+function MarkdownInner({ source }: { source: string }) {}

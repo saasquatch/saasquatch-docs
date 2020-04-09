@@ -2,6 +2,7 @@ import React, { useMemo, useState } from "react";
 import { useRouteData } from "react-static";
 import styled from "styled-components";
 import hljs from "highlight.js";
+import slug from "slug";
 
 import PageHeader from "../../components/PageHeader";
 import Markdown from "../../components/Markdown";
@@ -531,39 +532,43 @@ function TagSummary({ tag }: { tag: string }): JSX.Element {
     .length;
 
   return (
-    <div className="row-fluid">
-      <div className="span6">
-        <h3>{tagDetails.name}</h3>
-        <p>{tagDetails.description}</p>
-      </div>
-      <div className="span6">
-        <BootstrapListGroup as="div">
-          <BootstrapListGroupItem as="div">
-            <b>Endpoints</b>
-          </BootstrapListGroupItem>
-
-          {endPoints
-            .filter((e) => showMethod(e.method))
-            .map((e) => (
-              <BootstrapListGroupItem
-                as="a"
-                key={e.method["x-docs-anchor"]}
-                className="list-group-item"
-                href={e.method["x-docs-anchor"]}
-              >
-                {e.method.summary}
-              </BootstrapListGroupItem>
-            ))}
-          {numHiddenMethods > 0 && (
+    <div id={slug(tag)}>
+      <div className="row-fluid">
+        <div className="span6">
+          <h3>{tagDetails.name}</h3>
+          <p>{tagDetails.description}</p>
+        </div>
+        <div className="span6">
+          <BootstrapListGroup as="div">
             <BootstrapListGroupItem as="div">
-              <i className="fa fa-compress"></i> {numHiddenMethods} endpoints hidden for{" "}
-              <VersionSwitcher>
-                <b>{versionLabel}</b>
-              </VersionSwitcher>
+              <b>Endpoints</b>
             </BootstrapListGroupItem>
-          )}
-        </BootstrapListGroup>
+
+            {endPoints
+              .filter((e) => showMethod(e.method))
+              .map((e) => (
+                <BootstrapListGroupItem
+                  as="a"
+                  key={e.method["x-docs-anchor"]}
+                  className="list-group-item"
+                  href={"#" + e.method["x-docs-anchor"]}
+                >
+                  {e.method.summary}
+                </BootstrapListGroupItem>
+              ))}
+            {numHiddenMethods > 0 && (
+              <BootstrapListGroupItem as="div">
+                <i className="fa fa-compress"></i> {numHiddenMethods} endpoints
+                hidden for{" "}
+                <VersionSwitcher>
+                  <b>{versionLabel}</b>
+                </VersionSwitcher>
+              </BootstrapListGroupItem>
+            )}
+          </BootstrapListGroup>
+        </div>
       </div>
+      <Endpoints endpoints={endPoints.filter((e) => showMethod(e.method))} />
     </div>
   );
 }
@@ -585,7 +590,7 @@ function Endpoints({ endpoints }: { endpoints: Endpoint[] }): JSX.Element {
                 {method.summary}
               </h2>
 
-              <HTTPMethod className="label js-apidocs-method-type docs-label-{{httpMethod | lower}}">
+              <HTTPMethod className={"label js-apidocs-method-type docs-label-" + httpMethod.toLowerCase()}>
                 {httpMethod}
               </HTTPMethod>
               <code className="js-apidocs-method-code">

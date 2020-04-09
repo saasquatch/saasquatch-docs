@@ -1,7 +1,7 @@
 import React, { useLayoutEffect } from "react";
 import { Root, Routes, addPrefetchExcludes } from "react-static";
 import { VersionContext } from "./components/useVersion";
-// import { Link, Router } from "@reach/router";
+import { Switch, Route, BrowserRouter } from "react-router-dom";
 import { StickyContainer } from "react-sticky";
 
 import "./assets/stylesheets/docs.less";
@@ -56,27 +56,31 @@ function App() {
 
   return (
     <Root>
-      <VersionContext.Provider>
-        <StickyContainer>
-          <div id="my-page">
-            <NavigationHeader />
-            <div id="my-content" className="container-fluid">
-              <React.Suspense fallback={<em>Loading...</em>}>
-                {/* <Router> */}
-                {/* <Dynamic path="dynamic" /> */}
-                <Routes default />
-                {/* </Router> */}
-              </React.Suspense>
-              <VersionSwitcherModal/>
-
+      <BrowserRouter>
+        <VersionContext.Provider>
+          <StickyContainer>
+            <div id="my-page">
+              <NavigationHeader />
+              <div id="my-content" className="container-fluid">
+                <React.Suspense fallback={<em>Loading...</em>}>
+                  {/* <Router>
+                  <Routes default />
+                </Router> */}
+                  <Switch>
+                    {/* <Route path="/dynamic" component={Dynamic} /> */}
+                    <Route render={() => <Routes />} />
+                  </Switch>
+                </React.Suspense>
+                <VersionSwitcherModal />
+              </div>
+              <div id="my-footer">
+                <NavigationFooter />
+              </div>
             </div>
-            <div id="my-footer">
-              <NavigationFooter />
-            </div>
-          </div>
-        </StickyContainer>
-        <NavigationSidebar />
-      </VersionContext.Provider>
+          </StickyContainer>
+          <NavigationSidebar />
+        </VersionContext.Provider>
+      </BrowserRouter>
     </Root>
   );
 }
