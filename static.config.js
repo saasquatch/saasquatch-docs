@@ -217,18 +217,28 @@ async function getRoutes() {
     spaceId: "s68ib1kj8k5n"
   });
 
-  // Sorted list of news items
-  const productNews = entries
-    .reduce((acc, entryRaw) => {
+
+  const filterForType = (type) =>{
+    return (acc, entryRaw) => {
       const entry = resolveI18n(entryRaw);
       let fields = entry.fields;
-      if ("productNews" !== entry.sys.contentType.sys.id) {
+      if (type !== entry.sys.contentType.sys.id) {
         return acc;
       }
       const newsItem = fields;
       return [...acc, newsItem];
-    }, [])
+    }
+  }
+
+  // Sorted list of news items
+  const productNews = entries
+    .reduce(filterForType("productNews"), [])
     .sort((a, b) => a.datePublished > b.datePublished);
+
+      // Sorted list of news items
+  const breakingChanges = entries
+  .reduce(filterForType("breakingChange"), [])
+  .sort((a, b) => a.deadline > b.deadline);
 
   const guides = await getYaml("metadata/guides.yaml");
 
@@ -266,6 +276,11 @@ async function getRoutes() {
       path: "/product-news",
       getData: async () => ({ productNews }),
       template: "src/containers/single/product-news"
+    },
+    {
+      path: "/breaking-changes",
+      getData: async () => ({ breakingChanges }),
+      template: "src/containers/single/breaking-changes"
     },
     {
       path: "/program/library",
