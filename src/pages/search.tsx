@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSiteData } from "react-static";
+import Tippy from "@tippyjs/react/headless";
+import styled from "styled-components";
 
 import Meta from "../components/Meta";
-import { Example } from "components/Example";
 
 export function useSearch() {
   const [response, setResponse] = useState(null);
@@ -213,74 +214,120 @@ export default function render() {
   );
 }
 
+const PopOver = styled.div`
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  padding: 10px;
+`;
+
+export const Example = () => (
+  <Tippy
+    visible={true}
+    render={(attrs) => (
+      <PopOver tabIndex={-1} {...attrs}>
+        My tippy box
+      </PopOver>
+    )}
+  >
+    <button>My button</button>
+  </Tippy>
+);
+
+function isBlank(str) {
+  return (!str || /^\s*$/.test(str));
+}
 export function InlineSearch() {
   const { query, response, setQuery, cat, setCat, setStartIndex } = useSearch();
   if (typeof document === "undefined") {
     return <div />;
   }
+  const showTippy = !isBlank(query);
 
   return (
     <>
-      <form className="js-search-form form-search" action="/search/">
-        <div className="input-append">
-          <input
-            type="text"
-            className="search-query"
-            name="q"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          <button type="submit" className="btn">
-            Search Help Center
-          </button>
-        </div>
-        <Example />
-        <div>
-          {response?.items?.length || 0} results for {query}
-        </div>
-        {/* <div>
-          <label className="radio inline">
+      <Tippy
+        visible={showTippy}
+        placement="bottom-start"
+        render={(attrs) => (
+          <PopOver tabIndex={-1} {...attrs}>
+            <div>
+              {response?.items?.length || 0} results for {query}
+            </div>
+            <div>
+              <label className="radio inline">
+                <input
+                  type="radio"
+                  name="cat"
+                  value=""
+                  checked={cat === ""}
+                  onClick={() => setCat("")}
+                />
+                All
+              </label>
+              <label className="radio inline successCenter">
+                <input
+                  type="radio"
+                  name="cat"
+                  value="successCenter"
+                  checked={cat === "successCenter"}
+                  onClick={() => setCat("successCenter")}
+                />
+                Success
+              </label>
+              <label className="radio inline developerCenter">
+                <input
+                  type="radio"
+                  name="cat"
+                  value="developerCenter"
+                  checked={cat === "developerCenter"}
+                  onClick={() => setCat("developerCenter")}
+                />
+                Developer
+              </label>
+              <label className="radio inline designerCenter">
+                <input
+                  type="radio"
+                  name="cat"
+                  value="designerCenter "
+                  checked={cat === "designerCenter"}
+                  onClick={() => setCat("designerCenter")}
+                />
+                Designer
+              </label>
+            </div>
+            {!response && (
+              <div className="text-center search-spinner">
+                <h3>Searching Help Center...</h3>
+                <i className="fa fa-spinner fa-spin fa-5x"></i>
+              </div>
+            )}
+            {response && (
+              <Results
+                response={response}
+                setStartIndex={setStartIndex}
+                query={query}
+              />
+            )}
+          </PopOver>
+        )}
+      >
+        <form className="js-search-form form-search" action="/search/">
+          <div className="input-append">
             <input
-              type="radio"
-              name="cat"
-              value=""
-              checked={cat === ""}
-              onClick={() => setCat("")}
+              type="text"
+              className="search-query"
+              name="q"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
             />
-            All
-          </label>
-          <label className="radio inline successCenter">
-            <input
-              type="radio"
-              name="cat"
-              value="successCenter"
-              checked={cat === "successCenter"}
-              onClick={() => setCat("successCenter")}
-            />
-            Success
-          </label>
-          <label className="radio inline developerCenter">
-            <input
-              type="radio"
-              name="cat"
-              value="developerCenter"
-              checked={cat === "developerCenter"}
-              onClick={() => setCat("developerCenter")}
-            />
-            Developer
-          </label>
-          <label className="radio inline designerCenter">
-            <input
-              type="radio"
-              name="cat"
-              value="designerCenter "
-              checked={cat === "designerCenter"}
-              onClick={() => setCat("designerCenter")}
-            />
-            Designer
-          </label>
-        </div> */}
-      </form>
+            <button type="submit" className="btn">
+              Search Help Center
+            </button>
+          </div>
+          */}
+        </form>
+      </Tippy>
 
       {/* <section className="page" id="js-docs-search-results">
         <div className="well search-page">
