@@ -219,7 +219,12 @@ const PopOver = styled.div`
   border: 1px solid #eee;
   border-radius: 5px;
   padding: 10px;
+  z-index: 999;
 `;
+
+const Inline = styled.div`
+ 
+`
 
 export const Example = () => (
   <Tippy
@@ -235,7 +240,7 @@ export const Example = () => (
 );
 
 function isBlank(str) {
-  return (!str || /^\s*$/.test(str));
+  return !str || /^\s*$/.test(str);
 }
 export function InlineSearch() {
   const { query, response, setQuery, cat, setCat, setStartIndex } = useSearch();
@@ -246,110 +251,86 @@ export function InlineSearch() {
 
   return (
     <>
-      <Tippy
-        visible={showTippy}
-        placement="bottom-start"
-        render={(attrs) => (
-          <PopOver tabIndex={-1} {...attrs}>
-            <div>
-              {response?.items?.length || 0} results for {query}
-            </div>
-            <div>
-              <label className="radio inline">
-                <input
-                  type="radio"
-                  name="cat"
-                  value=""
-                  checked={cat === ""}
-                  onClick={() => setCat("")}
-                />
-                All
-              </label>
-              <label className="radio inline successCenter">
-                <input
-                  type="radio"
-                  name="cat"
-                  value="successCenter"
-                  checked={cat === "successCenter"}
-                  onClick={() => setCat("successCenter")}
-                />
-                Success
-              </label>
-              <label className="radio inline developerCenter">
-                <input
-                  type="radio"
-                  name="cat"
-                  value="developerCenter"
-                  checked={cat === "developerCenter"}
-                  onClick={() => setCat("developerCenter")}
-                />
-                Developer
-              </label>
-              <label className="radio inline designerCenter">
-                <input
-                  type="radio"
-                  name="cat"
-                  value="designerCenter "
-                  checked={cat === "designerCenter"}
-                  onClick={() => setCat("designerCenter")}
-                />
-                Designer
-              </label>
-            </div>
-            {!response && (
-              <div className="text-center search-spinner">
-                <h3>Searching Help Center...</h3>
-                <i className="fa fa-spinner fa-spin fa-5x"></i>
-              </div>
+      <Inline>
+          <Tippy
+            // visible={showTippy}
+            trigger="focus"
+            placement="bottom-start"
+            interactive={true}
+            interactiveBorder={20}
+            render={(attrs) => (
+              <PopOver {...attrs}>
+                <div>
+                  {response?.items?.length || 0} results for {query}
+                </div>
+                <div>
+                  <label className="radio inline">
+                    <input
+                      type="radio"
+                      name="cat"
+                      value=""
+                      checked={cat === ""}
+                      onClick={() => setCat("")}
+                    />
+                    All
+                  </label>
+                  <label className="radio inline successCenter">
+                    <input
+                      type="radio"
+                      name="cat"
+                      value="successCenter"
+                      checked={cat === "successCenter"}
+                      onClick={() => setCat("successCenter")}
+                    />
+                    Success
+                  </label>
+                  <label className="radio inline developerCenter">
+                    <input
+                      type="radio"
+                      name="cat"
+                      value="developerCenter"
+                      checked={cat === "developerCenter"}
+                      onClick={() => setCat("developerCenter")}
+                    />
+                    Developer
+                  </label>
+                  <label className="radio inline designerCenter">
+                    <input
+                      type="radio"
+                      name="cat"
+                      value="designerCenter "
+                      checked={cat === "designerCenter"}
+                      onClick={() => setCat("designerCenter")}
+                    />
+                    Designer
+                  </label>
+                </div>
+                {!response && (
+                  <div className="text-center search-spinner">
+                    <h3>Searching Help Center...</h3>
+                    <i className="fa fa-spinner fa-spin fa-5x"></i>
+                  </div>
+                )}
+                {response && (
+                  <Results
+                    response={response}
+                    setStartIndex={setStartIndex}
+                    query={query}
+                  />
+                )}
+              </PopOver>
             )}
-            {response && (
-              <Results
-                response={response}
-                setStartIndex={setStartIndex}
-                query={query}
-              />
-            )}
-          </PopOver>
-        )}
-      >
-        <form className="js-search-form form-search" action="/search/">
-          <div className="input-append">
+          >
             <input
               type="text"
               className="search-query"
               name="q"
+              placeholder="Search"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
             />
-            <button type="submit" className="btn">
-              Search Help Center
-            </button>
-          </div>
-          */}
-        </form>
-      </Tippy>
-
-      {/* <section className="page" id="js-docs-search-results">
-        <div className="well search-page">
-          <div className="row-fluid">
-            <div id="pretty-results" className="search-results">
-              {!response && (
-                <div className="text-center search-spinner">
-                  <h3>Searching Help Center...</h3>
-                  <i className="fa fa-spinner fa-spin fa-5x"></i>
-                </div>
-              )}
-              {response && (
-                <Results
-                  response={response}
-                  setStartIndex={setStartIndex}
-                  query={query}
-                />
-              )}
-            </div>
-          </div>
-        </div>
-      </section> */}
+          </Tippy>
+        </Inline>
     </>
   );
 }
