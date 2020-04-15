@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useSiteData } from "react-static";
 
 import Meta from "../components/Meta";
+import { Example } from "components/Example";
 
-export default function render() {
+export function useSearch() {
   const [response, setResponse] = useState(null);
 
   //     ---
@@ -12,9 +13,6 @@ export default function render() {
   // category: search
   // ---
   // Only run in the browser
-  if(typeof document === "undefined"){
-    return <div />;
-  }
   const jQuery = require("jquery");
 
   const { windowDotEnv } = useSiteData();
@@ -35,7 +33,7 @@ export default function render() {
   const initialState = {
     query: getParameterByName("q"),
     cat: getParameterByName("cat"),
-    startIndex: initialIndex
+    startIndex: initialIndex,
   };
   const [{ query, cat, startIndex }, setState] = useState(initialState);
 
@@ -44,7 +42,7 @@ export default function render() {
       // If you change the query, go back to page 0
       startIndex: 0,
       cat,
-      query: newValue
+      query: newValue,
     });
   }
   function setCat(cat: string) {
@@ -52,14 +50,14 @@ export default function render() {
       query,
       cat,
       // If you change the category, go back to page 0
-      startIndex: 0
+      startIndex: 0,
     });
   }
   function setStartIndex(startIndex) {
     setState({
       query,
       cat,
-      startIndex
+      startIndex,
     });
   }
 
@@ -78,7 +76,7 @@ export default function render() {
     cx: windowDotEnv.GCSE_CX,
     key: windowDotEnv.GCSE_KEY,
     format: "json",
-    start: undefined
+    start: undefined,
   };
 
   if (startIndex) {
@@ -93,14 +91,30 @@ export default function render() {
       data: dataObj,
 
       // Work with the response
-      success: function(response) {
+      success: function (response) {
         setResponse(response);
-      }
+      },
     });
   }, [query, cat, startIndex]);
 
+  return {
+    response,
+    query,
+    setQuery,
+    cat,
+    setCat,
+    setStartIndex,
+  };
+}
+
+export default function render() {
+  if (typeof document === "undefined") {
+    return <div />;
+  }
+  const { query, response, setQuery, cat, setCat, setStartIndex } = useSearch();
+
   const entry = {
-    title: "Search results for " + query
+    title: "Search results for " + query,
   };
   return (
     <>
@@ -116,7 +130,7 @@ export default function render() {
                   className="search-query"
                   name="q"
                   value={query}
-                  onChange={e => setQuery(e.target.value)}
+                  onChange={(e) => setQuery(e.target.value)}
                 />
                 <button type="submit" className="btn">
                   Search Help Center
@@ -129,7 +143,7 @@ export default function render() {
                     name="cat"
                     value=""
                     checked={cat === ""}
-                    onClick={() => setCat("")}
+                    onChange={() => setCat("")}
                   />
                   All
                 </label>
@@ -139,7 +153,7 @@ export default function render() {
                     name="cat"
                     value="successCenter"
                     checked={cat === "successCenter"}
-                    onClick={() => setCat("successCenter")}
+                    onChange={() => setCat("successCenter")}
                   />
                   Success
                 </label>
@@ -149,7 +163,7 @@ export default function render() {
                     name="cat"
                     value="developerCenter"
                     checked={cat === "developerCenter"}
-                    onClick={() => setCat("developerCenter")}
+                    onChange={() => setCat("developerCenter")}
                   />
                   Developer
                 </label>
@@ -159,7 +173,7 @@ export default function render() {
                     name="cat"
                     value="designerCenter "
                     checked={cat === "designerCenter"}
-                    onClick={() => setCat("designerCenter")}
+                    onChange={() => setCat("designerCenter")}
                   />
                   Designer
                 </label>
@@ -179,7 +193,12 @@ export default function render() {
                   <i className="fa fa-spinner fa-spin fa-5x"></i>
                 </div>
               )}
-              {response && (
+              {response && response.error && (
+                <div className="text-center">
+                  <h3>{response.error.message}</h3>
+                </div>
+              )}
+              {response && !response.error && (
                 <Results
                   response={response}
                   setStartIndex={setStartIndex}
@@ -194,11 +213,105 @@ export default function render() {
   );
 }
 
-function Results({ response, setStartIndex, query }) {
+export function InlineSearch() {
+  const { query, response, setQuery, cat, setCat, setStartIndex } = useSearch();
+  if (typeof document === "undefined") {
+    return <div />;
+  }
+
+  return (
+    <>
+      <form className="js-search-form form-search" action="/search/">
+        <div className="input-append">
+          <input
+            type="text"
+            className="search-query"
+            name="q"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <button type="submit" className="btn">
+            Search Help Center
+          </button>
+        </div>
+        <Example />
+        <div>
+          {response?.items?.length || 0} results for {query}
+        </div>
+        {/* <div>
+          <label className="radio inline">
+            <input
+              type="radio"
+              name="cat"
+              value=""
+              checked={cat === ""}
+              onClick={() => setCat("")}
+            />
+            All
+          </label>
+          <label className="radio inline successCenter">
+            <input
+              type="radio"
+              name="cat"
+              value="successCenter"
+              checked={cat === "successCenter"}
+              onClick={() => setCat("successCenter")}
+            />
+            Success
+          </label>
+          <label className="radio inline developerCenter">
+            <input
+              type="radio"
+              name="cat"
+              value="developerCenter"
+              checked={cat === "developerCenter"}
+              onClick={() => setCat("developerCenter")}
+            />
+            Developer
+          </label>
+          <label className="radio inline designerCenter">
+            <input
+              type="radio"
+              name="cat"
+              value="designerCenter "
+              checked={cat === "designerCenter"}
+              onClick={() => setCat("designerCenter")}
+            />
+            Designer
+          </label>
+        </div> */}
+      </form>
+
+      {/* <section className="page" id="js-docs-search-results">
+        <div className="well search-page">
+          <div className="row-fluid">
+            <div id="pretty-results" className="search-results">
+              {!response && (
+                <div className="text-center search-spinner">
+                  <h3>Searching Help Center...</h3>
+                  <i className="fa fa-spinner fa-spin fa-5x"></i>
+                </div>
+              )}
+              {response && (
+                <Results
+                  response={response}
+                  setStartIndex={setStartIndex}
+                  query={query}
+                />
+              )}
+            </div>
+          </div>
+        </div>
+      </section> */}
+    </>
+  );
+}
+
+export function Results({ response, setStartIndex, query }) {
   const { items, queries, searchInformation } = response;
 
   // Some pages have `meta` tags via `pagemap.metatags`, and things like ios/android don't.
-  const getTitle = item => {
+  const getTitle = (item) => {
     try {
       return items.pagemap.metatags[0].title;
     } catch (e) {}
@@ -209,8 +322,8 @@ function Results({ response, setStartIndex, query }) {
     <>
       {items &&
         items
-          .filter(item => item)
-          .map(item => (
+          .filter((item) => item)
+          .map((item) => (
             <div
               className={
                 "search-results-item " +
@@ -229,7 +342,7 @@ function Results({ response, setStartIndex, query }) {
                   dangerouslySetInnerHTML={{
                     __html:
                       getTitle(item) +
-                      `<i className="search-results-type fa"></i>`
+                      `<i className="search-results-type fa"></i>`,
                   }}
                 />
                 <div
@@ -250,7 +363,7 @@ function Results({ response, setStartIndex, query }) {
         </p>
       )}
       <div className="docs-search-pager">
-        {queries.previousPage && (
+        {queries?.previousPage && (
           <a
             onClick={() => setStartIndex(queries.previousPage[0].startIndex)}
             className="btn js-search-pager"
@@ -259,7 +372,7 @@ function Results({ response, setStartIndex, query }) {
           </a>
         )}
 
-        {queries.nextPage && (
+        {queries?.nextPage && (
           <a
             onClick={() => setStartIndex(queries.nextPage[0].startIndex)}
             className="btn js-search-pager"

@@ -142,7 +142,12 @@ export default {
         // Google Custom Search (GCSE) params
         GCSE_CX: process.env.GCSE_CX || "012261857935385488279:90grrsobq40",
         GCSE_KEY:
-          process.env.GCSE_KEY || "AIzaSyC3Lc2HenETRKNS3VIsHAMobTYhnKYG6dE",
+          process.env.GCSE_KEY ||
+          (process.env.NODE_ENV === "production"
+            ? // Production & netlify
+              "AIzaSyC3Lc2HenETRKNS3VIsHAMobTYhnKYG6dE"
+            : // Development / local
+              "AIzaSyCrIbUMtCnszBe5kZzkbSMk5ii0PZJ5nqw"),
         ROLLBAR_TOKEN:
           process.env.ROLLBAR_TOKEN || "a865008ca04947acb3d0a1c719e2d93c",
         PINGDOM_ID: process.env.PINGDOM_ID || "52c61993abe53d650f000000",
@@ -169,7 +174,7 @@ export default {
         location: path.resolve("./src/pages"),
       },
     ],
-    // require.resolve("react-static-plugin-reach-router"),
+    require.resolve("react-static-plugin-react-router"),
     require.resolve("react-static-plugin-sitemap"),
   ],
 };
@@ -211,8 +216,7 @@ async function getRoutes() {
     spaceId: "s68ib1kj8k5n",
   });
 
-
-  const filterForType = (type) =>{
+  const filterForType = (type) => {
     return (acc, entryRaw) => {
       const entry = resolveI18n(entryRaw);
       let fields = entry.fields;
@@ -221,18 +225,18 @@ async function getRoutes() {
       }
       const newsItem = fields;
       return [...acc, newsItem];
-    }
-  }
+    };
+  };
 
   // Sorted list of news items
   const productNews = entries
     .reduce(filterForType("productNews"), [])
     .sort((a, b) => a.datePublished > b.datePublished);
 
-      // Sorted list of news items
+  // Sorted list of news items
   const breakingChanges = entries
-  .reduce(filterForType("breakingChange"), [])
-  .sort((a, b) => a.deadline > b.deadline);
+    .reduce(filterForType("breakingChange"), [])
+    .sort((a, b) => a.deadline > b.deadline);
 
   const guides = await getYaml("metadata/guides.yaml");
 
@@ -274,7 +278,7 @@ async function getRoutes() {
     {
       path: "/breaking-changes",
       getData: async () => ({ breakingChanges }),
-      template: "src/containers/single/breaking-changes"
+      template: "src/containers/single/breaking-changes",
     },
     {
       path: "/program/library",

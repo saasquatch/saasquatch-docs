@@ -75,7 +75,7 @@ function getEndpoints(swagger: Spec): Endpoint[] {
  */
 
 type TagMap = { [key: string]: SuperTag };
-export function tagMap(swagger: Spec): TagMap {
+export function tagsMapper(swagger: Spec): TagMap {
   // console.log(swagger.tags);
   return swagger.tags.reduce<TagMap>((result, val) => {
     result[val.name] = val as SuperTag;
@@ -104,15 +104,20 @@ function useApiData(): APIData {
   const { swagger } = useRouteData<RouteData>();
   const { version, versionLabel } = VersionContext.useContainer();
 
-  const showMethod = (method: Operation) =>
-    (version === "ga-only" && !method.tags.includes("Classic Only")) ||
-    (version === "classic-only" && !method.tags.includes("Modern Only")) ||
-    (version === "hybrid" && true);
+  const showMethod = useMemo(() => {
+    return (method: Operation) =>
+      (version === "ga-only" && !method.tags.includes("Classic Only")) ||
+      (version === "classic-only" && !method.tags.includes("Modern Only")) ||
+      (version === "hybrid" && true);
+  }, [version]);
+
+  const endpointByTag = useMemo(() => endpointsByTag(swagger), [swagger]);
+  const tagMap = useMemo(() => tagsMapper(swagger), [swagger]);
 
   return {
     swagger,
-    tagMap: tagMap(swagger),
-    endpointByTag: endpointsByTag(swagger),
+    tagMap,
+    endpointByTag,
     showMethod,
     versionLabel,
   };
@@ -525,18 +530,23 @@ function TagSummary({ tag }: { tag: string }): JSX.Element {
     endpointByTag,
   } = useApiData();
 
-  const tagDetails = tagMap[tag];
-  const endPoints = endpointByTag[tag] || [];
+  const subEndpoints = useMemo(() => {
+    const endPoints = endpointByTag[tag] || [];
+    return endPoints.filter((e) => showMethod(e.method));
+  }, [endpointByTag, tag, showMethod]);
 
-  const numHiddenMethods = endPoints.filter((e) => !showMethod(e.method))
-    .length;
+  const tagDetails = tagMap[tag];
+
+  const numHiddenMethods = (endpointByTag[tag] || []).filter(
+    (e) => !showMethod(e.method)
+  ).length;
 
   return (
     <div id={slug(tag)}>
       <div className="row-fluid">
         <div className="span6">
-          <h3>{tagDetails.name}</h3>
-          <p>{tagDetails.description}</p>
+          <h2>{tagDetails.name}</h2>
+          <p className="lead">{tagDetails.description}</p>
         </div>
         <div className="span6">
           <BootstrapListGroup as="div">
@@ -544,18 +554,16 @@ function TagSummary({ tag }: { tag: string }): JSX.Element {
               <b>Endpoints</b>
             </BootstrapListGroupItem>
 
-            {endPoints
-              .filter((e) => showMethod(e.method))
-              .map((e) => (
-                <BootstrapListGroupItem
-                  as="a"
-                  key={e.method["x-docs-anchor"]}
-                  className="list-group-item"
-                  href={"#" + e.method["x-docs-anchor"]}
-                >
-                  {e.method.summary}
-                </BootstrapListGroupItem>
-              ))}
+            {subEndpoints.map((e) => (
+              <BootstrapListGroupItem
+                as="a"
+                key={e.method["x-docs-anchor"]}
+                className="list-group-item"
+                href={"#" + e.method["x-docs-anchor"]}
+              >
+                {e.method.summary}
+              </BootstrapListGroupItem>
+            ))}
             {numHiddenMethods > 0 && (
               <BootstrapListGroupItem as="div">
                 <i className="fa fa-compress"></i> {numHiddenMethods} endpoints
@@ -568,14 +576,22 @@ function TagSummary({ tag }: { tag: string }): JSX.Element {
           </BootstrapListGroup>
         </div>
       </div>
-      <Endpoints endpoints={endPoints.filter((e) => showMethod(e.method))} />
+      <Endpoints endpoints={subEndpoints} />
     </div>
   );
 }
 
 function Endpoints({ endpoints }: { endpoints: Endpoint[] }): JSX.Element {
-  const { swagger, showMethod, versionLabel } = useApiData();
+  const apiData = useApiData();
+  return <EndpointsInner endpoints={endpoints} {...apiData} />;
+}
 
+function EndpointsInner({
+  endpoints,
+  swagger,
+  showMethod,
+  versionLabel,
+}: { endpoints: Endpoint[] } & APIData): JSX.Element {
   return (
     <>
       {endpoints.map((endpoint: Endpoint) => {
@@ -586,11 +602,16 @@ function Endpoints({ endpoints }: { endpoints: Endpoint[] }): JSX.Element {
               <a href="#" style={{ float: "right" }}>
                 Back to List
               </a>
-              <h2 className="js-apidocs-methodname {%if method['deprecated'] %}js-apidocs-method-deprecated{% endif %}">
+              <h3 className="js-apidocs-methodname {%if method['deprecated'] %}js-apidocs-method-deprecated{% endif %}">
                 {method.summary}
-              </h2>
+              </h3>
 
-              <HTTPMethod className={"label js-apidocs-method-type docs-label-" + httpMethod.toLowerCase()}>
+              <HTTPMethod
+                className={
+                  "label js-apidocs-method-type docs-label-" +
+                  httpMethod.toLowerCase()
+                }
+              >
                 {httpMethod}
               </HTTPMethod>
               <code className="js-apidocs-method-code">
@@ -636,8 +657,7 @@ function Endpoints({ endpoints }: { endpoints: Endpoint[] }): JSX.Element {
               <AuthTags method={method} />
             </p>
 
-            <details>
-              <summary>View Method Details</summary>
+            <HideShowMethod>
               <div>
                 <h4 style={{ marginTop: "40px" }}>Arguments</h4>
                 <div>
@@ -694,11 +714,28 @@ function Endpoints({ endpoints }: { endpoints: Endpoint[] }): JSX.Element {
 
                 <ResponseTabs method={method} />
               </div>
-            </details>
+            </HideShowMethod>
           </div>
         );
       })}
     </>
+  );
+}
+
+function HideShowMethod({
+  children,
+}: {
+  children: JSX.Element | JSX.Element[];
+}) {
+  const [shown, setShown] = useState(false);
+  const label = shown ? "Hide Method Details" : "Show Method Details";
+
+  // Note: This is also a performance optimization. By not rendering children we are drastically speeding up the page.
+  return (
+    <div>
+      <button onClick={() => setShown(!shown)}>View Method Details</button>
+      {shown && children}
+    </div>
   );
 }
 

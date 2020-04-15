@@ -15,12 +15,13 @@ export function Bottom({
   Head,
   Body,
   children,
-  state: { siteData, renderMeta, routeInfo }
+  state: { siteData, renderMeta, routeInfo },
 }) {
-  let { robots, jsTrackers, googleSiteId, windowDotEnv } = siteData;
+  let { robots, googleSiteId, windowDotEnv } = siteData;
 
   const dotEnv = JSON.stringify(windowDotEnv);
-
+  const jsTrackers = false;
+  
   return (
     <Html lang="en-US">
       <Head>
@@ -39,16 +40,20 @@ export function Bottom({
         <meta name="twitter:creator" content="@getSaaSquatch" />
 
         <link rel="shortcut icon" href="/favicon.ico" />
-        <link rel="stylesheet" href="https://i.icomoon.io/public/830a3260df/SaaSquatch/style.css" />
+        <link
+          rel="stylesheet"
+          href="https://i.icomoon.io/public/830a3260df/SaaSquatch/style.css"
+        />
       </Head>
 
       <Body
         style={{
-          paddingBottom: 0
+          paddingBottom: 0,
         }}
       >
-        <HTMLBlock
-          source={`
+        {jsTrackers && (
+          <HTMLBlock
+            source={`
           <script>
             window.env = ${dotEnv};
           </script>
@@ -61,7 +66,9 @@ export function Bottom({
           ></iframe>
           </noscript>
         `}
-        />
+          />
+        )}
+
         {children}
 
         <script
@@ -75,7 +82,7 @@ export function Bottom({
           integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw="
           crossOrigin="anonymous"
         ></script>
-        <HTMLBlock source={jsTrackersCode} />
+        {jsTrackers && <HTMLBlock source={jsTrackersCode} />}
       </Body>
     </Html>
   );

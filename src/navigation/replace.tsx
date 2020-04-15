@@ -3,6 +3,7 @@ import { domToReact } from "html-react-parser";
 import { HashLink as Link } from "react-router-hash-link";
 
 import { ApiList, whitelist } from "./NavigationSidebar";
+import { InlineSearch } from "../pages/search";
 
 export function replace(domNode: any) {
   if (domNode.name && domNode.name === "apilist") {
@@ -10,14 +11,50 @@ export function replace(domNode: any) {
     return <ApiList />;
   }
   if (domNode.name && domNode.name === "a") {
-    const {href, ...rest} = domNode.attribs
+    const { href, ...rest } = domNode.attribs;
+    const classNames = rest["class"];
+    delete rest["class"];
+
     return (
-      <Link to={href} {...rest}>
+      <Link to={href} className={classNames} {...rest}>
         {domToReact(domNode.children, { replace })}
       </Link>
     );
   }
-  !whitelist.includes(domNode.name) &&
-    domNode.type !== "text" &&
-    console.dir(domNode, { depth: null });
+
+  if (domNode.name && domNode.name === "sidebar-header") {
+    const { href, ...rest } = domNode.attribs;
+    const classNames = rest["class"];
+    delete rest["class"];
+
+    return (
+      <>
+        <div className="main-site-logo">
+          <a href="/">
+            <img src="/assets/images/saasquatch-logo.png" />
+          </a>
+        </div>
+        <div className="help-center-logo">
+          <a href="/">
+            <img src="/assets/images/helpcenter.png" />
+          </a>
+        </div>
+        <div>
+          <InlineSearch />
+        </div>
+
+        {(!domNode.attribs.noback) && (
+          <li>
+            <a className="back-link" href="#mm-5">
+              <i className="fa fa-chevron-left"></i>
+              Go Back
+            </a>
+          </li>
+        )}
+      </>
+    );
+  }
+  // !whitelist.includes(domNode.name) &&
+  //   domNode.type !== "text" &&
+  //   console.dir(domNode, { depth: null });
 }

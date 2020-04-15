@@ -68,6 +68,7 @@
     "zenscroll": "^3.3.0"
   },
   "devDependencies": {
+    "@popperjs/core": "^2.3.2",
     "@saasquatch/schema": "^1.10.0",
     "@types/highlight.js": "^9.12.3",
     "@types/isotope-layout": "^3.0.8",
@@ -101,6 +102,7 @@
     "react-commonmark": "^3.0.0",
     "react-hot-loader": "^4.12.11",
     "react-modal": "^3.11.2",
+    "react-popper": "^2.2.2",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
     "react-router-hash-link": "^1.2.2",

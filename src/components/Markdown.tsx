@@ -158,5 +158,3 @@ export default function Markdown({ source }: { source: string }) {
 
   return <MD ref={ref}>{comp}</MD>;
 }
-
-function MarkdownInner({ source }: { source: string }) {}
