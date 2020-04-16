@@ -13,31 +13,39 @@ import PageHeader from "../../components/PageHeader";
 
 const entry = {
   title: "Building a custom Widget using GraphQL",
-  highlights: `This tutorial will walk you through building a custom widget using the SaaSquatch [GraphQL API](/graphql/reference)`
-}
+  highlights: `This tutorial will walk you through building a custom widget using the SaaSquatch [GraphQL API](/graphql/reference)`,
+};
 export default function render() {
   return (
-    <PageHeader {...entry}><>
+    <PageHeader {...entry}>
+      <>
+        <Markdown source={started} />
+        <div className="row-fluid">
+          <div className="span6">
+            <Markdown source={light} />
+          </div>
+          <div className="span6">
+            <Markdown source={full} />
+          </div>
+        </div>
+        <Markdown source={first} />
+        <GraphQLExample {...eg1} />
 
-      <Markdown source={started} />
-      <Markdown source={first} />
-      <GraphQLExample {...eg1} />
+        <Markdown source={rewards} />
+        <GraphQLExample {...rewardExample} />
 
-      <Markdown source={rewards} />
-      <GraphQLExample {...rewardExample} />
+        <Markdown source={referred} />
+        <GraphQLExample {...referredExample} />
 
-      <Markdown source={referred} />
-      <GraphQLExample {...referredExample} />
+        <Markdown source={referrals} />
+        <GraphQLExample {...referralsExample} />
 
-      <Markdown source={referrals} />
-      <GraphQLExample {...referralsExample} />
+        <Markdown source={upsert} />
+        <GraphQLExample {...upsertEg} />
 
-      <Markdown source={upsert} />
-      <GraphQLExample {...upsertEg} />
-
-      <Markdown source={programInfo} />
-      <GraphQLExample {...programInfoEg} />
-    </>
+        <Markdown source={programInfo} />
+        <GraphQLExample {...programInfoEg} />
+      </>
     </PageHeader>
   );
 }
@@ -48,33 +56,118 @@ const started = `
 In order to start using GraphQL, you'll need to do be using a [GraphQL client](https://graphql.org/graphql-js/graphql-clients/).
 There are GraphQL clients for:
 
+ - Swift / Objective-C iOS 
+ - Java / Android
+ - JavaScript / Browser
+
+You can also use GraphQL on your servers:
+
  - C# / .NET
  - Clojurescript
  - Go
- - Java / Android
- - JavaScript
- - Swift / Objective-C iOS 
  - Python
+ - [and many more](https://graphql.org/code/#graphql-clients)
 
-[List of GraphQL clients](https://graphql.org/code/#graphql-clients).
+Here's an example using the \`nanographl\` libary.
+
+\`\`\`js
+var gql = require('nanographql')
+
+// TODO: Generate this on the server-side.
+// See Authentication section below
+var JWT = '....';
+
+var query = gql\`
+{
+  viewer {
+    ... on User {
+      firstName
+      lastName
+    }
+  }
+}
+\`
+
+try {
+  var res = await fetch(\`https://app.referralsaasquatch.com/api/v1/\${tenantAlias}/graphql\`, {
+    body: query(),
+    method: 'POST',
+    headers: {
+      'Authorization': \`Authorization: Bearer \${JWT}\`
+    },
+  })
+  var json = res.json()
+  console.log(json)
+} catch (err) {
+  console.error(err)
+}
+
+\`\`\`
 
 
 ### Security
 
-If you're building a custom widget, you're probably doing it on mobile or in the browser. To simplify authentication, we recommend
-making GraphQL calls authorized **as the end user**.
+If you're building a custom widget in the browser or on mobile then you want to query our GraphQL endpoint directly.
+Make GraphQL calls authorized **as the end user** using a [JSON Web Token (JWT)](https://jwt.io).
 
-To do enable authorization, generate a [JSON Web Token (JWT)](https://jwt.io) for your user using you tenant API key **on the server**.
+Our GraphQL security layer works based on what data someone is trying to access, not just by what query they are making.
 
+ - &#10003; - Accessible by Users
+    - Data about themselves
+    - Their own user information (e.g. \`viewer\` and \`user\`)
+    - Their own rewards
+    - Their own referrals
+    - User information about their referred friends
+    - Mutations on their own data (e.g. custom fields, events)
+ - &#10007; - Not Accessible by Users
+    - Information about programs
+    - Information about configured rewards
 
-\`Authorization: Bearer {JWT}\`
+If you're looking for more granular security permissions then implement your own backend API layer, 
+and send upstream requests to our GraphQL API.
 
+#### Tokens
 
-**Related**
+To make a call as a user:
 
- - [Build a JSON Web Tokens for your users](/topics/json-web-tokens/)
+ 1. [Build a JSON Web Tokens for your user](/topics/json-web-tokens/)
+ 2. Add the \`Authorization\` header: \`Authorization: Bearer {JWT}\`
+ 3. Make the request to the GraphQL endpoint \`https://app.referralsaasquatch.com/api/v1/{tenantAlias}/graphql\`
 
+ 
 > *Important* - Never embed your API Key in your mobile app, website or javascript. If it is exposed, an attacker can get full access to your site.
+
+`;
+
+const light = `
+**Partial User JWT Token**
+
+If you're only querying data, you only need to include only a partial user payload in your JWT payload.
+\`\`\`json
+{
+  "user": {
+    "id": "...",
+    "accountId": "..."
+  }
+}
+\`\`\`
+`;
+
+const full = `
+**Complete User JWT Token**
+
+If you're upserting a user, then you need to include the related fields to create a complete JWT payload.
+
+\`\`\`json
+{
+  "user": {
+    "id": "...",
+    "accountId": "...",
+    "firstName": "...",
+    "lastName": "..."
+  }
+}
+\`\`\`
 
 `;
 
@@ -124,7 +217,7 @@ const programInfo = `
 
 You can advertise what people will earn from your program by looking up the program by id, and then looking up the program's rewards.
 Every program has a different set of reward keys, so make sure to look this up when you're setting up your program.
-`
+`;
 
 const eg1 = {
   query: `{
@@ -140,7 +233,7 @@ const eg1 = {
     { viewer: { firstName: "Sansa", lastName: "Stark" } },
     null,
     2
-  )
+  ),
 } as const;
 
 const upsertEg = {
@@ -168,13 +261,13 @@ const upsertEg = {
         segments: ["starks", "boltons"],
         customFields: {
           fierce: true,
-          married: true
-        }
-      }
+          married: true,
+        },
+      },
     },
     null,
     2
-  )
+  ),
 } as const;
 
 const rewardExample = {
@@ -202,14 +295,14 @@ const rewardExample = {
         rewards: {
           data: {
             prettyValue: "$10.00",
-            prettyAvailableValue: "$4.75"
-          }
-        }
-      }
+            prettyAvailableValue: "$4.75",
+          },
+        },
+      },
     },
     null,
     2
-  )
+  ),
 } as const;
 
 const referredExample = {
@@ -236,14 +329,14 @@ const referredExample = {
         referredByReferral: {
           referrerUser: {
             firstName: "Jon",
-            lastName: "Snow"
-          }
-        }
-      }
+            lastName: "Snow",
+          },
+        },
+      },
     },
     null,
     2
-  )
+  ),
 } as const;
 
 const referralsExample = {
@@ -275,30 +368,30 @@ const referralsExample = {
             {
               referrerUser: {
                 firstName: "Rob",
-                lastName: "Stark"
-              }
+                lastName: "Stark",
+              },
             },
             {
               referrerUser: {
                 firstName: "Arya",
-                lastName: "Stark"
-              }
+                lastName: "Stark",
+              },
             },
             {
               referrerUser: {
                 firstName: "Catelyn",
-                lastName: "Stark"
-              }
-            }
+                lastName: "Stark",
+              },
+            },
           ],
           totalCount: 1021,
-          count: 3
-        }
-      }
+          count: 3,
+        },
+      },
     },
     null,
     2
-  )
+  ),
 } as const;
 
 const programInfoEg = {
@@ -328,19 +421,19 @@ const programInfoEg = {
         rewards: [
           {
             key: "referredReward",
-            prettyValue: "$10.00"
+            prettyValue: "$10.00",
           },
           {
             key: "referrerTier1",
-            prettyValue: "$20.00"
-          }
+            prettyValue: "$20.00",
+          },
         ],
-        tierOneOnly:{
-          prettyValue: "$20.00"
-        }
-      }
+        tierOneOnly: {
+          prettyValue: "$20.00",
+        },
+      },
     },
     null,
     2
-  )
+  ),
 } as const;
