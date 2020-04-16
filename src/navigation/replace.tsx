@@ -29,28 +29,14 @@ export function replace(domNode: any) {
 
     return (
       <>
-        <div className="main-site-logo">
-          <a href="/">
-            <img src="/assets/images/saasquatch-logo.png" />
-          </a>
-        </div>
-        <div className="help-center-logo">
-          <a href="/">
-            <img src="/assets/images/helpcenter.png" />
-          </a>
-        </div>
-        <div>
-          <InlineSearch />
-        </div>
-
-        {(!domNode.attribs.noback) && (
+        {/* {(!domNode.attribs.noback) && (
           <li>
             <a className="back-link" href="#mm-5">
               <i className="fa fa-chevron-left"></i>
               Go Back
             </a>
           </li>
-        )}
+        )} */}
       </>
     );
   }

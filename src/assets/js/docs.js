@@ -4,7 +4,6 @@
 import jQuery from "jquery";
 import hljs from "highlight.js";
 
-import nav from "./nav";
 import scrolling from "./scrolling";
 
 const deps = {
@@ -43,7 +42,7 @@ export function init() {
     // };
     // apiReferenceAnchors.add('.js-apidocs-methodname');
 
-    nav();
+    // nav();
     // search();
     
     // Scrolling not required in React-Static.

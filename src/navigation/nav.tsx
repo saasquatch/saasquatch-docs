@@ -1,13 +1,16 @@
 import jQuery from "jquery";
+import React from "react";
 import mmenu from "jquery.mmenu";
 import Hammer from "hammerjs";
 
 if (window) {
+  //@ts-ignore
   window.mmenu = mmenu;
+  //@ts-ignore
   window.Hammer = Hammer;
 }
 
-export default function() {
+export default function (container, search) {
   var categories = ["successCenter", "developerCenter", "designerCenter"];
 
   var menuDom = jQuery("#my-menu");
@@ -26,12 +29,10 @@ export default function() {
       foundDepth = 0;
     }
   }
-  jQuery("a", menuDom).each(function() {
+  jQuery("a", menuDom).each(function () {
     // TODO: Make anchor-tag pages work
     // TODO: If no exact page matches, provide a reasonable default...
-    var thisUrl = jQuery(this)
-      .attr("href")
-      .replace(/\/+$/, "");
+    var thisUrl = jQuery(this).attr("href").replace(/\/+$/, "");
 
     var thatUrl = window.location.pathname.replace(/\/+$/, "");
 
@@ -50,7 +51,7 @@ export default function() {
   });
   if (!foundElement) {
     // If no nav selected, defaults to the category
-    categories.map(function(category) {
+    categories.map(function (category) {
       found(jQuery("body." + category + " li." + category), 0);
     });
   }
@@ -62,7 +63,7 @@ export default function() {
    * Copies all the "categories" classes to their sub-lists.
    *    This has to be done before MMenu is initalized.
    */
-  categories.map(function(category) {
+  categories.map(function (category) {
     menuDom
       .find(".baseMenu > ." + category)
       .find("ul")
@@ -76,7 +77,7 @@ export default function() {
     .mmenu({
       // configuration
       offCanvas: {
-        pageSelector: "#my-page"
+        pageSelector: "#my-page",
       },
       //  "counters": true,
       //  "iconPanels": {
@@ -88,40 +89,50 @@ export default function() {
         "theme-squatchdocs",
         "widescreen",
         "pagedim-black",
-        "multiline"
-      ]
+        "multiline",
+      ],
+      navbars: [
+        {
+          position: "top",
+          content: [search],
+        },
+        {
+          position: "top",
+          content: ["breadcrumbs"],
+        },
+      ],
       //  offCanvas: {
       //     pageSelector: "#my-page",
       //     pageNodetype: "category"
       //  }
     })
-    .init(function($panels) {
+    .init(function ($panels) {
       /**
        * Copies the "category" styling onto their parent `.mm-panel` containers
        *
        */
-      categories.map(function(category) {
-        jQuery(".mm-panel > ul." + category, menuDom)
-          .parent(".mm-panel")
-          .addClass(category);
-      });
+      // categories.map(function(category) {
+      //   jQuery(".mm-panel > ul." + category, menuDom)
+      //     .parent(".mm-panel")
+      //     .addClass(category);
+      // });
 
-      jQuery("#open-sidenav").click(function(e) {
+      jQuery("#open-sidenav").click(function (e) {
         e.preventDefault();
         if (jQuery("html").hasClass("mm-opened")) {
-          window.myMenu.close();
+          myMenu.close();
         } else {
-          window.myMenu.open();
+          myMenu.open();
         }
       });
     });
 
-  window.myMenu = menuDom.data("mmenu");
+  const myMenu = menuDom.data("mmenu");
 
-  window.myMenu.bind("opened", function() {
+  myMenu.bind("opened", function () {
     jQuery("#open-sidenav").addClass("is-active");
   });
-  window.myMenu.bind("closed", function() {
+  myMenu.bind("closed", function () {
     jQuery("#open-sidenav").removeClass("is-active");
   });
 }

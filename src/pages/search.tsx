@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSiteData } from "react-static";
 import Tippy from "@tippyjs/react/headless";
-import styled from "styled-components";
 
+import * as Styles from "../components/search/SearchStyles";
 import Meta from "../components/Meta";
 
 export function useSearch() {
@@ -214,25 +214,13 @@ export default function render() {
   );
 }
 
-const PopOver = styled.div`
-  background: #fff;
-  border: 1px solid #eee;
-  border-radius: 5px;
-  padding: 10px;
-  z-index: 999;
-`;
-
-const Inline = styled.div`
- 
-`
-
 export const Example = () => (
   <Tippy
     visible={true}
     render={(attrs) => (
-      <PopOver tabIndex={-1} {...attrs}>
+      <Styles.PopOver tabIndex={-1} {...attrs}>
         My tippy box
-      </PopOver>
+      </Styles.PopOver>
     )}
   >
     <button>My button</button>
@@ -251,86 +239,42 @@ export function InlineSearch() {
 
   return (
     <>
-      <Inline>
-          <Tippy
-            // visible={showTippy}
-            trigger="focus"
-            placement="bottom-start"
-            interactive={true}
-            interactiveBorder={20}
-            render={(attrs) => (
-              <PopOver {...attrs}>
-                <div>
-                  {response?.items?.length || 0} results for {query}
+      <Styles.Inline>
+        <Tippy
+          // visible={showTippy}
+          trigger="focus"
+          placement="bottom-start"
+          interactive={true}
+          interactiveBorder={20}
+          hideOnClick={false}
+          render={(attrs) => (
+            <Styles.PopOver tabIndex={-1} {...attrs}>
+              {!response && (
+                <div className="text-center search-spinner">
+                  <h3>Searching Help Center...</h3>
+                  <i className="fa fa-spinner fa-spin fa-5x"></i>
                 </div>
-                <div>
-                  <label className="radio inline">
-                    <input
-                      type="radio"
-                      name="cat"
-                      value=""
-                      checked={cat === ""}
-                      onClick={() => setCat("")}
-                    />
-                    All
-                  </label>
-                  <label className="radio inline successCenter">
-                    <input
-                      type="radio"
-                      name="cat"
-                      value="successCenter"
-                      checked={cat === "successCenter"}
-                      onClick={() => setCat("successCenter")}
-                    />
-                    Success
-                  </label>
-                  <label className="radio inline developerCenter">
-                    <input
-                      type="radio"
-                      name="cat"
-                      value="developerCenter"
-                      checked={cat === "developerCenter"}
-                      onClick={() => setCat("developerCenter")}
-                    />
-                    Developer
-                  </label>
-                  <label className="radio inline designerCenter">
-                    <input
-                      type="radio"
-                      name="cat"
-                      value="designerCenter "
-                      checked={cat === "designerCenter"}
-                      onClick={() => setCat("designerCenter")}
-                    />
-                    Designer
-                  </label>
-                </div>
-                {!response && (
-                  <div className="text-center search-spinner">
-                    <h3>Searching Help Center...</h3>
-                    <i className="fa fa-spinner fa-spin fa-5x"></i>
-                  </div>
-                )}
-                {response && (
-                  <Results
-                    response={response}
-                    setStartIndex={setStartIndex}
-                    query={query}
-                  />
-                )}
-              </PopOver>
-            )}
-          >
-            <input
-              type="text"
-              className="search-query"
-              name="q"
-              placeholder="Search"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-            />
-          </Tippy>
-        </Inline>
+              )}
+              {response && (
+                <InlineResults
+                  response={response}
+                  setStartIndex={setStartIndex}
+                  query={query}
+                />
+              )}
+            </Styles.PopOver>
+          )}
+        >
+          <input
+            type="text"
+            className="search-query"
+            name="q"
+            placeholder="Search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+        </Tippy>
+      </Styles.Inline>
     </>
   );
 }
@@ -410,7 +354,90 @@ export function Results({ response, setStartIndex, query }) {
         )}
       </div>
 
-      {!items && (
+      {!items && isBlank(query) && (
+        <div className="search-results-none text-center">
+          <p className="lead">What are you looking for?</p>
+        </div>
+      )}
+      {!items && !isBlank(query) && (
+        <div className="search-results-none text-center">
+          <h3 className="visible-desktop" style={{ paddingTop: "43px" }}>
+            No matching Docs!
+          </h3>
+          <p className="lead">
+            Looks like we couldn't find any Help Center page that matches your
+            search term <strong>"{query}"</strong>
+          </p>
+        </div>
+      )}
+    </>
+  );
+}
+
+export function InlineResults({ response, setStartIndex, query }) {
+  const { items, queries, searchInformation } = response;
+
+  // Some pages have `meta` tags via `pagemap.metatags`, and things like ios/android don't.
+  const getTitle = (item) => {
+    const sanitize = (title: string) =>
+      title.replace(" | SaaSquatch Documentation", "");
+    try {
+      return sanitize(items.pagemap.metatags[0].title);
+    } catch (e) {}
+    return sanitize(item.htmlTitle);
+  };
+
+  return (
+    <>
+      {items &&
+        items
+          .filter((item) => item)
+          .map((item) => (
+            <Styles.ItemRow to={sanitizeGoogleSearchLink(item.link)}>
+              <Styles.ItemTitle
+                className="search-results-title"
+                dangerouslySetInnerHTML={{
+                  __html:
+                    getTitle(item) +
+                    `<i className="search-results-type fa"></i>`,
+                }}
+              />
+              <Styles.ItemBody
+                className="search-results-body"
+                dangerouslySetInnerHTML={{ __html: item.htmlSnippet }}
+              />
+            </Styles.ItemRow>
+          ))}
+      {items && (
+        <Styles.ResultsSummary>
+          {searchInformation.totalResults} total results found in{" "}
+          {searchInformation.formattedSearchTime} seconds
+        </Styles.ResultsSummary>
+      )}
+      <Styles.Pagination>
+        {queries?.previousPage && (
+          <Styles.PagerButton
+            onClick={() => setStartIndex(queries.previousPage[0].startIndex)}
+          >
+            Previous
+          </Styles.PagerButton>
+        )}
+
+        {queries?.nextPage && (
+          <Styles.PagerButton
+            onClick={() => setStartIndex(queries.nextPage[0].startIndex)}
+          >
+            Next
+          </Styles.PagerButton>
+        )}
+      </Styles.Pagination>
+
+      {!items && isBlank(query) && (
+        <div className="search-results-none text-center">
+          <p className="lead">What are you looking for?</p>
+        </div>
+      )}
+      {!items && !isBlank(query) && (
         <div className="search-results-none text-center">
           <h3 className="visible-desktop" style={{ paddingTop: "43px" }}>
             No matching Docs!
@@ -438,4 +465,8 @@ function getParameterByName(name) {
   return results === null
     ? ""
     : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+function sanitizeGoogleSearchLink(link) {
+  return link.replace("https://docs.referralsaasquatch.com", "");
 }
