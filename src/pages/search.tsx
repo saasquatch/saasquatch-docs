@@ -230,7 +230,14 @@ export const Example = () => (
 function isBlank(str) {
   return !str || /^\s*$/.test(str);
 }
-export function InlineSearch() {
+
+type InputComponent = typeof Styles.DefaultInput;
+
+export function InlineSearch({
+  Input = Styles.DefaultInput,
+}: {
+  Input?: InputComponent;
+}) {
   const { query, response, setQuery, cat, setCat, setStartIndex } = useSearch();
   if (typeof document === "undefined") {
     return <div />;
@@ -265,9 +272,8 @@ export function InlineSearch() {
             </Styles.PopOver>
           )}
         >
-          <input
+          <Input
             type="text"
-            className="search-query"
             name="q"
             placeholder="Search"
             value={query}

@@ -6,7 +6,10 @@ import * as Styles from "./NavStyles";
 import { replace } from "./replace";
 import init from "./nav";
 import { InlineSearch } from "src/pages/search";
-import { Inline } from "components/search/SearchStyles";
+import BrowserOnly from "components/BrowserOnly";
+
+import "./mmenu-overrides.css";
+import "mmenu-js/dist/mmenu.css"
 
 const sidebarRaw = require("html-loader!../templates/sidebar.html");
 const apiList = require("html-loader!../templates/apilist.html");
@@ -32,8 +35,8 @@ export function ApiList() {
   });
 }
 
-const modalRoot = document.createElement("div");
-modalRoot.style.height="auto";
+const modalRoot =
+  typeof document === "undefined" ? undefined : document.createElement("div");
 
 class PortalifiedSearch extends React.Component {
   el: HTMLDivElement;
@@ -61,8 +64,7 @@ class PortalifiedSearch extends React.Component {
   render() {
     return ReactDOM.createPortal(
       <>
-        {/* <Styles.Logo
-        >
+        <Styles.Logo>
           <a href="/">
             <img src="/assets/images/saasquatch-logo.png" />
           </a>
@@ -71,10 +73,10 @@ class PortalifiedSearch extends React.Component {
           <a href="/">
             <img src="/assets/images/helpcenter.png" />
           </a>
-        </Styles.HelpCenterLogo> */}
-        <div>
-          <InlineSearch />
-        </div>
+        </Styles.HelpCenterLogo>
+        <Styles.Search>
+          <InlineSearch Input={Styles.SearchInput}/>
+        </Styles.Search>
       </>,
       this.el
     );
@@ -85,15 +87,15 @@ export function NavigationSidebar() {
   const container = useRef(null);
 
   useLayoutEffect(() => {
-    init(container, modalRoot);
-  }, [container.current, modalRoot]);
+    init(modalRoot);
+  }, [modalRoot]);
 
   return (
     <Styles.Container ref={container}>
       {parse(sidebarRaw, {
         replace,
       })}
-      <PortalifiedSearch />
+      <BrowserOnly Component={PortalifiedSearch} />
     </Styles.Container>
   );
 }

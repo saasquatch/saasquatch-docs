@@ -13,6 +13,7 @@ export const ItemRow = styled(HashLink)`
     background: #eee;
   }
 `;
+export const DefaultInput = styled.input``;
 
 export const ItemTitle = styled.div`
   font-weight: bold;
@@ -34,6 +35,7 @@ export const NoResults = styled.div``;
 export const PopOver = styled.div`
   background: #fff;
   border: 1px solid #eee;
+  box-shadow: 0px 0px 28px -6px rgba(0, 0, 0, 1);
   border-radius: 5px;
   padding: 10px;
   z-index: 999;

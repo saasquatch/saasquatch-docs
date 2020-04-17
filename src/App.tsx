@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useEffect } from "react";
 import { Root, Routes, addPrefetchExcludes } from "react-static";
 import { VersionContext } from "./components/useVersion";
-import { Switch, Route, BrowserRouter, useLocation } from "react-router-dom";
+import { Switch, Route, useLocation } from "react-router-dom";
 
 import { StickyContainer } from "react-sticky";
 
@@ -19,13 +19,15 @@ if (typeof document !== "undefined") {
 // Any routes that start with 'dynamic' will be treated as non-static routes
 addPrefetchExcludes(["dynamic"]);
 
-// Based on official recommendation,
+// Based on official recommendation from React-Router
 // see: https://reacttraining.com/react-router/web/guides/scroll-restoration
 function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (typeof window !== "undefined") {
+      window.scrollTo(0, 0);
+    }
   }, [pathname]);
 
   return null;
@@ -70,30 +72,25 @@ function App() {
   return (
     <Root>
       <React.Suspense fallback={<em>Loading...</em>}>
-        <BrowserRouter>
-          <ScrollToTop />
-          <VersionContext.Provider>
-            <StickyContainer>
-              <div id="my-page">
-                <NavigationHeader />
-                <div id="my-content" className="container-fluid">
-                  {/* <Router>
-                  <Routes default />
-                </Router> */}
-                  <Switch>
-                    {/* <Route path="/dynamic" component={Dynamic} /> */}
-                    <Route render={() => <Routes />} />
-                  </Switch>
-                  <VersionSwitcherModal />
-                </div>
-                <div id="my-footer">
-                  <NavigationFooter />
-                </div>
+        <ScrollToTop />
+        <VersionContext.Provider>
+          <StickyContainer>
+            <div id="my-page">
+              <NavigationHeader />
+              <div id="my-content" className="container-fluid">
+                <Switch>
+                  {/* <Route path="/dynamic" component={Dynamic} /> */}
+                  <Route render={() => <Routes />} />
+                </Switch>
+                <VersionSwitcherModal />
               </div>
-            </StickyContainer>
-            <NavigationSidebar />
-          </VersionContext.Provider>
-        </BrowserRouter>
+              <div id="my-footer">
+                <NavigationFooter />
+              </div>
+            </div>
+          </StickyContainer>
+          <NavigationSidebar />
+        </VersionContext.Provider>
       </React.Suspense>
     </Root>
   );
