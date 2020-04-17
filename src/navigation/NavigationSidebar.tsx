@@ -9,7 +9,7 @@ import { InlineSearch } from "src/pages/search";
 import BrowserOnly from "components/BrowserOnly";
 
 import "./mmenu-overrides.css";
-import "mmenu-js/dist/mmenu.css"
+// import "mmenu-js/dist/mmenu.css"
 
 const sidebarRaw = require("html-loader!../templates/sidebar.html");
 const apiList = require("html-loader!../templates/apilist.html");

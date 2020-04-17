@@ -10,7 +10,7 @@ if (window) {
   window.Hammer = Hammer;
 }
 
-export default function (container, search) {
+export default function (search:HTMLElement) {
   var categories = ["successCenter", "developerCenter", "designerCenter"];
 
   var menuDom = jQuery("#my-menu");
@@ -74,6 +74,7 @@ export default function (container, search) {
    *  Loads the Navigation menu (uses the MMenu jQuery plugin)
    */
   menuDom
+    // @ts-ignore
     .mmenu({
       // configuration
       offCanvas: {
@@ -95,6 +96,14 @@ export default function (container, search) {
         {
           position: "top",
           content: [search],
+        },
+        {
+          position: "top",
+          content: "<p>&nbsp;</p>",
+        },
+        {
+          position: "top",
+          content: "<p>&nbsp;</p>",
         },
         {
           position: "top",
