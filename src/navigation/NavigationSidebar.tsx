@@ -14,7 +14,7 @@ import ApiSidebar from "./ApiSidebar";
 // import "mmenu-js/dist/mmenu.css"
 
 // const sidebarRaw = require("html-loader!../templates/sidebar.html");
-// const apiList = require("html-loader!../templates/Linkpilist.html");
+// const apiList = require("html-loader!../templates/apilist.html");
 
 
 export function ApiList() {
@@ -111,7 +111,7 @@ export function NavigationSidebar() {
           <li className="successCenter">
             <img
               className="sqtch-icon"
-              src="/Linkssets/images/Saasquatch-icons-analytics.svg"
+              src="/assets/images/Saasquatch-icons-analytics.svg"
             />
             <span>
               Success Center
@@ -179,7 +179,7 @@ export function NavigationSidebar() {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/features/Linknalytics">Program Analytics</Link>
+                    <Link to="/features/analytics">Program Analytics</Link>
                   </li>
 
                   <li className="Divider">Program References</li>
@@ -199,7 +199,7 @@ export function NavigationSidebar() {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/success/Linknalytics-data">
+                    <Link to="/success/analytics-data">
                       Understanding Your Program Analytics Data
                     </Link>
                   </li>
@@ -311,7 +311,7 @@ export function NavigationSidebar() {
           <li className="developerCenter">
             <img
               className="sqtch-icon"
-              src="/Linkssets/images/Saasquatch-icons-cog.svg"
+              src="/assets/images/Saasquatch-icons-cog.svg"
             />
             <span>
               Developer Center
@@ -367,7 +367,7 @@ export function NavigationSidebar() {
                     <Link to="/developer/squatchjs/v2">squatch.js Quickstart</Link>
                   </li>
                   <li>
-                    <Link to="/developer/squatchjs/v2/Linkdvanced-use-cases">
+                    <Link to="/developer/squatchjs/v2/advanced-use-cases">
                       squatch.js Advanced Use Cases
                     </Link>
                   </li>
@@ -402,31 +402,31 @@ export function NavigationSidebar() {
                 </ul>
               </li>
               <li>
-                <Link to="/Linkpi/">
+                <Link to="/api/">
                   <i className="fa fa-fw fa-desktop"></i>
                   REST API
                 </Link>
                 <ul>
                   <li>
-                    <Link to="/Linkpi/Linkuthentication">Authentication</Link>
+                    <Link to="/api/authentication">Authentication</Link>
                   </li>
                   <li>
-                    <Link to="/Linkpi/openendpoints">API Open Endpoints</Link>
+                    <Link to="/api/openendpoints">API Open Endpoints</Link>
                   </li>
                   <li>
-                    <Link to="/Linkpi/errors">Errors</Link>
+                    <Link to="/api/errors">Errors</Link>
                   </li>
                   <li className="Divider">Webhooks</li>
                   <li>
-                    <Link to="/Linkpi/webhooks">Webhooks Overview</Link>
+                    <Link to="/api/webhooks">Webhooks Overview</Link>
                   </li>
                   <li>
-                    <Link to="/Linkpi/webhooks/security">Webhooks Security</Link>
+                    <Link to="/api/webhooks/security">Webhooks Security</Link>
                   </li>
 
                   <li className="Divider">API Reference</li>
                   <li>
-                    <Link to="/Linkpi/methods">Full list of Methods</Link>
+                    <Link to="/api/methods">Full list of Methods</Link>
                   </li>
 
                   <ApiList />

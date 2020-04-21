@@ -1,6 +1,7 @@
 import React from "react";
 import { useSiteData } from "react-static";
 import { HashLink as Link } from "react-router-hash-link";
+import slug from "slug";
 
 import { EndpointSummary, EndpointSummarySet } from "src/api/Types";
 
@@ -27,14 +28,16 @@ function ApiSidebar() {
   // );
   return (
     <>
-      {Object.keys(apiRoutesByTag).map((tag) => {
+      {Object.keys(apiRoutesByTag)
+      .filter(tag=>tag)
+      .map((tag) => {
         return (
           <li key={tag}>
             <span>{tag}</span>
             <ul className="Vertical nav-onpage">
               <li>
                 {" "}
-                <Link to={"/api/methods#" + tag}>{tag} Overview</Link>
+                <Link to={"/api/methods#" + slug(tag)}>{tag} Overview</Link>
               </li>
               {apiRoutes
                 .filter((route) => route.tags.includes(tag))
