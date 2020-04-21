@@ -21,16 +21,12 @@ export default () => {
       <h3>Example</h3>
       <Properties schema={ThemeContext} />
 
-      <pre className="jsonview">
+      <pre>
         <code>
           {JSON.stringify(exampleSwaggerSchema(ThemeContext), null, 2)} */}
         </code>
       </pre>
 
-      <h3>JSON Schema</h3>
-      <pre className="jsonview">
-        <code>{JSON.stringify(ThemeContext, null, 2)}</code>
-      </pre>
     </TocFrame>
   );
 };

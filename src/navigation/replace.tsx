@@ -2,7 +2,7 @@ import React from "react";
 import { domToReact } from "html-react-parser";
 import { HashLink as Link } from "react-router-hash-link";
 
-import { ApiList, whitelist } from "./NavigationSidebar";
+import { ApiList } from "./NavigationSidebar";
 import { InlineSearch } from "../pages/search";
 
 export function replace(domNode: any) {
@@ -44,3 +44,19 @@ export function replace(domNode: any) {
   //   domNode.type !== "text" &&
   //   console.dir(domNode, { depth: null });
 }
+
+
+export const whitelist = [
+  "a",
+  "span",
+  "li",
+  "ul",
+  "div",
+  "i",
+  "br",
+  "img",
+  "input",
+  "form",
+  "nav",
+  "small",
+];

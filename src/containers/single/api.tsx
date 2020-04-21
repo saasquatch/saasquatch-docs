@@ -12,50 +12,21 @@ import { VersionContext } from "../../components/useVersion";
 
 import { Operation, Spec, Response, Path, Tag } from "swagger-schema-official";
 import { VersionSwitcher } from "components/VersionSwitcher";
+import { Endpoint, SuperTag, HTTP_METHODS } from "src/api/Types";
 
 // Provided in static.config.js
 type RouteData = {
   swagger: Spec;
 };
 
-type Endpoint = {
-  httpMethod: string;
-  path: string;
-  method: Operation;
-};
-
-// Extensions to the Swagger tag schema
-type SuperTag = Tag & {
-  // Indicates if a tag is meta-only
-  "x-meta": boolean;
-
-  // Indicates is a tag is deprecated
-  "x-deprecated": boolean;
-};
-
-const HTTP_METHODS = [
-  "get",
-  "put",
-  "post",
-  "delete",
-  "options",
-  "head",
-  "patch",
-] as const;
-type ElementType<T extends ReadonlyArray<unknown>> = T extends ReadonlyArray<
-  infer ElementType
->
-  ? ElementType
-  : never;
-type HttpMethod = ElementType<typeof HTTP_METHODS>;
 
 function getEndpoints(swagger: Spec): Endpoint[] {
   return Object.keys(swagger.paths).reduce((acc: Endpoint[], path: string) => {
     const methods = swagger.paths[path];
     const subEndpoints = Object.keys(methods)
       .filter((httpMethod) =>
-        // @ts-ignore -- ignore other parts of Path like `parameters`
-        HTTP_METHODS.includes(httpMethod)
+        // ignore other parts of Path like `parameters`
+        HTTP_METHODS.includes(httpMethod as any)
       )
       .map((httpMethod: string) => {
         const method = methods[httpMethod];

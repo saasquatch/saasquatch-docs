@@ -98,19 +98,9 @@ export function contentInit() {
     }
   });
 
-  jQuery("#js-location-path").text(document.location.pathname);
 
   // Non-necessary highlighting. Executes asynchronously for faster page load
   setTimeout(function() {
-    // TODO: LV: Move these highlighting functions server-side to improve page render time or bundle the JS?
-    jQuery(".jsonview").each(function() {
-      // parse -> sort -> JSONView
-      var each = jQuery(this);
-      var json = JSON.parse(each.text());
-      Object.keys(json).sort();
-      each.JSONView(json, { collapsed: true });
-    });
-
     hljs.initHighlighting();
   }, 1);
 }

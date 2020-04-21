@@ -105,6 +105,8 @@ async function getYaml(file) {
  * Read our Swagger file
  *
  * Parses, derefences and merges it for easier templating
+ *
+ * @returns {Promise<{swagger:import("swagger-schema-official").Spec}>}
  */
 async function getSwagger() {
   const data = await getYaml("saasquatch-api.yaml");
@@ -130,7 +132,7 @@ export default {
     // assets: "build2", // The output directory for bundled JS and CSS
     // buildArtifacts: "artifacts" // The output directory for generated (internal) resources
   },
-  getSiteData() {
+  async getSiteData() {
     return {
       robots: process.env.ROBOTS || "true",
       // TODO: Turn this off after dev
@@ -153,6 +155,8 @@ export default {
         PINGDOM_ID: process.env.PINGDOM_ID || "52c61993abe53d650f000000",
         GTMID: process.env.GTMID || "GTM-PK98FJF",
       },
+      apiRoutes: getEndpoints((await getSwagger()).swagger),
+      apiRoutesByTag: endpointsByTag((await getSwagger()).swagger),
     };
   },
   getRoutes: getRoutes,
@@ -334,4 +338,59 @@ function legacyPagifierToStatic(entry) {
     getData: () => ({ entry }),
     template: getTemplate(entry.template),
   };
+}
+
+const HTTP_METHODS = [
+  "get",
+  "put",
+  "post",
+  "delete",
+  "options",
+  "head",
+  "patch",
+];
+/**
+ *
+ * @param {import("swagger-schema-official").Spec} swagger
+ * @return {import("src/api/Types").EndpointSummary[]}
+ */
+function getEndpoints(swagger) {
+  return Object.keys(swagger.paths).reduce((
+    /** @type {import("src/api/Types").EndpointSummary[]} */ acc,
+    /** @type {string} */ path
+  ) => {
+    const methods = swagger.paths[path];
+    const subEndpoints = Object.keys(methods)
+      .filter((httpMethod) =>
+        // ignore other parts of Path like `parameters`
+        HTTP_METHODS.includes(/** @type {any} */ httpMethod)
+      )
+      .map((/** @type {string} */ httpMethod) => {
+        /** @type {import("swagger-schema-official").Operation} */ const method =
+          methods[httpMethod];
+        return {
+          httpMethod,
+          path,
+          summary: method.summary,
+          anchor: method["x-docs-anchor"],
+          tags: method.tags,
+        };
+      });
+
+    return [...acc, ...subEndpoints];
+  }, []);
+}
+
+/**
+ * @param {import("swagger-schema-official").Spec} swagger
+ * @returns {import("src/api/Types").EndpointSummarySet}
+ */
+export function endpointsByTag(swagger) {
+  return getEndpoints(swagger).reduce((result, endpoint) => {
+    endpoint.tags.forEach((tag) => {
+      if (swagger.tags.find((t) => t.name === tag && !t["x-meta"]))
+        (result[tag] || (result[tag] = [])).push(endpoint.anchor);
+    });
+    return result;
+  }, {});
 }

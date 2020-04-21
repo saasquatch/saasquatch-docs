@@ -4,11 +4,10 @@ import mmenu from "jquery.mmenu";
 import Hammer from "hammerjs";
 import { History } from "history";
 
-
 if (window) {
   //@ts-ignore
   window.mmenu = mmenu;
-  //@ts-ignore
+  //@ts-ignore - LV: I think this is for making mmenu mobile touch friendly
   window.Hammer = Hammer;
 }
 var categories = ["successCenter", "developerCenter", "designerCenter"];
@@ -32,7 +31,7 @@ function findElement() {
     // TODO: Make anchor-tag pages work
     // TODO: If no exact page matches, provide a reasonable default...
     var thisUrl = jQuery(this).attr("href")?.replace(/\/+$/, "");
-    if(!thisUrl){
+    if (!thisUrl) {
       // Not a real link element;
       return;
     }
@@ -160,11 +159,16 @@ export default function (search: HTMLElement, history: History<any>) {
   history.listen((location) => {
     //Do your stuff here
     const foundElement = findElement();
-    console.log("Found element", foundElement, "for path", window.location.pathname)
-    if(foundElement){
+    console.log(
+      "Found element",
+      foundElement,
+      "for path",
+      window.location.pathname
+    );
+    if (foundElement) {
       myMenu.setSelected(foundElement);
       // myMenu.openPanel(jQuery(foundElement).parent("ul"));
-    }else{
+    } else {
       myMenu.setSelected(null);
     }
   });

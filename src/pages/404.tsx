@@ -4,7 +4,7 @@ import Meta from "../components/Meta";
 const entry = {
   permalink: false,
   template: "fullpage.html",
-  category: "error"
+  category: "error",
 };
 export default () => (
   <>
@@ -12,7 +12,7 @@ export default () => (
     <section className="page">
       <div className="text-center">
         <h1>Page Not Found</h1>
-        <h3 className="visible-desktop" style={{paddingTop:"43px"}}>
+        <h3 className="visible-desktop" style={{ paddingTop: "43px" }}>
           Looks like you found the missing link!
         </h3>
         <h3 className="hidden-desktop">
@@ -21,14 +21,14 @@ export default () => (
         <p className="lead">
           We couldn't find a page for{" "}
           <b>
-            <span id="js-location-path"></span>
+            <span>{window.location.pathname}</span>
           </b>
           .
         </p>
 
         <img
           src="https://d2vi0firws6omr.cloudfront.net/img/http-404.jpg"
-          style={{maxWidth: "500px", margin: "0 auto"}}
+          style={{ maxWidth: "500px", margin: "0 auto" }}
           alt="The Missing Link 404 Page"
         />
 

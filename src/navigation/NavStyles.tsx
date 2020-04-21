@@ -45,3 +45,10 @@ export const SearchInput = styled.input`
     height: 30px;
   }
 `;
+
+export const GraphQLLogo = styled.i`
+background: url(https://api.iconify.design/simple-icons:graphql.svg)
+no-repeat center center / contain;
+width: 16px;
+height: 16px;
+`
