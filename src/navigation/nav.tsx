@@ -2,6 +2,8 @@ import jQuery from "jquery";
 import React from "react";
 import mmenu from "jquery.mmenu";
 import Hammer from "hammerjs";
+import { History } from "history";
+
 
 if (window) {
   //@ts-ignore
@@ -9,12 +11,9 @@ if (window) {
   //@ts-ignore
   window.Hammer = Hammer;
 }
+var categories = ["successCenter", "developerCenter", "designerCenter"];
 
-export default function (search:HTMLElement) {
-  var categories = ["successCenter", "developerCenter", "designerCenter"];
-
-  var menuDom = jQuery("#my-menu");
-
+function findElement() {
   /**
    * Sets the current page nav item as "Selected"
    *
@@ -29,10 +28,14 @@ export default function (search:HTMLElement) {
       foundDepth = 0;
     }
   }
-  jQuery("a", menuDom).each(function () {
+  jQuery("a", jQuery("#my-menu")).each(function () {
     // TODO: Make anchor-tag pages work
     // TODO: If no exact page matches, provide a reasonable default...
-    var thisUrl = jQuery(this).attr("href").replace(/\/+$/, "");
+    var thisUrl = jQuery(this).attr("href")?.replace(/\/+$/, "");
+    if(!thisUrl){
+      // Not a real link element;
+      return;
+    }
 
     var thatUrl = window.location.pathname.replace(/\/+$/, "");
 
@@ -55,6 +58,14 @@ export default function (search:HTMLElement) {
       found(jQuery("body." + category + " li." + category), 0);
     });
   }
+  return foundElement;
+}
+
+export default function (search: HTMLElement, history: History<any>) {
+  var menuDom = jQuery("#my-menu");
+
+  const foundElement = findElement();
+
   if (foundElement) {
     foundElement.addClass("Selected");
   }
@@ -143,5 +154,18 @@ export default function (search:HTMLElement) {
   });
   myMenu.bind("closed", function () {
     jQuery("#open-sidenav").removeClass("is-active");
+  });
+
+  // Source: https://github.com/ReactTraining/react-router/issues/3554
+  history.listen((location) => {
+    //Do your stuff here
+    const foundElement = findElement();
+    console.log("Found element", foundElement, "for path", window.location.pathname)
+    if(foundElement){
+      myMenu.setSelected(foundElement);
+      // myMenu.openPanel(jQuery(foundElement).parent("ul"));
+    }else{
+      myMenu.setSelected(null);
+    }
   });
 }

@@ -1,6 +1,8 @@
 import React, { useRef, useLayoutEffect } from "react";
 import ReactDOM from "react-dom";
 import parse from "html-react-parser";
+import { useHistory } from "react-router-dom";
+import { History } from "history";
 
 import * as Styles from "./NavStyles";
 import { replace } from "./replace";
@@ -75,7 +77,7 @@ class PortalifiedSearch extends React.Component {
           </a>
         </Styles.HelpCenterLogo>
         <Styles.Search>
-          <InlineSearch Input={Styles.SearchInput}/>
+          <InlineSearch Input={Styles.SearchInput} />
         </Styles.Search>
       </>,
       this.el
@@ -84,10 +86,11 @@ class PortalifiedSearch extends React.Component {
 }
 
 export function NavigationSidebar() {
+  const history: History<any> = useHistory();
   const container = useRef(null);
 
   useLayoutEffect(() => {
-    init(modalRoot);
+    init(modalRoot, history);
   }, [modalRoot]);
 
   return (

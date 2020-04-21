@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  border: inherit;
+`;
 
 export const Logo = styled.div`
   background: #003b45;
