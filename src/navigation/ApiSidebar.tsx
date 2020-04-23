@@ -1,4 +1,4 @@
-import React, { Ref, useLayoutEffect } from "react";
+import React, { Ref, useLayoutEffect, useRef } from "react";
 import { useSiteData } from "react-static";
 import { HashLink as Link } from "react-router-hash-link";
 import slug from "slug";
@@ -6,93 +6,88 @@ import slug from "slug";
 import { EndpointSummary, EndpointSummarySet } from "src/api/Types";
 import { MMenuContext } from "./NavigationSidebar";
 
+function openVeritcalParent($l, mmenuApi) {
+  // var $l = $panel.parent();
 
+  if ($l.hasClass("mm-opened")) {
+    $l.removeClass("mm-opened");
+  } else {
+    $l.addClass("mm-opened");
+  }
 
-function openVeritcalParent( $panel, mmenuApi )
-		{
-			var $l = $panel.parent(),
-				that = this;
+  // var $sub = $l.parents(".mm-subopened");
+  // if ($sub.length) {
+  //   console.log("Opening submenu", $l);
+  //   mmenuApi.openPanel($sub.first());
+  //   return;
+  // }
 
-			//	Vertical
-			if (!$l.hasClass( "mm-vertical" ) )
-			{
-      }
+  // mmenuApi.trigger( 'openPanel' 	, $panel );
+  // mmenuApi.trigger( 'openingPanel', $panel );
+  // mmenuApi.trigger( 'openedPanel'	, $panel );
+}
 
-				var $sub = $l.parents( '.mm-subopened' );
-				if ( $sub.length )
-				{
-					mmenuApi.openPanel( $sub.first() );
-					return;
-				}
-				$l.addClass( "mm-opened" );
-
-				mmenuApi.trigger( 'openPanel' 	, $panel );
-				mmenuApi.trigger( 'openingPanel', $panel );
-				mmenuApi.trigger( 'openedPanel'	, $panel );
-    }
-    
-export default function ApiSidebar() {
-  const { mmenuApi } = MMenuContext.useContainer();
-  // useLayoutEffect(() => {
-  //   apiRerender();
-  // }, []);
-
+function MenuItem({ tag, idx }) {
   const { apiRoutes, apiRoutesByTag } = useSiteData<{
     apiRoutes: EndpointSummary[];
     apiRoutesByTag: EndpointSummarySet;
   }>();
 
-  // return <li>Foo</li>;
+  const { mmenuApi } = MMenuContext.useContainer();
 
-  // return (
-  //   <li>
-  //     <pre>{JSON.stringify(apiRoutes, null, 2)}</pre>
-  //   </li>
-  // );
+  const parent = useRef(null);
+
+  const id = "#mm-" + (90 + idx);
+  const doOpen = (e) => {
+    e.preventDefault();
+    console.log("Opening panel", mmenuApi, jQuery(id));
+    openVeritcalParent(jQuery(parent.current), mmenuApi);
+  };
+  return (
+    <li className="mm-vertical" ref={parent}>
+      <span
+        className="mm-next mm-fullsubopen"
+        // href={id}
+        data-target={id}
+        onClick={doOpen}
+      ></span>
+      <span onClick={doOpen}>{tag}</span>
+      <div className="mm-panel mm-vertical developerCenter" id={id}>
+        <ul className="nav-onpage mm-listview mm-vertical developerCenter">
+          <li>
+            {" "}
+            <Link to={"/api/methods#" + slug(tag)}>{tag} Overview</Link>
+          </li>
+          {apiRoutes
+            .filter((route) => route.tags.includes(tag))
+            .map((route) => {
+              return (
+                <li key={route.anchor}>
+                  <Link to={"/api/methods#" + route.anchor}>
+                    {route.summary}
+                  </Link>
+                </li>
+              );
+            })}
+        </ul>
+      </div>
+    </li>
+  );
+}
+
+export default function ApiSidebar() {
+  const { apiRoutes, apiRoutesByTag } = useSiteData<{
+    apiRoutes: EndpointSummary[];
+    apiRoutesByTag: EndpointSummarySet;
+  }>();
+
   return (
     <>
       {Object.keys(apiRoutesByTag)
         .filter((tag) => tag)
-        .map((tag, idx) => {
-          const id = "#mm-" + (90 + idx);
-          const doOpen = (e)=> {
-            e.preventDefault();
-            console.log("Opening panel", mmenuApi, jQuery(id)); 
-            openVeritcalParent(jQuery(id), mmenuApi);
-          }
-          return (
-            <li key={tag} className="mm-vertical">
-              <a
-                className="mm-next mm-fullsubopen"
-                href={id}
-                data-target={id}
-                onClick={doOpen}
-              ></a>
-              <span onClick={doOpen}>
-                {tag}
-              </span>
-              <div className="mm-panel mm-vertical developerCenter" id={id}>
-                <ul className="nav-onpage mm-listview mm-vertical developerCenter">
-                  <li>
-                    {" "}
-                    <Link to={"/api/methods#" + slug(tag)}>{tag} Overview</Link>
-                  </li>
-                  {apiRoutes
-                    .filter((route) => route.tags.includes(tag))
-                    .map((route) => {
-                      return (
-                        <li key={route.anchor}>
-                          <Link to={"/api/methods#" + route.anchor}>
-                            {route.summary}
-                          </Link>
-                        </li>
-                      );
-                    })}
-                </ul>
-              </div>
-            </li>
-          );
-        })}
+        .map((tag, idx) => (
+          <MenuItem tag={tag} idx={idx} key={tag} />
+        ))}
     </>
   );
 

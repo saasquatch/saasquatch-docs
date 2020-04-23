@@ -167,7 +167,11 @@ export default function (search: HTMLElement, history: History<any>) {
       window.location.pathname
     );
     if (foundElement) {
-      myMenu.setSelected(foundElement);
+      if(foundElement.hasClass("mm-vertical")){
+        // myMenu.
+      }else{
+        myMenu.setSelected(foundElement);
+      }
       // myMenu.openPanel(jQuery(foundElement).parent("ul"));
     } else {
       myMenu.setSelected(null);
