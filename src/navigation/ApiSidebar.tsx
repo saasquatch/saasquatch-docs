@@ -1,19 +1,42 @@
-import React from "react";
+import React, { Ref, useLayoutEffect } from "react";
 import { useSiteData } from "react-static";
 import { HashLink as Link } from "react-router-hash-link";
 import slug from "slug";
 
 import { EndpointSummary, EndpointSummarySet } from "src/api/Types";
+import { MMenuContext } from "./NavigationSidebar";
 
-export default function Wrapper() {
-  return (
-    <React.Suspense fallback={<li>Loading...</li>}>
-      <ApiSidebar />
-    </React.Suspense>
-  );
-}
 
-function ApiSidebar() {
+
+function openVeritcalParent( $panel, mmenuApi )
+		{
+			var $l = $panel.parent(),
+				that = this;
+
+			//	Vertical
+			if (!$l.hasClass( "mm-vertical" ) )
+			{
+      }
+
+				var $sub = $l.parents( '.mm-subopened' );
+				if ( $sub.length )
+				{
+					mmenuApi.openPanel( $sub.first() );
+					return;
+				}
+				$l.addClass( "mm-opened" );
+
+				mmenuApi.trigger( 'openPanel' 	, $panel );
+				mmenuApi.trigger( 'openingPanel', $panel );
+				mmenuApi.trigger( 'openedPanel'	, $panel );
+    }
+    
+export default function ApiSidebar() {
+  const { mmenuApi } = MMenuContext.useContainer();
+  // useLayoutEffect(() => {
+  //   apiRerender();
+  // }, []);
+
   const { apiRoutes, apiRoutesByTag } = useSiteData<{
     apiRoutes: EndpointSummary[];
     apiRoutesByTag: EndpointSummarySet;
@@ -29,31 +52,47 @@ function ApiSidebar() {
   return (
     <>
       {Object.keys(apiRoutesByTag)
-      .filter(tag=>tag)
-      .map((tag) => {
-        return (
-          <li key={tag}>
-            <span>{tag}</span>
-            <ul className="Vertical nav-onpage">
-              <li>
-                {" "}
-                <Link to={"/api/methods#" + slug(tag)}>{tag} Overview</Link>
-              </li>
-              {apiRoutes
-                .filter((route) => route.tags.includes(tag))
-                .map((route) => {
-                  return (
-                    <li>
-                      <Link to={"/api/methods#" + route.anchor}>
-                        {route.summary}
-                      </Link>
-                    </li>
-                  );
-                })}
-            </ul>
-          </li>
-        );
-      })}
+        .filter((tag) => tag)
+        .map((tag, idx) => {
+          const id = "#mm-" + (90 + idx);
+          const doOpen = (e)=> {
+            e.preventDefault();
+            console.log("Opening panel", mmenuApi, jQuery(id)); 
+            openVeritcalParent(jQuery(id), mmenuApi);
+          }
+          return (
+            <li key={tag} className="mm-vertical">
+              <a
+                className="mm-next mm-fullsubopen"
+                href={id}
+                data-target={id}
+                onClick={doOpen}
+              ></a>
+              <span onClick={doOpen}>
+                {tag}
+              </span>
+              <div className="mm-panel mm-vertical developerCenter" id={id}>
+                <ul className="nav-onpage mm-listview mm-vertical developerCenter">
+                  <li>
+                    {" "}
+                    <Link to={"/api/methods#" + slug(tag)}>{tag} Overview</Link>
+                  </li>
+                  {apiRoutes
+                    .filter((route) => route.tags.includes(tag))
+                    .map((route) => {
+                      return (
+                        <li key={route.anchor}>
+                          <Link to={"/api/methods#" + route.anchor}>
+                            {route.summary}
+                          </Link>
+                        </li>
+                      );
+                    })}
+                </ul>
+              </div>
+            </li>
+          );
+        })}
     </>
   );
 

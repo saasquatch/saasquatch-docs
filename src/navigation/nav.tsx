@@ -60,6 +60,7 @@ function findElement() {
   return foundElement;
 }
 
+
 export default function (search: HTMLElement, history: History<any>) {
   var menuDom = jQuery("#my-menu");
 
@@ -172,4 +173,6 @@ export default function (search: HTMLElement, history: History<any>) {
       myMenu.setSelected(null);
     }
   });
+
+  return myMenu;
 }

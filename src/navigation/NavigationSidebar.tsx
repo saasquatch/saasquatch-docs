@@ -1,12 +1,11 @@
-import React, { useRef, useLayoutEffect } from "react";
-import ReactDOM from "react-dom";
+import React, { useRef, useLayoutEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { History } from "history";
 import { HashLink as Link } from "react-router-hash-link";
+import { createContainer } from "unstated-next";
 
 import * as Styles from "./NavStyles";
 import init from "./nav";
-import { InlineSearch } from "src/pages/search";
 import BrowserOnly from "components/BrowserOnly";
 
 import "./mmenu-overrides.css";
@@ -16,77 +15,47 @@ import ApiSidebar from "./ApiSidebar";
 // const sidebarRaw = require("html-loader!../templates/sidebar.html");
 // const apiList = require("html-loader!../templates/apilist.html");
 
+function useMMenu() {
+  const parent = useRef(null);
+  const [mmenuApi, setMMenuApi] = useState(null);
+  const apiRerender = () => {
+    if (!mmenuApi || !parent.current) {
+      // Refs haven't been set
+      return;
+    }
 
-export function ApiList() {
-  return <ApiSidebar />;
-  // return parse(apiList, {
-  //   replace,
-  // });
+    try {
+      mmenuApi.initPanels(jQuery(parent.current));
+    } catch (e) {
+      console.error("Failed to re-render API", e, parent.current, mmenuApi);
+    }
+  };
+  return {
+    parent,
+    apiRerender,
+    get mmenuApi() {
+      return mmenuApi;
+    },
+    set mmenuApi(next) {
+      setMMenuApi(next);
+    },
+  };
 }
 
-const modalRoot =
+export const MMenuContext = createContainer(useMMenu);
+
+export const modalRoot =
   typeof document === "undefined" ? undefined : document.createElement("div");
-
-class PortalifiedSearch extends React.Component {
-  el: HTMLDivElement;
-  constructor(props) {
-    super(props);
-    this.el = document.createElement("div");
-  }
-
-  componentDidMount() {
-    // The portal element is inserted in the DOM tree after
-    // the Modal's children are mounted, meaning that children
-    // will be mounted on a detached DOM node. If a child
-    // component requires to be attached to the DOM tree
-    // immediately when mounted, for example to measure a
-    // DOM node, or uses 'autoFocus' in a descendant, add
-    // state to Modal and only render the children when Modal
-    // is inserted in the DOM tree.
-    modalRoot.appendChild(this.el);
-  }
-
-  componentWillUnmount() {
-    modalRoot.removeChild(this.el);
-  }
-
-  render() {
-    return ReactDOM.createPortal(
-      <>
-        <Styles.Logo>
-          <Link to="/">
-            <img src="/Linkssets/images/saasquatch-logo.png" />
-          </Link>
-        </Styles.Logo>
-        <Styles.HelpCenterLogo>
-          <Link to="/">
-            <img src="/Linkssets/images/helpcenter.png" />
-          </Link>
-        </Styles.HelpCenterLogo>
-        <Styles.Search>
-          <InlineSearch Input={Styles.SearchInput} />
-        </Styles.Search>
-      </>,
-      this.el
-    );
-  }
-}
-
-
-// export default function Wrapper() {
-//   return (
-//     <React.Suspense fallback={<li>Loading...</li>}>
-//       <NavigationSidebar />
-//     </React.Suspense>
-//   );
-// }
 
 export function NavigationSidebar() {
   const history: History<any> = useHistory();
   const container = useRef(null);
+  const mmenu = MMenuContext.useContainer();
+  // TODO: Wire this up
+  const apiMenu = mmenu.parent;
 
   useLayoutEffect(() => {
-    init(modalRoot, history);
+    mmenu.mmenuApi = init(modalRoot, history);
   }, [modalRoot]);
 
   return (
@@ -279,7 +248,9 @@ export function NavigationSidebar() {
                   </li>
                   <li className="Divider">Program Resources</li>
                   <li>
-                    <Link to="/features/user-segmentation">User Segmentation</Link>
+                    <Link to="/features/user-segmentation">
+                      User Segmentation
+                    </Link>
                   </li>
                   <li>
                     <Link to="/features/program-i18n">
@@ -287,7 +258,9 @@ export function NavigationSidebar() {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/success/gift-card-rewards">Gift Card Rewards</Link>
+                    <Link to="/success/gift-card-rewards">
+                      Gift Card Rewards
+                    </Link>
                   </li>
                   <li>
                     <Link to="/features/rewards-fuel-tank">
@@ -295,7 +268,9 @@ export function NavigationSidebar() {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/designer/short-tags">Email Template Short Tags</Link>
+                    <Link to="/designer/short-tags">
+                      Email Template Short Tags
+                    </Link>
                   </li>
 
                   <li>
@@ -364,7 +339,9 @@ export function NavigationSidebar() {
                   <li className="Divider">Version 2</li>
 
                   <li>
-                    <Link to="/developer/squatchjs/v2">squatch.js Quickstart</Link>
+                    <Link to="/developer/squatchjs/v2">
+                      squatch.js Quickstart
+                    </Link>
                   </li>
                   <li>
                     <Link to="/developer/squatchjs/v2/advanced-use-cases">
@@ -380,7 +357,9 @@ export function NavigationSidebar() {
                     <Link to="/segment/">SaaSquatch Segment Integration</Link>
                     <ul>
                       <li>
-                        <Link to="/segment/">Segment Integration Introduction</Link>
+                        <Link to="/segment/">
+                          Segment Integration Introduction
+                        </Link>
                       </li>
                       <li>
                         <Link to="/integrations/segment-v2/">
@@ -429,7 +408,7 @@ export function NavigationSidebar() {
                     <Link to="/api/methods">Full list of Methods</Link>
                   </li>
 
-                  <ApiList />
+                  <ApiSidebar />
                 </ul>
               </li>
               <li>
@@ -467,8 +446,6 @@ export function NavigationSidebar() {
           </li>
         </ul>
       </nav>
-
-      <BrowserOnly Component={PortalifiedSearch} />
     </Styles.Container>
   );
 }

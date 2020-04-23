@@ -8,8 +8,13 @@ import { StickyContainer } from "react-sticky";
 import "./assets/stylesheets/docs.less";
 import { NavigationHeader } from "./navigation/NavigationHeader";
 import { NavigationFooter } from "./navigation/NavigationFooter";
-import { NavigationSidebar } from "./navigation/NavigationSidebar";
+import {
+  NavigationSidebar,
+  MMenuContext,
+} from "./navigation/NavigationSidebar";
 import VersionSwitcherModal from "./components/VersionSwitcherModal";
+import BrowserOnly from "components/BrowserOnly";
+import { PortalifiedSearch } from "./navigation/PortalifiedSearch";
 
 let init = () => {};
 if (typeof document !== "undefined") {
@@ -74,22 +79,25 @@ function App() {
       <React.Suspense fallback={<em>Loading...</em>}>
         <ScrollToTop />
         <VersionContext.Provider>
-          <StickyContainer>
-            <div id="my-page">
-              <NavigationHeader />
-              <div id="my-content" className="container-fluid">
-                <Switch>
-                  {/* <Route path="/dynamic" component={Dynamic} /> */}
-                  <Route render={() => <Routes />} />
-                </Switch>
-                <VersionSwitcherModal />
+          <MMenuContext.Provider>
+            <StickyContainer>
+              <div id="my-page">
+                <NavigationHeader />
+                <div id="my-content" className="container-fluid">
+                  <Switch>
+                    {/* <Route path="/dynamic" component={Dynamic} /> */}
+                    <Route render={() => <Routes />} />
+                  </Switch>
+                  <VersionSwitcherModal />
+                </div>
+                <div id="my-footer">
+                  <NavigationFooter />
+                </div>
               </div>
-              <div id="my-footer">
-                <NavigationFooter />
-              </div>
-            </div>
-          </StickyContainer>
-          <NavigationSidebar />
+            </StickyContainer>
+            <NavigationSidebar />
+            <BrowserOnly Component={PortalifiedSearch} />
+          </MMenuContext.Provider>
         </VersionContext.Provider>
       </React.Suspense>
     </Root>
