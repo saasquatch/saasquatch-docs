@@ -7,7 +7,7 @@ export function Tags({ method }: { method: Operation }) {
   return (
     <>
       {method.tags.map((tag: string) => (
-        <span className="label" key={tag}>
+        <span className="label" key={tag} style={{ marginRight: "3px" }}>
           {tag}
         </span>
       ))}

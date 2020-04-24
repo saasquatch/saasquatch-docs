@@ -80,21 +80,73 @@ parameters:
     default: null
 tags:
   - name: Account
-    description: Accounts can be shared between users and accumulate credit.
+    description: |
+      An account is the lowest-level structure in your programs used to organize participants.
+
+      Key aspects of an account:
+
+       - Each account can only be referred once.
+       - Classic only The account status (TRIAL, PAID, CANCELLED) is set at the account level.
+       - Rewards are also earned at the account level
+
+      For information about how to structure your user and account ids read the [Shared vs Solo Accounts article](/shared-vs-solo-accounts/) .
+
   - name: User
-    description: Users are the people in your program. In other places a User might also be called a Contact, Lead or Participant.
+    description: |
+      Users are the people in your program. In other places a User might also be called a Contact, Lead or Participant. Users are each mapped to one specific account.
+
+      The following information is controlled at the user level:
+
+       - First and last name
+       - Email address
+       - Referral code
+       - Share links
+
+      For information about how to structure your user and account ids read the [Shared vs Solo Accounts article](/shared-vs-solo-accounts/) .
+  - name: Share Links
+    description: |
+      Share links are made available to a Referrer to provide to their friends and family to click and be directed to your referral program landing page.
+
+      The sharelinks are segmented by Engagement Medium, which is the channel the Referrer accessed the program to be able to share out their referral through. For each Engagment Medium, like `EMBED`, a link is provided for each available Share Medium. This segmentation is used to power the [SaaSquatch analytics platform](/features/analytics/) to provide information about how, and where, your users are interacting with your referral program.
+      For example, The `WHATSAPP` link from the `MOBILE` section is intended to be used to indicated to our system that the Referrer accessed the referral program from a mobile device and shared their referral with their friend using Whatsapp. More information about available [Engagement Mediums](/success/touchpoints/) and [Share Mediums](/success/share-options/) can be found in our success center.
+
+      Share links work by dropping a tracking cookie in the user's browser when the user clicks the link and is directed to your referral program's landing page. This cookie includes the referral code of the Referrer that shared it. Once on your website this cookie can be read using the squatch.js [autofill](/developer/squatchjs/v2/#3-autofill-the-referral-code) method and is also automatically picked up by our squatch.js library to connect referrals.
+
+      The referral code is also passed along to your referral program landing page as the URL parameter `rsCode`. For example `http://ssqt.co/pZVp` redirects to `https://www.google.ca/?rsCode=JOHNDOE`.
   - name: User Event
-    description: Events are a way to send SaaSquatch additional information about users. For example, whenever someone makes a purchase or downloads an item.
+    description: |
+      Any time a user interacts with your system, you would send SaaSquatch an event with details about this interaction.
+
+      Some examples of User Events to send to SaaSquatch include:
+
+      - Purchases or Transactions
+      - Subscription Creation/Update/Removal
+      - Mailing List Subscription
+
+      With each of these (and any other events you pass over), the more information you provide with the User Event, the more granual control is available in the SaaSquatch system when processing these events.
+
+      These events are then leveraged to update user information and trigger actions within your running Growth Automation programs.
   - name: Referral Code
-    description: Referral Codes are unique ids used to track referrals.
+    description: |
+      When a user is registered in our system they are provided a unique referral code. This code typically comes in the form of FIRSTNAMELASTNAME, such as JOHNDOE. By default the referral code is shown in the referral widget right underneath the main text.
+
+      The referral code provides a simple method for users to connect with your referral program. They are relatively short human-readable codes which users can share with their friends and family. Many people are familiar with the concept of a coupon code so using the referral codes as part of your referral program can make the process easier to understand.
+
+      A user will be provided one referral code for every referral program or partner program that you are running in your tenant.
   - name: Referral
     description: A Referral tracks who has referred whom.
   - name: Reward Balance
     description: Reward Balances summarizes the Rewards in someone's account.
   - name: Reward
-    description: A Reward keeps track of a prize, discount or credit that someone has received.
+    description: |
+      A Reward keeps track of a prize, discount or credit that someone has received. 
+      
+      All reward types other than gift card integrated rewards can be cancelled using the SaaSquatch API, or through the SaaSquatch Admin portal, if they have not already been redeemed.
   - name: Webhook
-    description: Webhooks can be used to do real time actions and data synchronization from SaaSquatch.
+    description: |
+      Webhooks can be used to do real time actions and data synchronization from SaaSquatch.
+
+      Webhooks let you register a URL that we will POST to anytime an event happens in your account. When the event occurs, for example when a vanity coupon code is created for a new user, SaaSquatch creates an event object. This object contains all the relevant information, including the type of event and the data associated with that event. SaaSquatch then sends an HTTP POST request with the event object to any URLs in your account's webhook settings. You can find a full list of all event types below.
   # -
   #   name: Export
   #   description: Exports are used to do bulk data dumps from your SaaSquatch account.
@@ -103,8 +155,8 @@ tags:
 
   - name: Discount
     description: Endpoints for working with discounts. **Most of these are deprecated** in favor of using Reward endpoints.
-    x-deprecated: true    
-    
+    x-deprecated: true
+
   - name: Deprecated
     description: Endpoints that have been deprecated.
     x-meta: true
@@ -117,7 +169,6 @@ tags:
   - name: Modern Only
     description: An endpoint or attribute that does not work with the Classic referral program.
     x-meta: true
-
 
 paths:
   "/{tenant_alias}/accountsync":
@@ -527,21 +578,12 @@ paths:
       operationId: getShareURLs
       x-docs-anchor: get_shareurls
       tags:
-        - User
+        - Share Links
       security:
         - APIKey: []
 
       description: |
         This API method returns the full list of referral share links for a user. Optional filter parameters are available to return only links of a specific share or engagement medium.
-
-        Share links are made available to a Referrer to provide to their friends and family to click and be directed to your referral program landing page.
-
-        The sharelinks are segmented by Engagement Medium, which is the channel the Referrer accessed the program to be able to share out their referral through. For each Engagment Medium, like `EMBED`, a link is provided for each available Share Medium. This segmentation is used to power the [SaaSquatch analytics platform](/features/analytics/) to provide information about how, and where, your users are interacting with your referral program.
-        For example, The `WHATSAPP` link from the `MOBILE` section is intended to be used to indicated to our system that the Referrer accessed the referral program from a mobile device and shared their referral with their friend using Whatsapp. More information about available [Engagement Mediums](/success/touchpoints/) and [Share Mediums](/success/share-options/) can be found in our success center.
-
-        Share links work by dropping a tracking cookie in the user's browser when the user clicks the link and is directed to your referral program's landing page. This cookie includes the referral code of the Referrer that shared it. Once on your website this cookie can be read using the squatch.js [autofill](/developer/squatchjs/v2/#3-autofill-the-referral-code) method and is also automatically picked up by our squatch.js library to connect referrals.
-
-        The referral code is also passed along to your referral program landing page as the URL parameter `rsCode`. For example `http://ssqt.co/pZVp` redirects to `https://www.google.ca/?rsCode=JOHNDOE`.
       parameters:
         - $ref: "#/parameters/tenant_alias"
         - name: accountId
@@ -1340,7 +1382,6 @@ paths:
       x-docs-anchor: open_delete_user
       tags:
         - User
-        - Open Endpoint
       security:
         - APIKey: []
       description: |
@@ -1382,22 +1423,13 @@ paths:
       operationId: openGetShareURLs
       x-docs-anchor: open_get_shareurls
       tags:
-        - User
+        - Share Links
         - Open Endpoint
       security:
         - APIKey: []
         - UserJWT: []
       description: |
         This API method returns the full list of referral share links for a user. Optional filter parameters are available to return only links of a specific share or engagement medium.
-
-        Share links are made available to a Referrer to provide to their friends and family to click and be directed to your referral program landing page.
-
-        The sharelinks are segmented by Engagement Medium, which is the channel the Referrer accessed the program to be able to share out their referral through. For each Engagment Medium, like `EMBED`, a link is provided for each available Share Medium. This segmentation is used to power the [SaaSquatch analytics platform](/features/analytics/) to provide information about how, and where, your users are interacting with your referral program.
-        For example, The `WHATSAPP` link from the `MOBILE` section is intended to be used to indicated to our system that the Referrer accessed the referral program from a mobile device and shared their referral with their friend using Whatsapp. More information about available [Engagement Mediums](/success/touchpoints/) and [Share Mediums](/success/share-options/) can be found in our success center.
-
-        Share links work by dropping a tracking cookie in the user's browser when the user clicks the link and is directed to your referral program's landing page. This cookie includes the referral code of the Referrer that shared it. Once on your website this cookie can be read using the squatch.js [autofill](/developer/squatchjs/v2/#3-autofill-the-referral-code) method and is also automatically picked up by our squatch.js library to connect referrals.
-
-        The referral code is also passed along to your referral program landing page as the URL parameter `rsCode`. For example `http://ssqt.co/pZVp` redirects to `https://www.google.ca/?rsCode=JOHNDOE`.
       parameters:
         - $ref: "#/parameters/tenant_alias"
         - name: accountId

@@ -22,6 +22,7 @@ import { Properties } from "src/components/Properties";
 import { VersionContext } from "src/components/useVersion";
 import { VersionSwitcher } from "src/components/VersionSwitcher";
 import { Operation, Spec } from "swagger-schema-official";
+import { AuthSummary } from "components/api/AuthSummary";
 
 // Provided in static.config.js
 type RouteData = {
@@ -161,7 +162,7 @@ function Page({ swagger, tagMap, endpointByTag, showMethod }: APIData) {
   return (
     <PageHeader {...entry}>
       <>
-        <h3>Tag Summary</h3>
+        {/* <h3>Tag Summary</h3>
 
         <p>
           API methods are organized by <b>tags</b> of similar functionality. If
@@ -183,7 +184,7 @@ function Page({ swagger, tagMap, endpointByTag, showMethod }: APIData) {
               </React.Fragment>
             );
           })}
-        </dl>
+        </dl> */}
 
         <h3>Authentication Summary</h3>
 
@@ -317,7 +318,9 @@ function TagSummary({ tag }: { tag: string }): JSX.Element {
       <div className="row-fluid">
         <div className="span6">
           <h2>{tagDetails.name}</h2>
-          <p className="lead">{tagDetails.description}</p>
+          <div className="lead">
+            <Markdown source={tagDetails.description}></Markdown>
+          </div>
         </div>
         <div className="span6">
           <Styles.BootstrapListGroup as="div">
@@ -419,17 +422,25 @@ function EndpointsInner({
             className="apidocs-section"
             key={method["x-docs-anchor"]}
           >
+            <div
+              className="pull-right well"
+              style={{ width: "225px", marginLeft: "10px" }}
+            >
+              <AuthSummary method={method} />
+              <div>
+                <b>Tags</b>:
+                <Tags method={method} />
+              </div>
+              <div>
+                <b>Authentication</b>:
+                <AuthTags method={method} />
+              </div>
+            </div>
             {header}
 
             <div className="lead">
               <Markdown source={method.description} />
             </div>
-
-            <p>
-              <b>Tags</b>:
-              <Tags method={method} /> <b>Authentication</b>:
-              <AuthTags method={method} />
-            </p>
 
             <HideShowMethod>
               <div>

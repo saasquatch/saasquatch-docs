@@ -1,17 +1,21 @@
 import React from "react";
 import { Endpoint } from "src/api/Types";
 import { useApiData } from "../../containers/single/api";
+import { Tooltip } from "components/Tooltip";
 
 export function AuthTags({ method }: Partial<Endpoint>): JSX.Element {
   const { swagger } = useApiData();
+
   if (method.security.length < 1) {
     return (
-      <span
-        className="label"
-        title="Does not require any type of authentication to make this API call."
+      <Tooltip
+        content="Does not require any type of authentication to make this API call."
+        placement="bottom"
       >
-        Unauthenticated
-      </span>
+        <span className="label" style={{ marginRight: "3px" }}>
+          Unauthenticated
+        </span>
+      </Tooltip>
     );
   }
   return (
@@ -21,9 +25,11 @@ export function AuthTags({ method }: Partial<Endpoint>): JSX.Element {
         const sec = obj[secName];
         const desc = swagger.securityDefinitions[secName].description;
         return (
-          <span className="label" title={desc} key={idx}>
-            {secName}
-          </span>
+          <Tooltip content={desc} placement="bottom" key={secName}>
+            <span className="label" style={{ marginRight: "3px" }}>
+              {secName}
+            </span>
+          </Tooltip>
         );
         if (sec.length >= 1) {
           // TODO: Show "scopes". Useful for OAuth.

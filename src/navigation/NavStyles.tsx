@@ -47,8 +47,8 @@ export const SearchInput = styled.input`
 `;
 
 export const GraphQLLogo = styled.i`
-background: url(https://api.iconify.design/simple-icons:graphql.svg)
-no-repeat center center / contain;
-width: 16px;
-height: 16px;
-`
+  background: url(https://api.iconify.design/simple-icons:graphql.svg) no-repeat
+    center center / contain;
+  width: 16px;
+  height: 16px;
+`;

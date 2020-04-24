@@ -3,9 +3,12 @@ import { useSiteData } from "react-static";
 import { HashLink as Link } from "react-router-hash-link";
 import slug from "slug";
 
+import * as Styles from "./NavStyles";
 import { EndpointSummary, EndpointSummarySet } from "src/api/Types";
 import { MMenuContext } from "./NavigationSidebar";
 import { VersionContext } from "components/useVersion";
+import Tippy from "@tippyjs/react";
+import { Tooltip } from "components/Tooltip";
 
 function openVeritcalParent($l, mmenuApi) {
   // var $l = $panel.parent();
@@ -83,7 +86,7 @@ function MenuItem({ tag, idx }) {
                   </span>{" "}
                   {route.summary}
                   {route.tags.includes("Open Endpoint") && (
-                    <span className="label pull-right">Open Endpoint</span>
+                    <OpenEndpointLabel />
                   )}
                 </Link>
               </li>
@@ -92,6 +95,22 @@ function MenuItem({ tag, idx }) {
         </ul>
       </div>
     </li>
+  );
+}
+
+function OpenEndpointLabel() {
+  return (
+    <Tooltip
+      content={
+        <span>
+          Open Endpoints are optimized for Mobile or Browser, don't require a
+          server-side call from an API key
+        </span>
+      }
+      placement="right"
+    >
+      <span className="label pull-right">Open Endpoint</span>
+    </Tooltip>
   );
 }
 
