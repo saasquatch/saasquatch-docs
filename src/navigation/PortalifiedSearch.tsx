@@ -6,7 +6,14 @@ import * as Styles from "./NavStyles";
 import { InlineSearch } from "src/pages/search";
 import { modalRoot } from "./NavigationSidebar";
 
-export class PortalifiedSearch extends React.Component {
+export function PortalifiedSearch() {
+  if (typeof document === "undefined") {
+    return <div />;
+  }
+  return <PortalifiedSearchForBrowser />;
+}
+
+class PortalifiedSearchForBrowser extends React.Component {
   el: HTMLDivElement;
   constructor(props) {
     super(props);

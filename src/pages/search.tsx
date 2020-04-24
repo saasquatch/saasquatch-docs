@@ -238,10 +238,10 @@ export function InlineSearch({
 }: {
   Input?: InputComponent;
 }) {
-  const { query, response, setQuery, cat, setCat, setStartIndex } = useSearch();
   if (typeof document === "undefined") {
     return <div />;
   }
+  const { query, response, setQuery, cat, setCat, setStartIndex } = useSearch();
   const showTippy = !isBlank(query);
 
   return (

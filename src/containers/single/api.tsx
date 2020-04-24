@@ -431,10 +431,10 @@ function EndpointsInner({
                 <b>Tags</b>:
                 <Tags method={method} />
               </div>
-              <div>
+              {/* <div>
                 <b>Authentication</b>:
                 <AuthTags method={method} />
-              </div>
+              </div> */}
             </div>
             {header}
 

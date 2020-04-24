@@ -1783,7 +1783,6 @@ paths:
       x-docs-anchor: open_delete_account
       tags:
         - Account
-        - Open Endpoint
       security:
         - APIKey: []
       description: |

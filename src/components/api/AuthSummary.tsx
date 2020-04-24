@@ -2,6 +2,7 @@ import React from "react";
 import { Endpoint } from "src/api/Types";
 import { useApiData } from "../../containers/single/api";
 import { Tooltip } from "components/Tooltip";
+import { AuthTags } from "./AuthTags";
 
 export function AuthSummary({
   method,
@@ -22,7 +23,14 @@ export function AuthSummary({
       <table className="table">
         <tbody>
           <tr>
-            <td colSpan={3}>Security Rules</td>
+            <td colSpan={3}>
+              <b>Security</b>
+            </td>
+          </tr>
+          <tr>
+            <td colSpan={3}>
+              <AuthTags method={method} />
+            </td>
           </tr>
           <tr>
             <td style={{ lineHeight: "30px" }}>
