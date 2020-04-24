@@ -2,7 +2,7 @@ import React from "react";
 import { History } from "history";
 
 let jQuery;
-if (window) {
+if (typeof document !== "undefined") {
   let mmenu = require("jquery.mmenu");
   let Hammer = require("hammerjs");
   // For server-side render
