@@ -51,8 +51,6 @@ export function NavigationSidebar() {
   const history: History<any> = useHistory();
   const container = useRef(null);
   const mmenu = MMenuContext.useContainer();
-  // TODO: Wire this up
-  const apiMenu = mmenu.parent;
 
   useLayoutEffect(() => {
     mmenu.mmenuApi = init(modalRoot, history);

@@ -1,10 +1,12 @@
-import jQuery from "jquery";
 import React from "react";
-import mmenu from "jquery.mmenu";
-import Hammer from "hammerjs";
 import { History } from "history";
 
+let jQuery;
 if (window) {
+  let mmenu = require("jquery.mmenu");
+  let Hammer = require("hammerjs");
+  // For server-side render
+  jQuery = require("jQuery");
   //@ts-ignore
   window.mmenu = mmenu;
   //@ts-ignore - LV: I think this is for making mmenu mobile touch friendly
@@ -59,7 +61,6 @@ function findElement() {
   }
   return foundElement;
 }
-
 
 export default function (search: HTMLElement, history: History<any>) {
   var menuDom = jQuery("#my-menu");
@@ -167,9 +168,9 @@ export default function (search: HTMLElement, history: History<any>) {
       window.location.pathname
     );
     if (foundElement) {
-      if(foundElement.hasClass("mm-vertical")){
+      if (foundElement.hasClass("mm-vertical")) {
         // myMenu.
-      }else{
+      } else {
         myMenu.setSelected(foundElement);
       }
       // myMenu.openPanel(jQuery(foundElement).parent("ul"));
