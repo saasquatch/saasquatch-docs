@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 
 import Meta from "../components/Meta";
-import { InlineSearch } from "./search";
+import { InlineSearch } from "../components/search/InlineSearch";
 
 const Hero = styled.div`
   background: transparent;

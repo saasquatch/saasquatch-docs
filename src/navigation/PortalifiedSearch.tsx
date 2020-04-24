@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { HashLink as Link } from "react-router-hash-link";
 
 import * as Styles from "./NavStyles";
-import { InlineSearch } from "src/pages/search";
+import { InlineSearch } from "components/search/InlineSearch";
 import { modalRoot } from "./NavigationSidebar";
 
 export function PortalifiedSearch() {
