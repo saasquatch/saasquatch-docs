@@ -1,68 +1,32 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
+import { HashLink as Link } from "react-router-hash-link";
 import { useRouteData } from "react-static";
-import styled from "styled-components";
-import hljs from "highlight.js";
 import slug from "slug";
-
-import PageHeader from "../../components/PageHeader";
-import Markdown from "../../components/Markdown";
-import exampleSwaggerSchema from "../../../metalsmith/filters/exampleSwaggerSchemaFilter";
-import { Properties } from "../../components/Properties";
-import { VersionContext } from "../../components/useVersion";
-
-import { Operation, Spec, Response, Path, Tag } from "swagger-schema-official";
-import { VersionSwitcher } from "components/VersionSwitcher";
-import { Endpoint, SuperTag, HTTP_METHODS } from "src/api/Types";
+import {
+  EndpointByTag,
+  endpointsByTag,
+  getEndpoints,
+  TagMap,
+  tagsMapper,
+} from "src/api/apiTransform";
+import { Endpoint } from "src/api/Types";
+import * as Styles from "src/components/api/ApiStyles";
+import { AuthTags } from "src/components/api/AuthTags";
+import { CodeExample } from "src/components/api/CodeExample";
+import { HideShowMethod } from "src/components/api/HideShowMethod";
+import { ResponseTabs } from "src/components/api/ResponseTabs";
+import { Tags } from "src/components/api/Tags";
+import Markdown from "src/components/Markdown";
+import PageHeader from "src/components/PageHeader";
+import { Properties } from "src/components/Properties";
+import { VersionContext } from "src/components/useVersion";
+import { VersionSwitcher } from "src/components/VersionSwitcher";
+import { Operation, Spec } from "swagger-schema-official";
 
 // Provided in static.config.js
 type RouteData = {
   swagger: Spec;
 };
-
-
-function getEndpoints(swagger: Spec): Endpoint[] {
-  return Object.keys(swagger.paths).reduce((acc: Endpoint[], path: string) => {
-    const methods = swagger.paths[path];
-    const subEndpoints = Object.keys(methods)
-      .filter((httpMethod) =>
-        // ignore other parts of Path like `parameters`
-        HTTP_METHODS.includes(httpMethod as any)
-      )
-      .map((httpMethod: string) => {
-        const method = methods[httpMethod];
-        return {
-          httpMethod,
-          path,
-          method,
-        };
-      });
-
-    return [...acc, ...subEndpoints];
-  }, []);
-}
-/**
- * Groups Swagger methods by Tag. If a method has multiple tags, it will be listed in each one.
- *
- */
-
-type TagMap = { [key: string]: SuperTag };
-export function tagsMapper(swagger: Spec): TagMap {
-  // console.log(swagger.tags);
-  return swagger.tags.reduce<TagMap>((result, val) => {
-    result[val.name] = val as SuperTag;
-    return result;
-  }, {});
-}
-
-type EndpointByTag = { [key: string]: Endpoint[] };
-export function endpointsByTag(swagger: Spec): EndpointByTag {
-  return getEndpoints(swagger).reduce<EndpointByTag>((result, endpoint) => {
-    endpoint.method.tags.forEach((tag) => {
-      (result[tag] || (result[tag] = [])).push(endpoint);
-    });
-    return result;
-  }, {});
-}
 
 type APIData = {
   swagger: Spec;
@@ -71,16 +35,10 @@ type APIData = {
   showMethod: (op: Operation) => boolean;
   versionLabel: string;
 };
-function useApiData(): APIData {
-  const { swagger } = useRouteData<RouteData>();
-  const { version, versionLabel } = VersionContext.useContainer();
 
-  const showMethod = useMemo(() => {
-    return (method: Operation) =>
-      (version === "ga-only" && !method.tags.includes("Classic Only")) ||
-      (version === "classic-only" && !method.tags.includes("Modern Only")) ||
-      (version === "hybrid" && true);
-  }, [version]);
+export function useApiData(): APIData {
+  const { swagger } = useRouteData<RouteData>();
+  const { version, versionLabel, showMethod } = VersionContext.useContainer();
 
   const endpointByTag = useMemo(() => endpointsByTag(swagger), [swagger]);
   const tagMap = useMemo(() => tagsMapper(swagger), [swagger]);
@@ -94,120 +52,89 @@ function useApiData(): APIData {
   };
 }
 
-const FilterHeader = styled.div`
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  margin-bottom: 20px;
-`;
+function HiddenMethods() {
+  const {
+    swagger,
+    showMethod,
+    versionLabel,
+    tagMap,
+    endpointByTag,
+  } = useApiData();
 
-const VersionLabel = styled.span`
-  height: 20px;
-  padding: 5px 5px 0 5px;
-  margin-bottom: 15px;
-  margin-left: 15px;
-  font-size: 16px;
-`;
-
-const HTTPMethod = styled.span`
-  text-transform: uppercase;
-`;
-
-function CodeExample({ method, httpMethod, methodPath, swagger }: any) {
-  const query =
-    method.parameters &&
-    method.parameters
-      .filter((param: any) => param.in === "query")
-      .map((param: any) => param.name + "=" + (param["x-example"] || ""))
-      .join("&");
-  const url =
-    swagger.schemes[0] +
-    "://" +
-    swagger.host +
-    swagger.basePath +
-    methodPath +
-    (query ? "?" + query : "");
-
-  const firstBodyParam = method.parameters.find(
-    (param: any) => param.in == "body"
+  const hiddenMethods = getEndpoints(swagger).filter(
+    (e) => !showMethod(e.method)
   );
-  const payload = firstBodyParam
-    ? JSON.stringify(exampleSwaggerSchema(firstBodyParam.schema), null, 2)
-    : null;
-
-  const body =
-    httpMethod == "post" || httpMethod == "put" || httpMethod == "patch"
-      ? `-H "Content-Type: application/json" \
-
-  -d '${payload}'
-  `
-      : "";
-
-  const code = `curl -X ${httpMethod.toUpperCase()} ${url} \
-
-  -u :API_KEY \
-
-  ${body}
-  `;
-
-  const highlighted = useMemo(() => {
-    const highlightedCode = hljs.highlight("bash", code).value;
-    return { __html: highlightedCode };
-  }, [code]);
 
   return (
-    <pre>
-      <code dangerouslySetInnerHTML={highlighted} />
-    </pre>
-  );
-}
+    <div id="hidden">
+      <h3>Hidden Methods</h3>
+      <p>
+        These methods have been hidden from your search, sidebar and navigation
+        because they are either deprecated or don't apply to your personalized
+        view of the docs.
+      </p>
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Tag</th>
+            <th>Endpoint</th>
+            <th>Reason</th>
+            <th>Path</th>
+          </tr>
+        </thead>
+        <tbody>
+          {hiddenMethods.map((m) => {
+            const { method, httpMethod, path } = m;
 
-function Tags({ method }: { method: Operation }) {
-  const { tagMap } = useApiData();
-
-  return (
-    <>
-      {method.tags.map((tag: string) => (
-        <span className="label" key={tag}>
-          {tag}
-        </span>
-      ))}
-    </>
-  );
-}
-
-function AuthTags({ method }: Partial<Endpoint>): JSX.Element {
-  const { swagger } = useApiData();
-
-  if (method.security.length < 1) {
-    return (
-      <span
-        className="label"
-        title="Does not require any type of authentication to make this API call."
-      >
-        Unauthenticated
-      </span>
-    );
-  }
-
-  return (
-    <>
-      {method.security.map((obj: any, idx: number) => {
-        const secName = Object.keys(obj)[0];
-        const sec = obj[secName];
-
-        const desc = swagger.securityDefinitions[secName].description;
-
-        return (
-          <span className="label" title={desc} key={idx}>
-            {secName}
-          </span>
-        );
-        if (sec.length >= 1) {
-          // TODO: Show "scopes". Useful for OAuth.
-        }
-      })}
-    </>
+            const highlighted =
+              window.location.hash === method["x-docs-anchor"];
+            const style = highlighted ? { background: "yellow" } : {};
+            return (
+              <tr id={method["x-docs-anchor"]} key={method["x-docs-anchor"]}>
+                <td>
+                  {method.tags
+                    .map((t) => tagMap[t])
+                    .filter((t) => !t["x-meta"])
+                    .map((t) => (
+                      <span className={"label"}>{t.name}</span>
+                    ))}
+                </td>
+                <td style={style}>
+                  <Link to={"#" + method["x-docs-anchor"]}>
+                    {method.summary}
+                  </Link>
+                </td>
+                <td style={style}>
+                  {method["deprecated"] && (
+                    <span className="label">Deprecated</span>
+                  )}
+                  {method.tags
+                    .map((t) => tagMap[t])
+                    .filter((t) => t["x-meta"])
+                    .map((t) => (
+                      <span className={"label"}>{t.name}</span>
+                    ))}
+                </td>
+                <td style={style}>
+                  <Styles.HTTPMethod
+                    className={
+                      "label js-apidocs-method-type docs-label-" +
+                      httpMethod.toLowerCase()
+                    }
+                  >
+                    {httpMethod}
+                  </Styles.HTTPMethod>
+                  <code className="js-apidocs-method-code">
+                    {swagger.basePath}
+                    {path}
+                  </code>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
   );
 }
 
@@ -287,12 +214,14 @@ function Page({ swagger, tagMap, endpointByTag, showMethod }: APIData) {
           </dd>
         </dl>
 
-        <FilterHeader>
+        <Styles.FilterHeader>
           <div style={{ display: "flex", alignItems: "flex-end" }}>
             <h3>Methods Summary</h3>
-            <VersionLabel className="label">{versionLabel}</VersionLabel>
+            <Styles.VersionLabel className="label">
+              {versionLabel}
+            </Styles.VersionLabel>
           </div>
-        </FilterHeader>
+        </Styles.FilterHeader>
 
         <table className="table">
           <thead>
@@ -318,7 +247,7 @@ function Page({ swagger, tagMap, endpointByTag, showMethod }: APIData) {
               return (
                 <tr key={anchor}>
                   <td>
-                    <HTTPMethod>{httpMethod}</HTTPMethod>
+                    <Styles.HTTPMethod>{httpMethod}</Styles.HTTPMethod>
                   </td>
                   <td className="docs-monospace">
                     {swagger.basePath}
@@ -342,8 +271,8 @@ function Page({ swagger, tagMap, endpointByTag, showMethod }: APIData) {
             {numHiddenMethods > 0 && (
               <tr>
                 <td colSpan={90}>
-                  {numHiddenMethods} hidden methods not for{" "}
-                  <b>{versionLabel}</b>. <VersionSwitcher />
+                  <Link to="#hidden">{numHiddenMethods} hidden methods</Link>{" "}
+                  not for <b>{versionLabel}</b>. <VersionSwitcher />
                 </td>
               </tr>
             )}
@@ -356,141 +285,12 @@ function Page({ swagger, tagMap, endpointByTag, showMethod }: APIData) {
           .map((t) => (
             <TagSummary tag={t.name} key={t.name} />
           ))}
+
+        <HiddenMethods />
       </>
     </PageHeader>
   );
 }
-
-const BootstrapListGroup = styled.ul`
-  //
-  // List groups
-  // --------------------------------------------------
-
-  // Base class
-  //
-  // Easily usable on <ul>, <ol>, or <div>.
-  // No need to set list-style: none; since .list-group-item is block level
-  margin-bottom: 20px;
-  padding-left: 0; // reset padding because ul and ol
-`;
-
-const BootstrapListGroupItem = styled.li`
-  // Individual list items
-  //
-  // Use on li or div within the .list-group parent.
-
-  position: relative;
-  display: block;
-  padding: 10px 15px;
-  // Place the border on the list items and negative margin up for better styling
-  margin-bottom: -1px;
-  background-color: #eee;
-  border: 1px solid #ccc;
-
-  // Round the first and last items
-  &:first-child {
-    border-radius: 5px 5px 0 0;
-  }
-  &:last-child {
-    margin-bottom: 0;
-    border-radius: 0 0 5px 5px;
-  }
-`;
-
-// Interactive list items
-//
-// Use anchor or button elements instead of `li`s or `div`s to create interactive items.
-// Includes an extra `.active` modifier class for showing selected items.
-const BootstrapActiveItem = styled(BootstrapListGroupItem)<{
-  disabled: boolean;
-}>`
-  color: @list-group-link-color;
-
-  .list-group-item-heading {
-    color: @list-group-link-heading-color;
-  }
-
-  // Hover state
-  &:hover,
-  &:focus {
-    text-decoration: none;
-    color: @list-group-link-hover-color;
-    background-color: @list-group-hover-bg;
-  }
-
-  button.& {
-    width: 100%;
-    text-align: left;
-  }
-    // Disabled state
-
-    ${({ disabled }) =>
-      disabled &&
-      `
-      &,
-      &:hover,
-      &:focus {
-        background-color: @list-group-disabled-bg;
-        color: @list-group-disabled-color;
-        cursor: @cursor-disabled;
-  
-        // Force color to inherit for custom content
-        .list-group-item-heading {
-          color: inherit;
-        }
-        .list-group-item-text {
-          color: @list-group-disabled-text-color;
-        }
-      }
-      `}
-
-
-    // Active class on item itself, not parent
-    &.active,
-    &.active:hover,
-    &.active:focus {
-      z-index: 2; // Place active items above their siblings for proper border styling
-      color: @list-group-active-color;
-      background-color: @list-group-active-bg;
-      border-color: @list-group-active-border;
-
-      // Force color to inherit for custom content
-      .list-group-item-heading,
-      .list-group-item-heading > small,
-      .list-group-item-heading > .small {
-        color: inherit;
-      }
-      .list-group-item-text {
-        color: @list-group-active-text-color;
-      }
-    }
-  }
-
-  // Contextual variants
-  //
-  // Add modifier classes to change text and background color on individual items.
-  // Organizationally, this must come after the :hover states.
-
-  // .list-group-item-variant(success; @state-success-bg; @state-success-text);
-  // .list-group-item-variant(info; @state-info-bg; @state-info-text);
-  // .list-group-item-variant(warning; @state-warning-bg; @state-warning-text);
-  // .list-group-item-variant(danger; @state-danger-bg; @state-danger-text);
-`;
-
-// Custom content options
-//
-// Extra classes for creating well-formatted content within .list-group-item s.
-const ListGroupItemHeading = styled.div<{ disabled: boolean }>`
-  margin-top: 0;
-  margin-bottom: 5px;
-  ${({ disabled }) => disabled && `color: inherit;`}
-`;
-
-const ListGroupItemText = styled.div<{ disabled: boolean }>`
-  margin-bottom: 0;
-  line-height: 1.3;
-  ${({ disabled }) => disabled && `color: @list-group-disabled-text-color;`}
-`;
 
 function TagSummary({ tag }: { tag: string }): JSX.Element {
   const {
@@ -520,31 +320,34 @@ function TagSummary({ tag }: { tag: string }): JSX.Element {
           <p className="lead">{tagDetails.description}</p>
         </div>
         <div className="span6">
-          <BootstrapListGroup as="div">
-            <BootstrapListGroupItem as="div">
+          <Styles.BootstrapListGroup as="div">
+            <Styles.BootstrapListGroupItem as="div">
               <b>Endpoints</b>
-            </BootstrapListGroupItem>
+            </Styles.BootstrapListGroupItem>
 
             {subEndpoints.map((e) => (
-              <BootstrapListGroupItem
+              <Styles.BootstrapListGroupItem
                 as="a"
                 key={e.method["x-docs-anchor"]}
                 className="list-group-item"
                 href={"#" + e.method["x-docs-anchor"]}
               >
                 {e.method.summary}
-              </BootstrapListGroupItem>
+              </Styles.BootstrapListGroupItem>
             ))}
             {numHiddenMethods > 0 && (
-              <BootstrapListGroupItem as="div">
-                <i className="fa fa-compress"></i> {numHiddenMethods} endpoints
-                hidden for{" "}
+              <Styles.BootstrapListGroupItem as="div">
+                <Link to="#hidden">
+                  <i className="fa fa-compress"></i> {numHiddenMethods}{" "}
+                  endpoints hidden
+                </Link>{" "}
+                for{" "}
                 <VersionSwitcher>
                   <b>{versionLabel}</b>
                 </VersionSwitcher>
-              </BootstrapListGroupItem>
+              </Styles.BootstrapListGroupItem>
             )}
-          </BootstrapListGroup>
+          </Styles.BootstrapListGroup>
         </div>
       </div>
       <Endpoints endpoints={subEndpoints} />
@@ -577,14 +380,14 @@ function EndpointsInner({
                 {method.summary}
               </h3>
 
-              <HTTPMethod
+              <Styles.HTTPMethod
                 className={
                   "label js-apidocs-method-type docs-label-" +
                   httpMethod.toLowerCase()
                 }
               >
                 {httpMethod}
-              </HTTPMethod>
+              </Styles.HTTPMethod>
               <code className="js-apidocs-method-code">
                 {swagger.basePath}
                 {path}
@@ -690,96 +493,5 @@ function EndpointsInner({
         );
       })}
     </>
-  );
-}
-
-function HideShowMethod({
-  children,
-}: {
-  children: JSX.Element | JSX.Element[];
-}) {
-  const [shown, setShown] = useState(false);
-  const label = shown ? "Hide Method Details" : "Show Method Details";
-
-  // Note: This is also a performance optimization. By not rendering children we are drastically speeding up the page.
-  return (
-    <div>
-      <button onClick={() => setShown(!shown)}>View Method Details</button>
-      {shown && children}
-    </div>
-  );
-}
-
-function JsonCode({ object }: { object: any }) {
-  const highlighted = useMemo(() => {
-    const highlightedCode = hljs.highlight(
-      "json",
-      JSON.stringify(object, null, 4)
-    ).value;
-    return { __html: highlightedCode };
-  }, [object]);
-
-  return (
-    <pre>
-      <code dangerouslySetInnerHTML={highlighted} className="lang-json" />
-    </pre>
-  );
-}
-
-function responseId(method: Operation, responseKey: string) {
-  return method.operationId + "-" + responseKey;
-}
-
-function ResponseTabs({ method }: { method: Operation }) {
-  const [active, setActive] = useState(0);
-
-  return (
-    <div className="tabbable">
-      <ul className="nav nav-tabs">
-        {Object.keys(method.responses)
-          .filter((key) => key !== "default")
-          .map((key: string, idx: number) => {
-            const className = idx === active ? "active" : null;
-            // We are using a de-referenced swagger schema
-            const response = method.responses[key] as Response;
-            const target = "." + responseId(method, key);
-            return (
-              <li className={className} key={idx}>
-                <a className="tab" onClick={() => setActive(idx)}>
-                  <span className="label">HTTP {key}</span>{" "}
-                  {response.description}
-                </a>
-              </li>
-            );
-          })}
-      </ul>
-
-      <div className="tab-content">
-        {Object.keys(method.responses).map((key: string, idx: number) => {
-          if (key === "default") {
-            return <div key={idx} />;
-          }
-          const display = idx === active ? "block" : "none";
-          const response = method.responses[key] as Response;
-          let className = "tab-pane" + responseId(method, key);
-          return (
-            <div className={className} style={{ display }} key={idx}>
-              <Properties schema={response.schema} />
-              <p>
-                <b>Example Response</b>
-              </p>
-              <pre>HTTP {key}</pre>
-              {response.examples &&
-                Object.keys(response.examples)
-                  .filter((mime) => mime === "application/json")
-                  .map((mime: any, idx: number) => {
-                    const example = response.examples[mime];
-                    return <JsonCode object={example} key={idx} />;
-                  })}
-            </div>
-          );
-        })}
-      </div>
-    </div>
   );
 }

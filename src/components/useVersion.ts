@@ -1,6 +1,7 @@
 import useCookie from "./useCookie";
 import { createContainer } from "unstated-next";
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import { Operation } from "swagger-schema-official";
 
 export const VERSIONS = ["classic-only", "hybrid", "ga-only"] as const;
 
@@ -42,11 +43,22 @@ function useVersionContext() {
       ? "No Classic"
       : "All";
 
+  const showMethod = (method: Operation) => showTags(method.tags);
+
+  const showTags = useMemo(() => {
+    return (tags: string[]) =>
+      (version === "ga-only" && !tags.includes("Classic Only")) ||
+      (version === "classic-only" && !tags.includes("Modern Only")) ||
+      (version === "hybrid" && true);
+  }, [version]);
+
   return {
     version,
     versionLabel,
     setVersion,
     modalIsOpen: open,
+    showMethod,
+    showTags,
     openModal: () => setOpen(true),
     closeModal: () => setOpen(false),
   };

@@ -409,6 +409,9 @@ export function NavigationSidebar() {
                   </li>
 
                   <ApiSidebar />
+                  <li>
+                    <Link to="/api/methods#hidden">Hidden Endpoints</Link>
+                  </li>
                 </ul>
               </li>
               <li>
