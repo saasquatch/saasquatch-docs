@@ -6,7 +6,7 @@ if (window) {
   let mmenu = require("jquery.mmenu");
   let Hammer = require("hammerjs");
   // For server-side render
-  jQuery = require("jQuery");
+  jQuery = require("jquery");
   //@ts-ignore
   window.mmenu = mmenu;
   //@ts-ignore - LV: I think this is for making mmenu mobile touch friendly
