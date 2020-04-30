@@ -31,7 +31,7 @@ const FullPage = styled.div`
 const entry = {
   title: "GraphQL API Reference",
   highlights: `The SaaSquatch GraphQL API provides is an API for building custom
-  widgets, intergrations, and admin interfaces based on
+  widgets, integrations, and admin interfaces based on
   [GraphQL](https://graphql.org/). Authentication for the
   GraphQL API is the same as the [SaaSquatch REST API](/api).
   `,
