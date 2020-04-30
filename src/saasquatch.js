@@ -56,7 +56,7 @@ The operations under Query are operation that are side-effect free.
 """
 type Query {
   """
-  The mathematic identity function. Useful for returning input variableds.
+  The mathematic identity function. Useful for returning input variables.
   """
   identityFunction(value: RSJsonNode): RSJsonNode
   """
