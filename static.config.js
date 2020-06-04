@@ -28,7 +28,7 @@ const TEMPLATES = {
   "pages/program.html": "src/containers/Program",
   "pages/branchReference.html": "src/containers/single/BranchMetrics",
   "pages/themeGallery.html": "src/containers/single/themeGallery",
-  "pages/shorttags.html": "src/containers/single/shortTags.tsx"
+  "pages/shorttags.html": "src/containers/single/shortTags.tsx",
 };
 
 /**
@@ -56,10 +56,10 @@ async function getRawFiles() {
   const all = await Promise.all(
     paths
       // Ignore some files
-      .filter(p => !p.endsWith("_template.md"))
-      .map(async p => ({
+      .filter((p) => !p.endsWith("_template.md"))
+      .map(async (p) => ({
         source: await fs.readFile(p, { encoding: "utf8" }),
-        fpath: p
+        fpath: p,
       }))
   );
 
@@ -78,15 +78,15 @@ async function getRawFiles() {
             entry: {
               ...parsed.data,
               contents: parsed.content,
-              isHtml: fpath.endsWith("html")
-            }
+              isHtml: fpath.endsWith("html"),
+            },
             // tocContents: markdownToc(parsed.content).content
           };
         },
-        template: getTemplate(parsed.data.template)
+        template: getTemplate(parsed.data.template),
       };
     })
-    .filter(x => x);
+    .filter((x) => x);
 }
 
 /**
@@ -103,12 +103,25 @@ async function getYaml(file) {
 }
 
 /**
+ * Read the saasquatch API yaml from the schema package
+ *
+ * @returns parsed API yaml
+ */
+async function getAPIYaml() {
+  const text = await fs.readFile("node_modules/@saasquatch/schema/yaml/saasquatch-api.yaml", {
+    encoding: "utf8"
+  });
+  const data = yaml.safeLoad(text);
+  return data;
+}
+
+/**
  * Read our Swagger file
  *
  * Parses, derefences and merges it for easier templating
  */
 async function getSwagger() {
-  const data = await getYaml("saasquatch-api.yaml");
+  const data = await getAPIYaml();
 
   if (!swaggerUtils || !swaggerUtils["methodsByTag"]) {
     throw new Error("Failed to import SwaggerUtils");
@@ -119,7 +132,7 @@ async function getSwagger() {
   return {
     swagger: resolved,
     methodsByTag: swaggerUtils.methodsByTag(resolved),
-    tagMap: swaggerUtils.tagMap(resolved)
+    tagMap: swaggerUtils.tagMap(resolved),
   };
 }
 
@@ -130,7 +143,7 @@ export default {
     // root: process.cwd(), // The root of your project. Don't change this unless you know what you're doing.
     // src: "src", // The source directory. Must include an index.js entry file.
     // temp: "tmp", // Temp output directory for build files not to be published.
-    dist: "build" // The production output directory.
+    dist: "build", // The production output directory.
     // devDist: "tmp/dev-server", // The development scratch directory.
     // public: "public", // The public directory (files copied to dist during build)
     // assets: "build2", // The output directory for bundled JS and CSS
@@ -152,8 +165,8 @@ export default {
         ROLLBAR_TOKEN:
           process.env.ROLLBAR_TOKEN || "a865008ca04947acb3d0a1c719e2d93c",
         PINGDOM_ID: process.env.PINGDOM_ID || "52c61993abe53d650f000000",
-        GTMID: process.env.GTMID || "GTM-PK98FJF"
-      }
+        GTMID: process.env.GTMID || "GTM-PK98FJF",
+      },
     };
   },
   getRoutes: getRoutes,
@@ -163,21 +176,21 @@ export default {
       {
         externals: {
           jquery: "jQuery",
-          "highlight.js": "hljs"
-        }
-      }
+          "highlight.js": "hljs",
+        },
+      },
     ],
     "react-static-plugin-typescript",
     "react-static-plugin-less",
     [
       require.resolve("react-static-plugin-source-filesystem"),
       {
-        location: path.resolve("./src/pages")
-      }
+        location: path.resolve("./src/pages"),
+      },
     ],
     // require.resolve("react-static-plugin-reach-router"),
-    require.resolve("react-static-plugin-sitemap")
-  ]
+    require.resolve("react-static-plugin-sitemap"),
+  ],
 };
 
 /**
@@ -188,7 +201,7 @@ async function getContentful(opts) {
   var client = createContentfulClient(opts.accessKey, opts.spaceId);
   const response = await client.sync({
     initial: true,
-    resolveLinks: true
+    resolveLinks: true,
   });
   return response.entries;
 }
@@ -196,7 +209,7 @@ async function getContentful(opts) {
 function createContentfulClient(accessToken, spaceId) {
   return contentful.createClient({
     space: spaceId,
-    accessToken: accessToken
+    accessToken: accessToken,
   });
 }
 
@@ -214,11 +227,10 @@ async function getRoutes() {
   const entries = await getContentful({
     accessKey:
       "ae31ffc9de0831d887cff9aa3c72d861c323bd09de2a4cafd763c205393976c9",
-    spaceId: "s68ib1kj8k5n"
+    spaceId: "s68ib1kj8k5n",
   });
 
-
-  const filterForType = (type) =>{
+  const filterForType = (type) => {
     return (acc, entryRaw) => {
       const entry = resolveI18n(entryRaw);
       let fields = entry.fields;
@@ -227,29 +239,29 @@ async function getRoutes() {
       }
       const newsItem = fields;
       return [...acc, newsItem];
-    }
-  }
+    };
+  };
 
   // Sorted list of news items
   const productNews = entries
     .reduce(filterForType("productNews"), [])
     .sort((a, b) => a.datePublished > b.datePublished);
 
-      // Sorted list of news items
+  // Sorted list of news items
   const breakingChanges = entries
-  .reduce(filterForType("breakingChange"), [])
-  .sort((a, b) => a.deadline > b.deadline);
+    .reduce(filterForType("breakingChange"), [])
+    .sort((a, b) => a.deadline > b.deadline);
 
   const guides = await getYaml("metadata/guides.yaml");
 
   const contentfulProduct = await getContentful({
     accessKey:
       "950546088e303e9d2328c21ea448fac45dd469b899a36d739bc7300c70512d3b",
-    spaceId: "48ji72u659z5"
+    spaceId: "48ji72u659z5",
   });
   const programs = contentfulProduct
     .map(productSpaceContentfulpagifier)
-    .filter(e => e);
+    .filter((e) => e);
 
   const rawFiles = await getRawFiles();
 
@@ -257,67 +269,67 @@ async function getRoutes() {
   const issues = rawFiles
     // .filter(r => multimatch([r.path], ["issues/rs*.*"]).length > 0)
     .filter(
-      r => r.path.includes("squatchjs/issue") && !r.path.includes("template")
+      (r) => r.path.includes("squatchjs/issue") && !r.path.includes("template")
     )
-    .map(r => r.getData().entry);
+    .map((r) => r.getData().entry);
 
   const integrations = entries
     .map(contentfulpagifier)
-    .filter(x => x)
-    .filter(d => d.tags && d.tags.some(i => i == "in-directory"));
+    .filter((x) => x)
+    .filter((d) => d.tags && d.tags.some((i) => i == "in-directory"));
 
   const staticPages = [
     {
       path: "/api/methods",
       getData: () => spec,
-      template: "src/containers/single/api"
+      template: "src/containers/single/api",
     },
     {
       path: "/product-news",
       getData: async () => ({ productNews }),
-      template: "src/containers/single/product-news"
+      template: "src/containers/single/product-news",
     },
     {
       path: "/breaking-changes",
       getData: async () => ({ breakingChanges }),
-      template: "src/containers/single/breaking-changes"
+      template: "src/containers/single/breaking-changes",
     },
     {
       path: "/program/library",
       getData: async () => ({ programs }),
-      template: "src/containers/single/programLibrary"
+      template: "src/containers/single/programLibrary",
     },
     {
       path: "/developer/squatchjs/issue",
       getData: () => ({ issues }),
-      template: "src/containers/single/issues"
+      template: "src/containers/single/issues",
     },
     {
       path: "/themes/fields",
       getData: () => ({ ThemeContext: spec.swagger.definitions.ThemeContext }),
-      template: "src/containers/single/ThemeFields"
+      template: "src/containers/single/ThemeFields",
     },
     {
       path: "/integrations",
       getData: () => ({ integrations }),
-      template: "src/containers/single/integrations"
+      template: "src/containers/single/integrations",
     },
     {
       path: "/guides",
       getData: () => ({ guides, integrations }),
-      template: "src/containers/single/guides"
-    }
+      template: "src/containers/single/guides",
+    },
   ];
   const contentfulPages = entries
     .map(contentfulpagifier)
-    .filter(e => e)
+    .filter((e) => e)
     .map(legacyPagifierToStatic);
 
   const contentfulProductPages = programs.map(legacyPagifierToStatic);
 
   const installGuides = contentfulProduct
     .map(installguidepagifier)
-    .filter(e => e)
+    .filter((e) => e)
     .map(legacyPagifierToStatic);
 
   return [
@@ -325,7 +337,7 @@ async function getRoutes() {
     ...contentfulPages,
     ...contentfulProductPages,
     ...installGuides,
-    ...staticPages
+    ...staticPages,
   ];
 }
 
@@ -334,6 +346,6 @@ function legacyPagifierToStatic(entry) {
   return {
     path: entry.slug.toLowerCase(),
     getData: () => ({ entry }),
-    template: getTemplate(entry.template)
+    template: getTemplate(entry.template),
   };
 }
