@@ -1524,7 +1524,15 @@ input UserInput {
   locale: RSLocale
   # Deprecated. Use referredByCodes instead.
   referredBy: RSJsonNode
+  """
+  The Base64URL encoded attribution cookie values.
+
+  When unencoded, the schema will resemble the following:
+  
+  {"staging.referralsaasquatch.com":{"{tenant_alias}_CODE":{"codes":{"{programId}":"{referralCode}"},"codesExp":{"{referralCode}":1599758917}}}}
+  """
   referredByCodes: [String!]
+  cookies: String
   referable: Boolean
   customFields: RSJsonNode
   segments: [SegmentOperation!]
@@ -1675,6 +1683,10 @@ type ProgramSharingConfig {
 type ProgramRedirectUrlConfig {
   url: String!
   fallbackUrl: String!
+  """
+  Expiry duration for referral code cookies
+  """
+  cookieExpiryDuration: IsoDuration!
   rules: RSJsonNode
 }
 
@@ -2141,6 +2153,10 @@ input ProgramSharingConfigInput {
 input ProgramRedirectUrlConfigInput {
   url: String!
   fallbackUrl: String
+  """
+  Expiry duration for referral code cookies
+  """
+  cookieExpiryDuration: IsoDuration!
   rules: RSJsonNode
 }
 
