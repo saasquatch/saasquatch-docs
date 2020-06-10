@@ -1527,9 +1527,9 @@ input UserInput {
   """
   The Base64URL encoded attribution cookie values.
 
-  When unencoded, the schema will resemble the following:
+  When decoded, the schema will resemble the following:
   
-  {"staging.referralsaasquatch.com":{"{tenant_alias}_CODE":{"codes":{"{programId}":"{referralCode}"},"codesExp":{"{referralCode}":1599758917}}}}
+  {"app.referralsaasquatch.com": {"tenantAlias_CODE": {"codes": {"program1": "CODE1"},"codesExp": {"CODE1": 1234567}}}}
   """
   referredByCodes: [String!]
   cookies: String
