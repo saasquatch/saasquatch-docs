@@ -2656,7 +2656,7 @@ definitions:
           - FUELTANK
       dateExpires:
         type: integer
-        description: "Timestamp of when this reward is set to expire. Works with: `PCT_DISCOUNT`"
+        description: "Timestamp of when this reward is set to expire."
         example: 1471028988000
       dateScheduledFor:
         type: integer
