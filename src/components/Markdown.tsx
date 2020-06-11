@@ -1,6 +1,7 @@
 import React, { useLayoutEffect, useRef, useMemo } from "react";
 // @ts-ignore no types for marked
 import marked from "marked";
+import DOMPurify from "dompurify";
 import styled from "styled-components";
 import uuidv4 from "uuid/v4";
 
@@ -152,8 +153,21 @@ export default function Markdown({ source }: { source: string }) {
   const [ref] = useMermaid(source);
 
   const comp = useMemo(() => {
-    const rawMarkup = marked(source, { sanitize: false, renderer: renderer });
-    return parse(rawMarkup, { replace });
+    try {
+      const rawMarkup = marked(source, { sanitize: false, renderer: renderer });
+      const betterHtml = DOMPurify.sanitize(rawMarkup);
+      const component = parse(betterHtml, { replace });
+      return component;
+    } catch (e) {
+      console.error("Error in parsing page", e);
+      return (
+        <div style={{ color: "red" }}>
+          <h2>Error Loading This Page</h2>
+          <pre>{e.toString()}</pre>
+          <pre>{source}</pre>
+        </div>
+      );
+    }
   }, [source, renderer]);
 
   return <MD ref={ref}>{comp}</MD>;
