@@ -16,7 +16,7 @@
     "@types/dompurify": "^2.0.2",
     "anchor-js": "^3.2.2",
     "chai": "^3.5.0",
-    "contentful": "^7.14.4",
+    "contentful": "^3.8.1",
     "debug": "^2.2.0",
     "extend": "^3.0.0",
     "get-folder-size": "^1.0.0",
