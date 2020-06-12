@@ -1,7 +1,6 @@
 import React, { useMemo } from "react";
 import hljs from "highlight.js";
-import exampleSwaggerSchema from "../../../metalsmith/filters/exampleSwaggerSchemaFilter";
-
+import exampleSwaggerSchema from "../../util/exampleSwaggerSchemaFilter";
 
 export function CodeExample({ method, httpMethod, methodPath, swagger }: any) {
   const query =

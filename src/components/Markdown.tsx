@@ -1,11 +1,11 @@
 import React, { useLayoutEffect, useRef, useMemo } from "react";
 // @ts-ignore no types for marked
 import marked from "marked";
-import DOMPurify from "dompurify";
 import styled from "styled-components";
 import uuidv4 from "uuid/v4";
 
 import parse from "html-react-parser";
+import DOMPurify from "../util/IsomoprhicDomPurify";
 import { replace } from "../navigation/replace";
 
 // Stop mermaid for doing th

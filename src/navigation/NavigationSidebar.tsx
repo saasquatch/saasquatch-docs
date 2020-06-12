@@ -12,9 +12,6 @@ import "./mmenu-overrides.css";
 import ApiSidebar from "./ApiSidebar";
 // import "mmenu-js/dist/mmenu.css"
 
-// const sidebarRaw = require("html-loader!../templates/sidebar.html");
-// const apiList = require("html-loader!../templates/apilist.html");
-
 function useMMenu() {
   const parent = useRef(null);
   const [mmenuApi, setMMenuApi] = useState(null);
