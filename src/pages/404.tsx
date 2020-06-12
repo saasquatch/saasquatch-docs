@@ -21,7 +21,9 @@ export default () => (
         <p className="lead">
           We couldn't find a page for{" "}
           <b>
-            <span>{window.location.pathname}</span>
+            <span>
+              {typeof window !== "undefined" && window.location.pathname}
+            </span>
           </b>
           .
         </p>

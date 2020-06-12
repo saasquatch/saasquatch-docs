@@ -11,10 +11,13 @@ function r(m) {
   return (m && m.default) || m;
 }
 const dompurify =
-  typeof process === "undefined"
+  typeof document !== "undefined"
     ? DOMPurify
     : (function () {
-        const { JSDOM } = r(require("jsdom"));
+        // Evil, but needed so Webpack doesn't bundle jsdom in a server environment
+        // Source: https://github.com/webpack/webpack/issues/8826#issuecomment-490811170
+        const { JSDOM } = r(eval("require")("jsdom"));
+
         const { window } = new JSDOM("<!DOCTYPE html>");
         return DOMPurify(window);
       })();

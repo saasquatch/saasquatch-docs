@@ -1,15 +1,14 @@
 import React from "react";
 import { domToReact } from "html-react-parser";
+import attributesToProps from "html-react-parser/lib/attributes-to-props";
 import { HashLink as Link } from "react-router-hash-link";
 
 export function replace(domNode: any) {
   if (domNode.name && domNode.name === "a") {
     const { href, ...rest } = domNode.attribs;
-    const classNames = rest["class"];
-    delete rest["class"];
-
+    const props = attributesToProps(rest);
     return (
-      <Link to={href} className={classNames} {...rest}>
+      <Link to={href} {...props}>
         {domToReact(domNode.children, { replace })}
       </Link>
     );
