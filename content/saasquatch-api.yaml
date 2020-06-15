@@ -4843,6 +4843,13 @@ definitions:
         example:
           - "JONDOE1234"
           - "JOHNDOECODE"
+      cookies:
+        type: string
+        example: eyJhcHAucmVmZXJyYWxzYWFzcXVhdGNoLmNvbSI6eyJ0ZW5hbnRBbGlhc19DT0RFIjp7ImNvZGVzIjp7InByb2dyYW0xIjoiQ09ERTEifSwiY29kZXNFeHAiOnsiQ09ERTEiOjEyMzQ1Njd9fX19
+        description: |
+          The Base64URL encoded attribution cookie values. When decoded, the schema will resemble the following:
+
+          {"app.referralsaasquatch.com": {"tenantAlias_CODE": {"codes": {"program1": "CODE1"},"codesExp": {"CODE1": 1234567}}}}
       imageUrl:
         type: string
         example: "https://www.example.com/profile/ab5111251125"
