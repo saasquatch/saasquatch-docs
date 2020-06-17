@@ -383,10 +383,9 @@ Sent whenever a new referral code is created.
     "live": false,
     "created": 1337001337,
     "data": {
-        "codeString": "ABC123ABC",
-        "discountPercentage": "10",
-        "dateCreated": 1386180000,
-        "ratePlanId": null
+        "code": "ABC123ABC",
+        "dateCreated": 123123123123,
+        "programId": "program1"
     }
 }
 ```
