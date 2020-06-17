@@ -713,18 +713,19 @@ paths:
         200:
           description: Referral code found
           examples:
-            - code: "BOBTESTERSON"
-              dateCreated: 1411600868797
-              referrerName: "Bob T"
-              programId: "referral-a"
-              reward:
-                $ref: "#/definitions/RewardTemplate/example/CREDIT"
-            - code: "BOBTESTERSON"
-              dateCreated: 1411600868797
-              referrerName: "Bob T"
-              programId: "referral-b"
-              reward:
-                $ref: "#/definitions/RewardTemplate/example/PCT_DISCOUNT"
+            "application/json":
+              - code: "BOBTESTERSON"
+                dateCreated: 1411600868797
+                referrerName: "Bob T"
+                programId: "referral-a"
+                reward:
+                  $ref: "#/definitions/RewardTemplate/example/CREDIT"
+              # - code: "BOBTESTERSON"
+              #   dateCreated: 1411600868797
+              #   referrerName: "Bob T"
+              #   programId: "referral-b"
+              #   reward:
+              #     $ref: "#/definitions/RewardTemplate/example/PCT_DISCOUNT"
           schema:
             $ref: "#/definitions/Code"
         404:
@@ -4867,20 +4868,19 @@ definitions:
         description: The primary share links available for a users programs.
         $ref: "#/definitions/ProgramShareLink"
 
-
     example:
       id: "898746321"
       cookieId: "2523423436323"
-      accountId: "987321"
-      firstName: "Henk"
-      lastName: "Thompson"
-      email: "hello@example.com"
+      accountId: "accc9065"
+      firstName: "Bob"
+      lastName: "Testerson"
+      email: "bob@example.com"
       referable: true
       locale: null
-      referralCode: "HENKTHOMPSON"
+      referralCode: "BOBTESTERSON"
       referralCodes:
-        classic: "HENKTHOMPSON"
-        fakeProgram1: "HENKTHOMPSON123"
+        classic: "BOBTESTERSON"
+        fakeProgram1: "FREE"
       referredBy:
         code: "JONDOE1234"
         isConverted: true
