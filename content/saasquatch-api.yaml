@@ -3653,7 +3653,7 @@ definitions:
         type: string
         description: The unique share link the user can refer their friends with. The Share Link contains the Referral Code for making referrals and a source for Analytics purposes.
         properties:
-          baseShareLink:
+          cleanShareLink:
             type: string
             title: Base Link for Given Program
             description: If the program's primary link is a vanity link then this will be the unencoded link, if not it is the UNKOWN engagement and share medium link
@@ -3876,7 +3876,7 @@ definitions:
 
     example:
       shareLinks:
-        baseShareLink: "http://ssqt.co/mzbZbgC"
+        cleanShareLink: "http://ssqt.co/mzbZbgC"
         EMAIL:
           TWITTER: "http://ssqt.co/mGbZbgC"
           UNKNOWN: "http://ssqt.co/mVbZbgC"
