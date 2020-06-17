@@ -3482,6 +3482,47 @@ definitions:
           referredByUser:
             $ref: "#/definitions/User"
 
+  ProgramShareLink:
+    description: Share links for a users program.
+    type: object
+    properties:
+      cleanShareLink:
+          type: string
+          title: "Base Link for Given Program"
+          description: "If the program's primary link is a vanity link then this will be the unencoded link, if not it is the UNKOWN engagement and share medium link."
+      MOBILE: 
+        title: "Mobile Share Links"
+        type: object
+        description: "Share links tracked with the MOBILE engagement medium."
+        $ref: "#/definitions/subProgramShareLink"
+      EMAIL:
+        title: "Email Share Links"
+        type: object
+        description: "Share links tracked with the EMAIL engagement medium."
+        $ref: "#/definitions/subProgramShareLink"
+      UNKNOWN:
+        title: "Share Links"
+        type: object
+        description: "Share links tracked with the UNKNOWN engagement medium."
+        $ref: "#/definitions/subProgramShareLink"
+    example:
+      fakeProgram1:
+        cleanShareLink: "http://example.com/free"
+        MOBILE:
+          DIRECT: "http://example.com/free?me"
+        EMAIL:
+          DIRECT: "http://example.com/free?mP"
+        UNKNOWN:
+          DIRECT: "http://example.com/free?mv"
+
+
+  subProgramShareLink:
+    properties:
+          DIRECT: 
+            type: string
+            title: "Direct Share Link"
+            description: "Share link associated with the DIRECT share medium."
+
   Sharelink:
     description: Share link for an individual user.
     properties:
@@ -4819,6 +4860,13 @@ definitions:
       shareLinks:
         readOnly: true
         $ref: "#/definitions/Sharelink"
+      programShareLinks:
+        type: object
+        items:
+          type: object
+        description: The primary share links available for a users programs.
+        $ref: "#/definitions/ProgramShareLink"
+
 
     example:
       id: "898746321"
@@ -4850,6 +4898,8 @@ definitions:
       segments: ["segment1", "segment3"]
       shareLinks:
         $ref: "#/definitions/Sharelink/example"
+      programShareLinks: 
+        $ref: "#/definitions/ProgramShareLink/example"
 
   UserByCode:
     title: Subset of user information
@@ -4923,7 +4973,7 @@ definitions:
           type: string
         example:
           classic: "BOBTESTERSON"
-          fakeProgram1: "BOBTESTERSON123"
+          fakeProgram1: "FREE"
         description: The primary custom referral codes for different programs.
       paymentProviderId:
         type: string
@@ -4977,6 +5027,8 @@ definitions:
         type: object
         items:
           type: string
+        example:
+          fakeProgram1: "http://example.com/free"
         description: The primary custom shareLinks for different programs. If a given program does not have a referral code, one will be generated.
       customFields:
         type: object
@@ -5020,7 +5072,7 @@ definitions:
           type: string
         example:
           classic: "BOBTESTERSON"
-          fakeProgram1: "BOBTESTERSON123"
+          fakeProgram1: "FREE"
         description: The custom referral codes for different programs.
       locale:
         type: string
@@ -5061,6 +5113,8 @@ definitions:
         type: object
         items:
           type: string
+        example:
+          fakeProgram1: "http://example.com/free"
         description: The primary custom shareLinks for different programs. If a given program does not have a referral code, one will be generated.
       customFields:
         type: object
