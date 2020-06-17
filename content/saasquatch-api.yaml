@@ -794,6 +794,8 @@ paths:
                   referredReward:
                     $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
                   referrerReward: null
+                  referralCodeUsed: "LORETTABURKE10"
+                  shareLinkUsed: "http://short.staging.referralsaasquatch.com/mPnmAE"
                   moderationStatus: "ACTIONED"
                   dateReferralStarted: 1415733261238
                   dateReferralPaid: null
@@ -810,6 +812,8 @@ paths:
                     $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
                   referrerReward:
                     $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
+                  referralCodeUsed: "FREE"
+                  sharelinkUsed: "http://example.com/free?mn"
                   moderationStatus: "ACTIONED"
                   dateReferralStarted: 1415737510411
                   dateReferralPaid: 1415737557217
@@ -3199,7 +3203,7 @@ definitions:
         $ref: "#/definitions/Reward"
       referrerReward:
         $ref: "#/definitions/Reward"
-      referralCodeUsed: 
+      referralCodeUsed:
         type: string
         title: Referral Code Used
         description: "The referrers code that was used by the referred for the referral."
@@ -3258,8 +3262,8 @@ definitions:
         $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
       referrerReward:
         $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
-      referralCodeUsed: LORETTABURKE10 ,
-      shareLinkUsed: http://short.staging.referralsaasquatch.com/mPnmAE
+      referralCodeUsed: "LORETTABURKE10"
+      shareLinkUsed: "http://short.staging.referralsaasquatch.com/mPnmAE"
       moderationStatus: "ACTIONED"
       dateReferralStarted: 1415737510411
       dateReferralPaid: 1415737557217
@@ -3271,7 +3275,6 @@ definitions:
         ip:
           message: "Referrer and referred came from the same IP"
           score: 50
-
 
   PIIReferral:
     description: A link between the user/account of the referrer and the new referred user/account. The authoritative source of who has referred whom. Not all referrals result in a Reward or a RewardBalance being created, such as in-progress referrals.
@@ -3650,7 +3653,7 @@ definitions:
         type: string
         description: The unique share link the user can refer their friends with. The Share Link contains the Referral Code for making referrals and a source for Analytics purposes.
         properties:
-          baseShareLink: 
+          baseShareLink:
             type: string
             title: Base Link for Given Program
             description: If the program's primary link is a vanity link then this will be the unencoded link, if not it is the UNKOWN engagement and share medium link
@@ -4970,9 +4973,9 @@ definitions:
 
           Details about the supported operators and operations for adding and removing users from a segment can be found in our [User Segmentation](/features/user-segmentation/#saasquatch-api-and-squatchjs-segmentation) article.
         example: ["segment1", "~segment2"]
-      shareLinks: 
+      shareLinks:
         type: object
-        items: 
+        items:
           type: string
         description: The primary custom shareLinks for different programs. If a given program does not have a referral code, one will be generated.
       customFields:
@@ -5054,9 +5057,9 @@ definitions:
         example: "https://www.example.com/profile/ab5111251125"
         description: |
           Optionally used in widgets, emails, and themes. If you provide a absolute profile image URL the minimum image size is 80px x 80px.
-      shareLinks: 
+      shareLinks:
         type: object
-        items: 
+        items:
           type: string
         description: The primary custom shareLinks for different programs. If a given program does not have a referral code, one will be generated.
       customFields:
