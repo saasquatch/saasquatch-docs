@@ -182,7 +182,6 @@ paths:
           examples:
             "application/json":
               id: "89842"
-              currency: "USD"
               subscription:
                 status: "PAID"
                 value: 29.99
@@ -190,6 +189,7 @@ paths:
                 billingIntervalValue: 1
               referral:
                 code: "WILLSANDERSON2"
+              currency: "USD"
           schema:
             $ref: "#/definitions/Account"
         403:
@@ -521,7 +521,7 @@ paths:
         The sharelinks are segmented by Engagement Medium, which is the channel the Referrer accessed the program to be able to share out their referral through. For each Engagment Medium, like `EMBED`, a link is provided for each available Share Medium. This segmentation is used to power the [SaaSquatch analytics platform](/features/analytics/) to provide information about how, and where, your users are interacting with your referral program.
         For example, The `WHATSAPP` link from the `MOBILE` section is intended to be used to indicated to our system that the Referrer accessed the referral program from a mobile device and shared their referral with their friend using Whatsapp. More information about available [Engagement Mediums](/success/touchpoints/) and [Share Mediums](/success/share-options/) can be found in our success center.
 
-        Additionally, a clean share link is provided. If the given link is a vanity link, then the clean share link will have no encoding, for example `http://example.com/free`. Otherwise the clean share link will the `UNKNOWN` Share Medium and `UNKNOWN` Engagement Medium link.
+        Additionally, a clean share link is provided. If the given link is a vanity link, then the clean share link will have no encoding, for example `http://example.com/free`. Otherwise the clean share link will have the `UNKNOWN` Share Medium and `UNKNOWN` Engagement Medium link.
 
         Share links work by dropping a tracking cookie in the user's browser when the user clicks the link and is directed to your referral program's landing page. This cookie includes the referral code of the Referrer that shared it. Once on your website this cookie can be read using the squatch.js [autofill](/developer/squatchjs/v2/#3-autofill-the-referral-code) method and is also automatically picked up by our squatch.js library to connect referrals.
 
@@ -716,7 +716,7 @@ paths:
           description: Referral code found
           examples:
             "application/json":
-              - code: "BOBTESTERSON"
+                code: "BOBTESTERSON"
                 dateCreated: 1411600868797
                 programId: "referral-a"
                 referrerName: "Bob T"
@@ -1189,7 +1189,7 @@ paths:
       description: |
         This method updates/creates a user and an account and returns the user object representing that newly created user/account.
 
-        You can provide vanity referral codes and sharelinks in a user upsert. Make sure to check the tennat setting `allowReferralCodeEditOnUserUpsert`, if it is set to `FALSE` then referral codes added when upserting an existing user will be ignored. New sharelinks and referral codes will be set as primary for the upserted user. If a referral code is passed without a associated sharelink for that program, then one will generated and vice versa for sharelinks.
+        You can provide vanity referral codes and sharelinks in a user upsert. Make sure to check the tenant setting `allowReferralCodeEditOnUserUpsert`, if it is set to `FALSE` then referral codes added when upserting an existing user will be ignored. New sharelinks and referral codes will be set as primary for the upserted user. If a referral code is passed without an associated sharelink for that program, then one will be generated and vice versa for sharelinks.
 
         Because this call creates a user, it requires either a [write token](../openendpoints/) or an API key.
 
@@ -1241,7 +1241,7 @@ paths:
       description: |
         This method creates a user and an account and returns the user object representing that newly created user/account.
 
-        You can provide vanity referral codes and sharelinks when creating a user and account. Make sure to check the tennat setting `allowReferralCodeEditOnUserUpsert`, if it is set to `FALSE` then referral codes added when using this method on an existing user will be ignored. New sharelinks and referral codes will be set as primary for the given user. If a referral code is passed without a associated sharelink for that program, then one will generated and vice versa for sharelinks.
+        You can provide vanity referral codes and sharelinks when creating a user and account. Make sure to check the tenant setting `allowReferralCodeEditOnUserUpsert`, if it is set to `FALSE` then referral codes added when using this method on an existing user will be ignored. New sharelinks and referral codes will be set as primary for the given user. If a referral code is passed without an associated sharelink for that program, then one will be generated and vice versa for sharelinks.
 
         Because this call creates a user, it requires either a [write token](../openendpoints/) or an API key.
       parameters:
@@ -1388,7 +1388,7 @@ paths:
         The sharelinks are segmented by Engagement Medium, which is the channel the Referrer accessed the program to be able to share out their referral through. For each Engagment Medium, like `EMBED`, a link is provided for each available Share Medium. This segmentation is used to power the [SaaSquatch analytics platform](/features/analytics/) to provide information about how, and where, your users are interacting with your referral program.
         For example, The `WHATSAPP` link from the `MOBILE` section is intended to be used to indicated to our system that the Referrer accessed the referral program from a mobile device and shared their referral with their friend using Whatsapp. More information about available [Engagement Mediums](/success/touchpoints/) and [Share Mediums](/success/share-options/) can be found in our success center.
 
-        Additionally, a clean share link is provided. If the given link is a vanity link, then the clean share link will have no encoding, for example `http://example.com/free`. Otherwise the clean share link will the `UNKNOWN` Share Medium and `UNKNOWN` Engagement Medium link.
+        Additionally, a clean share link is provided. If the given link is a vanity link, then the clean share link will have no encoding, for example `http://example.com/free`. Otherwise the clean share link will be the `UNKNOWN` Share Medium and `UNKNOWN` Engagement Medium link.
 
         Share links work by dropping a tracking cookie in the user's browser when the user clicks the link and is directed to your referral program's landing page. This cookie includes the referral code of the Referrer that shared it. Once on your website this cookie can be read using the squatch.js [autofill](/developer/squatchjs/v2/#3-autofill-the-referral-code) method and is also automatically picked up by our squatch.js library to connect referrals.
 
@@ -1455,7 +1455,7 @@ paths:
       description: |
         Generates a cookie account/user and returns a user object representing that newly created cookie user/account.
 
-        You can provide vanity referral codes and sharelinks when creating a cookie user. Make sure to check the tennat setting `allowReferralCodeEditOnUserUpsert`, if it is set to `FALSE` then referral codes added when using this method on an existing user will be ignored. New sharelinks and referral codes will be set as primary for the given user. If a referral code is passed without a associated sharelink for that program, then one will generated and vice versa for sharelinks.
+        You can provide vanity referral codes and sharelinks when creating a cookie user. Make sure to check the tenant setting `allowReferralCodeEditOnUserUpsert`, if it is set to `FALSE` then referral codes added when using this method on an existing user will be ignored. New sharelinks and referral codes will be set as primary for the given user. If a referral code is passed without an associated sharelink for that program, then one will be generated and vice versa for sharelinks.
 
         By default this method requires no authentication. If [Secure Mode](/developer/squatchjs/signed-requests/#changing-signed-request-settings) for this method is enabled then you will need to include a [JWT](/topics/json-web-tokens) with a payload containing `{allowAnonymous:true}`
       parameters:
@@ -1550,7 +1550,7 @@ paths:
           description: Referral code found
           examples:
             "application/json":
-              - code: "BOBTESTERSON"
+                code: "BOBTESTERSON"
                 dateCreated: 1411600868797
                 programId: "referral-a"
                 referrerName: "Bob T"
@@ -1614,11 +1614,14 @@ paths:
             "application/json":
               code: "BOBTESTERSON"
               dateCreated: 1411600868797
+              programId: "referral-a"
               referrerName: "Bob T"
               reward:
                 type: "PCT_DISCOUNT"
                 discountPercent: 10
                 monthsDiscountIsValid: 12
+          schema:
+            $ref: "#/definitions/Code"
         400:
           description: Bad Request
           schema:
@@ -5162,17 +5165,17 @@ definitions:
     type: object
     description: A list of User objects as `users`, with the fields `count` and `totalCount` to help with pagination.
     properties:
-      users:
-        type: array
-        description: A list of User objects. This is the actual data in this list envelope.
-        items:
-          $ref: "#/definitions/User"
       count:
         type: integer
         description: The number of results returned in this list, see `totalCount` for all rows.
       totalCount:
         type: integer
         description: The total number of results available overall, see `count` for the number of rows in this list.
+      users:
+        type: array
+        description: A list of User objects. This is the actual data in this list envelope.
+        items:
+          $ref: "#/definitions/User"
 
   ReferralList:
     type: object
