@@ -3503,7 +3503,7 @@ definitions:
       cleanShareLink:
         type: string
         title: "The clean link for a given program"
-        description: "If the program's primary link is a vanity link then this will be the unencoded link, if not it is the UNKOWN engagementMedium and UNKOWN shareMedium link."
+        description: "If the program's primary link is a vanity link then this will be the unencoded link, if not it is the UNKNOWN engagementMedium and UNKNOWN shareMedium link."
       MOBILE:
         title: "Mobile Share Links"
         type: object
@@ -3710,7 +3710,7 @@ definitions:
           cleanShareLink:
             type: string
             title: "The clean link for a given program"
-            description: "If the program's primary link is a vanity link then this will be the unencoded link, if not it is the UNKOWN engagementMedium and UNKOWN shareMedium link."
+            description: "If the program's primary link is a vanity link then this will be the unencoded link, if not it is the UNKNOWN engagementMedium and UNKNOWN shareMedium link."
           EMAIL:
             description: An individual user's Share links for use in the EMAIL engagementMedium.
             properties:
