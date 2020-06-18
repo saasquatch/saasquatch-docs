@@ -521,6 +521,8 @@ paths:
         The sharelinks are segmented by Engagement Medium, which is the channel the Referrer accessed the program to be able to share out their referral through. For each Engagment Medium, like `EMBED`, a link is provided for each available Share Medium. This segmentation is used to power the [SaaSquatch analytics platform](/features/analytics/) to provide information about how, and where, your users are interacting with your referral program.
         For example, The `WHATSAPP` link from the `MOBILE` section is intended to be used to indicated to our system that the Referrer accessed the referral program from a mobile device and shared their referral with their friend using Whatsapp. More information about available [Engagement Mediums](/success/touchpoints/) and [Share Mediums](/success/share-options/) can be found in our success center.
 
+        Additionally, a clean share link is provided. If the given link is a vanity link, then the clean share link will have no encoding, for example `http://example.com/free`. Otherwise the clean share link will the `UNKOWN` Share Medium and `UNKOWN` Engagement Medium link.
+
         Share links work by dropping a tracking cookie in the user's browser when the user clicks the link and is directed to your referral program's landing page. This cookie includes the referral code of the Referrer that shared it. Once on your website this cookie can be read using the squatch.js [autofill](/developer/squatchjs/v2/#3-autofill-the-referral-code) method and is also automatically picked up by our squatch.js library to connect referrals.
 
         The referral code is also passed along to your referral program landing page as the URL parameter `rsCode`. For example `http://ssqt.co/pZVp` redirects to `https://www.google.ca/?rsCode=JOHNDOE`.
@@ -1187,6 +1189,8 @@ paths:
       description: |
         This method updates/creates a user and an account and returns the user object representing that newly created user/account.
 
+        You can provide vanity referral codes and sharelinks in a user upsert. Make sure to check the tennat setting `TENANT_SETTING_NAME`, if it is set to `FALSE` then referral codes added when upserting an existing user will be ignored. New sharelinks and referral codes will be set as primary for the upserted user. If a referral code is passed without a associated sharelink for that program, then one will generated and vice versa for sharelinks.
+
         Because this call creates a user, it requires either a [write token](../openendpoints/) or an API key.
 
       parameters:
@@ -1236,6 +1240,8 @@ paths:
         - UserJWT: []
       description: |
         This method creates a user and an account and returns the user object representing that newly created user/account.
+
+        You can provide vanity referral codes and sharelinks when creating a user and account. Make sure to check the tennat setting `TENANT_SETTING_NAME`, if it is set to `FALSE` then referral codes added when using this method on an existing user will be ignored. New sharelinks and referral codes will be set as primary for the given user. If a referral code is passed without a associated sharelink for that program, then one will generated and vice versa for sharelinks.
 
         Because this call creates a user, it requires either a [write token](../openendpoints/) or an API key.
       parameters:
@@ -1382,6 +1388,8 @@ paths:
         The sharelinks are segmented by Engagement Medium, which is the channel the Referrer accessed the program to be able to share out their referral through. For each Engagment Medium, like `EMBED`, a link is provided for each available Share Medium. This segmentation is used to power the [SaaSquatch analytics platform](/features/analytics/) to provide information about how, and where, your users are interacting with your referral program.
         For example, The `WHATSAPP` link from the `MOBILE` section is intended to be used to indicated to our system that the Referrer accessed the referral program from a mobile device and shared their referral with their friend using Whatsapp. More information about available [Engagement Mediums](/success/touchpoints/) and [Share Mediums](/success/share-options/) can be found in our success center.
 
+        Additionally, a clean share link is provided. If the given link is a vanity link, then the clean share link will have no encoding, for example `http://example.com/free`. Otherwise the clean share link will the `UNKOWN` Share Medium and `UNKOWN` Engagement Medium link.
+
         Share links work by dropping a tracking cookie in the user's browser when the user clicks the link and is directed to your referral program's landing page. This cookie includes the referral code of the Referrer that shared it. Once on your website this cookie can be read using the squatch.js [autofill](/developer/squatchjs/v2/#3-autofill-the-referral-code) method and is also automatically picked up by our squatch.js library to connect referrals.
 
         The referral code is also passed along to your referral program landing page as the URL parameter `rsCode`. For example `http://ssqt.co/pZVp` redirects to `https://www.google.ca/?rsCode=JOHNDOE`.
@@ -1446,6 +1454,8 @@ paths:
         - UserJWT: []
       description: |
         Generates a cookie account/user and returns a user object representing that newly created cookie user/account.
+
+        You can provide vanity referral codes and sharelinks when creating a cookie user. Make sure to check the tennat setting `TENANT_SETTING_NAME`, if it is set to `FALSE` then referral codes added when using this method on an existing user will be ignored. New sharelinks and referral codes will be set as primary for the given user. If a referral code is passed without a associated sharelink for that program, then one will generated and vice versa for sharelinks.
 
         By default this method requires no authentication. If [Secure Mode](/developer/squatchjs/signed-requests/#changing-signed-request-settings) for this method is enabled then you will need to include a [JWT](/topics/json-web-tokens) with a payload containing `{allowAnonymous:true}`
       parameters:
