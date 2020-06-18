@@ -3500,7 +3500,7 @@ definitions:
       cleanShareLink:
           type: string
           title: "Base Link for Given Program"
-          description: "If the program's primary link is a vanity link then this will be the unencoded link, if not it is the UNKOWN engagement and share medium link."
+          description: "If the program's primary link is a vanity link then this will be the unencoded link, if not it is the UNKOWN engagementMedium and UNKOWN shareMedium link."
       MOBILE: 
         title: "Mobile Share Links"
         type: object
@@ -3708,7 +3708,7 @@ definitions:
           cleanShareLink:
             type: string
             title: Base Link for Given Program
-            description: If the program's primary link is a vanity link then this will be the unencoded link, if not it is the UNKOWN engagement and share medium link
+            description: "If the program's primary link is a vanity link then this will be the unencoded link, if not it is the UNKOWN engagementMedium and UNKOWN shareMedium link."
           EMAIL:
             description: An individual user's Share links for use in the EMAIL engagementMedium.
             properties:
@@ -4823,7 +4823,7 @@ definitions:
         example:
           classic: "BOBTESTERSON"
           fakeProgram1: "BOBTESTERSON123"
-        description: The referral codes across all programs that the user currently has.
+        description: The primary referral codes across all programs that the user currently has.
       imageUrl:
         type: string
         example: "https://www.example.com/profile/ab5111251125"
@@ -5083,7 +5083,7 @@ definitions:
         example:
           classic: "BOBTESTERSON"
           fakeProgram1: "FREE"
-        description: The custom referral codes for different programs.
+        description: The primary custom referral codes for different programs.
       locale:
         type: string
         example: "en_US"
