@@ -521,7 +521,7 @@ paths:
         The sharelinks are segmented by Engagement Medium, which is the channel the Referrer accessed the program to be able to share out their referral through. For each Engagment Medium, like `EMBED`, a link is provided for each available Share Medium. This segmentation is used to power the [SaaSquatch analytics platform](/features/analytics/) to provide information about how, and where, your users are interacting with your referral program.
         For example, The `WHATSAPP` link from the `MOBILE` section is intended to be used to indicated to our system that the Referrer accessed the referral program from a mobile device and shared their referral with their friend using Whatsapp. More information about available [Engagement Mediums](/success/touchpoints/) and [Share Mediums](/success/share-options/) can be found in our success center.
 
-        Additionally, a clean share link is provided. If the given link is a vanity link, then the clean share link will have no encoding, for example `http://example.com/free`. Otherwise the clean share link will the `UNKOWN` Share Medium and `UNKOWN` Engagement Medium link.
+        Additionally, a clean share link is provided. If the given link is a vanity link, then the clean share link will have no encoding, for example `http://example.com/free`. Otherwise the clean share link will the `UNKNOWN` Share Medium and `UNKNOWN` Engagement Medium link.
 
         Share links work by dropping a tracking cookie in the user's browser when the user clicks the link and is directed to your referral program's landing page. This cookie includes the referral code of the Referrer that shared it. Once on your website this cookie can be read using the squatch.js [autofill](/developer/squatchjs/v2/#3-autofill-the-referral-code) method and is also automatically picked up by our squatch.js library to connect referrals.
 
@@ -718,8 +718,8 @@ paths:
             "application/json":
               - code: "BOBTESTERSON"
                 dateCreated: 1411600868797
-                referrerName: "Bob T"
                 programId: "referral-a"
+                referrerName: "Bob T"
                 reward:
                   $ref: "#/definitions/RewardTemplate/example/CREDIT"
               # - code: "BOBTESTERSON"
@@ -798,7 +798,7 @@ paths:
                     $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
                   referrerReward: null
                   referralCodeUsed: "LORETTABURKE10"
-                  shareLinkUsed: "http://short.staging.referralsaasquatch.com/mPnmAE"
+                  shareLinkUsed: "http://ssqt.co/mPbcF5"
                   moderationStatus: "ACTIONED"
                   dateReferralStarted: 1415733261238
                   dateReferralPaid: null
@@ -1388,7 +1388,7 @@ paths:
         The sharelinks are segmented by Engagement Medium, which is the channel the Referrer accessed the program to be able to share out their referral through. For each Engagment Medium, like `EMBED`, a link is provided for each available Share Medium. This segmentation is used to power the [SaaSquatch analytics platform](/features/analytics/) to provide information about how, and where, your users are interacting with your referral program.
         For example, The `WHATSAPP` link from the `MOBILE` section is intended to be used to indicated to our system that the Referrer accessed the referral program from a mobile device and shared their referral with their friend using Whatsapp. More information about available [Engagement Mediums](/success/touchpoints/) and [Share Mediums](/success/share-options/) can be found in our success center.
 
-        Additionally, a clean share link is provided. If the given link is a vanity link, then the clean share link will have no encoding, for example `http://example.com/free`. Otherwise the clean share link will the `UNKOWN` Share Medium and `UNKOWN` Engagement Medium link.
+        Additionally, a clean share link is provided. If the given link is a vanity link, then the clean share link will have no encoding, for example `http://example.com/free`. Otherwise the clean share link will the `UNKNOWN` Share Medium and `UNKNOWN` Engagement Medium link.
 
         Share links work by dropping a tracking cookie in the user's browser when the user clicks the link and is directed to your referral program's landing page. This cookie includes the referral code of the Referrer that shared it. Once on your website this cookie can be read using the squatch.js [autofill](/developer/squatchjs/v2/#3-autofill-the-referral-code) method and is also automatically picked up by our squatch.js library to connect referrals.
 
@@ -1550,13 +1550,13 @@ paths:
         200:
           description: Referral code found
           examples:
-          "application/json":
-            - code: "BOBTESTERSON"
-              dateCreated: 1411600868797
-              referrerName: "Bob T"
-              programId: "referral-a"
-              reward:
-                $ref: "#/definitions/RewardTemplate/example/CREDIT"
+            "application/json":
+              - code: "BOBTESTERSON"
+                dateCreated: 1411600868797
+                programId: "referral-a"
+                referrerName: "Bob T"
+                reward:
+                  $ref: "#/definitions/RewardTemplate/example/CREDIT"
             # - code: "BOBTESTERSON"
             #   dateCreated: 1411600868797
             #   referrerName: "Bob T"
@@ -3277,7 +3277,7 @@ definitions:
       referrerReward:
         $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
       referralCodeUsed: "LORETTABURKE10"
-      shareLinkUsed: "http://short.staging.referralsaasquatch.com/mPnmAE"
+      shareLinkUsed: "http://ssqt.co/mPbcF5"
       moderationStatus: "ACTIONED"
       dateReferralStarted: 1415737510411
       dateReferralPaid: 1415737557217
@@ -3502,7 +3502,7 @@ definitions:
     properties:
       cleanShareLink:
         type: string
-        title: "The base link for a given program"
+        title: "The clean link for a given program"
         description: "If the program's primary link is a vanity link then this will be the unencoded link, if not it is the UNKOWN engagementMedium and UNKOWN shareMedium link."
       MOBILE:
         title: "Mobile Share Links"
@@ -3709,7 +3709,7 @@ definitions:
         properties:
           cleanShareLink:
             type: string
-            title: "The base link for a given program"
+            title: "The clean link for a given program"
             description: "If the program's primary link is a vanity link then this will be the unencoded link, if not it is the UNKOWN engagementMedium and UNKOWN shareMedium link."
           EMAIL:
             description: An individual user's Share links for use in the EMAIL engagementMedium.
