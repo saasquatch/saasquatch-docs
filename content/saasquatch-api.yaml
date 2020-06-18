@@ -716,12 +716,12 @@ paths:
           description: Referral code found
           examples:
             "application/json":
-                code: "BOBTESTERSON"
-                dateCreated: 1411600868797
-                programId: "referral-a"
-                referrerName: "Bob T"
-                reward:
-                  $ref: "#/definitions/RewardTemplate/example/CREDIT"
+              code: "BOBTESTERSON"
+              dateCreated: 1411600868797
+              programId: "referral-a"
+              referrerName: "Bob T"
+              reward:
+                $ref: "#/definitions/RewardTemplate/example/CREDIT"
               # - code: "BOBTESTERSON"
               #   dateCreated: 1411600868797
               #   referrerName: "Bob T"
@@ -857,7 +857,8 @@ paths:
           schema:
             $ref: "#/definitions/Referral"
           examples:
-            $ref: "#/definitions/Referral/example"
+            "application/json":
+              $ref: "#/definitions/Referral/example"
             # "application/json":
             #   id: "546270a6e4b0c1871186a920"
             #   referredUser:
@@ -944,9 +945,7 @@ paths:
         200:
           description: A list of reward balances
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/RewardBalance"
+            $ref: "#/definitions/RewardBalanceList"
           examples:
             "application/json":
               - $ref: "#/definitions/RewardBalance/example/CREDIT"
@@ -1017,9 +1016,7 @@ paths:
         200:
           description: A list of rewards
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Reward"
+            $ref: "#/definitions/RewardList"
           examples:
             "application/json":
               - $ref: "#/definitions/Reward/example/CREDIT"
@@ -1051,9 +1048,10 @@ paths:
           schema:
             $ref: "#/definitions/Reward"
           examples:
-            - $ref: "#/definitions/Reward/example/CREDIT"
-            - $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
-            - $ref: "#/definitions/Reward/example/FUELTANK"
+            "application/json":
+              $ref: "#/definitions/Reward/example/CREDIT"
+            # - $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
+            # - $ref: "#/definitions/Reward/example/FUELTANK"
 
         default:
           $ref: "#/responses/GeneralError"
@@ -1550,12 +1548,12 @@ paths:
           description: Referral code found
           examples:
             "application/json":
-                code: "BOBTESTERSON"
-                dateCreated: 1411600868797
-                programId: "referral-a"
-                referrerName: "Bob T"
-                reward:
-                  $ref: "#/definitions/RewardTemplate/example/CREDIT"
+              code: "BOBTESTERSON"
+              dateCreated: 1411600868797
+              programId: "referral-a"
+              referrerName: "Bob T"
+              reward:
+                $ref: "#/definitions/RewardTemplate/example/CREDIT"
             # - code: "BOBTESTERSON"
             #   dateCreated: 1411600868797
             #   referrerName: "Bob T"
@@ -1573,7 +1571,7 @@ paths:
           schema:
             $ref: "#/definitions/Error"
 
-  "/{tenant_alias}/open/code/{referral_code}/account/{account_id}/user/{user_id}":
+  "/{tenant_alias}/open/code/{code}/account/{accountId}/user/{userId}":
     post:
       summary: Apply a referral code
       operationId: openApplyCode
@@ -1591,17 +1589,17 @@ paths:
 
         This is an [Open Endpoint](../openendpoints/) and disabled by default. Contact support to enable the open endpoints.
       parameters:
-        - name: referral_code
+        - name: code
           in: path
           description: "Referral code to apply to user account."
           required: true
           type: string
-        - name: account_id
+        - name: accountId
           in: path
           description: 'Account to apply referral code to. This account will be marked as "referred by" the owner of the `referral_code`'
           required: true
           type: string
-        - name: user_id
+        - name: userId
           in: path
           description: 'User to apply referral code to. This user will be marked as "referred by" the owner of the `referral_code`'
           required: true
@@ -2654,6 +2652,17 @@ definitions:
       amount:
         type: integer
         description: "The earned quantity of the reward. Works with: `FUELTANK`"
+
+  RewardList:
+    type: object
+    description: A list of Reward objects as `rewards`
+    properties:
+      rewards:
+        type: array
+        description: A list of Reward objects. This is the actual data in this list envelope.
+        items:
+          $ref: "#/definitions/Reward"
+
   Reward:
     title: A Reward object.
     description: Rewards are used in SaaSquatch to track the credits, discounts, gift cards and other prizes that a User earns.
@@ -3146,6 +3155,16 @@ definitions:
         data:
           - $ref: "#/definitions/PIIReferral/example"
         segments: []
+
+  RewardBalanceList:
+    type: object
+    description: A list of Reward Balance objects as `rewardBalances`
+    properties:
+      rewardBalances:
+        type: array
+        description: A list of Reward Balance objects. This is the actual data in this list envelope.
+        items:
+          $ref: "#/definitions/RewardBalance"
 
   RewardBalance:
     description: Details of the balance of several individual rewards.
@@ -5181,17 +5200,17 @@ definitions:
     type: object
     description: A list of Referral objects as `referrals`, with the fields `count` and `totalCount` to help with pagination.
     properties:
-      referrals:
-        type: array
-        description: A list of Referral objects. This is the actual data in this list envelope.
-        items:
-          $ref: "#/definitions/Referral"
       count:
         type: integer
         description: The number of results returned in this list, see `totalCount` for all rows.
       totalCount:
         type: integer
         description: The total number of results available overall, see `count` for the number of rows in this list.
+      referrals:
+        type: array
+        description: A list of Referral objects. This is the actual data in this list envelope.
+        items:
+          $ref: "#/definitions/Referral"
 
   PIIReferralList:
     type: object
