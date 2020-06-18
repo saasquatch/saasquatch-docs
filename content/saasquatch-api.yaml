@@ -707,7 +707,7 @@ paths:
       parameters:
         - name: code
           in: path
-          description: The referral code to look up. E.g. "BOBTESTERSON"
+          description: The referral code to look up, E.g. "BOBTESTERSON". This can be a user's primary or non primary referral code.
           required: true
           type: string
         - $ref: "#/parameters/tenant_alias"
@@ -1499,7 +1499,7 @@ paths:
       parameters:
         - name: referralCode
           in: query
-          description: The code with which to lookup the User
+          description: The code with which to lookup the user, E.g. "BOBTESTERSON". This can be a user's primary or non primary referral code.
           required: true
           type: string
         - $ref: "#/parameters/tenant_alias"
@@ -1512,7 +1512,6 @@ paths:
             application/json:
               id: "876343"
               accountId: "613611"
-              email: bob@example.com
               firstName: Bob
               lastInitial: T
               referralCode: BOBTESTERSON
@@ -1542,7 +1541,7 @@ paths:
       parameters:
         - name: referral_code
           in: path
-          description: The code to be validated
+          description: The code to be validated, E.g. "BOBTESTERSON". This can be a user's primary or non primary referral code.
           required: true
           type: string
         - $ref: "#/parameters/tenant_alias"
@@ -1573,8 +1572,9 @@ paths:
           description: Not Found
           schema:
             $ref: "#/definitions/Error"
-  ? "/{tenant_alias}/open/code/{referral_code}/account/{account_id}/user/{user_id}"
-  : post:
+
+  "/{tenant_alias}/open/code/{referral_code}/account/{account_id}/user/{user_id}"
+    post:
       summary: Apply a referral code
       operationId: openApplyCode
       x-docs-anchor: open_apply_code
@@ -3705,7 +3705,7 @@ definitions:
     properties:
       shareLinks:
         type: string
-        description: The unique share link the user can refer their friends with. The Share Link contains the Referral Code for making referrals and a source for Analytics purposes.
+        description: The unique primary share link the user can refer their friends with. The share link contains the Referral Code for making referrals and a source for Analytics purposes.
         properties:
           cleanShareLink:
             type: string
