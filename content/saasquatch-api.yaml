@@ -1189,7 +1189,7 @@ paths:
       description: |
         This method updates/creates a user and an account and returns the user object representing that newly created user/account.
 
-        You can provide vanity referral codes and sharelinks in a user upsert. Make sure to check the tennat setting `TENANT_SETTING_NAME`, if it is set to `FALSE` then referral codes added when upserting an existing user will be ignored. New sharelinks and referral codes will be set as primary for the upserted user. If a referral code is passed without a associated sharelink for that program, then one will generated and vice versa for sharelinks.
+        You can provide vanity referral codes and sharelinks in a user upsert. Make sure to check the tennat setting `allowReferralCodeEditOnUserUpsert`, if it is set to `FALSE` then referral codes added when upserting an existing user will be ignored. New sharelinks and referral codes will be set as primary for the upserted user. If a referral code is passed without a associated sharelink for that program, then one will generated and vice versa for sharelinks.
 
         Because this call creates a user, it requires either a [write token](../openendpoints/) or an API key.
 
@@ -1241,7 +1241,7 @@ paths:
       description: |
         This method creates a user and an account and returns the user object representing that newly created user/account.
 
-        You can provide vanity referral codes and sharelinks when creating a user and account. Make sure to check the tennat setting `TENANT_SETTING_NAME`, if it is set to `FALSE` then referral codes added when using this method on an existing user will be ignored. New sharelinks and referral codes will be set as primary for the given user. If a referral code is passed without a associated sharelink for that program, then one will generated and vice versa for sharelinks.
+        You can provide vanity referral codes and sharelinks when creating a user and account. Make sure to check the tennat setting `allowReferralCodeEditOnUserUpsert`, if it is set to `FALSE` then referral codes added when using this method on an existing user will be ignored. New sharelinks and referral codes will be set as primary for the given user. If a referral code is passed without a associated sharelink for that program, then one will generated and vice versa for sharelinks.
 
         Because this call creates a user, it requires either a [write token](../openendpoints/) or an API key.
       parameters:
@@ -1455,7 +1455,7 @@ paths:
       description: |
         Generates a cookie account/user and returns a user object representing that newly created cookie user/account.
 
-        You can provide vanity referral codes and sharelinks when creating a cookie user. Make sure to check the tennat setting `TENANT_SETTING_NAME`, if it is set to `FALSE` then referral codes added when using this method on an existing user will be ignored. New sharelinks and referral codes will be set as primary for the given user. If a referral code is passed without a associated sharelink for that program, then one will generated and vice versa for sharelinks.
+        You can provide vanity referral codes and sharelinks when creating a cookie user. Make sure to check the tennat setting `allowReferralCodeEditOnUserUpsert`, if it is set to `FALSE` then referral codes added when using this method on an existing user will be ignored. New sharelinks and referral codes will be set as primary for the given user. If a referral code is passed without a associated sharelink for that program, then one will generated and vice versa for sharelinks.
 
         By default this method requires no authentication. If [Secure Mode](/developer/squatchjs/signed-requests/#changing-signed-request-settings) for this method is enabled then you will need to include a [JWT](/topics/json-web-tokens) with a payload containing `{allowAnonymous:true}`
       parameters:
@@ -1550,16 +1550,19 @@ paths:
         200:
           description: Referral code found
           examples:
+          "application/json":
             - code: "BOBTESTERSON"
               dateCreated: 1411600868797
               referrerName: "Bob T"
+              programId: "referral-a"
               reward:
                 $ref: "#/definitions/RewardTemplate/example/CREDIT"
-            - code: "BOBTESTERSON"
-              dateCreated: 1411600868797
-              referrerName: "Bob T"
-              reward:
-                $ref: "#/definitions/RewardTemplate/example/PCT_DISCOUNT"
+            # - code: "BOBTESTERSON"
+            #   dateCreated: 1411600868797
+            #   referrerName: "Bob T"
+            #   programId: "referral-b"
+            #   reward:
+            #     $ref: "#/definitions/RewardTemplate/example/PCT_DISCOUNT"
           schema:
             $ref: "#/definitions/Code"
         403:
@@ -3498,10 +3501,10 @@ definitions:
     type: object
     properties:
       cleanShareLink:
-          type: string
-          title: "Base Link for Given Program"
-          description: "If the program's primary link is a vanity link then this will be the unencoded link, if not it is the UNKOWN engagementMedium and UNKOWN shareMedium link."
-      MOBILE: 
+        type: string
+        title: "The base link for a given program"
+        description: "If the program's primary link is a vanity link then this will be the unencoded link, if not it is the UNKOWN engagementMedium and UNKOWN shareMedium link."
+      MOBILE:
         title: "Mobile Share Links"
         type: object
         description: "Share links tracked with the MOBILE engagement medium."
@@ -3526,13 +3529,12 @@ definitions:
         UNKNOWN:
           DIRECT: "http://example.com/free?mv"
 
-
   subProgramShareLink:
     properties:
-          DIRECT: 
-            type: string
-            title: "Direct Share Link"
-            description: "Share link associated with the DIRECT share medium."
+      DIRECT:
+        type: string
+        title: "Direct Share Link"
+        description: "Share link associated with the DIRECT share medium."
 
   Sharelink:
     description: Share link for an individual user.
@@ -3707,7 +3709,7 @@ definitions:
         properties:
           cleanShareLink:
             type: string
-            title: Base Link for Given Program
+            title: "The base link for a given program"
             description: "If the program's primary link is a vanity link then this will be the unencoded link, if not it is the UNKOWN engagementMedium and UNKOWN shareMedium link."
           EMAIL:
             description: An individual user's Share links for use in the EMAIL engagementMedium.
@@ -4908,7 +4910,7 @@ definitions:
       segments: ["segment1", "segment3"]
       shareLinks:
         $ref: "#/definitions/Sharelink/example"
-      programShareLinks: 
+      programShareLinks:
         $ref: "#/definitions/ProgramShareLink/example"
 
   UserByCode:
