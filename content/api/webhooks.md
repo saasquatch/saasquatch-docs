@@ -250,9 +250,9 @@ widget or a batch upload process. Only fires when a new user is created, not for
         "firstName":"Mike",
         "lastName":"Keenerson",
         "referralCode":"MIKEKEENERSON",
-        "referralCodes": {
-            "classic": "MIKEKEENERSON",
-            "partner-program": "FREE"
+        "referralCodes":{
+            "classic":"MIKEKEENERSON",
+            "partner-program":"FREE"
         },
         "imageUrl":"",
         "firstSeenIP":"10.230.163.157",
@@ -307,17 +307,17 @@ widget or a batch upload process. Only fires when a new user is created, not for
                 "linkedinShareLink":"http://ssqt.co/m1bcEY"
             }
         },
-        "programShareLinks": {
-            "partner-program": {
-                "cleanShareLink": "http://example.com/free",
-                "MOBILE": {
-                    "DIRECT": "http://example.com/free?me"
+        "programShareLinks":{
+            "partner-program":{
+                "cleanShareLink":"http://example.com/free",
+                "MOBILE":{
+                    "DIRECT":"http://example.com/free?me"
                 },
-                "EMAIL": {
-                    "DIRECT": "http://example.com/free?mP"
+                "EMAIL":{
+                    "DIRECT":"http://example.com/free?mP"
                 },
-                "UNKNOWN": {
-                    "DIRECT": "http://example.com/free?mv"
+                "UNKNOWN":{
+                    "DIRECT":"http://example.com/free?mv"
                 }
             }
        }
@@ -692,7 +692,7 @@ Sent whenever a data export for a tenant is queued for creation.
         "dateExpires":null,
         "dateCompleted":null,
         "type":"USER",
-        "format":"CSV",
+        "outputFormat":"CSV",
         "params":{  
             "createdSince":null,
             "createdBefore":null,
@@ -724,7 +724,7 @@ Sent whenever an export that was being generated for a tenant has completed and 
         "dateExpires":1470247749304,
         "dateCompleted":1467223749304,
         "type":"USER",
-        "format":"CSV",
+        "outputFormat":"CSV",
         "params":{  
             "createdSince":null,
             "createdBefore":null,
