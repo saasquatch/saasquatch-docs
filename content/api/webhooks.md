@@ -250,6 +250,10 @@ widget or a batch upload process. Only fires when a new user is created, not for
         "firstName":"Mike",
         "lastName":"Keenerson",
         "referralCode":"MIKEKEENERSON",
+        "referralCodes": {
+            "classic": "MIKEKEENERSON",
+            "partner-program": "FREE"
+        },
         "imageUrl":"",
         "firstSeenIP":"10.230.163.157",
         "lastSeenIP":null,
@@ -302,7 +306,21 @@ widget or a batch upload process. Only fires when a new user is created, not for
                 "emailShareLink":"http://ssqt.co/mbbcEY",
                 "linkedinShareLink":"http://ssqt.co/m1bcEY"
             }
-        }
+        },
+        "programShareLinks": {
+            "partner-program": {
+                "cleanShareLink": "http://example.com/free",
+                "MOBILE": {
+                    "DIRECT": "http://example.com/free?me"
+                },
+                "EMAIL": {
+                    "DIRECT": "http://example.com/free?mP"
+                },
+                "UNKNOWN": {
+                    "DIRECT": "http://example.com/free?mv"
+                }
+            }
+       }
     }
 }
 ```
