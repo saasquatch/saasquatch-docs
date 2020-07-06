@@ -97,23 +97,23 @@ function NavigationHeader() {
             <div className="nav-collapse collapse" id="navigation">
               <ul id="menu-primary-navigation" className="nav pull-right">
                 <li>
-                  <a href="https://www.referralsaasquatch.com/">
+                  <a href="https://www.saasquatch.com/">
                     SaaSquatch Home
                   </a>
                 </li>
                 <li>
-                  <a href="http://www.referralsaasquatch.com/resources/">
+                  <a href="http://www.saasquatch.com/resources/">
                     Resources
                   </a>
                 </li>
                 <li>
-                  <a href="http://www.referralsaasquatch.com/blog/">Blog</a>
+                  <a href="http://www.saasquatch.com/blog/">Blog</a>
                 </li>
                 <li>
                   <a href="https://app.referralsaasquatch.com/">Login</a>
                 </li>
                 <li>
-                  <a href="http://www.referralsaasquatch.com/request-demo">
+                  <a href="http://www.saasquatch.com/request-demo">
                     Schedule a Demo
                   </a>
                 </li>
@@ -162,17 +162,17 @@ function NavigationFooter() {
                   <a href="https://saasquatch.com">Growth Automation</a>
                 </li>
                 <li>
-                  <a href="https://www.referralsaasquatch.com/request-demo">
+                  <a href="https://www.saasquatch.com/request-demo">
                     Request Demo
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.referralsaasquatch.com/api-integrations/">
+                  <a href="https://www.saasquatch.com/api-integrations/">
                     API Integrations
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.referralsaasquatch.com/fraud-prevention/">
+                  <a href="https://www.saasquatch.com/fraud-prevention/">
                     Fraud Prevention
                   </a>
                 </li>
@@ -187,25 +187,25 @@ function NavigationFooter() {
               <FooterUL>
                 <li>Company</li>
                 <li>
-                  <a href="https://www.referralsaasquatch.com/about">About</a>
+                  <a href="https://www.saasquatch.com/about">About</a>
                 </li>
                 <li>
-                  <a href="https://www.referralsaasquatch.com/partners">
+                  <a href="https://www.saasquatch.com/partners">
                     Partner Program
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.referralsaasquatch.com/careers">
+                  <a href="https://www.saasquatch.com/careers">
                     Careers
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.referralsaasquatch.com/contact-us">
+                  <a href="https://www.saasquatch.com/contact-us">
                     Contact Us
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.referralsaasquatch.com/wp-content/uploads/2017/02/Saasquatch-simple-brand-standards.pdf">
+                  <a href="https://www.saasquatch.com/wp-content/uploads/2017/02/Saasquatch-simple-brand-standards.pdf">
                     Media (PDF)
                   </a>
                 </li>
@@ -215,27 +215,22 @@ function NavigationFooter() {
               <FooterUL>
                 <li>Education</li>
                 <li>
-                  <a href="https://www.referralsaasquatch.com/blog">
+                  <a href="https://www.saasquatch.com/blog">
                     Marketer Blog
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.referralsaasquatch.com/resources">
+                  <a href="https://www.saasquatch.com/resources">
                     Resources
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.referralsaasquatch.com/customers">
+                  <a href="https://www.saasquatch.com/customers">
                     Customers
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.referralsaasquatch.com/category/saasquatch-news/">
-                    Company News
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.referralsaasquatch.com/editorial-guidelines/">
+                  <a href="https://www.saasquatch.com/editorial-guidelines/">
                     Editorial Guidelines
                   </a>
                 </li>
@@ -245,17 +240,17 @@ function NavigationFooter() {
               <FooterUL>
                 <li>Legal</li>
                 <li>
-                  <a href="https://www.referralsaasquatch.com/terms-of-service">
+                  <a href="https://www.saasquatch.com/terms-of-service">
                     Terms of Service
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.referralsaasquatch.com/privacy-policy">
+                  <a href="https://www.saasquatch.com/privacy-policy">
                     Privacy Policy
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.referralsaasquatch.com/terms-of-use">
+                  <a href="https://www.saasquatch.com/terms-of-use">
                     Terms of Use
                   </a>
                 </li>

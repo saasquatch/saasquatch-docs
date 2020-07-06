@@ -50,7 +50,7 @@ export default function render() {
         </div>
 
         {tags && tags.some(t=>t==="deprecated") && <div className="alert alert-warning">This integration has been <b>deprecated</b>. It will continue working for existing customers, but is not available to be installed by new customers.</div>}
-        {tags && tags.some(t=>t==="classic-only") && <div className="alert alert-warning"><span className="label label-default">Classic Only</span> This integration only works with Classic referral programs. It is not available to be installed by <a href="https://docs.referralsaasquatch.com/growth/saasquatch-ga">Growth Automation</a> customers.</div>}
+        {tags && tags.some(t=>t==="classic-only") && <div className="alert alert-warning"><span className="label label-default">Classic Only</span> This integration only works with Classic referral programs. It is not available to be installed by Growth Automation customers.</div>}
         {!articleContent && <div className="row-fluid">
           <div className="span7">
             <h3>Key features</h3>
