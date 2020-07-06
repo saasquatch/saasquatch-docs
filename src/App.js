@@ -230,11 +230,6 @@ function NavigationFooter() {
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.saasquatch.com/category/saasquatch-news/">
-                    Company News
-                  </a>
-                </li>
-                <li>
                   <a href="https://www.saasquatch.com/editorial-guidelines/">
                     Editorial Guidelines
                   </a>
