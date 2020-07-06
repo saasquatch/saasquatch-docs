@@ -11,6 +11,15 @@
 #
 # Should match what was in firebase.json for redirects
 
+
+# Primary domain = saasquatch.com
+#  - redirects to the other primary domain
+
+http://docs.referralsaasquatch.com/* https://docs.saasquatch.com/:splat 301!
+https://docs.referralsaasquatch.com/* https://docs.saasquatch.com/:splat 301!
+
+# Page redirects
+
 /squatchjs          /developer/squatchjs/v1/reference     
 /theming            /themes     
 /api-guide          /guides     
