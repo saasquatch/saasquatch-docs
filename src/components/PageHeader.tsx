@@ -44,7 +44,7 @@ export default function render(
           <blockquote>
             <p>
               This feature is currently in Beta. Please contact our{" "}
-              <a href="mailto:support@referralsaasquatch.com">support team</a>{" "}
+              <a href="mailto:support@saasquatch.com">support team</a>{" "}
               to learn more about how to enroll.
             </p>
           </blockquote>
