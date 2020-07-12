@@ -22,6 +22,12 @@ export const Personalisation = styled.div<{ open: boolean }>`
   @media screen and (max-width: 1299px) {
     width: auto;
   }
+
+  @media screen and (max-width: 978px) {
+    top: -56px;
+    left: 0;
+    z-index: 999;
+  }
 `;
 
 const Info = styled.div`
