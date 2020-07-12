@@ -422,24 +422,25 @@ function EndpointsInner({
             className="apidocs-section"
             key={method["x-docs-anchor"]}
           >
-            <div
-              className="pull-right well"
-              style={{ width: "225px", marginLeft: "10px" }}
-            >
-              <AuthSummary method={method} />
-              <div>
-                <b>Tags</b>:
-                <Tags method={method} />
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <div
+                className="pull-right"
+                style={{
+                  order: 1,
+                  minWidth: "250px",
+                  marginLeft: "20px",
+                  marginRight: "16px",
+                }}
+              >
+                <AuthSummary method={method} />
               </div>
-              {/* <div>
-                <b>Authentication</b>:
-                <AuthTags method={method} />
-              </div> */}
-            </div>
-            {header}
+              <div>
+                {header}
 
-            <div className="lead">
-              <Markdown source={method.description} />
+                <div className="lead">
+                  <Markdown source={method.description} />
+                </div>
+              </div>
             </div>
 
             <HideShowMethod>
