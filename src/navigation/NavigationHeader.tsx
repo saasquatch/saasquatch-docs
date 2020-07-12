@@ -2,40 +2,23 @@ import React from "react";
 import { VersionContext } from "../components/useVersion";
 import { VersionSwitcher } from "../components/VersionSwitcher";
 import styled from "styled-components";
+import { PersonalisationSelect } from "./PersonalisationSelect";
 
 export const Personalisation = styled.div`
-  font-weight: bold;
-  color: #003b45;
-  padding: 5px 30px;
-  background: #fafafa;
-  border-bottom: 1px solid #eaeaea;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 5;
+  display: inline-flex;
+  width: auto;
+  height: 36px;
 
-  & label {
-    display: flex;
-    align-items: center;
-    height: 50px;
-
-    select {
-      margin-top: 15px;
-      margin-left: 15px;
-    }
-  }
+  margin-top: 12px;
+  background: #ffffff;
+  border: 1px solid #e6e6e6;
+  box-sizing: border-box;
+  border-radius: 23px;
 `;
 
 export function NavigationHeader() {
-  const { version, setVersion } = VersionContext.useContainer();
-  const headerText =
-    version === "classic-only"
-      ? "work with Classic programs"
-      : version === "ga-only"
-      ? "work with non-Classic programs"
-      : "work with all programs";
   return (
-    <header id="my-header" style={{ marginTop: "60px" }}>
+    <header id="my-header">
       <div className="navbar navbar-top">
         <div className="navbar-inner">
           <div className="container-fluid">
@@ -75,10 +58,7 @@ export function NavigationHeader() {
                 </li>
               </ul>
             </div>
-            <Personalisation>
-              <span>Docs are being personalised to {headerText}</span>
-              <VersionSwitcher />
-            </Personalisation>
+            <PersonalisationSelect />
           </div>
         </div>
       </div>
