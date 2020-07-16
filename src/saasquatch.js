@@ -49,6 +49,14 @@ scalar SegmentKey
 scalar SegmentOperation
 scalar TranslatableAssetId
 scalar TranslationInstanceId
+"""
+The type of a webhook. e.g. "user.created" or "reward.created"
+"""
+scalar WebhookType
+"""
+Operation for adding/deleting WebhookTypes. e.g. "user.created" or "~reward.created"
+"""
+scalar WebhookTypeOperation
 scalar WidgetType
 
 """
@@ -87,6 +95,17 @@ type Query {
   Lookup a reward by id
   """
   reward(id: ID!): FlatReward
+  """
+  Lookup a list of rewards
+  """
+  rewards(
+    filter: RewardFilterInput
+    timeZone: String
+    timeZoneOffset: Int
+    limit: Int! = 20
+    offset: Int! = 0
+    sortBy: [RSSortByInput!]
+  ): FlatRewardList!
   """
   Lookup a referral by id
   """
@@ -207,6 +226,14 @@ type Query {
   to retrieve the translated copies for each language.
   """
   translatableAssets: [TranslatableAsset!]!
+    @deprecated(reason: "Use TranslatableAssetList instead.")
+  """
+  Get all the TranslatableAssets
+  """
+  translatableAssetList(
+    limit: Int! = 20
+    offset: Int! = 0
+  ): TranslatableAssetList!
   """
   Look up an individual translation of a translatable asset.
   """
@@ -311,8 +338,10 @@ type Query {
    - Can be filtered
   """
   userEvents(
-    # Only one field can be filtered here
-    filter: UserEventDataFilterInput!
+    """
+    Only one field can be filtered here
+    """
+    filter: UserEventDataFilterInput
     limit: Int! = 20
     offset: Int! = 0
     sortBy: [RSSortByInput!]
@@ -325,6 +354,8 @@ type Query {
    - Is paginated
   """
   userEventKeys(limit: Int! = 20, offset: Int! = 0): UserEventKeyList!
+  userEventFieldsSchema(key: String!): JsonSchema
+    @deprecated(reason: "Internal field")
   """
   Preview the moderation a set of graph nodes.
 
@@ -383,7 +414,30 @@ type Query {
     limit: Int! = 20
     offset: Int! = 0
   ): RewardUnitSettingsList!
-
+  analyticsKey: String! @deprecated(reason: "Internal field.")
+  """
+  Lookup one GlobalRewardConfig by key
+  """
+  globalRewardConfig(key: String!): GlobalRewardConfig
+  """
+  Lookup all the GlobalRewardConfigs
+  """
+  globalRewardConfigs(
+    limit: Int! = 20
+    offset: Int! = 0
+  ): GlobalRewardConfigList!
+  """
+  Lookup all the IsPredefinedRewards
+  """
+  predefinedRewards(limit: Int! = 20, offset: Int! = 0): IsPredefinedRewardList!
+  """
+  Lookup a link code
+  """
+  linkCode(linkCode: String!): LinkCode
+  """
+  Lookup a referral code
+  """
+  referralCode(referralCode: String): ReferralCode
   """
   Details about the subject currently accessing the API.
 
@@ -393,9 +447,13 @@ type Query {
 }
 
 type Mutation {
-  # Creates a new program from a Program Template ID
+  """
+  Creates a new program from a Program Template ID
+  """
   createProgram(id: ID, name: String!, programTemplateId: String!): Program!
-  # Updates an existing program by id
+  """
+  Updates an existing program by id
+  """
   updateProgram(programInput: ProgramInput!): Program
   updateProgramId(id: ID!, newId: ID!): Program
   deleteProgram(id: String!): ProgramDeleteResult!
@@ -416,7 +474,9 @@ type Mutation {
     tenantSettingsInput: TenantSettingsInput!
   ): TenantSettings!
   testProgramSchedule(epochMilli: Long): [RSJsonNode!]!
-  # Bulk custom code uploading for fueltank rewards
+  """
+  Bulk custom code uploading for fueltank rewards
+  """
   addCustomCodes(data: CustomCodesInput!): CustomCodeInsertResult!
   upsertCustomCodes(data: CustomCodesInput!): CustomCodeUpsertResult!
   deleteCustomCodes(
@@ -448,13 +508,52 @@ type Mutation {
     accountId: String!
   ): UserDoNotTrackIdentifierDeleteResult!
   createReward(
-    # https://docs.referralsaasquatch.com/api/methods/#create_reward
-    rewardInput: RSJsonNode!
+    """
+    https://docs.referralsaasquatch.com/api/methods/#create_reward
+    """
+    rewardInput: RSJsonNode
+    """
+    The key for the GlobalRewardConfig to create this reward from
+    """
+    globalRewardKey: String
     userId: String!
     accountId: String!
-    status: RewardStatus = AVAILABLE
+    """
+    The optional initial RewardStatus
+    """
+    status: RewardStatus
   ): FlatReward!
   updateRewardStatus(id: ID!, status: RewardStatus!): FlatReward!
+  """
+  Fully or partially redeem a credit reward
+  """
+  redeemRewardCredit(
+    """
+    The reward id to redeem
+    """
+    id: ID!
+    """
+    Additional options for redeeming the reward
+    """
+    redeemCreditInput: RedeemCreditInput!
+  ): RedeemCreditResult!
+  """
+  Redeem one or multiple rewards of the given value for a user
+  """
+  redeemUserCredit(
+    userId: String!
+    accountId: String!
+    """
+    Additional options for redeeming the reward
+    """
+    redeemCreditInput: RedeemCreditInput!
+  ): RedeemCreditResult!
+  """
+  Exchange a set amount of credit for another reward
+  """
+  exchangeReward(
+    exchangeRewardInput: ExchangeRewardInput!
+  ): ExchangeRewardResult!
   updateProgramEmailTransactionStatus(
     id: ID!
     status: EmailTransactionStatus!
@@ -473,45 +572,387 @@ type Mutation {
     moderationInput: ModerationInput!
   ): GraphNodeModerationResultList!
   updatePortalProject(portalProjectInput: PortalProjectInput!): PortalProject!
-  # Create or update a tenant integration
+  """
+  Create or update a tenant integration
+  """
   upsertIntegration(
     integrationInput: TenantIntegrationInput!
   ): TenantIntegration
   deleteIntegration(service: String!): TenantIntegrationDeleteResult!
-  # Patch the config of a TenantIntegration
+  """
+  Patch the config of a TenantIntegration
+  """
   patchIntegrationConfig(
     service: String!
-    # JSON Patch format (http://jsonpatch.com/)
+    """
+    JSON Patch format (http://jsonpatch.com/)
+    """
     configPatch: RSJsonNode!
   ): TenantIntegration!
-  # Subscribes a URL to receive events via webhooks
+  """
+  Subscribes a URL to receive events via webhooks
+  """
   upsertWebhookSubscription(
     webhookSubscriptionInput: WebhookSubscriptionInput!
   ): WebhookSubscription!
-  # Removes a URL from receiving events via webhooks
+  """
+  Removes a URL from receiving events via webhooks
+  """
   deleteWebhookSubscription(
     endpointUrl: String!
   ): WebhookSubscriptionDeleteResult!
-  # Sends a test event to the specified webhook
+  """
+  Sends a test event to the specified webhook
+  """
   testWebhookSubscription(endpointUrl: String!): TestWebhookSubscriptionResult!
-  # Upsert external metadata for a reward
+  """
+  Upsert external metadata for a reward
+  """
   upsertRewardMeta(rewardMetaInput: RewardMetaInput!): FlatReward!
-  # Upsert a RewardUnitSettings
+  """
+  Upsert a RewardUnitSettings
+  """
   upsertRewardUnitSettings(
     rewardUnitSettingsInput: RewardUnitSettingsInput!
   ): RewardUnitSettings!
-  # Delete a RewardUnitSettings
+  """
+  Delete a RewardUnitSettings
+  """
   deleteRewardUnitSettings(
     id: RewardUnitSettingsId!
   ): RewardUnitSettingsDeleteResult!
-  # Clear the current tenant data if it's a test tenant
+  """
+  Clear the current tenant data if it's a test tenant
+  """
   deleteTestTenantData: Boolean!
+  """
+  Set this tenant to hide classic or not
+  """
+  setHideClassic(hideClassic: Boolean!): Boolean!
+    @deprecated(reason: "Internal field.")
+  """
+  Upsert a GlobalRewardConfig
+  """
+  upsertGlobalRewardConfig(
+    globalRewardConfigInput: GlobalRewardConfigInput!
+  ): GlobalRewardConfig!
+  """
+  Delete a GlobalRewardConfig
+  """
+  deleteGlobalRewardConfig(key: String!): GlobalRewardConfigDeleteResult!
+  """
+  Insert a new share link code
+  """
+  addShareLinkCode(
+    addShareLinkCodeInput: AddShareLinkCodeInput!
+  ): AddShareLinkCodeResult!
+  """
+  Delete a link code
+  """
+  deleteLinkCode(linkCode: String!): LinkCodeDeleteResult!
+  """
+  Make a share link code primary for its referral code
+  """
+  makeShareLinkCodePrimaryForReferralCode(
+    linkCode: String!
+  ): MakeShareLinkCodePrimaryResult!
+  """
+  Make a share link code primary for its program
+  """
+  makeShareLinkCodePrimaryForProgram(
+    linkCode: String!
+  ): MakeShareLinkCodePrimaryResult!
+  """
+  Insert a new referral code
+  """
+  addReferralCode(
+    addReferralCodeInput: AddReferralCodeInput!
+  ): AddReferralCodeResult!
+  """
+  Delete a referral code
+  """
+  deleteReferralCode(referralCode: String!): ReferralCodeDeleteResult!
+  """
+  Make a referral code primary for its program
+  """
+  makeReferralCodePrimaryForProgram(
+    referralCode: String!
+  ): MakeReferralCodePrimaryResult!
+  """
+  Edit a share link code
+  """
+  editShareLinkCode(
+    editShareLinkCodeInput: EditShareLinkCodeInput!
+  ): EditShareLinkCodeResult!
+  """
+  Edit a referral code
+  """
+  editReferralCode(
+    editReferralCodeInput: EditReferralCodeInput!
+  ): EditReferralCodeResult!
+}
+
+input EditReferralCodeInput {
+  """
+  The existing referral code to be edited
+  """
+  existingReferralCode: String!
+  """
+  The new referral code
+  """
+  newReferralCode: String!
+  """
+  Whether the existing referral code should be replaced/deleted. false by default.
+  """
+  deleteExisting: Boolean
+  """
+  Whether the share links associated with the existing referral code should be
+  """
+  """
+  transferred to the new referral code. false by default.
+  """
+  transferShareLinks: Boolean
+}
+
+type EditReferralCodeResult {
+  referralCode: ReferralCode!
+}
+
+input EditShareLinkCodeInput {
+  """
+  The existing share link code to be edited
+  """
+  existingLinkCode: String!
+  """
+  The new share link code
+  """
+  newLinkCode: String!
+  """
+  Whether the existing share link code should be replaced/deleted. false by default.
+  """
+  deleteExisting: Boolean
+}
+
+type EditShareLinkCodeResult {
+  linkCode: ShareLinkCode!
+}
+
+type LinkCodeDeleteResult {
+  deletedCount: Long!
+}
+
+type MakeShareLinkCodePrimaryResult {
+  """
+  The new primary share link code
+  """
+  linkCode: ShareLinkCode!
+  """
+  The previous primary share link code if one exists
+  """
+  previousPrimary: ShareLinkCode
+}
+
+input AddShareLinkCodeInput {
+  linkCode: String!
+  referralCode: String
+  userId: String!
+  accountId: String!
+  programId: ID!
+  """
+  Whether the added share link should be set as the primary for the referral code. false by default.
+  """
+  makeShareLinkCodePrimaryForReferralCode: Boolean
+}
+
+"""
+A link code for a share link or message link
+"""
+interface LinkCode {
+  linkCode: String!
+  """
+  The link this link code represents in the default custom short domain, if available.
+  """
+  shortUrl(
+    shareMedium: ReferralShareMedium! = UNKNOWN
+    engagementMedium: UserEngagementMedium! = UNKNOWN
+  ): String!
+  """
+  The link domains this link code can be used with
+  """
+  supportedLinkDomains: [LinkDomain!]!
+}
+
+"""
+A link code for a share link
+"""
+type ShareLinkCode implements LinkCode {
+  linkCode: String!
+  shortUrl(
+    shareMedium: ReferralShareMedium! = UNKNOWN
+    engagementMedium: UserEngagementMedium! = UNKNOWN
+  ): String!
+  supportedLinkDomains: [LinkDomain!]!
+  referralCode: ReferralCode
+  user: User
+  program: Program
+  """
+  Whether this link code is the primary for its referral code
+  """
+  isPrimaryForReferralCode: Boolean!
+  """
+  Whether this link code is the primary for its program
+  """
+  isPrimaryForProgram: Boolean!
+  """
+  Whether this link code is a manually created vanity code
+  """
+  isVanity: Boolean!
+}
+
+"""
+A link code for a message link
+"""
+type MessageLinkCode implements LinkCode {
+  linkCode: String!
+  shortUrl(
+    shareMedium: ReferralShareMedium! = UNKNOWN
+    engagementMedium: UserEngagementMedium! = UNKNOWN
+  ): String!
+  supportedLinkDomains: [LinkDomain!]!
+  user: User
+  program: Program
+}
+
+"""
+A link code for a fallback URL
+"""
+type FallbackLinkCode implements LinkCode {
+  linkCode: String!
+  shortUrl(
+    shareMedium: ReferralShareMedium! = UNKNOWN
+    engagementMedium: UserEngagementMedium! = UNKNOWN
+  ): String!
+  supportedLinkDomains: [LinkDomain!]!
+}
+
+"""
+A link code for a classic widget preview URL
+"""
+type PreviewLinkCode implements LinkCode {
+  linkCode: String!
+  shortUrl(
+    shareMedium: ReferralShareMedium! = UNKNOWN
+    engagementMedium: UserEngagementMedium! = UNKNOWN
+  ): String!
+  supportedLinkDomains: [LinkDomain!]!
+}
+
+"""
+A link code for a generic shortened URL
+"""
+type ShortenedUrlLinkCode implements LinkCode {
+  linkCode: String!
+  shortUrl(
+    shareMedium: ReferralShareMedium! = UNKNOWN
+    engagementMedium: UserEngagementMedium! = UNKNOWN
+  ): String!
+  supportedLinkDomains: [LinkDomain!]!
+  """
+  The destination url for this link code
+  """
+  destinationUrl: String!
+}
+
+# type LinkCodeList {
+#   data: [LinkCode!]!
+#   count: Int!
+# }
+
+type ShareLinkCodeList {
+  data: [ShareLinkCode!]!
+  count: Int!
+  totalCount: Long
+}
+
+type AddShareLinkCodeResult {
+  linkCode: ShareLinkCode!
+}
+
+"""
+A referral code
+"""
+type ReferralCode {
+  """
+  The referral code string
+  """
+  code: String!
+  """
+  Whether this referral code is the primary for its program
+  """
+  isPrimaryForProgram: Boolean!
+  """
+  The program for this code
+  """
+  program: Program
+  """
+  The user for this code
+  """
+  user: User
+  """
+  The share link codes associated with this referral code
+  """
+  shareLinkCodes(limit: Int! = 20, offset: Int! = 0): ShareLinkCodeList!
+}
+
+type ReferralCodeList {
+  data: [ReferralCode!]!
+  count: Int!
+  totalCount: Long
+}
+
+type ReferralCodeDeleteResult {
+  deletedCount: Int!
+}
+
+type MakeReferralCodePrimaryResult {
+  """
+  The new primary referral code
+  """
+  referralCode: ReferralCode!
+  """
+  The previous primary referral code, if one exists
+  """
+  previousPrimary: ReferralCode
+}
+
+input AddReferralCodeInput {
+  referralCode: String!
+  programId: ID!
+  userId: String!
+  accountId: String!
+  """
+  Whether the added referral code should be set as the primary for the program. false by default.
+  """
+  makeReferralCodePrimaryForProgram: Boolean
+}
+
+type AddReferralCodeResult {
+  referralCode: ReferralCode!
+}
+
+"""
+A custom domain for links, e.g. "example.com"
+"""
+type LinkDomain {
+  host: String!
+  scheme: String!
 }
 
 input RewardMetaInput {
   rewardId: ID!
   status: RewardMetaStatus!
-  message: String!
+  message: String
+  internalMessage: String
   integrationService: String
   customMeta: RSJsonNode
 }
@@ -567,29 +1008,49 @@ enum DayOfWeek {
   SUNDAY
 }
 
-# Static information about currencies. See: https://www.geoips.com/en/resources/currencies
+"""
+Static information about currencies. See: https://www.geoips.com/en/resources/currencies
+"""
 type RSCurrency {
-  # 3-letter ISO standard currency code e.g. "USD" or "GBP"
+  """
+  3-letter ISO standard currency code e.g. "USD" or "GBP"
+  """
   currencyCode: RSCurrencyCode!
-  # Human-readable currency name e.g. "US Dollars" or "Euro"
+  """
+  Human-readable currency name e.g. "US Dollars" or "Euro"
+  """
   displayName(locale: RSLocale): String!
-  # The symbol of this currency for the specified locale.
-  # For example, for the US Dollar, the symbol is "$" if the specified locale is the US,
-  # while for other locales it may be "US$".
-  # If no symbol can be determined, the ISO 4217 currency code is returned.
+  """
+  The display name for the default locale of this currency.
+  """
+  localizedDisplayName: String!
+  """
+  The symbol of this currency for the specified locale.
+  For example, for the US Dollar, the symbol is "$" if the specified locale is the US, while for other locales it may be "US$".
+  If no symbol can be determined, the ISO 4217 currency code is returned.
+  """
   symbol(locale: RSLocale): String!
-  # The symbol for the default locale of this currency.
-  # Note that the result may be incorrect for non-circulating currencies.
+  """
+  The symbol for the default locale of this currency.
+  Note that the result may be incorrect for non-circulating currencies.
+  """
   localizedSymbol: String!
-  # The ISO 4217 numeric code of this currency.
+  """
+  The ISO 4217 numeric code of this currency.
+  """
   numericCode: Int!
-  # The default number of fraction digits used with this currency.
-  # For example, the default number of fraction digits for the Euro is 2,
-  # while for Libyan Dinar it's 3.
+  """
+  The default number of fraction digits used with this currency.
+  For example, the default number of fraction digits for the Euro is 2, while for Libyan Dinar it's 3.
+  """
   fractionDigits: Int!
-  # Human-readable non-plural name of the factional unit. e.g. "Cent" See: https://www.geoips.com/en/resources/currencies
+  """
+  Human-readable non-plural name of the factional unit. e.g. "Cent" See: https://www.geoips.com/en/resources/currencies
+  """
   fractionalUnit: String
-  # An integer representing the fractional unit to basic unit conversion. Usually 100.
+  """
+  An integer representing the fractional unit to basic unit conversion. Usually 100.
+  """
   numberToBasic: Int!
   format(
     number: Float!
@@ -615,13 +1076,17 @@ type RewardUnit {
   currency: RSCurrency
 }
 
-# Settings for a reward unit
+"""
+Settings for a reward unit
+"""
 type RewardUnitSettings {
   id: RewardUnitSettingsId!
   config: RSJsonNode!
 }
 
-# A list of RewardUnitSettings
+"""
+A list of RewardUnitSettings
+"""
 type RewardUnitSettingsList {
   data: [RewardUnitSettings!]!
   count: Int!
@@ -662,19 +1127,29 @@ type GraphNode {
 }
 
 input ModerationInput {
-  # The moderation action, can be "APPROVE" or "DENY"
+  """
+  The moderation action, can be "APPROVE" or "DENY"
+  """
   action: String!
-  # The max depth of side effects
+  """
+  The max depth of side effects
+  """
   maxDepth: Int!
-  # graph lookup size limit.
-  # Default to 20 for query, and 1000 for moderation.
+  """
+  graph lookup size limit.
+  Default to 20 for query, and 1000 for moderation.
+  """
   limit: Int
-  # graph lookup offset.
-  # Default to 0.
+  """
+  graph lookup offset.
+  Default to 0.
+  """
   offset: Int
-  # Graph nodes must meet this condition to be moderated.
-  # Graph nodes that don't meet this condition will still show up in the result,
-  # but the action will be NOTHING.
+  """
+  Graph nodes must meet this condition to be moderated.
+  Graph nodes that don't meet this condition will still show up in the result,
+  but the action will be NOTHING.
+  """
   actionPredicate: ModerationActionPredicateInput
 }
 
@@ -717,7 +1192,9 @@ type GraphNodeModerationResult {
 type GraphNodeModerationResultList {
   data: [GraphNodeModerationResult!]!
   count: Int!
-  # totalCount is null for USER_EVENT
+  """
+  totalCount is null for USER_EVENT
+  """
   totalCount: Long
 }
 
@@ -867,15 +1344,21 @@ type User implements Viewer {
   paymentProviderId: String
   locale: RSLocale
   referable: Boolean
-  # key value pair
+  """
+  key value pair
+  """
   customFields: RSJsonNode
   firstSeenIP: String
   lastSeenIP: String
   firstSeenIPLocation: LatLon
   lastSeenIPLocation: LatLon
-  # Maxmind geo data
+  """
+  Maxmind geo data
+  """
   firstSeenGeoData: RSJsonNode
-  # Maxmind geo data
+  """
+  Maxmind geo data
+  """
   lastSeenGeoData: RSJsonNode
   firstSeenUserAgent: String
   lastSeenUserAgent: String
@@ -883,20 +1366,37 @@ type User implements Viewer {
   dateBlocked: RSDate
   emailHash: String
   referralSource: String @deprecated
-  # Legacy share links format.
-  # https://docs.referralsaasquatch.com/api/methods/#get_sharelinks
+  """
+  Legacy share links format.
+  https://docs.referralsaasquatch.com/api/methods/#get_sharelinks
+  """
   incompleteShareLinks: RSJsonNode
     @deprecated(reason: "Use shareLinks instead.")
-  # https://docs.referralsaasquatch.com/api/methods/#get_shareurls
+  """
+  https://docs.referralsaasquatch.com/api/methods/#get_shareurls
+  """
   shareLinks(
     programId: ID
     shareMedium: ReferralShareMedium
     engagementMedium: UserEngagementMedium
+    shareMediums: [ReferralShareMedium!]! = []
+    engagementMediums: [UserEngagementMedium!] = []
+  ): RSJsonNode
+  """
+  Share links for up to 10 active programs
+  """
+  programShareLinks(
+    shareMediums: [ReferralShareMedium!]! = [UNKNOWN]
+    engagementMediums: [UserEngagementMedium!] = [UNKNOWN]
   ): RSJsonNode
   shareLink(
     programId: ID
     shareMedium: ReferralShareMedium! = UNKNOWN
     engagementMedium: UserEngagementMedium! = UNKNOWN
+    """
+    Whether the URL parameters of the resulting link should be removed
+    """
+    useCleanLink: Boolean! = false
   ): String
   messageLink(
     programId: ID
@@ -916,8 +1416,18 @@ type User implements Viewer {
     timeZoneOffset: Int
     limit: Int! = 20
     offset: Int! = 0
+    sortBy: [RSSortByInput!]
   ): FlatRewardList!
-  # https://docs.referralsaasquatch.com/api/methods/#list_balances
+  """
+  Get all the RewardRedemptionTransactions for this user
+  """
+  rewardRedemptionTransactions(
+    limit: Int! = 20
+    offset: Int! = 0
+  ): RewardRedemptionTransactionList!
+  """
+  https://docs.referralsaasquatch.com/api/methods/#list_balances
+  """
   rewardBalances(
     rewardType: RewardType
     programId: ID
@@ -943,11 +1453,11 @@ type User implements Viewer {
   fraudFlags: [FraudFlag!]!
   stats: UserStats
   userEvents(
-    # Only dateTriggered field can be filtered for purchase and refund events.
-    # Nothing can be filtered for other events.
+    """
+    Only dateTriggered field can be filtered for purchase and refund events.
+    Nothing can be filtered for other events.
+    """
     filter: UserEventDataFilterInput
-    # Deprecated. Use filter.key instead.
-    eventKey: String
     limit: Int! = 20
     offset: Int! = 0
     sortBy: [RSSortByInput!]
@@ -960,6 +1470,14 @@ type User implements Viewer {
     offset: Int! = 0
     sortBy: [RSSortByInput!]
   ): ProgramEmailTransactionList!
+  """
+  Get all the share link codes for this user
+  """
+  shareLinkCodes(limit: Int! = 20, offset: Int! = 0): ShareLinkCodeList!
+  """
+  Get all the referral codes for this user
+  """
+  referralCodeList(limit: Int! = 20, offset: Int! = 0): ReferralCodeList!
   permissions: [String!]!
 }
 
@@ -1027,6 +1545,42 @@ type FlatRewardList {
   totalCount: Long!
 }
 
+"""
+A transaction of a single reward redemption or a bulk reward redemption
+"""
+type RewardRedemptionTransaction {
+  """
+  The redemption ID
+  """
+  id: ID!
+  """
+  The amount of redeemed credit
+  """
+  creditRedeemed: Int!
+  """
+  The unit redeemed
+  """
+  unit: String
+  """
+  The date of the redemption
+  """
+  dateRedeemed: RSDate!
+  """
+  Rewards that have been redeemed for this redemption
+  """
+  redeemedRewards(limit: Int! = 20, offset: Int! = 0): FlatRewardList!
+  """
+  Rewards that have been exchanged for this redemption
+  """
+  exchangedRewards(limit: Int! = 20, offset: Int! = 0): FlatRewardList!
+}
+
+type RewardRedemptionTransactionList {
+  data: [RewardRedemptionTransaction!]!
+  count: Int!
+  totalCount: Long!
+}
+
 type UserReferredByInfo {
   isConverted: Boolean
   code: String
@@ -1047,9 +1601,13 @@ input RewardFilterInput {
   id_in: [ID!]
   type_eq: RewardType
   type_in: [RewardType!]
-  # only applies to credit rewards
+  """
+  only applies to credit rewards
+  """
   unit_eq: String
-  # only applies to credit rewards
+  """
+  only applies to credit rewards
+  """
   unit_in: [String!]
   dateCreated_gte: RSDate
   dateCreated_lt: RSDate
@@ -1076,6 +1634,9 @@ input RewardFilterInput {
   programRewardKey_eq: String
   programRewardKey_in: [String!]
   programRewardKey_exists: Boolean
+  globalRewardKey_eq: String
+  globalRewardKey_in: [String!]
+  globalRewardKey_exists: Boolean
 }
 
 input RewardBalanceFilterInput {
@@ -1088,11 +1649,17 @@ input RewardBalanceFilterInput {
 
 type FlatReward implements GraphNodeData {
   id: ID!
-  # The type of reward
+  """
+  The type of reward
+  """
   type: RewardType!
-  # The value of the reward
+  """
+  The value of the reward
+  """
   value: Int!
-  # A human-readable formatted string value based on the reward's unit
+  """
+  A human-readable formatted string value based on the reward's unit
+  """
   prettyValue(
     locale: RSLocale
     formatType: RewardValueFormatType! = UNIT_FORMATTED
@@ -1102,42 +1669,81 @@ type FlatReward implements GraphNodeData {
     locale: RSLocale
     formatType: RewardValueFormatType! = UNIT_FORMATTED
   ): String!
-  # The unit represented by the value of this reward
+  """
+  The unit represented by the value of this reward
+  """
   unit: String!
   rewardUnit: RewardUnit!
-  # The displayable name for the reward
+  """
+  The displayable name for the reward
+  """
   name: String
-  # The date the reward was created
+  """
+  The date the reward was created
+  """
   dateCreated: RSDate
-  # The date the reward is scheduled to be given
+  """
+  The date the reward is scheduled to be given
+  """
   dateScheduledFor: RSDate
-  # The date the reward was given
+  """
+  The date the reward was given
+  """
   dateGiven: RSDate
-  # The date the reward expires (null if it doesn't expire)
+  """
+  The date the reward expires (null if it doesn't expire)
+  """
   dateExpires: RSDate
-  # The date the reward was cancelled
+  """
+  The date the reward was cancelled
+  """
   dateCancelled: RSDate
-  # The source of the reward (i.e. by friend referral, manual, etc)
+  """
+  The source of the reward (i.e. by friend referral, manual, etc)
+  """
   rewardSource: RewardSourceType
-  # The fuel tank code associated with the reward if this is fuel tank reward
+  """
+  The fuel tank code associated with the reward if this is fuel tank reward
+  """
   fuelTankCode: String
-  # The fuel tank type associated with the reward if this is a fuel tank reward
+  """
+  The fuel tank type associated with the reward if this is a fuel tank reward
+  """
   fuelTankType: FuelTankType
-  # The currency the reward was associated with if applicable (gift cards are associated with a currency)
+  """
+  The currency the reward was associated with if applicable (gift cards are associated with a currency)
+  """
   currency: RSCurrencyCode
   cancellable: Boolean!
   redeemable: Boolean!
-  # External metadata set by integrations or third-parties
+  """
+  External metadata set by integrations or third-parties
+  """
   meta: RewardMeta
-  # The id of the program that created this reward
+  """
+  The id of the program that created this reward
+  """
   programId: String
-  # The corresponding reward key in the program that created this rewards
+  """
+  The corresponding reward key in the program that created this reward
+  """
   programRewardKey: String
-  # The program that created this reward
+  """
+  The corresponding reward key in the GlobalRewardConfig that created this reward
+  """
+  globalRewardKey: String
+  """
+  The program that created this reward
+  """
   program: Program
-  # The user this reward belongs to
+  """
+  The user this reward belongs to
+  """
   user: User!
-  integrationId: ID
+  integrationId: ID @deprecated(reason: "Use integration instead.")
+  """
+  The integration that's used to fulfill this reward
+  """
   integration: TenantIntegration
   description: String
   assignedCredit: Int
@@ -1153,15 +1759,33 @@ type FlatReward implements GraphNodeData {
   referralId: ID
   referral: Referral
   statuses: [RewardStatus!]!
+  """
+  All the ReawrdRedemptionTransactions where this reward has been redeemed
+  """
+  rewardRedemptionTransactions(
+    limit: Int! = 20
+    offset: Int! = 0
+  ): RewardRedemptionTransactionList!
   moderationPreview(
     moderationInput: ModerationInput!
   ): GraphNodeModerationPreviewList!
 }
 
-# External metadata for a reward intended to be used by external integrations
+"""
+External metadata for a reward intended to be used by external integrations
+"""
 type RewardMeta {
   status: RewardMetaStatus!
-  message: String!
+  """
+  A message displayed in the portal and widgets, often used by integrations
+  (e.g. Credit Applied in Stripe)
+  """
+  message: String
+  """
+  A message that's only shown in the portal for tracking notes on the reward
+  reason. Note: end users could still potentially find this.
+  """
+  internalMessage: String
   integration: TenantIntegration
   dateModified: RSDate
   customMeta: RSJsonNode
@@ -1174,11 +1798,17 @@ enum RewardMetaStatus {
 }
 
 enum RewardValueFormatType {
-  # Formatted number only
+  """
+  Formatted number only
+  """
   NUMBER_FORMATTED
-  # Formatted integer only with rounding
+  """
+  Formatted integer only with rounding
+  """
   INTEGER_FORMATTED
-  # Full currency format with number and currency code
+  """
+  Full currency format with number and currency code
+  """
   UNIT_FORMATTED
   NUMBER_UNFORMATTED
   INTEGER_UNFORMATTED
@@ -1257,7 +1887,9 @@ type IntegrationRewardBalance implements RewardBalance {
   prettyAvailableValue(
     formatType: RewardValueFormatType! = UNIT_FORMATTED
   ): String!
-  # Shallow map of string to integer
+  """
+  Shallow map of string to integer
+  """
   unitBalances: RSShallowMap!
 }
 
@@ -1277,19 +1909,26 @@ enum RewardType {
 }
 
 enum RewardSourceType {
-  # This source type designates a reward that was given to a user (A) for their friend (B)
-  # signing up.
+  """
+  This source type designates a reward that was given to a user (A) for their friend (B) signing up.
+  """
   FRIEND_SIGNUP
-  # This source type designates a reward that was given to a user for signing up by referral
+  """
+  This source type designates a reward that was given to a user for signing up by referral
+  """
   REFERRED
-  # This source type designates a reward that was manually added to a user via portal or API
+  """
+  This source type designates a reward that was manually added to a user via portal or API
+  """
   MANUAL
   PROGRAM @deprecated(reason: "use AUTOMATED instead")
   ACTIVATION
   ACQUISITION
   RETENTION
   REACTIVATION
-  # Reward given by a program
+  """
+  Reward given by a program
+  """
   AUTOMATED
 }
 
@@ -1298,35 +1937,128 @@ enum FuelTankType {
   CREDIT
 }
 
+"""
+The input for redeeming credit
+"""
+input RedeemCreditInput {
+  """
+  The amount to redeem
+  """
+  amount: Int!
+  """
+  The unit to redeem
+  """
+  unit: String!
+}
+
+"""
+The result for redeeming credit
+"""
+type RedeemCreditResult {
+  """
+  The unit redeemed
+  """
+  unit: String!
+  """
+  The amount of redeemed credit
+  """
+  creditRedeemed: Int!
+  """
+  The amount of available credit
+  """
+  creditAvailable: Int!
+}
+
+"""
+Input for a reward exchange
+"""
+input ExchangeRewardInput {
+  userId: String!
+  accountId: String!
+  redeemCreditInput: RedeemCreditInput!
+  """
+  https://docs.referralsaasquatch.com/api/methods/#create_reward
+  """
+  rewardInput: RSJsonNode
+  """
+  The key for the GlobalRewardConfig to create this reward from. When this is present
+  """
+  globalRewardKey: String
+  """
+  The optional initial RewardStatus
+  """
+  status: RewardStatus
+}
+
+"""
+Result for a reward exchange
+"""
+type ExchangeRewardResult {
+  """
+  The RewardRedemptionTransaction related to this reward exchange
+  """
+  rewardRedemptionTransaction: RewardRedemptionTransaction!
+  """
+  The created reward
+  """
+  reward: FlatReward!
+}
+
 type Referral implements GraphNodeData {
-  # Id of this referral
+  """
+  Id of this referral
+  """
   id: ID!
-  # Id of the corresponding program (non-legacy referrals)
+  """
+  Id of the corresponding program (non-legacy referrals)
+  """
   programId: ID
   program: Program
-  # public meta available on this referral
-  publicMeta: RSJsonNode @deprecated
-  # private meta available on this referral
-  privateMeta: RSJsonNode @deprecated
+  """
+  public meta available on this referral
+  """
+  publicMeta: RSJsonNode @deprecated(reason: "Always returns null.")
+  """
+  private meta available on this referral
+  """
+  privateMeta: RSJsonNode @deprecated(reason: "Always returns null.")
   referredUser: User
   referrerUser: User
-  # The reward earned for this referral by the referred user
+  """
+  The reward earned for this referral by the referred user
+  """
   referredReward: FlatReward @deprecated(reason: "Use rewards instead.")
-  # The reward earned for this referral by the referrer
+  """
+  The reward earned for this referral by the referrer
+  """
   referrerReward: FlatReward @deprecated(reason: "Use rewards instead.")
-  # The overall moderation status for the referral
+  """
+  The overall moderation status for the referral
+  """
   moderationStatus: ReferralModerationStatus
-  # The moderation status of the referred user
+  """
+  The moderation status of the referred user
+  """
   referredModerationStatus: ReferralSideModerationStatus
-  # The moderation status of the referrer user
+  """
+  The moderation status of the referrer user
+  """
   referrerModerationStatus: ReferralSideModerationStatus
-  # The date the referral was made
+  """
+  The date the referral was made
+  """
   dateReferralStarted: RSDate
-  # The date the referral converted to paid
+  """
+  The date the referral converted to paid
+  """
   dateReferralPaid: RSDate
-  # The date the referred user stopped payment
+  """
+  The date the referred user stopped payment
+  """
   dateReferralEnded: RSDate
-  # The last date the referral was moderated
+  """
+  The last date the referral was moderated
+  """
   dateModerated: RSDate
   dateUserModified: RSDate
   dateFraudChecksCompleted: RSDate @deprecated(reason: "Internal field.")
@@ -1334,14 +2066,28 @@ type Referral implements GraphNodeData {
   dateModified: RSDate
   fraudSignals: RSJsonNode @deprecated(reason: "Use fraudFlags instead.")
   fraudFlags: [FraudFlag!]!
-  # True if this referral is exempt from fraud moderation
+  """
+  True if this referral is exempt from fraud moderation
+  """
   isFraudExempt: Boolean!
+  """
+  The referral code used for this referral
+  """
+  referralCodeUsed: String
+  """
+  The share link used for this referral
+  """
+  shareLinkUsed: String
   rewards(filter: RewardFilterInput): [FlatReward!]!
   childNodes(
     maxDepth: Int! = 5
-    # graph lookup size limit
+    """
+    graph lookup size limit
+    """
     limit: Int! = 20
-    # graph lookup offset
+    """
+    graph lookup offset
+    """
     offset: Int! = 0
   ): GraphNodeList!
   moderationPreview(
@@ -1385,6 +2131,7 @@ enum ReferralSideModerationStatus {
 type PortalUser implements Viewer {
   identity: ID!
   email: String
+  portalProjects: [PortalProject!]!
   tenants: [Tenant!]!
   permissions: [String!]!
 }
@@ -1444,7 +2191,6 @@ type TenantSettings {
   signupPage: String
   companyName: String
   hasUtmOnSignupPage: Boolean
-  customShortDomain: String
   referredAutoApprove: Boolean
   referrerAutoApprove: Boolean
   suspectedFraudModerationState: SuspectedFraudModerationState
@@ -1456,6 +2202,28 @@ type TenantSettings {
   rewardSettings: RSJsonNode
   allowReferralInvites: Boolean
   multiProgramEnabled: Boolean
+  """
+  The custom short domain host, e.g. "example.com"
+  """
+  customShortDomain: String @deprecated
+  """
+  The active custom link domain for short links
+  """
+  primaryLinkDomain: LinkDomain
+  """
+  The backup custom link domains for short links
+  """
+  secondaryLinkDomains: [LinkDomain!]!
+  """
+  If true, the referralCodes field will create new referral codes for user and set them as
+  primary even if the user already has referral codes. Otherwise, the referralCodes field
+  will only attempt to create one referral code per program when one doesn't already exist.
+  """
+  allowReferralCodeEditOnUserUpsert: Boolean
+  """
+  The permission strings for this TenantSettings
+  """
+  permissions: [String!]!
 }
 
 enum SuspectedFraudModerationState {
@@ -1507,6 +2275,7 @@ input TenantInput {
 input TenantSettingsInput {
   companyName: String
   multiProgramEnabled: Boolean
+  allowReferralCodeEditOnUserUpsert: Boolean
 }
 
 input UserInput {
@@ -1514,16 +2283,33 @@ input UserInput {
   accountId: String
   firstName: String
   lastName: String
+  """
+  Deprecated. Ignored field. Use lastName instead.
+  """
   lastInitial: String
   referralCode: String
   referralCodes: RSShallowMap
+  """
+  Optionally create vanity links.
+  Example:
+  shareLinks: {
+    program1: "https://example.com/foobar"
+  }
+  """
+  shareLinks: RSShallowMap
   imageUrl: String
   email: String
+  """
+  Deprecated. Ignored field.
+  """
   cookieId: String
   paymentProviderId: String
   locale: RSLocale
-  # Deprecated. Use referredByCodes instead.
+  """
+  Deprecated. Use referredByCodes instead.
+  """
   referredBy: RSJsonNode
+  referredByCodes: [String!]
   """
   The Base64URL encoded attribution cookie values.
 
@@ -1531,14 +2317,19 @@ input UserInput {
   
   {"app.referralsaasquatch.com": {"tenantAlias_CODE": {"codes": {"program1": "CODE1"},"codesExp": {"CODE1": 1234567}}}}
   """
-  referredByCodes: [String!]
   cookies: String
   referable: Boolean
   customFields: RSJsonNode
   segments: [SegmentOperation!]
+  """
+  The date a user is created. Useful for creating historic users.
+  """
+  dateCreated: RSDate
 }
 
-# filter to find only relevant users to trigger a program with
+"""
+filter to find only relevant users to trigger a program with
+"""
 input UserFilterInput {
   AND: [UserFilterInput!]
   OR: [UserFilterInput!]
@@ -1554,13 +2345,21 @@ input UserFilterInput {
   lastSeenIP_eq: String
   dateBlocked_exists: Boolean
   customFields: RSJsonNode
-  # contains
+  """
+  contains
+  """
   segments_eq: String
-  # does not contain
+  """
+  does not contain
+  """
   segments_ne: String
-  # contains any
+  """
+  contains any
+  """
   segments_in: [String!]
-  # contains all
+  """
+  contains all
+  """
   segments_all: [String!]
   fraudFlags_exists: Boolean
   fraudFlags_all: [FraudType!]
@@ -1577,13 +2376,28 @@ type PersistedEventList {
   totalCount: Long!
 }
 
-# A program installed in a tenant based on a program template
+"""
+A program installed in a tenant based on a program template
+"""
 type Program {
   id: ID!
   name: String!
   status: ProgramStatus!
+  """
+  Program template ID
+  """
+  templateId: ID!
+  """
+  Program template with introspection
+  """
   template: ProgramTemplate!
   rawTemplate: ProgramTemplate! @deprecated(reason: "Internal field.")
+  """
+  Preview a program introspection with unsaved rules
+  """
+  introspectionPreview(
+    introspectionPreviewInput: ProgramIntrospectionPreviewInput!
+  ): ProgramTemplate!
   emails: [ProgramEmailConfig!]
   email(key: String!): ProgramEmailConfig
   rewards: [ProgramRewardConfig!]
@@ -1591,7 +2405,9 @@ type Program {
   widgets: [ProgramWidgetConfig!]
   widget(key: String!): ProgramWidgetConfig
   sharing: ProgramSharingConfig
-  # An instance of the values in the Program Template's rules schema
+  """
+  An instance of the values in the Program Template's rules schema
+  """
   rules: RSJsonNode
   analytics: RSJsonNode
   dateCreated: RSDate!
@@ -1620,7 +2436,18 @@ type Program {
     limit: Int! = 20
     offset: Int! = 0
   ): PersistedEventList @deprecated
+  """
+  Get the first 100 TranslatableAssets for this program
+  """
   translatableAssets: [TranslatableAsset!]!
+    @deprecated(reason: "Use translatableAssetList instead.")
+  """
+  Get all the TranslatableAssets for this Program
+  """
+    translatableAssetList(
+    limit: Int! = 20
+    offset: Int! = 0
+  ): TranslatableAssetList!
   programEmailTransactions(
     filter: ProgramEmailTransactionFilterInput
     timeZone: String
@@ -1631,11 +2458,27 @@ type Program {
   ): ProgramEmailTransactionList!
   validation(key: String!): ProgramValidationResult
   validations: [ProgramValidationResult!]
+  """
+  Get the JSON schema for program trigger variables
+  """
+  programTriggerVariablesSchema: ProgramTriggerVariablesSchema!
+}
+
+"""
+Wrapper type for requesting the trigger variables schema for different trigger types
+"""
+type ProgramTriggerVariablesSchema {
+  afterUserCreatedOrUpdated: JsonSchema
+  # scheduled: JsonSchema
+  # rewardScheduled: JsonSchema
+  referral: JsonSchema
+  afterUserEventProcessed(userEventKey: String!): JsonSchema
 }
 
 enum ProgramStatus {
-  PAUSED
   LIVE
+  PAUSED
+  ARCHIVED
 }
 
 type ProgramList {
@@ -1648,7 +2491,9 @@ type ProgramDeleteResult {
   deletedCount: Long!
 }
 
-# A type of email sent by a program. e.g. "VIP Reward Limit Reached Email"
+"""
+A type of email sent by a program. e.g. "VIP Reward Limit Reached Email"
+"""
 type ProgramEmailTemplate {
   key: String!
   name: String!
@@ -1656,7 +2501,9 @@ type ProgramEmailTemplate {
   defaults: RSJsonNode!
 }
 
-# Config values for an email type
+"""
+Config values for an email type
+"""
 type ProgramEmailConfig implements TranslatableAsset {
   key: String!
   enabled: Boolean!
@@ -1666,7 +2513,9 @@ type ProgramEmailConfig implements TranslatableAsset {
   translationInfo: TranslationInfo!
 }
 
-# Config values for a widget type
+"""
+Config values for a widget type
+"""
 type ProgramWidgetConfig implements TranslatableAsset {
   key: String!
   values: RSJsonNode!
@@ -1743,6 +2592,9 @@ type ProgramValidationResult {
 type ProgramRequirementValidationResult {
   status: ProgramRequirementValidationStatus!
   message: String!
+  """
+  An optional longer description of the validation result with instructions to fix it, if applicable
+  """
   longDescription: String
 }
 
@@ -1753,36 +2605,64 @@ enum ProgramRequirementValidationStatus {
 }
 
 type ProgramTemplate {
-  # A unique global ID for this program
+  """
+  A unique global ID for this program
+  """
   id: String!
-  # A human friendly name of the program
+  """
+  A human friendly name of the program
+  """
   name: String!
   summary: String!
   longDescription: String!
   installGuide: String
-  # An external link to the docs refererence for this program's install guide
+  """
+  An external link to the docs refererence for this program's install guide
+  """
   installGuideUrl: String
-  # A list of email types sent by this program template
+  """
+  A list of email types sent by this program template
+  """
   emails: [ProgramEmailTemplate!]
-  # A list of named reward types
+  """
+  A list of named reward types
+  """
   rewards: [ProgramRewardTemplate!]
-  # A list of widgets used by this program template
+  """
+  A list of widgets used by this program template
+  """
   widgets: [ProgramWidgetTemplate!]
-  # A JSON schema describing how a program should be configured
+  """
+  A JSON schema describing how a program should be configured
+  """
   rules: RSJsonNode
-  # A JSON UI schema describing how the rules form should look
+  """
+  A JSON UI schema describing how the rules form should look
+  """
   rulesUISchema: RSJsonNode
-  # A webtask.io / Auth0 Extend URL to call to execute the code
+  """
+  A webtask.io / Auth0 Extend URL to call to execute the code
+  """
   url: String
-  # A url pointing to the program logo
+  """
+  A url pointing to the program logo
+  """
   logo: String
-  # Program attribution settings if the program supports attribution
+  """
+  Program attribution settings if the program supports attribution
+  """
   sharing: ProgramTemplateSharingSettings
   requirements: [ProgramRequirement!]
+  """
+  Script for migrating program rules
+  """
+  rulesMigrationScript: String
 }
 
 type ProgramTemplateSharingSettings {
-  # Whether attribution is enabled or not
+  """
+  Whether attribution is enabled or not
+  """
   enabled: Boolean!
 }
 
@@ -1800,8 +2680,36 @@ type ProgramWidgetTemplate {
   defaults: RSJsonNode!
 }
 
+"""
+Input for program introspection preview
+"""
+input ProgramIntrospectionPreviewInput {
+  rules: RSJsonNode!
+}
+
+"""
+Interface type for either a ProgramRewardConfig or a GlobalRewardConfig
+"""
+interface IsPredefinedReward {
+  """
+  Unique global ID for predefined rewards
+  """
+  predefinedRewardType: PredefinedRewardType!
+}
+
+"""
+Config for a program reward
+"""
 type ProgramRewardConfig implements IsPredefinedReward & TranslatableAsset {
   key: String!
+  """
+  The key for the linked GlobalRewardConfig
+  """
+  globalRewardKey: String
+  """
+  The linked GlobalRewardConfig
+  """
+  globalRewardConfig: GlobalRewardConfig
   name: String
   description: String
   rewardType: RewardType
@@ -1810,26 +2718,97 @@ type ProgramRewardConfig implements IsPredefinedReward & TranslatableAsset {
   currency: RSCurrencyCode
   monthsDiscountIsValid: Int
     @deprecated(reason: "Use validityDuration instead.")
-  validityDuration: IsoDuration
+  """
+    The duration between reward creation and reward expiry
+  """
+    validityDuration: IsoDuration
+  """
+  The duration between reward creation and reward given
+  """
+  pendingDuration: IsoDuration
   fuelTankType: FuelTankType
-  # Unique global ID for predefined rewards
+  integrationId: ID @deprecated(reason: "Use integration instead")
+  integration: TenantIntegration
+  """
+  Integration specific configuration (i.e. external gift card identifiers)
+  """
+  integrationSettings: RSJsonNode
+  translationInfo: TranslationInfo!
+  """
+  Unique global ID for predefined rewards
+  """
   predefinedRewardType: PredefinedRewardType!
-  # The custom codes used for FUELTANK rewards
+  """
+  The custom codes used for FUELTANK rewards
+  """
   customCodes(
     used: Boolean! = false
     limit: Int! = 20
     offset: Int! = 0
-  ): CustomCodeList
-  integrationId: ID
-  integration: TenantIntegration
-  # Integration specific configuration (i.e. external gift card identifiers)
-  # TODO - include externalRewardId and integrationTemplateId in integrationSettings
-  integrationSettings: RSJsonNode
-  translationInfo: TranslationInfo!
+  ): CustomCodeList!
   prettyValue(
     locale: RSLocale
     formatType: RewardValueFormatType! = UNIT_FORMATTED
   ): String!
+}
+
+"""
+Config for a global reward
+"""
+type GlobalRewardConfig implements IsPredefinedReward {
+  key: String!
+  name: String
+  description: String
+  rewardType: RewardType
+  amount: Int
+  unit: String
+  currency: RSCurrencyCode
+  """
+  The duration between reward creation and reward expiry
+  """
+  validityDuration: IsoDuration
+  """
+  The duration between reward creation and reward given
+  """
+  pendingDuration: IsoDuration
+  fuelTankType: FuelTankType
+  integration: TenantIntegration
+  """
+  Integration specific configuration (i.e. external gift card identifiers)
+  """
+  integrationSettings: RSJsonNode
+  """
+  Unique global ID for predefined rewards
+  """
+  predefinedRewardType: PredefinedRewardType!
+  """
+  The custom codes used for FUELTANK rewards
+  """
+  customCodes(
+    used: Boolean! = false
+    limit: Int! = 20
+    offset: Int! = 0
+  ): CustomCodeList!
+  prettyValue(
+    locale: RSLocale
+    formatType: RewardValueFormatType! = UNIT_FORMATTED
+  ): String!
+}
+
+type GlobalRewardConfigList {
+  data: [GlobalRewardConfig!]!
+  count: Int!
+  totalCount: Long!
+}
+
+type GlobalRewardConfigDeleteResult {
+  deletedCount: Long!
+}
+
+type IsPredefinedRewardList {
+  data: [IsPredefinedReward!]!
+  count: Int!
+  totalCount: Long!
 }
 
 type ProgramRequirement {
@@ -1844,20 +2823,34 @@ type ProgramRequirement {
 type ProgramEmailTransaction implements GraphNodeData {
   id: ID!
   programId: ID
-  # Program that generated the email
+  """
+  Program that generated the email
+  """
   program: Program
-  # Program email key
+  """
+  Program email key
+  """
   key: String!
-  # User receiving the email
+  """
+  User receiving the email
+  """
   user: User!
-  # Program generated context query for email rendering
+  """
+  Program generated context query for email rendering
+  """
   query: String!
   queryVariables: RSJsonNode!
-  # Date the transaction was created
+  """
+  Date the transaction was created
+  """
   dateCreated: RSDate!
-  # Date the transaction was queued
+  """
+  Date the transaction was queued
+  """
   dateQueued: RSDate
-  # Date the email was sent
+  """
+  Date the email was sent
+  """
   dateSent: RSDate
   status: EmailTransactionStatus!
   rewardId: ID
@@ -1936,75 +2929,139 @@ input TenantIntegrationInput {
   config: RSJsonNode
 }
 
-# A webhook with its payload
+"""
+A webhook with its payload
+"""
 type Webhook {
   id: ID!
-  type: String!
+  type: WebhookType!
   dateCreated: RSDate!
   data: RSJsonNode
-  # Get the delivery attempt logs for this webhook
+  """
+  Get the delivery attempt logs for this webhook
+  """
   subscriptionLog(
     limit: Int! = 20
     offset: Int! = 0
   ): WebhookSubscriptionLogList!
 }
 
-# Delivery attempt logs for one WebhookSubscription
+"""
+Delivery attempt logs for one WebhookSubscription
+"""
 type WebhookSubscriptionLog {
-  # The url of the endpoint that receives events
+  """
+  The url of the endpoint that receives events
+  """
   endpointUrl: String!
   subscription: WebhookSubscription
-  # The list of HTTP request attempts to this webhook subscription
+  """
+  The list of HTTP request attempts to this webhook subscription
+  """
   attempts(limit: Int! = 20, offset: Int! = 0): WebhookDeliveryAttemptList!
 }
 
-# A list of WebhookSubscriptionLogs
+"""
+A list of WebhookSubscriptionLogs
+"""
 type WebhookSubscriptionLogList {
   data: [WebhookSubscriptionLog!]!
   count: Int!
   totalCount: Long!
 }
 
-# The result of one HTTP request attempt to a webhook subscription
+"""
+The result of one HTTP request attempt to a webhook subscription
+"""
 type WebhookDeliveryAttempt {
-  dateAttempted: RSDate
-  # The status received from the endpoint. Null if we weren't able to connect.
+  """
+  The date this attempt was made
+  """
+  dateAttempted: RSDate!
+  """
+  The status received from the endpoint. Null if we weren't able to connect.
+  """
   status: Int
 }
 
-# A list of WebhookDeliveryAttempts
+"""
+A list of WebhookDeliveryAttempts
+"""
 type WebhookDeliveryAttemptList {
   data: [WebhookDeliveryAttempt!]!
   count: Int!
   totalCount: Long!
 }
 
-# A list of Webhooks
+"""
+A list of Webhooks
+"""
 type WebhookList {
   data: [Webhook!]!
   count: Int!
   totalCount: Long!
 }
 
-# A webhook subscription to an endpoint
+"""
+A webhook subscription to an endpoint
+"""
 type WebhookSubscription {
-  # The url of the endpoint that receives events
+  """
+  The url of the endpoint that receives events
+  """
   endpointUrl: String!
-  # Display name
+  """
+  Display name
+  """
   name: String
   source: WebhookSubscriptionSourceType!
+  webhookTypes: [WebhookType!]!
+  """
+  The status of this webhook subscription
+  """
+  status: WebhookSubscriptionStatus!
   integration: TenantIntegration
 }
 
-# The source that created a WebhookSubscription
+"""
+The status of a WebhookSubscription
+"""
+type WebhookSubscriptionStatus {
+  """
+  The type of this status
+  """
+  type: WebhookSubscriptionStatusType!
+  """
+  The message of this status
+  """
+  message: String
+}
+
+"""
+The type of a WebhookSubscriptionStatus
+"""
+enum WebhookSubscriptionStatusType {
+  ENABLED
+  DISABLED
+}
+
+"""
+The source that created a WebhookSubscription
+"""
 enum WebhookSubscriptionSourceType {
-  # Created through the portal or API
+  """
+  Created through the portal or API
+  """
   MANUAL
-  # Managed by an integration
+  """
+  Managed by an integration
+  """
   INTEGRATION
 }
 
-# A list of WebhookSubscriptions
+"""
+A list of WebhookSubscriptions
+"""
 type WebhookSubscriptionList {
   data: [WebhookSubscription!]!
   count: Int!
@@ -2016,17 +3073,25 @@ type WebhookSubscriptionDeleteResult {
 }
 
 input WebhookSubscriptionInput {
-  # The url of the endpoint that receives events
+  """
+  The url of the endpoint that receives events
+  """
   endpointUrl: String!
-  # Optional name of the endpoint that receives events
+  """
+  Optional name of the endpoint that receives events
+  """
   name: String
+  """
+  Operations for adding/deleting WebhookTypes for this WebhookSubscription
+  """
+  webhookTypes: [WebhookTypeOperation!]
 }
 
 input WebhookFilterInput {
   AND: [WebhookFilterInput!]
   OR: [WebhookFilterInput!]
   id_eq: ID
-  type_eq: String
+  type_eq: WebhookType
   dateCreated_gte: RSDate
   dateCreated_lt: RSDate
   dateCreated_timeframe: RSRelativeTimeframe
@@ -2036,7 +3101,9 @@ type TestWebhookSubscriptionResult {
   subscription: WebhookSubscription!
 }
 
-# Codes used for FUELTANK rewards
+"""
+Codes used for FUELTANK rewards
+"""
 type CustomCode {
   code: String!
   dateUploaded: RSDate
@@ -2081,11 +3148,6 @@ type CustomCodeDeleteResult {
   deletedCount: Long!
 }
 
-# Interface type for either a ProgramRewardConfig or a legacy RewardSetting
-interface IsPredefinedReward {
-  predefinedRewardType: PredefinedRewardType!
-}
-
 input ProgramFilterInput {
   AND: [ProgramFilterInput!]
   OR: [ProgramFilterInput!]
@@ -2094,6 +3156,8 @@ input ProgramFilterInput {
   name_eq: String
   name_in: [String!]
   status_eq: ProgramStatus
+  status_ne: ProgramStatus
+  status_in: [ProgramStatus!]
   dateCreated_gte: RSDate
   dateCreated_lt: RSDate
   dateCreated_timeframe: RSRelativeTimeframe
@@ -2108,10 +3172,14 @@ input ProgramInput {
   rewards: [ProgramRewardConfigInput!]
   widgets: [ProgramWidgetConfigInput!]
   sharing: ProgramSharingConfigInput
-  # An instance of the values in the Program Template's rules schema
+  """
+  An instance of the values in the Program Template's rules schema
+  """
   rules: RSJsonNode
   analytics: RSJsonNode
-  # Deprecated. Use taskStates instead.
+  """
+  Deprecated. Use taskStates instead.
+  """
   taskState: ProgramTaskStateInput
   taskStates: [ProgramTaskStateInput!]
 }
@@ -2122,19 +3190,47 @@ input ProgramEmailConfigInput {
   values: RSJsonNode!
 }
 
+"""
+Input type for ProgramRewardConfig
+"""
 input ProgramRewardConfigInput {
+  key: String!
+  """
+  The key for GlobalRewardConfig to be linked. When this field is present, all of the other fields must be null.
+  """
+  globalRewardKey: String
+  name: String
+  description: String
+  rewardType: RewardType
+  amount: Int
+  unit: String
+  """
+  Deprecated. Use unit with an ISO currency code instead.
+  """
+  currency: String
+  """
+  Deprecated. Use validityDuration instead.
+  """
+  monthsDiscountIsValid: Int
+  validityDuration: IsoDuration
+  pendingDuration: IsoDuration
+  fuelTankType: FuelTankType
+  integrationId: ID
+  integrationSettings: RSJsonNode
+}
+
+"""
+Input type for GlobalRewardConfig
+"""
+input GlobalRewardConfigInput {
   key: String!
   name: String
   description: String
   rewardType: RewardType!
   amount: Int
   unit: String
-  # Deprecated. Use unit with an ISO currency code instead.
-  currency: String
-  # Deprecated. Use validityDuration instead.
-  monthsDiscountIsValid: Int
   validityDuration: IsoDuration
-  # For display purposes only. Could hopefully be replaced.
+  pendingDuration: IsoDuration
   fuelTankType: FuelTankType
   integrationId: ID
   integrationSettings: RSJsonNode
@@ -2156,7 +3252,7 @@ input ProgramRedirectUrlConfigInput {
   """
   Expiry duration for referral code cookies
   """
-  cookieExpiryDuration: IsoDuration!
+  cookieExpiryDuration: IsoDuration
   rules: RSJsonNode
 }
 
@@ -2172,6 +3268,12 @@ input ProgramTaskStateInput {
 
 interface TranslatableAsset {
   translationInfo: TranslationInfo!
+}
+
+type TranslatableAssetList {
+  data: [TranslatableAsset!]!
+  count: Int!
+  totalCount: Long!
 }
 
 type TranslationInfo {
@@ -2316,7 +3418,9 @@ input UserEventInput {
 }
 
 input UserEventDataInput {
-  # Deprecated. This field is ignored.
+  """
+  Deprecated. This field is ignored.
+  """
   id: ID
   key: String!
   fields: RSJsonNode
@@ -2352,7 +3456,7 @@ type UserEventDataList {
 }
 
 input UserEventDataFilterInput {
-  key: String!
+  key: String
   id_eq: ID
   dateTriggered_gte: RSDate
   dateTriggered_lt: RSDate
@@ -2376,12 +3480,19 @@ input UserMetricInput {
   userEventKey: String
   dateTriggeredWindow: IsoInterval
   fieldsFilters: [GenericFieldFilterInput!]
+  """
+  An JSONata expression to filter events, the provided context is defined in
+  https://fast.ssqt.io/npm/@saasquatch/schema/json/UserMetricJSONataFilterContext.schema.json
+  """
+  filter: JSONata
 }
 
 type UserAggregate {
   id: String!
   name: String!
-  # JSON schema
+  """
+  JSON schema
+  """
   rules: RSJsonNode
 }
 
@@ -2394,6 +3505,7 @@ type UserMetric {
   userEvent: UserEventMeta!
   dateTriggeredWindow: IsoInterval
   fieldsFilters: [GenericFieldFilter!]
+  filter: JSONata
 }
 
 type UserMetricList {
@@ -2461,15 +3573,25 @@ type UserDoNotTrackIdentifierDeleteResult {
 }
 
 input UserAnalyticsEvent {
-  # user identifier
+  """
+  user identifier
+  """
   id: String!
-  # account identifier
+  """
+  account identifier
+  """
   accountId: String!
-  # program associated with this analytics event - required (default to 'classic')
+  """
+  program associated with this analytics event - required (default to 'classic')
+  """
   programId: ID!
-  # the type of analytic to fire
+  """
+  the type of analytic to fire
+  """
   type: UserAnalyticsEventType!
-  # event metat data that will be included along with the analytic and validated via user analytic json schema
+  """
+  event meta data that will be included along with the analytic and validated via user analytic json schema
+  """
   meta: RSJsonNode!
 }
 
@@ -2503,6 +3625,8 @@ enum GenericFieldFilterOperator {
 type PortalProject {
   id: ID!
   name: String
+  liveTenant: Tenant
+  testTenant: Tenant
 }
 
 input PortalProjectInput {
@@ -2512,4 +3636,6 @@ input PortalProjectInput {
 schema {
   query: Query
   mutation: Mutation
+}
+
 }`;
