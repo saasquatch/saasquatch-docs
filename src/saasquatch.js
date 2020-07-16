@@ -13,6 +13,10 @@ A JSON schema
 """
 scalar JsonSchema
 """
+A JSONata expression
+"""
+scalar JSONata
+"""
 A 64-bit integer
 """
 scalar Long
@@ -706,10 +710,7 @@ input EditReferralCodeInput {
   """
   deleteExisting: Boolean
   """
-  Whether the share links associated with the existing referral code should be
-  """
-  """
-  transferred to the new referral code. false by default.
+  Whether the share links associated with the existing referral code should be transferred to the new referral code. false by default.
   """
   transferShareLinks: Boolean
 }
@@ -3481,8 +3482,7 @@ input UserMetricInput {
   dateTriggeredWindow: IsoInterval
   fieldsFilters: [GenericFieldFilterInput!]
   """
-  An JSONata expression to filter events, the provided context is defined in
-  https://fast.ssqt.io/npm/@saasquatch/schema/json/UserMetricJSONataFilterContext.schema.json
+  An JSONata expression to filter events, the provided context is defined in https://fast.ssqt.io/npm/@saasquatch/schema/json/UserMetricJSONataFilterContext.schema.json
   """
   filter: JSONata
 }
