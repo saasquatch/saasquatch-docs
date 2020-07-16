@@ -250,6 +250,10 @@ widget or a batch upload process. Only fires when a new user is created, not for
         "firstName":"Mike",
         "lastName":"Keenerson",
         "referralCode":"MIKEKEENERSON",
+        "referralCodes":{
+            "classic":"MIKEKEENERSON",
+            "partner-program":"FREE"
+        },
         "imageUrl":"",
         "firstSeenIP":"10.230.163.157",
         "lastSeenIP":null,
@@ -302,7 +306,21 @@ widget or a batch upload process. Only fires when a new user is created, not for
                 "emailShareLink":"http://ssqt.co/mbbcEY",
                 "linkedinShareLink":"http://ssqt.co/m1bcEY"
             }
-        }
+        },
+        "programShareLinks":{
+            "partner-program":{
+                "cleanShareLink":"http://example.com/free",
+                "MOBILE":{
+                    "DIRECT":"http://example.com/free?me"
+                },
+                "EMAIL":{
+                    "DIRECT":"http://example.com/free?mP"
+                },
+                "UNKNOWN":{
+                    "DIRECT":"http://example.com/free?mv"
+                }
+            }
+       }
     }
 }
 ```
@@ -518,6 +536,8 @@ Sent after a referral is first moderated automatically.
         "id":"5773073ee4b066c5cb1718fc",
         "referredUser":"5773073ee4b08b14ab979fb8",
         "referrerUser":"577306eae4b08b14ab979f70",
+        "referralCodeUsed":"LORETTABURKE10" ,
+        "shareLinkUsed":"http://ssqt.co/mPbcF5",
         "referredReward":null,
         "referrerReward":null,
         "moderationStatus":"PENDING",
@@ -552,6 +572,8 @@ Sent whenever a new referral connection is successfully established.
         "id":"5773073ee4b066c5cb1718fc",
         "referredUser":"5773073ee4b08b14ab979fb8",
         "referrerUser":"577306eae4b08b14ab979f70",
+        "referralCodeUsed":"LORETTABURKE10" ,
+        "shareLinkUsed":"http://ssqt.co/mPbcF5",
         "referredReward":null,
         "referrerReward":null,
         "moderationStatus":"PENDING",
@@ -581,6 +603,8 @@ Sent whenever a referral is converted.
         "id":"57731b43e4b07320b5c097ec",
         "referredUser":"57731b42e4b08b14ab97a0c5",
         "referrerUser":"5773073ee4b08b14ab979fb8",
+        "referralCodeUsed":"LORETTABURKE10" ,
+        "shareLinkUsed":"http://ssqt.co/mPbcF5",
         "referredReward":null,
         "referrerReward":null,
         "moderationStatus":"PENDING",
@@ -615,6 +639,8 @@ Sent whenever a referred user, or referral, is cancelled.
         "id":"577308bce4b066c5cb171927",
         "referredUser":"577308bce4b08b14ab97a015",
         "referrerUser":"5773073ee4b08b14ab979fb8",
+        "referralCodeUsed":"LORETTABURKE10" ,
+        "shareLinkUsed":"http://ssqt.co/mPbcF5",
         "referredReward":null,
         "referrerReward":null,
         "moderationStatus":"PENDING",
@@ -665,7 +691,7 @@ Sent whenever a data export for a tenant is queued for creation.
         "dateExpires":null,
         "dateCompleted":null,
         "type":"USER",
-        "format":"CSV",
+        "outputFormat":"CSV",
         "params":{  
             "createdSince":null,
             "createdBefore":null,
@@ -697,7 +723,7 @@ Sent whenever an export that was being generated for a tenant has completed and 
         "dateExpires":1470247749304,
         "dateCompleted":1467223749304,
         "type":"USER",
-        "format":"CSV",
+        "outputFormat":"CSV",
         "params":{  
             "createdSince":null,
             "createdBefore":null,
