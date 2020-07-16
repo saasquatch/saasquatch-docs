@@ -3636,6 +3636,4 @@ input PortalProjectInput {
 schema {
   query: Query
   mutation: Mutation
-}
-
 }`;
