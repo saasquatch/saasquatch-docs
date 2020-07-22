@@ -1441,6 +1441,7 @@ paths:
 
   "/{tenant_alias}/open/user/cookie_user":
     put:
+      deprecated: true
       summary: Create Cookie User
       operationId: createCookieUser
       x-docs-anchor: create_cookie_user
@@ -1452,8 +1453,6 @@ paths:
         - UserJWT: []
       description: |
         Generates a cookie account/user and returns a user object representing that newly created cookie user/account.
-
-        You can provide vanity referral codes and sharelinks when creating a cookie user. Make sure to check the tenant setting `allowReferralCodeEditOnUserUpsert`, if it is set to `FALSE` then referral codes added when using this method on an existing user will be ignored. New sharelinks and referral codes will be set as primary for the given user. If a referral code is passed without an associated sharelink for that program, then one will be generated and vice versa for sharelinks.
 
         By default this method requires no authentication. If [Secure Mode](/developer/squatchjs/signed-requests/#changing-signed-request-settings) for this method is enabled then you will need to include a [JWT](/topics/json-web-tokens) with a payload containing `{allowAnonymous:true}`
       parameters:
