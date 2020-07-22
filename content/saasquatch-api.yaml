@@ -1468,9 +1468,9 @@ paths:
           description: Information about the upserted user
           examples:
             "application/json":
-              $ref: "#/definitions/OpenUser/example"
+              $ref: "#/definitions/OpenCookieUser/example"
           schema:
-            $ref: "#/definitions/OpenUser"
+            $ref: "#/definitions/OpenCookieUser"
         403:
           description: Endpoint disabled
           schema:
@@ -3550,6 +3550,39 @@ definitions:
         UNKNOWN:
           DIRECT: "http://example.com/free?mv"
 
+  GeneratedProgramShareLink:
+    description: Auto Generated Share links for a users program.
+    type: object
+    properties:
+      cleanShareLink:
+        type: string
+        title: "The clean link for a given program"
+        description: "If the program's primary link is a vanity link then this will be the unencoded link, if not it is the UNKNOWN engagementMedium and UNKNOWN shareMedium link."
+      MOBILE:
+        title: "Mobile Share Links"
+        type: object
+        description: "Share links tracked with the MOBILE engagement medium."
+        $ref: "#/definitions/subProgramShareLink"
+      EMAIL:
+        title: "Email Share Links"
+        type: object
+        description: "Share links tracked with the EMAIL engagement medium."
+        $ref: "#/definitions/subProgramShareLink"
+      UNKNOWN:
+        title: "Share Links"
+        type: object
+        description: "Share links tracked with the UNKNOWN engagement medium."
+        $ref: "#/definitions/subProgramShareLink"
+    example:
+      fakeProgram1:
+        cleanShareLink: "http://ssqt.co/mzzxNn"
+        MOBILE:
+          DIRECT: "http://ssqt.co/mezxNn"
+        EMAIL:
+          DIRECT: "http://ssqt.co/mPzxNn"
+        UNKNOWN:
+          DIRECT: "http://ssqt.co/mvzxNn"
+
   subProgramShareLink:
     properties:
       DIRECT:
@@ -5105,14 +5138,14 @@ definitions:
           type: string
         example:
           classic: "BOBTESTERSON"
-          fakeProgram1: "FREE"
+          fakeProgram1: "BOBTESTERSON123"
         description: The primary custom referral codes for different programs.
       locale:
         type: string
         example: "en_US"
         description: |
           The user's locale, used for [Internationalization](/themes/internationalization). The locale must be of the format 'language_COUNTRY' where the language code must be lowercase and the country code must be uppercase. The separator must be an underscore.
-      payementProviderId:
+      paymentProviderId:
         type: string
         example: "cus_dk3hj3k3sfj8987"
         description: |
@@ -5142,13 +5175,6 @@ definitions:
         example: "https://www.example.com/profile/ab5111251125"
         description: |
           Optionally used in widgets, emails, and themes. If you provide a absolute profile image URL the minimum image size is 80px x 80px.
-      shareLinks:
-        type: object
-        items:
-          type: string
-        example:
-          fakeProgram1: "http://example.com/free"
-        description: The primary custom shareLinks for different programs. If a given program does not have a referral code, one will be generated.
       customFields:
         type: object
         description: |
@@ -5162,6 +5188,116 @@ definitions:
           address: "123 Main st., City, Province, Country, H0H0H0"
           shoeSize: 12.5
           currency: "CAD"
+  
+  OpenCookieUser:
+    description: An object describing an individual user returned by an open endpoint
+    properties:
+      firstName:
+        type: string
+        example: "Bob"
+        description: |
+          The user's first name
+      lastName:
+        type: string
+        example: "Testerson"
+        description: |
+          The user's last name
+      email:
+        type: string
+        example: "bob@example.com"
+        description: The email address provided for the user. SaaSquatch uses this to notify someone when they have a successful referral.
+      referralCode:
+        type: string
+        example: "BOBTESTERSON"
+        description: The referral code *used for sharing by this user*
+      referralCodes:
+        type: object
+        items:
+          type: string
+        example:
+          classic: "BOBTESTERSON"
+          fakeProgram1: "BOBTESTERSON123"
+        description: The primary custom referral codes for different programs.
+      locale:
+        type: string
+        example: "en_US"
+        description: |
+          The user's locale, used for [Internationalization](/themes/internationalization). The locale must be of the format 'language_COUNTRY' where the language code must be lowercase and the country code must be uppercase. The separator must be an underscore.
+      paymentProviderId:
+        type: string
+        example: "cus_dk3hj3k3sfj8987"
+        description: |
+          The user's Stripe Customer ID, the Recurly Account ID, the Braintree Account ID, or the Zuora Account ID. This value is not updatable and can only be set once. This field can be left out if not explicitly setting the value.
+      referredBy:
+        type: object
+        description: An object containing information about who referred this user.
+        properties:
+          code:
+            type: string
+            example: "JONDOE1234"
+            description: The referral code of the person that referred this account.
+          isConverted:
+            type: bool
+            example: true
+            description: Whether or not this referred user has hit to goal post and the referral should be converted to kick of reward creation for the referrer.
+      referredByCodes:
+        type: array
+        items:
+          type: string
+        description: An array of referral codes used to refer this account.
+        example:
+          - "JONDOE1234"
+          - "JOHNDOECODE"
+      imageUrl:
+        type: string
+        example: "https://www.example.com/profile/ab5111251125"
+        description: |
+          Optionally used in widgets, emails, and themes. If you provide a absolute profile image URL the minimum image size is 80px x 80px.
+      customFields:
+        type: object
+        description: |
+          An object containing the custom fields for this user.
+
+          Learn more about the available custom field functionality in our [Custom Fields Developer Guide](/features/custom-user-fields)
+        example:
+          lastPurchaseDate: 1512152525513
+          plan: "Pro+"
+          phone: 19055551234
+          address: "123 Main st., City, Province, Country, H0H0H0"
+          shoeSize: 12.5
+          currency: "CAD"
+    example:
+      id: "898746321"
+      cookieId: "2523423436323"
+      accountId: "accc9065"
+      firstName: "Bob"
+      lastName: "Testerson"
+      email: "bob@example.com"
+      referable: true
+      locale: null
+      referralCode: "BOBTESTERSON"
+      referralCodes:
+        classic: "BOBTESTERSON"
+        fakeProgram1: "BOBTESTERSON123"
+      referredBy:
+        code: "JONDOE1234"
+        isConverted: true
+        newlyReferred: false
+      referredByCodes:
+        - "JONDOE1234"
+      imageUrl: ""
+      customFields:
+        lastPurchaseDate: 1512152525513
+        plan: "Pro+"
+        phone: 19055551234
+        address: "123 Main st., City, Province, Country, H0H0H0"
+        shoeSize: 12.5
+        currency: "CAD"
+      segments: ["segment1", "segment3"]
+      shareLinks:
+        $ref: "#/definitions/Sharelink/example"
+      programShareLinks:
+        $ref: "#/definitions/GeneratedProgramShareLink/example"
 
   ListEnvelope:
     description: A generic base model to help with paginating lists. The `count` counts the number in this list, and `totalCount` gives the total available results.
