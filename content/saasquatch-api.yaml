@@ -5253,6 +5253,15 @@ definitions:
         example: "https://www.example.com/profile/ab5111251125"
         description: |
           Optionally used in widgets, emails, and themes. If you provide a absolute profile image URL the minimum image size is 80px x 80px.
+      shareLinks:
+        readOnly: true
+        $ref: "#/definitions/Sharelink"
+      programShareLinks:
+        type: object
+        items:
+          type: object
+        description: The primary share links available for a users programs.
+        $ref: "#/definitions/GeneratedProgramShareLink"
       customFields:
         type: object
         description: |
