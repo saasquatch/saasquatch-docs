@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import styled from "styled-components";
 import { HashLink as Link } from "react-router-hash-link";
 import { useRouteData } from "react-static";
 import slug from "slug";
@@ -23,6 +24,7 @@ import { VersionContext } from "src/components/useVersion";
 import { VersionSwitcher } from "src/components/VersionSwitcher";
 import { Operation, Spec } from "swagger-schema-official";
 import { AuthSummary } from "components/api/AuthSummary";
+import { Table, THead, TR, TH, TBody, TD } from "components/Table";
 
 // Provided in static.config.js
 type RouteData = {
@@ -36,6 +38,30 @@ type APIData = {
   showMethod: (op: Operation) => boolean;
   versionLabel: string;
 };
+
+const Description = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  & > .auth-summary-wrapper {
+    order: 1;
+    min-width: 250px;
+    margin-left: 20px;
+    margin-right: 16px;
+    margin-top: 32px;
+  }
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+
+    & > .auth-summary-wrapper {
+      min-width: 100%;
+      margin-right: 20px;
+      margin-bottom: 16px;
+    }
+  }
+`;
 
 export function useApiData(): APIData {
   const { swagger } = useRouteData<RouteData>();
@@ -316,14 +342,46 @@ function TagSummary({ tag }: { tag: string }): JSX.Element {
   return (
     <div id={slug(tag)}>
       <div className="row-fluid">
-        <div className="span6">
+        <div className={subEndpoints.length > 0 ? "span6" : "span12"}>
           <h2>{tagDetails.name}</h2>
           <div className="lead">
             <Markdown source={tagDetails.description}></Markdown>
           </div>
         </div>
-        <div className="span6">
-          <Styles.BootstrapListGroup as="div">
+        {subEndpoints.length > 0 && (
+          <div className="span6" style={{ paddingTop: "60px" }}>
+            <Table>
+              <THead>
+                <TR>
+                  <TH>Endpoints</TH>
+                </TR>
+              </THead>
+              <TBody>
+                {subEndpoints.map((e) => (
+                  <TR key={e.method["x-docs-anchor"]}>
+                    <TD>
+                      <a
+                        className="list-group-item"
+                        href={"#" + e.method["x-docs-anchor"]}
+                      >
+                        {e.method.summary}
+                      </a>
+                    </TD>
+                  </TR>
+                ))}
+                {numHiddenMethods > 0 && (
+                  <TR>
+                    <TD>
+                      <Link to="#hidden">
+                        <i className="fa fa-compress"></i> {numHiddenMethods}{" "}
+                        endpoints hidden
+                      </Link>
+                    </TD>
+                  </TR>
+                )}
+              </TBody>
+            </Table>
+            {/* <Styles.BootstrapListGroup as="div">
             <Styles.BootstrapListGroupItem as="div">
               <b>Endpoints</b>
             </Styles.BootstrapListGroupItem>
@@ -350,8 +408,9 @@ function TagSummary({ tag }: { tag: string }): JSX.Element {
                 </VersionSwitcher>
               </Styles.BootstrapListGroupItem>
             )}
-          </Styles.BootstrapListGroup>
-        </div>
+          </Styles.BootstrapListGroup> */}
+          </div>
+        )}
       </div>
       <Endpoints endpoints={subEndpoints} />
     </div>
@@ -422,16 +481,8 @@ function EndpointsInner({
             className="apidocs-section"
             key={method["x-docs-anchor"]}
           >
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <div
-                className="pull-right"
-                style={{
-                  order: 1,
-                  minWidth: "250px",
-                  marginLeft: "20px",
-                  marginRight: "16px",
-                }}
-              >
+            <Description>
+              <div className="pull-right auth-summary-wrapper">
                 <AuthSummary method={method} />
               </div>
               <div>
@@ -441,7 +492,7 @@ function EndpointsInner({
                   <Markdown source={method.description} />
                 </div>
               </div>
-            </div>
+            </Description>
 
             <HideShowMethod>
               <div>

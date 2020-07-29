@@ -13,6 +13,11 @@ const MethodButton = styled.button`
   font-size: 14px;
   font-weight: bold;
   color: #777;
+
+ & > span {
+   margin-left: 16px;
+   margin-top: -2px;
+ }
 `;
 
 export function HideShowMethod({
