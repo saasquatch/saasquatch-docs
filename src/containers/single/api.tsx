@@ -47,9 +47,7 @@ const Description = styled.div`
   & > .auth-summary-wrapper {
     order: 1;
     min-width: 250px;
-    margin-left: 20px;
-    margin-right: 16px;
-    margin-top: 32px;
+    margin: auto 16px auto 20px;
   }
 
   @media screen and (max-width: 768px) {
@@ -57,8 +55,7 @@ const Description = styled.div`
 
     & > .auth-summary-wrapper {
       min-width: 100%;
-      margin-right: 20px;
-      margin-bottom: 16px;
+      margin: 0px 20px 16px auto;
     }
   }
 `;
