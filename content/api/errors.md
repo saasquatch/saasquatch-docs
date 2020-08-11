@@ -56,5 +56,5 @@ template: article.html
 </table>
 
 ---
-If you require further assistance with any error codes you are experiencing, please feel free to reach out to our [Success Team](mailto:success@referralsaasquatch.com) who will be more than happy to help.<p>
+If you require further assistance with any error codes you are experiencing, please feel free to reach out to our [Success Team](mailto:success@saasquatch.com) who will be more than happy to help.<p>
 For quicker troubleshooting, include a copy of the call that was made and the full error message that was received.

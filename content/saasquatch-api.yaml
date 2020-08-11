@@ -247,7 +247,6 @@ paths:
           examples:
             "application/json":
               id: "89842"
-              currency: "USD"
               subscription:
                 status: "PAID"
                 value: 29.99
@@ -255,6 +254,7 @@ paths:
                 billingIntervalValue: 1
               referral:
                 code: "WILLSANDERSON2"
+              currency: "USD"
           schema:
             $ref: "#/definitions/Account"
         403:
@@ -584,6 +584,17 @@ paths:
 
       description: |
         This API method returns the full list of referral share links for a user. Optional filter parameters are available to return only links of a specific share or engagement medium.
+
+        Share links are made available to a Referrer to provide to their friends and family to click and be directed to your referral program landing page.
+
+        The sharelinks are segmented by Engagement Medium, which is the channel the Referrer accessed the program to be able to share out their referral through. For each Engagment Medium, like `EMBED`, a link is provided for each available Share Medium. This segmentation is used to power the [SaaSquatch analytics platform](/features/analytics/) to provide information about how, and where, your users are interacting with your referral program.
+        For example, The `WHATSAPP` link from the `MOBILE` section is intended to be used to indicated to our system that the Referrer accessed the referral program from a mobile device and shared their referral with their friend using Whatsapp. More information about available [Engagement Mediums](/success/touchpoints/) and [Share Mediums](/success/share-options/) can be found in our success center.
+
+        Additionally, a clean share link is provided. If the given link is a vanity link, then the clean share link will have no encoding, for example `http://example.com/free`. The clean share link will have the `UNKNOWN` Share Medium and `UNKNOWN` Engagement Medium link.
+
+        Share links work by dropping a tracking cookie in the user's browser when the user clicks the link and is directed to your referral program's landing page. This cookie includes the referral code of the Referrer that shared it. Once on your website this cookie can be read using the squatch.js [autofill](/developer/squatchjs/v2/#3-autofill-the-referral-code) method and is also automatically picked up by our squatch.js library to connect referrals.
+
+        The referral code is also passed along to your referral program landing page as the URL parameter `rsCode`. For example `http://ssqt.co/pZVp` redirects to `https://www.google.ca/?rsCode=JOHNDOE`.
       parameters:
         - $ref: "#/parameters/tenant_alias"
         - name: accountId
@@ -766,7 +777,7 @@ paths:
       parameters:
         - name: code
           in: path
-          description: The referral code to look up. E.g. "BOBTESTERSON"
+          description: The referral code to look up, E.g. "BOBTESTERSON". This can be a user's primary or non primary referral code.
           required: true
           type: string
         - $ref: "#/parameters/tenant_alias"
@@ -774,16 +785,19 @@ paths:
         200:
           description: Referral code found
           examples:
-            - code: "BOBTESTERSON"
+            "application/json":
+              code: "BOBTESTERSON"
               dateCreated: 1411600868797
+              programId: "referral-a"
               referrerName: "Bob T"
               reward:
                 $ref: "#/definitions/RewardTemplate/example/CREDIT"
-            - code: "BOBTESTERSON"
-              dateCreated: 1411600868797
-              referrerName: "Bob T"
-              reward:
-                $ref: "#/definitions/RewardTemplate/example/PCT_DISCOUNT"
+              # - code: "BOBTESTERSON"
+              #   dateCreated: 1411600868797
+              #   referrerName: "Bob T"
+              #   programId: "referral-b"
+              #   reward:
+              #     $ref: "#/definitions/RewardTemplate/example/PCT_DISCOUNT"
           schema:
             $ref: "#/definitions/Code"
         404:
@@ -853,6 +867,8 @@ paths:
                   referredReward:
                     $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
                   referrerReward: null
+                  referralCodeUsed: "LORETTABURKE10"
+                  shareLinkUsed: "http://ssqt.co/mPbcF5"
                   moderationStatus: "ACTIONED"
                   dateReferralStarted: 1415733261238
                   dateReferralPaid: null
@@ -869,6 +885,8 @@ paths:
                     $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
                   referrerReward:
                     $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
+                  referralCodeUsed: "FREE"
+                  sharelinkUsed: "http://example.com/free?mn"
                   moderationStatus: "ACTIONED"
                   dateReferralStarted: 1415737510411
                   dateReferralPaid: 1415737557217
@@ -909,7 +927,8 @@ paths:
           schema:
             $ref: "#/definitions/Referral"
           examples:
-            $ref: "#/definitions/Referral/example"
+            "application/json":
+              $ref: "#/definitions/Referral/example"
             # "application/json":
             #   id: "546270a6e4b0c1871186a920"
             #   referredUser:
@@ -997,9 +1016,7 @@ paths:
         200:
           description: A list of reward balances
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/RewardBalance"
+            $ref: "#/definitions/RewardBalanceList"
           examples:
             "application/json":
               - $ref: "#/definitions/RewardBalance/example/CREDIT"
@@ -1070,9 +1087,7 @@ paths:
         200:
           description: A list of rewards
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Reward"
+            $ref: "#/definitions/RewardList"
           examples:
             "application/json":
               - $ref: "#/definitions/Reward/example/CREDIT"
@@ -1104,9 +1119,10 @@ paths:
           schema:
             $ref: "#/definitions/Reward"
           examples:
-            - $ref: "#/definitions/Reward/example/CREDIT"
-            - $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
-            - $ref: "#/definitions/Reward/example/FUELTANK"
+            "application/json":
+              $ref: "#/definitions/Reward/example/CREDIT"
+            # - $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
+            # - $ref: "#/definitions/Reward/example/FUELTANK"
 
         default:
           $ref: "#/responses/GeneralError"
@@ -1242,6 +1258,8 @@ paths:
       description: |
         This method updates/creates a user and an account and returns the user object representing that newly created user/account.
 
+        You can provide vanity referral codes and sharelinks in a user upsert. Make sure to check the tenant setting `allowReferralCodeEditOnUserUpsert`, if it is set to `FALSE` then referral codes added when upserting an existing user will be ignored. New sharelinks and referral codes will be set as primary for the upserted user. If a referral code is passed without an associated sharelink for that program, then one will be generated and vice versa for sharelinks.
+
         Because this call creates a user, it requires either a [write token](../openendpoints/) or an API key.
 
       parameters:
@@ -1291,6 +1309,8 @@ paths:
         - UserJWT: []
       description: |
         This method creates a user and an account and returns the user object representing that newly created user/account.
+
+        You can provide vanity referral codes and sharelinks when creating a user and account. Make sure to check the tenant setting `allowReferralCodeEditOnUserUpsert`, if it is set to `FALSE` then referral codes added when using this method on an existing user will be ignored. New sharelinks and referral codes will be set as primary for the given user. If a referral code is passed without an associated sharelink for that program, then one will be generated and vice versa for sharelinks.
 
         Because this call creates a user, it requires either a [write token](../openendpoints/) or an API key.
       parameters:
@@ -1430,6 +1450,17 @@ paths:
         - UserJWT: []
       description: |
         This API method returns the full list of referral share links for a user. Optional filter parameters are available to return only links of a specific share or engagement medium.
+
+        Share links are made available to a Referrer to provide to their friends and family to click and be directed to your referral program landing page.
+
+        The sharelinks are segmented by Engagement Medium, which is the channel the Referrer accessed the program to be able to share out their referral through. For each Engagment Medium, like `EMBED`, a link is provided for each available Share Medium. This segmentation is used to power the [SaaSquatch analytics platform](/features/analytics/) to provide information about how, and where, your users are interacting with your referral program.
+        For example, The `WHATSAPP` link from the `MOBILE` section is intended to be used to indicated to our system that the Referrer accessed the referral program from a mobile device and shared their referral with their friend using Whatsapp. More information about available [Engagement Mediums](/success/touchpoints/) and [Share Mediums](/success/share-options/) can be found in our success center.
+
+        Additionally, a clean share link is provided. If the given link is a vanity link, then the clean share link will have no encoding, for example `http://example.com/free`. The clean share link will be the `UNKNOWN` Share Medium and `UNKNOWN` Engagement Medium link.
+
+        Share links work by dropping a tracking cookie in the user's browser when the user clicks the link and is directed to your referral program's landing page. This cookie includes the referral code of the Referrer that shared it. Once on your website this cookie can be read using the squatch.js [autofill](/developer/squatchjs/v2/#3-autofill-the-referral-code) method and is also automatically picked up by our squatch.js library to connect referrals.
+
+        The referral code is also passed along to your referral program landing page as the URL parameter `rsCode`. For example `http://ssqt.co/pZVp` redirects to `https://www.google.ca/?rsCode=JOHNDOE`.
       parameters:
         - $ref: "#/parameters/tenant_alias"
         - name: accountId
@@ -1480,6 +1511,7 @@ paths:
 
   "/{tenant_alias}/open/user/cookie_user":
     put:
+      deprecated: true
       summary: Create Cookie User
       operationId: createCookieUser
       x-docs-anchor: create_cookie_user
@@ -1506,9 +1538,9 @@ paths:
           description: Information about the upserted user
           examples:
             "application/json":
-              $ref: "#/definitions/OpenUser/example"
+              $ref: "#/definitions/OpenCookieUser/example"
           schema:
-            $ref: "#/definitions/OpenUser"
+            $ref: "#/definitions/OpenCookieUser"
         403:
           description: Endpoint disabled
           schema:
@@ -1534,7 +1566,7 @@ paths:
       parameters:
         - name: referralCode
           in: query
-          description: The code with which to lookup the User
+          description: The code with which to lookup the user, E.g. "BOBTESTERSON". This can be a user's primary or non primary referral code.
           required: true
           type: string
         - $ref: "#/parameters/tenant_alias"
@@ -1547,7 +1579,6 @@ paths:
             application/json:
               id: "876343"
               accountId: "613611"
-              email: bob@example.com
               firstName: Bob
               lastInitial: T
               referralCode: BOBTESTERSON
@@ -1577,7 +1608,7 @@ paths:
       parameters:
         - name: referral_code
           in: path
-          description: The code to be validated
+          description: The code to be validated, E.g. "BOBTESTERSON". This can be a user's primary or non primary referral code.
           required: true
           type: string
         - $ref: "#/parameters/tenant_alias"
@@ -1585,16 +1616,19 @@ paths:
         200:
           description: Referral code found
           examples:
-            - code: "BOBTESTERSON"
+            "application/json":
+              code: "BOBTESTERSON"
               dateCreated: 1411600868797
+              programId: "referral-a"
               referrerName: "Bob T"
               reward:
                 $ref: "#/definitions/RewardTemplate/example/CREDIT"
-            - code: "BOBTESTERSON"
-              dateCreated: 1411600868797
-              referrerName: "Bob T"
-              reward:
-                $ref: "#/definitions/RewardTemplate/example/PCT_DISCOUNT"
+            # - code: "BOBTESTERSON"
+            #   dateCreated: 1411600868797
+            #   referrerName: "Bob T"
+            #   programId: "referral-b"
+            #   reward:
+            #     $ref: "#/definitions/RewardTemplate/example/PCT_DISCOUNT"
           schema:
             $ref: "#/definitions/Code"
         403:
@@ -1605,8 +1639,9 @@ paths:
           description: Not Found
           schema:
             $ref: "#/definitions/Error"
-  ? "/{tenant_alias}/open/code/{referral_code}/account/{account_id}/user/{user_id}"
-  : post:
+
+  "/{tenant_alias}/open/code/{code}/account/{accountId}/user/{userId}":
+    post:
       summary: Apply a referral code
       operationId: openApplyCode
       x-docs-anchor: open_apply_code
@@ -1623,17 +1658,17 @@ paths:
 
         This is an [Open Endpoint](../openendpoints/) and disabled by default. Contact support to enable the open endpoints.
       parameters:
-        - name: referral_code
+        - name: code
           in: path
           description: "Referral code to apply to user account."
           required: true
           type: string
-        - name: account_id
+        - name: accountId
           in: path
           description: 'Account to apply referral code to. This account will be marked as "referred by" the owner of the `referral_code`'
           required: true
           type: string
-        - name: user_id
+        - name: userId
           in: path
           description: 'User to apply referral code to. This user will be marked as "referred by" the owner of the `referral_code`'
           required: true
@@ -1646,11 +1681,14 @@ paths:
             "application/json":
               code: "BOBTESTERSON"
               dateCreated: 1411600868797
+              programId: "referral-a"
               referrerName: "Bob T"
               reward:
                 type: "PCT_DISCOUNT"
                 discountPercent: 10
                 monthsDiscountIsValid: 12
+          schema:
+            $ref: "#/definitions/Code"
         400:
           description: Bad Request
           schema:
@@ -2563,6 +2601,10 @@ definitions:
         type: integer
         example: 1411600868797
         description: The date the code was created.
+      programId:
+        description: The ID of the program that the provided code belongs to.
+        type: string
+        example: my-program-id
       referrerName:
         type: string
         example: Bob Testerson
@@ -2690,6 +2732,17 @@ definitions:
       amount:
         type: integer
         description: "The earned quantity of the reward. Works with: `FUELTANK`"
+
+  RewardList:
+    type: object
+    description: A list of Reward objects as `rewards`
+    properties:
+      rewards:
+        type: array
+        description: A list of Reward objects. This is the actual data in this list envelope.
+        items:
+          $ref: "#/definitions/Reward"
+
   Reward:
     title: A Reward object.
     description: Rewards are used in SaaSquatch to track the credits, discounts, gift cards and other prizes that a User earns.
@@ -3114,7 +3167,7 @@ definitions:
         readOnly: true
         $ref: "#/definitions/Sharelink"
       referredByReferral:
-        $ref: "#/definitions/Referral"
+        $ref: "#/definitions/PIIReferral"
       rewards:
         properties:
           totalCount:
@@ -3136,7 +3189,7 @@ definitions:
           data:
             type: array
             items:
-              $ref: "#/definitions/ReferralList"
+              $ref: "#/definitions/PIIReferralList"
       segments:
         type: array
         description: A list of segments that a user is a member of.
@@ -3170,7 +3223,7 @@ definitions:
       shareLinks:
         $ref: "#/definitions/Sharelink/example"
       referredByReferral:
-        $ref: "#/definitions/Referral/example"
+        $ref: "#/definitions/PIIReferral/example"
       rewards:
         totalCount: 1
         data:
@@ -3180,8 +3233,18 @@ definitions:
       referrals:
         totalCount: 1
         data:
-          - $ref: "#/definitions/Referral/example"
+          - $ref: "#/definitions/PIIReferral/example"
         segments: []
+
+  RewardBalanceList:
+    type: object
+    description: A list of Reward Balance objects as `rewardBalances`
+    properties:
+      rewardBalances:
+        type: array
+        description: A list of Reward Balance objects. This is the actual data in this list envelope.
+        items:
+          $ref: "#/definitions/RewardBalance"
 
   RewardBalance:
     description: Details of the balance of several individual rewards.
@@ -3242,6 +3305,94 @@ definitions:
         totalFuelTankCodes: 1
 
   Referral:
+    description: A link between the user/account of the referrer and the new referred user/account. The authoritative source of who has referred whom. Not all referrals result in a Reward or a RewardBalance being created, such as in-progress referrals.
+    properties:
+      id:
+        type: string
+        example: abdsds5124abewet
+        description: Unique identifier for the Referral object
+      referredUser:
+        $ref: "#/definitions/User"
+      referrerUser:
+        $ref: "#/definitions/User"
+      referredReward:
+        $ref: "#/definitions/Reward"
+      referrerReward:
+        $ref: "#/definitions/Reward"
+      referralCodeUsed:
+        type: string
+        title: Referral Code Used
+        description: "The referrers code that was used by the referred for the referral."
+      shareLinkUsed:
+        type: string
+        title: Share Link Used
+        description: "The sharelink that was used by the referred for the referral."
+      moderationStatus:
+        type: string
+        example: PENDING
+        description: |
+          When referrals are manually managed, each referral has a `PENDING` state until it is explicitly moderated.
+        enum:
+          - PENDING
+          - ACTIONED
+      referredModerationStatus:
+        type: string
+        example: PENDING
+        description: |
+          Used to identify the *referred* user's moderation status and affect Reward cancellation.
+        enum:
+          - PENDING
+          - APPROVED
+          - DENIED
+      referrerModerationStatus:
+        type: string
+        example: PENDING
+        description: |
+          Used to identify the *referrer* user's moderation status and affect Reward cancellation.
+        enum:
+          - PENDING
+          - APPROVED
+          - DENIED
+      fraudSignals:
+        $ref: "#/definitions/FraudSignals"
+      dateReferralStarted:
+        type: integer
+        format:
+        description: "Timestamp of when this referral was started."
+      dateReferralPaid:
+        type: integer
+        description: "Timestamp of when this referral was marked as `PAID`."
+      dateReferralEnded:
+        type: integer
+        description: "Timestamp of when this referral was ended."
+      dateModerated:
+        type: integer
+        description: "Timestamp of when this referral was last moderated."
+    example:
+      id: "546270a6e4b0c1871186a920"
+      referredUser:
+        $ref: "#/definitions/User/example"
+      referrerUser:
+        $ref: "#/definitions/User/example"
+      referredReward:
+        $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
+      referrerReward:
+        $ref: "#/definitions/Reward/example/PCT_DISCOUNT"
+      referralCodeUsed: "LORETTABURKE10"
+      shareLinkUsed: "http://ssqt.co/mPbcF5"
+      moderationStatus: "ACTIONED"
+      dateReferralStarted: 1415737510411
+      dateReferralPaid: 1415737557217
+      dateReferralEnded: null
+      dateModerated: 1427410131029
+      referredModerationStatus: "APPROVED"
+      referrerModerationStatus: "APPROVED"
+      fraudSignals:
+        ip:
+          message: "Referrer and referred came from the same IP"
+          score: 50
+
+  PIIReferral:
     description: A link between the user/account of the referrer and the new referred user/account. The authoritative source of who has referred whom. Not all referrals result in a Reward or a RewardBalance being created, such as in-progress referrals.
     properties:
       id:
@@ -3447,6 +3598,79 @@ definitions:
           referredByUser:
             $ref: "#/definitions/User"
 
+  ProgramShareLink:
+    description: Share links for a users program.
+    type: object
+    properties:
+      cleanShareLink:
+        type: string
+        title: "The clean link for a given program"
+        description: "If the program's primary link is a vanity link then this will be the unencoded link, if not it is the UNKNOWN engagementMedium and UNKNOWN shareMedium link."
+      MOBILE:
+        title: "Mobile Share Links"
+        type: object
+        description: "Share links tracked with the MOBILE engagement medium."
+        $ref: "#/definitions/subProgramShareLink"
+      EMAIL:
+        title: "Email Share Links"
+        type: object
+        description: "Share links tracked with the EMAIL engagement medium."
+        $ref: "#/definitions/subProgramShareLink"
+      UNKNOWN:
+        title: "Share Links"
+        type: object
+        description: "Share links tracked with the UNKNOWN engagement medium."
+        $ref: "#/definitions/subProgramShareLink"
+    example:
+      fakeProgram1:
+        cleanShareLink: "http://example.com/free"
+        MOBILE:
+          DIRECT: "http://example.com/free?me"
+        EMAIL:
+          DIRECT: "http://example.com/free?mP"
+        UNKNOWN:
+          DIRECT: "http://example.com/free?mv"
+
+  GeneratedProgramShareLink:
+    description: Auto Generated Share links for a users program.
+    type: object
+    properties:
+      cleanShareLink:
+        type: string
+        title: "The clean link for a given program"
+        description: "If the program's primary link is a vanity link then this will be the unencoded link, if not it is the UNKNOWN engagementMedium and UNKNOWN shareMedium link."
+      MOBILE:
+        title: "Mobile Share Links"
+        type: object
+        description: "Share links tracked with the MOBILE engagement medium."
+        $ref: "#/definitions/subProgramShareLink"
+      EMAIL:
+        title: "Email Share Links"
+        type: object
+        description: "Share links tracked with the EMAIL engagement medium."
+        $ref: "#/definitions/subProgramShareLink"
+      UNKNOWN:
+        title: "Share Links"
+        type: object
+        description: "Share links tracked with the UNKNOWN engagement medium."
+        $ref: "#/definitions/subProgramShareLink"
+    example:
+      fakeProgram1:
+        cleanShareLink: "http://ssqt.co/mzzxNn"
+        MOBILE:
+          DIRECT: "http://ssqt.co/mezxNn"
+        EMAIL:
+          DIRECT: "http://ssqt.co/mPzxNn"
+        UNKNOWN:
+          DIRECT: "http://ssqt.co/mvzxNn"
+
+  subProgramShareLink:
+    properties:
+      DIRECT:
+        type: string
+        title: "Direct Share Link"
+        description: "Share link associated with the DIRECT share medium."
+
   Sharelink:
     description: Share link for an individual user.
     properties:
@@ -3616,8 +3840,12 @@ definitions:
     properties:
       shareLinks:
         type: string
-        description: The unique share link the user can refer their friends with. The Share Link contains the Referral Code for making referrals and a source for Analytics purposes.
+        description: The unique primary share link the user can refer their friends with. The share link contains the Referral Code for making referrals and a source for Analytics purposes.
         properties:
+          cleanShareLink:
+            type: string
+            title: "The clean link for a given program"
+            description: "If the program's primary link is a vanity link then this will be the unencoded link, if not it is the UNKNOWN engagementMedium and UNKNOWN shareMedium link."
           EMAIL:
             description: An individual user's Share links for use in the EMAIL engagementMedium.
             properties:
@@ -3837,6 +4065,7 @@ definitions:
 
     example:
       shareLinks:
+        cleanShareLink: "http://ssqt.co/mzbZbgC"
         EMAIL:
           TWITTER: "http://ssqt.co/mGbZbgC"
           UNKNOWN: "http://ssqt.co/mVbZbgC"
@@ -4731,7 +4960,7 @@ definitions:
         example:
           classic: "BOBTESTERSON"
           fakeProgram1: "BOBTESTERSON123"
-        description: The referral codes across all programs that the user currently has.
+        description: The primary referral codes across all programs that the user currently has.
       imageUrl:
         type: string
         example: "https://www.example.com/profile/ab5111251125"
@@ -4779,20 +5008,26 @@ definitions:
       shareLinks:
         readOnly: true
         $ref: "#/definitions/Sharelink"
+      programShareLinks:
+        type: object
+        items:
+          type: object
+        description: The primary share links available for a users programs.
+        $ref: "#/definitions/ProgramShareLink"
 
     example:
       id: "898746321"
       cookieId: "2523423436323"
-      accountId: "987321"
-      firstName: "Henk"
-      lastName: "Thompson"
-      email: "hello@example.com"
+      accountId: "accc9065"
+      firstName: "Bob"
+      lastName: "Testerson"
+      email: "bob@example.com"
       referable: true
       locale: null
-      referralCode: "HENKTHOMPSON"
+      referralCode: "BOBTESTERSON"
       referralCodes:
-        classic: "HENKTHOMPSON"
-        fakeProgram1: "HENKTHOMPSON123"
+        classic: "BOBTESTERSON"
+        fakeProgram1: "FREE"
       referredBy:
         code: "JONDOE1234"
         isConverted: true
@@ -4810,6 +5045,8 @@ definitions:
       segments: ["segment1", "segment3"]
       shareLinks:
         $ref: "#/definitions/Sharelink/example"
+      programShareLinks:
+        $ref: "#/definitions/ProgramShareLink/example"
 
   UserByCode:
     title: Subset of user information
@@ -4883,8 +5120,8 @@ definitions:
           type: string
         example:
           classic: "BOBTESTERSON"
-          fakeProgram1: "BOBTESTERSON123"
-        description: The custom referral codes for different programs.
+          fakeProgram1: "FREE"
+        description: The primary custom referral codes for different programs.
       paymentProviderId:
         type: string
         example: "cus_8rVOAthabctvT6"
@@ -4914,6 +5151,13 @@ definitions:
         example:
           - "JONDOE1234"
           - "JOHNDOECODE"
+      cookies:
+        type: string
+        example: eyJhcHAucmVmZXJyYWxzYWFzcXVhdGNoLmNvbSI6eyJ0ZW5hbnRBbGlhc19DT0RFIjp7ImNvZGVzIjp7InByb2dyYW0xIjoiQ09ERTEifSwiY29kZXNFeHAiOnsiQ09ERTEiOjEyMzQ1Njd9fX19
+        description: |
+          The Base64URL encoded attribution cookie values. When decoded, the schema will resemble the following:
+
+          {"app.referralsaasquatch.com": {"tenantAlias_CODE": {"codes": {"program1": "CODE1"},"codesExp": {"CODE1": 1234567}}}}
       imageUrl:
         type: string
         example: "https://www.example.com/profile/ab5111251125"
@@ -4926,6 +5170,13 @@ definitions:
 
           Details about the supported operators and operations for adding and removing users from a segment can be found in our [User Segmentation](/features/user-segmentation/#saasquatch-api-and-squatchjs-segmentation) article.
         example: ["segment1", "~segment2"]
+      shareLinks:
+        type: object
+        items:
+          type: string
+        example:
+          fakeProgram1: "http://example.com/free"
+        description: The primary custom shareLinks for different programs. If a given program does not have a referral code, one will be generated.
       customFields:
         type: object
         description: |
@@ -4969,13 +5220,13 @@ definitions:
         example:
           classic: "BOBTESTERSON"
           fakeProgram1: "BOBTESTERSON123"
-        description: The custom referral codes for different programs.
+        description: The primary custom referral codes for different programs.
       locale:
         type: string
         example: "en_US"
         description: |
           The user's locale, used for [Internationalization](/themes/internationalization). The locale must be of the format 'language_COUNTRY' where the language code must be lowercase and the country code must be uppercase. The separator must be an underscore.
-      payementProviderId:
+      paymentProviderId:
         type: string
         example: "cus_dk3hj3k3sfj8987"
         description: |
@@ -5018,6 +5269,125 @@ definitions:
           address: "123 Main st., City, Province, Country, H0H0H0"
           shoeSize: 12.5
           currency: "CAD"
+  
+  OpenCookieUser:
+    description: An object describing an individual user returned by an open endpoint
+    properties:
+      firstName:
+        type: string
+        example: "Bob"
+        description: |
+          The user's first name
+      lastName:
+        type: string
+        example: "Testerson"
+        description: |
+          The user's last name
+      email:
+        type: string
+        example: "bob@example.com"
+        description: The email address provided for the user. SaaSquatch uses this to notify someone when they have a successful referral.
+      referralCode:
+        type: string
+        example: "BOBTESTERSON"
+        description: The referral code *used for sharing by this user*
+      referralCodes:
+        type: object
+        items:
+          type: string
+        example:
+          classic: "BOBTESTERSON"
+          fakeProgram1: "BOBTESTERSON123"
+        description: The primary custom referral codes for different programs.
+      locale:
+        type: string
+        example: "en_US"
+        description: |
+          The user's locale, used for [Internationalization](/themes/internationalization). The locale must be of the format 'language_COUNTRY' where the language code must be lowercase and the country code must be uppercase. The separator must be an underscore.
+      paymentProviderId:
+        type: string
+        example: "cus_dk3hj3k3sfj8987"
+        description: |
+          The user's Stripe Customer ID, the Recurly Account ID, the Braintree Account ID, or the Zuora Account ID. This value is not updatable and can only be set once. This field can be left out if not explicitly setting the value.
+      referredBy:
+        type: object
+        description: An object containing information about who referred this user.
+        properties:
+          code:
+            type: string
+            example: "JONDOE1234"
+            description: The referral code of the person that referred this account.
+          isConverted:
+            type: bool
+            example: true
+            description: Whether or not this referred user has hit to goal post and the referral should be converted to kick of reward creation for the referrer.
+      referredByCodes:
+        type: array
+        items:
+          type: string
+        description: An array of referral codes used to refer this account.
+        example:
+          - "JONDOE1234"
+          - "JOHNDOECODE"
+      imageUrl:
+        type: string
+        example: "https://www.example.com/profile/ab5111251125"
+        description: |
+          Optionally used in widgets, emails, and themes. If you provide a absolute profile image URL the minimum image size is 80px x 80px.
+      shareLinks:
+        readOnly: true
+        $ref: "#/definitions/Sharelink"
+      programShareLinks:
+        type: object
+        items:
+          type: object
+        description: The primary share links available for a users programs.
+        $ref: "#/definitions/GeneratedProgramShareLink"
+      customFields:
+        type: object
+        description: |
+          An object containing the custom fields for this user.
+
+          Learn more about the available custom field functionality in our [Custom Fields Developer Guide](/features/custom-user-fields)
+        example:
+          lastPurchaseDate: 1512152525513
+          plan: "Pro+"
+          phone: 19055551234
+          address: "123 Main st., City, Province, Country, H0H0H0"
+          shoeSize: 12.5
+          currency: "CAD"
+    example:
+      id: "898746321"
+      cookieId: "2523423436323"
+      accountId: "accc9065"
+      firstName: "Bob"
+      lastName: "Testerson"
+      email: "bob@example.com"
+      referable: true
+      locale: null
+      referralCode: "BOBTESTERSON"
+      referralCodes:
+        classic: "BOBTESTERSON"
+        fakeProgram1: "BOBTESTERSON123"
+      referredBy:
+        code: "JONDOE1234"
+        isConverted: true
+        newlyReferred: false
+      referredByCodes:
+        - "JONDOE1234"
+      imageUrl: ""
+      customFields:
+        lastPurchaseDate: 1512152525513
+        plan: "Pro+"
+        phone: 19055551234
+        address: "123 Main st., City, Province, Country, H0H0H0"
+        shoeSize: 12.5
+        currency: "CAD"
+      segments: ["segment1", "segment3"]
+      shareLinks:
+        $ref: "#/definitions/Sharelink/example"
+      programShareLinks:
+        $ref: "#/definitions/GeneratedProgramShareLink/example"
 
   ListEnvelope:
     description: A generic base model to help with paginating lists. The `count` counts the number in this list, and `totalCount` gives the total available results.
@@ -5039,19 +5409,35 @@ definitions:
     type: object
     description: A list of User objects as `users`, with the fields `count` and `totalCount` to help with pagination.
     properties:
-      users:
-        type: array
-        description: A list of User objects. This is the actual data in this list envelope.
-        items:
-          $ref: "#/definitions/User"
       count:
         type: integer
         description: The number of results returned in this list, see `totalCount` for all rows.
       totalCount:
         type: integer
         description: The total number of results available overall, see `count` for the number of rows in this list.
+      users:
+        type: array
+        description: A list of User objects. This is the actual data in this list envelope.
+        items:
+          $ref: "#/definitions/User"
 
   ReferralList:
+    type: object
+    description: A list of Referral objects as `referrals`, with the fields `count` and `totalCount` to help with pagination.
+    properties:
+      count:
+        type: integer
+        description: The number of results returned in this list, see `totalCount` for all rows.
+      totalCount:
+        type: integer
+        description: The total number of results available overall, see `count` for the number of rows in this list.
+      referrals:
+        type: array
+        description: A list of Referral objects. This is the actual data in this list envelope.
+        items:
+          $ref: "#/definitions/Referral"
+
+  PIIReferralList:
     type: object
     description: A list of Referral objects as `referrals`, with the fields `count` and `totalCount` to help with pagination.
     properties:
@@ -5059,7 +5445,7 @@ definitions:
         type: array
         description: A list of Referral objects. This is the actual data in this list envelope.
         items:
-          $ref: "#/definitions/Referral"
+          $ref: "#/definitions/PIIReferral"
       count:
         type: integer
         description: The number of results returned in this list, see `totalCount` for all rows.
