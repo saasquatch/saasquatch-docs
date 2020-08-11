@@ -56,7 +56,9 @@ export default function render() {
               <option value="monthly-update">Monthly Updates</option>
               <option value="product-update">Product Updates</option>
             </select>
-
+            {
+            " " // Spacing between form elements
+            }
             <select
               value={date}
               onChange={dateChange}
