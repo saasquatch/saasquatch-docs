@@ -125,7 +125,7 @@ When SaaSquatch creates AppsFlyer links dynamically the resulting link and it’
     "af_web_dp": "http://myReferralLandingPage.com",
     "utm_source": "invite",
     "utm_medium": "link",
-    "utm_campaign: "saasquatch",
+    "utm_campaign": "saasquatch",
     "rsCode": "REFERRALCODE",
     "rsShareMedium": "UNKNOWN",
     "rsEngagementMedium": "UNKNOWN",
