@@ -1,11 +1,6 @@
 import React from "react";
-// import styled from "styled-components";
-
 import Markdown from "../../../components/Markdown";
-
-import PageHeader from "../../../components/PageHeader";
-
-import TocFrame from "../../../components/TocFrame";
+import PageHeader from "../../../components/PageHeader"
 import { Properties } from "../../../components/Properties";
 
 const appsflyerFields = {
@@ -68,10 +63,10 @@ const entry = {
   title: "AppsFlyer Reference",
   highlights: `SaaSquatch integrates with [AppsFlyer](https://www.appsflyer.com). This technical reference explains the specifics fields, features, API calls, and functionality that are used in the integration.`,
 };
-
 export default function render() {
+
   return (
-    <TocFrame entry={entry}>
+    <PageHeader {...entry} >
       <>
         <Markdown source={start} />
         <Markdown source={howItWorks} />
@@ -79,7 +74,7 @@ export default function render() {
         <Markdown source={dataFields} />
         <Properties schema={appsflyerFields} />
       </>
-    </TocFrame>
+    </PageHeader>
   );
 }
 const start = `
