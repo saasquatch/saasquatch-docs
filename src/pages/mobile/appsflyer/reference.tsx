@@ -126,10 +126,10 @@ When SaaSquatch creates AppsFlyer links dynamically the resulting link and it’
     "utm_source": "invite",
     "utm_medium": "link",
     "utm_campaign: "saasquatch",
-    "rsCode": "REFERRALCODE,
+    "rsCode": "REFERRALCODE",
     "rsShareMedium": "UNKNOWN",
     "rsEngagementMedium": "UNKNOWN",
-    "_saasquatch":                 "eyJhcHAucmVmZXJyYWxzYWFzcXVhdGNoLmNvbSI6eyJ0ZXN0XzEyMzQ1NjdfQ09ERSI6eyJjb2RlcyI6eyJyZWZlcnJhbCI6IlJFRkVSUkFMQ09ERSJ9LCJjb2Rlc0V4cCI6eyJSRUZFUlJBTENPREUiOjE2Mjk1ODIxOTl9LCJsaW5rcyI6eyJyZWZlcnJhbCI6Imh0dHBzOi8vc3NxdC5jby9temFBMjIifSwibGlua3NFeHAiOnsiaHR0cHM6Ly9zc3F0LmNvL216YUEyMiI6MTYyOTU4MjE5OX19fX0="
+    "_saasquatch": "eyJhcHAucmVmZXJyYWxzYWFzcXVhdGNoLmNvbSI6eyJ0ZXN0XzEyMzQ1NjdfQ09ERSI6eyJjb2RlcyI6eyJyZWZlcnJhbCI6IlJFRkVSUkFMQ09ERSJ9LCJjb2Rlc0V4cCI6eyJSRUZFUlJBTENPREUiOjE2Mjk1ODIxOTl9LCJsaW5rcyI6eyJyZWZlcnJhbCI6Imh0dHBzOi8vc3NxdC5jby9temFBMjIifSwibGlua3NFeHAiOnsiaHR0cHM6Ly9zc3F0LmNvL216YUEyMiI6MTYyOTU4MjE5OX19fX0="
 }
 \`\`\`
 
