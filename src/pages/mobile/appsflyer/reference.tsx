@@ -11,12 +11,12 @@ const appsflyerFields = {
     pid: {
       type: "string",
       description:
-        "Media source, set in AppsFlyer when configuring your custom attribution link",
+        "Media source, set as 'saasquatch_int' in AppsFlyer when configuring your custom attribution link",
     },
     c: {
       type: "string",
       description:
-        "Campaign name, set in AppsFlyer when configuring your custom attribution link",
+        "Campaign name, set as 'saasquatch' in AppsFlyer when configuring your custom attribution link",
     },
     af_web_dp: {
       type: "string",
@@ -120,8 +120,8 @@ When SaaSquatch creates AppsFlyer links dynamically the resulting link and it’
 
 \`\`\`
 {
-    "pid": "User_invite",
-    "c": "SaaSquatch",
+    "pid": "saasquatch_int",
+    "c": "saasquatch",
     "af_web_dp": "http://myReferralLandingPage.com",
     "utm_source": "invite",
     "utm_medium": "link",
