@@ -787,7 +787,7 @@ Sent whenever a referred user, or referral, is cancelled.
 }
 ```
 
-### theme.publish.finished
+### <span class="label">Classic only</span> theme.publish.finished
 
 Sent whenever a theme has been successfully published to a tenant.
 
