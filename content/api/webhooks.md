@@ -429,7 +429,7 @@ D--save-->X
   "data": {
     "userId": "user123",
     "accountId": "account123",
-    "unit": "CENTS",
+    "unit": "USD",
     "availableValue": 4500,
     "resourceVersion": 1579030928001
   }
