@@ -566,7 +566,7 @@ Sent whenever the referral reward limit is reached
 }
 ```
 
-### referral.automoderation.complete
+### <span class="label">Classic only</span> referral.automoderation.complete
 
 Sent after a referral is first moderated automatically.
 
