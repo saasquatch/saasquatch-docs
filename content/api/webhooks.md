@@ -669,7 +669,7 @@ Sent whenever a referral is converted.
 }
 ```
 
-### referral.ended
+### <span class="label">Classic only</span> referral.ended
 
 Sent whenever a referred user, or referral, is cancelled.
 
