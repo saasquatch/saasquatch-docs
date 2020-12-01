@@ -581,13 +581,20 @@ Sent after a referral is first moderated automatically.
     "id": "5773073ee4b066c5cb1718fc",
     "referredUser": "5773073ee4b08b14ab979fb8",
     "referrerUser": "577306eae4b08b14ab979f70",
+    "referred": {
+      "id": "referredId",
+      "accountId": "referredId"
+    },
+    "referrer": {
+      "id": "referrerId",
+      "accountId": "referrerId"
+    },
     "referralCodeUsed": "LORETTABURKE10",
     "shareLinkUsed": "http://ssqt.co/mPbcF5",
-    "referredReward": null,
-    "referrerReward": null,
     "moderationStatus": "PENDING",
     "dateReferralStarted": 1467156286882,
     "dateReferralPaid": null,
+    "dateConverted": null,
     "dateReferralEnded": null,
     "dateModerated": 1467156286882,
     "referredModerationStatus": "PENDING",
@@ -606,6 +613,36 @@ Sent after a referral is first moderated automatically.
 
 Sent whenever a new referral connection is successfully established.
 
+#### If you are not using the classic program
+
+```json
+{
+  "id": "5773073fe4b066c5cb171900",
+  "type": "referral.started",
+  "tenantAlias": "aohgcctyskc0p",
+  "live": true,
+  "created": 1467156287085,
+  "data": {
+    "id": "5773073ee4b066c5cb1718fc",
+    "referred": {
+      "id": "referredId",
+      "accountId": "referredId"
+    },
+    "referrer": {
+      "id": "referrerId",
+      "accountId": "referrerId"
+    },
+    "referralCodeUsed": "LORETTABURKE10",
+    "shareLinkUsed": "http://ssqt.co/mPbcF5",
+    "moderationStatus": "PENDING",
+    "dateReferralStarted": 1467156286882,
+    "dateConverted": null
+  }
+}
+```
+
+#### If you are using the classic program
+
 ```json
 {
   "id": "5773073fe4b066c5cb171900",
@@ -617,13 +654,20 @@ Sent whenever a new referral connection is successfully established.
     "id": "5773073ee4b066c5cb1718fc",
     "referredUser": "5773073ee4b08b14ab979fb8",
     "referrerUser": "577306eae4b08b14ab979f70",
+    "referred": {
+      "id": "referredId",
+      "accountId": "referredId"
+    },
+    "referrer": {
+      "id": "referrerId",
+      "accountId": "referrerId"
+    },
     "referralCodeUsed": "LORETTABURKE10",
     "shareLinkUsed": "http://ssqt.co/mPbcF5",
-    "referredReward": null,
-    "referrerReward": null,
     "moderationStatus": "PENDING",
     "dateReferralStarted": 1467156286882,
     "dateReferralPaid": null,
+    "dateConverted": null,
     "dateReferralEnded": null,
     "dateModerated": 1467156286882,
     "referredModerationStatus": "PENDING",
@@ -637,6 +681,36 @@ Sent whenever a new referral connection is successfully established.
 
 Sent whenever a referral is converted.
 
+#### If you are not using the classic program
+
+```json
+{
+  "id": "57731b5ee4b07320b5c0980a",
+  "type": "referral.converted",
+  "tenantAlias": "aohgcctyskc0p",
+  "live": true,
+  "created": 1467161438453,
+  "data": {
+    "id": "57731b43e4b07320b5c097ec",
+    "referred": {
+      "id": "referredId",
+      "accountId": "referredId"
+    },
+    "referrer": {
+      "id": "referrerId",
+      "accountId": "referrerId"
+    },
+    "referralCodeUsed": "LORETTABURKE10",
+    "shareLinkUsed": "http://ssqt.co/mPbcF5",
+    "moderationStatus": "PENDING",
+    "dateReferralStarted": 1467161411028,
+    "dateConverted": 1467161438415
+  }
+}
+```
+
+#### If you are using the classic program
+
 ```json
 {
   "id": "57731b5ee4b07320b5c0980a",
@@ -648,13 +722,20 @@ Sent whenever a referral is converted.
     "id": "57731b43e4b07320b5c097ec",
     "referredUser": "57731b42e4b08b14ab97a0c5",
     "referrerUser": "5773073ee4b08b14ab979fb8",
+    "referred": {
+      "id": "referredId",
+      "accountId": "referredId"
+    },
+    "referrer": {
+      "id": "referrerId",
+      "accountId": "referrerId"
+    },
     "referralCodeUsed": "LORETTABURKE10",
     "shareLinkUsed": "http://ssqt.co/mPbcF5",
-    "referredReward": null,
-    "referrerReward": null,
     "moderationStatus": "PENDING",
     "dateReferralStarted": 1467161411028,
     "dateReferralPaid": 1467161438415,
+    "dateConverted": 1467161438415,
     "dateReferralEnded": null,
     "dateModerated": 1467161411027,
     "referredModerationStatus": "PENDING",
@@ -684,13 +765,20 @@ Sent whenever a referred user, or referral, is cancelled.
     "id": "577308bce4b066c5cb171927",
     "referredUser": "577308bce4b08b14ab97a015",
     "referrerUser": "5773073ee4b08b14ab979fb8",
+    "referred": {
+      "id": "referredId",
+      "accountId": "referredId"
+    },
+    "referrer": {
+      "id": "referrerId",
+      "accountId": "referrerId"
+    },
     "referralCodeUsed": "LORETTABURKE10",
     "shareLinkUsed": "http://ssqt.co/mPbcF5",
-    "referredReward": null,
-    "referrerReward": null,
     "moderationStatus": "PENDING",
     "dateReferralStarted": 1467156668562,
     "dateReferralPaid": 1467156679563,
+    "dateConverted": 1467156679563,
     "dateReferralEnded": 1467220453226,
     "dateModerated": 1467156668561,
     "referredModerationStatus": "PENDING",
