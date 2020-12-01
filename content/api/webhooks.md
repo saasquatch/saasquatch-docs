@@ -226,6 +226,56 @@ events. New event types may be added to the API, so avoid building logic that as
 Sent whenever a new User is created. Note: Users can be created via the REST Api, the Squatch.js javascript library, loading the referral
 widget or a batch upload process. Only fires when a new user is created, not for updates or deletes.
 
+#### If you are not using the classic program
+
+```json
+{
+  "id": "577303ece4b066c5cb171835",
+  "type": "user.created",
+  "tenantAlias": "aohgcctyskc0p",
+  "live": true,
+  "created": 1467155436449,
+  "data": {
+    "id": "sat09jsaet09setset",
+    "accountId": "90w4etjsa4et",
+    "email": "mike.keenerson@example.com",
+    "firstName": "Mike",
+    "lastName": "Keenerson",
+    "referralCodes": {
+      "classic": "MIKEKEENERSON",
+      "partner-program": "FREE"
+    },
+    "imageUrl": "",
+    "firstSeenIP": "10.230.163.157",
+    "lastSeenIP": null,
+    "dateCreated": 1467155436418,
+    "locale": "fr_CA",
+    "countryCode": "CA",
+    "programShareLinks": {
+      "partner-program": {
+        "cleanShareLink": "http://example.com/free",
+        "MOBILE": {
+          "DIRECT": "http://example.com/free?me"
+        },
+        "EMAIL": {
+          "DIRECT": "http://example.com/free?mP"
+        },
+        "UNKNOWN": {
+          "DIRECT": "http://example.com/free?mv"
+        }
+      }
+    },
+    "customFields": {
+      "birthday": "--02-29"
+    },
+    "segments": ["segment1"],
+    "referredByCodes": ["CODE1"]
+  }
+}
+```
+
+#### If you are using the classic program
+
 ```json
 {
   "id": "577303ece4b066c5cb171835",
