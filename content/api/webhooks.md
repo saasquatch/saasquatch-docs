@@ -582,12 +582,12 @@ Sent after a referral is first moderated automatically.
     "referredUser": "5773073ee4b08b14ab979fb8",
     "referrerUser": "577306eae4b08b14ab979f70",
     "referred": {
-      "id": "referredId",
-      "accountId": "referredId"
+      "id": "5773073ee4b08b14ab979fb8",
+      "accountId": "5773073ee4b08b14ab979fb8"
     },
     "referrer": {
-      "id": "referrerId",
-      "accountId": "referrerId"
+      "id": "577306eae4b08b14ab979f70",
+      "accountId": "577306eae4b08b14ab979f70"
     },
     "referralCodeUsed": "LORETTABURKE10",
     "shareLinkUsed": "http://ssqt.co/mPbcF5",
@@ -625,12 +625,12 @@ Sent whenever a new referral connection is successfully established.
   "data": {
     "id": "5773073ee4b066c5cb1718fc",
     "referred": {
-      "id": "referredId",
-      "accountId": "referredId"
+      "id": "5773073ee4b08b14ab979fb8",
+      "accountId": "5773073ee4b08b14ab979fb8"
     },
     "referrer": {
-      "id": "referrerId",
-      "accountId": "referrerId"
+      "id": "577306eae4b08b14ab979f70",
+      "accountId": "577306eae4b08b14ab979f70"
     },
     "referralCodeUsed": "LORETTABURKE10",
     "shareLinkUsed": "http://ssqt.co/mPbcF5",
@@ -655,12 +655,12 @@ Sent whenever a new referral connection is successfully established.
     "referredUser": "5773073ee4b08b14ab979fb8",
     "referrerUser": "577306eae4b08b14ab979f70",
     "referred": {
-      "id": "referredId",
-      "accountId": "referredId"
+      "id": "5773073ee4b08b14ab979fb8",
+      "accountId": "5773073ee4b08b14ab979fb8"
     },
     "referrer": {
-      "id": "referrerId",
-      "accountId": "referrerId"
+      "id": "577306eae4b08b14ab979f70",
+      "accountId": "577306eae4b08b14ab979f70"
     },
     "referralCodeUsed": "LORETTABURKE10",
     "shareLinkUsed": "http://ssqt.co/mPbcF5",
@@ -693,12 +693,12 @@ Sent whenever a referral is converted.
   "data": {
     "id": "57731b43e4b07320b5c097ec",
     "referred": {
-      "id": "referredId",
-      "accountId": "referredId"
+      "id": "5773073ee4b08b14ab979fb8",
+      "accountId": "5773073ee4b08b14ab979fb8"
     },
     "referrer": {
-      "id": "referrerId",
-      "accountId": "referrerId"
+      "id": "577306eae4b08b14ab979f70",
+      "accountId": "577306eae4b08b14ab979f70"
     },
     "referralCodeUsed": "LORETTABURKE10",
     "shareLinkUsed": "http://ssqt.co/mPbcF5",
@@ -723,12 +723,12 @@ Sent whenever a referral is converted.
     "referredUser": "57731b42e4b08b14ab97a0c5",
     "referrerUser": "5773073ee4b08b14ab979fb8",
     "referred": {
-      "id": "referredId",
-      "accountId": "referredId"
+      "id": "5773073ee4b08b14ab979fb8",
+      "accountId": "5773073ee4b08b14ab979fb8"
     },
     "referrer": {
-      "id": "referrerId",
-      "accountId": "referrerId"
+      "id": "577306eae4b08b14ab979f70",
+      "accountId": "577306eae4b08b14ab979f70"
     },
     "referralCodeUsed": "LORETTABURKE10",
     "shareLinkUsed": "http://ssqt.co/mPbcF5",
@@ -766,12 +766,12 @@ Sent whenever a referred user, or referral, is cancelled.
     "referredUser": "577308bce4b08b14ab97a015",
     "referrerUser": "5773073ee4b08b14ab979fb8",
     "referred": {
-      "id": "referredId",
-      "accountId": "referredId"
+      "id": "5773073ee4b08b14ab979fb8",
+      "accountId": "5773073ee4b08b14ab979fb8"
     },
     "referrer": {
-      "id": "referrerId",
-      "accountId": "referrerId"
+      "id": "577306eae4b08b14ab979f70",
+      "accountId": "577306eae4b08b14ab979f70"
     },
     "referralCodeUsed": "LORETTABURKE10",
     "shareLinkUsed": "http://ssqt.co/mPbcF5",
