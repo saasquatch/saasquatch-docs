@@ -242,7 +242,7 @@ widget or a batch upload process. Only fires when a new user is created, not for
     "firstName": "Mike",
     "lastName": "Keenerson",
     "referralCodes": {
-      "classic": "MIKEKEENERSON",
+      "referral-program": "MIKEKEENERSON",
       "partner-program": "FREE"
     },
     "imageUrl": "",
