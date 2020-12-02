@@ -226,7 +226,7 @@ events. New event types may be added to the API, so avoid building logic that as
 Sent whenever a new User is created. Note: Users can be created via the REST Api, the Squatch.js javascript library, loading the referral
 widget or a batch upload process. Only fires when a new user is created, not for updates or deletes.
 
-#### If you are not using the classic program
+#### user.created if you are not using the classic program
 
 ```json
 {
@@ -274,7 +274,7 @@ widget or a batch upload process. Only fires when a new user is created, not for
 }
 ```
 
-#### If you are using the classic program
+#### <span class="label">Classic only</span> user.created if you are using the classic program
 
 ```json
 {
@@ -613,7 +613,7 @@ Sent after a referral is first moderated automatically.
 
 Sent whenever a new referral connection is successfully established.
 
-#### If you are not using the classic program
+#### referral.started if you are not using the classic program
 
 ```json
 {
@@ -641,7 +641,7 @@ Sent whenever a new referral connection is successfully established.
 }
 ```
 
-#### If you are using the classic program
+#### <span class="label">Classic only</span> referral.started if you are using the classic program
 
 ```json
 {
@@ -681,7 +681,7 @@ Sent whenever a new referral connection is successfully established.
 
 Sent whenever a referral is converted.
 
-#### If you are not using the classic program
+#### referral.converted if you are not using the classic program
 
 ```json
 {
@@ -709,7 +709,7 @@ Sent whenever a referral is converted.
 }
 ```
 
-#### If you are using the classic program
+#### <span class="label">Classic only</span> referral.converted if you are using the classic program
 
 ```json
 {
