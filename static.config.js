@@ -129,11 +129,6 @@ async function getSwagger() {
 
   return {
     swagger: resolved,
-<<<<<<< HEAD
-=======
-    methodsByTag: swaggerUtils.methodsByTag(resolved),
-    tagMap: swaggerUtils.tagMap(resolved),
->>>>>>> production
   };
 }
 
@@ -173,11 +168,8 @@ export default {
         PINGDOM_ID: process.env.PINGDOM_ID || "52c61993abe53d650f000000",
         GTMID: process.env.GTMID || "GTM-PK98FJF",
       },
-<<<<<<< HEAD
       apiRoutes: getEndpoints((await getSwagger()).swagger),
       apiRoutesByTag: endpointsByTag((await getSwagger()).swagger),
-=======
->>>>>>> production
     };
   },
   getRoutes: getRoutes,
@@ -202,11 +194,7 @@ export default {
         location: path.resolve("./src/pages"),
       },
     ],
-<<<<<<< HEAD
     require.resolve("react-static-plugin-react-router"),
-=======
-    // require.resolve("react-static-plugin-reach-router"),
->>>>>>> production
     require.resolve("react-static-plugin-sitemap"),
   ],
 };
