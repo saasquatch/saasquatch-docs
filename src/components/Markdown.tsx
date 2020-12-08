@@ -65,6 +65,7 @@ const MD = styled.div`
   .sq-mrmaid svg {
     margin: 0 auto;
     display: block;
+    width: 100%
   }
   .sq-mrmaid svg .label {
     text-shadow: none; /* Overrides bootstrap CSS class conflict*/

@@ -102,6 +102,19 @@ async function getYaml(file) {
 }
 
 /**
+ * Read the saasquatch API yaml from the schema package
+ *
+ * @returns parsed API yaml
+ */
+async function getAPIYaml() {
+  const text = await fs.readFile("node_modules/@saasquatch/schema/yaml/saasquatch-api.yaml", {
+    encoding: "utf8"
+  });
+  const data = yaml.safeLoad(text);
+  return data;
+}
+
+/**
  * Read our Swagger file
  *
  * Parses, derefences and merges it for easier templating
@@ -109,13 +122,18 @@ async function getYaml(file) {
  * @returns {Promise<{swagger:import("swagger-schema-official").Spec}>}
  */
 async function getSwagger() {
-  const data = await getYaml("saasquatch-api.yaml");
+  const data = await getAPIYaml();
 
   const spec = await parser.dereference(data);
   const resolved = await resolveAllOf(spec);
 
   return {
     swagger: resolved,
+<<<<<<< HEAD
+=======
+    methodsByTag: swaggerUtils.methodsByTag(resolved),
+    tagMap: swaggerUtils.tagMap(resolved),
+>>>>>>> production
   };
 }
 
@@ -155,8 +173,11 @@ export default {
         PINGDOM_ID: process.env.PINGDOM_ID || "52c61993abe53d650f000000",
         GTMID: process.env.GTMID || "GTM-PK98FJF",
       },
+<<<<<<< HEAD
       apiRoutes: getEndpoints((await getSwagger()).swagger),
       apiRoutesByTag: endpointsByTag((await getSwagger()).swagger),
+=======
+>>>>>>> production
     };
   },
   getRoutes: getRoutes,
@@ -181,7 +202,11 @@ export default {
         location: path.resolve("./src/pages"),
       },
     ],
+<<<<<<< HEAD
     require.resolve("react-static-plugin-react-router"),
+=======
+    // require.resolve("react-static-plugin-reach-router"),
+>>>>>>> production
     require.resolve("react-static-plugin-sitemap"),
   ],
 };
