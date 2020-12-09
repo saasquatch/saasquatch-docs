@@ -18,6 +18,7 @@ export const Personalisation = styled.div<{ open: boolean }>`
 
   cursor: pointer;
   outline: none;
+  z-index: 999;
 
   @media screen and (max-width: 1299px) {
     width: auto;
@@ -26,7 +27,6 @@ export const Personalisation = styled.div<{ open: boolean }>`
   @media screen and (max-width: 978px) {
     top: -56px;
     left: 0;
-    z-index: 999;
   }
 `;
 
