@@ -5,11 +5,11 @@ import { HashLink } from "react-router-hash-link";
 export const ItemRow = styled(HashLink)`
   display: block;
   color: #000;
-  padding: 5px 0;
+  padding: 8px;
   margin: 5px 0;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #DDD;
 
-  background: ${props => props.selected ? "green" : "white"};
+  background: ${props => props.selected ? "#e0e0e0" : "white"};
   &:hover {
     background: #eee;
   }
@@ -17,11 +17,18 @@ export const ItemRow = styled(HashLink)`
 export const DefaultInput = styled.input``;
 
 export const ItemTitle = styled.div`
+  margin: 5px 0;
   font-weight: bold;
   color: #000;
 `;
 export const ItemBody = styled.div`
-  color: #333;
+  font-size: 0.9em;
+  color: #444;
+
+  br {
+    /* Hides google's automatic <br> additions */
+    display: none;
+  }
 `;
 export const ResultsSummary = styled.p`
   color: #333;

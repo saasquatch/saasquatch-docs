@@ -47,21 +47,23 @@ export function InlineSearch({ Input = Styles.DefaultInput }) {
     var code = evt.charCode || evt.keyCode;
     if (code == 27) {
       // Escape key -- cancel query
+      evt.preventDefault();
       setQuery("");
     } else if (
       code === 38
       // && selectedIdx >= -1
     ) {
+      evt.preventDefault();
       setSelectedIndex(selectedIdx - 1);
-      event.preventDefault();
     } else if (
       code === 40
       // && selectedIdx < maxResultsSize
     ) {
+      evt.preventDefault();
       setSelectedIndex(selectedIdx + 1);
-      event.preventDefault();
     } else if (code === 13) {
       // enter key
+      evt.preventDefault();
       const item = response?.items[selectedIdx];
       const url = sanitizeGoogleSearchLink(item.link);
       history.push(url);
@@ -127,7 +129,7 @@ export function InlineResults({ response, setStartIndex, query, selectedIdx }) {
 
   return (
     <>
-      <div>Press Esc to close. Selected {selectedIdx} </div>
+      <div style={{textAlign:"right"}}>Press Esc to close.</div>
       {items &&
         items
           .filter((item) => item)
