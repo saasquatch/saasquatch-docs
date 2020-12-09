@@ -7,11 +7,16 @@ export function replace(domNode: any) {
   if (domNode.name && domNode.name === "a") {
     const { href, ...rest } = domNode.attribs;
     const props = attributesToProps(rest);
-    return (
-      <Link to={href} {...props}>
-        {domToReact(domNode.children, { replace })}
-      </Link>
-    );
+    if(href && !href.startsWith("http:") && !href.startsWith("https:") && !href.startsWith("mailto:")){
+      // Local (relative) links pimped with react router navigation
+      return (
+        <Link to={href} {...props}>
+          {domToReact(domNode.children, { replace })}
+        </Link>
+      );  
+    }else{
+      // Default behaviour for links to fully qualified URLs
+    }
   }
 
   // !whitelist.includes(domNode.name) &&
