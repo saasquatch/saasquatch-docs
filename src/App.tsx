@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Root, Routes, addPrefetchExcludes } from "react-static";
 import { VersionContext } from "./components/useVersion";
 import { Switch, Route, useLocation } from "react-router-dom";
@@ -15,11 +15,7 @@ import {
 import VersionSwitcherModal from "./components/VersionSwitcherModal";
 import BrowserOnly from "components/BrowserOnly";
 import { PortalifiedSearch } from "./navigation/PortalifiedSearch";
-
-let init = () => {};
-if (typeof document !== "undefined") {
-  init = require("./assets/js/docs").init;
-}
+import useBrowserEffect from "./util/useBrowserEffect";
 
 // Any routes that start with 'dynamic' will be treated as non-static routes
 addPrefetchExcludes(["dynamic"]);
@@ -39,7 +35,7 @@ function ScrollToTop() {
 }
 
 function App() {
-  useLayoutEffect(() => {
+  useBrowserEffect(() => {
     /**
      * Important!
      *
@@ -52,6 +48,8 @@ function App() {
      * but for backwards compatibility with the metalsmith build, it wasn't changed.
      *
      */
+    const init = require("./assets/js/docs").init;
+
     init();
 
     // Decode entities in the URL

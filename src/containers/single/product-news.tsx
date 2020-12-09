@@ -49,7 +49,6 @@ export default function render() {
             <select
               value={tag}
               onChange={tagChange}
-              className="isotope-product-news-select-group filters-isotope-product-news-select-group"
             >
               <option value="">All Posts</option>
               <option value="feature-release">Feature Releases</option>
@@ -62,7 +61,6 @@ export default function render() {
             <select
               value={date}
               onChange={dateChange}
-              className="isotope-product-news-select-group filters-isotope-product-news-select-group"
             >
               <option value="">From All-time</option>
               <option value="last_30">Last 30 days</option>

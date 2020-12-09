@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useMemo } from "react";
+import React, { useRef, useMemo } from "react";
 // @ts-ignore no types for marked
 import marked from "marked";
 import styled from "styled-components";
@@ -7,7 +7,6 @@ import uuidv4 from "uuid/v4";
 import parse from "html-react-parser";
 import DOMPurify from "../util/IsomoprhicDomPurify";
 import { replace } from "../navigation/replace";
-import { contentInit } from "src/assets/js/docs";
 import useBrowserEffect from "src/util/useBrowserEffect";
 
 // Stop mermaid for doing th
@@ -67,7 +66,7 @@ const MD = styled.div`
   .sq-mrmaid svg {
     margin: 0 auto;
     display: block;
-    width: 100%
+    width: 100%;
   }
   .sq-mrmaid svg .label {
     text-shadow: none; /* Overrides bootstrap CSS class conflict*/
@@ -76,7 +75,7 @@ const MD = styled.div`
 
 function useMermaid(source) {
   const ref = useRef(null);
-  useLayoutEffect(() => {
+  useBrowserEffect(() => {
     if (ref && ref.current && mermaidAPI) {
       const charts = ref.current.querySelectorAll("." + SECRETID);
       charts.forEach(async (element: HTMLDivElement) => {
@@ -172,7 +171,10 @@ export default function Markdown({ source }: { source: string }) {
     }
   }, [source, renderer]);
 
-  useBrowserEffect(()=>contentInit(),[comp]);
+  useBrowserEffect(() => {
+    const contentInit = require("../assets/js/docs").contentInit;
+    contentInit();
+  }, [comp]);
 
   return <MD ref={ref}>{comp}</MD>;
 }

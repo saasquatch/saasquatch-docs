@@ -1,23 +1,17 @@
 /* 
 == JsHint details here ==
 */
+
+import "./browser-required-warning";
+
 import jQuery from "jquery";
 import hljs from "highlight.js";
-
 import scrolling from "./scrolling";
 
-const deps = {
-  scrolling,
-  hljs,
-  jQuery
-};
-
-export { deps };
-
-window.jQuery = jQuery;
+typeof window !== "undefined" && (window["jQuery"] = jQuery);
 
 export function init() {
-  jQuery(document).ready(function() {
+  jQuery(document).ready(function () {
     try {
       require("../lib/bootstrap.min");
       require("magnific-popup");
@@ -44,11 +38,11 @@ export function init() {
 
     // nav();
     // search();
-    
+
     // Scrolling not required in React-Static.
     scrolling.init();
 
-    jQuery(".navbar .hamburger").click(function(e) {
+    jQuery(".navbar .hamburger").click(function (e) {
       jQuery(this).toggleClass("is-active");
     });
 
@@ -57,12 +51,13 @@ export function init() {
 }
 
 export function contentInit() {
+  try{
   // LV: Waits for jQuery before loading
   var magnific = require("magnific-popup");
-  jQuery(".js-docs-collapse").each(function() {
+  jQuery(".js-docs-collapse").each(function () {
     var content = jQuery(this);
     var toggler = jQuery("<a class='js-docs-collapse-toggle'>&nbsp;</a>").click(
-      function() {
+      function () {
         jQuery(this).toggleClass("active");
         content.toggle();
       }
@@ -70,11 +65,7 @@ export function contentInit() {
     content.before(toggler);
   });
 
-  // Uses Bootstrap tooltips
-  jQuery(".js-tooltip").tooltip({
-    placement: "bottom"
-  });
-
+  // @ts-ignore
   jQuery("[data-lightbox]").magnificPopup({
     type: "image",
     mainClass: "mfp-with-zoom", // this class is for CSS animation below
@@ -88,21 +79,21 @@ export function contentInit() {
       // The "opener" function should return the element from which popup will be zoomed in
       // and to which popup will be scaled down
       // By defailt it looks for an image tag:
-      opener: function(openerElement) {
+      opener: function (openerElement) {
         // openerElement is the element on which popup was initialized, in this case its <a> tag
         // you don't need to add "opener" option if this code matches your needs, it's defailt one.
         return openerElement.is("img")
           ? openerElement
           : openerElement.find("img");
-      }
-    }
+      },
+    },
   });
 
-
   // Non-necessary highlighting. Executes asynchronously for faster page load
-  setTimeout(function() {
+  setTimeout(function () {
     hljs.initHighlighting();
   }, 1);
+  }catch(e){
+    console.error("Jquery plugins failure", e);
+  }
 }
-
-// init();

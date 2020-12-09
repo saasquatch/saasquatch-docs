@@ -4,7 +4,8 @@
  * Hard-coded MMenu into the Zenscroll ignore.
  * 
  */
- 
+
+ import "./browser-required-warning"; 
 // import zenscroll from "zenscroll";
 import jQuery from 'jquery';
 

@@ -1,4 +1,4 @@
-import React, { Ref, useLayoutEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { useSiteData } from "react-static";
 import { HashLink as Link } from "react-router-hash-link";
 import slug from "slug";
@@ -7,7 +7,6 @@ import * as Styles from "./NavStyles";
 import { EndpointSummary, EndpointSummarySet } from "src/api/Types";
 import { MMenuContext } from "./NavigationSidebar";
 import { VersionContext } from "components/useVersion";
-import Tippy from "@tippyjs/react";
 import { Tooltip } from "components/Tooltip";
 
 function openVeritcalParent($l, mmenuApi) {

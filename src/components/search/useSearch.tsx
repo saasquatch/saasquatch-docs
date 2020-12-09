@@ -1,26 +1,16 @@
 import { useEffect, useState } from "react";
 import { useSiteData } from "react-static";
+import { useDebouncedCallback } from "use-debounce";
+
 import { getParameterByName } from "components/search/searchUtil";
-import { useDebouncedCallback } from 'use-debounce';
 
 export function useSearch() {
   const [response, setResponse] = useState(null);
-  //     ---
-  // slug: search
-  // template: fullpage.html
-  // category: search
-  // ---
+
   // Only run in the browser
   const jQuery = require("jquery");
   const { windowDotEnv } = useSiteData();
-  /**
-   *
-   *  Docs Search
-   *
-   *
-   *  Uses google custom search, Handlebars, and format
-   *
-   */
+
   // var categoryFilter = "more:pagemap:metatags-type:jsReference";
   let initialIndex = 0;
   try {
@@ -95,7 +85,6 @@ export function useSearch() {
   useEffect(() => {
     debounced.callback(dataObj);
   }, [query, cat, startIndex]);
-
 
   return {
     response,

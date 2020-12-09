@@ -1,11 +1,10 @@
-import React, { useLayoutEffect } from "react";
+import React from "react";
 
-// import Markdown from "../components/Markdown.jsx";
-
-import Isotope from "isotope-layout";
-import PageHeader from "../../components/PageHeader";
 import { useRouteData } from "react-static";
+
+import PageHeader from "../../components/PageHeader";
 import { matchesSelector } from "./matchesSelector";
+import useBrowserEffect from "src/util/useBrowserEffect";
 
 const entry = {
   title: "Guides",
@@ -18,44 +17,10 @@ const entry = {
 const id = "js-guides-215kjb2151";
 export default function render() {
   const { guides, integrations } = useRouteData();
-  useLayoutEffect(() => {
-    onLoad();
-  }, []);
 
   return (
     <PageHeader {...entry}>
-      <div className="isotope-integration-button-group filters-isotope-integration-button-group">
-        <button
-          id="filterAll"
-          className="isotope-integration-button"
-          data-filter="*"
-        >
-          All
-        </button>
-        <button className="isotope-integration-button" data-filter=".library">
-          Libraries
-        </button>
-        <button
-          className="isotope-integration-button"
-          data-filter=".integration"
-        >
-          Integrations
-        </button>
-        <button
-          className="isotope-integration-button"
-          data-filter=".payment-provider"
-        >
-          Payment Providers
-        </button>
-        <button
-          id="filterFeature"
-          className="isotope-integration-button"
-          data-filter=".feature"
-        >
-          Features
-        </button>
-      </div>
-
+     
       <div id={id}>
         {Object.keys(guides).map((key: any) => {
           const guide = guides[key];
@@ -133,72 +98,3 @@ export default function render() {
     </PageHeader>
   );
 }
-
-function onLoad() {
-  //pickup arguements from URL
-  var getQueryString = function(field: string, url?: string) {
-    var href = url ? url : window.location.href;
-    var reg = new RegExp("[?&]" + field + "=([^&#]*)", "i");
-    var string = reg.exec(href);
-    return string ? string[1] : null;
-  };
-  //check whether the link to the guides page is from the success center
-  var isSuccessCenter = getQueryString("isSuccessCenter");
-  console.log(isSuccessCenter);
-  let iso;
-  if (isSuccessCenter == "true") {
-    var temp = document.getElementById("filterFeature");
-    temp.classList.add("is-checked");
-
-    // init Isotope
-    iso = new Isotope("#" + id, {
-      itemSelector: ".guides-item",
-      layoutMode: "fitRows",
-      filter: ".feature"
-    });
-  } else {
-    var temp = document.getElementById("filterAll");
-    temp.classList.add("is-checked");
-    // init Isotope
-    iso = new Isotope("#" + id, {
-      itemSelector: ".guides-item",
-      layoutMode: "fitRows"
-    });
-  }
-  // bind filter isotope-integration-button click
-  var filtersIntegration = document.querySelector(
-    ".filters-isotope-integration-button-group"
-  );
-  filtersIntegration.addEventListener("click", function(event) {
-    // only work with isotope-integration-buttons
-    // if (!matchesSelector(event.target, "button")) {
-    //   return;
-    // }
-    // @ts-ignore
-    var filterValue = event.target.getAttribute("data-filter");
-    // use matching filter function
-    //filterValue = filterFns[ filterValue ] || filterValue;
-    iso.arrange({ filter: filterValue });
-  });
-  // change is-checked class on isotope-integration-buttons
-  var buttonGroups = document.querySelectorAll(
-    ".isotope-integration-button-group"
-  );
-  for (var i = 0, len = buttonGroups.length; i < len; i++) {
-    var buttonGroup = buttonGroups[i];
-    radioButtonGroup(buttonGroup);
-  }
-  function radioButtonGroup(buttonGroup) {
-    buttonGroup.addEventListener("click", function(event) {
-      // only work with buttons
-      // @ts-ignore
-      if (!matchesSelector(event.target, "button")) {
-        return;
-      }
-      buttonGroup.querySelector(".is-checked").classList.remove("is-checked");
-      event.target.classList.add("is-checked");
-    });
-  }
-}
-
-

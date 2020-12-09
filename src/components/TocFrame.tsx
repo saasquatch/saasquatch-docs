@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React from "react";
 //@ts-ignore
 import { StickyContainer, Sticky } from "react-sticky";
 

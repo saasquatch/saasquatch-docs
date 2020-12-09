@@ -1,4 +1,4 @@
-import React, { useRef, useLayoutEffect, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { History } from "history";
 import { HashLink as Link } from "react-router-hash-link";
@@ -10,6 +10,7 @@ import BrowserOnly from "components/BrowserOnly";
 
 import "./mmenu-overrides.css";
 import ApiSidebar from "./ApiSidebar";
+import useBrowserEffect from "src/util/useBrowserEffect";
 // import "mmenu-js/dist/mmenu.css"
 
 function useMMenu() {
@@ -49,7 +50,7 @@ export function NavigationSidebar() {
   const container = useRef(null);
   const mmenu = MMenuContext.useContainer();
 
-  useLayoutEffect(() => {
+  useBrowserEffect(() => {
     mmenu.mmenuApi = init(modalRoot, history);
   }, [modalRoot]);
 

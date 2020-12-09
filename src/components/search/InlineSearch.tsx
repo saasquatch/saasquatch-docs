@@ -2,23 +2,21 @@ import React, {
   RefObject,
   useCallback,
   useEffect,
-  useLayoutEffect,
-  useReducer,
   useRef,
   useState,
 } from "react";
 import Tippy from "@tippyjs/react/headless";
+import hotkeys from "hotkeys-js";
+import { useHistory } from "react-router";
+
 import { useSearch } from "./useSearch";
 import * as Styles from "./SearchStyles";
 import { sanitizeGoogleSearchLink, isBlank } from "./searchUtil";
+import useBrowserEffect from "src/util/useBrowserEffect";
 
-import hotkeys from "hotkeys-js";
-import { useHistory } from "react-router";
-import { duplicateInputFieldMessage } from "graphql/validation/rules/UniqueInputFieldNames";
-
-const keyMap = {
-  CLOSE: ["esc", "x"],
-};
+// export function InlineSearch(){
+//   return <div />
+// }
 
 export function InlineSearch({ Input = Styles.DefaultInput }) {
   if (typeof document === "undefined") {
@@ -36,14 +34,12 @@ export function InlineSearch({ Input = Styles.DefaultInput }) {
   useEffect(() => {
     setSelectedIndex(0);
   }, [query]);
-  useLayoutEffect(() => {
-    if (typeof document !== "undefined") {
-      hotkeys("esc", function (event, handler) {
-        // event.preventDefault();
-        setVisible(false);
-      });
-      return () => hotkeys.unbind("esc");
-    }
+  useBrowserEffect(() => {
+    hotkeys("esc", function (event, handler) {
+      // event.preventDefault();
+      setVisible(false);
+    });
+    return () => hotkeys.unbind("esc");
   }, [setVisible]);
   const inputEl = useRef<HTMLInputElement>(null);
   const resultsEl = useRef<HTMLDivElement>(null);
@@ -58,26 +54,23 @@ export function InlineSearch({ Input = Styles.DefaultInput }) {
     },
     [inputEl.current, resultsEl.current]
   );
-  useLayoutEffect(() => {
-    if (typeof document !== "undefined") {
-      const handler = (e) => {
-        const { target } = e;
-        if (target) {
-          if (contains(target)) {
-            // If descendant of the input box of results
-            // Do nothing
-          } else {
-            // If click anywhere else
-            // Hide the search results if they are open;
-            setVisible(false);
-          }
+  useBrowserEffect(() => {
+    const handler = (e) => {
+      const { target } = e;
+      if (target) {
+        if (contains(target)) {
+          // If descendant of the input box of results
+          // Do nothing
+        } else {
+          // If click anywhere else
+          // Hide the search results if they are open;
+          setVisible(false);
         }
-      };
+      }
+    };
 
-      document.documentElement.addEventListener("click", handler);
-      return () =>
-        document.documentElement.removeEventListener("click", handler);
-    }
+    document.documentElement.addEventListener("click", handler);
+    return () => document.documentElement.removeEventListener("click", handler);
   }, [setVisible, contains]);
 
   const onkeypressed = (evt) => {
