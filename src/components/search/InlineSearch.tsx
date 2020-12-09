@@ -65,6 +65,7 @@ export function InlineSearch({ Input = Styles.DefaultInput }) {
       const item = response?.items[selectedIdx];
       const url = sanitizeGoogleSearchLink(item.link);
       history.push(url);
+      setVisible(false);
     }
   };
 
