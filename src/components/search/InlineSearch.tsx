@@ -1,8 +1,10 @@
 import React, {
+  RefObject,
   useCallback,
   useEffect,
   useLayoutEffect,
   useReducer,
+  useRef,
   useState,
 } from "react";
 import Tippy from "@tippyjs/react/headless";
@@ -12,6 +14,7 @@ import { sanitizeGoogleSearchLink, isBlank } from "./searchUtil";
 
 import hotkeys from "hotkeys-js";
 import { useHistory } from "react-router";
+import { duplicateInputFieldMessage } from "graphql/validation/rules/UniqueInputFieldNames";
 
 const keyMap = {
   CLOSE: ["esc", "x"],
@@ -39,10 +42,44 @@ export function InlineSearch({ Input = Styles.DefaultInput }) {
         // event.preventDefault();
         setVisible(false);
       });
-
       return () => hotkeys.unbind("esc");
     }
   }, [setVisible]);
+  const inputEl = useRef<HTMLInputElement>(null);
+  const resultsEl = useRef<HTMLDivElement>(null);
+  const contains = useCallback(
+    (el) => {
+      if (inputEl.current && inputEl.current.contains(el)) {
+        return true;
+      }
+      if (resultsEl.current && resultsEl.current.contains(el)) {
+        return true;
+      }
+    },
+    [inputEl.current, resultsEl.current]
+  );
+  useLayoutEffect(() => {
+    if (typeof document !== "undefined") {
+      const handler = (e) => {
+        const { target } = e;
+        if (target) {
+          if (contains(target)) {
+            // If descendant of the input box of results
+            // Do nothing
+          } else {
+            // If click anywhere else
+            // Hide the search results if they are open;
+            setVisible(false);
+          }
+        }
+      };
+
+      document.documentElement.addEventListener("click", handler);
+      return () =>
+        document.documentElement.removeEventListener("click", handler);
+    }
+  }, [setVisible, contains]);
+
   const onkeypressed = (evt) => {
     var code = evt.charCode || evt.keyCode;
     if (code == 27) {
@@ -70,6 +107,14 @@ export function InlineSearch({ Input = Styles.DefaultInput }) {
       setVisible(false);
     }
   };
+  const hide = useCallback(() => setVisible(false), [setVisible]);
+
+  const delayedHide = useCallback(() => {
+    // On blur prevents race condition between clicking on a result and hiding the search results
+    setTimeout(() => {
+      setVisible(false);
+    }, 100);
+  }, [setVisible]);
 
   return (
     <Styles.Inline>
@@ -93,6 +138,8 @@ export function InlineSearch({ Input = Styles.DefaultInput }) {
                 setStartIndex={setStartIndex}
                 query={query}
                 selectedIdx={selectedIdx}
+                close={() => setVisible(false)}
+                childRef={resultsEl}
               />
             )}
           </Styles.PopOver>
@@ -105,16 +152,31 @@ export function InlineSearch({ Input = Styles.DefaultInput }) {
           value={query}
           onKeyUp={onkeypressed}
           onFocus={(e) => setVisible(true)}
-          onBlur={(e) => setVisible(false)}
+          // onBlur={(e) => delayedHide()}
           onChange={(e) => setQuery(e.target.value)}
           autoComplete="off"
+          ref={inputEl}
         />
       </Tippy>
     </Styles.Inline>
   );
 }
 
-export function InlineResults({ response, setStartIndex, query, selectedIdx }) {
+export function InlineResults({
+  response,
+  setStartIndex,
+  query,
+  selectedIdx,
+  close,
+  childRef,
+}: {
+  response: any;
+  setStartIndex: (next: number) => void;
+  query: string;
+  selectedIdx: number;
+  close: () => void;
+  childRef: RefObject<HTMLDivElement>;
+}) {
   const { items, queries, searchInformation } = response;
 
   // Some pages have `meta` tags via `pagemap.metatags`, and things like ios/android don't.
@@ -128,8 +190,20 @@ export function InlineResults({ response, setStartIndex, query, selectedIdx }) {
   };
 
   return (
-    <>
-      <div style={{textAlign:"right"}}>Press Esc to close.</div>
+    <div ref={childRef}>
+      <div style={{ textAlign: "right" }}>
+        Press Esc to{" "}
+        <a
+          href=""
+          onClick={(e) => {
+            e.preventDefault();
+            close();
+          }}
+        >
+          close
+        </a>
+        .
+      </div>
       {items &&
         items
           .filter((item) => item)
@@ -192,6 +266,6 @@ export function InlineResults({ response, setStartIndex, query, selectedIdx }) {
           </p>
         </div>
       )}
-    </>
+    </div>
   );
 }
