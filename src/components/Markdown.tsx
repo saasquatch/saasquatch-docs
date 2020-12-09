@@ -7,6 +7,8 @@ import uuidv4 from "uuid/v4";
 import parse from "html-react-parser";
 import DOMPurify from "../util/IsomoprhicDomPurify";
 import { replace } from "../navigation/replace";
+import { contentInit } from "src/assets/js/docs";
+import useBrowserEffect from "src/util/useBrowserEffect";
 
 // Stop mermaid for doing th
 const SECRETID = "mermaid2018y125ug1";
@@ -156,20 +158,21 @@ export default function Markdown({ source }: { source: string }) {
   const comp = useMemo(() => {
     try {
       const rawMarkup = marked(source, { sanitize: false, renderer: renderer });
-      const betterHtml = DOMPurify.sanitize(rawMarkup);
-      const component = parse(betterHtml, { replace });
+      // const betterHtml = DOMPurify.sanitize(rawMarkup);
+      const component = parse(rawMarkup, { replace });
       return component;
     } catch (e) {
-      console.error("Error in parsing page", e);
+      console.error("SaaSquatch markdown parsing error", e, source);
       return (
         <div style={{ color: "red" }}>
           <h2>Error Loading This Page</h2>
-          <pre>{e.toString()}</pre>
           <pre>{source}</pre>
         </div>
       );
     }
   }, [source, renderer]);
+
+  useBrowserEffect(()=>contentInit(),[comp]);
 
   return <MD ref={ref}>{comp}</MD>;
 }
