@@ -14,7 +14,7 @@ export function getParameterByName(name) {
 }
 
 export function sanitizeGoogleSearchLink(link) {
-  return link.replace("https://docs.referralsaasquatch.com", "");
+  return link.replace("https://docs.referralsaasquatch.com", "").replace("https://docs.saasquatch.com", "");
 }
 
 export function isBlank(str) {

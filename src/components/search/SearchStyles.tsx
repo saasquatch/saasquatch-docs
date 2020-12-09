@@ -9,6 +9,7 @@ export const ItemRow = styled(HashLink)`
   margin: 5px 0;
   border-bottom: 1px solid #ccc;
 
+  background: ${props => props.selected ? "green" : "white"};
   &:hover {
     background: #eee;
   }

@@ -143,7 +143,7 @@ export function Results({ response, setStartIndex, query }) {
                   item.pagemap.metatags[0].docscategory)
               }
             >
-              <a href={item.link} className="clearfix">
+              <a href={item.link} className="clearfix" data-link={item.link}>
                 <div
                   className="search-results-title"
                   dangerouslySetInnerHTML={{
