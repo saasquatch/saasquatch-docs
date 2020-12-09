@@ -47,6 +47,7 @@
     "serve": "^11.3.2",
     "slug": "0.9.1",
     "swagger-parser": "^3.4.1",
+    "use-debounce": "^5.1.0",
     "webpack": "^4.20.2",
     "zenscroll": "^3.3.0"
   },

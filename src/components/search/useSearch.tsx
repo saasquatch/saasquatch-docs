@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useSiteData } from "react-static";
 import { getParameterByName } from "components/search/searchUtil";
+import { useDebouncedCallback } from 'use-debounce';
+
 export function useSearch() {
   const [response, setResponse] = useState(null);
   //     ---
@@ -72,18 +74,28 @@ export function useSearch() {
     dataObj.start = startIndex;
   }
 
+  const debounced = useDebouncedCallback(
+    // function
+    (value) => {
+      jQuery.ajax({
+        url: "https://www.googleapis.com/customsearch/v1",
+        dataType: "jsonp",
+        jsonp: "callback",
+        data: value,
+        // Work with the response
+        success: function (response) {
+          setResponse(response);
+        },
+      });
+    },
+    // delay in ms
+    100
+  );
+
   useEffect(() => {
-    jQuery.ajax({
-      url: "https://www.googleapis.com/customsearch/v1",
-      dataType: "jsonp",
-      jsonp: "callback",
-      data: dataObj,
-      // Work with the response
-      success: function (response) {
-        setResponse(response);
-      },
-    });
+    debounced.callback(dataObj);
   }, [query, cat, startIndex]);
+
 
   return {
     response,
