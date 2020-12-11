@@ -62,7 +62,7 @@ function findElementForCurrentUrl() {
   return foundElement;
 }
 
-export default function (search: HTMLElement, history: History<any>) {
+export default function init(search: HTMLElement, history: History<any>) {
   var menuDom = jQuery("#my-menu");
 
   const foundElement = findElementForCurrentUrl();
@@ -150,8 +150,8 @@ export default function (search: HTMLElement, history: History<any>) {
 
   const myMenu = menuDom.data("mmenu");
 
+  updateSidebarForCurrentURL(myMenu);
   connectMobileToggle(myMenu);
-
   connectHistoryListener(history, myMenu);
 
   return myMenu;
@@ -173,30 +173,50 @@ function connectMobileToggle(myMenu: any) {
 function connectHistoryListener(history: History<any>, myMenu: any) {
   history.listen((location) => {
     //Do your stuff here
-    const foundElement = findElementForCurrentUrl();
-    console.log(
-      "Found element",
-      foundElement,
-      "for path",
-      window.location.pathname
-    );
-    if (foundElement) {
-      if (foundElement.hasClass("mm-vertical")) {
-        // myMenu.
-      } else {
-        // Open the right panel
-        myMenu.setSelected(foundElement);
-      }
-      // Open closest top-level panel
-      const parent = foundElement.closest(".mm-panels > .mm-panel");
-      if(parent && parent.length){
-        console.log("Opening parent panel", parent);
-        myMenu.openPanel(parent)
-      }
-
-    } else {
-      myMenu.setSelected(null);
-    }
+    updateSidebarForCurrentURL(myMenu);
   });
+}
+
+/**
+ * Uses the mmenu API to open the correct page for the current URL
+ * 
+ * @param myMenu 
+ */
+function updateSidebarForCurrentURL(myMenu: any) {
+  const foundElement = findElementForCurrentUrl();
+  // console.log(
+  //   "Found element",
+  //   foundElement,
+  //   "for path",
+  //   window.location.pathname
+  // );
+  if (foundElement) {
+    if (foundElement.hasClass("mm-vertical")) {
+      // myMenu.
+    } else {
+      // Open the right panel
+      myMenu.setSelected(foundElement);
+    }
+    // Open closest top-level panel
+    const parent = foundElement.closest(".mm-panel");
+    if (parent && parent.length) {
+      // console.log("Opening parent panel", parent);
+      myMenu.openPanel(parent);
+    }
+
+    const dropdown = foundElement.parents(".mm-vertical");
+    if (dropdown && dropdown.length) {
+      // console.log("Opening parent panel", parent);
+      myMenu.openPanel(dropdown);
+      // if (dropdown.hasClass("mm-opened")) {
+      //   // Aready open
+      // } else {
+
+      //   dropdown.addClass("mm-opened");
+      // }
+    }
+  } else {
+    myMenu.setSelected(null);
+  }
 }
 
