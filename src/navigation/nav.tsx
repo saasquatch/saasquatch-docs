@@ -14,7 +14,7 @@ if (typeof document !== "undefined") {
 }
 var categories = ["successCenter", "developerCenter", "designerCenter"];
 
-function findElement() {
+function findElementForCurrentUrl() {
   /**
    * Sets the current page nav item as "Selected"
    *
@@ -65,7 +65,7 @@ function findElement() {
 export default function (search: HTMLElement, history: History<any>) {
   var menuDom = jQuery("#my-menu");
 
-  const foundElement = findElement();
+  const foundElement = findElementForCurrentUrl();
 
   if (foundElement) {
     foundElement.addClass("Selected");
@@ -150,17 +150,30 @@ export default function (search: HTMLElement, history: History<any>) {
 
   const myMenu = menuDom.data("mmenu");
 
-  myMenu.bind("opened", function () {
-    jQuery("#open-sidenav").addClass("is-active");
-  });
-  myMenu.bind("closed", function () {
-    jQuery("#open-sidenav").removeClass("is-active");
-  });
+  connectMobileToggle(myMenu);
 
-  // Source: https://github.com/ReactTraining/react-router/issues/3554
+  connectHistoryListener(history, myMenu);
+
+  return myMenu;
+}
+
+/**
+ * Connects the mobile-only button that hides and shows the sidebar
+ */
+function connectMobileToggle(myMenu: any) {
+  myMenu.bind("opened", () => jQuery("#open-sidenav").addClass("is-active"));
+  myMenu.bind("closed", () => jQuery("#open-sidenav").removeClass("is-active"));
+}
+
+/**
+ * Connect MMenu to React history for Back / Forward button support
+ *
+ * Source: https://github.com/ReactTraining/react-router/issues/3554
+ */
+function connectHistoryListener(history: History<any>, myMenu: any) {
   history.listen((location) => {
     //Do your stuff here
-    const foundElement = findElement();
+    const foundElement = findElementForCurrentUrl();
     console.log(
       "Found element",
       foundElement,
@@ -171,13 +184,16 @@ export default function (search: HTMLElement, history: History<any>) {
       if (foundElement.hasClass("mm-vertical")) {
         // myMenu.
       } else {
+        // Open the right panel
+        // myMenu.openPanel(jQuery(foundElement).parent("ul"));
         myMenu.setSelected(foundElement);
       }
-      // myMenu.openPanel(jQuery(foundElement).parent("ul"));
+      // Open closest parent panel
+      myMenu.openPanel(jQuery(foundElement.closest(".mm-panel")))
+
     } else {
       myMenu.setSelected(null);
     }
   });
-
-  return myMenu;
 }
+

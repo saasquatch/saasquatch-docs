@@ -6,7 +6,6 @@ import { createContainer } from "unstated-next";
 
 import * as Styles from "./NavStyles";
 import init from "./nav";
-import BrowserOnly from "components/BrowserOnly";
 
 import "./mmenu-overrides.css";
 import ApiSidebar from "./ApiSidebar";
@@ -14,23 +13,8 @@ import useBrowserEffect from "src/util/useBrowserEffect";
 // import "mmenu-js/dist/mmenu.css"
 
 function useMMenu() {
-  const parent = useRef(null);
   const [mmenuApi, setMMenuApi] = useState(null);
-  const apiRerender = () => {
-    if (!mmenuApi || !parent.current) {
-      // Refs haven't been set
-      return;
-    }
-
-    try {
-      mmenuApi.initPanels(jQuery(parent.current));
-    } catch (e) {
-      console.error("Failed to re-render API", e, parent.current, mmenuApi);
-    }
-  };
   return {
-    parent,
-    apiRerender,
     get mmenuApi() {
       return mmenuApi;
     },
@@ -47,7 +31,7 @@ export const modalRoot =
 
 export function NavigationSidebar() {
   const history: History<any> = useHistory();
-  const container = useRef(null);
+  // const container = useRef(null);
   const mmenu = MMenuContext.useContainer();
 
   useBrowserEffect(() => {
@@ -55,7 +39,9 @@ export function NavigationSidebar() {
   }, [modalRoot]);
 
   return (
-    <Styles.Container ref={container}>
+    <Styles.Container
+    //ref={container}
+    >
       <nav id="my-menu">
         <ul className="baseMenu">
           <li>

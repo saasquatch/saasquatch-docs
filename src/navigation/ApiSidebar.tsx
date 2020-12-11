@@ -30,7 +30,7 @@ function openVeritcalParent($l, mmenuApi) {
   // mmenuApi.trigger( 'openedPanel'	, $panel );
 }
 
-function MenuItem({ tag, idx }) {
+function useMenuItemHook({ tag, idx }) {
   const { apiRoutes, apiRoutesByTag } = useSiteData<{
     apiRoutes: EndpointSummary[];
     apiRoutesByTag: EndpointSummarySet;
@@ -53,22 +53,53 @@ function MenuItem({ tag, idx }) {
     console.log("Opening panel", mmenuApi, jQuery(id));
     openVeritcalParent(jQuery(parent.current), mmenuApi);
   };
+  const anchor = slug(tag);
+  return {
+    data: {
+      tag,
+      endpoints,
+    },
+    states: {
+      id,
+      anchor,
+    },
+    callbacks: {
+      doOpen,
+    },
+    refs: {
+      parent,
+    },
+  };
+}
+
+function MenuItem(props: { tag: string; idx: number }) {
+  return <MenuItemView {...useMenuItemHook(props)} />;
+}
+
+function MenuItemView({
+  states,
+  callbacks,
+  refs,
+  data,
+}: ReturnType<typeof useMenuItemHook>) {
   return (
-    <li className="mm-vertical" ref={parent}>
+    <li className="mm-vertical" ref={refs.parent}>
       <span
         className="mm-next mm-fullsubopen"
         // href={id}
-        data-target={id}
-        onClick={doOpen}
+        data-target={states.id}
+        onClick={callbacks.doOpen}
       ></span>
-      <span onClick={doOpen}>{tag}</span>
-      <div className="mm-panel mm-vertical developerCenter" id={id}>
+      <span onClick={callbacks.doOpen}>{data.tag}</span>
+      <div className="mm-panel mm-vertical developerCenter" id={states.id}>
         <ul className="nav-onpage mm-listview mm-vertical developerCenter">
           <li>
             {" "}
-            <Link to={"/api/methods#" + slug(tag)}>{tag} Overview</Link>
+            <Link to={"/api/methods#" + states.anchor}>
+              {data.tag} Overview
+            </Link>
           </li>
-          {endpoints.map((route) => {
+          {data.endpoints.map((route) => {
             return (
               <li key={route.anchor}>
                 <Link to={"/api/methods#" + route.anchor}>
