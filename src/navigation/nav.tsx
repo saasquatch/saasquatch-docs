@@ -185,11 +185,14 @@ function connectHistoryListener(history: History<any>, myMenu: any) {
         // myMenu.
       } else {
         // Open the right panel
-        // myMenu.openPanel(jQuery(foundElement).parent("ul"));
         myMenu.setSelected(foundElement);
       }
-      // Open closest parent panel
-      myMenu.openPanel(jQuery(foundElement.closest(".mm-panel")))
+      // Open closest top-level panel
+      const parent = foundElement.closest(".mm-panels > .mm-panel");
+      if(parent && parent.length){
+        console.log("Opening parent panel", parent);
+        myMenu.openPanel(parent)
+      }
 
     } else {
       myMenu.setSelected(null);

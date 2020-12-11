@@ -2,6 +2,7 @@
 import React from "react";
 
 import { useRouteData } from "react-static";
+import { HashLink as Link } from "react-router-hash-link";
 
 import PageHeader from "../../components/PageHeader";
 
@@ -29,15 +30,15 @@ export default function render() {
               }
             >
               <div className="integration-image">
-                <a className="imageLink" href={"/" + integration.slug}>
+                <Link className="imageLink" to={"/" + integration.slug}>
                   <img className="image" src={integration.logo.url} />
-                </a>
+                </Link>
               </div>
               <p className="highlights">{integration.integrationDescription}</p>
 
-              <a className="link" href={"/" + integration.slug}>
+              <Link className="link" to={"/" + integration.slug}>
                 Read more about {integration.integrationName}
-              </a>
+              </Link>
             </div>
           );
         })}

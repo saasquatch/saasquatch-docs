@@ -1,5 +1,6 @@
 import React from "react";
 import { useRouteData } from "react-static";
+import { HashLink as Link } from "react-router-hash-link";
 
 import PageHeader from "../../components/PageHeader";
 import Markdown from "src/components/Markdown";
@@ -224,8 +225,8 @@ export default () => {
         </h3>
         <p>
           Every short tag gets wrapped to a long tag that is uses one of the{" "}
-          <a href="/themes/fields/">theme context fields</a> or{" "}
-          <a href="/themes/helpers/">helpers</a>. Embedded template fields with
+          <Link to="/themes/fields/">theme context fields</Link> or{" "}
+          <Link to="/themes/helpers/">helpers</Link>. Embedded template fields with
           corresponding short tag aliases will be replaced with their respective
           short tags when viewed in the portal share message editor. It is a{" "}
           <b>two-way transformation</b> so as a developer, you{" "}

@@ -1,6 +1,8 @@
 import React from "react";
 import { useRouteData } from "react-static";
 import styled from "styled-components";
+import { HashLink as Link } from "react-router-hash-link";
+
 import PageHeader from "../../components/PageHeader";
 
 const entry = {
@@ -43,7 +45,7 @@ const ProgramCard = styled(Card)`
   position: relative;
 `;
 
-const PCButton = styled.a`
+const PCButton = styled(Link)`
   position: absolute;
   bottom: 13px;
   text-align: center;
@@ -129,7 +131,7 @@ export default function render() {
                   type={program.fields.summary}
                 />
 
-                <PCButton className="learnMoreLink" href={"/" + program.slug}>
+                <PCButton className="learnMoreLink" to={"/" + program.slug}>
                   Learn More.{" "}
                 </PCButton>
               </ProgramCard>
