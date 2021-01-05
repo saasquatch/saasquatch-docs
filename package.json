@@ -14,7 +14,7 @@
   "dependencies": {
     "@reach/router": "^1.2.1",
     "anchor-js": "^3.2.2",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "chai": "^3.5.0",
     "cheerio": "^0.22.0",
     "connect": "^3.4.1",
