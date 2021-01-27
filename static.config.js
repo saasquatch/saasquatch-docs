@@ -107,9 +107,12 @@ async function getYaml(file) {
  * @returns parsed API yaml
  */
 async function getAPIYaml() {
-  const text = await fs.readFile("node_modules/@saasquatch/schema/yaml/saasquatch-api.yaml", {
-    encoding: "utf8"
-  });
+  const text = await fs.readFile(
+    "node_modules/@saasquatch/schema/yaml/saasquatch-api.yaml",
+    {
+      encoding: "utf8",
+    }
+  );
   const data = yaml.safeLoad(text);
   return data;
 }
@@ -144,6 +147,10 @@ export default {
     // public: "public", // The public directory (files copied to dist during build)
     // assets: "build2", // The output directory for bundled JS and CSS
     // buildArtifacts: "artifacts" // The output directory for generated (internal) resources
+  },
+  devServer: {
+    //https://webpack.js.org/configuration/dev-server/#devserverdisablehostcheck
+    disableHostCheck: true,
   },
   async getSiteData() {
     return {
