@@ -132,7 +132,7 @@ export const PersonalisationSelect = () => {
     version === "classic-only"
       ? "Classic programs"
       : version === "ga-only"
-      ? "non-Classic programs"
+      ? "new programs"
       : "all programs";
 
   return (
@@ -181,8 +181,8 @@ export const PersonalisationSelect = () => {
                 </Description>
               </div>
             </Option>
-            <Option onClick={() => setVersion("hybrid")}>
-              <ListIcon active={version === "hybrid"}>
+            <Option onClick={() => setVersion("everything")}>
+              <ListIcon active={version === "everything"}>
                 <Global />
               </ListIcon>
               <div>
