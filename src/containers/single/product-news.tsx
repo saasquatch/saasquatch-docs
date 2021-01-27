@@ -9,7 +9,6 @@ import PageHeader from "../../components/PageHeader";
 const filterFns = {
   // show if post if from the past 30 days
   last_30: function (item) {
-    console.log("Date Published", item)
     const postDate = new Date(item.datePublished).getTime() / 1000;
     //var postDate = new Date($(this).find('.datePublished').text()).getTime() / 1000;
     const thirtyDaysAgo = Math.floor(Date.now() / 1000) - 2592000;
