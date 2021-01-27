@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router";
 import { VersionContext, Version } from "./useVersion";
 
 export function VersionSwitcher({
@@ -6,10 +7,14 @@ export function VersionSwitcher({
 }: {
   children?: JSX.Element | JSX.Element[];
 }) {
-  const { version, setVersion, openModal } = VersionContext.useContainer();
+  const { version, setVersion } = VersionContext.useContainer();
 
+  useHistory();
+  const onClick = ()=> window.scrollTo({
+    top:0
+  })
   return (
-    <a onClick={openModal} href="#">
+    <a onClick={onClick} href="#">
       {children || "Change personalization"}
     </a>
   );

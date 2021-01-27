@@ -12,7 +12,7 @@ import {
   NavigationSidebar,
   MMenuContext,
 } from "./navigation/NavigationSidebar";
-import VersionSwitcherModal from "./components/VersionSwitcherModal";
+
 import BrowserOnly from "components/BrowserOnly";
 import { PortalifiedSearch } from "./navigation/PortalifiedSearch";
 import useBrowserEffect from "./util/useBrowserEffect";
@@ -68,7 +68,6 @@ function App() {
                     {/* <Route path="/dynamic" component={Dynamic} /> */}
                     <Route render={() => <Routes />} />
                   </Switch>
-                  <VersionSwitcherModal />
                 </div>
                 <div id="my-footer">
                   <NavigationFooter />

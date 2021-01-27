@@ -43,14 +43,10 @@ function useMenuItemHook({ tag, idx }) {
     .filter((route) => route.tags.includes(tag))
     .filter((route) => showTags(route.tags));
 
-  if (endpoints.length <= 0) {
-    return null;
-  }
-
   const id = "#mm-" + (90 + idx);
   const doOpen = (e) => {
     e.preventDefault();
-    console.log("Opening panel", mmenuApi, jQuery(id));
+    // console.log("Opening panel", mmenuApi, jQuery(id));
     openVeritcalParent(jQuery(parent.current), mmenuApi);
   };
   const anchor = slug(tag);
@@ -82,6 +78,10 @@ function MenuItemView({
   refs,
   data,
 }: ReturnType<typeof useMenuItemHook>) {
+
+  if (data.endpoints.length <= 0) {
+    return null;
+  }
   return (
     <li className="mm-vertical" ref={refs.parent}>
       <span

@@ -34,7 +34,6 @@ export function useVersion(): [Version, (next: Version) => void] {
 
 function useVersionContext() {
   let [version, setVersion] = useVersion();
-  let [open, setOpen] = useState<boolean>(false);
 
   const versionLabel =
     version === "classic-only"
@@ -58,9 +57,7 @@ function useVersionContext() {
     setVersion,
     modalIsOpen: open,
     showMethod,
-    showTags,
-    openModal: () => setOpen(true),
-    closeModal: () => setOpen(false),
+    showTags
   };
 }
 

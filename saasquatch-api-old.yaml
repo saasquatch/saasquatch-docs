@@ -524,7 +524,7 @@ paths:
       x-docs-anchor: get_sharelinks
       tags:
         - Classic Only
-        - User
+        - Share Links
       security:
         - APIKey: []
 

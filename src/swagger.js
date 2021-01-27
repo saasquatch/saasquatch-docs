@@ -11,7 +11,7 @@ export default async function getSwagger() {
   if (!swaggerUtils || !swaggerUtils["methodsByTag"]) {
     throw new Error("Failed to import SwaggerUtils");
   }
-  console.log("swage", raw);
+
   const spec = await parser.dereference(data);
   const resolved = await resolveAllOf(spec);
 

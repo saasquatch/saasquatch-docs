@@ -120,14 +120,10 @@ function HiddenMethods() {
                     .map((t) => tagMap[t])
                     .filter((t) => !t["x-meta"])
                     .map((t) => (
-                      <span className={"label"}>{t.name}</span>
+                      <span className={"label"} key={t.name}>{t.name}</span>
                     ))}
                 </td>
-                <td style={style}>
-                  <Link to={"#" + method["x-docs-anchor"]}>
-                    {method.summary}
-                  </Link>
-                </td>
+                <td style={style}>{method.summary}</td>
                 <td style={style}>
                   {method["deprecated"] && (
                     <span className="label">Deprecated</span>
@@ -136,7 +132,7 @@ function HiddenMethods() {
                     .map((t) => tagMap[t])
                     .filter((t) => t["x-meta"])
                     .map((t) => (
-                      <span className={"label"}>{t.name}</span>
+                      <span className={"label"} key={t.name}>{t.name}</span>
                     ))}
                 </td>
                 <td style={style}>
@@ -158,6 +154,9 @@ function HiddenMethods() {
           })}
         </tbody>
       </table>
+      <p>
+        Need the docs for these hidden methods? <VersionSwitcher />
+      </p>
     </div>
   );
 }
@@ -171,7 +170,6 @@ export default function render() {
 
 function Page({ swagger, tagMap, endpointByTag, showMethod }: APIData) {
   const { version, versionLabel } = VersionContext.useContainer();
-  console.log("version", version);
 
   const entry = {
     title: "Rest API Reference",
