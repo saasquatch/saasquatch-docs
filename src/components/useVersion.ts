@@ -4,11 +4,11 @@ import { useState, useMemo } from "react";
 import { Operation } from "swagger-schema-official";
 
 export const VERSIONS = [
-  // Shows everything
+  // Shows everything (including classic programs)
   "everything",
-  // Things that work with classic programs
+  // Things that work with classic programs (hides ga)
   "classic-only",
-  // Only new programs
+  // Only new programs (hides classic)
   "ga-only",
 ] as const;
 
@@ -19,8 +19,10 @@ type ElementType<T extends ReadonlyArray<unknown>> = T extends ReadonlyArray<
   : never;
 export type Version = ElementType<typeof VERSIONS>;
 
+const DEFAULT: Version = "ga-only";
 export function useVersion(): [Version, (next: Version) => void] {
-  const [innerVersion, setInnerVersion] = useCookie("docs-version", "ga-only");
+  if (typeof window === "undefined") return [DEFAULT, () => {}];
+  const [innerVersion, setInnerVersion] = useCookie("docs-version", DEFAULT);
 
   // Adds validation
   const setVersion = (v: Version) => {
@@ -62,7 +64,6 @@ function useVersionContext() {
     version,
     versionLabel,
     setVersion,
-    modalIsOpen: open,
     showMethod,
     showTags,
   };
