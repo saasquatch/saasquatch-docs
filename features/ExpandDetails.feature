@@ -1,3 +1,5 @@
+@owner:lv
+@author:am
 Feature: Expand details
 
     Allows for collapsible section in the docs. For example the "Classic Only" section on this page: https://docs.saasquatch.com/success/gift-card-rewards/

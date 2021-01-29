@@ -1,3 +1,5 @@
+@owner:lv
+@author:am
 Feature: Thumbnail popups (success center)
 
     Use for showing smaller thumbnail images. For example in this article: https://docs.saasquatch.com/features/rewards-fuel-tank/

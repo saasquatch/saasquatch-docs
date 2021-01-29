@@ -1,3 +1,5 @@
+@owner:lv
+@author:am
 Feature: Search
 
 	Search for sidebar and main page
@@ -20,7 +22,12 @@ Feature: Search
 	# currently fails as search terms with many results overflow the browser window
 	Scenario: Sidebar search results are scroll-able
 
+	# currently fails as search terms with many results overflow the browser window
+	Scenario: Sidebar search results are limited to {some number} of results
+
 	Scenario: Sidebar search results are preserved when the search results section is hidden by clicking "close button" or outside the results section
+
+	Scenario: Arbitrarily large search input can be entered
 
 	# sidebar search [close] button lacks styling
 	Scenario: Sidebar search input shows a "close" button when input field is selected and input is entered
@@ -29,11 +36,12 @@ Feature: Search
 
 	Scenario: Sidebar search input will not be cleared by click the "close" button
 
-	Scenario: Sidebar search input will not be cleared by clicking outside the modal
-# sidebar search, with input, esc clears input
-# sidebar search, with input, [close] does not clear input
+	Scenario: Sidebar search input will not be cleared by clicking outside the search results preview container
 
+	# main page search
 
+	Scenario: A search input field is shown on the main docs page
 
-# main page search
-# main search input, large input expands container outside of window
+	Scenario: Main page search input in empty by default
+
+	Scenario: Main page search will start searching and display results and input is entered
