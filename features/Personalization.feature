@@ -154,3 +154,65 @@ Feature: Personalization
 		Then the personalization menu is updated with the new <filter option>
 		When I clear my browser cookies
 		Then the personalization menu reverts to the default state
+
+	# currently fails, not implemented yet?
+	Scenario: Rest API Reference methods are shown/hidden based on selected personalization menu state
+		Given I am on the SaaSquatch docs page at the ../api/methods location
+		And a personalization menu is shown at the top of the main content section
+		When I select <filter option> with a corresponding <filter value>
+
+		Examples:
+			| filter option                                    | filter value |
+			| Docs are being personalised for new programs     | ga-only      |
+			| Docs are being personalised for Classic programs | classic-only |
+			| Docs are being personalised for all programs     | everything   |
+
+		Then the personalization menu is updated with the new <filter option>
+
+		Examples:
+			| api methods                                                             | visible      |
+			| /api/v1/{tenant_alias}/accountsync                                      | classic-only |
+			| /api/v1/{tenant_alias}/account/{accountId}/user/{userId}/sharelinks     | classic-only |
+			| /api/v1/{tenant_alias}/open/user/cookie_user                            | classic-only |
+			| /api/v1/{tenant_alias}/open/user/cookie_user                            | classic-only |
+			| /api/v1/{tenant_alias}/discount/{code}                                  | classic-only |
+			| /api/v1/{tenant_alias}/discount                                         | classic-only |
+			| /api/v1/{tenant_alias}/account/{accountId}/discount                     | classic-only |
+			| /api/v1/{tenant_alias}/account/{accountId}                              | ga-only      |
+			| /api/v1/{tenant_alias}/open/account/{accountId}                         | ga-only      |
+			| /api/v1/{tenant_alias}/open/account/{accountId}/user/{userId}           | ga-only      |
+			| /api/v1/{tenant_alias}/code/{code}                                      | ga-only      |
+			| /api/v1/{tenant_alias}/referrals                                        | ga-only      |
+			| /api/v1/{tenant_alias}/open/account/{accountId}/user/{userId}/shareurls | ga-only      |
+			| /api/v1/{tenant_alias}/theme/{locale}/variables/instance                | ga-only      |
+
+		And the Rest API Reference items <api methods> are updated to match <visible> as defined by <filter value>
+
+	# currently fails, not implemented yet?
+	Scenario: Hidden Rest API Reference methods are shown at bottom of page
+		Given I am on the SaaSquatch docs page at the ../api/methods location
+		And a personalization menu is shown at the top of the main content section
+		When I select <filter option> with a corresponding <filter value>
+
+		Examples:
+			| filter option                                    | filter value |
+			| Docs are being personalised for new programs     | ga-only      |
+			| Docs are being personalised for Classic programs | classic-only |
+			| Docs are being personalised for all programs     | everything   |
+
+		Then the personalization menu is updated with the new <filter option> and api methods not matching <filter value> are shown in the "Hidden Methods" section at the bottom of the "Rest API Reference" page
+
+	# currently fails, not implemented yet?
+	Scenario: Sidebar menu items are shown/hidden based on selected personalization menu state
+		Given I am on the SaaSquatch docs page at the ../api/methods location
+		And a list of methods is shown in the sidebar menu under "Full list of Methods"
+		When I select <filter option> with a corresponding <filter value>
+
+		Examples:
+			| filter option                                    | filter value |
+			| Docs are being personalised for new programs     | ga-only      |
+			| Docs are being personalised for Classic programs | classic-only |
+			| Docs are being personalised for all programs     | everything   |
+
+		Then the personalization menu is updated with the new <filter option>
+		And sidebar menu items that do not match <filter value> are hidden
