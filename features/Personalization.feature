@@ -28,10 +28,26 @@ Feature: Personalization
 		Then the personalization menu is updated with the new <filter option>
 
 	Scenario: Personalization cookie is not dropped on first load
+		Given I load the SaaSquatch docs page at any location for the first time
+		Then the personalization cookie containing personalization menu settings is not created
 
 	Scenario: Personalization cookie is updated on first filter selection
+		Given I load the SaaSquatch docs page at any location for the first time
+		Then a cookie containing personalization menu settings is not created
+		When I choose a personalization menu option for the first time
+		Then the personalization cookie containing "docs-version" values is created
 
-	Scenario: Personalization cookie is updated
+	Scenario: Personalization cookie can be updated
+		Given I load the SaaSquatch docs page at any location
+		When I select <filter option>
+
+		Examples:
+			| filter option                                    | cookie value |
+			| Docs are being personalised for new programs     | ga-only      |
+			| Docs are being personalised for Classic programs | classic-only |
+			| Docs are being personalised for all programs     | everything   |
+
+		Then the personalization cookie is updated with a corresponding <cookie value> that match <filter option>
 
 	Scenario: Personalization menu icon displayed
 		Given I am on the SaaSquatch docs page at any location
