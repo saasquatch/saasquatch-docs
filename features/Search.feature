@@ -62,6 +62,39 @@ Feature: Search
 		And my browser window height is less than allows for the returned results to be displayed
 		Then the search results are limited to someNumber of results
 
+	# not implemented, currently fails as search terms with many results overflow the browser window
+	Scenario: Sidebar search terms with many results are always visible
+		Given I am on the SaaSquatch docs page at any location
+		And I have entered a search term into the search input field that returns any number of matches
+		Then search results relevant to my search term are always visible and do not overflow my browser window
+
+	Scenario: Sidebar search results are paginated
+		Given I am on the SaaSquatch docs main page
+		When I enter a <search term> into the search input field that returns a large number of matches
+
+		Examples:
+			| search term |
+			| re          |
+			| s           |
+
+		Then the search results are paginated and a "Next" page link is visible
+
+	Scenario: Sidebar paginated search results can be navigated
+		Given I am on the SaaSquatch docs main page
+		When I enter a <search term> into the search input field that returns a large number of matches
+
+		Examples:
+			| search term |
+			| re          |
+			| s           |
+
+		# not sure what the pagination will be set to
+		Then the search results are paginated and a "Next" page link is visible
+		When I click the "Next" page link
+		Then I am shown the next {someNumber} of results
+		When I click the "Previous" page link
+		Then I am shown the previous {someNumber} of results
+
 	Scenario: Sidebar search results are preserved when the search results section is hidden by clicking outside the results section
 		Given I am on the SaaSquatch docs page at any location
 		And I have entered a search term into the search input field that returns any number of matches
@@ -122,6 +155,11 @@ Feature: Search
 		And I have entered a search term into the search input field that returns any number of matches
 		And search results relevant to my search term are displayed in real time as I type
 		Then a "close" button/link is displayed with styling consistent to other areas of the SaaSquatch docs
+
+	Scenario: Sidebar search statistics are shown
+		Given I am on the SaaSquatch docs page at any location
+		And I have entered a search term into the search input field that returns any number of matches
+		Then in addition to the search results statistics including total results and time to search in seconds are displayed
 
 	# main page search
 	Scenario: Main page search input field is shown on the main docs page
