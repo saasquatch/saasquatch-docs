@@ -18,3 +18,13 @@ Feature: Thumbnail popups (success center)
         Then a modal is shown with the image
         When you click away or on the X at the top
         Then the modal is hidden
+
+    Scenario: Thumbnail preview hover action
+        Given valid thumbnail image markup is included in a contentful article
+        When the cursor is hovered over a thumbnail
+        Then the "Preview" overlay will change colour
+
+    Scenario: Thumbnail images are the correct aspect ratio
+        Given valid thumbnail image markup is included in a contentful article
+        When the image has a 1:1 ratio, 400px by 400px
+        Then the thumbnail will also have a 1:1 ratio
