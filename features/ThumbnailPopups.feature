@@ -4,7 +4,6 @@ Feature: Thumbnail popups (success center)
 
     Use for showing smaller thumbnail images. For example in this article: https://docs.saasquatch.com/features/rewards-fuel-tank/
 
-
     Scenario: Popups are automatic
         Given the following markup is included in a contentful article
             """
