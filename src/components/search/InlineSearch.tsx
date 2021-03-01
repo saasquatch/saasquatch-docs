@@ -257,7 +257,7 @@ export function InlineResults({
           </h3>
           <p className="lead">
             Looks like we couldn't find any Help Center page that matches your
-            search term <strong>"{query}"</strong>
+            search term <strong style={{overflowWrap:"break-word"}}>"{query}"</strong>
           </p>
         </div>
       )}
