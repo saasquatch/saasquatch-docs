@@ -18,7 +18,7 @@ import useBrowserEffect from "src/util/useBrowserEffect";
 //   return <div />
 // }
 
-export function InlineSearch({ Input = Styles.DefaultInput }) {
+export function InlineSearch({ Input = Styles.DefaultInput, sideBar = false }) {
   if (typeof document === "undefined") {
     return <div />;
   }
@@ -113,7 +113,7 @@ export function InlineSearch({ Input = Styles.DefaultInput }) {
     <Styles.Inline>
       <Tippy
         visible={!isBlank(query) && visible}
-        placement="bottom-start"
+        placement={sideBar ? "bottom-start" : "bottom"}
         interactive={true}
         interactiveBorder={20}
         // hideOnClick={false}
@@ -126,14 +126,16 @@ export function InlineSearch({ Input = Styles.DefaultInput }) {
               </div>
             )}
             {response && (
-              <InlineResults
-                response={response}
-                setStartIndex={setStartIndex}
-                query={query}
-                selectedIdx={selectedIdx}
-                close={() => setVisible(false)}
-                childRef={resultsEl}
-              />
+              <Styles.Container sideBar={sideBar}>
+                <InlineResults
+                  response={response}
+                  setStartIndex={setStartIndex}
+                  query={query}
+                  selectedIdx={selectedIdx}
+                  close={() => setVisible(false)}
+                  childRef={resultsEl}
+                />
+              </Styles.Container>
             )}
           </Styles.PopOver>
         )}

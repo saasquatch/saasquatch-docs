@@ -47,7 +47,7 @@ class PortalifiedSearchForBrowser extends React.Component {
           </Link>
         </Styles.HelpCenterLogo>
         <Styles.Search>
-          <InlineSearch Input={Styles.SearchInput} />
+          <InlineSearch Input={Styles.SearchInput} sideBar={true}/>
         </Styles.Search>
       </>,
       this.el

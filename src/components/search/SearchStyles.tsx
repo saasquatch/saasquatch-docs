@@ -7,9 +7,9 @@ export const ItemRow = styled(HashLink)`
   color: #000;
   padding: 8px;
   margin: 5px 0;
-  border-bottom: 1px solid #DDD;
+  border-bottom: 1px solid #ddd;
 
-  background: ${props => props.selected ? "#e0e0e0" : "white"};
+  background: ${(props) => (props.selected ? "#e0e0e0" : "white")};
   &:hover {
     background: #eee;
   }
@@ -37,7 +37,10 @@ export const Pagination = styled.div`
   border-top: 1px solid #ccc;
 `;
 
-export const PagerButton = styled.a``;
+export const PagerButton = styled.a`
+  padding-right: 10px;
+  cursor: pointer;
+`;
 export const NoResults = styled.div``;
 
 export const PopOver = styled.div`
@@ -47,6 +50,11 @@ export const PopOver = styled.div`
   border-radius: 5px;
   padding: 10px;
   z-index: 999;
+  overflow-y: scroll;
 `;
 
 export const Inline = styled.div``;
+
+export const Container = styled.div<{ sideBar: boolean }>`
+  height: ${(props) => (props.sideBar ? "80vh" : "35vh")};
+`;
