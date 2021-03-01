@@ -54,16 +54,28 @@ export function contentInit() {
   try{
   // LV: Waits for jQuery before loading
   var magnific = require("magnific-popup");
-  jQuery(".js-docs-collapse").each(function () {
-    var content = jQuery(this);
-    var toggler = jQuery("<a class='js-docs-collapse-toggle'>&nbsp;</a>").click(
-      function () {
-        jQuery(this).toggleClass("active");
-        content.toggle();
-      }
-    );
-    content.before(toggler);
-  });
+
+  const collapseExists = jQuery(".js-docs-collapse").length != 0;
+  const toggledRendered = jQuery(".js-docs-collapse-toggle");
+
+  //If there is already a collapse toggle element, then delete it
+  if(toggledRendered){
+    jQuery(".js-docs-collapse-toggle").remove()
+  }
+
+  //If there are collapse elements, then create the collapse toggles for each one
+  if(collapseExists){
+    jQuery(".js-docs-collapse").each(function () {
+     var content = jQuery(this);
+     var toggler = jQuery("<a class='js-docs-collapse-toggle'>&nbsp;</a>").click(
+       function () {
+         jQuery(this).toggleClass("active");
+         content.toggle();
+       }
+     );
+     content.before(toggler);
+    });
+  }
 
   // @ts-ignore
   jQuery("[data-lightbox]").magnificPopup({
