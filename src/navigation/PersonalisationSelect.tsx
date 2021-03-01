@@ -55,7 +55,6 @@ const Preview = styled.div`
 `;
 
 const ExpandIcon = styled.div`
-  display: none;
   margin-left: 24px;
 
   @media (max-width: 1299px) {
