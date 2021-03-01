@@ -43,7 +43,7 @@ export const PagerButton = styled.a`
 `;
 export const NoResults = styled.div``;
 
-export const PopOver = styled.div`
+export const PopOver = styled.div<{ sideBar: boolean }>`
   background: #fff;
   border: 1px solid #eee;
   box-shadow: 0px 0px 28px -6px rgba(0, 0, 0, 1);
@@ -51,6 +51,7 @@ export const PopOver = styled.div`
   padding: 10px;
   z-index: 999;
   overflow-y: scroll;
+  width: ${(props) => (props.sideBar ? "18vw" : "70vw")}
 `;
 
 export const Inline = styled.div``;

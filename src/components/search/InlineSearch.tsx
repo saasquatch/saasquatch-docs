@@ -118,7 +118,7 @@ export function InlineSearch({ Input = Styles.DefaultInput, sideBar = false }) {
         interactiveBorder={20}
         // hideOnClick={false}
         render={(attrs) => (
-          <Styles.PopOver tabIndex={-1} {...attrs}>
+          <Styles.PopOver tabIndex={-1} sideBar={sideBar} {...attrs}>
             {!response && (
               <div className="text-center search-spinner">
                 <h3>Searching Help Center...</h3>
