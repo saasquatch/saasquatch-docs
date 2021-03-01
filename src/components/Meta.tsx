@@ -48,7 +48,7 @@ export default function render(
         className="swiftype"
         name="body"
         data-type="text"
-        content={props.highlights}
+        content={props.seoDescription || props.highlights}
       />
       <meta name="description" content={plainHighlights} />
       <meta property="og:description" content={plainHighlights} />

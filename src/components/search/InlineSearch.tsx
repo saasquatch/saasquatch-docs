@@ -14,10 +14,6 @@ import * as Styles from "./SearchStyles";
 import { sanitizeGoogleSearchLink, isBlank } from "./searchUtil";
 import useBrowserEffect from "src/util/useBrowserEffect";
 
-// export function InlineSearch(){
-//   return <div />
-// }
-
 export function InlineSearch({ Input = Styles.DefaultInput, sideBar = false }) {
   if (typeof document === "undefined") {
     return <div />;
