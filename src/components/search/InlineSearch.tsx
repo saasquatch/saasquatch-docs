@@ -93,6 +93,7 @@ export function InlineSearch({ Input = Styles.DefaultInput, sideBar = false }) {
       const item = response?.items[selectedIdx];
       const url = sanitizeGoogleSearchLink(item.link);
       history.push(url);
+      evt.target.blur();
       setVisible(false);
     }
   };
