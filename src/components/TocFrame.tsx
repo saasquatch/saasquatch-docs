@@ -20,7 +20,7 @@ export type Entry = {
   category?: string;
   categoryName?: string;
   sectionType?: string;
-  seoDescription?: string;
+  fields?: { seoDescription?: string };
 };
 
 export default function render({
