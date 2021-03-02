@@ -143,6 +143,7 @@ export function InlineSearch({ Input = Styles.DefaultInput, sideBar = false }) {
           placeholder="Search"
           value={query}
           onKeyUp={onkeypressed}
+          onInput={(e) => setVisible(true)}
           onFocus={(e) => setVisible(true)}
           // onBlur={(e) => delayedHide()}
           onChange={(e) => setQuery(e.target.value)}
