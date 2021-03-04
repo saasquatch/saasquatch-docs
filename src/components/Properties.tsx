@@ -7,7 +7,7 @@ import Markdown from "./Markdown";
  */
 export function Properties({
   schema,
-  collapse = false
+  collapse = false,
 }: {
   schema: any;
   collapse?: boolean;
@@ -28,6 +28,11 @@ export function Properties({
             const prop = props[key];
             return (
               <tr key={idx}>
+                <td>
+                  {prop.classicOnly && (
+                    <span className="label">Classic Only</span>
+                  )}
+                </td>
                 <th className="docs-monospace">
                   {key}
                   <br />
