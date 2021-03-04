@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import styled from "styled-components";
+import "./graphqlExplorer-overrides.css"
 // @ts-ignore
 import { DocExplorer } from "graphiql/dist/components/DocExplorer.js";
 import { schema, graphQLFetcher, getSchema } from "../../iddl";
