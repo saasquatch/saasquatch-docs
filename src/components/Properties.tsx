@@ -29,9 +29,14 @@ export function Properties({
             return (
               <tr key={idx}>
                 <td>
-                  {prop.classicOnly && (
-                    <span className="label">Classic Only</span>
-                  )}
+                  {prop?.tags?.map((tag: string) => {
+                    return (
+                      <>
+                        <span className="label">{tag}</span>
+                        <br />
+                      </>
+                    );
+                  })}
                 </td>
                 <th className="docs-monospace">
                   {key}
