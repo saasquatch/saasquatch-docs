@@ -129,7 +129,7 @@ export function InlineSearch({ Input = Styles.DefaultInput, sideBar = false }) {
                   setStartIndex={setStartIndex}
                   query={query}
                   selectedIdx={selectedIdx}
-                  close={() => setVisible(false)}
+                  close={() => {setVisible(false); setQuery("");}}
                   childRef={resultsEl}
                 />
               </Styles.Container>
