@@ -142,6 +142,7 @@ export function InlineSearch({ Input = Styles.DefaultInput, sideBar = false }) {
           name="q"
           placeholder="Search"
           value={query}
+          style={{paddingLeft: sideBar ? "" : "15px"}}
           onKeyUp={onkeypressed}
           onInput={(e) => setVisible(true)}
           onFocus={(e) => setVisible(true)}

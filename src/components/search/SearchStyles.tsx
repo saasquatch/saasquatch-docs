@@ -14,7 +14,9 @@ export const ItemRow = styled(HashLink)`
     background: #eee;
   }
 `;
-export const DefaultInput = styled.input``;
+export const DefaultInput = styled.input`
+  width: 75%;
+`;
 
 export const ItemTitle = styled.div`
   margin: 5px 0;
@@ -51,7 +53,7 @@ export const PopOver = styled.div<{ sideBar: boolean }>`
   padding: 10px;
   z-index: 999;
   overflow-y: scroll;
-  width: ${(props) => (props.sideBar ? "18vw" : "70vw")}
+  width: ${(props) => (props.sideBar ? "18vw" : "70vw")};
 `;
 
 export const Inline = styled.div``;
