@@ -58,6 +58,12 @@ export const PopOver = styled.div<{ sideBar: boolean }>`
 
 export const Inline = styled.div``;
 
+export const styledLink = styled.a`
+  &:hover {
+    text-decoration: underline !important;
+  }
+`;
+
 export const Container = styled.div<{ sideBar: boolean }>`
   height: ${(props) => (props.sideBar ? "80vh" : "35vh")};
 `;

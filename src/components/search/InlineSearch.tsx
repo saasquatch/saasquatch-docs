@@ -187,7 +187,7 @@ export function InlineResults({
     <div ref={childRef}>
       <div style={{ textAlign: "right" }}>
         Press Esc to{" "}
-        <a
+        <Styles.styledLink
           href=""
           onClick={(e) => {
             e.preventDefault();
@@ -195,7 +195,7 @@ export function InlineResults({
           }}
         >
           close
-        </a>
+        </Styles.styledLink>
         .
       </div>
       {items &&
