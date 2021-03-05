@@ -4,7 +4,6 @@ Feature: Expand/collapse details
 
     Allows for collapsible section in the docs. For example the "Classic Only" section on this page: https://docs.saasquatch.com/success/gift-card-rewards/
 
-    # currently fails due to a bug
     Scenario: "[+] Expand Details" buttons are only shown for specified sections
         Given this markup in a contentful article
             """
@@ -16,7 +15,6 @@ Feature: Expand/collapse details
         Then an "[+] Expand Details" button is shown for the specified section
         And "[+] Expand Details" buttons are not shown for sections without this markup
 
-    # currently fails due to a bug
     Scenario: A section only has a single "[+] Expand Details" button
         Given this markup in a contentful article
             """

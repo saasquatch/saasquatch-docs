@@ -49,7 +49,11 @@ Feature: Search
 		And a search input field is shown in the sidebar with no input
 		Then the search results section is not shown
 
-	# not implemented, currently fails as search terms with many results overflow the browser window
+	Scenario: Sidebar search terms with many results are always visible
+		Given I am on the SaaSquatch docs page at any location
+		And I have entered a search term into the search input field that returns any number of matches
+		Then search results relevant to my search term are always visible and do not overflow my browser window
+
 	Scenario: Sidebar search results are scroll-able
 		Given I am on the SaaSquatch docs page at any location
 		And I have entered a search term into the search input field that returns a large number of matches
@@ -57,22 +61,15 @@ Feature: Search
 		And my browser window height is less than allows for the returned results to be displayed
 		Then I can scroll up and down through my search results
 
-	# not implemented, currently fails as search terms with many results overflow the browser window
-	Scenario: Sidebar search results are limited to {someNumber} of results
+	Scenario: Sidebar search results are limited to 10 results
 		Given I am on the SaaSquatch docs page at any location
 		And I have entered a search term into the search input field that returns a large number of matches
 		Then search results relevant to my search term are displayed in real time as I type
 		And my browser window height is less than allows for the returned results to be displayed
-		Then the search results are limited to someNumber of results
-
-	# not implemented, currently fails as search terms with many results overflow the browser window
-	Scenario: Sidebar search terms with many results are always visible
-		Given I am on the SaaSquatch docs page at any location
-		And I have entered a search term into the search input field that returns any number of matches
-		Then search results relevant to my search term are always visible and do not overflow my browser window
+		Then the search results are limited to 10 of results
 
 	Scenario: Sidebar search results are paginated
-		Given I am on the SaaSquatch docs main page
+		Given I am on the SaaSquatch docs page at any location
 		When I enter a <search term> into the search input field that returns a large number of matches
 
 		Examples:
@@ -83,7 +80,7 @@ Feature: Search
 		Then the search results are paginated and a "Next" page link is visible
 
 	Scenario: Sidebar paginated search results can be navigated
-		Given I am on the SaaSquatch docs main page
+		Given I am on the SaaSquatch docs page at any location
 		When I enter a <search term> into the search input field that returns a large number of matches
 
 		Examples:
@@ -91,12 +88,11 @@ Feature: Search
 			| re          |
 			| s           |
 
-		# not sure what the pagination will be set to
 		Then the search results are paginated and a "Next" page link is visible
 		When I click the "Next" page link
-		Then I am shown the next {someNumber} of results
+		Then I am shown the next 10 results
 		When I click the "Previous" page link
-		Then I am shown the previous {someNumber} of results
+		Then I am shown the previous 10 results
 
 	Scenario: Sidebar search results are preserved when the search results section is hidden by clicking outside the results section
 		Given I am on the SaaSquatch docs page at any location
@@ -107,14 +103,14 @@ Feature: Search
 		When I click back into the search input field
 		Then the search results section is shown and my search terms and results are preserved
 
-	Scenario: Sidebar search results are preserved when the search results section is hidden by clicking the "close" button
+	Scenario: Sidebar search input will be cleared when clicking the "close" button
 		Given I am on the SaaSquatch docs page at any location
 		And I have entered a search term into the search input field that returns any number of matches
 		Then search results relevant to my search term are displayed in real time as I type
 		When I click the "close" button/link
-		Then the search results section is hidden and my search terms are preserved
+		Then the search results section is hidden and my search terms are deleted
 		When I click back into the search input field
-		Then the search results section is shown and my search terms and results are preserved
+		Then the search results section is not shown and my search terms are not preserved
 
 	Scenario: Sidebar search input will be cleared when pressing Esc
 		Given I am on the SaaSquatch docs page at any location
@@ -207,19 +203,50 @@ Feature: Search
 		And a search input field is shown with no input
 		Then the search results section is not shown
 
-	# this should be fixed and the spec then updated
-	Scenario: Main page search results are not scroll-able
+	Scenario: Main page search terms with many results are always visible
+		Given I am on the SaaSquatch docs main page
+		And I have entered a search term into the search input field that returns any number of matches
+		Then search results relevant to my search term are always visible and do not overflow my browser window
+
+	Scenario: Main page search results are scroll-able
 		Given I am on the SaaSquatch docs main page
 		And I have entered a search term into the search input field that returns a large number of matches
 		Then search results relevant to my search term are displayed in real time as I type
+		And my browser window height is less than allows for the returned results to be displayed
 		Then a limited number of results are shown which can not be scrolled through
 
-	# this should be fixed and the spec then updated
-	Scenario: Main page search results are not paginated
+	Scenario: Main page search results are limited to 10 results
 		Given I am on the SaaSquatch docs main page
 		And I have entered a search term into the search input field that returns a large number of matches
 		Then search results relevant to my search term are displayed in real time as I type
-		Then a limited number of results are shown which are not paginated
+		And my browser window height is less than allows for the returned results to be displayed
+		Then the search results are limited to 10 of results
+
+	Scenario: Main page search results are paginated
+		Given I am on the SaaSquatch docs main page
+		When I enter a <search term> into the search input field that returns a large number of matches
+
+		Examples:
+			| search term |
+			| re          |
+			| s           |
+
+		Then the search results are paginated and a "Next" page link is visible
+
+	Scenario: Main page paginated search results can be navigated
+		Given I am on the SaaSquatch docs main page
+		When I enter a <search term> into the search input field that returns a large number of matches
+
+		Examples:
+			| search term |
+			| re          |
+			| s           |
+
+		Then the search results are paginated and a "Next" page link is visible
+		When I click the "Next" page link
+		Then I am shown the next 10 results
+		When I click the "Previous" page link
+		Then I am shown the previous 10 results
 
 	Scenario: Main page search results are preserved when the search results section is hidden by clicking outside the results section
 		Given I am on the SaaSquatch docs main page
@@ -230,14 +257,14 @@ Feature: Search
 		When I click back into the search input field
 		Then the search results section is shown and my search terms and results are preserved
 
-	Scenario: Main page search results are preserved when the search results section is hidden by clicking the "close" button
+	Scenario: Main page search results will be cleared when clicking the "close" button
 		Given I am on the SaaSquatch docs main page
 		And I have entered a search term into the search input field that returns any number of matches
 		Then search results relevant to my search term are displayed in real time as I type
 		When I click the "close" button/link
-		Then the search results section is hidden and my search terms are preserved
+		Then the search results section is hidden and my search terms are deleted
 		When I click back into the search input field
-		Then the search results section is shown and my search terms and results are preserved
+		Then the search results section is not shown and my search terms are not preserved
 
 	Scenario: Main page search input will be cleared when pressing Esc
 		Given I am on the SaaSquatch docs main page
@@ -283,8 +310,7 @@ Feature: Search
 		And search results relevant to my search term are displayed in real time as I type
 		Then a "close" button/link is displayed with styling consistent to other areas of the SaaSquatch docs
 
-	# this should be fixed and the spec then updated
 	Scenario: Main page search statistics are not shown
-		Given I am on the SaaSquatch docs page at any location
+		Given I am on the SaaSquatch docs main page
 		And I have entered a search term into the search input field that returns any number of matches
-		Then search result statistics are not shown
+		Then in addition to the search results statistics including total results and time to search in seconds are displayed
