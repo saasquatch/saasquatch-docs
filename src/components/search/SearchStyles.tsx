@@ -59,6 +59,7 @@ export const PopOver = styled.div<{ sideBar: boolean }>`
 export const Inline = styled.div``;
 
 export const styledLink = styled.a`
+  color: #357732 !important;
   &:hover {
     text-decoration: underline !important;
   }
