@@ -110,8 +110,10 @@ function HiddenMethods() {
           {hiddenMethods.map((m) => {
             const { method, httpMethod, path } = m;
 
-            const highlighted =
-              window.location.hash === method["x-docs-anchor"];
+            let highlighted: boolean;
+            if(typeof window !== "undefined"){
+              highlighted = window.location.hash === method["x-docs-anchor"];
+            }
             const style = highlighted ? { background: "yellow" } : {};
             return (
               <tr id={method["x-docs-anchor"]} key={method["x-docs-anchor"]}>

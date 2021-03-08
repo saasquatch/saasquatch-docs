@@ -52,7 +52,7 @@
     "zenscroll": "^3.3.0"
   },
   "devDependencies": {
-    "@saasquatch/schema": "^1.16.4-0",
+    "@saasquatch/schema": "^1.16.4-1",
     "@tippyjs/react": "^4.0.0",
     "@types/highlight.js": "^9.12.3",
     "@types/jquery": "^3.3.35",
