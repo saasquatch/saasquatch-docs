@@ -39,6 +39,13 @@ type APIData = {
   versionLabel: string;
 };
 
+function getHash() {
+  if (typeof window !== "undefined") {
+    return window.location.hash;
+  }
+  return undefined;
+}
+
 const Description = styled.div`
   display: flex;
   align-items: center;
@@ -110,10 +117,7 @@ function HiddenMethods() {
           {hiddenMethods.map((m) => {
             const { method, httpMethod, path } = m;
 
-            let highlighted: boolean;
-            if(typeof window !== "undefined"){
-              highlighted = window.location.hash === method["x-docs-anchor"];
-            }
+            const highlighted = getHash() === `#${method["x-docs-anchor"]}`;
             const style = highlighted ? { background: "yellow" } : {};
             return (
               <tr id={method["x-docs-anchor"]} key={method["x-docs-anchor"]}>
@@ -122,7 +126,9 @@ function HiddenMethods() {
                     .map((t) => tagMap[t])
                     .filter((t) => !t["x-meta"])
                     .map((t) => (
-                      <span className={"label"} key={t.name}>{t.name}</span>
+                      <span className={"label"} key={t.name}>
+                        {t.name}
+                      </span>
                     ))}
                 </td>
                 <td style={style}>{method.summary}</td>
@@ -134,7 +140,9 @@ function HiddenMethods() {
                     .map((t) => tagMap[t])
                     .filter((t) => t["x-meta"])
                     .map((t) => (
-                      <span className={"label"} key={t.name}>{t.name}</span>
+                      <span className={"label"} key={t.name}>
+                        {t.name}
+                      </span>
                     ))}
                 </td>
                 <td style={style}>
