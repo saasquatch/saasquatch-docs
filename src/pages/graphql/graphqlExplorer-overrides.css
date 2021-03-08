@@ -1,5 +1,6 @@
 .graphiql-container .search-box > input {
-    padding: 20px 24px 8px 25px !important;
+    padding: 20px 24px 15px 25px !important;
+    margin-bottom: 0px !important;
 }
 
 .graphiql-container .search-box-icon {
