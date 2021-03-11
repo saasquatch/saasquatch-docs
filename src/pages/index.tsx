@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 
 import Meta from "../components/Meta";
+import { InlineSearch } from "../components/search/InlineSearch";
 
 const Hero = styled.div`
   background: transparent;
@@ -39,16 +40,7 @@ export default function render() {
       </p>
 
       <div className="docs-searchbox-full main-page">
-        <form className="js-search-form form-search" action="/search/">
-          <div className="input-append">
-            <input
-              type="text"
-              className="search-query"
-              placeholder="Search"
-              name="q"
-            />
-          </div>
-        </form>
+        <InlineSearch />
       </div>
     </Hero>
     </>

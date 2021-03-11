@@ -10,7 +10,7 @@ import Meta from "./Meta";
  *
  */
 export default function render(
-  props: Entry & { children?: JSX.Element | JSX.Element[] }
+  props: Entry & { children?: React.ReactNode }
 ) {
   //   const Wrapper = props.hero? ({children}:any) => <div className={"hero-unit article " + props.category}>{children}</div> :
 

@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React from "react";
 //@ts-ignore
 import { StickyContainer, Sticky } from "react-sticky";
 
@@ -20,6 +20,7 @@ export type Entry = {
   category?: string;
   categoryName?: string;
   sectionType?: string;
+  fields?: { seoDescription?: string };
 };
 
 export default function render({

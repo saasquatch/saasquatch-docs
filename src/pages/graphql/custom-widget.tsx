@@ -1,10 +1,5 @@
 import React from "react";
-// import styled from "styled-components";
-// @ts-ignore
-import { DocExplorer } from "graphiql/dist/components/DocExplorer.js";
 
-// @ts-ignore
-import { schema } from "../iddl";
 import Markdown from "../../components/Markdown";
 
 import "graphiql/graphiql.css";

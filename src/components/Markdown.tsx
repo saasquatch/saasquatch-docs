@@ -1,8 +1,13 @@
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useRef, useMemo } from "react";
 // @ts-ignore no types for marked
 import marked from "marked";
 import styled from "styled-components";
 import uuidv4 from "uuid/v4";
+
+import parse from "html-react-parser";
+import DOMPurify from "../util/IsomoprhicDomPurify";
+import { replace } from "../navigation/replace";
+import useBrowserEffect from "src/util/useBrowserEffect";
 
 // Stop mermaid for doing th
 const SECRETID = "mermaid2018y125ug1";
@@ -61,7 +66,7 @@ const MD = styled.div`
   .sq-mrmaid svg {
     margin: 0 auto;
     display: block;
-    width: 100%
+    width: 100%;
   }
   .sq-mrmaid svg .label {
     text-shadow: none; /* Overrides bootstrap CSS class conflict*/
@@ -70,7 +75,7 @@ const MD = styled.div`
 
 function useMermaid(source) {
   const ref = useRef(null);
-  useLayoutEffect(() => {
+  useBrowserEffect(() => {
     if (ref && ref.current && mermaidAPI) {
       const charts = ref.current.querySelectorAll("." + SECRETID);
       charts.forEach(async (element: HTMLDivElement) => {
@@ -118,7 +123,9 @@ function quoteattr(s, preserveCR?: string) {
 
 renderer.code = function (code?: string, language?: string) {
   if (language && language.toLowerCase() === "mermaid") {
-    return `<div class="${SECRETID} sq-mrmaid" data-graph="${quoteattr(code)}"></div>`;
+    return `<div class="${SECRETID} sq-mrmaid" data-graph="${quoteattr(
+      code
+    )}"></div>`;
   } else {
     return marked.Renderer.prototype.code.apply(this, arguments);
   }
@@ -137,8 +144,8 @@ renderer.heading = function (
   // const slug = slugger.slug(raw);
 
   return `
-          <h${level}>
-            <a name="${slug}" class="heading-anchor" href="#${slug}">&#x1F517;</a>
+          <h${level} id="${slug}">
+            <a class="heading-anchor" href="#${slug}">&#x1F517;</a>
             ${text}
           </h${level}>`;
 };
@@ -147,7 +154,27 @@ export default function Markdown({ source }: { source: string }) {
   if (!source) return <div />;
   const [ref] = useMermaid(source);
 
-  var rawMarkup = marked(source, { sanitize: false, renderer: renderer });
-  const html = { __html: rawMarkup };
-  return <MD dangerouslySetInnerHTML={html} ref={ref} />;
+  const comp = useMemo(() => {
+    try {
+      const rawMarkup = marked(source, { sanitize: false, renderer: renderer });
+      // const betterHtml = DOMPurify.sanitize(rawMarkup);
+      const component = parse(rawMarkup, { replace });
+      return component;
+    } catch (e) {
+      console.error("SaaSquatch markdown parsing error", e, source);
+      return (
+        <div style={{ color: "red" }}>
+          <h2>Error Loading This Page</h2>
+          <pre>{source}</pre>
+        </div>
+      );
+    }
+  }, [source, renderer]);
+
+  useBrowserEffect(() => {
+    const contentInit = require("../assets/js/docs").contentInit;
+    contentInit();
+  }, [comp]);
+
+  return <MD ref={ref}>{comp}</MD>;
 }

@@ -10,7 +10,6 @@ import globby from "globby";
 import contentfulpagifier from "./metalsmith/utils/contentfulpagifier";
 import productSpaceContentfulpagifier from "./metalsmith/utils/productSpaceContentfulpagifier";
 import installguidepagifier from "./metalsmith/utils/installguidepagifier";
-import * as swaggerUtils from "./metalsmith/utils/swaggerUtils";
 import { Bottom } from "./src/templates/bottom";
 import resolveI18n from "./metalsmith/utils/resolveI18n";
 
@@ -96,7 +95,7 @@ async function getRawFiles() {
  */
 async function getYaml(file) {
   const text = await fs.readFile(path.resolve(__dirname, "content", file), {
-    encoding: "utf8"
+    encoding: "utf8",
   });
   const data = yaml.safeLoad(text);
   return data;
@@ -108,9 +107,12 @@ async function getYaml(file) {
  * @returns parsed API yaml
  */
 async function getAPIYaml() {
-  const text = await fs.readFile("node_modules/@saasquatch/schema/yaml/saasquatch-api.yaml", {
-    encoding: "utf8"
-  });
+  const text = await fs.readFile(
+    "node_modules/@saasquatch/schema/yaml/saasquatch-api.yaml",
+    {
+      encoding: "utf8",
+    }
+  );
   const data = yaml.safeLoad(text);
   return data;
 }
@@ -119,20 +121,17 @@ async function getAPIYaml() {
  * Read our Swagger file
  *
  * Parses, derefences and merges it for easier templating
+ *
+ * @returns {Promise<{swagger:import("swagger-schema-official").Spec}>}
  */
 async function getSwagger() {
   const data = await getAPIYaml();
 
-  if (!swaggerUtils || !swaggerUtils["methodsByTag"]) {
-    throw new Error("Failed to import SwaggerUtils");
-  }
   const spec = await parser.dereference(data);
   const resolved = await resolveAllOf(spec);
 
   return {
     swagger: resolved,
-    methodsByTag: swaggerUtils.methodsByTag(resolved),
-    tagMap: swaggerUtils.tagMap(resolved),
   };
 }
 
@@ -149,7 +148,11 @@ export default {
     // assets: "build2", // The output directory for bundled JS and CSS
     // buildArtifacts: "artifacts" // The output directory for generated (internal) resources
   },
-  getSiteData() {
+  devServer: {
+    //https://webpack.js.org/configuration/dev-server/#devserverdisablehostcheck
+    disableHostCheck: true,
+  },
+  async getSiteData() {
     return {
       robots: process.env.ROBOTS || "true",
       // TODO: Turn this off after dev
@@ -161,12 +164,19 @@ export default {
         // Google Custom Search (GCSE) params
         GCSE_CX: process.env.GCSE_CX || "012261857935385488279:90grrsobq40",
         GCSE_KEY:
-          process.env.GCSE_KEY || "AIzaSyC3Lc2HenETRKNS3VIsHAMobTYhnKYG6dE",
+          process.env.GCSE_KEY ||
+          (process.env.NODE_ENV === "production"
+            ? // Production & netlify
+              "AIzaSyC3Lc2HenETRKNS3VIsHAMobTYhnKYG6dE"
+            : // Development / local
+              "AIzaSyCrIbUMtCnszBe5kZzkbSMk5ii0PZJ5nqw"),
         ROLLBAR_TOKEN:
           process.env.ROLLBAR_TOKEN || "a865008ca04947acb3d0a1c719e2d93c",
         PINGDOM_ID: process.env.PINGDOM_ID || "52c61993abe53d650f000000",
         GTMID: process.env.GTMID || "GTM-PK98FJF",
       },
+      apiRoutes: getEndpoints((await getSwagger()).swagger),
+      apiRoutesByTag: endpointsByTag((await getSwagger()).swagger),
     };
   },
   getRoutes: getRoutes,
@@ -175,6 +185,9 @@ export default {
       "saasquatch-webpack",
       {
         externals: {
+          // Jsdom is not used in the browser, but this tells Webpack not to bundle it
+          // Required for make dompurify isomorphic
+          jsdom: "jsDom",
           jquery: "jQuery",
           "highlight.js": "hljs",
         },
@@ -188,7 +201,7 @@ export default {
         location: path.resolve("./src/pages"),
       },
     ],
-    // require.resolve("react-static-plugin-reach-router"),
+    require.resolve("react-static-plugin-react-router"),
     require.resolve("react-static-plugin-sitemap"),
   ],
 };
@@ -348,4 +361,59 @@ function legacyPagifierToStatic(entry) {
     getData: () => ({ entry }),
     template: getTemplate(entry.template),
   };
+}
+
+const HTTP_METHODS = [
+  "get",
+  "put",
+  "post",
+  "delete",
+  "options",
+  "head",
+  "patch",
+];
+/**
+ *
+ * @param {import("swagger-schema-official").Spec} swagger
+ * @return {import("src/api/Types").EndpointSummary[]}
+ */
+function getEndpoints(swagger) {
+  return Object.keys(swagger.paths).reduce((
+    /** @type {import("src/api/Types").EndpointSummary[]} */ acc,
+    /** @type {string} */ path
+  ) => {
+    const methods = swagger.paths[path];
+    const subEndpoints = Object.keys(methods)
+      .filter((httpMethod) =>
+        // ignore other parts of Path like `parameters`
+        HTTP_METHODS.includes(/** @type {any} */ httpMethod)
+      )
+      .map((/** @type {string} */ httpMethod) => {
+        /** @type {import("swagger-schema-official").Operation} */ const method =
+          methods[httpMethod];
+        return {
+          httpMethod,
+          path,
+          summary: method.summary,
+          anchor: method["x-docs-anchor"],
+          tags: method.tags,
+        };
+      });
+
+    return [...acc, ...subEndpoints];
+  }, []);
+}
+
+/**
+ * @param {import("swagger-schema-official").Spec} swagger
+ * @returns {import("src/api/Types").EndpointSummarySet}
+ */
+export function endpointsByTag(swagger) {
+  return getEndpoints(swagger).reduce((result, endpoint) => {
+    endpoint.tags.forEach((tag) => {
+      if (swagger.tags.find((t) => t.name === tag && !t["x-meta"]))
+        (result[tag] || (result[tag] = [])).push(endpoint.anchor);
+    });
+    return result;
+  }, {});
 }

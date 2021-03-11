@@ -9,7 +9,7 @@ function pageify(entryRaw, i18n){
 
     let entry = resolveI18n(entryRaw);
     let fields = entry.fields;
-    console.log('fields ', fields);
+    // console.log('fields ', fields);
 
     if ("programTemplate" == entry.sys.contentType.sys.id && fields.installGuide != undefined) {
 

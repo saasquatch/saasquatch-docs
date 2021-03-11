@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
 // @ts-ignore
 import GraphiQL from "graphiql";
 
-// @ts-ignore
-import { schema } from "../iddl";
+import { getSchema } from "../iddl";
 
 import "graphiql/graphiql.css";
+import { useAsyncMemo } from "src/util/useAsyncMemo";
 
 const Container = styled.div`
   position: relative;
@@ -19,28 +19,32 @@ const Container = styled.div`
   .graphiql-container {
     min-height: 300px;
   }
-  .topBarWrap{
+  .topBarWrap {
     display: none;
   }
 `;
 
 export default function GraphQLExample({
   query,
-  response
+  response,
 }: {
   query: string;
   response: string;
 }) {
+  const schema = useAsyncMemo(() => getSchema(), []);
+
   return (
     <Container>
       <div className="graphiql-container">
-        <GraphiQL
-          schema={schema}
-          query={query}
-          response={response}
-          fetcher={async () => JSON.parse(response) as any}
-          // readOnly={true}
-        />
+        {schema && (
+          <GraphiQL
+            schema={schema}
+            query={query}
+            response={response}
+            fetcher={async () => JSON.parse(response) as any}
+            // readOnly={true}
+          />
+        )}
       </div>
     </Container>
   );

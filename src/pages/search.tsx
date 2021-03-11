@@ -1,106 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { useSiteData } from "react-static";
+import React from "react";
+import Tippy from "@tippyjs/react/headless";
 
+import * as Styles from "../components/search/SearchStyles";
 import Meta from "../components/Meta";
+import { useSearch } from "../components/search/useSearch";
+import { isBlank } from "components/search/searchUtil";
 
 export default function render() {
-  const [response, setResponse] = useState(null);
-
-  //     ---
-  // slug: search
-  // template: fullpage.html
-  // category: search
-  // ---
-  // Only run in the browser
-  if(typeof document === "undefined"){
+  if (typeof document === "undefined") {
     return <div />;
   }
-  const jQuery = require("jquery");
-
-  const { windowDotEnv } = useSiteData();
-  /**
-   *
-   *  Docs Search
-   *
-   *
-   *  Uses google custom search, Handlebars, and format
-   *
-   */
-
-  // var categoryFilter = "more:pagemap:metatags-type:jsReference";
-  let initialIndex = 0;
-  try {
-    initialIndex = parseInt(getParameterByName("startIndex"));
-  } catch (e) {}
-  const initialState = {
-    query: getParameterByName("q"),
-    cat: getParameterByName("cat"),
-    startIndex: initialIndex
-  };
-  const [{ query, cat, startIndex }, setState] = useState(initialState);
-
-  function setQuery(newValue: string) {
-    setState({
-      // If you change the query, go back to page 0
-      startIndex: 0,
-      cat,
-      query: newValue
-    });
-  }
-  function setCat(cat: string) {
-    setState({
-      query,
-      cat,
-      // If you change the category, go back to page 0
-      startIndex: 0
-    });
-  }
-  function setStartIndex(startIndex) {
-    setState({
-      query,
-      cat,
-      startIndex
-    });
-  }
-
-  //   jQuery(".js-search-form input[name=cat]").val([cat]);
-
-  let privateQuery;
-  if (cat && cat.length > 1) {
-    // privateQuery = query + " more:pagemap:metatags-type:" + cat;
-    privateQuery = query + " more:pagemap:metatags-docsCategory:" + cat;
-  } else {
-    privateQuery = query;
-  }
-
-  let dataObj = {
-    q: privateQuery,
-    cx: windowDotEnv.GCSE_CX,
-    key: windowDotEnv.GCSE_KEY,
-    format: "json",
-    start: undefined
-  };
-
-  if (startIndex) {
-    dataObj.start = startIndex;
-  }
-
-  useEffect(() => {
-    jQuery.ajax({
-      url: "https://www.googleapis.com/customsearch/v1",
-      dataType: "jsonp",
-      jsonp: "callback",
-      data: dataObj,
-
-      // Work with the response
-      success: function(response) {
-        setResponse(response);
-      }
-    });
-  }, [query, cat, startIndex]);
+  const { query, response, setQuery, cat, setCat, setStartIndex } = useSearch();
 
   const entry = {
-    title: "Search results for " + query
+    title: "Search results for " + query,
   };
   return (
     <>
@@ -116,7 +29,7 @@ export default function render() {
                   className="search-query"
                   name="q"
                   value={query}
-                  onChange={e => setQuery(e.target.value)}
+                  onChange={(e) => setQuery(e.target.value)}
                 />
                 <button type="submit" className="btn">
                   Search Help Center
@@ -129,7 +42,7 @@ export default function render() {
                     name="cat"
                     value=""
                     checked={cat === ""}
-                    onClick={() => setCat("")}
+                    onChange={() => setCat("")}
                   />
                   All
                 </label>
@@ -139,7 +52,7 @@ export default function render() {
                     name="cat"
                     value="successCenter"
                     checked={cat === "successCenter"}
-                    onClick={() => setCat("successCenter")}
+                    onChange={() => setCat("successCenter")}
                   />
                   Success
                 </label>
@@ -149,7 +62,7 @@ export default function render() {
                     name="cat"
                     value="developerCenter"
                     checked={cat === "developerCenter"}
-                    onClick={() => setCat("developerCenter")}
+                    onChange={() => setCat("developerCenter")}
                   />
                   Developer
                 </label>
@@ -159,7 +72,7 @@ export default function render() {
                     name="cat"
                     value="designerCenter "
                     checked={cat === "designerCenter"}
-                    onClick={() => setCat("designerCenter")}
+                    onChange={() => setCat("designerCenter")}
                   />
                   Designer
                 </label>
@@ -179,7 +92,12 @@ export default function render() {
                   <i className="fa fa-spinner fa-spin fa-5x"></i>
                 </div>
               )}
-              {response && (
+              {response && response.error && (
+                <div className="text-center">
+                  <h3>{response.error.message}</h3>
+                </div>
+              )}
+              {response && !response.error && (
                 <Results
                   response={response}
                   setStartIndex={setStartIndex}
@@ -194,11 +112,13 @@ export default function render() {
   );
 }
 
-function Results({ response, setStartIndex, query }) {
+export type InputComponent = typeof Styles.DefaultInput;
+
+export function Results({ response, setStartIndex, query }) {
   const { items, queries, searchInformation } = response;
 
   // Some pages have `meta` tags via `pagemap.metatags`, and things like ios/android don't.
-  const getTitle = item => {
+  const getTitle = (item) => {
     try {
       return items.pagemap.metatags[0].title;
     } catch (e) {}
@@ -209,8 +129,8 @@ function Results({ response, setStartIndex, query }) {
     <>
       {items &&
         items
-          .filter(item => item)
-          .map(item => (
+          .filter((item) => item)
+          .map((item) => (
             <div
               className={
                 "search-results-item " +
@@ -223,13 +143,13 @@ function Results({ response, setStartIndex, query }) {
                   item.pagemap.metatags[0].docscategory)
               }
             >
-              <a href={item.link} className="clearfix">
+              <a href={item.link} className="clearfix" data-link={item.link}>
                 <div
                   className="search-results-title"
                   dangerouslySetInnerHTML={{
                     __html:
                       getTitle(item) +
-                      `<i className="search-results-type fa"></i>`
+                      `<i className="search-results-type fa"></i>`,
                   }}
                 />
                 <div
@@ -250,7 +170,7 @@ function Results({ response, setStartIndex, query }) {
         </p>
       )}
       <div className="docs-search-pager">
-        {queries.previousPage && (
+        {queries?.previousPage && (
           <a
             onClick={() => setStartIndex(queries.previousPage[0].startIndex)}
             className="btn js-search-pager"
@@ -259,7 +179,7 @@ function Results({ response, setStartIndex, query }) {
           </a>
         )}
 
-        {queries.nextPage && (
+        {queries?.nextPage && (
           <a
             onClick={() => setStartIndex(queries.nextPage[0].startIndex)}
             className="btn js-search-pager"
@@ -269,7 +189,12 @@ function Results({ response, setStartIndex, query }) {
         )}
       </div>
 
-      {!items && (
+      {!items && isBlank(query) && (
+        <div className="search-results-none text-center">
+          <p className="lead">What are you looking for?</p>
+        </div>
+      )}
+      {!items && !isBlank(query) && (
         <div className="search-results-none text-center">
           <h3 className="visible-desktop" style={{ paddingTop: "43px" }}>
             No matching Docs!
@@ -282,19 +207,4 @@ function Results({ response, setStartIndex, query }) {
       )}
     </>
   );
-}
-
-/**
- * Finds the Query param with the given name.
- *
- * Straight stolen from: http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
- *
- */
-function getParameterByName(name) {
-  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-    results = regex.exec(window.location.search);
-  return results === null
-    ? ""
-    : decodeURIComponent(results[1].replace(/\+/g, " "));
 }

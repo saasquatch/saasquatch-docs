@@ -9,7 +9,6 @@ import PageHeader from "../../components/PageHeader";
 const filterFns = {
   // show if post if from the past 30 days
   last_30: function (item) {
-    console.log("Date Published", item)
     const postDate = new Date(item.datePublished).getTime() / 1000;
     //var postDate = new Date($(this).find('.datePublished').text()).getTime() / 1000;
     const thirtyDaysAgo = Math.floor(Date.now() / 1000) - 2592000;
@@ -49,7 +48,6 @@ export default function render() {
             <select
               value={tag}
               onChange={tagChange}
-              className="isotope-product-news-select-group filters-isotope-product-news-select-group"
             >
               <option value="">All Posts</option>
               <option value="feature-release">Feature Releases</option>
@@ -62,7 +60,6 @@ export default function render() {
             <select
               value={date}
               onChange={dateChange}
-              className="isotope-product-news-select-group filters-isotope-product-news-select-group"
             >
               <option value="">From All-time</option>
               <option value="last_30">Last 30 days</option>

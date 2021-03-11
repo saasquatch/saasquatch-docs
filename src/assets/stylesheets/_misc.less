@@ -1,68 +1,65 @@
-
-
-.navbar .nav> li> .dropdown-menu:after {
-    border-bottom: 7px solid;
+.navbar .nav > li > .dropdown-menu:after {
+  border-bottom: 7px solid;
 }
 
-.nav-pills> li> a:hover,
-.nav-pills> li.active> a,
-.nav-pills> li.active> a:hover {
-    border: 1px solid;
+.nav-pills > li > a:hover,
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover {
+  border: 1px solid;
 }
 
 .hero-unit {
-    //background: #EEE;
-    padding: 0;
-    h1,
-    p {
-        text-align: center;
-    }
+  //background: #EEE;
+  padding: 0;
+  h1,
+  p {
+    text-align: center;
+  }
 }
 
 .docs-sections {
-    text-align: center;
+  text-align: center;
 
-    [class*="span"]{
-        margin-top: 60px;
+  [class*="span"] {
+    margin-top: 60px;
+  }
+  a {
+    display: block;
+    &:hover,
+    &:active,
+    &:focus {
+      text-decoration: none;
     }
-    a {
-        display: block;
-        &:hover,
-        &:active,
-        &:focus {
-            text-decoration: none;
-        }
-        &:hover .fa {
-            background: #005580;
-        }
+    &:hover .fa {
+      background: #005580;
     }
-    a .fa~ div {
-        font-size: 18px;
-        line-height: 36px;
-    }
+  }
+  a .fa ~ div {
+    font-size: 18px;
+    line-height: 36px;
+  }
 }
 
 // Large centered icons, normally used for section landing page navigation
 .fa-rounded,
 .docs-sections a .fa {
-    background: @portalBlue;
-    border-radius: 50%;
-    color: #FFF;
-    display: block;
-    width: 100px;
-    height: 100px;
-    line-height: 100px;
-    text-align: center;
-    margin: 0 auto;
-    // Custom center-of-weight balancing
-    &.fa-desktop {
-        line-height: 110px;
-    }
-    &.fa-html5 {
-        line-height: 105px;
-    }
+  background: @portalBlue;
+  border-radius: 50%;
+  color: #fff;
+  display: block;
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+  margin: 0 auto;
+  // Custom center-of-weight balancing
+  &.fa-desktop {
+    line-height: 110px;
+  }
+  &.fa-html5 {
+    line-height: 105px;
+  }
 }
-
 
 /**
     Disables the "Affix" bootstrap plugin for mobile
@@ -70,236 +67,250 @@
     Taken from: http://stackoverflow.com/questions/17394854/how-can-i-disable-bootstraps-affix-on-smaller-screens
 */
 @media (max-width: 768px) {
-    .affix {
-        position: static;
-    }
+  .affix {
+    position: static;
+  }
 }
 
 // Color-coding for reward types
 .label.program-type-label {
-    background-color: @colorForRewardTypes;
+  background-color: @colorForRewardTypes;
 }
 
-.docs-label-get{ background-color: #468847}
-.docs-label-put{ background-color: #f89406}
-.docs-label-post{ background-color: #f89406}
-.docs-label-patch{ background-color: #f89406}
-
-.docs-label-beta{ 
-    background-color: #f89406;
-    margin-left: 10px;
-    margin-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    font-size:20px;
-    vertical-align: 45%;
+.docs-label-get {
+  background-color: #468847;
+}
+.docs-label-put {
+  background-color: #f89406;
+}
+.docs-label-post {
+  background-color: #f89406;
+}
+.docs-label-patch {
+  background-color: #f89406;
 }
 
+.docs-label-beta {
+  background-color: #f89406;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 20px;
+  vertical-align: 45%;
+}
 
 .page-header h1 {
-    //display: inline-block;
+  //display: inline-block;
 }
 
 // Makes the argument names right-aligned for easier skimability (stolen from Stripe's API reference)
 .apidocs-args th {
-    text-align: right;
+  text-align: right;
 }
 
 // Makes the API reference easier  to scroll
 .apidocs-section {
-    padding-bottom: 200px;
-    border-bottom: 1px solid #CCC;
-    margin-bottom: 200px;
+  padding-bottom: 200px;
+  padding-top: 200px;
+  border-bottom: 1px solid #ccc;
+}
+
+// Makes the API reference easier  to scroll
+.apidocs-section-collapsed {
+  padding-bottom: 30px;
+  padding-top: 10px;
+  border-bottom: 1px solid #ccc;
 }
 
 .js-docs-collapse-toggle {
-    font-family: Monaco, Consolas, "Lucida Console", monospace;
-    font-size: 12px;
-    padding: 3px 7px;
-    border: 1px solid;
-    border-radius: 3px;
-    cursor: pointer;
-    &:before {
-        content: "[+] Expand Details";
-    }
-    &.active:before {
-        content: "[-] Collapse Details";
-    }
+  font-family: Monaco, Consolas, "Lucida Console", monospace;
+  font-size: 12px;
+  padding: 3px 7px;
+  border: 1px solid;
+  border-radius: 3px;
+  cursor: pointer;
+  &:before {
+    content: "[+] Expand Details";
+  }
+  &.active:before {
+    content: "[-] Collapse Details";
+  }
 }
 
 .js-docs-collapse {
-    display: none;
+  display: none;
 }
 
-.js-tooltip{
-    cursor: help;
+.js-tooltip {
+  cursor: help;
 }
 
-.toc-title{
-    font-weight: bold;
-    color: #999;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #CCC;
+.toc-title {
+  font-weight: bold;
+  color: #999;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
 }
 
 .docs-theme-types {
-    a:hover {
-        cursor: pointer;
-        .well {
-            background: #FAFAFA;
-        }
+  a:hover {
+    cursor: pointer;
+    .well {
+      background: #fafafa;
     }
+  }
 }
 
 .themes-icon .fa {
-    background: #CCC; //@portalBlue;
-    text-align: center;
-    border-radius: 5px;
-    color: #FFF;
-    display: block;
-    width: 100px;
-    height: 100px;
-    line-height: 100px;
-    margin: 0 auto;
+  background: #ccc; //@portalBlue;
+  text-align: center;
+  border-radius: 5px;
+  color: #fff;
+  display: block;
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  margin: 0 auto;
 }
 
 .docs-lightbox {
-    position: relative;
-    div {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: rgba(0, 0, 0, 0.5);
-        text-align: center;
-        padding: 10px 0;
-        color: #FFF;
-        height: 30px;
-    }
-    &:hover div {
-        background: rgba(0, 0, 0, 0.7);
-    }
-    img {
-        height: 200px;
-    }
+  position: relative;
+  div {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    padding: 15px 0 5px 0;
+    color: #fff;
+    height: 30px;
+  }
+  &:hover div {
+    background: rgba(0, 0, 0, 0.7);
+  }
+  img {
+    height: auto;
+    width: auto;
+    max-height: 200px;
+  }
 }
 
 .docs-guide-summary {
-    .fa-check-circle {
-        color: green;
-    }
-    .fa-grey,
-    .fa-circle {
-        color: #CCC;
-    }
-    .fa-info-circle {
-        color: #AAA;
-    }
-    .docs-guide-program {}
-    .docs-guide-api {
-        background: #FAFAFA;
-    }
-    .docs-guide-payments {
-        text-align: center;
-    }
-    tbody td {
-        vertical-align: middle;
-    }
+  .fa-check-circle {
+    color: green;
+  }
+  .fa-grey,
+  .fa-circle {
+    color: #ccc;
+  }
+  .fa-info-circle {
+    color: #aaa;
+  }
+  .docs-guide-program {
+  }
+  .docs-guide-api {
+    background: #fafafa;
+  }
+  .docs-guide-payments {
+    text-align: center;
+  }
+  tbody td {
+    vertical-align: middle;
+  }
 }
 
 .badge-inherit {
-    font-size: inherit;
-    line-height: inherit;
+  font-size: inherit;
+  line-height: inherit;
 }
 
 .fa-grey {
-    color: #CCC;
+  color: #ccc;
 }
 
-.align-center { text-align: center; }
+.align-center {
+  text-align: center;
+}
 
 .hero-unit.article {
+  text-align: left;
+  h1,
+  p,
+  div {
     text-align: left;
-    h1,
-    p,
-    div {
-        text-align: left;
-    }
-    color: #FFF;
-    text-shadow: rgba(0, 0, 0, 0.3) 0 0 5px;
-    // background: #08c url('/assets/images/marketing-website/img/headerbackground.jpg');
+  }
+  color: #fff;
+  text-shadow: rgba(0, 0, 0, 0.3) 0 0 5px;
+  // background: #08c url('/assets/images/marketing-website/img/headerbackground.jpg');
 }
-
 
 // FAQ highlighting technique stolen from: http://stackoverflow.com/questions/11142125/css-highlight-a-div-when-the-id-is-linked-to-using-an-anchor
 .docs-faq-question {
-    background-color: #fff;
+  background-color: #fff;
 }
 
 .docs-faq-question:target {
-    background-color: #ffa;
-    -webkit-transition: all 1s linear;
+  background-color: #ffa;
+  -webkit-transition: all 1s linear;
 }
 
 // Home page sections
 .docs-home-category {
-    height: 100px;
-    a {
-        display: block;
-        font-size: 16px;
-        line-height: 100px;
-        text-align: center;
-        font-weight: bold;
-    }
+  height: 100px;
+  a {
+    display: block;
+    font-size: 16px;
+    line-height: 100px;
+    text-align: center;
+    font-weight: bold;
+  }
 }
-
-
 
 .docs-footer-menu {
-    text-align: left;
-    ul li:first-child {
-        font-weight: bold;
-        padding-bottom: 3px;
-        border-bottom: 1px solid #b2c4c7;
-        margin-bottom: 9px;
-    }
-    width:80%;
-    @media (max-width: 979px){
-        width:100%
-    }
+  text-align: left;
+  ul li:first-child {
+    font-weight: bold;
+    padding-bottom: 3px;
+    border-bottom: 1px solid #b2c4c7;
+    margin-bottom: 9px;
+  }
+  width: 80%;
+  @media (max-width: 979px) {
+    width: 100%;
+  }
 }
 
-
-.nav-tabs a.tab{
-    cursor: pointer;
+.nav-tabs a.tab {
+  cursor: pointer;
 }
 
-h2.js-apidocs-method-deprecated  {
-    color: #999;
-    text-decoration: line-through;
-    
+h2.js-apidocs-method-deprecated {
+  color: #999;
+  text-decoration: line-through;
 }
 
 .js-apidocs-methodname {
-    display: inline-block;
+  display: inline-block;
 }
 
 .js-apidocs-method-type {
-    vertical-align: 45%;
-    margin-left: 10px;
-    margin-right: 10px;
+  vertical-align: 45%;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .js-apidocs-method-code {
-    vertical-align: 35%;
+  vertical-align: 35%;
 }
 
 .deprecated-label-box {
-    background-color: #dfb5b4;
-    padding:10px;
-    margin-bottom: 10px;
+  background-color: #dfb5b4;
+  padding: 10px;
+  margin-bottom: 10px;
 }
-.deprecated-label-box .label{
-    font-size: 20px;
-    padding:5px;
+.deprecated-label-box .label {
+  font-size: 20px;
+  padding: 5px;
 }

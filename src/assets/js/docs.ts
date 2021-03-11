@@ -1,24 +1,17 @@
 /* 
 == JsHint details here ==
 */
+
+import "./browser-required-warning";
+
 import jQuery from "jquery";
 import hljs from "highlight.js";
-
-import nav from "./nav";
 import scrolling from "./scrolling";
 
-const deps = {
-  scrolling,
-  hljs,
-  jQuery
-};
-
-export { deps };
-
-window.jQuery = jQuery;
+typeof window !== "undefined" && (window["jQuery"] = jQuery);
 
 export function init() {
-  jQuery(document).ready(function() {
+  jQuery(document).ready(function () {
     try {
       require("../lib/bootstrap.min");
       require("magnific-popup");
@@ -43,13 +36,13 @@ export function init() {
     // };
     // apiReferenceAnchors.add('.js-apidocs-methodname');
 
-    nav();
+    // nav();
     // search();
-    
+
     // Scrolling not required in React-Static.
     scrolling.init();
 
-    jQuery(".navbar .hamburger").click(function(e) {
+    jQuery(".navbar .hamburger").click(function (e) {
       jQuery(this).toggleClass("is-active");
     });
 
@@ -58,24 +51,33 @@ export function init() {
 }
 
 export function contentInit() {
+  try{
   // LV: Waits for jQuery before loading
   var magnific = require("magnific-popup");
-  jQuery(".js-docs-collapse").each(function() {
-    var content = jQuery(this);
-    var toggler = jQuery("<a class='js-docs-collapse-toggle'>&nbsp;</a>").click(
-      function() {
-        jQuery(this).toggleClass("active");
-        content.toggle();
-      }
-    );
-    content.before(toggler);
-  });
 
-  // Uses Bootstrap tooltips
-  jQuery(".js-tooltip").tooltip({
-    placement: "bottom"
-  });
+  const collapseExists = jQuery(".js-docs-collapse").length != 0;
+  const toggledRendered = jQuery(".js-docs-collapse-toggle");
 
+  //If there is already a collapse toggle element, then delete it
+  if(toggledRendered){
+    jQuery(".js-docs-collapse-toggle").remove()
+  }
+
+  //If there are collapse elements, then create the collapse toggles for each one
+  if(collapseExists){
+    jQuery(".js-docs-collapse").each(function () {
+     var content = jQuery(this);
+     var toggler = jQuery("<a class='js-docs-collapse-toggle'>&nbsp;</a>").click(
+       function () {
+         jQuery(this).toggleClass("active");
+         content.toggle();
+       }
+     );
+     content.before(toggler);
+    });
+  }
+
+  // @ts-ignore
   jQuery("[data-lightbox]").magnificPopup({
     type: "image",
     mainClass: "mfp-with-zoom", // this class is for CSS animation below
@@ -89,31 +91,21 @@ export function contentInit() {
       // The "opener" function should return the element from which popup will be zoomed in
       // and to which popup will be scaled down
       // By defailt it looks for an image tag:
-      opener: function(openerElement) {
+      opener: function (openerElement) {
         // openerElement is the element on which popup was initialized, in this case its <a> tag
         // you don't need to add "opener" option if this code matches your needs, it's defailt one.
         return openerElement.is("img")
           ? openerElement
           : openerElement.find("img");
-      }
-    }
+      },
+    },
   });
 
-  jQuery("#js-location-path").text(document.location.pathname);
-
   // Non-necessary highlighting. Executes asynchronously for faster page load
-  setTimeout(function() {
-    // TODO: LV: Move these highlighting functions server-side to improve page render time or bundle the JS?
-    jQuery(".jsonview").each(function() {
-      // parse -> sort -> JSONView
-      var each = jQuery(this);
-      var json = JSON.parse(each.text());
-      Object.keys(json).sort();
-      each.JSONView(json, { collapsed: true });
-    });
-
+  setTimeout(function () {
     hljs.initHighlighting();
   }, 1);
+  }catch(e){
+    console.error("Jquery plugins failure", e);
+  }
 }
-
-// init();

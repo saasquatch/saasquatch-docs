@@ -1,13 +1,16 @@
 import React, { useState } from "react";
+
 import styled from "styled-components";
+import "./graphqlExplorer-overrides.css"
 // @ts-ignore
 import { DocExplorer } from "graphiql/dist/components/DocExplorer.js";
-import { schema } from "../../iddl";
+import { schema, graphQLFetcher, getSchema } from "../../iddl";
 
 // import Markdown from "../../components/Markdown";
 import PageHeader from "../../components/PageHeader";
 
 import "graphiql/graphiql.css";
+import { useAsyncMemo } from "../../util/useAsyncMemo";
 
 const Inline = styled.div`
   position: relative;
@@ -49,24 +52,30 @@ tenants at the same time.
  - Tenant endpoint \`https://app.referralsaasquatch.com/api/v1/{tenant_alias}/graphql\`
 
 
-  `
-}
+  `,
+};
 export default function reference() {
   const [open, setOpen] = useState(false);
-  const onClick = ()=>{
+  const onClick = () => {
     setOpen(!open);
-  }
-  const Container = open? FullPage : Inline;
+  };
+  const Container = open ? FullPage : Inline;
+  const schema = useAsyncMemo(() => getSchema(), []);
   return (
     <PageHeader {...entry}>
-    <>
-      <h3>Reference <a onClick={onClick}>Fullscreen</a></h3>
-      <Container>
-        <div className="graphiql-container">
-          <DocExplorer schema={schema} />
-        </div>
-      </Container>
-    </>
+      <>
+        <h3>
+          Reference <a onClick={onClick}>Fullscreen</a>
+        </h3>
+        <Container>
+          <div className="graphiql-container">
+            <DocExplorer
+              schema={schema}
+              // fetcher={graphQLFetcher}
+            />
+          </div>
+        </Container>
+      </>
     </PageHeader>
   );
 }

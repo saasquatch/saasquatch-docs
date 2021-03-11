@@ -7,7 +7,7 @@ import Markdown from "./Markdown";
  */
 export function Properties({
   schema,
-  collapse = false
+  collapse = false,
 }: {
   schema: any;
   collapse?: boolean;
@@ -24,10 +24,20 @@ export function Properties({
     <div className={className}>
       <table className="table table-hover apidocs-args">
         <tbody>
-          {Object.keys(props).map((key: string) => {
+          {Object.keys(props).map((key: string, idx: number) => {
             const prop = props[key];
             return (
-              <tr>
+              <tr key={idx}>
+                <td>
+                  {prop?.tags?.map((tag: string) => {
+                    return (
+                      <>
+                        <span className="label">{tag}</span>
+                        <br />
+                      </>
+                    );
+                  })}
+                </td>
                 <th className="docs-monospace">
                   {key}
                   <br />
@@ -52,11 +62,11 @@ export function Properties({
                         Possible values:
                         {prop.enum.map((enumVal: string, idx: number) => {
                           return (
-                            <>
+                            <React.Fragment key={idx}>
                               {idx === prop.enum.length - 1 && "or "}
                               <code>{enumVal}</code>
                               {idx !== prop.enum.length - 1 && ", "}
-                            </>
+                            </React.Fragment>
                           );
                         })}
                       </p>

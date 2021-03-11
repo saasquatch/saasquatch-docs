@@ -1,11 +1,26 @@
 @font-face {
-  font-family: 'star';
-  src: url('../fonts/GothamRounded-Medium.eot');
-  src: url('../fonts/GothamRounded-Medium.eot?#iefix')
-      format('embedded-opentype'),
-    url('../fonts/GothamRounded-Medium.woff') format('woff'),
-    url('../fonts/GothamRounded-Medium.ttf') format('truetype'),
-    url('../fonts/GothamRounded-Medium.svg#star') format('svg');
+  font-family: "entypo";
+  src: url("//staticcdn.referralsaasquatch.com/fonts/entypo/entypo.eot");
+  src: url("//staticcdn.referralsaasquatch.com/fonts/entypo/entypo.eot?#iefix")
+      format("embedded-opentype"),
+    url("//staticcdn.referralsaasquatch.com/fonts/entypo/entypo.woff")
+      format("woff"),
+    url("//staticcdn.referralsaasquatch.com/fonts/entypo/entypo.ttf")
+      format("truetype"),
+    url("//staticcdn.referralsaasquatch.com/fonts/entypo/entypo.svg#entypo")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "star";
+  src: url("../fonts/GothamRounded-Medium.eot");
+  src: url("../fonts/GothamRounded-Medium.eot?#iefix")
+      format("embedded-opentype"),
+    url("../fonts/GothamRounded-Medium.woff") format("woff"),
+    url("../fonts/GothamRounded-Medium.ttf") format("truetype"),
+    url("../fonts/GothamRounded-Medium.svg#star") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -71,7 +86,7 @@ a:hover {
 
 // Monospace spans are used for URLs and other pseudo-code like blocks
 .docs-monospace {
-  font-family: Monaco, Consolas, 'Lucida Console', monospace;
+  font-family: Monaco, Consolas, "Lucida Console", monospace;
   font-size: 12px;
   text-align: -webkit-left;
   // LV: Removed to fix https://docs.referralsaasquatch.com/api/errors/
@@ -171,6 +186,12 @@ a:hover {
       padding-bottom: 4px; // Alignment fix
     }
   }
+
+  .mm-navbar .mm-breadcrumbs {
+    // Overflow fix
+    overflow-x: hidden !important;
+    display: block;
+  }
 }
 
 // Hamburger that opens docs nav
@@ -225,11 +246,11 @@ button#open-sidenav {
   }
 
   .nav > li > a {
-    padding-top: 15px;
-    padding-right: 40px;
+    padding-top: 20px;
+    padding-right: 20px;
     color: #003b45;
     text-shadow: none;
-    font-weight: bold;
+    font-weight: 500;
   }
 
   .nav-collapse.in.collapse {
@@ -305,7 +326,7 @@ h4,
 h5,
 h6,
 body {
-  font-family: 'proxima-nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .form-search .input-append {
@@ -322,34 +343,8 @@ body {
   }
 }
 
-.help-center-logo {
-  background: #003b45;
-  text-align: center;
-  border: 0;
-  margin-top: -1px;
-
-  img {
-    max-width: 140px;
-    margin-bottom: 15px;
-    margin-left: 5px;
-    margin-top: -3px;
-  }
-}
-
-.main-site-logo {
-  background: #003b45;
-  text-align: center;
-
-  img {
-    max-width: 160px;
-    margin-top: 7px;
-    margin-bottom: 0;
-    margin-left: -25px;
-  }
-}
-
 .hero-unit h1 {
-  font-family: 'GothamRounded-Medium', 'Helvetica Neue', Helvetica, Arial,
+  font-family: "GothamRounded-Medium", "Helvetica Neue", Helvetica, Arial,
     sans-serif;
 }
 

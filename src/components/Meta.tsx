@@ -10,9 +10,7 @@ import { Head } from "react-static";
  * Use `Head` from react-static, which is actually just `react-helmet`
  */
 export default function render(
-  props: Entry & {
-    children?: JSX.Element | JSX.Element[];
-  }
+  props: Entry
 ) {
   function striptags(s: string) {
     return s.replace(/(<([^>]+)>)/gi, '');
@@ -50,7 +48,7 @@ export default function render(
         className="swiftype"
         name="body"
         data-type="text"
-        content={props.highlights}
+        content={props.fields?.seoDescription || props.highlights}
       />
       <meta name="description" content={plainHighlights} />
       <meta property="og:description" content={plainHighlights} />
