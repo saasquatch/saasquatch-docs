@@ -1,5 +1,5 @@
-@owner:lv
-@author:am
+@owner:logan
+@author:alex.mcmillan
 Feature: Search
 
 	Search for sidebar and main page
@@ -150,7 +150,6 @@ Feature: Search
 		When I click on a search result
 		Then the docs page for that selected result is displayed
 
-	# currently fails, sidebar search [close] button lacks styling
 	Scenario: Sidebar search input shows a "close" button when input field is selected and input is entered
 		Given I am on the SaaSquatch docs page at any location
 		And I have entered a search term into the search input field that returns any number of matches

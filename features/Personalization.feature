@@ -1,5 +1,5 @@
-@owner:lv
-@author:am
+@owner:logan
+@author:alex.mcmillan
 Feature: Personalization
 
 	- Personalization works (API sidebar, api reference)
@@ -155,7 +155,6 @@ Feature: Personalization
 		When I clear my browser cookies
 		Then the personalization menu reverts to the default state
 
-	# currently fails, not implemented yet?
 	Scenario: Rest API Reference methods are shown/hidden based on selected personalization menu state
 		Given I am on the SaaSquatch docs page at the ../api/methods location
 		And a personalization menu is shown at the top of the main content section
@@ -188,7 +187,6 @@ Feature: Personalization
 
 		And the Rest API Reference items <api methods> are updated to match <visible> as defined by <filter value>
 
-	# currently fails, not implemented yet?
 	Scenario: Hidden Rest API Reference methods are shown at bottom of page
 		Given I am on the SaaSquatch docs page at the ../api/methods location
 		And a personalization menu is shown at the top of the main content section
@@ -202,7 +200,6 @@ Feature: Personalization
 
 		Then the personalization menu is updated with the new <filter option> and api methods not matching <filter value> are shown in the "Hidden Methods" section at the bottom of the "Rest API Reference" page
 
-	# currently fails, not implemented yet?
 	Scenario: Sidebar menu items are shown/hidden based on selected personalization menu state
 		Given I am on the SaaSquatch docs page at the ../api/methods location
 		And a list of methods is shown in the sidebar menu under "Full list of Methods"

@@ -1,5 +1,5 @@
-@owner:lv
-@author:am
+@owner:logan
+@author:alex.mcmillan
 Feature: Mermaid Charts
 
 	Defines the behaviour of Mermaid charts used in api/webhooks and api/webhooks/security
