@@ -4,7 +4,6 @@ import React from "react";
 import { useRouteData } from "react-static";
 import styled from "styled-components";
 
-import { PrimaryButton } from "../../components/Buttons";
 import Markdown from "../../components/Markdown";
 import PageHeader from "../../components/PageHeader";
 
@@ -106,17 +105,6 @@ const SubscribeP = styled.p`
   max-width: 270px;
 `;
 
-const FormStyle = styled.div`
-  & input {
-    margin: 15px;
-    width: 250px;
-  }
-
-  & button {
-    margin: 15px;
-  }
-`;
-
 const MermaidStyles = styled.div`
   & rect.task {
     fill: #f3ffed !important;
@@ -142,56 +130,6 @@ const MermaidStyles = styled.div`
     font-size: 16px !important;
   }
 `;
-
-type FormProps = {
-  status: "sending" | "error" | "success";
-  message: string;
-  onValidated: (param: { EMAIL: string }) => void;
-};
-const CustomForm = ({ status, message, onValidated }: FormProps) => {
-  let email = { value: "" };
-  const submit = () => {
-    email &&
-      email.value.indexOf("@") > -1 &&
-      onValidated({
-        EMAIL: email.value,
-      });
-  };
-
-  const loading = status === "sending";
-  const buttonText = status === "sending" ? "Sending..." : "Subscribe";
-  const successColor = status === "success" ? "#57AC59" : "";
-
-  return (
-    <FormStyle>
-      <input
-        ref={(node) => (email = node)}
-        type="email"
-        placeholder="Your Email"
-      />
-      {status === "error" && (
-        <div
-          style={{ color: "red", marginLeft: "15px" }}
-          dangerouslySetInnerHTML={{ __html: message }}
-        />
-      )}
-      {status === "success" && (
-        <div
-          style={{ color: "green" }}
-          dangerouslySetInnerHTML={{ __html: message }}
-        />
-      )}
-      <PrimaryButton
-        loading={loading}
-        onClick={() => submit()}
-        buttonColor={successColor}
-        darkercolor={successColor}
-      >
-        {buttonText}
-      </PrimaryButton>
-    </FormStyle>
-  );
-};
 
 const entry = {
   title: "Breaking Changes",
@@ -252,7 +190,7 @@ export default function render() {
               We will notify you when breaking changes are announced, and send
               periodic reminders before they take effect.
             </SubscribeP>
-            <MarketoForm/>
+            <MarketoForm />
           </Well>
         </div>
 
