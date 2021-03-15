@@ -1,7 +1,6 @@
-import { MarketoForm } from "components/MarketoForm";
+import { MarketoForm } from "components/marketoForms/MarketoForm";
 import moment from "moment";
 import React from "react";
-import MailchimpSubscribe from "react-mailchimp-subscribe";
 import { useRouteData } from "react-static";
 import styled from "styled-components";
 
