@@ -8,8 +8,13 @@ import PageHeader from "../../components/PageHeader";
 const entry = {
   title: "squatch.js Issue Code List",
   highlights: `During implementation of (squatch.js)[/developer/squatchjs/] you might run into one of these issue codes; click on an issue code for more details.`,
-  sectionType: "jsReference"
+  sectionType: "jsReference",
 } as const;
+
+interface Issue {
+  title: string;
+  highlights: string;
+}
 
 export default function render() {
   // TODO: Wire up to actual list of issues
@@ -26,12 +31,11 @@ export default function render() {
             </tr>
           </thead>
           <tbody>
-            {issues.map(issue => {
-              const anchor = "/squatchjs/issue/" + issue.title;
+            {issues.map((issue: Issue) => {
+              const anchor = "/squatchjs/issue/" + issue.title.toLowerCase();
               return (
-                <tr>
+                <tr key={issue.title}>
                   <td>
-                    
                     <Link to={anchor}>{issue.title}</Link>
                   </td>
                   <td>
