@@ -1,3 +1,4 @@
+import { MarketoForm } from "components/MarketoForm";
 import moment from "moment";
 import React from "react";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
@@ -143,8 +144,6 @@ const MermaidStyles = styled.div`
   }
 `;
 
-const url =
-  "//ReferralSaaSquatch.us4.list-manage.com/subscribe/post?u=4ea25ef0489446654b07fd1a1&id=40edd6c3b0";
 type FormProps = {
   status: "sending" | "error" | "success";
   message: string;
@@ -254,16 +253,7 @@ export default function render() {
               We will notify you when breaking changes are announced, and send
               periodic reminders before they take effect.
             </SubscribeP>
-            <MailchimpSubscribe
-              url={url}
-              render={({ subscribe, status, message }) => (
-                <CustomForm
-                  status={status}
-                  message={message}
-                  onValidated={(formData) => subscribe(formData)}
-                />
-              )}
-            />
+            <MarketoForm/>
           </Well>
         </div>
 
