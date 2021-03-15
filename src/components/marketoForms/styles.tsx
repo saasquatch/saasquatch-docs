@@ -13,6 +13,7 @@ export const MarketoFormStyleOverwrite = styled.form`
     width: 5px !important;
   }
   .mktoError {
+    right: 122px !important;
   }
   .mktoAsterix {
     margin-top: -5px;
