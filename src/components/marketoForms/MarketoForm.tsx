@@ -8,10 +8,18 @@ declare global {
         url: string,
         munchkinId: string,
         formid: number,
-        onSubmit?: (form: any) => void
+        onSubmit?: (form: Form) => void
       ) => void;
     };
   }
+}
+
+interface FormElement {
+  hide: () => void;
+}
+interface Form {
+  onSuccess: (inputFunction: () => void) => boolean;
+  getFormElem: () => FormElement;
 }
 
 function appendScript(setScriptLoaded) {
@@ -36,7 +44,7 @@ const useMarketo = () => {
           1018,
           function (form) {
             // Add an onSuccess handler
-            form.onSuccess(function (values, followUpUrl) {
+            form.onSuccess(function () {
               // Get the form's jQuery element and hide it
               form.getFormElem().hide();
               setSubmitted(true);
