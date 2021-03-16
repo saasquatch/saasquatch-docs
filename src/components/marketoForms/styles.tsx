@@ -12,6 +12,9 @@ export const MarketoFormStyleOverwrite = styled.form`
   .mktoGutter {
     width: 5px !important;
   }
+  #ValidMsgEmail {
+    margin-right: -37px;
+  }
   .mktoError {
     right: 122px !important;
   }
