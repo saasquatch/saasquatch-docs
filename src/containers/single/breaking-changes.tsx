@@ -1,10 +1,9 @@
+import { MarketoForm } from "components/marketoForms/MarketoForm";
 import moment from "moment";
 import React from "react";
-import MailchimpSubscribe from "react-mailchimp-subscribe";
 import { useRouteData } from "react-static";
 import styled from "styled-components";
 
-import { PrimaryButton } from "../../components/Buttons";
 import Markdown from "../../components/Markdown";
 import PageHeader from "../../components/PageHeader";
 
@@ -106,17 +105,6 @@ const SubscribeP = styled.p`
   max-width: 270px;
 `;
 
-const FormStyle = styled.div`
-  & input {
-    margin: 15px;
-    width: 250px;
-  }
-
-  & button {
-    margin: 15px;
-  }
-`;
-
 const MermaidStyles = styled.div`
   & rect.task {
     fill: #f3ffed !important;
@@ -142,58 +130,6 @@ const MermaidStyles = styled.div`
     font-size: 16px !important;
   }
 `;
-
-const url =
-  "//ReferralSaaSquatch.us4.list-manage.com/subscribe/post?u=4ea25ef0489446654b07fd1a1&id=40edd6c3b0";
-type FormProps = {
-  status: "sending" | "error" | "success";
-  message: string;
-  onValidated: (param: { EMAIL: string }) => void;
-};
-const CustomForm = ({ status, message, onValidated }: FormProps) => {
-  let email = { value: "" };
-  const submit = () => {
-    email &&
-      email.value.indexOf("@") > -1 &&
-      onValidated({
-        EMAIL: email.value,
-      });
-  };
-
-  const loading = status === "sending";
-  const buttonText = status === "sending" ? "Sending..." : "Subscribe";
-  const successColor = status === "success" ? "#57AC59" : "";
-
-  return (
-    <FormStyle>
-      <input
-        ref={(node) => (email = node)}
-        type="email"
-        placeholder="Your Email"
-      />
-      {status === "error" && (
-        <div
-          style={{ color: "red", marginLeft: "15px" }}
-          dangerouslySetInnerHTML={{ __html: message }}
-        />
-      )}
-      {status === "success" && (
-        <div
-          style={{ color: "green" }}
-          dangerouslySetInnerHTML={{ __html: message }}
-        />
-      )}
-      <PrimaryButton
-        loading={loading}
-        onClick={() => submit()}
-        buttonColor={successColor}
-        darkercolor={successColor}
-      >
-        {buttonText}
-      </PrimaryButton>
-    </FormStyle>
-  );
-};
 
 const entry = {
   title: "Breaking Changes",
@@ -254,15 +190,13 @@ export default function render() {
               We will notify you when breaking changes are announced, and send
               periodic reminders before they take effect.
             </SubscribeP>
-            <MailchimpSubscribe
-              url={url}
-              render={({ subscribe, status, message }) => (
-                <CustomForm
-                  status={status}
-                  message={message}
-                  onValidated={(formData) => subscribe(formData)}
-                />
-              )}
+            <MarketoForm
+              url="//info.saasquatch.com"
+              munchkinId="162-BJJ-156"
+              formId={1018}
+              successText={
+                "Thank you for subscribing to our breaking changes email!"
+              }
             />
           </Well>
         </div>
