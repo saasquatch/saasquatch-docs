@@ -67,5 +67,5 @@ export const styledLink = styled.a`
 `;
 
 export const Container = styled.div<{ sideBar: boolean }>`
-  height: ${(props) => (props.sideBar ? "80vh" : "35vh")};
+  height: ${(props) => (props.sideBar ? "75vh" : "35vh")};
 `;
