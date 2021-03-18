@@ -194,6 +194,8 @@ function updateSidebarForCurrentURL(myMenu: any) {
     if (foundElement.hasClass("mm-vertical")) {
       // myMenu.
     } else {
+      //close menu when you change page
+      myMenu.close()
       // Open the right panel
       myMenu.setSelected(foundElement);
     }
