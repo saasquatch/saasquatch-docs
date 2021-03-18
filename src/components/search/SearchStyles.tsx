@@ -26,6 +26,7 @@ export const ItemTitle = styled.div`
 export const ItemBody = styled.div`
   font-size: 0.9em;
   color: #444;
+  word-wrap: break-word;
 
   br {
     /* Hides google's automatic <br> additions */
