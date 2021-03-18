@@ -54,6 +54,7 @@ export const PopOver = styled.div<{ sideBar: boolean }>`
   z-index: 999;
   overflow-y: scroll;
   width: ${(props) => (props.sideBar ? "18vw" : "70vw")};
+  min-width: 200px;
 `;
 
 export const Inline = styled.div``;
