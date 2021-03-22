@@ -14,6 +14,16 @@ const Timeline = styled.div`
   padding: 0 15px;
 `;
 
+const Container = styled.div`
+  display: flex;
+  align-items: flex-start;
+  margin-right: 60px;
+
+  @media screen and (max-width: 575px) {
+    flex-flow: wrap-reverse;
+  }
+`;
+
 const ChangeWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -152,13 +162,7 @@ export default function render() {
   return (
     <PageHeader {...entry}>
       <>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "flex-start",
-            marginRight: "60px",
-          }}
-        >
+        <Container>
           <div style={{ paddingRight: "50px" }}>
             <h3>Breaking Change Policy</h3>
             <p>
@@ -199,7 +203,7 @@ export default function render() {
               }
             />
           </Well>
-        </div>
+        </Container>
 
         <h3>Upcoming Changes</h3>
         <Timeline>

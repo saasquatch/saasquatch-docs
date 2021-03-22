@@ -26,6 +26,7 @@ export const ItemTitle = styled.div`
 export const ItemBody = styled.div`
   font-size: 0.9em;
   color: #444;
+  word-wrap: break-word;
 
   br {
     /* Hides google's automatic <br> additions */
@@ -54,6 +55,7 @@ export const PopOver = styled.div<{ sideBar: boolean }>`
   z-index: 999;
   overflow-y: scroll;
   width: ${(props) => (props.sideBar ? "18vw" : "70vw")};
+  min-width: 200px;
 `;
 
 export const Inline = styled.div``;
@@ -66,5 +68,5 @@ export const styledLink = styled.a`
 `;
 
 export const Container = styled.div<{ sideBar: boolean }>`
-  height: ${(props) => (props.sideBar ? "80vh" : "35vh")};
+  height: ${(props) => (props.sideBar ? "75vh" : "35vh")};
 `;
