@@ -7,14 +7,20 @@ export function replace(domNode: any) {
   if (domNode.name && domNode.name === "a") {
     const { href, ...rest } = domNode.attribs;
     const props = attributesToProps(rest);
-    if(href && !href.startsWith("http:") && !href.startsWith("https:") && !href.startsWith("mailto:")){
+    if (
+      href &&
+      !href.startsWith("http:") &&
+      !href.startsWith("https:") &&
+      !href.startsWith("mailto:") &&
+      !href.startsWith("//assets.ctfassets.net")
+    ) {
       // Local (relative) links pimped with react router navigation
       return (
         <Link to={href} {...props}>
           {domToReact(domNode.children, { replace })}
         </Link>
-      );  
-    }else{
+      );
+    } else {
       // Default behaviour for links to fully qualified URLs
     }
   }

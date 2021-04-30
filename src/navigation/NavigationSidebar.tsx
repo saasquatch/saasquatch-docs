@@ -254,7 +254,19 @@ export function NavigationSidebar() {
                       Email Template Short Tags
                     </Link>
                   </li>
-
+                  <li>
+                    <Link to="/features/w-9-compliance">W-9 Compliance</Link>
+                  </li>
+                  <li>
+                    <Link to="/features/managing-w-9-compliance-for-participants">
+                      Managing W-9 Compliance for Participants
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/features/configuring-your-reward-catalog-for-w-9">
+                      Configuring your Reward Catalog for W-9
+                    </Link>
+                  </li>
                   <li>
                     <Link to="/integrations">
                       <i className="fa fa-fw small fa-cubes"></i>
