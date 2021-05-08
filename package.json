@@ -27,7 +27,7 @@
     "js-yaml": "^3.0.2",
     "json-schema-resolve-allof": "^1.1.4",
     "less": "^3.8.1",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "magnific-popup": "^1.1.0",
     "markdown-toc": "^0.13.0",
     "moment": "^2.24.0",
