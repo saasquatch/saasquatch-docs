@@ -60,6 +60,7 @@ const LibraryH3 = styled.h3`
   justify-content: center;
   padding-left: 13px;
   height: 32px;
+  line-height: 1.6;
 `;
 
 const IconBorder = styled.div`
@@ -76,6 +77,7 @@ const IconBorder = styled.div`
   border-color: rgb(233, 233, 234);
   border-image: initial;
   text-align: center;
+  flex-shrink: 0;
 `;
 
 const ProgramIcon = styled.span`
