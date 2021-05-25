@@ -20,6 +20,7 @@ export type Entry = {
   category?: string;
   categoryName?: string;
   sectionType?: string;
+  date?: string;
   fields?: { seoDescription?: string };
 };
 

@@ -2,6 +2,7 @@ import React from "react";
 import Markdown from "./Markdown";
 import { Entry } from "./TocFrame";
 import Meta from "./Meta";
+import { DateTime } from "luxon";
 
 /**
  *  Common block at the top of most pages.
@@ -9,17 +10,16 @@ import Meta from "./Meta";
  *  Title, highlights, cover image, etc.
  *
  */
-export default function render(
-  props: Entry & { children?: React.ReactNode }
-) {
+export default function render(props: Entry & { children?: React.ReactNode }) {
   //   const Wrapper = props.hero? ({children}:any) => <div className={"hero-unit article " + props.category}>{children}</div> :
-
+  const date = DateTime.fromISO(props.date).toFormat("DDD");
   return (
     <>
       <Meta {...props} />
       <section className="article-content">
         <div className="page-header">
           <h1 id="top">{props.title}</h1>
+          <p>Last Updated: {date}</p>
 
           {props.tags && props.tags.some((tag: string) => tag == "Beta") && (
             <span className="label docs-label-beta">Beta</span>
@@ -44,8 +44,8 @@ export default function render(
           <blockquote>
             <p>
               This feature is currently in Beta. Please contact our{" "}
-              <a href="mailto:support@saasquatch.com">support team</a>{" "}
-              to learn more about how to enroll.
+              <a href="mailto:support@saasquatch.com">support team</a> to learn
+              more about how to enroll.
             </p>
           </blockquote>
         )}
