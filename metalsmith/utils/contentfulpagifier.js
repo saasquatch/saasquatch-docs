@@ -35,7 +35,7 @@ function pageify(entryRaw, i18n) {
       slug: fields.slug,
 
       fields: fields,
-      date: entry.sys.updatedAt,
+      date: entry.sys?.updatedAt,
       id: entry.sys.id,
       sectionType: metalsmithSection,
       template: "hasTableOfContents.html",
@@ -62,6 +62,7 @@ function pageify(entryRaw, i18n) {
 
       fields: fields,
       id: entry.sys.id,
+      date: entry.sys?.updatedAt,
 
       template: "faqCategory.html",
       sectionType: "faq",
@@ -71,6 +72,7 @@ function pageify(entryRaw, i18n) {
     file = {
       ...fields,
       fields: fields,
+      date: entry.sys?.updatedAt,
       logo: {
         url: logoFields.file.url,
         name: logoFields.title,

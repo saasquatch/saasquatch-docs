@@ -12,14 +12,14 @@ import { DateTime } from "luxon";
  */
 export default function render(props: Entry & { children?: React.ReactNode }) {
   //   const Wrapper = props.hero? ({children}:any) => <div className={"hero-unit article " + props.category}>{children}</div> :
-  const date = DateTime.fromISO(props.date).toFormat("DDD");
+  const date = DateTime.fromISO(props?.date).toFormat("DDD");
   return (
     <>
       <Meta {...props} />
       <section className="article-content">
         <div className="page-header">
           <h1 id="top">{props.title}</h1>
-          <p>Last Updated: {date}</p>
+          {props.date && <p>Last Updated: {date}</p>}
 
           {props.tags && props.tags.some((tag: string) => tag == "Beta") && (
             <span className="label docs-label-beta">Beta</span>
