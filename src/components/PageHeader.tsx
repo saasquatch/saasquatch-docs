@@ -19,7 +19,7 @@ export default function render(props: Entry & { children?: React.ReactNode }) {
       <section className="article-content">
         <div className="page-header">
           <h1 id="top">{props.title}</h1>
-          {props.date && <p>Last Updated: {date}</p>}
+          {props.date && <p style={{ fontSize: "12px", color:"#575757", marginTop:"-10px", marginBottom:"0px"}}>Last Updated: {date}</p>}
 
           {props.tags && props.tags.some((tag: string) => tag == "Beta") && (
             <span className="label docs-label-beta">Beta</span>
