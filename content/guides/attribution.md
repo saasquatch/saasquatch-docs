@@ -16,51 +16,63 @@ purchase event that both attributes the referral and [marks it as converted](/to
 
 ### Squatch.js
 
-Squatch.js support tracking attribution both automatically or triggered by manually setting the `referral_code` parameter for identified users. All attribution tracking from Squatch.js is done when you [identify your users](/topics/identification) using the [init method](/squatchjs/#init).
+Attribution works by passing the `referralCode` used by the user when they are [identified](/topics/identification) to [Squatch.js](/developer/squatchjs/v2/reference#upsertusert). The first time that `referralCode` is set for a user, it will trigger attribution of a referral back to the person that did the referral.
 
-
-**Automatic attribution**
-
-Automatic attribution works by detecting the presence of a tracking cookie the first time that a new account and user are [identified](/topics/identification) to [Squatch.js](/squatchjs/#init).
-If that user has not been seen before, and that account has not previously converted by having it's `account_status` marked as `PAID`, then the new user will show up as an in-progress referral.
-
-
-**Triggered attribution**
-
-Triggered attribution works by setting a value for the `referral_code` field when a user is [identified](/topics/identification) to [Squatch.js](/squatchjs/#init). The first time that `referral_code` is set for a user, it will trigger attribution of a referral back to the person that did the referral.
+Squatch.js supports tracking attribution by setting the `user.referredBy.code` parameter for classic programs or including the referral code in the `user.referredByCodes` array parameter for our GA programs. All attribution tracking from Squatch.js is done when you [identify your users](/topics/identification) using the [user upsert method](/developer/squatchjs/v2/reference#upsertuser).
 
 ```js
-_sqh.push(['init', {
-   tenant_alias: 'test_bpinhag9yagag',
-   account_id: 'abc',
-   payment_provider_id: null,
-   user_id: '5678',
-   email: 'bob@example.com',
-   first_name: 'John',
-   // referral_code: 'BOBTESTERSON' // Include this field to trigger attribution. Ommit this field to let automatic attribution detect tracking cookies
-}]);
+var initObj = {
+  user: {                               
+    id: 'abc_123',                      
+    accountId: 'abc_123',       
+    email: 'john@example.com',                
+    firstName: 'John',       
+    lastName: 'Doe',
+    referredByCodes: [
+      'JANEDOE'
+    ],
+    segments: [
+        'sampleSegment'
+    ],
+  },
+  engagementMedium: 'EMBED',
+  widgetType: '/p/program-name/w/referrerWidget',
+  jwt: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiYWJjXzEyMyIsImFjY291bnRJZCI6ImFiY18xMjMiLCJlbWFpbCI6ImpvaG5AZXhhbXBsZS5jb20iLCJmaXJzdE5hbWUiOiJKb2huIiwibGFzdE5hbWUiOiJEb2UiLCJsb2NhbGUiOiJlbl9VUyIsInJlZmVycmVkQnlDb2RlcyI6WyJKQU5FRE9FIl19fQ.mlBQG0iaZuheMp4W4SmvmIMz7IiGWMpCzBQrABLLJgA'
+};
+
+squatch.widgets().upsertUser(initObj).then(function(response) {
+  user = response.user;
+}).catch(function(error){
+  console.log(error);
+}); 
 ```
 
-The referral code can be found either in the `rsCode` query parameter from share links redirects, using [autofil](/squatchjs/#autofill) method to look up the referral tracking cookie, or passed in manually from a "referral code" box that someone types in at signup.
+The referral code can be found either in the `rsCode` query parameter from share links redirects, using [autofil](/developer/squatchjs/v2/reference#autofill) method to look up the referral tracking cookie, or passed in manually from a "referral code" box that someone types in at signup.
 
 
 ### REST API
  
-Using the REST API, one can trigger a referral based off the use of a referral code. The main method for this is the [Update Account](/api/methods/#account_sync) method. By associating
-a `referral.code` for an account, you are creating a new Referral object where the `referrerReward` will default to null until the account is updated.
+Using the REST API, one can trigger a referral based off the use of a referral code. The main method for this is the [User Upsert](/api/methods#open_user_upsert) method. By upserting a user with the `user.referredBy.code` parameter for classic programs or the `user.referredByCodes` array parameter for our GA programs, you are able to create a referral between two users using referral code.
 
 ```curl
-curl -X POST https://app.referralsaasquatch.com/api/v1/{tenant_alias}/accountsync \
--u API_KEY: \
--H "Content-Type: application/json" \
--d '{
-    "id": "abc123",
-    "subscription": {
-        "status": "TRIAL"
-    },
-    "referral": {
-        "code": "BOBTESTERSON"
-    }
+curl -X PUT https://app.referralsaasquatch.com/api/v1/{tenant_alias}/open/account/{accountId}/user/{userId}?fields=&extraFields= 
+  -u :API_KEY 
+  -H "Content-Type: application/json" 
+  -d '{
+  "id": "219065",
+  "accountId": "accc9065",
+  "firstName": "Bob",
+  "lastName": "Testerson",
+  "email": "bob@example.com",
+  "locale": "en_US",
+  "referredBy": {
+    "code": "JONDOE1234",
+    "isConverted": true
+  },
+  "referredByCodes": [
+    "JONDOE1234",
+    "JOHNDOECODE"
+  ],
 }'
 ```
 
