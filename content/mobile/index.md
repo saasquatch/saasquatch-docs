@@ -16,14 +16,14 @@ hero: true
 <div class="row-fluid">
   <div class="span4">
     <div class="text-center" style="overflow:hidden; position: relative; height: 124px; margin-bottom: 10px;"><img src="/assets/images/mobile/logo-android.png" style=" position:relative; height:124px;"></div>
-    <p>Our <a href="/mobile/android">Android SDK</a> gives you complete control over how your referral program is presented inside your Android app.</p>
-    <p><b>Go to <a href="/mobile/android">Android SDK</a>.</b></p>
+    <p>Our <a href="/mobile/android/">Android SDK</a> gives you complete control over how your referral program is presented inside your Android app.</p>
+    <p><b>Go to <a href="/mobile/android/">Android SDK</a>.</b></p>
     </p>
   </div>
   <div class="span4">
     <div class="text-center" style="overflow:hidden; position: relative; height: 124px; margin-bottom: 10px;"><img src="/assets/images/mobile/logo-ios.png" style=" position:relative; top: 25px"></div>
-    <p>Our <a href="/mobile/ios">iOS SDK</a> gives you complete control over how your referral program is presented inside your iOS app.</p>
-    <p><b>Go to <a href="/mobile/ios">iOS SDK</a>.</b></p>
+    <p>Our <a href="/mobile/ios/">iOS SDK</a> gives you complete control over how your referral program is presented inside your iOS app.</p>
+    <p><b>Go to <a href="/mobile/ios/">iOS SDK</a>.</b></p>
     </p>
   </div>
   <div class="span4">
