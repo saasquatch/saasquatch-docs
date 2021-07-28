@@ -225,7 +225,7 @@ export function NavigationSidebar() {
                   </li>
                   <li>
                     <Link to="/developer/purchase-object">
-                      Growth Automation Purchase Event
+                      User Purchase &amp; Refund Event
                     </Link>
                   </li>
                   <li className="Divider">Program Resources</li>

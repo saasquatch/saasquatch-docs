@@ -7,11 +7,11 @@ import { Properties } from "../../components/Properties";
 import PageHeader from "../../components/PageHeader";
 
 const entry = {
-  title: "Growth Automation Purchase Event",
+  title: "User Purchase & Refund Event",
   highlights: "Details about the SaaSquatch User Purchase Event.",
   slug: "developer/purchase-object",
   sectionType: "successArticle",
-  template: "pages/purchaseObject.html"
+  template: "pages/purchaseObject.html",
 };
 
 export default function render() {
@@ -20,24 +20,23 @@ export default function render() {
     <PageHeader {...entry}>
       <>
         <p>
-          The SaaSquatch system is configured to accept being sent a wide range
-          of <a href="/growth/ga-mechanisms/#user-events">event data</a> about
-          actions users take within your product. This event information will
-          power the programs within your SaaSquatch project, and can be used to{" "}
-          <a href="/growth/ga-mechanisms/#program-rules">trigger</a> sending
-          emails and providing rewards.
+          SaaSquatch can accept user{" "}
+          <a href="/growth/ga-mechanisms/#user-events">event data</a> sent from
+          your app. User event data can be set to{" "}
+          <a href="/growth/ga-mechanisms/#program-rules">trigger</a> goals and
+          send transactional emails.
         </p>
 
         <p>
-          Events can be sent to SaaSquatch through our{" "}
-          <a href="/api/methods/#trackEvent">REST API</a> or squatch.js
-          Javascript Library.
+          You can send events to SaaSquatch through our{" "}
+          <a href="/api/methods/#trackEvent">REST API</a> or{" "}
+          <a href="/developer/squatchjs/">squatch.js Javascript Library</a>.
         </p>
 
         <p>
-          The `puchase` event is a reserved user event type within the
-          SaaSquatch system, and requires information to be sent to SaaSquatch
-          in a defined format. This format is as follows:
+          The `purchase` and `refund` events are reserved user events. This
+          requires the data of these events to be sent in a defined format using
+          the fields below.
         </p>
 
         <h4>Fields</h4>
@@ -60,8 +59,8 @@ function useSchema(schema) {
     parser
       .dereference(schema, {
         resolve: {
-          file: false
-        }
+          file: false,
+        },
       })
       .then(setValue);
   }, schema);
