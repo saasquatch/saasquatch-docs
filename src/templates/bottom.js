@@ -17,10 +17,9 @@ export function Bottom({
   children,
   state: { siteData, renderMeta, routeInfo },
 }) {
-  let { robots, googleSiteId, windowDotEnv } = siteData;
+  let { jsTrackers, googleSiteId, windowDotEnv } = siteData;
 
   const dotEnv = JSON.stringify(windowDotEnv);
-  const jsTrackers = false;
   
   return (
     <Html lang="en-US">
