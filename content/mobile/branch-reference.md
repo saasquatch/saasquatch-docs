@@ -22,7 +22,7 @@ sectionType: mobile
 The SaaSquatch integration with [Branch Metrics](http://branch.io) works as follows:
 
  - SaaSquatch referral links (e.g. ssqt.co/h126b21) will start redirecting to Branch links
- - SaaSquatch will [create branch links dynamically](https://dev.branch.io/references/http_api/#creating-a-deep-linking-url) and set values for `data`, `channel`, `tags` and `desktop_url`
+ - SaaSquatch will [create branch links dynamically](https://help.branch.io/using-branch/docs/creating-a-deep-link) and set values for `data`, `channel`, `tags` and `desktop_url`
  - Branch deep link `data` will include details of the referral code, the Referrer and reward (See field reference below)
  - Analytics Tags will be added to help you track the performance of different platforms.
 	 - `channel`: the referral medium. One of `FACEBOOK`, `TWITTER`, `EMAIL`, `DIRECT`, `REMINDER`, `UNKNOWN`  
@@ -40,7 +40,7 @@ setting the Branch value for `desktop_url`.
 
 ### Example Deeplink
 
-When SaaSquatch creates links [dynamically in branch](https://dev.branch.io/references/http_api/#creating-a-deep-linking-url) the resulting link, including analytics tags, redirects and
+When SaaSquatch creates links [dynamically in branch](https://help.branch.io/using-branch/docs/creating-a-deep-link) the resulting link, including analytics tags, redirects and
 custom metadata produce a deep link like the following example:
 
 ```json
