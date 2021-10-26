@@ -240,6 +240,11 @@ export function NavigationSidebar() {
                     </Link>
                   </li>
                   <li>
+                    <Link to="/features/program-and-portal-statistics">
+                      Program and Portal Statistics
+                    </Link>
+                  </li>
+                  <li>
                     <Link to="/success/gift-card-rewards">
                       Gift Card Rewards
                     </Link>
