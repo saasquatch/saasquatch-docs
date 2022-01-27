@@ -22,7 +22,7 @@ export function Bottom({
   const dotEnv = JSON.stringify(windowDotEnv);
   
   return (
-    <Html lang="en-US">
+    <Html lang="en-US" hidden={true}>
       <Head>
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -43,6 +43,7 @@ export function Bottom({
           rel="stylesheet"
           href="https://i.icomoon.io/public/830a3260df/SaaSquatch/style.css"
         />
+        <style dangerouslySetInnerHTML={{__html:`[hidden]{visibility:hidden;}`}} />
       </Head>
 
       <Body
