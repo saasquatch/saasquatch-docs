@@ -23,9 +23,9 @@ export default function render(
 
   let title:string;
   if(props.title){
-    title = props.title + " | SaaSquatch " + (props.categoryName || "Documentation");
+    title = props.title + " | SaaSquatch " + (props.categoryName || "Zachummentation");
   }else{
-    title = "SaaSquatch Help Center";
+    title = "SaaSquatch Zachumentation";
   }
     
   const plainHighlights = striptags(markdown(props.highlights));
