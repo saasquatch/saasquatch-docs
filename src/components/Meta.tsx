@@ -38,28 +38,8 @@ export default function render(
         }
       />
       <meta property="og:title" content={title} />
-      <meta
-        className="swiftype"
-        name="title"
-        data-type="string"
-        content={props.title}
-      />
-      <meta
-        className="swiftype"
-        name="body"
-        data-type="text"
-        content={props.fields?.seoDescription || props.highlights}
-      />
       <meta name="description" content={plainHighlights} />
       <meta property="og:description" content={plainHighlights} />
-
-      <meta
-        className="swiftype"
-        name="type"
-        data-type="enum"
-        content={props.sectionType}
-      />
-
       <meta
         name="docsSectionType"
         data-type="string"
