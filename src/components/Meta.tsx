@@ -27,9 +27,17 @@ export default function render(
   }else{
     title = "SaaSquatch Zachumentation";
   }
+
+  let ogImageURL:string;
+  if(props.fields.ogFeaturedImage){
+    ogImageURL = props?.fields?.ogFeaturedImage[0]?.fields?.file?.url;
+  }else{
+    ogImageURL = null;
+  }
     
   const plainHighlights = striptags(markdown(props.highlights));
   return (
+    console.log(props),
     <Head>
       <title>{title}</title>
       <body
@@ -37,8 +45,22 @@ export default function render(
           "docs sectionType-" + props.sectionType + " " + props.category
         }
       />
+      {/* SEO content */}
+      <meta name="description" content={props.fields?.seoDescription}/>
+        
+      <meta property="og:image" content={ogImageURL} />
+      <meta name="twitter:image" content="image url from Contentful response" />
+      
+      <meta name="robots" content={props.fields?.robotsTag} />
+      <link rel="canonical" href={props.fields?.canonicalUrl}/>
+      
+      <script type="application/ld+json">
+      {/* // JSON from Contentful */}
+      </script>
+      
+
       <meta property="og:title" content={title} />
-      <meta name="description" content={plainHighlights} />
+      
       <meta property="og:description" content={plainHighlights} />
       <meta
         name="docsSectionType"

@@ -20,7 +20,20 @@ export type Entry = {
   category?: string;
   categoryName?: string;
   sectionType?: string;
-  fields?: { seoDescription?: string };
+  fields?: { 
+    seoDescription?: string,
+    ogFeaturedImage?: {
+      fields?:{
+        file?:{
+          url?: string;
+        }
+      }
+    }  
+    robotsTag?: string,
+    canonicalUrl?: string;
+    
+    
+  };
 };
 
 export default function render({
