@@ -23,9 +23,9 @@ export default function render(
 
   let title:string;
   if(props.title){
-    title = props.title + " | SaaSquatch " + (props.categoryName || "Zachummentation");
+    title = props.title + " | SaaSquatch " + (props.categoryName || "Docs");
   }else{
-    title = "SaaSquatch Zachumentation";
+    title = "SaaSquatch Docs";
   }
 
   let ogImageURL:string;
