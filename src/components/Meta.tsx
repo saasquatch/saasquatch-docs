@@ -27,14 +27,16 @@ export default function render(
   }else{
     title = "SaaSquatch Docs";
   }
-
+  
   let ogImageURL:string;
-  if(props.fields.ogFeaturedImage){
-    ogImageURL = props?.fields?.ogFeaturedImage[0]?.fields?.file?.url;
+  if(props.fields){
+    if(props.fields.ogFeaturedImage){
+      ogImageURL = props?.fields?.ogFeaturedImage[0]?.fields?.file?.url;
+    }
   }else{
     ogImageURL = null;
   }
-    
+  
   const plainHighlights = striptags(markdown(props.highlights));
   return (
     console.log(props),
