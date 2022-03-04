@@ -29,7 +29,7 @@ export default function render(
   }
   
   let ogImageURL:string;
-  if(props.fields == null){
+  if(props?.fields?.ogFeaturedImage == null){
     ogImageURL = null;
   }else{
     ogImageURL = props?.fields?.ogFeaturedImage[0]?.fields?.file?.url;
