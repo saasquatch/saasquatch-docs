@@ -29,17 +29,15 @@ export default function render(
   }
   
   let ogImageURL:string;
-  if(props.fields){
-    if(props.fields.ogFeaturedImage){
-      ogImageURL = props?.fields?.ogFeaturedImage[0]?.fields?.file?.url;
-    }
-  }else{
+  if(props.fields == null){
     ogImageURL = null;
+  }else{
+    ogImageURL = props?.fields?.ogFeaturedImage[0]?.fields?.file?.url;
   }
+
   
   const plainHighlights = striptags(markdown(props.highlights));
   return (
-    console.log(props),
     <Head>
       <title>{title}</title>
       <body

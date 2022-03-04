@@ -7,7 +7,7 @@ import PageHeader from "../../components/PageHeader";
 
 const entry = {
   title: "squatch.js Issue Code List",
-  highlights: `During implementation of (squatch.js)[/developer/squatchjs/] you might run into one of these issue codes; click on an issue code for more details.`,
+  highlights: `During implementation of <a href="/developer/squatchjs/">squatch.js</a> you might run into one of these issue codes; click on an issue code for more details.`,
   sectionType: "jsReference",
 } as const;
 
