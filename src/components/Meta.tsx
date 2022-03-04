@@ -29,9 +29,7 @@ export default function render(
   }
   
   let ogImageURL:string;
-  if(props?.fields?.ogFeaturedImage == null){
-    ogImageURL = null;
-  }else{
+  if(props?.fields?.ogFeaturedImage != null){
     ogImageURL = props?.fields?.ogFeaturedImage[0]?.fields?.file?.url;
   }
 
@@ -46,7 +44,7 @@ export default function render(
         }
       />
       {/* SEO content */}
-      <meta name="description" content={props.fields?.seoDescription}/>
+      <meta name="description" content={props.fields?.seoDescription || props.highlights}/>
         
       <meta property="og:image" content={ogImageURL} />
       <meta name="twitter:image" content="image url from Contentful response" />
@@ -54,6 +52,9 @@ export default function render(
       <meta name="robots" content={props.fields?.robotsTag} />
       <link rel="canonical" href={props.fields?.canonicalUrl}/>
       
+      {/*This is part of the SEO fields (https://www.smartercontent.info/amp/6-fields-that-should-be-in-every-contentful-seo-component),  
+        Need contenful feild to diaplay this information. 
+      */}
       <script type="application/ld+json">
       {/* // JSON from Contentful */}
       </script>

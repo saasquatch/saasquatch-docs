@@ -20,6 +20,7 @@ export default function render() {
   // TODO: Wire up to actual list of issues
   const { issues } = useRouteData();
 
+
   return (
     <PageHeader {...entry}>
       <div>
@@ -36,7 +37,20 @@ export default function render() {
               return (
                 <tr key={issue.title}>
                   <td>
-                    <Link to={anchor}>{issue.title}</Link>
+                    <Link to={anchor}>
+                     
+                      
+                    {/* {(() => {
+                      if (issue.title == 'rs017'){
+                        'rs020'
+                      }else{
+                        issue.title
+                      }
+                      
+                    })} */}
+                    {issue.title}
+                    </Link>
+                    
                   </td>
                   <td>
                     <Markdown source={issue.highlights} />
