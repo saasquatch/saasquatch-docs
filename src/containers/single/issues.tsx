@@ -38,16 +38,6 @@ export default function render() {
                 <tr key={issue.title}>
                   <td>
                     <Link to={anchor}>
-                     
-                      
-                    {/* {(() => {
-                      if (issue.title == 'rs017'){
-                        'rs020'
-                      }else{
-                        issue.title
-                      }
-                      
-                    })} */}
                     {issue.title}
                     </Link>
                     
