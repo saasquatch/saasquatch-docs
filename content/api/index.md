@@ -1,5 +1,5 @@
 ---
-title: SaaSquatch REST API
+title: REST API
 highlights: Our REST API lets you build your own custom logic on top of your referral program. The [API reference](/api/methods) includes details about using all the methods of the SaaSquatch REST API.
 slug: api
 sectionType: apiReference

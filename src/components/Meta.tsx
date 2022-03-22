@@ -1,6 +1,7 @@
 import React from "react";
 import marked from "marked";
-
+// import ogImage from "../assets/images/opengraph-center-crop-helpcenter.png";
+const ogImage =  require("../assets/images/opengraph-center-crop-helpcenter.png");
 import { Entry } from "./TocFrame";
 import { Head } from "react-static";
 
@@ -35,6 +36,7 @@ export default function render(
 
   
   const plainHighlights = striptags(markdown(props.highlights));
+  console.log(props.robots)
   return (
     <Head>
       <title>{title}</title>
@@ -46,11 +48,10 @@ export default function render(
       {/* SEO content */}
       <meta name="description" content={props.fields?.seoDescription || props.highlights}/>
         
-      <meta property="og:image" content={ogImageURL} />
+      <meta property="og:image" content={ogImageURL || ogImage} />
+      <meta name="twitter:image" content={ogImageURL} />
       
-      <meta name="twitter:image" content="image url from Contentful response" />
-      
-      <meta name="robots" content={props.fields?.robotsTag} />
+      <meta name="robots" content={props.fields?.robotsTag || props?.robots} />
       <link rel="canonical" href={props.fields?.canonicalUrl}/>
       
       

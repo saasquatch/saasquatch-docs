@@ -2,6 +2,8 @@ import React from "react";
 import { useRouteData } from "react-static";
 import { Redirect } from 'react-router-dom';
 import TocFrame from "../components/TocFrame";
+import MetaTags from 'react-meta-tags';
+
 
 export default () => {
   const { entry, tocContents }: any = useRouteData();

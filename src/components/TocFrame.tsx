@@ -12,6 +12,7 @@ import TOC from "./TOC";
  */
 export type Entry = {
   title: string;
+  robots?: string;
   contents?: string;
   highlights?: string;
   hero?: boolean;

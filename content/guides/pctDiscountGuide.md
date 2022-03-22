@@ -1,5 +1,5 @@
 ---
-title: "Percent Discount Integration Guide"
+title: "Percent Discount"
 highlights: "Give your users 10% for a year for referring a friend. Follow this guide to setup a 'Give 10%, Get 10% Referral Program' using the SaaSquatch REST API and Squatch.js"
 slug: guides/percent-discount
 sectionType: guide

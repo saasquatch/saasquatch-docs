@@ -1,5 +1,5 @@
 ---
-title: Mobile
+title: iOS & Android integration
 highlights: SaaSquatch helps you grow your mobile app with a referral program. We provide mobile widgets to engage your users, attribution to track referrals, and analytics to measure the success of your program.
 slug: mobile
 sectionType: mobile

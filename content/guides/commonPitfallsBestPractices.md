@@ -4,6 +4,7 @@ highlights: Many common Referral SaaSquatch integration problems can be easily a
 slug: bestpractices/common-pitfalls
 sectionType: guide
 template: article.html
+robots : noindex, nofollow
 ---
 
 ### Using the wrong account_id

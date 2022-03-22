@@ -37,6 +37,7 @@
     "react-dom": "^16.9.0",
     "react-hotkeys-hook": "^2.4.0",
     "react-mailchimp-subscribe": "^2.1.0",
+    "react-meta-tags": "^1.0.1",
     "react-static": "^7.2.0",
     "react-static-plugin-reach-router": "^7.2.0",
     "react-static-plugin-sitemap": "^7.2.0",
