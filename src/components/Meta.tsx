@@ -1,6 +1,6 @@
 import React from "react";
 import marked from "marked";
-
+const ogImage =  require("../assets/images/opengraph-center-crop-helpcenter.png");
 import { Entry } from "./TocFrame";
 import { Head } from "react-static";
 
@@ -46,8 +46,8 @@ export default function render(
       {/* SEO content */}
       <meta name="description" content={props.fields?.seoDescription || props.highlights}/>
         
-      <meta property="og:image" content={ogImageURL} />
-      <meta name="twitter:image" content={ogImageURL} />
+      <meta property="og:image" content={ogImageURL || ogImage } />
+      <meta name="twitter:image" content={ogImageURL || ogImage } />
       
       <meta name="robots" content={props.fields?.robotsTag} />
       <link rel="canonical" href={props.fields?.canonicalUrl}/>
