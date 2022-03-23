@@ -49,7 +49,7 @@ export default function render(
       <meta name="description" content={props.fields?.seoDescription || props.highlights}/>
         
       <meta property="og:image" content={ogImageURL || ogImage} />
-      <meta name="twitter:image" content={ogImageURL} />
+      <meta name="twitter:image" content={ogImageURL || ogImage} />
       
       <meta name="robots" content={props.fields?.robotsTag || props?.robots} />
       <link rel="canonical" href={props.fields?.canonicalUrl}/>
