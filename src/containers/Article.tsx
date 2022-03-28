@@ -1,8 +1,10 @@
 import React from "react";
 import { useRouteData } from "react-static";
-
+import { all } from "react-static-plugin-sitemap";
 import Markdown from "../components/Markdown";
 import Meta from "../components/Meta";
+
+all
 
 export default () => {
   const { entry }: any = useRouteData();
