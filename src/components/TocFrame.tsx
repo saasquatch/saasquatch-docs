@@ -22,13 +22,13 @@ export type Entry = {
   sectionType?: string;
   fields?: { 
     seoDescription?: string,
-    ogFeaturedImage?: {
+    ogFeaturedImage?: [{
       fields?:{
         file?:{
           url?: string;
         }
       }
-    }  
+    }],  
     robotsTag?: string,
     canonicalUrl?: string;
     
