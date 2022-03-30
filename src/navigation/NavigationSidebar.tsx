@@ -437,6 +437,25 @@ export function NavigationSidebar() {
                       Configuring your Reward Catalog for W-9
                     </Link>
                   </li>
+                  <li className="Divider">Imports</li>
+                  <li>
+                    <Link to="/guides/user-import/">Bulk User Import</Link>
+                  </li>
+                  <li>
+                    <Link to="/guides/bulk-reward-redemption/">
+                      Bulk Reward Redemption Import
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/guides/bulk-user-delete/">
+                      Bulk User Delete Import
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/guides/event-import">
+                    Bulk Event Import
+                    </Link>
+                  </li>
                 </ul>
               </li>
             </ul>
@@ -558,31 +577,6 @@ export function NavigationSidebar() {
                     </Link>
                   </li>
                 </ul>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <span>
-              SaaSquatch Import/Export
-              <br />
-            </span>
-            <ul>
-              <li className="Divider">Imports</li>
-              <li>
-                <Link to="/guides/user-import/">
-                  Bulk User Import
-                </Link>
-              </li>
-              <li>
-                <Link to="/guides/bulk-reward-redemption/">
-                  Bulk Reward Redemption
-                </Link>
-              </li>
-              <li className="Divider">Exports</li>
-              <li>
-                <Link to="/guides/bulk-reward-redemption/">
-                  Bulk User Delete
-                </Link>
               </li>
             </ul>
           </li>
