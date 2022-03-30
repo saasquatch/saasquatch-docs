@@ -54,10 +54,95 @@ export function NavigationSidebar() {
             </Link>
           </li>
           <li className="integrations">
-            <Link to="/integrations">
+            <Link to="/integrations/">
               <i className="fa fa-fw fa-cubes fa-1.5x"></i>
               Integrations
             </Link>
+            <ul>
+              <li>
+                <Link to="/salesforce/">Salesforce Integration</Link>
+                <ul>
+                  <li>
+                    <Link to="/salesforce/user-guide/">
+                      Salesforce User Guide
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/salesforce/faq/">Salesforce FAQ</Link>
+                  </li>
+                  <li>
+                    <Link to="/salesforce/install-guide/">
+                      Salesforce Install Guide
+                    </Link>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <Link to="/sftp/">SFTP Integration</Link>
+                <ul>
+                  <li>
+                    <Link to="/integrations/sftp/">
+                      SFTP Configuration Guide
+                    </Link>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <Link to="/segment/">Segment Integration</Link>
+                <ul>
+                  <li>
+                    <Link to="/integrations/segment-v2/">
+                      Segment Integration V2
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/integrations/segment-v2/subscription/">
+                      Segment Subscription
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/integrations/segment-v2/stream/">
+                      Segment Stream
+                    </Link>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <Link to="/tangocard/">Tangocard Integration</Link>
+              </li>
+              <li>
+                <Link to="/recurly/">Recurly Integration</Link>
+              </li>
+              <li>
+                <Link to="/appsflyer-software-integration/">
+                  Appsflyer Integration
+                </Link>
+              </li>
+              <li>
+                <Link to="/branch-metrics/">Branch Integration</Link>
+                <ul>
+                  <li>
+                    <Link to="/mobile/branch-metrics/">
+                      Branch Metrics Integration - Quickstart
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/mobile/branch-metrics/reference/">
+                      Branch Metrics Reference
+                    </Link>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <Link to="/stripe/">Stripe Integration</Link>
+              </li>
+              <li>
+                <Link to="/zapier/">Zapier Integration</Link>
+              </li>
+              <li>
+                <Link to="/stitch/">Stitch Integration</Link>
+              </li>
+            </ul>
           </li>
           <li className="successCenter">
             <img
@@ -272,12 +357,6 @@ export function NavigationSidebar() {
                       Configuring your Reward Catalog for W-9
                     </Link>
                   </li>
-                  <li>
-                    <Link to="/integrations">
-                      <i className="fa fa-fw small fa-cubes"></i>
-                      Integrations
-                    </Link>
-                  </li>
                 </ul>
               </li>
             </ul>
@@ -297,12 +376,6 @@ export function NavigationSidebar() {
                   Dev Center Home
                   <br />
                   <small>Build on our SDKs, APIs and JS</small>
-                </Link>
-              </li>
-              <li>
-                <Link to="/integrations">
-                  <i className="fa fa-fw small fa-cubes"></i>
-                  Integrations
                 </Link>
               </li>
               <li>
@@ -352,31 +425,6 @@ export function NavigationSidebar() {
                       squatch.js Reference
                     </Link>
                   </li>
-                  <li>
-                    <Link to="/segment/">SaaSquatch Segment Integration</Link>
-                    <ul>
-                      <li>
-                        <Link to="/segment/">
-                          Segment Integration Introduction
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/integrations/segment-v2/">
-                          Segment Integration V2
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/integrations/segment-v2/subscription/">
-                          Segment Subscription
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/integrations/segment-v2/stream/">
-                          Segment Stream
-                        </Link>
-                      </li>
-                    </ul>
-                  </li>
                 </ul>
               </li>
               <li>
@@ -385,6 +433,9 @@ export function NavigationSidebar() {
                   REST API
                 </Link>
                 <ul>
+                  <li>
+                    <Link to="/api/">API Overview</Link>
+                  </li>
                   <li>
                     <Link to="/api/authentication">Authentication</Link>
                   </li>
@@ -431,18 +482,6 @@ export function NavigationSidebar() {
                     </Link>
                   </li>
                 </ul>
-              </li>
-
-              <li className="Divider">Mobile Resources</li>
-              <li>
-                <Link to="/mobile/branch-metrics/">
-                  Branch Metrics Integration - Quickstart
-                </Link>
-              </li>
-              <li>
-                <Link to="/mobile/branch-metrics/reference/">
-                  Branch Metrics Reference
-                </Link>
               </li>
             </ul>
           </li>
