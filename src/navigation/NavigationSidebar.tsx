@@ -57,11 +57,22 @@ export function NavigationSidebar() {
             <Link to="/integrations/">
               <i className="fa fa-fw fa-cubes fa-1.5x"></i>
               Integrations
+              <br />
             </Link>
             <ul>
               <li>
+                <Link to="/integrations/">
+                  <i className="fa fa-fw fa-cubes fa-1.5x"></i>
+                  Integrations
+                </Link>
+              </li>
+              <li className="Divider">Growth Automation</li>
+              <li>
                 <Link to="/salesforce/">Salesforce Integration</Link>
                 <ul>
+                  <li>
+                    <Link to="/salesforce/">Salesforce Integration</Link>
+                  </li>
                   <li>
                     <Link to="/salesforce/user-guide/">
                       Salesforce User Guide
@@ -81,6 +92,9 @@ export function NavigationSidebar() {
                 <Link to="/sftp/">SFTP Integration</Link>
                 <ul>
                   <li>
+                    <Link to="/sftp/">SFTP Integration</Link>
+                  </li>
+                  <li>
                     <Link to="/integrations/sftp/">
                       SFTP Configuration Guide
                     </Link>
@@ -90,6 +104,9 @@ export function NavigationSidebar() {
               <li>
                 <Link to="/segment/">Segment Integration</Link>
                 <ul>
+                  <li>
+                    <Link to="/segment/">Segment Integration</Link>
+                  </li>
                   <li>
                     <Link to="/integrations/segment-v2/">
                       Segment Integration V2
@@ -109,18 +126,54 @@ export function NavigationSidebar() {
               </li>
               <li>
                 <Link to="/tangocard/">Tangocard Integration</Link>
+                <ul>
+                  <li>
+                    <Link to="/tangocard/">Tangocard Integration</Link>
+                  </li>
+                  <li>
+                    <Link to="/tangocard-connection/">
+                      Tangocard Setup Guide
+                    </Link>
+                  </li>
+                </ul>
               </li>
               <li>
                 <Link to="/recurly/">Recurly Integration</Link>
+                <ul>
+                  <li>
+                    <Link to="/recurly/">Recurly Integration</Link>
+                  </li>
+                  <li>
+                    <Link to="/developer/recurly/">Recurly Install Guide</Link>
+                  </li>
+                </ul>
               </li>
               <li>
                 <Link to="/appsflyer-software-integration/">
                   Appsflyer Integration
                 </Link>
+                <ul>
+                  <li>
+                    <Link to="/appsflyer-software-integration/">
+                      Appsflyer Integration
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/mobile/appsflyer/">Appsflyer Quickstart</Link>
+                  </li>
+                  <li>
+                    <Link to="/mobile/appsflyer/reference/">
+                      Appsflyer Tech Reference
+                    </Link>
+                  </li>
+                </ul>
               </li>
               <li>
                 <Link to="/branch-metrics/">Branch Integration</Link>
                 <ul>
+                  <li>
+                    <Link to="/branch-metrics/">Branch Integration</Link>
+                  </li>
                   <li>
                     <Link to="/mobile/branch-metrics/">
                       Branch Metrics Integration - Quickstart
@@ -135,24 +188,51 @@ export function NavigationSidebar() {
               </li>
               <li>
                 <Link to="/stripe/">Stripe Integration</Link>
+                <ul>
+                  <li>
+                    <Link to="/stripe/">Stripe Integration</Link>
+                  </li>
+                  <li>
+                    <Link to="/developer/stripe-v2-install-guide/">
+                      Stripe Install Guide
+                    </Link>
+                  </li>
+                </ul>
               </li>
               <li>
                 <Link to="/zapier/">Zapier Integration</Link>
+                <ul>
+                  <li>
+                    <Link to="/zapier/">Zapier Integration</Link>
+                  </li>
+                  <li>
+                    <Link to="/integrations/zapier">
+                      Zapier Quickstart Guide
+                    </Link>
+                  </li>
+                </ul>
               </li>
               <li>
                 <Link to="/stitch/">Stitch Integration</Link>
+                <ul>
+                  <li>
+                    <Link to="/stitch/">Stitch Integration</Link>
+                  </li>
+                  <li>
+                    <Link to="/developer/stitch/quickstart">
+                      Stitch Integration Guide
+                    </Link>
+                  </li>
+                </ul>
               </li>
             </ul>
           </li>
           <li className="successCenter">
-            <img
-              className="sqtch-icon"
-              src="/assets/images/Saasquatch-icons-analytics.svg"
-            />
-            <span>
+            <Link to="/success/">
+              <i className="fa big fas fa-info-circle fa-1.5x"></i>
               Success Center
               <br />
-            </span>
+            </Link>
             <ul>
               <li>
                 <Link to="/success/">
@@ -163,7 +243,7 @@ export function NavigationSidebar() {
               </li>
               <li>
                 <span>
-                  <i className="fa big fas fa-info-circle fa-2x"></i>
+                  <i className="fa big fas fa-info-circle fa-1.5x"></i>
                   Learn About SaaSquatch
                 </span>
                 <ul>
@@ -251,7 +331,7 @@ export function NavigationSidebar() {
               </li>
               <li>
                 <span>
-                  <i className="fa big fas fa-edit fa-2x"></i>
+                  <i className="fa big fas fa-edit fa-1.5x"></i>
                   Program Management
                 </span>
                 <ul>
@@ -362,14 +442,10 @@ export function NavigationSidebar() {
             </ul>
           </li>
           <li className="developerCenter">
-            <img
-              className="sqtch-icon"
-              src="/assets/images/Saasquatch-icons-cog.svg"
-            />
-            <span>
+            <Link to="/developer/">
+              <i className="fa big fas fa-cog fa-1.5x"></i>
               Developer Center
-              <br />
-            </span>
+            </Link>
             <ul>
               <li>
                 <Link to="/developer/">
