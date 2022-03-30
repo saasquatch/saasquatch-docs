@@ -446,6 +446,31 @@ export function NavigationSidebar() {
               </li>
             </ul>
           </li>
+          <li>
+            <span>
+              SaaSquatch Import/Export
+              <br />
+            </span>
+            <ul>
+              <li className="Divider">Imports</li>
+              <li>
+                <Link to="/guides/user-import/">
+                  Bulk User Import
+                </Link>
+              </li>
+              <li>
+                <Link to="/guides/bulk-reward-redemption/">
+                  Bulk Reward Redemption
+                </Link>
+              </li>
+              <li className="Divider">Exports</li>
+              <li>
+                <Link to="/guides/bulk-reward-redemption/">
+                  Bulk User Delete
+                </Link>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
     </Styles.Container>
