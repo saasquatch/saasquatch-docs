@@ -229,7 +229,7 @@ export function NavigationSidebar() {
           </li>
           <li className="successCenter">
             <Link to="/success/">
-              <i className="fa big fas fa-info-circle fa-1.5x"></i>
+              <i className="fa big fas fa-info-circle fa-2x"></i>
               Success Center
               <br />
             </Link>
@@ -443,7 +443,7 @@ export function NavigationSidebar() {
           </li>
           <li className="developerCenter">
             <Link to="/developer/">
-              <i className="fa big fas fa-cog fa-1.5x"></i>
+              <i className="fa big fas fa-cog fa-2x"></i>
               Developer Center
             </Link>
             <ul>
