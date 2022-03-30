@@ -425,6 +425,12 @@ export function NavigationSidebar() {
                     </Link>
                   </li>
                   <li>
+                    <Link to="/features/reports/">
+                    Program Reports
+                    </Link>
+                  </li>
+                  <li className="Divider">W-9 Compliance</li>
+                  <li>
                     <Link to="/features/w-9-compliance">W-9 Compliance</Link>
                   </li>
                   <li>
