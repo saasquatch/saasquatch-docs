@@ -435,12 +435,12 @@ export function NavigationSidebar() {
                   </li>
                   <li>
                     <Link to="/features/managing-w-9-compliance-for-participants">
-                      Managing W-9 Compliance for Participants
+                      Managing W-9 Compliance
                     </Link>
                   </li>
                   <li>
                     <Link to="/features/configuring-your-reward-catalog-for-w-9">
-                      Configuring your Reward Catalog for W-9
+                      Configuring your Reward for W-9
                     </Link>
                   </li>
                   <li className="Divider">Imports</li>
