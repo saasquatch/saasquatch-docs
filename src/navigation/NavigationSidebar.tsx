@@ -425,16 +425,41 @@ export function NavigationSidebar() {
                     </Link>
                   </li>
                   <li>
+                    <Link to="/features/reports/">
+                    Program Reports
+                    </Link>
+                  </li>
+                  <li className="Divider">W-9 Compliance</li>
+                  <li>
                     <Link to="/features/w-9-compliance">W-9 Compliance</Link>
                   </li>
                   <li>
                     <Link to="/features/managing-w-9-compliance-for-participants">
-                      Managing W-9 Compliance for Participants
+                      Managing W-9 Compliance
                     </Link>
                   </li>
                   <li>
                     <Link to="/features/configuring-your-reward-catalog-for-w-9">
-                      Configuring your Reward Catalog for W-9
+                      Configuring your Reward for W-9
+                    </Link>
+                  </li>
+                  <li className="Divider">Imports</li>
+                  <li>
+                    <Link to="/guides/user-import/">Bulk User Import</Link>
+                  </li>
+                  <li>
+                    <Link to="/guides/bulk-reward-redemption/">
+                      Bulk Reward Redemption Import
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/guides/bulk-user-delete/">
+                      Bulk User Delete Import
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/guides/event-import">
+                    Bulk Event Import
                     </Link>
                   </li>
                 </ul>
