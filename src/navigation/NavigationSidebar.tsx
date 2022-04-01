@@ -440,7 +440,7 @@ export function NavigationSidebar() {
                   </li>
                   <li>
                     <Link to="/features/configuring-your-reward-catalog-for-w-9">
-                      Configuring your Reward for W-9
+                      Configuring your Rewards for W-9
                     </Link>
                   </li>
                   <li className="Divider">Imports</li>
