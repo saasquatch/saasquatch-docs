@@ -270,11 +270,20 @@
 
 .docs-footer-menu {
   text-align: left;
-  ul li:first-child {
-    font-weight: bold;
-    padding-bottom: 3px;
+  font-weight: bold;
+  ul li {
+    // font-weight: bold;
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+  ul li:not(:first-child):not(:last-child) {
     border-bottom: 1px solid #b2c4c7;
-    margin-bottom: 9px;
+    //margin-bottom: 9px;
+  }
+  ul li:first-child {
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
   }
   width: 80%;
   @media (max-width: 979px) {

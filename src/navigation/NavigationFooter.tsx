@@ -118,7 +118,7 @@ export function NavigationFooter() {
               </FooterUL>
             </div>
           </div>
-          <div className="span12 text-center" style={{color: "white", marginLeft:"0px"}}>
+          <div className="span12 text-center" style={{ color: "white", marginLeft:"0px" }}>
             <p style={{ opacity: 0.7 }}>
               Copyright © {new Date().getFullYear()} Referral SaaSquatch.com.
               All rights reserved.
