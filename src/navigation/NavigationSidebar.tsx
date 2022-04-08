@@ -416,7 +416,12 @@ export function NavigationSidebar() {
                   </li>
                   <li>
                     <Link to="/features/rewards-fuel-tank">
-                      Custom Rewards Fuel Tank
+                      Fuel Tank Rewards
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/features/reward-exchange">
+                      Reward Exchange
                     </Link>
                   </li>
                   <li>
@@ -425,9 +430,7 @@ export function NavigationSidebar() {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/features/reports/">
-                    Program Reports
-                    </Link>
+                    <Link to="/features/reports/">Program Reports</Link>
                   </li>
                   <li className="Divider">W-9 Compliance</li>
                   <li>
@@ -458,9 +461,7 @@ export function NavigationSidebar() {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/guides/event-import">
-                    Bulk Event Import
-                    </Link>
+                    <Link to="/guides/event-import">Bulk Event Import</Link>
                   </li>
                 </ul>
               </li>
