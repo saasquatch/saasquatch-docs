@@ -420,9 +420,7 @@ export function NavigationSidebar() {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/features/reward-exchange">
-                      Reward Exchange
-                    </Link>
+                    <Link to="/features/reward-exchange">Reward Exchange</Link>
                   </li>
                   <li>
                     <Link to="/designer/short-tags">
