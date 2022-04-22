@@ -66,11 +66,11 @@
 
     Taken from: http://stackoverflow.com/questions/17394854/how-can-i-disable-bootstraps-affix-on-smaller-screens
 */
-@media (max-width: 768px) {
-  .affix {
-    position: static;
-  }
-}
+// @media (max-width: 768px) {
+//   .affix {
+//     position: static;
+//   }
+// }
 
 // Color-coding for reward types
 .label.program-type-label {
@@ -277,7 +277,7 @@
     padding-top: 10px;
   }
   ul li:not(:first-child):not(:last-child) {
-    border-bottom: 1px solid #b2c4c7;
+    border-bottom: 0.5px solid rgba(255, 255, 255,0.8);
     //margin-bottom: 9px;
   }
   ul li:first-child {
@@ -286,9 +286,21 @@
     font-weight: bold;
   }
   width: 80%;
-  @media (max-width: 979px) {
-    width: 100%;
-  }
+}
+
+@media screen and (max-width: 600px) {
+  .docs-footer-menu,.row-fluid{
+    // width:100%;
+    flex-direction:column;
+  }  
+}
+a.button{
+  -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+    text-decoration: none;
+    color: initial;
 }
 
 .nav-tabs a.tab {

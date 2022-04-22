@@ -20,21 +20,18 @@ export function NavigationFooter() {
                   <a href="https://app.referralsaasquatch.com/">Login</a>
                 </li>
                 <li>
-                  <a href="https://saasquatch.com">Growth Automation</a>
-                </li>
-                <li>
                   <a href="https://www.saasquatch.com/request-demo">
                     Request Demo
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.saasquatch.com/api-integrations/">
-                    API Integrations
-                  </a>
+                  <a href="https://www.saasquatch.com/loyalty-program-2/">Customer Loyalty</a>
                 </li>
                 <li>
-                  <a href="https://www.saasquatch.com/fraud-prevention/">
-                    Fraud Prevention
+                  <a href="https://www.saasquatch.com/customer-referrals//">Customer Referral</a>
+                </li>
+                <li>
+                  <a href="https://www.saasquatch.com/integrations/">Integrations
                   </a>
                 </li>
                 <li>
@@ -65,34 +62,29 @@ export function NavigationFooter() {
                     Contact Us
                   </a>
                 </li>
-                <li>
-                  <a href="https://www.saasquatch.com/wp-content/uploads/2017/02/Saasquatch-simple-brand-standards.pdf">
-                    Media (PDF)
-                  </a>
-                </li>
               </FooterUL>
             </div>
             <div className="span3">
               <FooterUL>
-                <li>Education</li>
+                <li>Resources</li>
                 <li>
                   <a href="https://www.saasquatch.com/blog">
-                    Marketer Blog
+                    Blog
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.saasquatch.com/resources">
-                    Resources
+                  <a href="https://www.saasquatch.com/the-advocacy-channel-a-customer-marketing-podcast/">
+                    Podcast
                   </a>
                 </li>
                 <li>
                   <a href="https://www.saasquatch.com/customers">
-                    Customers
+                    Case Studies
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.saasquatch.com/editorial-guidelines/">
-                    Editorial Guidelines
+                  <a href="https://www.digitalloyaltyacademy.com/">
+                  Loyalty Academy
                   </a>
                 </li>
               </FooterUL>
