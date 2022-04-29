@@ -423,6 +423,9 @@ export function NavigationSidebar() {
                     <Link to="/features/reward-exchange">Reward Exchange</Link>
                   </li>
                   <li>
+                    <Link to="/features/leaderboards">Leaderboards</Link>
+                  </li>
+                  <li>
                     <Link to="/designer/short-tags">
                       Email Template Short Tags
                     </Link>
