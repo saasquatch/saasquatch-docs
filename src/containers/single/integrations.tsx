@@ -37,7 +37,9 @@ export default function render() {
               <p className="highlights">{integration.integrationDescription}</p>
 
               <Link className="link" to={"/" + integration.slug}>
-                Read more about {integration.integrationName}
+                <div className="btnContainer">
+                  <button>Read more {/* about {integration.integrationName} */}</button>
+                </div>
               </Link>
             </div>
           );

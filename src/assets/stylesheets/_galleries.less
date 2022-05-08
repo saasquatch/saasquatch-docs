@@ -67,21 +67,68 @@
   clear: both;
 }
 
+/* ---- .js-integrations-lit-1hv215152 ---- */
+
+#js-integrations-lit-1hv215152 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-left: -8px;
+}
+
 /* ---- .integration-item ---- */
 
 .integration-item {
-  position: relative;
-  float: left;
-  width: 330px;
-  height: 300px;
-  margin: 5px;
-  padding: 5px;
+  flex: 33%;
+  flex-grow: 1;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 3px rgba(0,0,0,0.25);
+  width: 25%;
+  max-width: 27%;
+  @media screen and (max-width: 1250px) {
+    flex: 50%;
+    width: 42%;
+    max-width: 42%;
+  }
+  @media screen and (max-width: 807px) {
+    flex: 100%;
+    width: 100%;
+    max-width: 100%;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+  margin: 10px;
   color: #333;
+  justify-items: center;
 }
 
 .integration-item > * {
   margin: 0;
   padding: 0;
+}
+
+/* ---- .btnContainer ---- */
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  
+  button {
+    transition: background-color 0.3s ease;
+    margin-top: 1em;
+    padding: 8px 12px;
+    background-color: #00a176;
+    
+    color: white;
+    border: none;
+    border-radius: 4px;
+  }
+  button:hover {
+    background-color: #007556;
+  }
 }
 
 /* ---- saasquatch integration items ---- */
