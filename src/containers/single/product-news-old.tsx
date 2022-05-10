@@ -1,5 +1,4 @@
 //@ts-nocheck
-import { ProductNewsCard } from "components/homepages/ProductNewsCard";
 import React, { useState, useCallback } from "react";
 import { useRouteData } from "react-static";
 
@@ -75,12 +74,38 @@ export default function render() {
             .sort(sort)
             .map((productNewsItem: any) => {
               return (
-                <ProductNewsCard
-                  tags={productNews.tags}
-                  title={productNewsItem.title}
-                  markdownContent={productNewsItem.content}
-                  datePublished={productNewsItem.datePublished}
-                />
+                <div
+                  className={
+                    "product-news-item read-more-wrap " +
+                    (productNewsItem.tags && productNewsItem.tags.join(" "))
+                  }
+                >
+                  <div className="product-news-item-content">
+                    <i
+                      className="fa fa-2x fa-calendar product-news-item-icon"
+                      aria-hidden="true"
+                    ></i>
+                    <h3 className="no-anchor product-news-item-title">
+                      {productNewsItem.title}
+                    </h3>
+                    <p className="product-news-item-datePublished">
+                      {productNewsItem.datePublished}
+                    </p>
+                    <div className="product-news-item-post-content">
+                      <Markdown source={productNewsItem.content} />
+                    </div>
+                  </div>
+                  <div className="product-news-post-footer">
+                    <div className="product-news-post-footer-content">
+                      <p className="product-news-post-footer-title">Tags</p>{" "}
+                      {productNewsItem.tags.map((tag: string) => {
+                        return (
+                          <p className="product-news-item-footer-tag">{tag}</p>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
               );
             })}
         </div>

@@ -20,5 +20,12 @@ export const ProductNewsCard = ({
     datePublished,
     tags
 }) => {
-    return <CardBaseDiv>Content here</CardBaseDiv>
+    return <CardBaseDiv>Fill in here</CardBaseDiv>
+}
+
+interface ProductNewsCard {
+    markdownContent: any
+    title: any
+    datePublished: any
+    tags: any
 }

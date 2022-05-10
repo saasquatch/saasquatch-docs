@@ -298,6 +298,11 @@ async function getRoutes() {
       template: "src/containers/single/api",
     },
     {
+      path: "/product-news-old",
+      getData: async () => ({ productNews }),
+      template: "src/containers/single/product-news-old",
+    },
+    {
       path: "/product-news",
       getData: async () => ({ productNews }),
       template: "src/containers/single/product-news",
