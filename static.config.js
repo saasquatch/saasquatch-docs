@@ -303,6 +303,11 @@ async function getRoutes() {
       template: "src/containers/single/product-news",
     },
     {
+      path: "/success",
+      getData: async () => ({ }),
+      template: "src/containers/single/success-center",
+    },
+    {
       path: "/breaking-changes",
       getData: async () => ({ breakingChanges }),
       template: "src/containers/single/breaking-changes",
