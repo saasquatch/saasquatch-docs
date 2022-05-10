@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 export default function render() {
     return (
-        <div>
+        <div style={{"padding": "36px"}}>
             <Card
                 title="Salesforce"
                 description="Salesforce is the world's leading cloud CRM. SaaSquatch is a managed package built on the Force.com that lets you track your referrals in Salesforce."
