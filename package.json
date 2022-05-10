@@ -101,5 +101,12 @@
     "unstated-next": "^1.1.0",
     "uuid": "^3.4.0",
     "yaml-loader": "^0.5.0"
+  },
+  "overrides": {
+    "react-static": {
+      "webpack-dev-server": {
+        "html-entities": "1.4.0"
+      }
+    }
   }
 }
