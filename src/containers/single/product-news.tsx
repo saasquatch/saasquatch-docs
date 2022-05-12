@@ -76,7 +76,7 @@ export default function render() {
             .map((productNewsItem: any) => {
               return (
                 <ProductNewsCard
-                  tags={productNews.tags}
+                  tags={productNewsItem.tags}
                   title={productNewsItem.title}
                   markdownContent={productNewsItem.content}
                   datePublished={productNewsItem.datePublished}
