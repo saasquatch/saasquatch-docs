@@ -78,7 +78,7 @@ const ColumnGridItem = ({ title, image, icon, children, link }) => {
         <Title>{title}</Title>
       }
 
-      {/* If image exists (make this clickable) */}
+      {/* If image exists */}
       { typeof image !== 'undefined' &&
         <Link to={link}>
           <img src={image} />
@@ -95,12 +95,12 @@ const ColumnGridItem = ({ title, image, icon, children, link }) => {
         </Link>
       }
 
-      {/* If description exists as 'props.children' */}
+      {/* If description (inner HTML) exists */}
       { typeof children !== 'undefined' &&
         <div>{children}</div>
       }
 
-      {/* If link exists' */}
+      {/* If link exists */}
       { typeof link !== 'undefined' &&
         <Link to={link}>
           <ReadMoreContainer>

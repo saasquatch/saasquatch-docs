@@ -1,9 +1,6 @@
 // @ts-nocheck
 import React from "react";
-
 import { useRouteData } from "react-static";
-import { HashLink as Link } from "react-router-hash-link";
-
 import PageHeader from "../../components/PageHeader";
 import ColumnGridItem, { ColumnGridWrapper } from "components/ColumnGridItem";
 
