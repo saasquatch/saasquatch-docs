@@ -5,6 +5,7 @@ import { useRouteData } from "react-static";
 import { HashLink as Link } from "react-router-hash-link";
 
 import PageHeader from "../../components/PageHeader";
+import ColumnGridItem, { ColumnGridWrapper } from "components/ColumnGridItem";
 
 const entry = {
   title: "Integrations",
@@ -13,36 +14,24 @@ widgets inside your product, to mobile deeplinking platforms that let you optimi
   category: "landingPage",
 };
 
-const id = "js-integrations-lit-1hv215152";
-
 export default function render() {
   const { integrations } = useRouteData();
-
   return (
     <PageHeader {...entry}>
-      <div id={id}>
+      <ColumnGridWrapper>
         {integrations.map((integration) => {
           return (
-            <div
-              className={
-                "integration-item " +
-                (integration.categories ? integration.categories.join(" ") : "")
-              }
+            <ColumnGridItem
+              image={integration.logo.url}
+              link={"/" + integration.slug}
+              key={integration.slug}
             >
-              <div className="integration-image">
-                <Link className="imageLink" to={"/" + integration.slug}>
-                  <img className="image" src={integration.logo.url} />
-                </Link>
-              </div>
-              <p className="highlights">{integration.integrationDescription}</p>
-
-              <Link className="link" to={"/" + integration.slug}>
-                Read more about {integration.integrationName}
-              </Link>
-            </div>
+              {/* You can put more HTML in here for customization */}
+              {integration.integrationDescription}
+            </ColumnGridItem>
           );
         })}
-      </div>
+      </ColumnGridWrapper>
     </PageHeader>
   );
 }
