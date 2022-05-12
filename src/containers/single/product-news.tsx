@@ -36,6 +36,7 @@ export default function render() {
     const matchesDate = date === "" || filterFns[date](item);
     return matchesTags && matchesDate;
   };
+  
   const sort = (a, b) => new Date(b.datePublished).getTime() - new Date(a.datePublished).getTime();
 
   return (
@@ -76,7 +77,7 @@ export default function render() {
             .map((productNewsItem: any) => {
               return (
                 <ProductNewsCard
-                  tags={productNews.tags}
+                  tags={productNewsItem.tags}
                   title={productNewsItem.title}
                   markdownContent={productNewsItem.content}
                   datePublished={productNewsItem.datePublished}
