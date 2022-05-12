@@ -2,8 +2,6 @@ import Markdown from 'components/Markdown';
 import * as React from 'react';
 import styled from 'styled-components'
 
-// Changing to push
-
 const CardBaseDiv = styled.div`
     box-sizing: border-box;
     margin: 0;
@@ -44,10 +42,8 @@ const CardTags = styled.span`
     justify-content: center;
     align-items: center;
     padding: 5px 15px;
-    gap: 10px;
 
     width: fit-content;
-    margin-bottom: 20px;
 
     background: #EBF9EA;
     border-radius: 12px;
@@ -87,6 +83,14 @@ const CardButton = styled.p`
     margin-bottom: 0;
 `
 
+const TagsDiv = styled.div`
+    display: flex;
+    margin-bottom: 20px;
+    > :not(:last-child) {
+        margin-right: 10px;    
+    }
+`
+
 const dateToString = (datePublished: string): string => {
     let newDate: Date = new Date(datePublished);
     let month: string= newDate.toLocaleString('default', { month: 'long' });
@@ -109,9 +113,11 @@ export const ProductNewsCard: React.FC<ProductNewsCard> = ({
             <CardDate>
                 {dateToString(datePublished)}
             </CardDate>
-            {tags.map((tag: string) => {
-                return <CardTags>{tag}</CardTags>
-            })}
+            <TagsDiv>
+                {tags.map((tag: string) => {
+                    return <CardTags>{tag}</CardTags>
+                })}
+            </TagsDiv>
             <CardMarkdown>
                 <Markdown source={markdownContent} />
             </CardMarkdown>
