@@ -4,7 +4,8 @@ import styled from 'styled-components'
 // Card Styled Componennts
 const CardContainerDiv = styled.div`
     background-color: #ffffff;
-    max-width: 600px;
+    // max-width: 600px;
+    max-width:500px
     height: fit-content;
     // 27px margin above title somewhere in class="sc-iRbamj jheQfW"
     padding: 0px 27px 27px 27px;
@@ -14,6 +15,12 @@ const CardContainerDiv = styled.div`
     display: flex;
     // align-items: center;
     gap: 25px;
+    @media (max-width: 1025px) {
+        max-width: 280px;
+        flex-direction: column;
+        align-items: center;
+    }
+    justify-self: center;
 `
 
 const CardImageDiv = styled.div`
@@ -29,7 +36,7 @@ const CardBodyDiv = styled.div`
     font-family: Helvetica, Sans-Serif;
     display: flex;
     flex-direction: column;
-    // justify-content: center;
+    justify-content: center;
     // justify-content: space-between;
     // justify-content: start;
     gap: 5px;
@@ -42,6 +49,9 @@ const CardTitleH3 = styled.h3`
     line-height: 18px;
     // margin-top: -3px;
     // margin-bottom: -10px;
+    @media(max-width: 1025px){
+        margin-top: 0px;
+    }
 `
 
 const CardDescriptionP = styled.p`
@@ -60,10 +70,31 @@ const CardLinkA = styled.a`
     line-height: 14px;
     color: #00A176;
     text-decoration: none;
+    margin-top: 5px;
 `
 
 // Icon Styled Components
-const IconCircleDiv = styled.div``
+const IconCircleDiv = styled.div`  
+    max-width: 250px;
+    min-width: 120px;
+    max-height: 250px;
+    min-height: 120px;
+    font-size: 30px;
+    border-radius: 50%;
+    color: #65BD60;
+    background-color: #003B45; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media(max-width: 1025px) {
+        max-width: 200px;
+        min-width: 100px;
+        max-height: 200px;
+        min-height: 100px;
+        font-size: 25px;
+    }
+`
 
 const Icon = ({iconCode}) => (
     <IconCircleDiv>
@@ -72,6 +103,7 @@ const Icon = ({iconCode}) => (
 )
 
 export const Card: React.FC<CardProps> = ({title, description, imageSrc, iconCode, linkText, linkUrl}) => {
+
     return (
         <CardContainerDiv>
             <CardImageDiv>
