@@ -4,16 +4,13 @@ import styled from 'styled-components'
 // Card Styled Componennts
 const CardContainerDiv = styled.div`
     background-color: #ffffff;
-    // max-width: 600px;
     max-width:500px
     height: fit-content;
-    // 27px margin above title somewhere in class="sc-iRbamj jheQfW"
     padding: 0px 27px 27px 27px;
     border: 1px solid #e2e2e2;
     border-radius: 4px;
     box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.08);
     display: flex;
-    // align-items: center;
     gap: 25px;
     @media (max-width: 1025px) {
         max-width: 280px;
@@ -37,8 +34,6 @@ const CardBodyDiv = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    // justify-content: space-between;
-    // justify-content: start;
     gap: 5px;
 `
 
@@ -47,8 +42,6 @@ const CardTitleH3 = styled.h3`
     font-size: 18px;
     color: #003b45;
     line-height: 18px;
-    // margin-top: -3px;
-    // margin-bottom: -10px;
     @media(max-width: 1025px){
         margin-top: 0px;
     }
@@ -59,12 +52,9 @@ const CardDescriptionP = styled.p`
     font-size: 14px;
     line-height: 21px;
     color: #333333;
-    // margin-top: 0.8em;
-    // margin-bottom: 1em;
 `
 
 const CardLinkA = styled.a`
-    // justify-self: end;
     font-weight: 700;
     font-size: 14px;
     line-height: 14px;
