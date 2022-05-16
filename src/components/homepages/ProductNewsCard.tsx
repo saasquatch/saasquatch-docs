@@ -66,7 +66,7 @@ const CardMarkdown = styled.p`
     margin-bottom: 20px;
 `;
 
-const CardButton = styled.p`
+const CardButton = styled.a`
     width: fit-content;
     display: flex;
     flex-direction: row;
@@ -81,6 +81,21 @@ const CardButton = styled.p`
     background: #00A176;
     border-radius: 5px;
     margin-bottom: 0;
+    border: none;
+    :hover {
+        background: #009166;
+        color: #FFFFFF;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    :visited {
+        color: #FFFFFF;
+        text-decoration: none;
+    }
+    :focus {
+        text-decoration: none;
+    }
+    text-decoration: none;
 `
 
 const TagsDiv = styled.div`
@@ -122,7 +137,7 @@ export const ProductNewsCard: React.FC<ProductNewsCard> = ({
             <CardMarkdown>
                 <Markdown source={markdownContent} />
             </CardMarkdown>
-            {ctaLink && (<CardButton>Read Full Blog Post</CardButton>)}
+            {ctaLink && (<CardButton href={ctaLink}>Read Full Blog Post</CardButton>)}
         </CardBaseDiv>
     )
 }
