@@ -1,136 +1,206 @@
 import React from "react";
 import styled from "styled-components";
 
+const FooterContainer = styled.footer`
+  padding-top: 20px;
+  max-height: 375px;
+  background: #003B45;
+  font-family: 'Helvetica';
+  font-style: normal;
+  padding-bottom: 30px;
+`;
+
+const ListsWrapper = styled.div`
+  width: calc(100%-200px);
+  padding: 0 100px;
+`;
+
+const ListDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  text-align: left;
+`;
+
 export const FooterUL = styled.ul`
   list-style-type: none;
   color: white;
   font-weight: 300;
 `;
 
+
+const TitleLi = styled.li`
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  border-bottom: none !important;
+  margin-bottom: 12px !important;
+`;
+
+const InnerLi = styled.li`
+  a {
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+    color: #FFFFFF !important;
+    opacity: 0.8 !important;
+  }
+  :not(:last-child) {
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.5);
+    padding: 10px 0;
+  }
+  :last-child {
+    padding-top: 10px;
+  }
+  a:hover {
+    text-decoration: none;
+    opacity: 1 !important;
+  }
+`;
+
+const BottomContainer = styled.div`
+  padding-top: 40px;
+`;
+
+const FooterParagraph = styled.p`
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  color: #FFFFFF;
+  opacity: 0.8;
+
+`;
+
+
 export function NavigationFooter() {
   return (
-    <footer id="footer" data-swiftype-index="false">
+    // <footer id="footer" data-swiftype-index="false">
+    <FooterContainer id="footer" data-swiftype-index="false">
       <section className="copyright">
-        <div className="container">
-          <div className="row-fluid docs-footer-menu">
+        <ListsWrapper>
+          {/* <div className="row-fluid docs-footer-menu"> */}
+          <ListDiv>
             <div className="span3">
               <FooterUL>
-                <li>Product</li>
-                <li>
+                <TitleLi>Product</TitleLi>
+                <InnerLi>
                   <a href="https://app.referralsaasquatch.com/">Login</a>
-                </li>
-                <li>
+                </InnerLi>
+                <InnerLi>
                   <a href="https://saasquatch.com">Growth Automation</a>
-                </li>
-                <li>
+                </InnerLi>
+                <InnerLi>
                   <a href="https://www.saasquatch.com/request-demo">
                     Request Demo
                   </a>
-                </li>
-                <li>
+                </InnerLi>
+                <InnerLi>
                   <a href="https://www.saasquatch.com/api-integrations/">
                     API Integrations
                   </a>
-                </li>
-                <li>
+                </InnerLi>
+                <InnerLi>
                   <a href="https://www.saasquatch.com/fraud-prevention/">
                     Fraud Prevention
                   </a>
-                </li>
-                <li>
+                </InnerLi>
+                <InnerLi>
                   <a href="https://status.referralsaasquatch.com/">
                     Status Page
                   </a>
-                </li>
+                </InnerLi>
               </FooterUL>
             </div>
             <div className="span3">
               <FooterUL>
-                <li>Company</li>
-                <li>
+                <TitleLi>Company</TitleLi>
+                <InnerLi>
                   <a href="https://www.saasquatch.com/about">About</a>
-                </li>
-                <li>
+                </InnerLi>
+                <InnerLi>
                   <a href="https://www.saasquatch.com/partners">
                     Partner Program
                   </a>
-                </li>
-                <li>
+                </InnerLi>
+                <InnerLi>
                   <a href="https://www.saasquatch.com/careers">
                     Careers
                   </a>
-                </li>
-                <li>
+                </InnerLi>
+                <InnerLi>
                   <a href="https://www.saasquatch.com/contact-us">
                     Contact Us
                   </a>
-                </li>
-                <li>
+                </InnerLi>
+                <InnerLi>
                   <a href="https://www.saasquatch.com/wp-content/uploads/2017/02/Saasquatch-simple-brand-standards.pdf">
                     Media (PDF)
                   </a>
-                </li>
+                </InnerLi>
               </FooterUL>
             </div>
             <div className="span3">
               <FooterUL>
-                <li>Education</li>
-                <li>
+                <TitleLi>Resources</TitleLi>
+                <InnerLi>
                   <a href="https://www.saasquatch.com/blog">
-                    Marketer Blog
+                    Blog
                   </a>
-                </li>
-                <li>
+                </InnerLi>
+                <InnerLi>
                   <a href="https://www.saasquatch.com/resources">
-                    Resources
+                    Podcast
                   </a>
-                </li>
-                <li>
+                </InnerLi>
+                <InnerLi>
                   <a href="https://www.saasquatch.com/customers">
-                    Customers
+                    Case Studies
                   </a>
-                </li>
-                <li>
-                  <a href="https://www.saasquatch.com/editorial-guidelines/">
-                    Editorial Guidelines
+                </InnerLi>
+                <InnerLi>
+                  <a href="https://www.saasquatch.com/editorial-guideInnerLines/">
+                    Loyalty Academy
                   </a>
-                </li>
+                </InnerLi>
               </FooterUL>
             </div>
             <div className="span3">
               <FooterUL>
-                <li>Legal</li>
-                <li>
+                <TitleLi>Legal</TitleLi>
+                <InnerLi>
                   <a href="https://www.saasquatch.com/terms-of-service">
                     Terms of Service
                   </a>
-                </li>
-                <li>
-                  <a href="https://www.saasquatch.com/privacy-policy">
+                </InnerLi>
+                <InnerLi>
+                  <a href="https://www.saasquatch.com/privacy-poInnerLicy">
                     Privacy Policy
                   </a>
-                </li>
-                <li>
+                </InnerLi>
+                <InnerLi>
                   <a href="https://www.saasquatch.com/terms-of-use">
                     Terms of Use
                   </a>
-                </li>
+                </InnerLi>
               </FooterUL>
             </div>
-          </div>
-          <div className="span12 text-center" style={{color: "white", marginLeft:"0px"}}>
-            <p style={{ opacity: 0.7 }}>
+          </ListDiv>
+          <BottomContainer>
+            <FooterParagraph>
               Copyright © {new Date().getFullYear()} Referral SaaSquatch.com.
               All rights reserved.
-            </p>
-            <p style={{ opacity: 0.7 }} className="hidden-phone">
+            </FooterParagraph>
+            <FooterParagraph className="hidden-phone">
               1017 Fort St, Victoria, British Columbia, V8V 3K5, Canada
-            </p>
-          </div>
-
+            </FooterParagraph>
+          </BottomContainer>
           <img className="trees" src="/assets/images/saasquatch-trees.png" />
-        </div>
+        </ListsWrapper>
       </section>
-    </footer>
+    </FooterContainer>
   );
 }
