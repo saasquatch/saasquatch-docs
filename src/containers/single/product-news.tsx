@@ -81,6 +81,7 @@ export default function render() {
                   title={productNewsItem.title}
                   markdownContent={productNewsItem.content}
                   datePublished={productNewsItem.datePublished}
+                  ctaLink={productNewsItem?.ctaLink}
                 />
               );
             })}
