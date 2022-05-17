@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const FooterContainer = styled.footer`
   padding-top: 20px;
-  max-height: 375px;
+  max-height: 800px;
   background: #003B45;
   font-family: 'Helvetica';
   font-style: normal;
@@ -11,22 +11,38 @@ const FooterContainer = styled.footer`
 `;
 
 const ListsWrapper = styled.div`
-  width: calc(100%-200px);
-  padding: 0 100px;
+  width: calc(100%-165px);
+  padding: 0 95px 0 70px;
+  @media(max-width: 800px) {
+    width: calc(100%-30px);
+    padding: 0 15px;
+  }
 `;
 
 const ListDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   width: 100%;
   text-align: left;
+  @media(max-width: 800px) {
+    display: inline-block;
+    -moz-column-count: 2;
+    column-count: 2;
+    grid-template-columns: 1fr 1fr;
+  }
 `;
 
 export const FooterUL = styled.ul`
   list-style-type: none;
   color: white;
   font-weight: 300;
+  padding: 0 30px;
+  @media(max-width: 800px) {
+    padding: 0 15px;
+    margin: 0 0 30px 0 !important;
+    -webkit-column-break-inside: avoid;
+    column-break-inside: avoid;
+  }
 `;
 
 
@@ -84,7 +100,7 @@ export function NavigationFooter() {
         <ListsWrapper>
           {/* <div className="row-fluid docs-footer-menu"> */}
           <ListDiv>
-            <div className="span3">
+            <div >
               <FooterUL>
                 <TitleLi>Product</TitleLi>
                 <InnerLi>
@@ -115,7 +131,7 @@ export function NavigationFooter() {
                 </InnerLi>
               </FooterUL>
             </div>
-            <div className="span3">
+            <div>
               <FooterUL>
                 <TitleLi>Company</TitleLi>
                 <InnerLi>
@@ -143,7 +159,7 @@ export function NavigationFooter() {
                 </InnerLi>
               </FooterUL>
             </div>
-            <div className="span3">
+            <div>
               <FooterUL>
                 <TitleLi>Resources</TitleLi>
                 <InnerLi>
@@ -168,7 +184,7 @@ export function NavigationFooter() {
                 </InnerLi>
               </FooterUL>
             </div>
-            <div className="span3">
+            <div>
               <FooterUL>
                 <TitleLi>Legal</TitleLi>
                 <InnerLi>
