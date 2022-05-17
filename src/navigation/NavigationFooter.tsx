@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const FooterContainer = styled.footer`
   padding-top: 20px;
-  max-height: 800px;
+  max-height: 1000px;
   background: #003B45;
   font-family: 'Helvetica';
   font-style: normal;
