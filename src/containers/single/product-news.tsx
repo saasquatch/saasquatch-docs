@@ -74,9 +74,11 @@ export default function render() {
           {productNews
             .filter(filter)
             .sort(sort)
-            .map((productNewsItem: any) => {
+            .map((productNewsItem: any, key: number) => {
+              key = key + 1;
               return (
                 <ProductNewsCard
+                  key={key}
                   tags={productNewsItem.tags}
                   title={productNewsItem.title}
                   markdownContent={productNewsItem.content}

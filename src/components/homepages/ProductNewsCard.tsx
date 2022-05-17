@@ -53,7 +53,7 @@ const CardTags = styled.span`
     color: #00A176;
 `
 
-const CardMarkdown = styled.p`
+const CardMarkdown = styled.div`
     font-family: 'Helvetica';
     font-style: normal;
     font-size: 14px;
@@ -77,7 +77,7 @@ const CardButton = styled.a`
     font-weight: 700;
     font-size: 14px;
     line-height: 16px;
-    color: #FFFFFF;
+    color: #FFFFFF !important;
     background: #00A176;
     border-radius: 5px;
     margin-bottom: 0;
@@ -131,7 +131,7 @@ export const ProductNewsCard: React.FC<ProductNewsCard> = ({
             </CardDate>
             <TagsDiv>
                 {tags.map((tag: string) => {
-                    return <CardTags>{tag}</CardTags>
+                    return <CardTags key={tag}>{tag}</CardTags>
                 })}
             </TagsDiv>
             <CardMarkdown>
