@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const FooterContainer = styled.footer`
   padding-top: 20px;
-  max-height: 1000px;
+  max-height: 800px;
   background: #003B45;
   font-family: 'Helvetica';
   font-style: normal;
@@ -210,7 +210,7 @@ export function NavigationFooter() {
               Copyright © {new Date().getFullYear()} Referral SaaSquatch.com.
               All rights reserved.
             </FooterParagraph>
-            <FooterParagraph className="hidden-phone">
+            <FooterParagraph>
               1017 Fort St, Victoria, British Columbia, V8V 3K5, Canada
             </FooterParagraph>
           </BottomContainer>
