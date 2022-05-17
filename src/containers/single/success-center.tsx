@@ -31,7 +31,7 @@ const ProgramLibrary = {
     ...SaasGrowthAuto,
     title: "Program Library",
     description: "A library of the available Growth Automation Programs by SaaSquatch.",
-    iconCode:"fa-fw fa-solid fa-3x",
+    iconCode:"fa-book",
     linkText:"Explore library"
 }
 
@@ -51,7 +51,15 @@ const ReferralProgramQuickstart = {
     linkText:"Learn more"
 }
 
-const CardsArray: Array<CardProps> = [SaasGrowthAuto, ProgramLibrary, ProgramSetupQuickstart, ReferralProgramQuickstart];
+const SVGIconTest = {
+    title: "SVG Icon Test",
+    description: "This is a test to see if an svg src will work instead of an icon code. There are some icons whose icon codes don't work.",
+    svgSrc:true,
+    linkText:"Learn more",
+    linkUrl: "#"
+}
+
+const CardsArray: Array<CardProps> = [SaasGrowthAuto, ProgramLibrary, ProgramSetupQuickstart, ReferralProgramQuickstart, SVGIconTest];
 
 export default function render() {
     return (
@@ -68,6 +76,7 @@ export default function render() {
                     description={card.description}
                     iconCode={card.iconCode}
                     imageSrc={card.imageSrc}
+                    svgSrc={card.svgSrc}
                     linkText={card.linkText}
                     linkUrl={card.linkUrl}
                     />
