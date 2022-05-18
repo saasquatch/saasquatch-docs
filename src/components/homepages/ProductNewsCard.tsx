@@ -71,7 +71,6 @@ const CardMarkdown = styled.div`
         color: #54909B;
         font-size: 16px;
     }
-    margin-bottom: 20px;
     padding-top: 10px;
     border-top: 1px solid #003B45;
 `;
@@ -91,6 +90,7 @@ const CardButton = styled.a`
     background: #00A176;
     border-radius: 5px;
     margin-bottom: 0;
+    margin-top: 20px;
     border: none;
     :hover {
         background: #08805F;
