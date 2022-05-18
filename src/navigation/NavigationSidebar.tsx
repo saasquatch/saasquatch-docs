@@ -6,7 +6,7 @@ import { createContainer } from "unstated-next";
 
 import * as Styles from "./NavStyles";
 import init from "./nav";
-
+import { PortalifiedSearch } from "./PortalifiedSearch";
 import "./mmenu-overrides.css";
 import ApiSidebar from "./ApiSidebar";
 import useBrowserEffect from "src/util/useBrowserEffect";
@@ -42,6 +42,7 @@ export function NavigationSidebar() {
     <Styles.Container
     //ref={container}
     >
+      <PortalifiedSearch />
       <nav id="my-menu">
         <ul className="baseMenu">
           <li>

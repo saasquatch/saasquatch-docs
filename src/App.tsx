@@ -75,7 +75,6 @@ function App() {
               </div>
             </StickyContainer>
             <NavigationSidebar />
-            <BrowserOnly Component={PortalifiedSearch} />
           </MMenuContext.Provider>
         </VersionContext.Provider>
       </React.Suspense>

@@ -16,6 +16,12 @@ export const Personalisation = styled.div`
   border-radius: 23px;
 `;
 
+const NavTop = styled.header`
+  
+`
+
+
+
 export function NavigationHeader() {
   return (
     <header id="my-header">
