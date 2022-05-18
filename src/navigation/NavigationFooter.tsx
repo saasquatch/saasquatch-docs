@@ -107,21 +107,23 @@ export function NavigationFooter() {
                   <a href="https://app.referralsaasquatch.com/">Login</a>
                 </InnerLi>
                 <InnerLi>
-                  <a href="https://saasquatch.com">Growth Automation</a>
-                </InnerLi>
-                <InnerLi>
                   <a href="https://www.saasquatch.com/request-demo">
                     Request Demo
                   </a>
                 </InnerLi>
                 <InnerLi>
-                  <a href="https://www.saasquatch.com/api-integrations/">
-                    API Integrations
+                  <a href="https://www.saasquatch.com/loyalty-program-2/">
+                    Customer Loyalty
                   </a>
                 </InnerLi>
                 <InnerLi>
-                  <a href="https://www.saasquatch.com/fraud-prevention/">
-                    Fraud Prevention
+                  <a href="https://www.saasquatch.com/customer-referrals/">
+                    Customer Referral
+                  </a>
+                </InnerLi>
+                <InnerLi>
+                  <a href="https://www.saasquatch.com/api-integrations/">
+                    Intergrations
                   </a>
                 </InnerLi>
                 <InnerLi>
@@ -152,11 +154,6 @@ export function NavigationFooter() {
                     Contact Us
                   </a>
                 </InnerLi>
-                <InnerLi>
-                  <a href="https://www.saasquatch.com/wp-content/uploads/2017/02/Saasquatch-simple-brand-standards.pdf">
-                    Media (PDF)
-                  </a>
-                </InnerLi>
               </FooterUL>
             </div>
             <div>
@@ -168,7 +165,7 @@ export function NavigationFooter() {
                   </a>
                 </InnerLi>
                 <InnerLi>
-                  <a href="https://www.saasquatch.com/resources">
+                  <a href="https://www.saasquatch.com/the-advocacy-channel-a-customer-marketing-podcast/">
                     Podcast
                   </a>
                 </InnerLi>
@@ -178,7 +175,7 @@ export function NavigationFooter() {
                   </a>
                 </InnerLi>
                 <InnerLi>
-                  <a href="https://www.saasquatch.com/editorial-guideInnerLines/">
+                  <a href="https://www.digitalloyaltyacademy.com/">
                     Loyalty Academy
                   </a>
                 </InnerLi>
@@ -193,7 +190,7 @@ export function NavigationFooter() {
                   </a>
                 </InnerLi>
                 <InnerLi>
-                  <a href="https://www.saasquatch.com/privacy-poInnerLicy">
+                  <a href="https://www.saasquatch.com/privacy-policy">
                     Privacy Policy
                   </a>
                 </InnerLi>
