@@ -62,9 +62,15 @@ const CardMarkdown = styled.div`
     line-height: 150%;
     color: #575757;
     & h3 {
+        font-weight: 700;
         color: #003B45;
         font-size: 20px;
     };
+    & h4 {
+        font-weight: 700;
+        color: #54909B;
+        font-size: 16px;
+    }
     margin-bottom: 20px;
     padding-top: 10px;
     border-top: 1px solid #003B45;
