@@ -13,7 +13,9 @@ const CardBaseDiv = styled.div`
 
     box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.08);
     border-radius: 5px;
-    margin-bottom: 25px;
+    :not(:last-child) {
+        margin-bottom: 36px;
+    }
     font-family: 'Helvetica';
     font-style: normal;
     display: flex;
@@ -64,6 +66,8 @@ const CardMarkdown = styled.div`
         font-size: 20px;
     };
     margin-bottom: 20px;
+    padding-top: 10px;
+    border-top: 1px solid #003B45;
 `;
 
 const CardButton = styled.a`
@@ -101,6 +105,7 @@ const CardButton = styled.a`
 const TagsDiv = styled.div`
     display: flex;
     margin-bottom: 20px;
+    color: #069660 !important;
     > :not(:last-child) {
         margin-right: 10px;    
     }
