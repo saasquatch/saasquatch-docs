@@ -202,14 +202,18 @@ export function InlineResults({
   };
 
   return (
-    <div ref={childRef}>
+    <div ref={childRef} style={{ fontSize: '14px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-      {items && (
+      {items ? (
         <Styles.ResultsSummary>
           {searchInformation.totalResults} Results {/* total results found in{" "}
           {searchInformation.formattedSearchTime} seconds */}
         </Styles.ResultsSummary>
-      )}
+      ) : 
+        <Styles.ResultsSummary>
+           0 Results 
+        </Styles.ResultsSummary>
+      }
       <div style={{ color: '#999999' }}>
       Press Esc to{" "}
         <Styles.styledLink
