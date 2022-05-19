@@ -15,7 +15,7 @@ export const ItemRow = styled(HashLink)`
   }
 `;
 export const DefaultInput = styled.input`
-  width: 75%;
+  width: 100%;
 `;
 
 export const ItemTitle = styled.div`
@@ -54,8 +54,33 @@ export const PopOver = styled.div<{ sideBar: boolean }>`
   padding: 10px;
   z-index: 999;
   overflow-y: scroll;
-  width: ${(props) => (props.sideBar ? "18vw" : "70vw")};
-  min-width: 200px;
+  width: ${(props) => (props.sideBar ? "calc(100% - 32px)": "580px")};
+  min-width: 242px;
+  max-width: 580px;
+  ${props => (props.sideBar) && 
+    `
+    @media(max-width: 1340px) {
+      max-width: 242px;
+    }
+    @media(max-width: 979px) {
+      max-width: 405px;
+    }
+    @media(max-width: 550px) {
+      max-width: 242px;
+    }
+    `
+  }
+  ${props => (!props.sideBar) && 
+    `@media(max-width: 1025px) {
+        max-width: 480px;
+      }
+      @media(max-width: 599px) {
+        max-width: 280px;
+      }`
+  }
+  
+
+  margin-right: 0px;
 `;
 
 export const Inline = styled.div``;

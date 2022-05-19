@@ -14,10 +14,15 @@
 
   input {
     border: 2px solid #003b45;
-    max-width: 290px !important;
-    height: 32px;
+    max-width: 580px ;
+    height: 45px;
     color: #003b45;
-    border-radius: 22px !important;
+    @media (max-width: 1025px) {
+        max-width: 480px;
+    }
+    @media(max-width: 599px) {
+        max-width: 280px;
+    }
   }
 
 }

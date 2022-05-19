@@ -8,11 +8,14 @@ import React, {
 import Tippy from "@tippyjs/react/headless";
 import hotkeys from "hotkeys-js";
 import { useHistory } from "react-router";
+import styled from "styled-components";
 
 import { useSearch } from "./useSearch";
 import * as Styles from "./SearchStyles";
 import { sanitizeGoogleSearchLink, isBlank } from "./searchUtil";
 import useBrowserEffect from "src/util/useBrowserEffect";
+
+
 
 export function InlineSearch({ Input = Styles.DefaultInput, sideBar = false }) {
   if (typeof document === "undefined") {
@@ -24,11 +27,26 @@ export function InlineSearch({ Input = Styles.DefaultInput, sideBar = false }) {
 
   const [visible, setVisible] = useState(false);
   const [selectedIdx, setSelectedIndex] = useState(0);
+  const [sidebarWidth, setSidebarWidth] = useState<string>('200');
 
   const maxResultsSize = response?.items?.length || 0;
 
+  // useEffect(() => {
+  //   if(inputEl.current.clientWidth === 0) {
+  //     setSidebarWidth('405');
+  //   } else {
+  //     setSidebarWidth(inputEl.current.clientWidth.toString());
+  //   }
+  // }, []);
+
   useEffect(() => {
     setSelectedIndex(0);
+    if(inputEl.current.clientWidth === 0 || inputEl.current.clientWidth > 500) {
+      setSidebarWidth('405');
+    } else {
+      setSidebarWidth(inputEl.current.clientWidth.toString());
+    }
+    console.log(inputEl.current.clientWidth)
   }, [query]);
   useBrowserEffect(() => {
     hotkeys("esc", function (event, handler) {
@@ -115,7 +133,7 @@ export function InlineSearch({ Input = Styles.DefaultInput, sideBar = false }) {
         interactiveBorder={20}
         // hideOnClick={false}
         render={(attrs) => (
-          <Styles.PopOver tabIndex={-1} sideBar={sideBar} {...attrs}>
+          <Styles.PopOver tabIndex={-1} sideBar={sideBar} {...attrs} style={{ width: sidebarWidth}}>
             {!response && (
               <div className="text-center search-spinner">
                 <h3>Searching Help Center...</h3>
