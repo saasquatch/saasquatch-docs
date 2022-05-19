@@ -203,8 +203,15 @@ export function InlineResults({
 
   return (
     <div ref={childRef}>
-      <div style={{ textAlign: "right" }}>
-        Press Esc to{" "}
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+      {items && (
+        <Styles.ResultsSummary>
+          {searchInformation.totalResults} Results {/* total results found in{" "}
+          {searchInformation.formattedSearchTime} seconds */}
+        </Styles.ResultsSummary>
+      )}
+      <div>
+      Press Esc to{" "}
         <Styles.styledLink
           href=""
           onClick={(e) => {
@@ -215,6 +222,7 @@ export function InlineResults({
           close
         </Styles.styledLink>
         .
+      </div>
       </div>
       {items &&
         items
@@ -238,12 +246,6 @@ export function InlineResults({
               />
             </Styles.ItemRow>
           ))}
-      {items && (
-        <Styles.ResultsSummary>
-          {searchInformation.totalResults} total results found in{" "}
-          {searchInformation.formattedSearchTime} seconds
-        </Styles.ResultsSummary>
-      )}
       <Styles.Pagination>
         {queries?.previousPage && (
           <Styles.PagerButton

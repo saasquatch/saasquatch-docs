@@ -9,9 +9,9 @@ export const ItemRow = styled(HashLink)`
   margin: 5px 0;
   border-bottom: 1px solid #ddd;
 
-  background: ${(props) => (props.selected ? "#e0e0e0" : "white")};
+  background: ${(props) => (props.selected ? "#C0D1D3" : "white")};
   &:hover {
-    background: #eee;
+    background: #E7EDEE;
   }
 `;
 export const DefaultInput = styled.input`
@@ -38,11 +38,13 @@ export const ResultsSummary = styled.p`
 `;
 export const Pagination = styled.div`
   border-top: 1px solid #ccc;
+  text-align: right;
 `;
 
 export const PagerButton = styled.a`
   padding-right: 10px;
   cursor: pointer;
+  color: #06966F !important;
 `;
 export const NoResults = styled.div``;
 
