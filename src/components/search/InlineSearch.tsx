@@ -210,7 +210,7 @@ export function InlineResults({
           {searchInformation.formattedSearchTime} seconds */}
         </Styles.ResultsSummary>
       )}
-      <div>
+      <div style={{ color: '#999999' }}>
       Press Esc to{" "}
         <Styles.styledLink
           href=""

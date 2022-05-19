@@ -34,7 +34,7 @@ export const ItemBody = styled.div`
   }
 `;
 export const ResultsSummary = styled.p`
-  color: #333;
+  color: #575757;
 `;
 export const Pagination = styled.div`
   border-top: 1px solid #ccc;
