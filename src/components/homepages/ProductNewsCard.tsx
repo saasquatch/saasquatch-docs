@@ -148,7 +148,7 @@ export const ProductNewsCard: React.FC<ProductNewsCard> = ({
             <CardMarkdown>
                 <Markdown source={markdownContent} />
             </CardMarkdown>
-            {ctaLink && (<CardButton href={ctaLink}>Read Full Blog Post</CardButton>)}
+            {ctaLink && (<CardButton href={ctaLink} target="_blank">Read Full Blog Post</CardButton>)}
         </CardBaseDiv>
     )
 }

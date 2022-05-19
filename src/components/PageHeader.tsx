@@ -35,7 +35,7 @@ export default function render(
         )}
 
         {props.highlights && (
-          <div className="lead">
+          <div className="lead" id="highlightMarkdown">
             <Markdown source={props.highlights} />
           </div>
         )}
