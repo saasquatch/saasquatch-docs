@@ -130,7 +130,8 @@ export const ProductNewsCard: React.FC<ProductNewsCard> = ({
     title,
     datePublished,
     tags,
-    ctaLink
+    ctaLink,
+    ctaButtonText
 }) => {
     return (
         <CardBaseDiv>
@@ -148,7 +149,7 @@ export const ProductNewsCard: React.FC<ProductNewsCard> = ({
             <CardMarkdown>
                 <Markdown source={markdownContent} />
             </CardMarkdown>
-            {ctaLink && (<CardButton href={ctaLink} target="_blank">Read Full Blog Post</CardButton>)}
+            {(ctaLink && ctaButtonText) && (<CardButton href={ctaLink} target="_blank">{ctaButtonText}</CardButton>)}
         </CardBaseDiv>
     )
 }
@@ -159,4 +160,5 @@ interface ProductNewsCard {
     datePublished: string;
     tags: Array<string>;
     ctaLink?: string;
+    ctaButtonText?: string;
 }
