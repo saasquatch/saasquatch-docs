@@ -6,7 +6,7 @@ export const Container = styled.div`
 `;
 
 export const Logo = styled.div`
-  background: #003b45;
+  background: var(--sq-nav-surface-primary);
   text-align: center;
 
   img {
@@ -18,7 +18,7 @@ export const Logo = styled.div`
 `;
 
 export const HelpCenterLogo = styled.div`
-  background: #003b45;
+  background: var(--sq-nav-surface-primary);
   text-align: center;
   border: 0;
   margin-top: -1px;

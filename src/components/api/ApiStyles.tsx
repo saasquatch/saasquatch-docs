@@ -10,7 +10,7 @@ export const BootstrapListGroup = styled.ul`
   //
   // Easily usable on <ul>, <ol>, or <div>.
   // No need to set list-style: none; since .list-group-item is block level
-  margin-bottom: 20px;
+  margin-bottom: var(--sq-spacing-large);
   padding-left: 0; // reset padding because ul and ol
 `;
 
@@ -37,12 +37,11 @@ export const BootstrapListGroupItem = styled.li`
   }
 `;
 
-
 export const FilterHeader = styled.div`
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: var(--sq-spacing-large);
 `;
 
 export const VersionLabel = styled.span`
@@ -50,7 +49,7 @@ export const VersionLabel = styled.span`
   padding: 5px 5px 0 5px;
   margin-bottom: 15px;
   margin-left: 15px;
-  font-size: 16px;
+  font-size: var(--sq-font-size-caption);
 `;
 
 export const HTTPMethod = styled.span`

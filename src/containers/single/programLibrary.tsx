@@ -11,16 +11,16 @@ const entry = {
     "A library of the available Growth Automation Programs by SaaSquatch.",
   slug: "program/library",
   sectionType: "successArticle",
-  template: "pages/programLibrary.html"
+  template: "pages/programLibrary.html",
 };
 
 export const Card = styled.div`
   box-sizing: border-box;
   max-width: 1200px;
-  background-color: #fff;
+  background-color: var(--sq-surface);
   padding: 25px;
   border-radius: 3px;
-  border: 2px solid #e2e2e2;
+  border: 2px solid var(--sq-border);
   box-shadow: none;
   margin-bottom: 30px;
 `;
@@ -53,7 +53,7 @@ const PCButton = styled(Link)`
 `;
 
 const LibraryH3 = styled.h3`
-  font-size: 16px;
+  font-size: var(--sq-font-size-caption);
   margin: 0 13px 0 0;
   display: flex;
   flex-direction: column;
@@ -81,8 +81,8 @@ const IconBorder = styled.div`
 `;
 
 const ProgramIcon = styled.span`
-  font-size: 22px;
-  color: #575757;
+  font-size: var(--sq-font-size-header-two);
+  color: var(--sq-text);
   width: 22px;
   height: 22px;
   color: rgb(143, 167, 187);
@@ -124,8 +124,8 @@ export default function render() {
       <PageHeader {...entry}>
         <CardContainer>
           {programs
-            .filter(program => program.fields.globallyInstallable === true)
-            .map(program => (
+            .filter((program) => program.fields.globallyInstallable === true)
+            .map((program) => (
               <ProgramCard>
                 <ProgramLibraryCardLabel
                   icon={program.fields.icon}

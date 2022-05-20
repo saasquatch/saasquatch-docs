@@ -8,10 +8,10 @@ export const Personalisation = styled.div<{ open: boolean }>`
   height: ${({ open }) => (open ? "auto" : "36px")};
 
   position: absolute;
-  /* padding: 8px 24px; */
+  /* padding: var(--sq-spacing-x-small) var(--sq-spacing-x-large); */
   left: -24px;
-  margin-top: 12px;
-  background: #ffffff;
+  margin-top: var(--sq-spacing-small);
+  background: var(--sq-surface);
   border: 1px solid #e6e6e6;
   box-sizing: border-box;
   border-radius: 18px;
@@ -31,9 +31,9 @@ export const Personalisation = styled.div<{ open: boolean }>`
 `;
 
 const Info = styled.div`
-  padding-left: 24px;
+  padding-left: var(--sq-spacing-x-large);
   color: #888;
-  font-size: 14px;
+  font-size: var(--sq-font-size-regular);
   width: 100%;
 
   @media screen and (max-width: 1299px) {
@@ -42,8 +42,8 @@ const Info = styled.div`
 `;
 
 const Preview = styled.div`
-  padding: 0 24px;
-  line-height: 16px;
+  padding: 0 var(--sq-spacing-x-large);
+  line-height: var(--sq-line-height-caption);
   height: 36px;
   display: flex;
   justify-content: space-between;
@@ -55,7 +55,7 @@ const Preview = styled.div`
 `;
 
 const ExpandIcon = styled.div`
-  margin-left: 24px;
+  margin-left: var(--sq-spacing-x-large);
 
   @media (max-width: 1299px) {
     display: inline-block;
@@ -63,7 +63,7 @@ const ExpandIcon = styled.div`
 `;
 
 const OptionWrapper = styled.div`
-  padding: 24px;
+  padding: var(--sq-spacing-x-large);
   padding-bottom: 0px;
   border-top: 1px solid #eaeaea;
   box-sizing: border-box;
@@ -72,7 +72,7 @@ const OptionWrapper = styled.div`
 
 const ListIcon = styled.div<{ active: boolean }>`
   width: 15px;
-  padding-right: 24px;
+  padding-right: var(--sq-spacing-x-large);
 
   & path {
     /* Overrides hover color from Option component */
@@ -82,8 +82,8 @@ const ListIcon = styled.div<{ active: boolean }>`
 
 const Option = styled.div`
   display: flex;
-  padding-top: 4px;
-  padding-bottom: 32px;
+  padding-top: var(--sq-spacing-xx-small);
+  padding-bottom: var(--sq-spacing-xx-large);
 
   &:hover ${ListIcon} svg path {
     fill: #a3a3a3;
@@ -91,26 +91,24 @@ const Option = styled.div`
 `;
 
 const Name = styled.div`
-  font-size: 14px;
-  line-height: 16px;
+  font-size: var(--sq-font-size-regular);
+  line-height: var(--sq-line-height-caption);
   font-weight: 500;
-  color: #575757;
-  padding-bottom: 12px;
+  color: var(--sq-text);
+  padding-bottom: var(--sq-spacing-small);
 `;
 
 const Description = styled.div`
-  font-size: 12px;
-  font-weight: normal;
-  color: #575757;
+  font-size: var(--sq-spacing-small);
+  font-weight: var(--sq-font-weight-regular);
+  color: var(--sq-text);
   line-height: 14px;
 `;
 
 export const PersonalisationSelect = () => {
   const [open, setOpen] = useState(false);
-  const {
-    version,
-    setVersion: setVersionInner,
-  } = VersionContext.useContainer();
+  const { version, setVersion: setVersionInner } =
+    VersionContext.useContainer();
 
   const setVersion = (version: Version) => {
     setVersionInner(version);

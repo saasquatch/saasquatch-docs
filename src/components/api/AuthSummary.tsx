@@ -8,7 +8,7 @@ import { Table, TR, TH, TD, THead, TBody } from "components/Table";
 import { Tags } from "components/api/Tags";
 
 const WorksWithWrapper = styled.li<{ works: boolean }>`
-  padding: 4px 0px;
+  padding: var(--sq-spacing-xx-small) 0px;
   list-style: none;
 
   ${({ works }) =>
@@ -19,7 +19,7 @@ const WorksWithWrapper = styled.li<{ works: boolean }>`
   `}
 
   &:first-child {
-    margin-top: 16px;
+    margin-top: var(--sq-spacing-medium);
   }
 
   & > div {
@@ -28,13 +28,13 @@ const WorksWithWrapper = styled.li<{ works: boolean }>`
   }
 
   & > div > div {
-    margin-left: 8px;
+    margin-left: var(--sq-spacing-x-small);
   }
 `;
 
 const TagTitle = styled.div`
   display: inline;
-  padding-right: 12px;
+  padding-right: var(--sq-spacing-small);
   font-weight: 500;
 `;
 
@@ -62,7 +62,12 @@ export function AuthSummary({
       <TBody>
         <TR>
           <TD>
-            <div style={{ fontWeight: 500, paddingBottom: "8px" }}>
+            <div
+              style={{
+                fontWeight: 500,
+                paddingBottom: "var(--sq-spacing-x-small)",
+              }}
+            >
               Works for
             </div>
             <WorksWith

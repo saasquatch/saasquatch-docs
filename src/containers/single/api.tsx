@@ -54,7 +54,7 @@ const Description = styled.div`
   & > .auth-summary-wrapper {
     order: 1;
     min-width: 250px;
-    margin: auto 16px auto 20px;
+    margin: auto var(--sq-spacing-medium) auto var(--sq-spacing-large);
   }
 
   @media screen and (max-width: 768px) {
@@ -62,7 +62,7 @@ const Description = styled.div`
 
     & > .auth-summary-wrapper {
       min-width: 100%;
-      margin: 0px 20px 16px auto;
+      margin: 0px var(--sq-spacing-large) var(--sq-spacing-medium) auto;
     }
   }
 `;
@@ -84,13 +84,8 @@ export function useApiData(): APIData {
 }
 
 function HiddenMethods() {
-  const {
-    swagger,
-    showMethod,
-    versionLabel,
-    tagMap,
-    endpointByTag,
-  } = useApiData();
+  const { swagger, showMethod, versionLabel, tagMap, endpointByTag } =
+    useApiData();
 
   const hiddenMethods = getEndpoints(swagger).filter(
     (e) => !showMethod(e.method)
@@ -325,13 +320,8 @@ function Page({ swagger, tagMap, endpointByTag, showMethod }: APIData) {
 }
 
 function TagSummary({ tag }: { tag: string }): JSX.Element {
-  const {
-    swagger,
-    showMethod,
-    versionLabel,
-    tagMap,
-    endpointByTag,
-  } = useApiData();
+  const { swagger, showMethod, versionLabel, tagMap, endpointByTag } =
+    useApiData();
 
   const subEndpoints = useMemo(() => {
     const endPoints = endpointByTag[tag] || [];

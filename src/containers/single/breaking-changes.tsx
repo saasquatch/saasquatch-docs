@@ -8,8 +8,8 @@ import Markdown from "../../components/Markdown";
 import PageHeader from "../../components/PageHeader";
 
 const Timeline = styled.div`
-  border-left: 2px solid #003b45;
-  margin: 20px 30px;
+  border-left: 2px solid var(--sq-nav-text-on-secondary);
+  margin: var(--sq-spacing-large) 30px;
   margin-left: 140px;
   padding: 0 15px;
 `;
@@ -44,8 +44,8 @@ const Deadline = styled.span`
   left: -130px;
   top: 15px;
 
-  font-weight: bold;
-  color: #003b45;
+  font-weight: var(--sq-font-weight-bold);
+  color: var(--sq-nav-surface-primary);
 
   & .deadline {
     color: #c3c3c3;
@@ -84,8 +84,8 @@ const Body = styled.div`
 const Name = styled.span`
   flex: 0.1;
   text-align: left;
-  font-weight: bold;
-  margin-right: 20px;
+  font-weight: var(--sq-font-weight-bold);
+  margin-right: var(--sq-spacing-large);
 `;
 
 const Text = styled.span`
@@ -102,7 +102,7 @@ const Well = styled.div`
 
 const SubscribeText = styled.p`
   margin: 15px auto;
-  font-size: 18px;
+  font-size: var(--sq-font-size-header-three);
   font-weight: bold;
   max-width: 270px;
 `;
@@ -110,7 +110,7 @@ const SubscribeText = styled.p`
 const SubscribeP = styled.p`
   margin: 15px auto;
   padding-top: 10px;
-  font-size: 14px;
+  font-size: var(--sq-font-size-regular);
   color: grey;
   max-width: 270px;
 `;
@@ -123,12 +123,12 @@ const MermaidStyles = styled.div`
 
   & text.taskText {
     fill: black !important;
-    font-size: 16px !important;
+    font-size: var(--sq-font-size-caption) !important;
     text-height: 50px !important;
   }
 
   & text.taskTextOutsideRight {
-    font-size: 16px !important;
+    font-size: var(--sq-font-size-caption) !important;
     text-height: 50px !important;
   }
 

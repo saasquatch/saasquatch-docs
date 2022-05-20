@@ -36,20 +36,20 @@ export const MarketoFormStyleOverwrite = styled.form`
     border-radius: 20px !important;
     min-width: 100px !important;
     padding: 3px 19px !important;
-    background: rgb(245, 168, 65) !important;
-    border: 1px solid rgb(245, 168, 65) !important;
+    background: var(--sq-action-primary) !important;
+    border: 1px solid var(--sq-action-primary) !important;
     color: rgb(255, 255, 255) !important;
-    font-weight: 600 !important;
+    font-weight: var(--sq-font-weight-semibold) !important;
     font-size: 13px !important;
     background-image: none !important;
-    font-family: "Helvetica Neue", Helvetica, sans-serif !important;
+    font-family: var(--sq-font-family-sans) !important;
   }
 `;
 
 export const SuccessText = styled.p`
   margin: 15px auto;
   padding-top: 10px;
-  font-size: 14px;
-  color: grey;
+  font-size: var(--sq-font-size-regular);
+  color: var(--sq-text);
   max-width: 270px;
 `;

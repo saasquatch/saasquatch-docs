@@ -5,7 +5,7 @@ import { HashLink } from "react-router-hash-link";
 export const ItemRow = styled(HashLink)`
   display: block;
   color: #000;
-  padding: 8px;
+  padding: var(--sq-spacing-x-small);
   margin: 5px 0;
   border-bottom: 1px solid #ddd;
 
@@ -47,7 +47,7 @@ export const PagerButton = styled.a`
 export const NoResults = styled.div``;
 
 export const PopOver = styled.div<{ sideBar: boolean }>`
-  background: #fff;
+  background: var(--sq-surface);
   border: 1px solid #eee;
   box-shadow: 0px 0px 28px -6px rgba(0, 0, 0, 1);
   border-radius: 5px;

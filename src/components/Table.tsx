@@ -39,15 +39,15 @@ export const TBody = styled.tbody``;
 export const TH = styled.th`
   font-size: 13px;
   font-weight: bold;
-  color: #575757;
+  color: var(--sq-text);
   text-align: left;
 
   border-bottom: 1px solid #eaeaea;
 
-  padding: 8px 24px;
+  padding: var(--sq-spacing-x-small) var(--sq-spacing-x-large);
   padding-left: 0px;
   &:first-child {
-    padding-left: 24px;
+    padding-left: var(--sq-spacing-x-large);
   }
 `;
 
@@ -61,14 +61,14 @@ export const TR = styled.tr`
 `;
 
 export const TD = styled.td`
-  color: #575757;
+  color: var(--sq-text);
 
   font-size: 13px;
   border-bottom: 1px solid #eaeaea;
 
-  padding: 12px 24px;
+  padding: var(--sq-spacing-small) var(--sq-spacing-x-large);
   padding-left: 0px;
   &:first-child {
-    padding-left: 24px;
+    padding-left: var(--sq-spacing-x-large);
   }
 `;

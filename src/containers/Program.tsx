@@ -8,7 +8,7 @@ const ProgramItem = styled.div`
   .program-header-icon {
     background-color: #013b46;
     border-radius: 5px;
-    margin: 20px;
+    margin: var(--sq-spacing-large);
     padding: 15px;
   }
   .program-header-icon img {
@@ -23,7 +23,7 @@ const ProgramItem = styled.div`
   }
 
   .program-header-content {
-    color: #fff;
+    color: var(--sq-nav-text-on-primary);
   }
   .program-header-item {
   }
@@ -59,7 +59,7 @@ const ProgramItem = styled.div`
     width: 100%;
     max-width: 250px;
     height: auto;
-    border: 2px solid #999999;
+    border: 2px solid var(--sq-nav-text-on-primary-subdued);
     border-radius: 5px;
   }
 
@@ -96,7 +96,7 @@ export default function render() {
                   {title}
                 </h1>
 
-                {tags && tags.some(tag => tag == "Beta") && (
+                {tags && tags.some((tag) => tag == "Beta") && (
                   <span
                     style={{ display: "inline-block" }}
                     className="label docs-label-beta"
@@ -121,21 +121,18 @@ export default function render() {
           </ProgramHeader>
 
           <div className="product-content no-anchor">
-            {tags && tags.some(tag => tag == "Beta") && (
+            {tags && tags.some((tag) => tag == "Beta") && (
               <blockquote>
                 <p>
                   This feature is currently in Beta. Please contact our{" "}
-                  <a href="mailto:support@saasquatch.com">
-                    support team
-                  </a>{" "}
-                  to learn more about how to enroll.
+                  <a href="mailto:support@saasquatch.com">support team</a> to
+                  learn more about how to enroll.
                 </p>
               </blockquote>
             )}
 
             <Markdown source={contents} />
           </div>
-
         </ProgramItem>
       </section>
     </>

@@ -6,18 +6,18 @@ const MethodButton = styled.button`
   outline: none;
   border: none;
   background: transparent;
-  padding: 12px;
+  padding: var(--sq-spacing-small);
   padding-left: 0px;
   cursor: pointer;
 
-  font-size: 14px;
+  font-size: var(--sq-font-size-regular);
   font-weight: bold;
   color: #777;
 
- & > span {
-   margin-left: 16px;
-   margin-top: -2px;
- }
+  & > span {
+    margin-left: var(--sq-spacing-medium);
+    margin-top: -2px;
+  }
 `;
 
 export function HideShowMethod({

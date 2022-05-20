@@ -9,8 +9,8 @@ export const Personalisation = styled.div`
   width: auto;
   height: 36px;
 
-  margin-top: 12px;
-  background: #ffffff;
+  margin-top: var(--sq-spacing-small);
+  background: var(--sq-surface);
   border: 1px solid #e6e6e6;
   box-sizing: border-box;
   border-radius: 23px;

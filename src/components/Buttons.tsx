@@ -15,27 +15,29 @@ interface PBProps {
 const PrimaryButtonStyled = styled.button<PBProps>`
   border-radius: 20px;
   min-width: 100px;
-  padding: ${props => props.padding || `3px 19px`};
-  background: ${props => props.buttonColor || `#f5a841`};
-  border: 1px solid ${props => props.buttonColor || `#f5a841`};
-  color: #fff;
-  font-weight: 600;
+  padding: ${(props) => props.padding || `3px 19px`};
+  background: ${(props) => props.buttonColor || `#f5a841`};
+  border: 1px solid ${(props) => props.buttonColor || `#f5a841`};
+  color: var(--sq-text-on-primary);
+  font-weight: var(--sq-font-weight-semibold);
   font-size: 13px;
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--sq-font-family-sans);
 
   &:hover,
   &:active,
   &:focus {
-    background: ${props => props.darkercolor || `#DC8F28`};
-    border: 1px solid ${props => props.buttonColor || `#DC8F28`};
-    color: #fff;
+    background: ${(props) => props.darkercolor || `#DC8F28`};
+    border: 1px solid ${(props) => props.buttonColor || `#DC8F28`};
+    color: var(--sq-text-on-primary);
     text-decoration: none;
     outline: none;
   }
 
   :disabled {
-    background: ${props => props.disabledcolor || `#E2E2E2`};
-    border: 1px solid ${props => props.disabledcolor || `#E2E2E2`};
+    background: ${(props) =>
+      props.disabledcolor || `var(--sq-action-primary-disabled)`};
+    border: 1px solid
+      ${(props) => props.disabledcolor || `var(--sq-action-primary-disabled)`};
     pointer-events: none;
   }
 `;
