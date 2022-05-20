@@ -8,6 +8,9 @@ const FooterContainer = styled.footer`
   font-family: 'Helvetica';
   font-style: normal;
   padding-bottom: 30px;
+  @media(max-width: 800px) {
+    display: inline-block;
+  }
 `;
 
 const ListsWrapper = styled.div`
@@ -29,6 +32,9 @@ const ListDiv = styled.div`
     -moz-column-count: 2;
     column-count: 2;
     grid-template-columns: 1fr 1fr;
+    grid-template-areas: "product copmany"
+                          "resources legal"
+    ;
   }
 `;
 
@@ -38,11 +44,24 @@ export const FooterUL = styled.ul`
   font-weight: 300;
   padding: 0 30px;
   @media(max-width: 800px) {
+    > .product {
+      grid-area: product;
+    }
+    .copmany {
+      grid-area: company;
+    }
+    .resources {
+      grid-area: resources;
+    }
+    .legal {
+      grid-area: legal;
+    }
     padding: 0 15px;
     margin: 0 0 30px 0 !important;
     -webkit-column-break-inside: avoid;
     column-break-inside: avoid;
   }
+
 `;
 
 
@@ -101,7 +120,7 @@ export function NavigationFooter() {
           {/* <div className="row-fluid docs-footer-menu"> */}
           <ListDiv>
             <div >
-              <FooterUL>
+              <FooterUL className="product">
                 <TitleLi>Product</TitleLi>
                 <InnerLi>
                   <a href="https://app.referralsaasquatch.com/">Login</a>
@@ -134,7 +153,7 @@ export function NavigationFooter() {
               </FooterUL>
             </div>
             <div>
-              <FooterUL>
+              <FooterUL className="copmany">
                 <TitleLi>Company</TitleLi>
                 <InnerLi>
                   <a href="https://www.saasquatch.com/about">About</a>
@@ -157,7 +176,7 @@ export function NavigationFooter() {
               </FooterUL>
             </div>
             <div>
-              <FooterUL>
+              <FooterUL className="resources">
                 <TitleLi>Resources</TitleLi>
                 <InnerLi>
                   <a href="https://www.saasquatch.com/blog">
@@ -182,7 +201,7 @@ export function NavigationFooter() {
               </FooterUL>
             </div>
             <div>
-              <FooterUL>
+              <FooterUL className="legal">
                 <TitleLi>Legal</TitleLi>
                 <InnerLi>
                   <a href="https://www.saasquatch.com/terms-of-service">
