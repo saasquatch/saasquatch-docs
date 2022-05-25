@@ -3,6 +3,22 @@ import styled from "styled-components";
 
 // Card styled components
 
+export const CardGrid = styled.div`
+  padding-top: 20px;
+  -moz-column-count: 2;
+  column-count: 2;
+  column-gap: 30px;
+
+  & > * {
+    margin-bottom: 30px;
+  }
+
+  @media (max-width: 599px) {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+`;
+
 const CardContainerDiv = styled.div`
   background-color: #ffffff;
   max-width: 500px;
@@ -15,7 +31,6 @@ const CardContainerDiv = styled.div`
   justify-self: center;
   gap: 25px;
   -webkit-column-break-inside: avoid;
-  column-break-inside: avoid;
   cursor: pointer;
 
   @media (max-width: 1025px) {
@@ -31,7 +46,7 @@ const CardContainerDiv = styled.div`
 
 const CardLinkWrapperA = styled.a`
   text-decoration: none !important;
-`
+`;
 
 const CardImageDiv = styled.div`
   margin-top: 27px;
@@ -72,17 +87,18 @@ const CardLinkA = styled.a`
   font-weight: 700;
   font-size: 14px;
   line-height: 14px;
-  color: #06966F !important;
+  color: #06966f !important;
   text-decoration: none !important;
   margin-top: 5px;
 
-  &:hover, :focus {
-    color: #00694D !important;
+  &:hover,
+  :focus {
+    color: #00694d !important;
     text-decoration: underline !important;
   }
 
   &:visited {
-    color: #00694D;
+    color: #00694d;
     text-decoration: none !important;
   }
 `;
@@ -119,7 +135,7 @@ const IconSVGDiv = styled.div`
   height: auto;
 
   @media (max-width: 1025px) {
-      width: 50px;
+    width: 50px;
   }
 `;
 
@@ -132,30 +148,28 @@ const Icon = ({ iconCode }) => (
 );
 
 const SVGIcon: React.FC<SVGProps> = ({
-    fill = "#65bd60",
-    width = "100%",
-    height = "auto",
-    viewBox, d
-  }) => {
-    return (
-      <IconCircleDiv>
-          <IconSVGDiv>
-          <svg
-              width={width}
-              height={height}
-              viewBox={viewBox}
-              fill={fill}
-              xmlns="http://www.w3.org/2000/svg"
-          >
-              <path
-              d={d}
-              />
-          </svg>
-          </IconSVGDiv>
-      </IconCircleDiv>
-    );
-  };
-
+  fill = "#65bd60",
+  width = "100%",
+  height = "auto",
+  viewBox,
+  d,
+}) => {
+  return (
+    <IconCircleDiv>
+      <IconSVGDiv>
+        <svg
+          width={width}
+          height={height}
+          viewBox={viewBox}
+          fill={fill}
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d={d} />
+        </svg>
+      </IconSVGDiv>
+    </IconCircleDiv>
+  );
+};
 
 // Card HTML
 
@@ -172,13 +186,15 @@ export const Card: React.FC<CardProps> = ({
     <CardLinkWrapperA href={linkUrl}>
       <CardContainerDiv>
         <CardImageDiv>
-          {svgSrc && <SVGIcon 
-              fill={svgSrc.fill} 
-              width={svgSrc.width} 
-              height={svgSrc.height} 
-              viewBox={svgSrc.viewBox} 
-              d={svgSrc.d} 
-          />}
+          {svgSrc && (
+            <SVGIcon
+              fill={svgSrc.fill}
+              width={svgSrc.width}
+              height={svgSrc.height}
+              viewBox={svgSrc.viewBox}
+              d={svgSrc.d}
+            />
+          )}
           {imageSrc && <img src={imageSrc} />}
           {iconCode && <Icon iconCode={iconCode} />}
         </CardImageDiv>
@@ -211,5 +227,4 @@ export interface SVGProps {
   height?: string;
   viewBox?: string;
   d?: string;
-
 }
