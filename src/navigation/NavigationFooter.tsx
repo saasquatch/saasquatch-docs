@@ -8,7 +8,7 @@ const FooterContainer = styled.footer`
   font-family: 'Helvetica';
   font-style: normal;
   padding-bottom: 30px;
-  @media(max-width: 800px) {
+  @media(max-width: 768px) {
     display: inline-block;
   }
 `;
@@ -16,7 +16,7 @@ const FooterContainer = styled.footer`
 const ListsWrapper = styled.div`
   width: calc(100%-165px);
   padding: 0 95px 0 70px;
-  @media(max-width: 800px) {
+  @media(max-width: 768px) {
     width: calc(100%-30px);
     padding: 0 15px;
   }
@@ -27,7 +27,7 @@ const ListDiv = styled.div`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   width: 100%;
   text-align: left;
-  @media(max-width: 800px) {
+  @media(max-width: 768px) {
     display: inline-block;
     -moz-column-count: 2;
     column-count: 2;
@@ -40,7 +40,7 @@ export const FooterUL = styled.ul`
   color: white;
   font-weight: 300;
   padding: 0 30px;
-  @media(max-width: 800px) {
+  @media(max-width: 768px) {
     padding: 0 15px;
     margin: 0 0 30px 0 !important;
     -webkit-column-break-inside: avoid;
