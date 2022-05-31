@@ -65,11 +65,18 @@
 .mm-menu .mm-navbar a,.mm-menu .mm-navbar>*{color:rgba(0,0,0,.3)}
 .mm-menu .mm-btn:after,.mm-menu .mm-btn:before{border-color:rgba(0,0,0,.3)}
 .mm-menu .mm-listview{border-color:rgba(0,0,0,.1)}
+
+/* Navigation arrow */
 .mm-menu .mm-listview>li .mm-arrow:after,.mm-menu .mm-listview>li .mm-next:after{border-color:rgba(0,0,0,.3)}
-/* Added font colour */
+
+/* Every list item: added font colour */
 .mm-menu .mm-listview>li a:not(.mm-next){-webkit-tap-highlight-color:rgba(255,255,255,.5);tap-highlight-color:rgba(255,255,255,.5);color:#003B45}
+
+/* Core section list heading after it is clicked: added bottom border */
 /* .mm-menu .mm-listview>li.mm-selected>a:not(.mm-next),.mm-menu .mm-listview>li.mm-selected>span{color:#fff;background:#003B45} */
 .mm-menu .mm-listview>li.mm-selected>a:not(.mm-next),.mm-menu .mm-listview>li.mm-selected>span{color:#003B45;border-bottom-width:1px;border-bottom-style:solid;border-bottom-color: #E2E2E2;} 
+
+/* No idea */
 .mm-menu .mm-divider,.mm-menu .mm-listview>li.mm-opened.mm-vertical>.mm-panel,.mm-menu .mm-listview>li.mm-opened.mm-vertical>a.mm-next,.mm-menu.mm-vertical .mm-listview>li.mm-opened>.mm-panel,.mm-menu.mm-vertical .mm-listview>li.mm-opened>a.mm-next{background:rgba(0,0,0,.05)}
 .mm-page{box-sizing:border-box;position:relative}
 .mm-slideout{-webkit-transition:-webkit-transform .4s ease;transition:-webkit-transform .4s ease;transition:transform .4s ease;transition:transform .4s ease,-webkit-transform .4s ease;z-index:1}

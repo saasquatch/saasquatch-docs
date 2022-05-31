@@ -60,6 +60,11 @@ const BigSectionLi = styled.li`
   cursor: pointer;
 `;
 
+const CoreHeaderLi = styled.li`
+  cursor: pointer;
+  border-bottom: 1px solid red !important;
+`;
+
 const SmallSectionLi = styled.li`
   font-size: 14px;
   color: #003b45;
@@ -75,7 +80,12 @@ const SmallSectionLi = styled.li`
   }
 `;
 
-const CategoryDividerLi = styled.li``;
+const DividerHr = styled.hr`
+  margin: -20px 0 !important;
+  border: 0 !important;
+  border-top: 1px solid #eee !important;
+  border-bottom: 0px solid #fff !important;
+`;
 
 const DropdownButton = styled.button``;
 
@@ -84,8 +94,8 @@ const DropdownContainerDiv = styled.div``;
 const BigSectionUl = styled.ul``;
 
 const SmallSectionUl = styled.ul`
-  list-style: none;
-  border-left: 1px solid #003b45;
+  list-style: none !important;
+  border-left: 1px solid #003b45 !important;
 `;
 
 /* MMenu Stuff */
@@ -138,9 +148,9 @@ export function NavigationSidebar() {
             <Link to="/success/">Success Center</Link>
             {/* Success Center Subcategories */}
             <BigSectionUl>
-              <BigSectionLi>
+              <CoreHeaderLi>
                 <Link to="/success/">Success Center</Link>
-              </BigSectionLi>
+              </CoreHeaderLi>
               <BigSectionLi>
                 <span onClick={() => setGrowthAuto(!growthAuto)}>
                   Growth Automation
