@@ -42,7 +42,7 @@ Feature: Docs Footer
 
 
     @ui
-    Scenario Outline: Breakpoints for the different screen sizes
+    Scenario Outline: The footer displays a variable amount of columns based on screen size
         Given a user viewing the footer from a <device> device
         Then the breakpoint width is <breakpoint>
         When they change to a different screen size
