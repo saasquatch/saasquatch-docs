@@ -38,7 +38,7 @@ export const TBody = styled.tbody``;
 
 export const TH = styled.th`
   font-size: 13px;
-  font-weight: bold;
+  font-weight: var(--sq-font-weight-bold);
   color: var(--sq-text);
   text-align: left;
 
