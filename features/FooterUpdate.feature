@@ -32,6 +32,14 @@ Feature: Docs Footer Update
             | Legal     | Privacy Policy    | https://www.saasquatch.com/privacy-policy/                                    |
             | Legal     | Terms of Use      | https://www.saasquatch.com/terms-of-use/                                      |
 
+    @motivating
+    Scenario: At the bottom of the footer there is copywrite and address information
+        Given the user looks at the bottom of the footer
+        Then the following information is visible
+
+            | Copyright © 2022 SaaSquatch.com. All rights reserved.     |
+            | 1017 Fort St, Victoria, British Columbia, V8V 3K5, Canada |
+
 
     @ui
     Scenario Outline: Breakpoints for the different screen sizes
@@ -46,8 +54,13 @@ Feature: Docs Footer Update
             | small laptop | 1025px     |
             | large laptop | 1920px     |
 
+    @ui
+    Scenario: Visual design of the footer categories and sub-categories
+        Given the user looks at the footer
+        Then the user can see that the <category> font type is <fontType>
+        And the <category> font case is <case>
+        And there is <line> line under the text
 
-
-Look-design
-
-copywrite and address
+            | category     | fontType | case       | line |
+            | Header       | bold     | upper case | no   |
+            | Sub-category | normal   | title case | one  |
