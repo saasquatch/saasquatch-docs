@@ -50,10 +50,10 @@ const CoreCatSectionLi = styled.li`
     background-color: #e7edee;
   }
 
-  &:active ${Link}, :visited ${Link} {
+  /* &:active ${Link}, :visited ${Link} {
     color: #ffffff !important;
     background-color: #003b45 !important;
-  }
+  } */
 `;
 
 const BigSectionLi = styled.li`
@@ -75,10 +75,10 @@ const SmallSectionLi = styled.li`
     background-color: #e7edee;
   }
 
-  &:active ${Link}, :visited ${Link} {
+  /* &:active ${Link}, :visited ${Link} {
     color: #ffffff;
     background-color: #003b45;
-  }
+  } */
 `;
 
 const DividerHr = styled.hr`
@@ -97,6 +97,17 @@ const BigSectionUl = styled.ul``;
 const SmallSectionUl = styled.ul`
   list-style: none !important;
   border-left: 1px solid #003b45 !important;
+`;
+
+const StyledLink = styled(Link)`
+  &:active {
+    color: #ffffff !important;
+    background-color: #003b45 !important;
+  }
+  &:visited {
+    color: #ffffff !important;
+    background-color: #003b45 !important;
+  }
 `;
 
 /* MMenu Stuff */
@@ -142,15 +153,15 @@ export function NavigationSidebar() {
       <nav id="my-menu">
         <ul className="baseMenu">
           <CoreCatSectionLi>
-            <Link>SaaSquatch Product News</Link>
+            <StyledLink>SaaSquatch Product News</StyledLink>
           </CoreCatSectionLi>
 
           <CoreCatSectionLi>
-            <Link to="/success/">Success Center</Link>
+            <StyledLink to="/success/">Success Center</StyledLink>
             {/* Success Center Subcategories */}
             <BigSectionUl>
               <CoreHeaderLi>
-                <Link to="/success/">Success Center</Link>
+                <StyledLink to="/success/">Success Center</StyledLink>
               </CoreHeaderLi>
               <BigSectionLi>
                 <span onClick={() => setGrowthAuto(!growthAuto)}>
@@ -163,10 +174,10 @@ export function NavigationSidebar() {
                       <Link>Small section 1</Link>
                     </SmallSectionLi>
                     <SmallSectionLi>
-                      <Link>Small section 2</Link>
+                      <StyledLink>Small section 2</StyledLink>
                     </SmallSectionLi>
                     <SmallSectionLi>
-                      <Link>Small section 3</Link>
+                      <StyledLink>Small section 3</StyledLink>
                     </SmallSectionLi>
                   </SmallSectionUl>
                 )}
@@ -180,13 +191,13 @@ export function NavigationSidebar() {
                 {referralPrograms && (
                   <SmallSectionUl>
                     <SmallSectionLi>
-                      <Link>Small section 1</Link>
+                      <StyledLink>Small section 1</StyledLink>
                     </SmallSectionLi>
                     <SmallSectionLi>
-                      <Link>Small section 2</Link>
+                      <StyledLink>Small section 2</StyledLink>
                     </SmallSectionLi>
                     <SmallSectionLi>
-                      <Link>Small section 3</Link>
+                      <StyledLink>Small section 3</StyledLink>
                     </SmallSectionLi>
                   </SmallSectionUl>
                 )}
@@ -200,13 +211,13 @@ export function NavigationSidebar() {
                 {programReferences && (
                   <SmallSectionUl>
                     <SmallSectionLi>
-                      <Link>Small section 1</Link>
+                      <StyledLink>Small section 1</StyledLink>
                     </SmallSectionLi>
                     <SmallSectionLi>
-                      <Link>Small section 2</Link>
+                      <StyledLink>Small section 2</StyledLink>
                     </SmallSectionLi>
                     <SmallSectionLi>
-                      <Link>Small section 3</Link>
+                      <StyledLink>Small section 3</StyledLink>
                     </SmallSectionLi>
                   </SmallSectionUl>
                 )}
@@ -220,13 +231,13 @@ export function NavigationSidebar() {
                 {adminPortal && (
                   <SmallSectionUl>
                     <SmallSectionLi>
-                      <Link>Small section 1</Link>
+                      <StyledLink>Small section 1</StyledLink>
                     </SmallSectionLi>
                     <SmallSectionLi>
-                      <Link>Small section 2</Link>
+                      <StyledLink>Small section 2</StyledLink>
                     </SmallSectionLi>
                     <SmallSectionLi>
-                      <Link>Small section 3</Link>
+                      <StyledLink>Small section 3</StyledLink>
                     </SmallSectionLi>
                   </SmallSectionUl>
                 )}
@@ -240,13 +251,13 @@ export function NavigationSidebar() {
                 {programReference && (
                   <SmallSectionUl>
                     <SmallSectionLi>
-                      <Link>Small section 1</Link>
+                      <StyledLink>Small section 1</StyledLink>
                     </SmallSectionLi>
                     <SmallSectionLi>
-                      <Link>Small section 2</Link>
+                      <StyledLink>Small section 2</StyledLink>
                     </SmallSectionLi>
                     <SmallSectionLi>
-                      <Link>Small section 3</Link>
+                      <StyledLink>Small section 3</StyledLink>
                     </SmallSectionLi>
                   </SmallSectionUl>
                 )}
@@ -260,13 +271,13 @@ export function NavigationSidebar() {
                 {programResources && (
                   <SmallSectionUl>
                     <SmallSectionLi>
-                      <Link>Small section 1</Link>
+                      <StyledLink>Small section 1</StyledLink>
                     </SmallSectionLi>
                     <SmallSectionLi>
-                      <Link>Small section 2</Link>
+                      <StyledLink>Small section 2</StyledLink>
                     </SmallSectionLi>
                     <SmallSectionLi>
-                      <Link>Small section 3</Link>
+                      <StyledLink>Small section 3</StyledLink>
                     </SmallSectionLi>
                   </SmallSectionUl>
                 )}
@@ -280,13 +291,13 @@ export function NavigationSidebar() {
                 {w9Compliance && (
                   <SmallSectionUl>
                     <SmallSectionLi>
-                      <Link>Small section 1</Link>
+                      <StyledLink>Small section 1</StyledLink>
                     </SmallSectionLi>
                     <SmallSectionLi>
-                      <Link>Small section 2</Link>
+                      <StyledLink>Small section 2</StyledLink>
                     </SmallSectionLi>
                     <SmallSectionLi>
-                      <Link>Small section 3</Link>
+                      <StyledLink>Small section 3</StyledLink>
                     </SmallSectionLi>
                   </SmallSectionUl>
                 )}
@@ -298,13 +309,13 @@ export function NavigationSidebar() {
                 {imports && (
                   <SmallSectionUl>
                     <SmallSectionLi>
-                      <Link>Small section 1</Link>
+                      <StyledLink>Small section 1</StyledLink>
                     </SmallSectionLi>
                     <SmallSectionLi>
-                      <Link>Small section 2</Link>
+                      <StyledLink>Small section 2</StyledLink>
                     </SmallSectionLi>
                     <SmallSectionLi>
-                      <Link>Small section 3</Link>
+                      <StyledLink>Small section 3</StyledLink>
                     </SmallSectionLi>
                   </SmallSectionUl>
                 )}
@@ -317,28 +328,28 @@ export function NavigationSidebar() {
             {/* Developer Center Subcategories */}
             <ul>
               <BigSectionLi>
-                <Link>Dev Center Home</Link>
+                <StyledLink>Dev Center Home</StyledLink>
               </BigSectionLi>
               <BigSectionLi>
-                <Link>Dev Guides</Link>
+                <StyledLink>Dev Guides</StyledLink>
               </BigSectionLi>
               <BigSectionLi>
-                <Link>JSON Web Tokens</Link>
+                <StyledLink>JSON Web Tokens</StyledLink>
               </BigSectionLi>
               <BigSectionLi>
-                <Link>Testing Best Practices</Link>
+                <StyledLink>Testing Best Practices</StyledLink>
               </BigSectionLi>
               <BigSectionLi>
                 <span>Squatch.js</span>
                 <ul>
                   <SmallSectionLi>
-                    <Link>#1</Link>
+                    <StyledLink>#1</StyledLink>
                   </SmallSectionLi>
                   <SmallSectionLi>
-                    <Link>#2</Link>
+                    <StyledLink>#2</StyledLink>
                   </SmallSectionLi>
                   <SmallSectionLi>
-                    <Link>#3</Link>
+                    <StyledLink>#3</StyledLink>
                   </SmallSectionLi>
                 </ul>
               </BigSectionLi>
@@ -347,13 +358,13 @@ export function NavigationSidebar() {
                 <span>Rest API</span>
                 <ul>
                   <SmallSectionLi>
-                    <Link>#1</Link>
+                    <StyledLink>#1</StyledLink>
                   </SmallSectionLi>
                   <SmallSectionLi>
-                    <Link>#2</Link>
+                    <StyledLink>#2</StyledLink>
                   </SmallSectionLi>
                   <SmallSectionLi>
-                    <Link>#3</Link>
+                    <StyledLink>#3</StyledLink>
                   </SmallSectionLi>
                 </ul>
               </BigSectionLi>

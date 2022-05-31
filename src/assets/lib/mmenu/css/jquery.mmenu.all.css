@@ -367,8 +367,7 @@ li.mm-vertical.mm-opened > .mm-panel {
   border-bottom-width: 1px;
   border-bottom-style: solid;
   border-bottom-color: #e2e2e2;
-
-/* No idea */
+}
 .mm-menu .mm-divider,
 .mm-menu .mm-listview > li.mm-opened.mm-vertical > .mm-panel,
 .mm-menu .mm-listview > li.mm-opened.mm-vertical > a.mm-next,
