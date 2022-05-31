@@ -4,16 +4,13 @@ Feature: Docs Footer Update
 
     New responsive design and links for the footer on the docs pages.
 
-    Background: A user arrives on the SaaSquatch help center page
-        Given the user stays on the 'https://docs.saasquatch.com/' pages
-        Then the footer categories are visible
-
 
     @motivating
-    Scenario: Categories and links for the footer
-        Given the user looks at the footer
-        Then the following categories and links are visible
-        And the user can click on them
+    Scenario: The footer displays resources with distinct links grouped into 4 different categories
+        Given the user viewing the footer
+        Then then they see the following categories and links
+
+            | Category  | Sub-category      | Link                                                                          |
             | Product   | Login             | https://app.referralsaasquatch.com                                            |
             | Product   | Customer Loyalty  | https://www.saasquatch.com/loyalty-program-software/                          |
             | Product   | Customer Referral | https://www.saasquatch.com/referral-program-software/                         |
@@ -32,19 +29,23 @@ Feature: Docs Footer Update
             | Legal     | Privacy Policy    | https://www.saasquatch.com/privacy-policy/                                    |
             | Legal     | Terms of Use      | https://www.saasquatch.com/terms-of-use/                                      |
 
+        When they click on a sub-category the link is opening up
+
     @motivating
     Scenario: At the bottom of the footer there is copywrite and address information
-        Given the user looks at the bottom of the footer
-        Then the following information is visible
-
+        Given Given the user viewing the bottom of the footer
+        Then they see the following information
+            | Company information                                       |
             | Copyright © 2022 SaaSquatch.com. All rights reserved.     |
             | 1017 Fort St, Victoria, British Columbia, V8V 3K5, Canada |
 
 
     @ui
     Scenario Outline: Breakpoints for the different screen sizes
-        Given the user is looking at the footer from a <device> device
+        Given the user viewing the footer from a <device> device
         Then the breakpoint width is <breakpoint>
+        When they change to a different screen size 
+        Then they experience responsive design changes on the page
 
         Examples:
 
@@ -56,8 +57,8 @@ Feature: Docs Footer Update
 
     @ui
     Scenario: Visual design of the footer categories and sub-categories
-        Given the user looks at the footer
-        Then the user can see that the <category> font type is <fontType>
+        Given the user viewing the footer
+        Then they see that the <category> font type is <fontType>
         And the <category> font case is <case>
         And there is <line> line under the text
 
