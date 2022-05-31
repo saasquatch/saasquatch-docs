@@ -33,7 +33,7 @@ Feature: Docs Footer Update
 
     @motivating
     Scenario: At the bottom of the footer there is copywrite and address information
-        Given Given the user viewing the bottom of the footer
+        Given A user viewing the bottom of the footer
         Then they see the following information
             | Company information                                       |
             | Copyright © 2022 SaaSquatch.com. All rights reserved.     |
