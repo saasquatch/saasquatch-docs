@@ -68,6 +68,7 @@ const CoreHeaderLi = styled.li`
 const SmallSectionLi = styled.li`
   font-size: 14px;
   color: #003b45;
+  background-color: red !important;
   padding: 10px;
   &:hover,
   :focus {
