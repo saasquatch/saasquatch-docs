@@ -12,6 +12,83 @@ import ApiSidebar from "./ApiSidebar";
 import useBrowserEffect from "src/util/useBrowserEffect";
 // import "mmenu-js/dist/mmenu.css"
 
+import styled from "styled-components";
+
+/* Styled Components */
+const PageTitleH3 = styled.h3`
+  color: var(--sq-text);
+`;
+
+const ListItemWrapperLi = styled.li`
+  height: 40px;
+  width: 100%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background-color: pink;
+  }
+`;
+
+const LinkWrapperA = styled.a`
+  display: flex;
+  flex-direction: row;
+`;
+
+/* Actual styled components */
+const CoreCatSectionLi = styled.li`
+  height: 65px;
+  background-color: #ffffff;
+  font-family: "Helvetica";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+
+  &:hover,
+  :focus {
+    background-color: #e7edee;
+  }
+
+  &:active ${Link}, :visited ${Link} {
+    color: #ffffff !important;
+    background-color: #003b45 !important;
+  }
+`;
+
+const BigSectionLi = styled.li`
+  cursor: pointer;
+`;
+
+const SmallSectionLi = styled.li`
+  font-size: 14px;
+  color: #003b45;
+  padding: 10px;
+  &:hover,
+  :focus {
+    background-color: #e7edee;
+  }
+
+  &:active ${Link}, :visited ${Link} {
+    color: #ffffff;
+    background-color: #003b45;
+  }
+`;
+
+const CategoryDividerLi = styled.li``;
+
+const DropdownButton = styled.button``;
+
+const DropdownContainerDiv = styled.div``;
+
+const BigSectionUl = styled.ul``;
+
+const SmallSectionUl = styled.ul`
+  list-style: none;
+  border-left: 1px solid #003b45;
+`;
+
+/* MMenu Stuff */
 function useMMenu() {
   const [mmenuApi, setMMenuApi] = useState(null);
   return {
@@ -29,7 +106,18 @@ export const MMenuContext = createContainer(useMMenu);
 export const modalRoot =
   typeof document === "undefined" ? undefined : document.createElement("div");
 
+/* Rendering Function */
 export function NavigationSidebar() {
+  /* Initialise unclicked list items to false (for dropdown) */
+  const [growthAuto, setGrowthAuto] = useState<boolean>(false);
+  const [referralPrograms, setReferralPrograms] = useState<boolean>(false);
+  const [programReferences, setProgramReferences] = useState<boolean>(false);
+  const [adminPortal, setAdminPortal] = useState<boolean>(false);
+  const [programReference, setProgramReference] = useState<boolean>(false);
+  const [programResources, setProgramResources] = useState<boolean>(false);
+  const [w9Compliance, setW9Compliance] = useState<boolean>(false);
+  const [imports, setImports] = useState<boolean>(false);
+
   const history: History<any> = useHistory();
   // const container = useRef(null);
   const mmenu = MMenuContext.useContainer();
@@ -39,554 +127,437 @@ export function NavigationSidebar() {
   }, [modalRoot]);
 
   return (
-    <Styles.Container
-    //ref={container}
-    >
+    <Styles.Container>
       <nav id="my-menu">
         <ul className="baseMenu">
-          <li>
-            <Link to="/product-news">
-              <i
-                style={{ marginRight: "1.2em" }}
-                className="fa fa-fw fa-bullhorn fa-1.5x"
-              ></i>
-              SaaSquatch Product News
-            </Link>
-          </li>
-          <li className="integrations">
-            <Link to="/integrations/">
-              <i className="fa fa-fw fa-cubes fa-1.5x"></i>
-              Integrations
-              <br />
-            </Link>
-            <ul>
-              <li>
-                <Link to="/integrations/">
-                  <i className="fa fa-fw fa-cubes fa-1.5x"></i>
-                  Integrations
-                </Link>
-              </li>
-              <li className="Divider">Growth Automation</li>
-              <li>
-                <Link to="/salesforce/">Salesforce Integration</Link>
-                <ul>
-                  <li>
-                    <Link to="/salesforce/">Salesforce Integration</Link>
-                  </li>
-                  <li>
-                    <Link to="/salesforce/user-guide/">
-                      Salesforce User Guide
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/salesforce/faq/">Salesforce FAQ</Link>
-                  </li>
-                  <li>
-                    <Link to="/salesforce/install-guide/">
-                      Salesforce Install Guide
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <Link to="/sftp/">SFTP Integration</Link>
-                <ul>
-                  <li>
-                    <Link to="/sftp/">SFTP Integration</Link>
-                  </li>
-                  <li>
-                    <Link to="/integrations/sftp/">
-                      SFTP Configuration Guide
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <Link to="/segment/">Segment Integration</Link>
-                <ul>
-                  <li>
-                    <Link to="/segment/">Segment Integration</Link>
-                  </li>
-                  <li>
-                    <Link to="/integrations/segment-v2/">
-                      Segment Integration V2
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/integrations/segment-v2/subscription/">
-                      Segment Subscription
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/integrations/segment-v2/stream/">
-                      Segment Stream
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <Link to="/tangocard/">Tangocard Integration</Link>
-                <ul>
-                  <li>
-                    <Link to="/tangocard/">Tangocard Integration</Link>
-                  </li>
-                  <li>
-                    <Link to="/tangocard-connection/">
-                      Tangocard Setup Guide
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <Link to="/recurly/">Recurly Integration</Link>
-                <ul>
-                  <li>
-                    <Link to="/recurly/">Recurly Integration</Link>
-                  </li>
-                  <li>
-                    <Link to="/developer/recurly/">Recurly Install Guide</Link>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <Link to="/appsflyer-software-integration/">
-                  Appsflyer Integration
-                </Link>
-                <ul>
-                  <li>
-                    <Link to="/appsflyer-software-integration/">
-                      Appsflyer Integration
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/mobile/appsflyer/">Appsflyer Quickstart</Link>
-                  </li>
-                  <li>
-                    <Link to="/mobile/appsflyer/reference/">
-                      Appsflyer Tech Reference
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <Link to="/branch-metrics/">Branch Integration</Link>
-                <ul>
-                  <li>
-                    <Link to="/branch-metrics/">Branch Integration</Link>
-                  </li>
-                  <li>
-                    <Link to="/mobile/branch-metrics/">
-                      Branch Metrics Integration - Quickstart
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/mobile/branch-metrics/reference/">
-                      Branch Metrics Reference
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <Link to="/stripe/">Stripe Integration</Link>
-                <ul>
-                  <li>
-                    <Link to="/stripe/">Stripe Integration</Link>
-                  </li>
-                  <li>
-                    <Link to="/developer/stripe-v2-install-guide/">
-                      Stripe Install Guide
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <Link to="/zapier/">Zapier Integration</Link>
-                <ul>
-                  <li>
-                    <Link to="/zapier/">Zapier Integration</Link>
-                  </li>
-                  <li>
-                    <Link to="/integrations/zapier">
-                      Zapier Quickstart Guide
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <Link to="/stitch/">Stitch Integration</Link>
-                <ul>
-                  <li>
-                    <Link to="/stitch/">Stitch Integration</Link>
-                  </li>
-                  <li>
-                    <Link to="/developer/stitch/quickstart">
-                      Stitch Integration Guide
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li className="successCenter">
-            <Link to="/success/">
-              <i className="fa big fas fa-info-circle fa-2x"></i>
-              Success Center
-              <br />
-            </Link>
-            <ul>
-              <li>
-                <Link to="/success/">
-                  Success Center Home
-                  <br />
-                  <small>Articles, Guides & Management Tools</small>
-                </Link>
-              </li>
-              <li>
-                <span>
-                  <i className="fa big fas fa-info-circle fa-1.5x"></i>
-                  Learn About SaaSquatch
+          <CoreCatSectionLi>
+            <Link>SaaSquatch Product News</Link>
+          </CoreCatSectionLi>
+
+          <CoreCatSectionLi>
+            <Link to="/success/">Success Center</Link>
+            {/* Success Center Subcategories */}
+            <BigSectionUl>
+              <BigSectionLi>
+                <Link to="/success/">Success Center</Link>
+              </BigSectionLi>
+              <BigSectionLi>
+                <span onClick={() => setGrowthAuto(!growthAuto)}>
+                  Growth Automation
                 </span>
-                <ul>
-                  <li className="Divider">Growth Automation</li>
-                  <li>
-                    <Link to="/growth/ga-101">Growth Automation 101</Link>
-                  </li>
-                  <li>
-                    <Link to="/growth/customer-lifecycle">
-                      Growth Automation Customer Lifecycle
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/growth/saasquatch-ga">
-                      SaaSquatch Growth Automation Platform
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/program/library">Program Library</Link>
-                  </li>
-                  <li>
-                    <Link to="/feature/rewards">Program Reward Options</Link>
-                  </li>
-                  <li>
-                    <Link to="/success/ga-analytics">
-                      Analytics Overview for Growth Automation Programs
-                    </Link>
-                  </li>
-                  <li className="Divider">Referral Programs</li>
-                  <li>
-                    <Link to="/success/intro">Referral Programs 101</Link>
-                  </li>
-                  <li>
-                    <Link to="/success/core-topics">
-                      The SaaSquatch Referral Program Loop
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/success/share-options">
-                      Referral Program Sharing Options
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/success/referral-feed">The Referral Feed</Link>
-                  </li>
-                  <li>
-                    <Link to="/success/referral-security">
-                      Security Management System
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/features/analytics">Program Analytics</Link>
-                  </li>
 
-                  <li className="Divider">Program References</li>
-                  <li>
-                    <Link to="/success/referral-program-optimization">
-                      Referral Program Optimization
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/success/touchpoints">
-                      Referral Marketing Channels
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/success/referral-program-retargeting">
-                      Referral Program Retargeting
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/success/analytics-data">
-                      Understanding Your Program Analytics Data
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/fraud-and-security">
-                      Fraud, Security & Fake Referrals
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/themes/custom">Custom Program Themes</Link>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <span>
-                  <i className="fa big fas fa-edit fa-1.5x"></i>
-                  Program Management
+                {growthAuto && (
+                  <SmallSectionUl>
+                    <SmallSectionLi>
+                      <Link>Small section 1</Link>
+                    </SmallSectionLi>
+                    <SmallSectionLi>
+                      <Link>Small section 2</Link>
+                    </SmallSectionLi>
+                    <SmallSectionLi>
+                      <Link>Small section 3</Link>
+                    </SmallSectionLi>
+                  </SmallSectionUl>
+                )}
+              </BigSectionLi>
+
+              <BigSectionLi>
+                <span onClick={() => setReferralPrograms(!referralPrograms)}>
+                  Referral Programs
                 </span>
-                <ul>
-                  <li>
-                    <Link to="/guides/?isSuccessCenter=true">
-                      <i className="fa fa-fw fa-life-ring"></i>
-                      Go to SaaSquatch Guides
-                    </Link>
-                  </li>
-                  <li className="Divider">Administration Portal</li>
-                  <li>
-                    <Link to="/success/using-referral-saasquatch">
-                      Using the SaaSquatch Portal
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/success/navigating-the-portal/">
-                      Navigating the SaaSquatch Portal
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/guides/one-time">
-                      Manual User Actions: Add a Reward, Referral or Event
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/guides/manage-rewards">
-                      Managing Existing User Rewards
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/designer/email-editor">
-                      Designing Your Program Emails
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/designer/widget-editor">
-                      Customize Program Widgets
-                    </Link>
-                  </li>
-                  <li className="Divider">Program Reference</li>
-                  <li>
-                    <Link to="/growth/quickstart">
-                      Growth Automation Program General Quickstart
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/growth/ga-mechanisms">
-                      Growth Automation Program Mechanisms
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/guides/referral-quickstart">
-                      Growth Automation Referral Program - Quickstart
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/developer/purchase-object">
-                      User Purchase &amp; Refund Event
-                    </Link>
-                  </li>
-                  <li className="Divider">Program Resources</li>
-                  <li>
-                    <Link to="/features/user-segmentation">
-                      User Segmentation
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/features/program-i18n">
-                      Program Internationalization
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/features/program-and-portal-statistics">
-                      Program and Portal Statistics
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/success/gift-card-rewards">
-                      Gift Card Rewards
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/features/rewards-fuel-tank">
-                      Fuel Tank Rewards
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/features/reward-exchange">Reward Exchange</Link>
-                  </li>
-                  <li>
-                    <Link to="/designer/short-tags">
-                      Email Template Short Tags
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/features/reports/">Program Reports</Link>
-                  </li>
-                  <li className="Divider">W-9 Compliance</li>
-                  <li>
-                    <Link to="/features/w-9-compliance">W-9 Compliance</Link>
-                  </li>
-                  <li>
-                    <Link to="/features/managing-w-9-compliance-for-participants">
-                      Managing W-9 Compliance
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/features/configuring-your-reward-catalog-for-w-9">
-                      Configuring your Rewards for W-9
-                    </Link>
-                  </li>
-                  <li className="Divider">Imports</li>
-                  <li>
-                    <Link to="/guides/user-import/">Bulk User Import</Link>
-                  </li>
-                  <li>
-                    <Link to="/guides/bulk-reward-redemption/">
-                      Bulk Reward Redemption Import
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/guides/bulk-user-delete/">
-                      Bulk User Delete Import
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/guides/event-import">Bulk Event Import</Link>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li className="developerCenter">
-            <Link to="/developer/">
-              <i className="fa big fas fa-cog fa-2x"></i>
-              Developer Center
-            </Link>
+
+                {referralPrograms && (
+                  <SmallSectionUl>
+                    <SmallSectionLi>
+                      <Link>Small section 1</Link>
+                    </SmallSectionLi>
+                    <SmallSectionLi>
+                      <Link>Small section 2</Link>
+                    </SmallSectionLi>
+                    <SmallSectionLi>
+                      <Link>Small section 3</Link>
+                    </SmallSectionLi>
+                  </SmallSectionUl>
+                )}
+              </BigSectionLi>
+
+              <BigSectionLi>
+                <span onClick={() => setProgramReferences(!programReferences)}>
+                  Program References
+                </span>
+
+                {programReferences && (
+                  <SmallSectionUl>
+                    <SmallSectionLi>
+                      <Link>Small section 1</Link>
+                    </SmallSectionLi>
+                    <SmallSectionLi>
+                      <Link>Small section 2</Link>
+                    </SmallSectionLi>
+                    <SmallSectionLi>
+                      <Link>Small section 3</Link>
+                    </SmallSectionLi>
+                  </SmallSectionUl>
+                )}
+              </BigSectionLi>
+
+              <BigSectionLi>
+                <span onClick={() => setAdminPortal(!adminPortal)}>
+                  Administration Portal
+                </span>
+
+                {adminPortal && (
+                  <SmallSectionUl>
+                    <SmallSectionLi>
+                      <Link>Small section 1</Link>
+                    </SmallSectionLi>
+                    <SmallSectionLi>
+                      <Link>Small section 2</Link>
+                    </SmallSectionLi>
+                    <SmallSectionLi>
+                      <Link>Small section 3</Link>
+                    </SmallSectionLi>
+                  </SmallSectionUl>
+                )}
+              </BigSectionLi>
+
+              <BigSectionLi>
+                <span onClick={() => setProgramReference(!programReference)}>
+                  Program Reference
+                </span>
+
+                {programReference && (
+                  <SmallSectionUl>
+                    <SmallSectionLi>
+                      <Link>Small section 1</Link>
+                    </SmallSectionLi>
+                    <SmallSectionLi>
+                      <Link>Small section 2</Link>
+                    </SmallSectionLi>
+                    <SmallSectionLi>
+                      <Link>Small section 3</Link>
+                    </SmallSectionLi>
+                  </SmallSectionUl>
+                )}
+              </BigSectionLi>
+
+              <BigSectionLi>
+                <span onClick={() => setProgramResources(!programResources)}>
+                  Program Resources
+                </span>
+
+                {programResources && (
+                  <SmallSectionUl>
+                    <SmallSectionLi>
+                      <Link>Small section 1</Link>
+                    </SmallSectionLi>
+                    <SmallSectionLi>
+                      <Link>Small section 2</Link>
+                    </SmallSectionLi>
+                    <SmallSectionLi>
+                      <Link>Small section 3</Link>
+                    </SmallSectionLi>
+                  </SmallSectionUl>
+                )}
+              </BigSectionLi>
+
+              <BigSectionLi>
+                <span onClick={() => setW9Compliance(!w9Compliance)}>
+                  W-9 Compliance
+                </span>
+
+                {w9Compliance && (
+                  <SmallSectionUl>
+                    <SmallSectionLi>
+                      <Link>Small section 1</Link>
+                    </SmallSectionLi>
+                    <SmallSectionLi>
+                      <Link>Small section 2</Link>
+                    </SmallSectionLi>
+                    <SmallSectionLi>
+                      <Link>Small section 3</Link>
+                    </SmallSectionLi>
+                  </SmallSectionUl>
+                )}
+              </BigSectionLi>
+
+              <BigSectionLi>
+                <span onClick={() => setImports(!imports)}>Imports</span>
+
+                {imports && (
+                  <SmallSectionUl>
+                    <SmallSectionLi>
+                      <Link>Small section 1</Link>
+                    </SmallSectionLi>
+                    <SmallSectionLi>
+                      <Link>Small section 2</Link>
+                    </SmallSectionLi>
+                    <SmallSectionLi>
+                      <Link>Small section 3</Link>
+                    </SmallSectionLi>
+                  </SmallSectionUl>
+                )}
+              </BigSectionLi>
+            </BigSectionUl>
+          </CoreCatSectionLi>
+
+          <CoreCatSectionLi>
+            <Link>Developer Center</Link>
+            {/* Developer Center Subcategories */}
             <ul>
-              <li>
-                <Link to="/developer/">
-                  Dev Center Home
-                  <br />
-                  <small>Build on our SDKs, APIs and JS</small>
-                </Link>
-              </li>
-              <li>
-                <Link to="/guides/">
-                  <i className="fa fa-fw small fa-code"></i>
-                  Dev Guides
-                </Link>
-              </li>
-              <li>
-                <Link to="/topics/json-web-tokens">JSON Web Tokens</Link>
-              </li>
-              <li>
-                <Link to="/developer/testing">Testing Best Practices</Link>
-              </li>
-              <li>
-                <Link to="/developer/squatchjs">
-                  <i className="fa fa-fw small fa-html5"></i>
-                  Squatch.js
-                </Link>
+              <BigSectionLi>
+                <Link>Dev Center Home</Link>
+              </BigSectionLi>
+              <BigSectionLi>
+                <Link>Dev Guides</Link>
+              </BigSectionLi>
+              <BigSectionLi>
+                <Link>JSON Web Tokens</Link>
+              </BigSectionLi>
+              <BigSectionLi>
+                <Link>Testing Best Practices</Link>
+              </BigSectionLi>
+              <BigSectionLi>
+                <span>Squatch.js</span>
                 <ul>
-                  <li>
-                    <Link to="/developer/squatchjs/">About squatch.js</Link>
-                  </li>
-                  <li>
-                    <Link to="/developer/squatchjs/signed-requests">
-                      Signed Requests
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/developer/squatchjs/issue">Issue Code List</Link>
-                  </li>
-
-                  <li className="Divider">Version 2</li>
-
-                  <li>
-                    <Link to="/developer/squatchjs/v2">
-                      squatch.js Quickstart
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/developer/squatchjs/v2/advanced-use-cases">
-                      squatch.js Advanced Use Cases
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/developer/squatchjs/v2/reference">
-                      squatch.js Reference
-                    </Link>
-                  </li>
+                  <SmallSectionLi>
+                    <Link>#1</Link>
+                  </SmallSectionLi>
+                  <SmallSectionLi>
+                    <Link>#2</Link>
+                  </SmallSectionLi>
+                  <SmallSectionLi>
+                    <Link>#3</Link>
+                  </SmallSectionLi>
                 </ul>
-              </li>
-              <li>
-                <Link to="/api/">
-                  <i className="fa fa-fw fa-desktop"></i>
-                  REST API
-                </Link>
+              </BigSectionLi>
+
+              <BigSectionLi>
+                <span>Rest API</span>
                 <ul>
-                  <li>
-                    <Link to="/api/">API Overview</Link>
-                  </li>
-                  <li>
-                    <Link to="/api/authentication">Authentication</Link>
-                  </li>
-                  <li>
-                    <Link to="/api/openendpoints">API Open Endpoints</Link>
-                  </li>
-                  <li>
-                    <Link to="/api/errors">Errors</Link>
-                  </li>
-                  <li className="Divider">Webhooks</li>
-                  <li>
-                    <Link to="/api/webhooks">Webhooks Overview</Link>
-                  </li>
-                  <li>
-                    <Link to="/api/webhooks/security">Webhooks Security</Link>
-                  </li>
-
-                  <li className="Divider">API Reference</li>
-                  <li>
-                    <Link to="/api/methods">Full list of Methods</Link>
-                  </li>
-
-                  <ApiSidebar />
-                  <li>
-                    <Link to="/api/methods#hidden">Hidden Endpoints</Link>
-                  </li>
+                  <SmallSectionLi>
+                    <Link>#1</Link>
+                  </SmallSectionLi>
+                  <SmallSectionLi>
+                    <Link>#2</Link>
+                  </SmallSectionLi>
+                  <SmallSectionLi>
+                    <Link>#3</Link>
+                  </SmallSectionLi>
                 </ul>
-              </li>
-              <li>
-                <Link to="/graphql/reference/">
-                  <Styles.GraphQLLogo className="fa fa-fw" />
-                  GraphQL API
-                </Link>
+              </BigSectionLi>
+
+              <BigSectionLi>
+                <span>GraphQL API</span>
                 <ul>
-                  <li className="Divider">GraphQL Reference</li>
-                  <li>
-                    <Link to="/graphql/reference">Reference</Link>
-                  </li>
-
-                  <li className="Divider">GraphQL Tutorials</li>
-                  <li>
-                    <Link to="/graphql/custom-widget">
-                      Custom Widget via GraphQL
-                    </Link>
-                  </li>
+                  <SmallSectionLi>
+                    <Link>#1</Link>
+                  </SmallSectionLi>
+                  <SmallSectionLi>
+                    <Link>#2</Link>
+                  </SmallSectionLi>
+                  <SmallSectionLi>
+                    <Link>#3</Link>
+                  </SmallSectionLi>
                 </ul>
-              </li>
+              </BigSectionLi>
             </ul>
-          </li>
+          </CoreCatSectionLi>
+
+          <CoreCatSectionLi>
+            <Link>Integrations</Link>
+            {/* Integrations Subcategories */}
+            <ul>
+              <BigSectionLi>
+                <span>Salesforce</span>
+                <ul>
+                  <SmallSectionLi>
+                    <Link>#1</Link>
+                  </SmallSectionLi>
+                  <SmallSectionLi>
+                    <Link>#2</Link>
+                  </SmallSectionLi>
+                  <SmallSectionLi>
+                    <Link>#3</Link>
+                  </SmallSectionLi>
+                </ul>
+              </BigSectionLi>
+
+              <BigSectionLi>
+                <span>Rest API</span>
+                <ul>
+                  <SmallSectionLi>
+                    <Link>#1</Link>
+                  </SmallSectionLi>
+                  <SmallSectionLi>
+                    <Link>#2</Link>
+                  </SmallSectionLi>
+                  <SmallSectionLi>
+                    <Link>#3</Link>
+                  </SmallSectionLi>
+                </ul>
+              </BigSectionLi>
+
+              <BigSectionLi>
+                <span>SFTP</span>
+                <ul>
+                  <SmallSectionLi>
+                    <Link>#1</Link>
+                  </SmallSectionLi>
+                  <SmallSectionLi>
+                    <Link>#2</Link>
+                  </SmallSectionLi>
+                  <SmallSectionLi>
+                    <Link>#3</Link>
+                  </SmallSectionLi>
+                </ul>
+              </BigSectionLi>
+
+              <BigSectionLi>
+                <span>SFTP</span>
+                <ul>
+                  <SmallSectionLi>
+                    <Link>#1</Link>
+                  </SmallSectionLi>
+                  <SmallSectionLi>
+                    <Link>#2</Link>
+                  </SmallSectionLi>
+                  <SmallSectionLi>
+                    <Link>#3</Link>
+                  </SmallSectionLi>
+                </ul>
+              </BigSectionLi>
+
+              <BigSectionLi>
+                <span>Segment</span>
+                <ul>
+                  <SmallSectionLi>
+                    <Link>#1</Link>
+                  </SmallSectionLi>
+                  <SmallSectionLi>
+                    <Link>#2</Link>
+                  </SmallSectionLi>
+                  <SmallSectionLi>
+                    <Link>#3</Link>
+                  </SmallSectionLi>
+                </ul>
+              </BigSectionLi>
+
+              <BigSectionLi>
+                <span>Tangocard</span>
+                <ul>
+                  <SmallSectionLi>
+                    <Link>#1</Link>
+                  </SmallSectionLi>
+                  <SmallSectionLi>
+                    <Link>#2</Link>
+                  </SmallSectionLi>
+                  <SmallSectionLi>
+                    <Link>#3</Link>
+                  </SmallSectionLi>
+                </ul>
+              </BigSectionLi>
+
+              <BigSectionLi>
+                <span>Recurly</span>
+                <ul>
+                  <SmallSectionLi>
+                    <Link>#1</Link>
+                  </SmallSectionLi>
+                  <SmallSectionLi>
+                    <Link>#2</Link>
+                  </SmallSectionLi>
+                  <SmallSectionLi>
+                    <Link>#3</Link>
+                  </SmallSectionLi>
+                </ul>
+              </BigSectionLi>
+
+              <BigSectionLi>
+                <span>Appsflyer</span>
+                <ul>
+                  <SmallSectionLi>
+                    <Link>#1</Link>
+                  </SmallSectionLi>
+                  <SmallSectionLi>
+                    <Link>#2</Link>
+                  </SmallSectionLi>
+                  <SmallSectionLi>
+                    <Link>#3</Link>
+                  </SmallSectionLi>
+                </ul>
+              </BigSectionLi>
+
+              <BigSectionLi>
+                <span>Branch</span>
+                <ul>
+                  <SmallSectionLi>
+                    <Link>#1</Link>
+                  </SmallSectionLi>
+                  <SmallSectionLi>
+                    <Link>#2</Link>
+                  </SmallSectionLi>
+                  <SmallSectionLi>
+                    <Link>#3</Link>
+                  </SmallSectionLi>
+                </ul>
+              </BigSectionLi>
+
+              <BigSectionLi>
+                <span>Stripe</span>
+                <ul>
+                  <SmallSectionLi>
+                    <Link>#1</Link>
+                  </SmallSectionLi>
+                  <SmallSectionLi>
+                    <Link>#2</Link>
+                  </SmallSectionLi>
+                  <SmallSectionLi>
+                    <Link>#3</Link>
+                  </SmallSectionLi>
+                </ul>
+              </BigSectionLi>
+
+              <BigSectionLi>
+                <span>Zapier</span>
+                <ul>
+                  <SmallSectionLi>
+                    <Link>#1</Link>
+                  </SmallSectionLi>
+                  <SmallSectionLi>
+                    <Link>#2</Link>
+                  </SmallSectionLi>
+                  <SmallSectionLi>
+                    <Link>#3</Link>
+                  </SmallSectionLi>
+                </ul>
+              </BigSectionLi>
+
+              <BigSectionLi>
+                <span>Stitch</span>
+                <ul>
+                  <SmallSectionLi>
+                    <Link>#1</Link>
+                  </SmallSectionLi>
+                  <SmallSectionLi>
+                    <Link>#2</Link>
+                  </SmallSectionLi>
+                  <SmallSectionLi>
+                    <Link>#3</Link>
+                  </SmallSectionLi>
+                </ul>
+              </BigSectionLi>
+            </ul>
+          </CoreCatSectionLi>
         </ul>
       </nav>
     </Styles.Container>
   );
 }
+
+/* Notes
+    - Each sidebar option should have link nested around root (i.e. "Integrations") so that when clicked, children appear
+    - SVG icons instead of fa icon codes
+    - How to make child menu open?
+    - Search bar needs to change (just slight width adjustment)
+*/

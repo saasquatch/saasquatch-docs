@@ -78,7 +78,6 @@ function MenuItemView({
   refs,
   data,
 }: ReturnType<typeof useMenuItemHook>) {
-
   if (data.endpoints.length <= 0) {
     return null;
   }

@@ -41,9 +41,14 @@
 .mm-listview>li,.mm-listview>li .mm-next,.mm-listview>li .mm-next:before,.mm-listview>li:after{border-color:inherit}
 .mm-listview>li>a,.mm-listview>li>span{color:inherit;display:block;padding:10px 10px 10px 20px;margin:0}
 .mm-listview>li>a.mm-arrow,.mm-listview>li>span.mm-arrow{padding-right:50px}
-.mm-listview>li:not(.mm-divider):after{content:'';border-bottom-width:1px;border-bottom-style:solid;display:block;position:absolute;right:0;bottom:0;left:20px}
+
+/* Getting rid of borders around sidebar options */
+/* .mm-listview>li:not(.mm-divider):after{content:'';border-bottom-width:1px;border-bottom-style:solid;display:block;position:absolute;right:0;bottom:0;left:20px} */
+.mm-listview>li:not(.mm-divider):after{content:'';border-bottom-width:0px;border-bottom-style:none;display:block;position:absolute;right:0;bottom:0;left:20px}
 .mm-listview .mm-next{background:rgba(3,2,1,0);width:50px;padding:0;position:absolute;right:0;top:0;bottom:0;z-index:2}
-.mm-listview .mm-next:before{content:'';border-left-width:1px;border-left-style:solid;display:block;position:absolute;top:0;bottom:0;left:0}
+/* .mm-listview .mm-next:before{content:'';border-left-width:1px;border-left-style:solid;display:block;position:absolute;top:0;bottom:0;left:0} */
+
+.mm-listview .mm-next:before{content:'';border-left-width:1px;border-left-style:none;display:block;position:absolute;top:0;bottom:0;left:0}
 .mm-listview .mm-next+a,.mm-listview .mm-next+span{margin-right:50px}
 .mm-listview .mm-next.mm-fullsubopen{width:100%}
 .mm-listview .mm-next.mm-fullsubopen:before{border-left:none}
@@ -61,8 +66,10 @@
 .mm-menu .mm-btn:after,.mm-menu .mm-btn:before{border-color:rgba(0,0,0,.3)}
 .mm-menu .mm-listview{border-color:rgba(0,0,0,.1)}
 .mm-menu .mm-listview>li .mm-arrow:after,.mm-menu .mm-listview>li .mm-next:after{border-color:rgba(0,0,0,.3)}
-.mm-menu .mm-listview>li a:not(.mm-next){-webkit-tap-highlight-color:rgba(255,255,255,.5);tap-highlight-color:rgba(255,255,255,.5)}
-.mm-menu .mm-listview>li.mm-selected>a:not(.mm-next),.mm-menu .mm-listview>li.mm-selected>span{color:#fff;background:#003B45}
+/* Added font colour */
+.mm-menu .mm-listview>li a:not(.mm-next){-webkit-tap-highlight-color:rgba(255,255,255,.5);tap-highlight-color:rgba(255,255,255,.5);color:#003B45}
+/* .mm-menu .mm-listview>li.mm-selected>a:not(.mm-next),.mm-menu .mm-listview>li.mm-selected>span{color:#fff;background:#003B45} */
+.mm-menu .mm-listview>li.mm-selected>a:not(.mm-next),.mm-menu .mm-listview>li.mm-selected>span{color:#003B45;border-bottom-width:1px;border-bottom-style:solid;border-bottom-color: #E2E2E2;} 
 .mm-menu .mm-divider,.mm-menu .mm-listview>li.mm-opened.mm-vertical>.mm-panel,.mm-menu .mm-listview>li.mm-opened.mm-vertical>a.mm-next,.mm-menu.mm-vertical .mm-listview>li.mm-opened>.mm-panel,.mm-menu.mm-vertical .mm-listview>li.mm-opened>a.mm-next{background:rgba(0,0,0,.05)}
 .mm-page{box-sizing:border-box;position:relative}
 .mm-slideout{-webkit-transition:-webkit-transform .4s ease;transition:-webkit-transform .4s ease;transition:transform .4s ease;transition:transform .4s ease,-webkit-transform .4s ease;z-index:1}
