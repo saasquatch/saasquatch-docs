@@ -4,11 +4,11 @@ import styled from "styled-components";
 const FooterContainer = styled.footer`
   padding-top: 20px;
   max-height: 800px;
-  background: #003B45;
-  font-family: 'Helvetica';
+  background: #003b45;
+  font-family: "Helvetica";
   font-style: normal;
   padding-bottom: 30px;
-  @media(max-width: 768px) {
+  @media (max-width: 768px) {
     display: inline-block;
   }
 `;
@@ -16,7 +16,7 @@ const FooterContainer = styled.footer`
 const ListsWrapper = styled.div`
   width: calc(100%-165px);
   padding: 0 95px 0 70px;
-  @media(max-width: 768px) {
+  @media (max-width: 768px) {
     width: calc(100%-30px);
     padding: 0 15px;
   }
@@ -27,7 +27,7 @@ const ListDiv = styled.div`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   width: 100%;
   text-align: left;
-  @media(max-width: 768px) {
+  @media (max-width: 768px) {
     display: inline-block;
     -moz-column-count: 2;
     column-count: 2;
@@ -40,22 +40,20 @@ export const FooterUL = styled.ul`
   color: white;
   font-weight: 300;
   padding: 0 30px;
-  @media(max-width: 768px) {
+  @media (max-width: 768px) {
     padding: 0 15px;
     margin: 0 0 30px 0 !important;
     -webkit-column-break-inside: avoid;
     column-break-inside: avoid;
   }
-
 `;
-
 
 const TitleLi = styled.li`
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
   text-transform: uppercase;
-  color: #FFFFFF;
+  color: #ffffff;
   border-bottom: none !important;
   margin-bottom: 12px !important;
 `;
@@ -65,7 +63,7 @@ const InnerLi = styled.li`
     font-weight: 300;
     font-size: 14px;
     line-height: 16px;
-    color: #FFFFFF !important;
+    color: #ffffff !important;
     opacity: 0.8 !important;
   }
   :not(:last-child) {
@@ -90,11 +88,9 @@ const FooterParagraph = styled.p`
   font-size: 14px;
   line-height: 16px;
   text-align: center;
-  color: #FFFFFF;
+  color: #ffffff;
   opacity: 0.8;
-
 `;
-
 
 export function NavigationFooter() {
   return (
@@ -104,7 +100,7 @@ export function NavigationFooter() {
         <ListsWrapper>
           {/* <div className="row-fluid docs-footer-menu"> */}
           <ListDiv>
-            <div >
+            <div>
               <FooterUL>
                 <TitleLi>Product</TitleLi>
                 <InnerLi>
@@ -116,12 +112,12 @@ export function NavigationFooter() {
                   </a>
                 </InnerLi>
                 <InnerLi>
-                  <a href="https://www.saasquatch.com/loyalty-program-2/">
+                  <a href="https://www.saasquatch.com/loyalty-program-software/">
                     Customer Loyalty
                   </a>
                 </InnerLi>
                 <InnerLi>
-                  <a href="https://www.saasquatch.com/customer-referrals/">
+                  <a href="https://www.saasquatch.com/referral-program-software/">
                     Customer Referral
                   </a>
                 </InnerLi>
@@ -131,9 +127,7 @@ export function NavigationFooter() {
                   </a>
                 </InnerLi>
                 <InnerLi>
-                  <a href="https://status.referralsaasquatch.com/">
-                    Status Page
-                  </a>
+                  <a href="https://status.saasquatch.com/">Status Page</a>
                 </InnerLi>
               </FooterUL>
             </div>
@@ -149,14 +143,10 @@ export function NavigationFooter() {
                   </a>
                 </InnerLi>
                 <InnerLi>
-                  <a href="https://www.saasquatch.com/careers">
-                    Careers
-                  </a>
+                  <a href="https://www.saasquatch.com/careers">Careers</a>
                 </InnerLi>
                 <InnerLi>
-                  <a href="https://www.saasquatch.com/contact-us">
-                    Contact Us
-                  </a>
+                  <a href="https://www.saasquatch.com/contact/">Contact Us</a>
                 </InnerLi>
               </FooterUL>
             </div>
@@ -164,9 +154,7 @@ export function NavigationFooter() {
               <FooterUL>
                 <TitleLi>Resources</TitleLi>
                 <InnerLi>
-                  <a href="https://www.saasquatch.com/blog">
-                    Blog
-                  </a>
+                  <a href="https://www.saasquatch.com/blog">Blog</a>
                 </InnerLi>
                 <InnerLi>
                   <a href="https://www.saasquatch.com/the-advocacy-channel-a-customer-marketing-podcast/">
@@ -208,8 +196,8 @@ export function NavigationFooter() {
           </ListDiv>
           <BottomContainer>
             <FooterParagraph>
-              Copyright © {new Date().getFullYear()} Referral SaaSquatch.com.
-              All rights reserved.
+              Copyright © {new Date().getFullYear()} SaaSquatch.com. All rights
+              reserved.
             </FooterParagraph>
             <FooterParagraph>
               1017 Fort St, Victoria, British Columbia, V8V 3K5, Canada
