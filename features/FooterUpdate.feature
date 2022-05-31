@@ -1,14 +1,14 @@
 @owner:derek
 @author:lilla
-Feature: Docs Footer Update
+Feature: Docs Footer
 
     New responsive design and links for the footer on the docs pages.
 
 
     @motivating
     Scenario: The footer displays resources with distinct links grouped into 4 different categories
-        Given the user viewing the footer
-        Then then they see the following categories and links
+        Given a user viewing the footer
+        Then they see the following categories and links
 
             | Category  | Sub-category      | Link                                                                          |
             | Product   | Login             | https://app.referralsaasquatch.com                                            |
@@ -29,11 +29,12 @@ Feature: Docs Footer Update
             | Legal     | Privacy Policy    | https://www.saasquatch.com/privacy-policy/                                    |
             | Legal     | Terms of Use      | https://www.saasquatch.com/terms-of-use/                                      |
 
-        When they click on a sub-category the link is opening up
+        When they click on a sub-category
+        Then the link is opening up
 
     @motivating
     Scenario: At the bottom of the footer there is copywrite and address information
-        Given A user viewing the bottom of the footer
+        Given a user viewing the bottom of the footer
         Then they see the following information
             | Company information                                       |
             | Copyright © 2022 SaaSquatch.com. All rights reserved.     |
@@ -42,22 +43,23 @@ Feature: Docs Footer Update
 
     @ui
     Scenario Outline: Breakpoints for the different screen sizes
-        Given the user viewing the footer from a <device> device
+        Given a user viewing the footer from a <device> device
         Then the breakpoint width is <breakpoint>
-        When they change to a different screen size 
-        Then they experience responsive design changes on the page
+        When they change to a different screen size
+        Then they experience responsive design changes
+        And they see <footerColumn> columns in the footer
 
         Examples:
 
-            | device       | breakpoint |
-            | mobile       | 363px      |
-            | tablet       | 768px      |
-            | small laptop | 1025px     |
-            | large laptop | 1920px     |
+            | device       | breakpoint | footerColumn |
+            | mobile       | 363px      | 2            |
+            | tablet       | 768px      | 2            |
+            | small laptop | 1025px     | 4            |
+            | large laptop | 1920px     | 4            |
 
     @ui
     Scenario: Visual design of the footer categories and sub-categories
-        Given the user viewing the footer
+        Given a user viewing the footer
         Then they see that the <category> font type is <fontType>
         And the <category> font case is <case>
         And there is <line> line under the text
