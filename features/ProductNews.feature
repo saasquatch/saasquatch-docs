@@ -1,14 +1,14 @@
 @owner:derek
 @author:lilla
 
-Feature: Docs Product News Page
+Feature: Product News Page
 
     Display the Product News Page with cards to navigate to news.
 
     @motivating
-    Scenario: There are two filter options at the top of the news column to filter based on tags and dates
-        Given a user wants to filter the news feed
-        Then they can select from the following dropdown filter items for type
+    Scenario: Product news updates can be filtered by type
+        Given a user selects from the type dropdown
+        Then they can see the following items
 
             | postType         |
             | All Posts        |
@@ -16,9 +16,12 @@ Feature: Docs Product News Page
             | Monthly Updates  |
             | Product Updates  |
 
-        And they can select from the following dropdown items for dates
+    @motivating
+    Scenario: Product news updates can be filtered by date
+        Given a user selects from the date dropdown
+        Then they can see the following items
 
-            | dates         |
+            | date          |
             | From All-time |
             | Last 30 days  |
             | Past Year     |
@@ -34,11 +37,15 @@ Feature: Docs Product News Page
             | Tags      |
             | Content   |
 
-        And they see a 'CTA button' if the following settings are included in the contentful editor
+    @ui
+    Scenario: CTA button visibility
+        Given the following settings are filled up in contentful
 
             | CTA Settings    |
             | CTA Link        |
             | CTA Button Text |
+
+        Then the user can see the CTA Button
 
     @motivating
     Scenario: If the button is visible it takes the user to a detailed content page set up in contentful
