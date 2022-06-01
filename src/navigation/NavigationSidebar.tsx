@@ -44,16 +44,12 @@ const CoreCatSectionLi = styled.li`
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
+  color: black !important;
 
   &:hover,
   :focus {
     background-color: #e7edee;
   }
-
-  /* &:active ${Link}, :visited ${Link} {
-    color: #ffffff !important;
-    background-color: #003b45 !important;
-  } */
 `;
 
 const BigSectionLi = styled.li`
@@ -62,23 +58,21 @@ const BigSectionLi = styled.li`
 
 const CoreHeaderLi = styled.li`
   cursor: pointer;
-  border-bottom: 1px solid red !important;
+  border-bottom: 1px solid #e2e2e2 !important;
 `;
 
 const SmallSectionLi = styled.li`
   font-size: 14px;
   color: #003b45;
-  background-color: red !important;
   padding: 10px;
   &:hover,
   :focus {
     background-color: #e7edee;
   }
 
-  /* &:active ${Link}, :visited ${Link} {
-    color: #ffffff;
-    background-color: #003b45;
-  } */
+  &:visited {
+    background-color: pink;
+  }
 `;
 
 const DividerHr = styled.hr`
@@ -99,16 +93,7 @@ const SmallSectionUl = styled.ul`
   border-left: 1px solid #003b45 !important;
 `;
 
-const StyledLink = styled(Link)`
-  &:active {
-    color: #ffffff !important;
-    background-color: #003b45 !important;
-  }
-  &:visited {
-    color: #ffffff !important;
-    background-color: #003b45 !important;
-  }
-`;
+const StyledLink = styled(Link)``;
 
 /* MMenu Stuff */
 function useMMenu() {

@@ -364,9 +364,6 @@ li.mm-vertical.mm-opened > .mm-panel {
 .mm-menu .mm-listview > li.mm-selected > a:not(.mm-next),
 .mm-menu .mm-listview > li.mm-selected > span {
   color: #003b45;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  border-bottom-color: #e2e2e2;
 }
 .mm-menu .mm-divider,
 .mm-menu .mm-listview > li.mm-opened.mm-vertical > .mm-panel,
