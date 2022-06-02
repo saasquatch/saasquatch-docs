@@ -237,12 +237,15 @@ li.mm-vertical.mm-opened > .mm-panel {
 .mm-listview > li .mm-next:before,
 .mm-listview > li:after {
   border-color: inherit;
+  margin: 0;
+  padding: 0;
 }
 .mm-listview > li > a,
 .mm-listview > li > span {
   color: inherit;
   display: block;
-  padding: 10px 10px 10px 20px;
+  /* Got rid of this */
+  padding: 10px 10px 10px 10px;
   margin: 0;
 }
 .mm-listview > li > a.mm-arrow,
@@ -349,7 +352,8 @@ li.mm-vertical.mm-opened > .mm-panel {
 /* Navigation arrow */
 .mm-menu .mm-listview > li .mm-arrow:after,
 .mm-menu .mm-listview > li .mm-next:after {
-  border-color: rgba(0, 0, 0, 0.3);
+  /* border-color: rgba(0, 0, 0, 0.3); */
+  border-color: #003b45;
 }
 
 /* Every list item: added font colour */
@@ -935,14 +939,14 @@ html.mm-dropdown.mm-opened:not(.mm-opening) .mm-menu {
   -webkit-overflow-scrolling: touch;
   overflow-x: auto;
   text-align: left;
-  padding: 0 0 0 17px;
+  padding: 0 0 0 10px;
 }
 .mm-navbar .mm-breadcrumbs > * {
   display: inline-block;
   padding: 10px 3px;
 }
 .mm-navbar .mm-breadcrumbs > a {
-  text-decoration: underline;
+  text-decoration: none;
 }
 .mm-navbar.mm-hasbtns .mm-breadcrumbs {
   margin-left: -40px;
