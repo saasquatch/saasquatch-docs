@@ -115,6 +115,31 @@ const ListItemWithCaretDiv = styled.div`
   justify-content: space-between;
 `;
 
+const SeperatorLi = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 11px;
+  gap: 10px;
+`;
+
+const SeperatorTextP = styled.p`
+  align-self: center;
+  width: fit-content;
+  white-space: nowrap;
+  text-transform: uppercase;
+  color: #999999;
+  font-size: 12px;
+  line-height: 18px;
+  margin: 0 !important;
+`;
+
+const SeperatorLineDiv = styled.div`
+  height: 1px;
+  width: 100%;
+  background-color: #e2e2e2;
+`;
+
 const StyledLink = styled(Link)``;
 
 const SVGIcon: React.FC<SVGProps> = ({
@@ -599,6 +624,10 @@ export function NavigationSidebar() {
                     <SmallSectionLi>
                       <StyledLink>Small section 2</StyledLink>
                     </SmallSectionLi>
+                    <SeperatorLi>
+                      <SeperatorTextP>version 2</SeperatorTextP>{" "}
+                      <SeperatorLineDiv />
+                    </SeperatorLi>
                     <SmallSectionLi>
                       <StyledLink>Small section 3</StyledLink>
                     </SmallSectionLi>
