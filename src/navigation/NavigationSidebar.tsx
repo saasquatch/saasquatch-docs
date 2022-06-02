@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { History } from "history";
 import { HashLink as Link } from "react-router-hash-link";
@@ -34,16 +34,13 @@ const CoreCatSectionLi = styled.li`
   justify-content: center;
   align-items: center;
   height: 65px;
-  background-color: #ffffff;
   font-family: "Helvetica";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: black !important;
 
-  &:hover,
-  :focus {
+  &:hover {
     background-color: #e7edee;
   }
 `;
@@ -193,14 +190,55 @@ const GreyButton = styled(GreenButton)`
 
 const OpenButton = styled.button``;
 
-const StyledLink = styled(Link)``;
+const StyledLink = styled(Link)<Clicked>`
+  background-color: ${(props) => (props.onPage ? "#003B45" : "white")};
+  color: ${(props) => (props.onPage ? "white" : "#003B45")} !important;
+  > SVGIcon {
+  }
+`;
+
+const TestSectionLi = styled.li`
+  width: 100%;
+  padding: 8px 10px;
+  &:hover {
+    background-color: #e7edee;
+  }
+`;
+
+const TestLink = styled(Link)`
+  width: 100% !important;
+  font-size: 14px;
+  line-height: 21px;
+  color: #003b45;
+  padding: 8px 10px;
+  &:hover {
+    background-color: #e7edee;
+  }
+
+  &:visited {
+    background-color: pink;
+  }
+`;
+
+const TestA = styled.a`
+  font-size: 14px;
+  color: #003b45;
+  &:hover {
+    background-color: #e7edee;
+  }
+
+  &:visited {
+    background-color: #003b45 !important;
+  }
+`;
 
 const SVGIcon: React.FC<SVGProps> = ({
-  fill = "#003B45",
+  fill,
   width,
   height = "auto",
   viewBox,
   d,
+  onPage,
 }) => {
   return (
     <IconSVGDiv>
@@ -208,10 +246,11 @@ const SVGIcon: React.FC<SVGProps> = ({
         width={width}
         height={height}
         viewBox={viewBox}
-        fill={fill}
+        fill={onPage ? "white" : "#003B45"}
         xmlns="http://www.w3.org/2000/svg"
       >
         <path d={d} />
+        fill = {onPage ? "white" : "#003B45"}
       </svg>
     </IconSVGDiv>
   );
@@ -268,6 +307,9 @@ export function NavigationSidebar() {
   const [zapier, setZapier] = useState<boolean>(false);
   const [stitch, setStitch] = useState<boolean>(false);
 
+  /* Clicked list item changes */
+  const [productNewsColor, setProductNewsColor] = useState<boolean>(false);
+
   const history: History<any> = useHistory();
   // const container = useRef(null);
   const mmenu = MMenuContext.useContainer();
@@ -276,14 +318,24 @@ export function NavigationSidebar() {
     mmenu.mmenuApi = init(modalRoot, history);
   }, [modalRoot]);
 
+  useEffect(() => {
+    console.log(window.location.pathname);
+    if (window.location.pathname == "/product/") {
+      setProductNewsColor(true);
+    } else {
+      setProductNewsColor(false);
+    }
+  }, [history]);
+
   return (
     <Styles.Container>
       <nav id="my-menu">
         <ul className="baseMenu">
           <CoreCatSectionLi>
-            <StyledLink to="/product-news">
+            <StyledLink to="/product-news" onPage={productNewsColor}>
               <ListItemContentDiv>
                 <SVGIcon
+                  onPage={productNewsColor}
                   width="85%"
                   viewBox="0 0 22 22"
                   d="M20.625 7.71718C21.4242 8.09531 22 9.11367 22 10.3125C22 11.5113 21.4242 12.5297 20.625 12.9078V19.25C20.625 19.8043 20.2898 20.307 19.7742 20.5219C19.2629 20.7324 18.6699 20.6164 18.2789 20.2211L16.4012 18.309C14.3387 16.2465 11.5414 15.125 8.62383 15.125H8.25V20.625C8.25 21.3855 7.63555 22 6.875 22H4.125C3.36574 22 2.75 21.3855 2.75 20.625V15.125C1.23105 15.125 0 13.8918 0 12.375V8.25C0 6.7332 1.23105 5.5 2.75 5.5H8.62383C11.5414 5.5 14.3387 4.33984 16.4012 2.2782L18.2789 0.402741C18.6699 0.00951264 19.2629 -0.108114 19.7742 0.10471C20.2898 0.317534 20.625 0.818979 20.625 1.375V7.71718ZM8.62383 8.25H8.25V12.375H8.62383C12.0527 12.375 15.3484 13.6555 17.875 15.9543V4.6707C15.3484 6.96953 12.0527 8.25 8.62383 8.25Z"
@@ -302,7 +354,6 @@ export function NavigationSidebar() {
                   d="M43.3333 8.125C41.3359 8.125 39.7222 6.50508 39.7222 4.5C39.7222 2.49492 41.3359 0.875 43.3333 0.875H61.3889C63.3863 0.875 65 2.49492 65 4.5V22.625C65 24.6301 63.3863 26.25 61.3889 26.25C59.3915 26.25 57.7778 24.6301 57.7778 22.625V13.2566L38.6615 32.4352C37.2509 33.8512 34.9714 33.8512 33.5608 32.4352L21.5651 20.5066L6.16484 36.0602C4.75425 37.4762 2.46797 37.4762 1.0576 36.0602C-0.352535 34.6441 -0.352535 32.3559 1.0576 30.9398L19.1163 12.8148C20.5269 11.3988 22.8064 11.3988 24.217 12.8148L36.1111 24.7434L52.6658 8.02305L43.3333 8.125Z"
                 />
                 Success Center
-                <GreyButton>open endpoint</GreyButton>
               </ListItemContentDiv>
             </StyledLink>
             {/* Success Center Subcategories */}
@@ -338,9 +389,9 @@ export function NavigationSidebar() {
 
                 {growthAuto && (
                   <SmallSectionUl>
-                    <SmallSectionLi>
-                      <StyledLink>Small section 1</StyledLink>
-                    </SmallSectionLi>
+                    <TestA href="https://www.google.com/">
+                      <TestSectionLi>Test Section</TestSectionLi>
+                    </TestA>
                     <SmallSectionLi>
                       <StyledLink>Small section 2</StyledLink>
                     </SmallSectionLi>
@@ -1085,6 +1136,11 @@ interface SVGProps {
   height?: string;
   viewBox?: string;
   d?: string;
+  onPage?: boolean;
+}
+
+interface Clicked {
+  onPage?: boolean;
 }
 
 /* Notes
