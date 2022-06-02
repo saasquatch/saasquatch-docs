@@ -140,6 +140,59 @@ const SeperatorLineDiv = styled.div`
   background-color: #e2e2e2;
 `;
 
+const ReferralCodeLi = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  line-height: 21px;
+  padding: 8px 0;
+  padding-left: 11px;
+  gap: 4px;
+  &:hover,
+  :focus {
+    background-color: #e7edee;
+  }
+
+  &:visited {
+    background-color: pink;
+  }
+`;
+
+const ButtonsContainerDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+`;
+
+const GreenButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 12px;
+  color: #ffffff;
+  background-color: #06966f;
+  padding: 2px 5px;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+`;
+
+// @ts-ignore
+const OrangeButton = styled(GreenButton)`
+  background-color: #e79533;
+`;
+
+const GreyButton = styled(GreenButton)`
+  background-color: #999999;
+  text-transform: capitalize;
+`;
+
+const OpenButton = styled.button``;
+
 const StyledLink = styled(Link)``;
 
 const SVGIcon: React.FC<SVGProps> = ({
@@ -249,6 +302,7 @@ export function NavigationSidebar() {
                   d="M43.3333 8.125C41.3359 8.125 39.7222 6.50508 39.7222 4.5C39.7222 2.49492 41.3359 0.875 43.3333 0.875H61.3889C63.3863 0.875 65 2.49492 65 4.5V22.625C65 24.6301 63.3863 26.25 61.3889 26.25C59.3915 26.25 57.7778 24.6301 57.7778 22.625V13.2566L38.6615 32.4352C37.2509 33.8512 34.9714 33.8512 33.5608 32.4352L21.5651 20.5066L6.16484 36.0602C4.75425 37.4762 2.46797 37.4762 1.0576 36.0602C-0.352535 34.6441 -0.352535 32.3559 1.0576 30.9398L19.1163 12.8148C20.5269 11.3988 22.8064 11.3988 24.217 12.8148L36.1111 24.7434L52.6658 8.02305L43.3333 8.125Z"
                 />
                 Success Center
+                <GreyButton>open endpoint</GreyButton>
               </ListItemContentDiv>
             </StyledLink>
             {/* Success Center Subcategories */}
@@ -619,17 +673,26 @@ export function NavigationSidebar() {
                 {squatchJS && (
                   <SmallSectionUl>
                     <SmallSectionLi>
-                      <StyledLink>Small section 1</StyledLink>
+                      <StyledLink>About Squatch.js</StyledLink>
                     </SmallSectionLi>
                     <SmallSectionLi>
-                      <StyledLink>Small section 2</StyledLink>
+                      <StyledLink>Signed Requests</StyledLink>
+                    </SmallSectionLi>
+                    <SmallSectionLi>
+                      <StyledLink>Salesforce FAQ</StyledLink>
                     </SmallSectionLi>
                     <SeperatorLi>
-                      <SeperatorTextP>version 2</SeperatorTextP>{" "}
+                      <SeperatorTextP>Version 2</SeperatorTextP>{" "}
                       <SeperatorLineDiv />
                     </SeperatorLi>
                     <SmallSectionLi>
-                      <StyledLink>Small section 3</StyledLink>
+                      <StyledLink>Squatch.js Quickstart</StyledLink>
+                    </SmallSectionLi>
+                    <SmallSectionLi>
+                      <StyledLink>Squatch.js Advanced Use Cases</StyledLink>
+                    </SmallSectionLi>
+                    <SmallSectionLi>
+                      <StyledLink>Squatch.js Reference</StyledLink>
                     </SmallSectionLi>
                   </SmallSectionUl>
                 )}
@@ -650,11 +713,32 @@ export function NavigationSidebar() {
                 {restAPI && (
                   <SmallSectionUl>
                     <SmallSectionLi>
-                      <StyledLink>Small section 1</StyledLink>
+                      <StyledLink>Errors</StyledLink>
                     </SmallSectionLi>
-                    <SmallSectionLi>
-                      <StyledLink>Small section 2</StyledLink>
-                    </SmallSectionLi>
+                    <SeperatorLi>
+                      <SeperatorTextP>Version 2</SeperatorTextP>{" "}
+                      <SeperatorLineDiv />
+                    </SeperatorLi>
+                    <ReferralCodeLi>
+                      <StyledLink>Lookup a referral code</StyledLink>
+                      <ButtonsContainerDiv>
+                        <GreenButton>Get</GreenButton>
+                      </ButtonsContainerDiv>
+                    </ReferralCodeLi>
+                    <ReferralCodeLi>
+                      <StyledLink>Lookup a referral code</StyledLink>
+                      <ButtonsContainerDiv>
+                        <GreenButton>Get</GreenButton>
+                        <GreyButton>Open Endpoint</GreyButton>
+                      </ButtonsContainerDiv>
+                    </ReferralCodeLi>
+                    <ReferralCodeLi>
+                      <StyledLink>Apply a referral code</StyledLink>
+                      <ButtonsContainerDiv>
+                        <OrangeButton>Get</OrangeButton>
+                        <GreyButton>Open Endpoint</GreyButton>
+                      </ButtonsContainerDiv>
+                    </ReferralCodeLi>
                     <SmallSectionLi>
                       <StyledLink>Small section 3</StyledLink>
                     </SmallSectionLi>
