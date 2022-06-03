@@ -16,18 +16,25 @@ import styled from "styled-components";
 
 /* Styled Components */
 
-const ListItemContentDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
+/* Styled Link (should change style when clicked) */
+/* Parameter: clicked (boolean) */
+/* if: "?"" else: ":" */
+const StyledLink = styled(Link)`
+  background-color: ${(props) => (props.clicked ? "#003B45" : "white")};
+  color: ${(props) => (props.clicked ? "white" : "#003B45")} !important;
+  font-weight: ${(props) => (props.dropdownSelected ? "700" : "400")};
 `;
 
-const CoreHeaderDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
+/* ul styles */
+const BigSectionUl = styled.ul``;
+
+const SmallSectionUl = styled.ul`
+  list-style: none !important;
+  border-left: 1px solid #003b45 !important;
+  margin-left: 12px !important;
 `;
 
+/* Different list items in order of size */
 const CoreCatSectionLi = styled.li`
   display: flex;
   flex-direction: row;
@@ -39,34 +46,16 @@ const CoreCatSectionLi = styled.li`
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-
-  &:hover {
-    background-color: #e7edee;
-  }
-`;
-
-const BigSectionLi = styled.li`
-  font-size: 16px;
-  line-height: 24px;
-  cursor: pointer;
-
-  &:visited {
-    font-weight: 700;
-  }
 `;
 
 const CoreHeaderLi = styled.li`
   font-size: 16px;
   line-height: 24px;
-  /* padding: 17px 32px !important; */
-  cursor: pointer;
-  /* border-bottom: 1px solid #e2e2e2 !important; */
 `;
 
-const DividerLi = styled.li`
-  /* should be 8px */
-  height: 6px;
-  border-bottom: 1px solid #e2e2e2;
+const BigSectionLi = styled.li`
+  font-size: 16px;
+  line-height: 24px;
 `;
 
 const SmallSectionLi = styled.li`
@@ -74,37 +63,23 @@ const SmallSectionLi = styled.li`
   line-height: 21px;
   color: #003b45;
   padding: 8px 10px;
-  &:hover,
-  :focus {
-    background-color: #e7edee;
-  }
-
-  &:visited {
-    background-color: pink;
-  }
 `;
 
-const DividerHr = styled.hr`
-  margin: -20px 0 !important;
-  border: 0 !important;
-  border-top: 1px solid #eee !important;
-  border-bottom: 0px solid #fff !important;
+const DividerLi = styled.li`
+  height: 6px;
+  border-bottom: 1px solid #e2e2e2;
 `;
 
-const BigSectionUl = styled.ul``;
-
-const SmallSectionUl = styled.ul`
-  list-style: none !important;
-  border-left: 1px solid #003b45 !important;
-  margin-left: 12px !important;
-`;
-
-const IconSVGDiv = styled.div`
+/* Divs for spacing within each list item (space between SVG and text) */
+const ListItemContentDiv = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 25px;
-  height: auto;
+  flex-direction: row;
+  gap: 20px;
+`;
+
+// @ts-ignore
+const CoreHeaderDiv = styled(ListItemContentDiv)`
+  gap: 8px;
 `;
 
 const ListItemWithCaretDiv = styled.div`
@@ -112,6 +87,7 @@ const ListItemWithCaretDiv = styled.div`
   justify-content: space-between;
 `;
 
+/* Seperator styled components (to seperate versions, webhooks, etc. in Dev Center section) */
 const SeperatorLi = styled.div`
   display: flex;
   flex-direction: row;
@@ -137,6 +113,7 @@ const SeperatorLineDiv = styled.div`
   background-color: #e2e2e2;
 `;
 
+/* Referral code list items styled components (contain buttons and different layout than other list items) */
 const ReferralCodeLi = styled.div`
   display: flex;
   flex-direction: column;
@@ -148,10 +125,6 @@ const ReferralCodeLi = styled.div`
   &:hover,
   :focus {
     background-color: #e7edee;
-  }
-
-  &:visited {
-    background-color: pink;
   }
 `;
 
@@ -188,35 +161,12 @@ const GreyButton = styled(GreenButton)`
   text-transform: capitalize;
 `;
 
-const OpenButton = styled.button``;
-
-const StyledLink = styled(Link)<Clicked>`
-  background-color: ${(props) => (props.onPage ? "#003B45" : "white")};
-  color: ${(props) => (props.onPage ? "white" : "#003B45")} !important;
-  > SVGIcon {
-  }
-`;
-
+/* Experimental stuff */
 const TestSectionLi = styled.li`
   width: 100%;
   padding: 8px 10px;
   &:hover {
     background-color: #e7edee;
-  }
-`;
-
-const TestLink = styled(Link)`
-  width: 100% !important;
-  font-size: 14px;
-  line-height: 21px;
-  color: #003b45;
-  padding: 8px 10px;
-  &:hover {
-    background-color: #e7edee;
-  }
-
-  &:visited {
-    background-color: pink;
   }
 `;
 
@@ -232,13 +182,22 @@ const TestA = styled.a`
   }
 `;
 
+/* SVG icon container and render function */
+const IconSVGDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: auto;
+`;
+
 const SVGIcon: React.FC<SVGProps> = ({
   fill,
   width,
   height = "auto",
   viewBox,
   d,
-  onPage,
+  clicked,
 }) => {
   return (
     <IconSVGDiv>
@@ -246,11 +205,10 @@ const SVGIcon: React.FC<SVGProps> = ({
         width={width}
         height={height}
         viewBox={viewBox}
-        fill={onPage ? "white" : "#003B45"}
+        fill={clicked ? "white" : "#003B45"}
         xmlns="http://www.w3.org/2000/svg"
       >
         <path d={d} />
-        fill = {onPage ? "white" : "#003B45"}
       </svg>
     </IconSVGDiv>
   );
@@ -276,17 +234,6 @@ export const modalRoot =
 
 /* Rendering Function */
 export function NavigationSidebar() {
-  /* Initialise unclicked list items to false (for dropdown) */
-  /* Success Center */
-  const [growthAuto, setGrowthAuto] = useState<boolean>(false);
-  const [referralPrograms, setReferralPrograms] = useState<boolean>(false);
-  const [programReferences, setProgramReferences] = useState<boolean>(false);
-  const [adminPortal, setAdminPortal] = useState<boolean>(false);
-  const [programReference, setProgramReference] = useState<boolean>(false);
-  const [programResources, setProgramResources] = useState<boolean>(false);
-  const [w9Compliance, setW9Compliance] = useState<boolean>(false);
-  const [imports, setImports] = useState<boolean>(false);
-
   /* Developer Center */
   const [squatchJS, setSquatchJS] = useState<boolean>(false);
   const [restAPI, setRestAPI] = useState<boolean>(false);
@@ -307,9 +254,6 @@ export function NavigationSidebar() {
   const [zapier, setZapier] = useState<boolean>(false);
   const [stitch, setStitch] = useState<boolean>(false);
 
-  /* Clicked list item changes */
-  const [productNewsColor, setProductNewsColor] = useState<boolean>(false);
-
   const history: History<any> = useHistory();
   // const container = useRef(null);
   const mmenu = MMenuContext.useContainer();
@@ -318,24 +262,49 @@ export function NavigationSidebar() {
     mmenu.mmenuApi = init(modalRoot, history);
   }, [modalRoot]);
 
+  /* Clicked list item changes, will be applied to StyledLink */
+  /* This allows us to set the value of currentPage */
+  const [currentPage, setcurrentPage] = useState<string>("/");
+  // To change currentPage: setcurrentPage(true) OR setcurrentPage(false)
+
+  const [currentDropdown, setCurrentDropdown] = useState<string>("");
+
+  // when [history] changes, useEffect() runs, so when something is clicked, useEffect() evaluates what happened and what to do next
   useEffect(() => {
     console.log(window.location.pathname);
-    if (window.location.pathname == "/product/") {
-      setProductNewsColor(true);
-    } else {
-      setProductNewsColor(false);
+    switch (window.location.pathname) {
+      case "/product-news":
+        setcurrentPage("/product-news");
+        break;
+      case "/success/":
+        setcurrentPage("/success/");
+        break;
+      case "/developer/":
+        setcurrentPage("/developer/");
+        break;
+      case "/integrations/":
+        setcurrentPage("/integrations/");
+        break;
+      default:
+        setcurrentPage("/");
     }
-  }, [history]);
+
+    console.log("currentDropdown: ", { currentDropdown });
+  }, [window.location.pathname]);
 
   return (
     <Styles.Container>
       <nav id="my-menu">
         <ul className="baseMenu">
           <CoreCatSectionLi>
-            <StyledLink to="/product-news" onPage={productNewsColor}>
+            {/* When history changes (something is clicked) then useEffect will update the value of currentPage */}
+            <StyledLink
+              to="/product-news"
+              clicked={currentPage === "/product-news"}
+            >
               <ListItemContentDiv>
                 <SVGIcon
-                  onPage={productNewsColor}
+                  clicked={currentPage === "/product-news"}
                   width="85%"
                   viewBox="0 0 22 22"
                   d="M20.625 7.71718C21.4242 8.09531 22 9.11367 22 10.3125C22 11.5113 21.4242 12.5297 20.625 12.9078V19.25C20.625 19.8043 20.2898 20.307 19.7742 20.5219C19.2629 20.7324 18.6699 20.6164 18.2789 20.2211L16.4012 18.309C14.3387 16.2465 11.5414 15.125 8.62383 15.125H8.25V20.625C8.25 21.3855 7.63555 22 6.875 22H4.125C3.36574 22 2.75 21.3855 2.75 20.625V15.125C1.23105 15.125 0 13.8918 0 12.375V8.25C0 6.7332 1.23105 5.5 2.75 5.5H8.62383C11.5414 5.5 14.3387 4.33984 16.4012 2.2782L18.2789 0.402741C18.6699 0.00951264 19.2629 -0.108114 19.7742 0.10471C20.2898 0.317534 20.625 0.818979 20.625 1.375V7.71718ZM8.62383 8.25H8.25V12.375H8.62383C12.0527 12.375 15.3484 13.6555 17.875 15.9543V4.6707C15.3484 6.96953 12.0527 8.25 8.62383 8.25Z"
@@ -346,7 +315,7 @@ export function NavigationSidebar() {
           </CoreCatSectionLi>
 
           <CoreCatSectionLi>
-            <StyledLink to="/success/">
+            <StyledLink>
               <ListItemContentDiv>
                 <SVGIcon
                   width="100%"
@@ -375,7 +344,12 @@ export function NavigationSidebar() {
               <BigSectionLi>
                 <StyledLink
                   to="/growth/ga-101"
-                  onClick={() => setGrowthAuto(!growthAuto)}
+                  onClick={() =>
+                    currentDropdown === "growthAuto"
+                      ? setCurrentDropdown("")
+                      : setCurrentDropdown("growthAuto")
+                  }
+                  dropdownSelected={currentDropdown === "growthAuto"}
                 >
                   <ListItemWithCaretDiv>
                     Growth Automation
@@ -387,9 +361,9 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {growthAuto && (
+                {currentDropdown === "growthAuto" && (
                   <SmallSectionUl>
-                    <TestA href="https://www.google.com/">
+                    <TestA href="/growth/ga-101">
                       <TestSectionLi>Test Section</TestSectionLi>
                     </TestA>
                     <SmallSectionLi>
@@ -404,7 +378,12 @@ export function NavigationSidebar() {
 
               <BigSectionLi>
                 <StyledLink
-                  onClick={() => setReferralPrograms(!referralPrograms)}
+                  onClick={() =>
+                    currentDropdown === "referralPrograms"
+                      ? setCurrentDropdown("")
+                      : setCurrentDropdown("referralPrograms")
+                  }
+                  dropdownSelected={currentDropdown === "referralPrograms"}
                 >
                   <ListItemWithCaretDiv>
                     Referral Programs
@@ -416,7 +395,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {referralPrograms && (
+                {currentDropdown === "referralPrograms" && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -433,7 +412,12 @@ export function NavigationSidebar() {
 
               <BigSectionLi>
                 <StyledLink
-                  onClick={() => setProgramReferences(!programReferences)}
+                  onClick={() =>
+                    currentDropdown === "programReferences"
+                      ? setCurrentDropdown("")
+                      : setCurrentDropdown("programReferences")
+                  }
+                  dropdownSelected={currentDropdown === "programReferences"}
                 >
                   <ListItemWithCaretDiv>
                     Program References
@@ -445,34 +429,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {programReferences && (
-                  <SmallSectionUl>
-                    <SmallSectionLi>
-                      <StyledLink>Small section 1</StyledLink>
-                    </SmallSectionLi>
-                    <SmallSectionLi>
-                      <StyledLink>Small section 2</StyledLink>
-                    </SmallSectionLi>
-                    <SmallSectionLi>
-                      <StyledLink>Small section 3</StyledLink>
-                    </SmallSectionLi>
-                  </SmallSectionUl>
-                )}
-              </BigSectionLi>
-
-              <BigSectionLi>
-                <StyledLink onClick={() => setAdminPortal(!adminPortal)}>
-                  <ListItemWithCaretDiv>
-                    Administration Portal
-                    <SVGIcon
-                      width="12px"
-                      viewBox="0 0 12 8"
-                      d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
-                    />
-                  </ListItemWithCaretDiv>
-                </StyledLink>
-
-                {adminPortal && (
+                {currentDropdown === "programReferences" && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -489,7 +446,46 @@ export function NavigationSidebar() {
 
               <BigSectionLi>
                 <StyledLink
-                  onClick={() => setProgramReference(!programReference)}
+                  onClick={() =>
+                    currentDropdown === "adminPortal"
+                      ? setCurrentDropdown("")
+                      : setCurrentDropdown("adminPortal")
+                  }
+                  dropdownSelected={currentDropdown === "adminPortal"}
+                >
+                  <ListItemWithCaretDiv>
+                    Administration Portal
+                    <SVGIcon
+                      width="12px"
+                      viewBox="0 0 12 8"
+                      d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
+                    />
+                  </ListItemWithCaretDiv>
+                </StyledLink>
+
+                {currentDropdown === "adminPortal" && (
+                  <SmallSectionUl>
+                    <SmallSectionLi>
+                      <StyledLink>Small section 1</StyledLink>
+                    </SmallSectionLi>
+                    <SmallSectionLi>
+                      <StyledLink>Small section 2</StyledLink>
+                    </SmallSectionLi>
+                    <SmallSectionLi>
+                      <StyledLink>Small section 3</StyledLink>
+                    </SmallSectionLi>
+                  </SmallSectionUl>
+                )}
+              </BigSectionLi>
+
+              <BigSectionLi>
+                <StyledLink
+                  onClick={() =>
+                    currentDropdown === "programReference"
+                      ? setCurrentDropdown("")
+                      : setCurrentDropdown("programReference")
+                  }
+                  dropdownSelected={currentDropdown === "programReference"}
                 >
                   <ListItemWithCaretDiv>
                     Program Reference
@@ -501,7 +497,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {programReference && (
+                {currentDropdown === "programReference" && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -518,7 +514,12 @@ export function NavigationSidebar() {
 
               <BigSectionLi>
                 <StyledLink
-                  onClick={() => setProgramResources(!programResources)}
+                  onClick={() =>
+                    currentDropdown === "programResources"
+                      ? setCurrentDropdown("")
+                      : setCurrentDropdown("programResources")
+                  }
+                  dropdownSelected={currentDropdown === "programResources"}
                 >
                   <ListItemWithCaretDiv>
                     Program Resources
@@ -530,7 +531,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {programResources && (
+                {currentDropdown === "programResources" && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -546,7 +547,14 @@ export function NavigationSidebar() {
               </BigSectionLi>
 
               <BigSectionLi>
-                <StyledLink onClick={() => setW9Compliance(!w9Compliance)}>
+                <StyledLink
+                  onClick={() =>
+                    currentDropdown === "w9Compliance"
+                      ? setCurrentDropdown("")
+                      : setCurrentDropdown("w9Compliance")
+                  }
+                  dropdownSelected={currentDropdown === "w9Compliance"}
+                >
                   <ListItemWithCaretDiv>
                     W-9 Compliance
                     <SVGIcon
@@ -557,7 +565,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {w9Compliance && (
+                {currentDropdown === "w9Compliance" && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -573,7 +581,14 @@ export function NavigationSidebar() {
               </BigSectionLi>
 
               <BigSectionLi>
-                <StyledLink onClick={() => setImports(!imports)}>
+                <StyledLink
+                  onClick={() =>
+                    currentDropdown === "imports"
+                      ? setCurrentDropdown("")
+                      : setCurrentDropdown("imports")
+                  }
+                  dropdownSelected={currentDropdown === "imports"}
+                >
                   <ListItemWithCaretDiv>
                     Imports
                     <SVGIcon
@@ -584,7 +599,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {imports && (
+                {currentDropdown === "imports" && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -1136,11 +1151,7 @@ interface SVGProps {
   height?: string;
   viewBox?: string;
   d?: string;
-  onPage?: boolean;
-}
-
-interface Clicked {
-  onPage?: boolean;
+  clicked?: boolean;
 }
 
 /* Notes
