@@ -269,7 +269,6 @@ export function NavigationSidebar() {
 
   const [currentDropdown, setCurrentDropdown] = useState<string>("");
 
-  // when [history] changes, useEffect() runs, so when something is clicked, useEffect() evaluates what happened and what to do next
   useEffect(() => {
     console.log(window.location.pathname);
     switch (window.location.pathname) {
@@ -288,9 +287,8 @@ export function NavigationSidebar() {
       default:
         setcurrentPage("/");
     }
-
-    console.log("currentDropdown: ", { currentDropdown });
   }, [window.location.pathname]);
+  // when this is updated, useEffect runs again
 
   return (
     <Styles.Container>
@@ -645,7 +643,14 @@ export function NavigationSidebar() {
               <DividerLi />
 
               <BigSectionLi>
-                <StyledLink onClick={() => setDevGuides(!devGuides)}>
+                <StyledLink
+                  onClick={() =>
+                    currentDropdown === "devGuides"
+                      ? setCurrentDropdown("")
+                      : setCurrentDropdown("devGuides")
+                  }
+                  dropdownSelected={currentDropdown === "devGuides"}
+                >
                   <ListItemWithCaretDiv>
                     Dev Guides
                     <SVGIcon
@@ -656,7 +661,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {devGuides && (
+                {currentDropdown === "devGuides" && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -672,7 +677,14 @@ export function NavigationSidebar() {
               </BigSectionLi>
 
               <BigSectionLi>
-                <StyledLink onClick={() => setJSONWeb(!jsonWeb)}>
+                <StyledLink
+                  onClick={() =>
+                    currentDropdown === "jsonWeb"
+                      ? setCurrentDropdown("")
+                      : setCurrentDropdown("jsonWeb")
+                  }
+                  dropdownSelected={currentDropdown === "jsonWeb"}
+                >
                   <ListItemWithCaretDiv>
                     JSON Web Tokens
                     <SVGIcon
@@ -683,7 +695,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {jsonWeb && (
+                {currentDropdown === "jsonWeb" && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -699,7 +711,14 @@ export function NavigationSidebar() {
               </BigSectionLi>
 
               <BigSectionLi>
-                <StyledLink onClick={() => setBestPractices(!bestPractices)}>
+                <StyledLink
+                  onClick={() =>
+                    currentDropdown === "bestPractices"
+                      ? setCurrentDropdown("")
+                      : setCurrentDropdown("bestPractices")
+                  }
+                  dropdownSelected={currentDropdown === "bestPractices"}
+                >
                   <ListItemWithCaretDiv>
                     Testing Best Practices
                     <SVGIcon
@@ -710,7 +729,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {bestPractices && (
+                {currentDropdown === "bestPractices" && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -725,7 +744,14 @@ export function NavigationSidebar() {
                 )}
               </BigSectionLi>
               <BigSectionLi>
-                <StyledLink onClick={() => setSquatchJS(!squatchJS)}>
+                <StyledLink
+                  onClick={() =>
+                    currentDropdown === "squatchJS"
+                      ? setCurrentDropdown("")
+                      : setCurrentDropdown("squatchJS")
+                  }
+                  dropdownSelected={currentDropdown === "squatchJS"}
+                >
                   <ListItemWithCaretDiv>
                     Squatch.js
                     <SVGIcon
@@ -736,7 +762,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {squatchJS && (
+                {currentDropdown === "squatchJS" && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>About Squatch.js</StyledLink>
@@ -765,7 +791,14 @@ export function NavigationSidebar() {
               </BigSectionLi>
 
               <BigSectionLi>
-                <StyledLink onClick={() => setRestAPI(!restAPI)}>
+                <StyledLink
+                  onClick={() =>
+                    currentDropdown === "restAPI"
+                      ? setCurrentDropdown("")
+                      : setCurrentDropdown("restAPI")
+                  }
+                  dropdownSelected={currentDropdown === "restAPI"}
+                >
                   <ListItemWithCaretDiv>
                     REST API
                     <SVGIcon
@@ -776,7 +809,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {restAPI && (
+                {currentDropdown === "restAPI" && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Errors</StyledLink>
@@ -813,7 +846,14 @@ export function NavigationSidebar() {
               </BigSectionLi>
 
               <BigSectionLi>
-                <StyledLink onClick={() => setGraphQL(!graphQL)}>
+                <StyledLink
+                  onClick={() =>
+                    currentDropdown === "restAPI"
+                      ? setCurrentDropdown("")
+                      : setCurrentDropdown("restAPI")
+                  }
+                  dropdownSelected={currentDropdown === "restAPI"}
+                >
                   <ListItemWithCaretDiv>
                     GraphQL API
                     <SVGIcon
@@ -824,7 +864,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {graphQL && (
+                {currentDropdown === "restAPI" && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -870,7 +910,14 @@ export function NavigationSidebar() {
               </CoreHeaderLi>
               <DividerLi />
               <BigSectionLi>
-                <StyledLink onClick={() => setSalesforce(!salesforce)}>
+                <StyledLink
+                  onClick={() =>
+                    currentDropdown === "salesforce"
+                      ? setCurrentDropdown("")
+                      : setCurrentDropdown("salesforce")
+                  }
+                  dropdownSelected={currentDropdown === "salesforce"}
+                >
                   <ListItemWithCaretDiv>
                     Salesforce
                     <SVGIcon
@@ -881,7 +928,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {salesforce && (
+                {currentDropdown === "salesforce" && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -897,7 +944,14 @@ export function NavigationSidebar() {
               </BigSectionLi>
 
               <BigSectionLi>
-                <StyledLink onClick={() => setSFTP(!sftp)}>
+                <StyledLink
+                  onClick={() =>
+                    currentDropdown === "sftp"
+                      ? setCurrentDropdown("")
+                      : setCurrentDropdown("sftp")
+                  }
+                  dropdownSelected={currentDropdown === "sftp"}
+                >
                   <ListItemWithCaretDiv>
                     SFTP
                     <SVGIcon
@@ -908,7 +962,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {sftp && (
+                {currentDropdown === "sftp" && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -924,7 +978,14 @@ export function NavigationSidebar() {
               </BigSectionLi>
 
               <BigSectionLi>
-                <StyledLink onClick={() => setSegment(!segment)}>
+                <StyledLink
+                  onClick={() =>
+                    currentDropdown === "segment"
+                      ? setCurrentDropdown("")
+                      : setCurrentDropdown("segment")
+                  }
+                  dropdownSelected={currentDropdown === "segment"}
+                >
                   <ListItemWithCaretDiv>
                     Segment
                     <SVGIcon
@@ -935,7 +996,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {segment && (
+                {currentDropdown === "segment" && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -951,9 +1012,16 @@ export function NavigationSidebar() {
               </BigSectionLi>
 
               <BigSectionLi>
-                <StyledLink onClick={() => setTangocard(!tangocard)}>
+                <StyledLink
+                  onClick={() =>
+                    currentDropdown === "tangocard"
+                      ? setCurrentDropdown("")
+                      : setCurrentDropdown("tangocard")
+                  }
+                  dropdownSelected={currentDropdown === "tangocard"}
+                >
                   <ListItemWithCaretDiv>
-                    SFTP
+                    Tangocard
                     <SVGIcon
                       width="12px"
                       viewBox="0 0 12 8"
@@ -962,7 +1030,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {tangocard && (
+                {currentDropdown === "tangocard" && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -978,7 +1046,14 @@ export function NavigationSidebar() {
               </BigSectionLi>
 
               <BigSectionLi>
-                <StyledLink onClick={() => setRecurly(!recurly)}>
+                <StyledLink
+                  onClick={() =>
+                    currentDropdown === "recurly"
+                      ? setCurrentDropdown("")
+                      : setCurrentDropdown("recurly")
+                  }
+                  dropdownSelected={currentDropdown === "recurly"}
+                >
                   <ListItemWithCaretDiv>
                     Recurly
                     <SVGIcon
@@ -989,7 +1064,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {recurly && (
+                {currentDropdown === "recurly" && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -1005,7 +1080,14 @@ export function NavigationSidebar() {
               </BigSectionLi>
 
               <BigSectionLi>
-                <StyledLink onClick={() => setAppsflyer(!appsflyer)}>
+                <StyledLink
+                  onClick={() =>
+                    currentDropdown === "appsflyer"
+                      ? setCurrentDropdown("")
+                      : setCurrentDropdown("appsflyer")
+                  }
+                  dropdownSelected={currentDropdown === "appsflyer"}
+                >
                   <ListItemWithCaretDiv>
                     Appsflyer
                     <SVGIcon
@@ -1016,7 +1098,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {appsflyer && (
+                {currentDropdown === "appsflyer" && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -1031,7 +1113,14 @@ export function NavigationSidebar() {
                 )}
               </BigSectionLi>
               <BigSectionLi>
-                <StyledLink onClick={() => setBranch(!branch)}>
+                <StyledLink
+                  onClick={() =>
+                    currentDropdown === "branch"
+                      ? setCurrentDropdown("")
+                      : setCurrentDropdown("branch")
+                  }
+                  dropdownSelected={currentDropdown === "branch"}
+                >
                   <ListItemWithCaretDiv>
                     Branch
                     <SVGIcon
@@ -1042,7 +1131,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {branch && (
+                {currentDropdown === "branch" && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -1058,7 +1147,14 @@ export function NavigationSidebar() {
               </BigSectionLi>
 
               <BigSectionLi>
-                <StyledLink onClick={() => setStripe(!stripe)}>
+                <StyledLink
+                  onClick={() =>
+                    currentDropdown === "stripe"
+                      ? setCurrentDropdown("")
+                      : setCurrentDropdown("stripe")
+                  }
+                  dropdownSelected={currentDropdown === "stripe"}
+                >
                   <ListItemWithCaretDiv>
                     Stripe
                     <SVGIcon
@@ -1069,7 +1165,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {stripe && (
+                {currentDropdown === "stripe" && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -1085,7 +1181,14 @@ export function NavigationSidebar() {
               </BigSectionLi>
 
               <BigSectionLi>
-                <StyledLink onClick={() => setZapier(!zapier)}>
+                <StyledLink
+                  onClick={() =>
+                    currentDropdown === "zapier"
+                      ? setCurrentDropdown("")
+                      : setCurrentDropdown("zapier")
+                  }
+                  dropdownSelected={currentDropdown === "zapier"}
+                >
                   <ListItemWithCaretDiv>
                     Zapier
                     <SVGIcon
@@ -1096,7 +1199,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {zapier && (
+                {currentDropdown === "zapier" && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -1112,7 +1215,14 @@ export function NavigationSidebar() {
               </BigSectionLi>
 
               <BigSectionLi>
-                <StyledLink onClick={() => setStitch(!stitch)}>
+                <StyledLink
+                  onClick={() =>
+                    currentDropdown === "stitch"
+                      ? setCurrentDropdown("")
+                      : setCurrentDropdown("stitch")
+                  }
+                  dropdownSelected={currentDropdown === "stitch"}
+                >
                   <ListItemWithCaretDiv>
                     Stitch
                     <SVGIcon
@@ -1123,7 +1233,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {stitch && (
+                {currentDropdown === "stitch" && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
