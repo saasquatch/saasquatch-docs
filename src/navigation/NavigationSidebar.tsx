@@ -253,20 +253,27 @@ export function NavigationSidebar() {
 
   const [currentDropdown, setCurrentDropdown] = useState<string>("");
 
+  const [activePages, setActivePages] = useState<string[]>([]);
+
+  const isActive = (pageKey: string) => activePages.includes(pageKey);
+
+  const toggleActivePage = (pageKey: string) => {
+    setActivePages((prev) =>
+      prev.includes(pageKey)
+        ? removePageKey(prev, pageKey)
+        : addPageKey(prev, pageKey)
+    );
+  };
+
+  const removePageKey = (keys: string[], pageKey: string) =>
+    keys.filter((key) => key !== pageKey);
+  const addPageKey = (keys: string[], pageKey: string) => [...keys, pageKey];
+
   useEffect(() => {
     console.log(window.location.pathname);
     switch (window.location.pathname) {
       case "/product-news":
         setcurrentPage("/product-news");
-        break;
-      case "/success/":
-        setcurrentPage("/success/");
-        break;
-      case "/developer/":
-        setcurrentPage("/developer/");
-        break;
-      case "/integrations/":
-        setcurrentPage("/integrations/");
         break;
       default:
         setcurrentPage("/");
@@ -297,7 +304,7 @@ export function NavigationSidebar() {
           </CoreCatSectionLi>
 
           <CoreCatSectionLi>
-            <StyledLink>
+            <StyledLink to="/success/">
               <ListItemContentDiv>
                 <SVGIcon
                   width="100%"
@@ -326,12 +333,8 @@ export function NavigationSidebar() {
               <BigSectionLi>
                 <StyledLink
                   to="/growth/ga-101"
-                  onClick={() =>
-                    currentDropdown === "growthAuto"
-                      ? setCurrentDropdown("")
-                      : setCurrentDropdown("growthAuto")
-                  }
-                  dropdownSelected={currentDropdown === "growthAuto"}
+                  onClick={() => toggleActivePage("growthAuto")}
+                  dropdownSelected={isActive("growthAuto")}
                 >
                   <ListItemWithCaretDiv>
                     Growth Automation
@@ -343,7 +346,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {currentDropdown === "growthAuto" && (
+                {isActive("growthAuto") && (
                   <SmallSectionUl>
                     <TestA href="/growth/ga-101">
                       <TestSectionLi>Test Section</TestSectionLi>
@@ -360,12 +363,8 @@ export function NavigationSidebar() {
 
               <BigSectionLi>
                 <StyledLink
-                  onClick={() =>
-                    currentDropdown === "referralPrograms"
-                      ? setCurrentDropdown("")
-                      : setCurrentDropdown("referralPrograms")
-                  }
-                  dropdownSelected={currentDropdown === "referralPrograms"}
+                  onClick={() => toggleActivePage("referralPrograms")}
+                  dropdownSelected={isActive("referralPrograms")}
                 >
                   <ListItemWithCaretDiv>
                     Referral Programs
@@ -377,7 +376,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {currentDropdown === "referralPrograms" && (
+                {isActive("referralPrograms") && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -394,12 +393,8 @@ export function NavigationSidebar() {
 
               <BigSectionLi>
                 <StyledLink
-                  onClick={() =>
-                    currentDropdown === "programReferences"
-                      ? setCurrentDropdown("")
-                      : setCurrentDropdown("programReferences")
-                  }
-                  dropdownSelected={currentDropdown === "programReferences"}
+                  onClick={() => toggleActivePage("programReferences")}
+                  dropdownSelected={isActive("programReferences")}
                 >
                   <ListItemWithCaretDiv>
                     Program References
@@ -411,7 +406,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {currentDropdown === "programReferences" && (
+                {isActive("programReferences") && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -428,12 +423,8 @@ export function NavigationSidebar() {
 
               <BigSectionLi>
                 <StyledLink
-                  onClick={() =>
-                    currentDropdown === "adminPortal"
-                      ? setCurrentDropdown("")
-                      : setCurrentDropdown("adminPortal")
-                  }
-                  dropdownSelected={currentDropdown === "adminPortal"}
+                  onClick={() => toggleActivePage("adminPortal")}
+                  dropdownSelected={isActive("adminPortal")}
                 >
                   <ListItemWithCaretDiv>
                     Administration Portal
@@ -445,7 +436,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {currentDropdown === "adminPortal" && (
+                {isActive("adminPortal") && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -462,12 +453,8 @@ export function NavigationSidebar() {
 
               <BigSectionLi>
                 <StyledLink
-                  onClick={() =>
-                    currentDropdown === "programReference"
-                      ? setCurrentDropdown("")
-                      : setCurrentDropdown("programReference")
-                  }
-                  dropdownSelected={currentDropdown === "programReference"}
+                  onClick={() => toggleActivePage("programReference")}
+                  dropdownSelected={isActive("programReference")}
                 >
                   <ListItemWithCaretDiv>
                     Program Reference
@@ -479,7 +466,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {currentDropdown === "programReference" && (
+                {isActive("programReference") && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -496,12 +483,8 @@ export function NavigationSidebar() {
 
               <BigSectionLi>
                 <StyledLink
-                  onClick={() =>
-                    currentDropdown === "programResources"
-                      ? setCurrentDropdown("")
-                      : setCurrentDropdown("programResources")
-                  }
-                  dropdownSelected={currentDropdown === "programResources"}
+                  onClick={() => toggleActivePage("programResources")}
+                  dropdownSelected={isActive("programResources")}
                 >
                   <ListItemWithCaretDiv>
                     Program Resources
@@ -513,7 +496,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {currentDropdown === "programResources" && (
+                {isActive("programResources") && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -530,12 +513,8 @@ export function NavigationSidebar() {
 
               <BigSectionLi>
                 <StyledLink
-                  onClick={() =>
-                    currentDropdown === "w9Compliance"
-                      ? setCurrentDropdown("")
-                      : setCurrentDropdown("w9Compliance")
-                  }
-                  dropdownSelected={currentDropdown === "w9Compliance"}
+                  onClick={() => toggleActivePage("w9Compliance")}
+                  dropdownSelected={isActive("w9Compliance")}
                 >
                   <ListItemWithCaretDiv>
                     W-9 Compliance
@@ -547,7 +526,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {currentDropdown === "w9Compliance" && (
+                {isActive("w9Compliance") && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -564,12 +543,8 @@ export function NavigationSidebar() {
 
               <BigSectionLi>
                 <StyledLink
-                  onClick={() =>
-                    currentDropdown === "imports"
-                      ? setCurrentDropdown("")
-                      : setCurrentDropdown("imports")
-                  }
-                  dropdownSelected={currentDropdown === "imports"}
+                  onClick={() => toggleActivePage("imports")}
+                  dropdownSelected={isActive("imports")}
                 >
                   <ListItemWithCaretDiv>
                     Imports
@@ -581,7 +556,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {currentDropdown === "imports" && (
+                {isActive("imports") && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -628,12 +603,8 @@ export function NavigationSidebar() {
 
               <BigSectionLi>
                 <StyledLink
-                  onClick={() =>
-                    currentDropdown === "devGuides"
-                      ? setCurrentDropdown("")
-                      : setCurrentDropdown("devGuides")
-                  }
-                  dropdownSelected={currentDropdown === "devGuides"}
+                  onClick={() => toggleActivePage("devGuides")}
+                  dropdownSelected={isActive("devGuides")}
                 >
                   <ListItemWithCaretDiv>
                     Dev Guides
@@ -645,7 +616,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {currentDropdown === "devGuides" && (
+                {isActive("devGuides") && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -662,12 +633,8 @@ export function NavigationSidebar() {
 
               <BigSectionLi>
                 <StyledLink
-                  onClick={() =>
-                    currentDropdown === "jsonWeb"
-                      ? setCurrentDropdown("")
-                      : setCurrentDropdown("jsonWeb")
-                  }
-                  dropdownSelected={currentDropdown === "jsonWeb"}
+                  onClick={() => toggleActivePage("jsonWeb")}
+                  dropdownSelected={isActive("jsonWeb")}
                 >
                   <ListItemWithCaretDiv>
                     JSON Web Tokens
@@ -679,7 +646,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {currentDropdown === "jsonWeb" && (
+                {isActive("jsonWeb") && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -696,12 +663,8 @@ export function NavigationSidebar() {
 
               <BigSectionLi>
                 <StyledLink
-                  onClick={() =>
-                    currentDropdown === "bestPractices"
-                      ? setCurrentDropdown("")
-                      : setCurrentDropdown("bestPractices")
-                  }
-                  dropdownSelected={currentDropdown === "bestPractices"}
+                  onClick={() => toggleActivePage("bestPractices")}
+                  dropdownSelected={isActive("bestPractices")}
                 >
                   <ListItemWithCaretDiv>
                     Testing Best Practices
@@ -713,7 +676,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {currentDropdown === "bestPractices" && (
+                {isActive("bestPractices") && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -729,12 +692,8 @@ export function NavigationSidebar() {
               </BigSectionLi>
               <BigSectionLi>
                 <StyledLink
-                  onClick={() =>
-                    currentDropdown === "squatchJS"
-                      ? setCurrentDropdown("")
-                      : setCurrentDropdown("squatchJS")
-                  }
-                  dropdownSelected={currentDropdown === "squatchJS"}
+                  onClick={() => toggleActivePage("squatchJS")}
+                  dropdownSelected={isActive("squatchJS")}
                 >
                   <ListItemWithCaretDiv>
                     Squatch.js
@@ -746,7 +705,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {currentDropdown === "squatchJS" && (
+                {isActive("squatchJS") && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>About Squatch.js</StyledLink>
@@ -776,12 +735,8 @@ export function NavigationSidebar() {
 
               <BigSectionLi>
                 <StyledLink
-                  onClick={() =>
-                    currentDropdown === "restAPI"
-                      ? setCurrentDropdown("")
-                      : setCurrentDropdown("restAPI")
-                  }
-                  dropdownSelected={currentDropdown === "restAPI"}
+                  onClick={() => toggleActivePage("restAPI")}
+                  dropdownSelected={isActive("restAPI")}
                 >
                   <ListItemWithCaretDiv>
                     REST API
@@ -793,7 +748,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {currentDropdown === "restAPI" && (
+                {isActive("restAPI") && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Errors</StyledLink>
@@ -831,12 +786,8 @@ export function NavigationSidebar() {
 
               <BigSectionLi>
                 <StyledLink
-                  onClick={() =>
-                    currentDropdown === "restAPI"
-                      ? setCurrentDropdown("")
-                      : setCurrentDropdown("restAPI")
-                  }
-                  dropdownSelected={currentDropdown === "restAPI"}
+                  onClick={() => toggleActivePage("graphQLAPI")}
+                  dropdownSelected={isActive("graphQLAPI")}
                 >
                   <ListItemWithCaretDiv>
                     GraphQL API
@@ -848,7 +799,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {currentDropdown === "restAPI" && (
+                {isActive("graphQLAPI") && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -895,12 +846,8 @@ export function NavigationSidebar() {
               <DividerLi />
               <BigSectionLi>
                 <StyledLink
-                  onClick={() =>
-                    currentDropdown === "salesforce"
-                      ? setCurrentDropdown("")
-                      : setCurrentDropdown("salesforce")
-                  }
-                  dropdownSelected={currentDropdown === "salesforce"}
+                  onClick={() => toggleActivePage("salesforce")}
+                  dropdownSelected={isActive("salesforce")}
                 >
                   <ListItemWithCaretDiv>
                     Salesforce
@@ -912,7 +859,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {currentDropdown === "salesforce" && (
+                {isActive("salesforce") && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -929,12 +876,8 @@ export function NavigationSidebar() {
 
               <BigSectionLi>
                 <StyledLink
-                  onClick={() =>
-                    currentDropdown === "sftp"
-                      ? setCurrentDropdown("")
-                      : setCurrentDropdown("sftp")
-                  }
-                  dropdownSelected={currentDropdown === "sftp"}
+                  onClick={() => toggleActivePage("sftp")}
+                  dropdownSelected={isActive("sftp")}
                 >
                   <ListItemWithCaretDiv>
                     SFTP
@@ -946,7 +889,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {currentDropdown === "sftp" && (
+                {isActive("sftp") && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -963,12 +906,8 @@ export function NavigationSidebar() {
 
               <BigSectionLi>
                 <StyledLink
-                  onClick={() =>
-                    currentDropdown === "segment"
-                      ? setCurrentDropdown("")
-                      : setCurrentDropdown("segment")
-                  }
-                  dropdownSelected={currentDropdown === "segment"}
+                  onClick={() => toggleActivePage("segment")}
+                  dropdownSelected={isActive("segment")}
                 >
                   <ListItemWithCaretDiv>
                     Segment
@@ -980,7 +919,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {currentDropdown === "segment" && (
+                {isActive("segment") && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -997,12 +936,8 @@ export function NavigationSidebar() {
 
               <BigSectionLi>
                 <StyledLink
-                  onClick={() =>
-                    currentDropdown === "tangocard"
-                      ? setCurrentDropdown("")
-                      : setCurrentDropdown("tangocard")
-                  }
-                  dropdownSelected={currentDropdown === "tangocard"}
+                  onClick={() => toggleActivePage("tangocard")}
+                  dropdownSelected={isActive("tangocard")}
                 >
                   <ListItemWithCaretDiv>
                     Tangocard
@@ -1014,7 +949,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {currentDropdown === "tangocard" && (
+                {isActive("tangocard") && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -1031,12 +966,8 @@ export function NavigationSidebar() {
 
               <BigSectionLi>
                 <StyledLink
-                  onClick={() =>
-                    currentDropdown === "recurly"
-                      ? setCurrentDropdown("")
-                      : setCurrentDropdown("recurly")
-                  }
-                  dropdownSelected={currentDropdown === "recurly"}
+                  onClick={() => toggleActivePage("recurly")}
+                  dropdownSelected={isActive("recurly")}
                 >
                   <ListItemWithCaretDiv>
                     Recurly
@@ -1048,7 +979,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {currentDropdown === "recurly" && (
+                {isActive("recurly") && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -1065,12 +996,8 @@ export function NavigationSidebar() {
 
               <BigSectionLi>
                 <StyledLink
-                  onClick={() =>
-                    currentDropdown === "appsflyer"
-                      ? setCurrentDropdown("")
-                      : setCurrentDropdown("appsflyer")
-                  }
-                  dropdownSelected={currentDropdown === "appsflyer"}
+                  onClick={() => toggleActivePage("appsflyer")}
+                  dropdownSelected={isActive("appsflyer")}
                 >
                   <ListItemWithCaretDiv>
                     Appsflyer
@@ -1082,7 +1009,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {currentDropdown === "appsflyer" && (
+                {isActive("appsflyer") && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -1098,12 +1025,8 @@ export function NavigationSidebar() {
               </BigSectionLi>
               <BigSectionLi>
                 <StyledLink
-                  onClick={() =>
-                    currentDropdown === "branch"
-                      ? setCurrentDropdown("")
-                      : setCurrentDropdown("branch")
-                  }
-                  dropdownSelected={currentDropdown === "branch"}
+                  onClick={() => toggleActivePage("branch")}
+                  dropdownSelected={isActive("branch")}
                 >
                   <ListItemWithCaretDiv>
                     Branch
@@ -1115,7 +1038,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {currentDropdown === "branch" && (
+                {isActive("branch") && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -1132,12 +1055,8 @@ export function NavigationSidebar() {
 
               <BigSectionLi>
                 <StyledLink
-                  onClick={() =>
-                    currentDropdown === "stripe"
-                      ? setCurrentDropdown("")
-                      : setCurrentDropdown("stripe")
-                  }
-                  dropdownSelected={currentDropdown === "stripe"}
+                  onClick={() => toggleActivePage("stripe")}
+                  dropdownSelected={isActive("stripe")}
                 >
                   <ListItemWithCaretDiv>
                     Stripe
@@ -1149,7 +1068,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {currentDropdown === "stripe" && (
+                {isActive("stripe") && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -1166,12 +1085,8 @@ export function NavigationSidebar() {
 
               <BigSectionLi>
                 <StyledLink
-                  onClick={() =>
-                    currentDropdown === "zapier"
-                      ? setCurrentDropdown("")
-                      : setCurrentDropdown("zapier")
-                  }
-                  dropdownSelected={currentDropdown === "zapier"}
+                  onClick={() => toggleActivePage("zapier")}
+                  dropdownSelected={isActive("zapier")}
                 >
                   <ListItemWithCaretDiv>
                     Zapier
@@ -1183,7 +1098,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {currentDropdown === "zapier" && (
+                {isActive("zapier") && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -1200,12 +1115,8 @@ export function NavigationSidebar() {
 
               <BigSectionLi>
                 <StyledLink
-                  onClick={() =>
-                    currentDropdown === "stitch"
-                      ? setCurrentDropdown("")
-                      : setCurrentDropdown("stitch")
-                  }
-                  dropdownSelected={currentDropdown === "stitch"}
+                  onClick={() => toggleActivePage("stitch")}
+                  dropdownSelected={isActive("stitch")}
                 >
                   <ListItemWithCaretDiv>
                     Stitch
@@ -1217,7 +1128,7 @@ export function NavigationSidebar() {
                   </ListItemWithCaretDiv>
                 </StyledLink>
 
-                {currentDropdown === "stitch" && (
+                {isActive("stitch") && (
                   <SmallSectionUl>
                     <SmallSectionLi>
                       <StyledLink>Small section 1</StyledLink>
@@ -1247,10 +1158,3 @@ interface SVGProps {
   d?: string;
   clicked?: boolean;
 }
-
-/* Notes
-    - Each sidebar option should have link nested around root (i.e. "Integrations") so that when clicked, children appear
-    - SVG icons instead of fa icon codes
-    - How to make child menu open?
-    - Search bar needs to change (just slight width adjustment)
-*/
