@@ -37,17 +37,18 @@ Feature: Product News Page
             | Tags      |
             | Content   |
 
-    @ui
-    Scenario: CTA button visibility
-        Given the following settings are filled up in contentful
-
-            | CTA Settings    |
-            | CTA Link        |
-            | CTA Button Text |
-
-        Then the user can see the CTA Button
-
     @motivating
-    Scenario: If the button is visible it takes the user to a detailed content page set up in contentful
-        Given a user clicks on the 'CTA button'
+    Scenario Outline: More product news update available with the right things configured
+        Given the link is <linkStatus> in Contentful
+        And the button text is <buttonTextStatus> in Contentful
+        Then the CTA button is <buttonVisibility>
+        When the user clicks on the 'CTA button' if visible
         Then they see a new page opening up with more content
+
+        Examples:
+
+            | linkStatus     | buttonTextStatus | buttonVisibility |
+            | configured     | configured       | visible          |
+            | not configured | not configured   | not visible      |
+            | configured     | not configured   | not visible      |
+            | not configured | configured       | not visible      |
