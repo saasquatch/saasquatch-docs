@@ -23,6 +23,10 @@ const StyledLink = styled(Link)`
   background-color: ${(props) => (props.clicked ? "#003B45" : "white")};
   color: ${(props) => (props.clicked ? "white" : "#003B45")} !important;
   font-weight: ${(props) => (props.dropdownSelected ? "700" : "400")};
+
+  &:hover {
+    background-color: ${(props) => (props.clicked ? "#003B45" : "#e7edee")};
+  }
 `;
 
 /* ul styles */
@@ -234,26 +238,6 @@ export const modalRoot =
 
 /* Rendering Function */
 export function NavigationSidebar() {
-  /* Developer Center */
-  const [squatchJS, setSquatchJS] = useState<boolean>(false);
-  const [restAPI, setRestAPI] = useState<boolean>(false);
-  const [graphQL, setGraphQL] = useState<boolean>(false);
-  const [devGuides, setDevGuides] = useState<boolean>(false);
-  const [jsonWeb, setJSONWeb] = useState<boolean>(false);
-  const [bestPractices, setBestPractices] = useState<boolean>(false);
-
-  /* Integrations */
-  const [salesforce, setSalesforce] = useState<boolean>(false);
-  const [sftp, setSFTP] = useState<boolean>(false);
-  const [segment, setSegment] = useState<boolean>(false);
-  const [tangocard, setTangocard] = useState<boolean>(false);
-  const [recurly, setRecurly] = useState<boolean>(false);
-  const [appsflyer, setAppsflyer] = useState<boolean>(false);
-  const [branch, setBranch] = useState<boolean>(false);
-  const [stripe, setStripe] = useState<boolean>(false);
-  const [zapier, setZapier] = useState<boolean>(false);
-  const [stitch, setStitch] = useState<boolean>(false);
-
   const history: History<any> = useHistory();
   // const container = useRef(null);
   const mmenu = MMenuContext.useContainer();
