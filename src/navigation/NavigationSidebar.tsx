@@ -53,6 +53,10 @@ const CoreCatSectionLi = styled.li`
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
+
+  & > a.mm-next {
+    display: none;
+  }
 `;
 
 const CoreHeaderLi = styled.li`

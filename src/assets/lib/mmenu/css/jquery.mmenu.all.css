@@ -289,7 +289,7 @@ li.mm-vertical.mm-opened > .mm-panel {
 }
 .mm-listview .mm-next + a,
 .mm-listview .mm-next + span {
-  margin-right: 50px;
+  margin-right: 0px;
 }
 .mm-listview .mm-next.mm-fullsubopen {
   width: 100%;
