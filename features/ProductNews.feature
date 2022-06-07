@@ -9,39 +9,45 @@ Feature: Product News Page
     Scenario Outline: Product news updates can be filtered by type
         Given a user selects from the type dropdown
         When they select <postType>
-        Then they see a list of <filteredNews>
+        Then they see a list of <postType>
         Examples:
 
-            | postType         | filteredNews     |
-            | All Posts        | all news         |
-            | Feature Releases | feature releases |
-            | Monthly Updates  | monthly updates  |
-            | Product Updates  | product updates  |
+            | postType         |
+            | All Posts        |
+            | Feature Releases |
+            | Monthly Updates  |
+            | Product Updates  |
 
     @motivating
     Scenario: Product news updates can be filtered by date
         Given a user selects from the date dropdown
-        When they select <date>
-        Then they see a list of items from <dateFilteredNews>
+        When they select <date> dropdown item
+        Then they see a list of items from <date>
         Examples:
 
-            | date          | dateFilteredNews |
-            | From All-time | all time         |
-            | Last 30 days  | last 30 days     |
-            | Past Year     | past year        |
+            | date          |
+            | From All-time |
+            | Last 30 days  |
+            | Past Year     |
 
     @motivating
-    Scenario: News cards are showing on the page in one column regardless of the screen size
+    Scenario Outline: News cards are showing on the page in one column regardless of the screen size
         Given a user looks at the card
         Then they see the following items
+            | cardParts |
+            | Title     |
+            | Date      |
+            | Tags      |
+            | Content   |
         And the layout stays the same for <screensize> screen sizes
         Examples:
 
-            | cardParts | screensize |
-            | Title     | all        |
-            | Date      | all        |
-            | Tags      | all        |
-            | Content   | all        |
+            | screensize   |
+            | mobile       |
+            | tablet       |
+            | small laptop |
+            | desktop      |
+
 
     @motivating
     Scenario Outline: A button is visible to take the user to more detailed news in each card when it's configured in contentful
