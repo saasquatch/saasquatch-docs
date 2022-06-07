@@ -265,9 +265,30 @@ export function NavigationSidebar() {
     );
   };
 
+  function clearActivePages() {
+    setActivePages([]);
+  }
+
   const removePageKey = (keys: string[], pageKey: string) =>
     keys.filter((key) => key !== pageKey);
+
   const addPageKey = (keys: string[], pageKey: string) => [...keys, pageKey];
+
+  useEffect(() => {
+    const arrows = document.getElementsByClassName("mm-next");
+
+    Array.from(arrows).forEach((arrow) => {
+      arrow.addEventListener("click", clearActivePages);
+    });
+
+    return () => {
+      const arrows = document.getElementsByClassName("mm-next");
+
+      Array.from(arrows).forEach((arrow) => {
+        arrow.removeEventListener("click", clearActivePages);
+      });
+    };
+  }, []);
 
   useEffect(() => {
     console.log(window.location.pathname);
@@ -290,6 +311,7 @@ export function NavigationSidebar() {
             <StyledLink
               to="/product-news"
               clicked={currentPage === "/product-news"}
+              onClick={() => setActivePages([])}
             >
               <ListItemContentDiv>
                 <SVGIcon
@@ -304,7 +326,7 @@ export function NavigationSidebar() {
           </CoreCatSectionLi>
 
           <CoreCatSectionLi>
-            <StyledLink to="/success/">
+            <StyledLink onClick={() => setActivePages([])}>
               <ListItemContentDiv>
                 <SVGIcon
                   width="100%"
@@ -332,7 +354,6 @@ export function NavigationSidebar() {
               <DividerLi />
               <BigSectionLi>
                 <StyledLink
-                  to="/growth/ga-101"
                   onClick={() => toggleActivePage("growthAuto")}
                   dropdownSelected={isActive("growthAuto")}
                 >
@@ -574,7 +595,7 @@ export function NavigationSidebar() {
           </CoreCatSectionLi>
 
           <CoreCatSectionLi>
-            <StyledLink to="/developer/">
+            <StyledLink to="/developer/" onClick={() => setActivePages([])}>
               <ListItemContentDiv>
                 <SVGIcon
                   width="100%"
@@ -818,7 +839,7 @@ export function NavigationSidebar() {
 
           {/* Integrations starts here */}
           <CoreCatSectionLi>
-            <StyledLink to="/integrations/">
+            <StyledLink to="/integrations/" onClick={() => setActivePages([])}>
               <ListItemContentDiv>
                 <SVGIcon
                   width="100%"
