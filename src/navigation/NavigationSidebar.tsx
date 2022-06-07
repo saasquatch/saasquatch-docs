@@ -20,11 +20,14 @@ import styled from "styled-components";
 /* Parameter: clicked (boolean) */
 /* if: "?"" else: ":" */
 const StyledLink = styled(Link)`
+  /* Product News clicking behaviour */
   background-color: ${(props) => (props.clicked ? "#003B45" : "white")};
   color: ${(props) => (props.clicked ? "white" : "#003B45")} !important;
+  /* Drop-down menu clicking style change */
   font-weight: ${(props) => (props.dropdownSelected ? "700" : "400")};
 
   &:hover {
+    /* Product News hovering behaviour */
     background-color: ${(props) => (props.clicked ? "#003B45" : "#e7edee")};
   }
 `;
@@ -55,6 +58,8 @@ const CoreCatSectionLi = styled.li`
 const CoreHeaderLi = styled.li`
   font-size: 16px;
   line-height: 24px;
+  background-color: "#003B45" !important;
+  color: white !important;
 `;
 
 const BigSectionLi = styled.li`
@@ -67,6 +72,14 @@ const SmallSectionLi = styled.li`
   line-height: 21px;
   color: #003b45;
   padding: 8px 10px;
+
+  ${StyledLink} {
+    background: none !important;
+  }
+
+  &:hover {
+    background-color: #e7edee;
+  }
 `;
 
 const DividerLi = styled.li`
@@ -126,8 +139,11 @@ const ReferralCodeLi = styled.div`
   padding: 8px 0;
   padding-left: 11px;
   gap: 4px;
-  &:hover,
-  :focus {
+
+  ${StyledLink} {
+    background: none !important;
+  }
+  &:hover {
     background-color: #e7edee;
   }
 `;
@@ -251,8 +267,6 @@ export function NavigationSidebar() {
   const [currentPage, setcurrentPage] = useState<string>("/");
   // To change currentPage: setcurrentPage(true) OR setcurrentPage(false)
 
-  const [currentDropdown, setCurrentDropdown] = useState<string>("");
-
   const [activePages, setActivePages] = useState<string[]>([]);
 
   const isActive = (pageKey: string) => activePages.includes(pageKey);
@@ -274,6 +288,7 @@ export function NavigationSidebar() {
 
   const addPageKey = (keys: string[], pageKey: string) => [...keys, pageKey];
 
+  // Clears isActive array to close open dropdowns
   useEffect(() => {
     const arrows = document.getElementsByClassName("mm-next");
 
@@ -326,7 +341,7 @@ export function NavigationSidebar() {
           </CoreCatSectionLi>
 
           <CoreCatSectionLi>
-            <StyledLink onClick={() => setActivePages([])}>
+            <StyledLink to="/success/" onClick={() => setActivePages([])}>
               <ListItemContentDiv>
                 <SVGIcon
                   width="100%"
@@ -369,9 +384,9 @@ export function NavigationSidebar() {
 
                 {isActive("growthAuto") && (
                   <SmallSectionUl>
-                    <TestA href="/growth/ga-101">
-                      <TestSectionLi>Test Section</TestSectionLi>
-                    </TestA>
+                    <SmallSectionLi>
+                      <StyledLink>Small section 2</StyledLink>
+                    </SmallSectionLi>
                     <SmallSectionLi>
                       <StyledLink>Small section 2</StyledLink>
                     </SmallSectionLi>
