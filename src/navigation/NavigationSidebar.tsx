@@ -181,27 +181,6 @@ const GreyButton = styled(GreenButton)`
   text-transform: capitalize;
 `;
 
-/* Experimental stuff */
-const TestSectionLi = styled.li`
-  width: 100%;
-  padding: 8px 10px;
-  &:hover {
-    background-color: #e7edee;
-  }
-`;
-
-const TestA = styled.a`
-  font-size: 14px;
-  color: #003b45;
-  &:hover {
-    background-color: #e7edee;
-  }
-
-  &:visited {
-    background-color: #003b45 !important;
-  }
-`;
-
 /* SVG icon container and render function */
 const IconSVGDiv = styled.div`
   display: flex;
@@ -311,6 +290,15 @@ export function NavigationSidebar() {
       case "/product-news":
         setcurrentPage("/product-news");
         break;
+      case "/success/":
+        setcurrentPage("/success/");
+        break;
+      case "/developer/":
+        setcurrentPage("/developer/");
+        break;
+      case "/integrations/":
+        setcurrentPage("/integrations/");
+        break;
       default:
         setcurrentPage("/");
     }
@@ -354,10 +342,14 @@ export function NavigationSidebar() {
             {/* Success Center Subcategories */}
             <BigSectionUl>
               <CoreHeaderLi>
-                <StyledLink to="/success/">
+                <StyledLink
+                  to="/success/"
+                  clicked={currentPage === "/success/"}
+                >
                   {" "}
                   <CoreHeaderDiv>
                     <SVGIcon
+                      clicked={currentPage === "/success/"}
                       width="70%"
                       viewBox="0 0 65 38"
                       d="M43.3333 8.125C41.3359 8.125 39.7222 6.50508 39.7222 4.5C39.7222 2.49492 41.3359 0.875 43.3333 0.875H61.3889C63.3863 0.875 65 2.49492 65 4.5V22.625C65 24.6301 63.3863 26.25 61.3889 26.25C59.3915 26.25 57.7778 24.6301 57.7778 22.625V13.2566L38.6615 32.4352C37.2509 33.8512 34.9714 33.8512 33.5608 32.4352L21.5651 20.5066L6.16484 36.0602C4.75425 37.4762 2.46797 37.4762 1.0576 36.0602C-0.352535 34.6441 -0.352535 32.3559 1.0576 30.9398L19.1163 12.8148C20.5269 11.3988 22.8064 11.3988 24.217 12.8148L36.1111 24.7434L52.6658 8.02305L43.3333 8.125Z"
@@ -623,10 +615,14 @@ export function NavigationSidebar() {
             {/* Developer Center Subcategories */}
             <BigSectionUl>
               <CoreHeaderLi>
-                <StyledLink to="/developer/">
+                <StyledLink
+                  to="/developer/"
+                  clicked={currentPage === "/developer/"}
+                >
                   {" "}
                   <CoreHeaderDiv>
                     <SVGIcon
+                      clicked={currentPage === "/developer/"}
                       width="70%"
                       viewBox="0 0 54 44"
                       d="M34.9923 3.94858L24.201 41.4603C23.7879 42.8837 22.2957 43.7042 20.8624 43.3023C19.4292 42.8921 18.603 41.4101 19.0077 39.9867L29.799 2.47661C30.2121 1.05371 31.7043 0.22981 33.1375 0.636401C34.5708 1.04291 35.397 2.52601 34.9923 3.94858ZM43.7434 10.698L53.1858 20.0757C54.2396 21.1224 54.2396 22.8137 53.1858 23.8603L43.7434 33.238C42.6895 34.2847 40.9865 34.2847 39.9327 33.238C38.8789 32.1914 38.8789 30.5001 39.9327 29.4535L47.4613 21.968L39.9327 14.4826C38.8789 13.436 38.8789 11.7446 39.9327 10.698C40.9865 9.6514 42.6895 9.6514 43.7434 10.698ZM14.0673 14.4826L6.53445 21.968L14.0673 29.4535C15.1211 30.5001 15.1211 32.1914 14.0673 33.238C13.0134 34.2847 11.3104 34.2847 10.2566 33.238L0.811854 23.8603C-0.241647 22.8137 -0.241647 21.1224 0.811854 20.0757L10.2566 10.698C11.3104 9.6514 13.0134 9.6514 14.0673 10.698C15.1211 11.7446 15.1211 13.436 14.0673 14.4826Z"
@@ -867,10 +863,14 @@ export function NavigationSidebar() {
             {/* Integrations Subcategories */}
             <BigSectionUl>
               <CoreHeaderLi>
-                <StyledLink to="/integrations/">
+                <StyledLink
+                  to="/integrations/"
+                  clicked={currentPage === "/integrations/"}
+                >
                   {" "}
                   <CoreHeaderDiv>
                     <SVGIcon
+                      clicked={currentPage === "/integrations/"}
                       width="70%"
                       viewBox="0 0 25 23"
                       d="M7.46962 1.73771L11.6363 0.157845C12.1918 -0.052615 12.8082 -0.052615 13.3637 0.157845L17.5304 1.73771C18.4722 2.09578 19.0972 3.00029 19.0972 4.01028V8.8792C19.1536 8.89656 19.2101 8.91392 19.2665 8.89656L23.4332 10.5155C24.375 10.8714 25 11.7785 25 12.7854V17.9591C25 18.9226 24.4314 19.795 23.546 20.1813L19.3793 22.0129C18.7587 22.2907 18.0469 22.2907 17.4262 22.0129L12.5 19.8514L7.57378 22.0129C6.95312 22.2907 6.24132 22.2907 5.62066 22.0129L1.45226 20.1813C0.569878 19.795 0 18.9226 0 17.9591V12.7854C0 11.7785 0.624566 10.8714 1.56901 10.5155L5.73351 8.89656C5.78993 8.91392 5.84635 8.89656 5.90278 8.8792V4.01028C5.90278 3.00029 6.52778 2.09578 7.46962 1.73771ZM12.6215 2.10576C12.5434 2.07581 12.4175 2.07581 12.3785 2.10576L8.97569 3.39526L12.4609 4.74725L16.0243 3.39526L12.6215 2.10576ZM17.0139 9.13528V5.24639L13.4375 6.61791V10.4894L17.0139 9.13528ZM6.71875 10.8844C6.64062 10.854 6.51476 10.854 6.47569 10.8844L3.07335 12.1735L6.59722 13.5233L10.1215 12.1735L6.71875 10.8844ZM7.53472 19.7559L11.1111 18.1848V14.0224L7.53472 15.394V19.7559ZM14.8785 12.1735L18.4028 13.5233L21.9271 12.1735L18.5243 10.8844C18.4462 10.854 18.3203 10.854 18.2812 10.8844L14.8785 12.1735ZM22.9167 17.9591V14.0224L19.3403 15.394V19.7559L22.7083 18.2759C22.8342 18.2195 22.9167 18.0979 22.9167 17.9591Z"
