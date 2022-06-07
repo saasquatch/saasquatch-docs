@@ -6,44 +6,51 @@ Feature: Product News Page
     Display the Product News Page with cards to navigate to news.
 
     @motivating
-    Scenario: Product news updates can be filtered by type
+    Scenario Outline: Product news updates can be filtered by type
         Given a user selects from the type dropdown
-        Then they can see the following items
+        When they select <postType>
+        Then they see a list of <filteredNews>
+        Examples:
 
-            | postType         |
-            | All Posts        |
-            | Feature Releases |
-            | Monthly Updates  |
-            | Product Updates  |
+            | postType         | filteredNews     |
+            | All Posts        | all news         |
+            | Feature Releases | feature releases |
+            | Monthly Updates  | monthly updates  |
+            | Product Updates  | product updates  |
 
     @motivating
     Scenario: Product news updates can be filtered by date
         Given a user selects from the date dropdown
-        Then they can see the following items
+        When they select <date>
+        Then they see a list of items from <dateFilteredNews>
+        Examples:
 
-            | date          |
-            | From All-time |
-            | Last 30 days  |
-            | Past Year     |
+            | date          | dateFilteredNews |
+            | From All-time | all time         |
+            | Last 30 days  | last 30 days     |
+            | Past Year     | past year        |
 
     @motivating
     Scenario: News cards are showing on the page in one column regardless of the screen size
         Given a user looks at the card
         Then they see the following items
+        And the layout stays the same for <screensize> screen sizes
+        Examples:
 
-            | cardParts |
-            | Title     |
-            | Date      |
-            | Tags      |
-            | Content   |
+            | cardParts | screensize |
+            | Title     | all        |
+            | Date      | all        |
+            | Tags      | all        |
+            | Content   | all        |
 
     @motivating
-    Scenario Outline: More product news update available with the right things configured
+    Scenario Outline: A button is visible to take the user to more detailed news in each card when it's configured in contentful
         Given the link is <linkStatus> in Contentful
         And the button text is <buttonTextStatus> in Contentful
         Then the CTA button is <buttonVisibility>
+        And the configured button text in contentful is used as the button text on the product news card
         When the user clicks on the 'CTA button' if visible
-        Then they see a new page opening up with more content
+        Then they are redirected the cta link in a new tab
 
         Examples:
 
