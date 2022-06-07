@@ -10,6 +10,7 @@ Feature: Product News Page
         Given a user selects from the type dropdown
         When they select <postType>
         Then they see a list of <postType>
+        
         Examples:
 
             | postType         |
