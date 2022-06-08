@@ -660,6 +660,10 @@ p {
     line-height: 30px
 }
 
+#highlightMarkdown {
+    font-weight: 400;
+}
+
 small {
     font-size: 85%
 }
