@@ -400,10 +400,14 @@ export function NavigationSidebar() {
                 {isActive("growthAuto") && (
                   <SmallSectionUl>
                     <SmallSectionLi>
-                      <StyledLink>Small section 2</StyledLink>
+                      <StyledLink to="/growth/ga-101">
+                        Growth Automation 101
+                      </StyledLink>
                     </SmallSectionLi>
                     <SmallSectionLi>
-                      <StyledLink>Small section 2</StyledLink>
+                      <StyledLink to="/growth/saasquatch-ga">
+                        SaaSquatch Growth Automation Platform
+                      </StyledLink>
                     </SmallSectionLi>
                     <SmallSectionLi>
                       <StyledLink>Small section 3</StyledLink>
