@@ -20,6 +20,9 @@ import styled from "styled-components";
 /* Parameter: clicked (boolean) */
 /* if: "?"" else: ":" */
 const StyledLink = styled(Link)`
+  display: flex !important;
+  align-items: center !important;
+  height: 25px !important;
   /* Product News clicking behaviour */
   background-color: ${(props) => (props.clicked ? "#003B45" : "white")};
   color: ${(props) => (props.clicked ? "white" : "#003B45")} !important;
@@ -47,7 +50,6 @@ const CoreCatSectionLi = styled.li`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 65px;
   font-family: "Helvetica";
   font-style: normal;
   font-weight: 400;
@@ -103,9 +105,9 @@ const CoreHeaderTitleDiv = styled.div`
   gap: 8px;
 `;
 const ListItemContentDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  width: 100%;
+  display: flex !important;
+  justify-content: space-between !important;
 `;
 
 // @ts-ignore
@@ -114,6 +116,7 @@ const CoreHeaderDiv = styled(ListItemContentDiv)`
 `;
 
 const ListItemWithCaretDiv = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
 `;
@@ -142,6 +145,11 @@ const SeperatorLineDiv = styled.div`
   height: 1px;
   width: 100%;
   background-color: #e2e2e2;
+`;
+
+const ArrowDiv = styled.div`
+  display: flex !important;
+  justify-self: end !important;
 `;
 
 /* Referral code list items styled components (contain buttons and different layout than other list items) */
@@ -353,12 +361,14 @@ export function NavigationSidebar() {
                   />
                   Success Center
                 </ListItemTitleDiv>
-                <SVGIcon
-                  width="35%"
-                  viewBox="0 0 8 13"
-                  d="M0 1.91L4.58 6.5L0 11.09L1.41 12.5L7.41 6.5L1.41 0.5L0 1.91Z"
-                  fill="#003B45"
-                />
+                <ArrowDiv>
+                  <SVGIcon
+                    width="35%"
+                    viewBox="0 0 8 13"
+                    d="M0 1.91L4.58 6.5L0 11.09L1.41 12.5L7.41 6.5L1.41 0.5L0 1.91Z"
+                    fill="#003B45"
+                  />
+                </ArrowDiv>
               </ListItemContentDiv>
             </StyledLink>
             {/* Success Center Subcategories */}
