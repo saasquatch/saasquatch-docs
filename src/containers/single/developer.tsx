@@ -22,7 +22,7 @@ const devGuidesIcon: SVGProps = {
 const devGuides = {
   title: "Dev Guides",
   description:
-    "Learn more about how to automate and grow your Customer Lifetime Value.",
+    "Learn how to use our tools to create your own referral and loyalty programs.",
   svgSrc: devGuidesIcon,
   linkText: "Learn more",
   linkUrl: "https://docs.saasquatch.com/guides",
@@ -39,9 +39,9 @@ const jsonWebIcon: SVGProps = {
 const jsonWeb = {
   title: "JSON Web Tokens",
   description:
-    "A library of the available Growth Automation Programs by SaaSquatch.",
+    "Used to validate the data being supplied to Referral SaaSquatch.",
   svgSrc: jsonWebIcon,
-  linkText: "Explore library",
+  linkText: "Learn more",
   linkUrl: "https://docs.saasquatch.com/topics/json-web-tokens",
 };
 
@@ -56,9 +56,9 @@ const bestPracticesIcon: SVGProps = {
 const bestPractices = {
   title: "Testing Best Practices",
   description:
-    "Learn how to select, configure, and publish a new SaaSquatch Growth Automation Program in minutes.",
+    "Recommended program development process with SaaSquatch to minimize technical errors and installation deficiencies.",
   svgSrc: bestPracticesIcon,
-  linkText: "Get started",
+  linkText: "Learn more",
   linkUrl: "https://docs.saasquatch.com/developer/testing",
 };
 
@@ -73,7 +73,7 @@ const squatchJSIcon: SVGProps = {
 const squatchJS = {
   title: "Squatch.js",
   description:
-    "End to end guide for setting up a Growth Automation referral program.",
+    "One-stop shop to integrate a SaaSquatch program into your website or web app.",
   svgSrc: squatchJSIcon,
   linkText: "Learn more",
   linkUrl: "https://docs.saasquatch.com/developer/squatchjs",
@@ -89,8 +89,7 @@ const restAPIIcon: SVGProps = {
 
 const restAPI = {
   title: "REST API",
-  description:
-    "End to end guide for setting up a Growth Automation referral program.",
+  description: "Build your own custom logic on top of your referral program.",
   svgSrc: restAPIIcon,
   linkText: "Learn more",
   linkUrl: "https://docs.saasquatch.com/api",
@@ -107,7 +106,7 @@ const graphQLIcon: SVGProps = {
 const graphQLAPI = {
   title: "GraphQL API",
   description:
-    "End to end guide for setting up a Growth Automation referral program.",
+    "API for building custom widgets, integrations, and admin interfaces based on GraphQL.",
   svgSrc: graphQLIcon,
   linkText: "Learn more",
   linkUrl: "https://docs.saasquatch.com/graphql/reference/",
@@ -123,8 +122,7 @@ const mobileIcon: SVGProps = {
 
 const mobile = {
   title: "Mobile",
-  description:
-    "End to end guide for setting up a Growth Automation referral program.",
+  description: "Learn how to grow with a referral program on a mobile app.",
   svgSrc: mobileIcon,
   linkText: "Learn more",
   linkUrl: "https://docs.saasquatch.com/mobile",
