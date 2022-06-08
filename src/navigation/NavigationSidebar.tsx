@@ -27,8 +27,10 @@ const StyledLink = styled(Link)`
   background-color: ${(props) =>
     props.clicked ? "#003B45" : "white"} !important;
   color: ${(props) => (props.clicked ? "white" : "#003B45")} !important;
+  /* font-weight: ${(props) => (props.clicked ? "700" : "400")} !important; */
   /* Drop-down menu clicking style change */
-  font-weight: ${(props) => (props.dropdownSelected ? "700" : "400")};
+  font-weight: ${(props) =>
+    props.dropdownSelected || props.clicked ? "700" : "400"};
 
   &:hover {
     /* Product News hovering behaviour */
@@ -75,8 +77,10 @@ const BigSectionLi = styled.li`
 `;
 
 const SmallSectionLi = styled.li`
+  font-family: "Helvetica" !important;
   font-size: 14px;
   line-height: 21px;
+  font-weight: 400;
   color: #003b45;
 
   ${StyledLink} {
@@ -323,6 +327,21 @@ export function NavigationSidebar() {
       case "/growth/ga-101":
         setcurrentPage("/growth/ga-101");
         break;
+      case "/growth/saasquatch-ga":
+        setcurrentPage("/growth/saasquatch-ga");
+        break;
+      case "/growth/customer-lifecycle":
+        setcurrentPage("/growth/customer-lifecycle");
+        break;
+      case "/program/library":
+        setcurrentPage("/program/library");
+        break;
+      case "/feature/rewards":
+        setcurrentPage("/feature/rewards");
+        break;
+      case "/success/ga-analytics":
+        setcurrentPage("/success/ga-analytics");
+        break;
       default:
         setcurrentPage("/");
     }
@@ -421,12 +440,44 @@ export function NavigationSidebar() {
                       </StyledLink>
                     </SmallSectionLi>
                     <SmallSectionLi>
-                      <StyledLink to="/growth/saasquatch-ga">
+                      <StyledLink
+                        to="/growth/customer-lifecycle"
+                        clicked={currentPage === "/growth/customer-lifecycle"}
+                      >
+                        Growth Automation Customer Lifecycle
+                      </StyledLink>
+                    </SmallSectionLi>
+                    <SmallSectionLi>
+                      <StyledLink
+                        to="/growth/saasquatch-ga"
+                        clicked={currentPage === "/growth/saasquatch-ga"}
+                      >
                         SaaSquatch Growth Automation Platform
                       </StyledLink>
                     </SmallSectionLi>
                     <SmallSectionLi>
-                      <StyledLink>Small section 3</StyledLink>
+                      <StyledLink
+                        to="/program/library"
+                        clicked={currentPage === "/program/library"}
+                      >
+                        Program Library
+                      </StyledLink>
+                    </SmallSectionLi>
+                    <SmallSectionLi>
+                      <StyledLink
+                        to="/feature/rewards"
+                        clicked={currentPage === "/feature/rewards"}
+                      >
+                        Program Reward Options
+                      </StyledLink>
+                    </SmallSectionLi>
+                    <SmallSectionLi>
+                      <StyledLink
+                        to="/success/ga-analytics"
+                        clicked={currentPage === "/success/ga-analytics"}
+                      >
+                        Analytics Overview for Growth Automation Programs
+                      </StyledLink>
                     </SmallSectionLi>
                   </SmallSectionUl>
                 )}
