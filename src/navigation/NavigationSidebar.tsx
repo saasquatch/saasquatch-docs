@@ -94,6 +94,7 @@ const DividerLi = styled.li`
 /* Divs for spacing within each list item (space between SVG and text) */
 const ListItemTitleDiv = styled.div`
   display: flex;
+  align-items: center;
   gap: 18px;
 `;
 

@@ -232,6 +232,8 @@ li.mm-vertical.mm-opened > .mm-panel {
 .mm-listview > li {
   position: relative;
 }
+
+/* Entire list */
 .mm-listview > li,
 .mm-listview > li .mm-next,
 .mm-listview > li .mm-next:before,
