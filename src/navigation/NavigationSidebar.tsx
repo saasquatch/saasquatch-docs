@@ -24,7 +24,8 @@ const StyledLink = styled(Link)`
   align-items: center !important;
   height: 25px !important;
   /* Product News clicking behaviour */
-  background-color: ${(props) => (props.clicked ? "#003B45" : "white")};
+  background-color: ${(props) =>
+    props.clicked ? "#003B45" : "white"} !important;
   color: ${(props) => (props.clicked ? "white" : "#003B45")} !important;
   /* Drop-down menu clicking style change */
   font-weight: ${(props) => (props.dropdownSelected ? "700" : "400")};
@@ -77,12 +78,10 @@ const SmallSectionLi = styled.li`
   font-size: 14px;
   line-height: 21px;
   color: #003b45;
-  padding: 8px 10px;
 
   ${StyledLink} {
-    background: none !important;
+    padding: 8px 10px;
   }
-
   &:hover {
     background-color: #e7edee;
   }
@@ -321,6 +320,9 @@ export function NavigationSidebar() {
       case "/integrations/":
         setcurrentPage("/integrations/");
         break;
+      case "/growth/ga-101":
+        setcurrentPage("/growth/ga-101");
+        break;
       default:
         setcurrentPage("/");
     }
@@ -411,7 +413,10 @@ export function NavigationSidebar() {
                 {isActive("growthAuto") && (
                   <SmallSectionUl>
                     <SmallSectionLi>
-                      <StyledLink to="/growth/ga-101">
+                      <StyledLink
+                        to="/growth/ga-101"
+                        clicked={currentPage === "/growth/ga-101"}
+                      >
                         Growth Automation 101
                       </StyledLink>
                     </SmallSectionLi>
