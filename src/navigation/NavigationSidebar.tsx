@@ -22,7 +22,7 @@ import styled from "styled-components";
 const StyledLink = styled(Link)`
   display: flex !important;
   align-items: center !important;
-  height: 25px !important;
+  height: fit-content !important;
   /* Product News clicking behaviour */
   background-color: ${(props) =>
     props.clicked ? "#003B45" : "white"} !important;
@@ -33,17 +33,28 @@ const StyledLink = styled(Link)`
 
   &:hover {
     /* Clicked hovering behaviour */
-    background-color: ${(props) => (props.clicked ? "#003B45" : "#e7edee")};
+    background-color: ${(props) =>
+      props.clicked ? "#003B45" : "#e7edee"} !important;
   }
 `;
 
 /* ul styles */
-const BigSectionUl = styled.ul``;
+const SubMenuList = styled.ul``;
 
-const SmallSectionUl = styled.ul`
+const DropdownMenuList = styled.ul`
   list-style: none !important;
   border-left: 1px solid #003b45 !important;
   margin-left: 12px !important;
+`;
+
+const NestedList = styled.ul`
+  list-style: none !important;
+  border-left: 1px solid #003b45 !important;
+  margin-left: 12px !important;
+  ${StyledLink} {
+    padding: 0px 0px !important;
+    width: 100%;
+  }
 `;
 
 /* Different list items in order of size */
@@ -85,9 +96,6 @@ const DropdownChildLi = styled.li`
   ${StyledLink} {
     padding: 8px 10px;
   }
-  &:hover {
-    background-color: #e7edee;
-  }
 `;
 
 const LeadAndListSeperator = styled.li`
@@ -117,7 +125,7 @@ const SubMenuLeadDiv = styled(AllContentDiv)`
   gap: 8px;
 `;
 
-const DropdownParentSpacing = styled.div`
+const DropdownParentContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -128,7 +136,7 @@ const SeperatorSpacing = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-left: 11px;
+  padding: 5px 0px 5px 11px;
   gap: 10px;
 `;
 
@@ -163,13 +171,6 @@ const ReferralCodeLi = styled.div`
   padding: 8px 0;
   padding-left: 11px;
   gap: 4px;
-
-  ${StyledLink} {
-    background: none !important;
-  }
-  &:hover {
-    background-color: #e7edee;
-  }
 `;
 
 const ButtonsContainerDiv = styled.div`
@@ -309,42 +310,11 @@ export function NavigationSidebar() {
   }, []);
 
   useEffect(() => {
-    console.log(window.location.pathname);
-    switch (window.location.pathname) {
-      case "/product-news":
-        setcurrentPage("/product-news");
-        break;
-      case "/success/":
-        setcurrentPage("/success/");
-        break;
-      case "/developer/":
-        setcurrentPage("/developer/");
-        break;
-      case "/integrations/":
-        setcurrentPage("/integrations/");
-        break;
-      case "/growth/ga-101":
-        setcurrentPage("/growth/ga-101");
-        break;
-      case "/growth/saasquatch-ga":
-        setcurrentPage("/growth/saasquatch-ga");
-        break;
-      case "/growth/customer-lifecycle":
-        setcurrentPage("/growth/customer-lifecycle");
-        break;
-      case "/program/library":
-        setcurrentPage("/program/library");
-        break;
-      case "/feature/rewards":
-        setcurrentPage("/feature/rewards");
-        break;
-      case "/success/ga-analytics":
-        setcurrentPage("/success/ga-analytics");
-        break;
-      default:
-        setcurrentPage("/");
-    }
-  }, [window.location.pathname]);
+    const path = window.location.pathname;
+    const hash = window.location.hash;
+    const pathAndHash = path + hash;
+    setcurrentPage(pathAndHash);
+  }, [window.location.pathname, window.location.hash]);
   // when this is updated, useEffect runs again
 
   return (
@@ -392,7 +362,7 @@ export function NavigationSidebar() {
               </AllContentDiv>
             </StyledLink>
             {/* Success Center Subcategories */}
-            <BigSectionUl>
+            <SubMenuList>
               <SubMenuLeadLi>
                 <StyledLink
                   to="/success/"
@@ -418,18 +388,18 @@ export function NavigationSidebar() {
                   onClick={() => toggleActivePage("growthAuto")}
                   dropdownSelected={isActive("growthAuto")}
                 >
-                  <DropdownParentSpacing>
+                  <DropdownParentContainer>
                     Growth Automation
                     <SVGIcon
                       width="12px"
                       viewBox="0 0 12 8"
                       d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
                     />
-                  </DropdownParentSpacing>
+                  </DropdownParentContainer>
                 </StyledLink>
 
                 {isActive("growthAuto") && (
-                  <SmallSectionUl>
+                  <DropdownMenuList>
                     <DropdownChildLi>
                       <StyledLink
                         to="/growth/ga-101"
@@ -478,7 +448,7 @@ export function NavigationSidebar() {
                         Analytics Overview for Growth Automation Programs
                       </StyledLink>
                     </DropdownChildLi>
-                  </SmallSectionUl>
+                  </DropdownMenuList>
                 )}
               </DropdownParentLi>
 
@@ -487,18 +457,18 @@ export function NavigationSidebar() {
                   onClick={() => toggleActivePage("referralPrograms")}
                   dropdownSelected={isActive("referralPrograms")}
                 >
-                  <DropdownParentSpacing>
+                  <DropdownParentContainer>
                     Referral Programs
                     <SVGIcon
                       width="12px"
                       viewBox="0 0 12 8"
                       d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
                     />
-                  </DropdownParentSpacing>
+                  </DropdownParentContainer>
                 </StyledLink>
 
                 {isActive("referralPrograms") && (
-                  <SmallSectionUl>
+                  <DropdownMenuList>
                     <DropdownChildLi>
                       <StyledLink>Small section 1</StyledLink>
                     </DropdownChildLi>
@@ -508,7 +478,7 @@ export function NavigationSidebar() {
                     <DropdownChildLi>
                       <StyledLink>Small section 3</StyledLink>
                     </DropdownChildLi>
-                  </SmallSectionUl>
+                  </DropdownMenuList>
                 )}
               </DropdownParentLi>
 
@@ -517,18 +487,18 @@ export function NavigationSidebar() {
                   onClick={() => toggleActivePage("programReferences")}
                   dropdownSelected={isActive("programReferences")}
                 >
-                  <DropdownParentSpacing>
+                  <DropdownParentContainer>
                     Program References
                     <SVGIcon
                       width="12px"
                       viewBox="0 0 12 8"
                       d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
                     />
-                  </DropdownParentSpacing>
+                  </DropdownParentContainer>
                 </StyledLink>
 
                 {isActive("programReferences") && (
-                  <SmallSectionUl>
+                  <DropdownMenuList>
                     <DropdownChildLi>
                       <StyledLink>Small section 1</StyledLink>
                     </DropdownChildLi>
@@ -538,7 +508,7 @@ export function NavigationSidebar() {
                     <DropdownChildLi>
                       <StyledLink>Small section 3</StyledLink>
                     </DropdownChildLi>
-                  </SmallSectionUl>
+                  </DropdownMenuList>
                 )}
               </DropdownParentLi>
 
@@ -547,18 +517,18 @@ export function NavigationSidebar() {
                   onClick={() => toggleActivePage("adminPortal")}
                   dropdownSelected={isActive("adminPortal")}
                 >
-                  <DropdownParentSpacing>
+                  <DropdownParentContainer>
                     Administration Portal
                     <SVGIcon
                       width="12px"
                       viewBox="0 0 12 8"
                       d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
                     />
-                  </DropdownParentSpacing>
+                  </DropdownParentContainer>
                 </StyledLink>
 
                 {isActive("adminPortal") && (
-                  <SmallSectionUl>
+                  <DropdownMenuList>
                     <DropdownChildLi>
                       <StyledLink>Small section 1</StyledLink>
                     </DropdownChildLi>
@@ -568,7 +538,7 @@ export function NavigationSidebar() {
                     <DropdownChildLi>
                       <StyledLink>Small section 3</StyledLink>
                     </DropdownChildLi>
-                  </SmallSectionUl>
+                  </DropdownMenuList>
                 )}
               </DropdownParentLi>
 
@@ -577,18 +547,18 @@ export function NavigationSidebar() {
                   onClick={() => toggleActivePage("programReference")}
                   dropdownSelected={isActive("programReference")}
                 >
-                  <DropdownParentSpacing>
+                  <DropdownParentContainer>
                     Program Reference
                     <SVGIcon
                       width="12px"
                       viewBox="0 0 12 8"
                       d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
                     />
-                  </DropdownParentSpacing>
+                  </DropdownParentContainer>
                 </StyledLink>
 
                 {isActive("programReference") && (
-                  <SmallSectionUl>
+                  <DropdownMenuList>
                     <DropdownChildLi>
                       <StyledLink>Small section 1</StyledLink>
                     </DropdownChildLi>
@@ -598,7 +568,7 @@ export function NavigationSidebar() {
                     <DropdownChildLi>
                       <StyledLink>Small section 3</StyledLink>
                     </DropdownChildLi>
-                  </SmallSectionUl>
+                  </DropdownMenuList>
                 )}
               </DropdownParentLi>
 
@@ -607,18 +577,18 @@ export function NavigationSidebar() {
                   onClick={() => toggleActivePage("programResources")}
                   dropdownSelected={isActive("programResources")}
                 >
-                  <DropdownParentSpacing>
+                  <DropdownParentContainer>
                     Program Resources
                     <SVGIcon
                       width="12px"
                       viewBox="0 0 12 8"
                       d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
                     />
-                  </DropdownParentSpacing>
+                  </DropdownParentContainer>
                 </StyledLink>
 
                 {isActive("programResources") && (
-                  <SmallSectionUl>
+                  <DropdownMenuList>
                     <DropdownChildLi>
                       <StyledLink>Small section 1</StyledLink>
                     </DropdownChildLi>
@@ -628,7 +598,7 @@ export function NavigationSidebar() {
                     <DropdownChildLi>
                       <StyledLink>Small section 3</StyledLink>
                     </DropdownChildLi>
-                  </SmallSectionUl>
+                  </DropdownMenuList>
                 )}
               </DropdownParentLi>
 
@@ -637,18 +607,18 @@ export function NavigationSidebar() {
                   onClick={() => toggleActivePage("w9Compliance")}
                   dropdownSelected={isActive("w9Compliance")}
                 >
-                  <DropdownParentSpacing>
+                  <DropdownParentContainer>
                     W-9 Compliance
                     <SVGIcon
                       width="12px"
                       viewBox="0 0 12 8"
                       d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
                     />
-                  </DropdownParentSpacing>
+                  </DropdownParentContainer>
                 </StyledLink>
 
                 {isActive("w9Compliance") && (
-                  <SmallSectionUl>
+                  <DropdownMenuList>
                     <DropdownChildLi>
                       <StyledLink>Small section 1</StyledLink>
                     </DropdownChildLi>
@@ -658,7 +628,7 @@ export function NavigationSidebar() {
                     <DropdownChildLi>
                       <StyledLink>Small section 3</StyledLink>
                     </DropdownChildLi>
-                  </SmallSectionUl>
+                  </DropdownMenuList>
                 )}
               </DropdownParentLi>
 
@@ -667,18 +637,18 @@ export function NavigationSidebar() {
                   onClick={() => toggleActivePage("imports")}
                   dropdownSelected={isActive("imports")}
                 >
-                  <DropdownParentSpacing>
+                  <DropdownParentContainer>
                     Imports
                     <SVGIcon
                       width="12px"
                       viewBox="0 0 12 8"
                       d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
                     />
-                  </DropdownParentSpacing>
+                  </DropdownParentContainer>
                 </StyledLink>
 
                 {isActive("imports") && (
-                  <SmallSectionUl>
+                  <DropdownMenuList>
                     <DropdownChildLi>
                       <StyledLink>Small section 1</StyledLink>
                     </DropdownChildLi>
@@ -688,10 +658,10 @@ export function NavigationSidebar() {
                     <DropdownChildLi>
                       <StyledLink>Small section 3</StyledLink>
                     </DropdownChildLi>
-                  </SmallSectionUl>
+                  </DropdownMenuList>
                 )}
               </DropdownParentLi>
-            </BigSectionUl>
+            </SubMenuList>
           </MainMenuLi>
 
           <MainMenuLi>
@@ -714,7 +684,7 @@ export function NavigationSidebar() {
               </AllContentDiv>
             </StyledLink>
             {/* Developer Center Subcategories */}
-            <BigSectionUl>
+            <SubMenuList>
               <SubMenuLeadLi>
                 <StyledLink
                   to="/developer/"
@@ -741,18 +711,18 @@ export function NavigationSidebar() {
                   onClick={() => toggleActivePage("devGuides")}
                   dropdownSelected={isActive("devGuides")}
                 >
-                  <DropdownParentSpacing>
+                  <DropdownParentContainer>
                     Dev Guides
                     <SVGIcon
                       width="12px"
                       viewBox="0 0 12 8"
                       d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
                     />
-                  </DropdownParentSpacing>
+                  </DropdownParentContainer>
                 </StyledLink>
 
                 {isActive("devGuides") && (
-                  <SmallSectionUl>
+                  <DropdownMenuList>
                     <DropdownChildLi>
                       <StyledLink>Small section 1</StyledLink>
                     </DropdownChildLi>
@@ -762,7 +732,7 @@ export function NavigationSidebar() {
                     <DropdownChildLi>
                       <StyledLink>Small section 3</StyledLink>
                     </DropdownChildLi>
-                  </SmallSectionUl>
+                  </DropdownMenuList>
                 )}
               </DropdownParentLi>
 
@@ -771,18 +741,18 @@ export function NavigationSidebar() {
                   onClick={() => toggleActivePage("jsonWeb")}
                   dropdownSelected={isActive("jsonWeb")}
                 >
-                  <DropdownParentSpacing>
+                  <DropdownParentContainer>
                     JSON Web Tokens
                     <SVGIcon
                       width="12px"
                       viewBox="0 0 12 8"
                       d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
                     />
-                  </DropdownParentSpacing>
+                  </DropdownParentContainer>
                 </StyledLink>
 
                 {isActive("jsonWeb") && (
-                  <SmallSectionUl>
+                  <DropdownMenuList>
                     <DropdownChildLi>
                       <StyledLink>Small section 1</StyledLink>
                     </DropdownChildLi>
@@ -792,7 +762,7 @@ export function NavigationSidebar() {
                     <DropdownChildLi>
                       <StyledLink>Small section 3</StyledLink>
                     </DropdownChildLi>
-                  </SmallSectionUl>
+                  </DropdownMenuList>
                 )}
               </DropdownParentLi>
 
@@ -801,18 +771,18 @@ export function NavigationSidebar() {
                   onClick={() => toggleActivePage("bestPractices")}
                   dropdownSelected={isActive("bestPractices")}
                 >
-                  <DropdownParentSpacing>
+                  <DropdownParentContainer>
                     Testing Best Practices
                     <SVGIcon
                       width="12px"
                       viewBox="0 0 12 8"
                       d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
                     />
-                  </DropdownParentSpacing>
+                  </DropdownParentContainer>
                 </StyledLink>
 
                 {isActive("bestPractices") && (
-                  <SmallSectionUl>
+                  <DropdownMenuList>
                     <DropdownChildLi>
                       <StyledLink>Small section 1</StyledLink>
                     </DropdownChildLi>
@@ -822,7 +792,7 @@ export function NavigationSidebar() {
                     <DropdownChildLi>
                       <StyledLink>Small section 3</StyledLink>
                     </DropdownChildLi>
-                  </SmallSectionUl>
+                  </DropdownMenuList>
                 )}
               </DropdownParentLi>
               <DropdownParentLi>
@@ -830,18 +800,18 @@ export function NavigationSidebar() {
                   onClick={() => toggleActivePage("squatchJS")}
                   dropdownSelected={isActive("squatchJS")}
                 >
-                  <DropdownParentSpacing>
+                  <DropdownParentContainer>
                     Squatch.js
                     <SVGIcon
                       width="12px"
                       viewBox="0 0 12 8"
                       d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
                     />
-                  </DropdownParentSpacing>
+                  </DropdownParentContainer>
                 </StyledLink>
 
                 {isActive("squatchJS") && (
-                  <SmallSectionUl>
+                  <DropdownMenuList>
                     <DropdownChildLi>
                       <StyledLink>About Squatch.js</StyledLink>
                     </DropdownChildLi>
@@ -863,7 +833,7 @@ export function NavigationSidebar() {
                     <DropdownChildLi>
                       <StyledLink>Squatch.js Reference</StyledLink>
                     </DropdownChildLi>
-                  </SmallSectionUl>
+                  </DropdownMenuList>
                 )}
               </DropdownParentLi>
 
@@ -872,48 +842,117 @@ export function NavigationSidebar() {
                   onClick={() => toggleActivePage("restAPI")}
                   dropdownSelected={isActive("restAPI")}
                 >
-                  <DropdownParentSpacing>
+                  <DropdownParentContainer>
                     REST API
                     <SVGIcon
                       width="12px"
                       viewBox="0 0 12 8"
                       d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
                     />
-                  </DropdownParentSpacing>
+                  </DropdownParentContainer>
                 </StyledLink>
 
                 {isActive("restAPI") && (
-                  <SmallSectionUl>
+                  <DropdownMenuList>
+                    <DropdownChildLi>
+                      <StyledLink>API Overview</StyledLink>
+                    </DropdownChildLi>
+                    <DropdownChildLi>
+                      <StyledLink>Authentication</StyledLink>
+                    </DropdownChildLi>
+                    <DropdownChildLi>
+                      <StyledLink>API Open Endpoints</StyledLink>
+                    </DropdownChildLi>
                     <DropdownChildLi>
                       <StyledLink>Errors</StyledLink>
                     </DropdownChildLi>
                     <SeperatorSpacing>
-                      <SeperatorText>Version 2</SeperatorText> <SeperatorLine />
+                      <SeperatorText>Webhooks</SeperatorText> <SeperatorLine />
                     </SeperatorSpacing>
-                    <ReferralCodeLi>
-                      <StyledLink>Lookup a referral code</StyledLink>
-                      <ButtonsContainerDiv>
-                        <GreenButton>Get</GreenButton>
-                      </ButtonsContainerDiv>
-                    </ReferralCodeLi>
-                    <ReferralCodeLi>
-                      <StyledLink>Lookup a referral code</StyledLink>
-                      <ButtonsContainerDiv>
-                        <GreenButton>Get</GreenButton>
-                        <GreyButton>Open Endpoint</GreyButton>
-                      </ButtonsContainerDiv>
-                    </ReferralCodeLi>
-                    <ReferralCodeLi>
-                      <StyledLink>Apply a referral code</StyledLink>
-                      <ButtonsContainerDiv>
-                        <OrangeButton>Get</OrangeButton>
-                        <GreyButton>Open Endpoint</GreyButton>
-                      </ButtonsContainerDiv>
-                    </ReferralCodeLi>
+                    <DropdownChildLi>
+                      <StyledLink>Webhooks Overview</StyledLink>
+                    </DropdownChildLi>
+                    <DropdownChildLi>
+                      <StyledLink>Webhooks Security</StyledLink>
+                    </DropdownChildLi>
+                    <SeperatorSpacing>
+                      <SeperatorText>Webhooks</SeperatorText> <SeperatorLine />
+                    </SeperatorSpacing>
+                    <DropdownChildLi>
+                      <StyledLink>Full List of Methods</StyledLink>
+                    </DropdownChildLi>
+                    <DropdownChildLi>
+                      <StyledLink>User</StyledLink>
+                    </DropdownChildLi>
+                    <DropdownChildLi>
+                      <StyledLink>User Event</StyledLink>
+                    </DropdownChildLi>
+                    <DropdownChildLi>
+                      <StyledLink>Share Links</StyledLink>
+                    </DropdownChildLi>
+                    <DropdownChildLi>
+                      <StyledLink
+                        onClick={() => toggleActivePage("restAPIReferralCode")}
+                        dropdownSelected={isActive("restAPIReferralCode")}
+                      >
+                        <DropdownParentContainer>
+                          Referral Code
+                          <SVGIcon
+                            width="12px"
+                            viewBox="0 0 12 8"
+                            d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
+                          />
+                        </DropdownParentContainer>
+                      </StyledLink>
+                      {isActive("restAPIReferralCode") && (
+                        <NestedList>
+                          <StyledLink
+                            to="/api/methods#get_code"
+                            clicked={currentPage === "/api/methods#get_code"}
+                          >
+                            <ReferralCodeLi>
+                              Lookup a referral code
+                              <ButtonsContainerDiv>
+                                <GreenButton>Get</GreenButton>
+                              </ButtonsContainerDiv>
+                            </ReferralCodeLi>
+                          </StyledLink>
+                          <StyledLink
+                            to="/api/methods#open_validate_code"
+                            clicked={
+                              currentPage === "/api/methods#open_validate_code"
+                            }
+                          >
+                            <ReferralCodeLi>
+                              Lookup a referral code
+                              <ButtonsContainerDiv>
+                                <GreenButton>Get</GreenButton>
+                                <GreyButton>Open Endpoint</GreyButton>
+                              </ButtonsContainerDiv>
+                            </ReferralCodeLi>
+                          </StyledLink>
+                          <StyledLink
+                            to="/api/methods#open_apply_code"
+                            clicked={
+                              currentPage === "/api/methods#open_apply_code"
+                            }
+                          >
+                            <ReferralCodeLi>
+                              Apply a referral code
+                              <ButtonsContainerDiv>
+                                <OrangeButton>Get</OrangeButton>
+                                <GreyButton>Open Endpoint</GreyButton>
+                              </ButtonsContainerDiv>
+                            </ReferralCodeLi>
+                          </StyledLink>
+                        </NestedList>
+                      )}
+                    </DropdownChildLi>
+
                     <DropdownChildLi>
                       <StyledLink>Small section 3</StyledLink>
                     </DropdownChildLi>
-                  </SmallSectionUl>
+                  </DropdownMenuList>
                 )}
               </DropdownParentLi>
 
@@ -922,18 +961,18 @@ export function NavigationSidebar() {
                   onClick={() => toggleActivePage("graphQLAPI")}
                   dropdownSelected={isActive("graphQLAPI")}
                 >
-                  <DropdownParentSpacing>
+                  <DropdownParentContainer>
                     GraphQL API
                     <SVGIcon
                       width="12px"
                       viewBox="0 0 12 8"
                       d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
                     />
-                  </DropdownParentSpacing>
+                  </DropdownParentContainer>
                 </StyledLink>
 
                 {isActive("graphQLAPI") && (
-                  <SmallSectionUl>
+                  <DropdownMenuList>
                     <DropdownChildLi>
                       <StyledLink>Small section 1</StyledLink>
                     </DropdownChildLi>
@@ -943,10 +982,10 @@ export function NavigationSidebar() {
                     <DropdownChildLi>
                       <StyledLink>Small section 3</StyledLink>
                     </DropdownChildLi>
-                  </SmallSectionUl>
+                  </DropdownMenuList>
                 )}
               </DropdownParentLi>
-            </BigSectionUl>
+            </SubMenuList>
           </MainMenuLi>
 
           {/* Integrations starts here */}
@@ -970,7 +1009,7 @@ export function NavigationSidebar() {
               </AllContentDiv>
             </StyledLink>
             {/* Integrations Subcategories */}
-            <BigSectionUl>
+            <SubMenuList>
               <SubMenuLeadLi>
                 <StyledLink
                   to="/integrations/"
@@ -996,18 +1035,18 @@ export function NavigationSidebar() {
                   onClick={() => toggleActivePage("salesforce")}
                   dropdownSelected={isActive("salesforce")}
                 >
-                  <DropdownParentSpacing>
+                  <DropdownParentContainer>
                     Salesforce
                     <SVGIcon
                       width="12px"
                       viewBox="0 0 12 8"
                       d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
                     />
-                  </DropdownParentSpacing>
+                  </DropdownParentContainer>
                 </StyledLink>
 
                 {isActive("salesforce") && (
-                  <SmallSectionUl>
+                  <DropdownMenuList>
                     <DropdownChildLi>
                       <StyledLink>Small section 1</StyledLink>
                     </DropdownChildLi>
@@ -1017,7 +1056,7 @@ export function NavigationSidebar() {
                     <DropdownChildLi>
                       <StyledLink>Small section 3</StyledLink>
                     </DropdownChildLi>
-                  </SmallSectionUl>
+                  </DropdownMenuList>
                 )}
               </DropdownParentLi>
 
@@ -1026,18 +1065,18 @@ export function NavigationSidebar() {
                   onClick={() => toggleActivePage("sftp")}
                   dropdownSelected={isActive("sftp")}
                 >
-                  <DropdownParentSpacing>
+                  <DropdownParentContainer>
                     SFTP
                     <SVGIcon
                       width="12px"
                       viewBox="0 0 12 8"
                       d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
                     />
-                  </DropdownParentSpacing>
+                  </DropdownParentContainer>
                 </StyledLink>
 
                 {isActive("sftp") && (
-                  <SmallSectionUl>
+                  <DropdownMenuList>
                     <DropdownChildLi>
                       <StyledLink>Small section 1</StyledLink>
                     </DropdownChildLi>
@@ -1047,7 +1086,7 @@ export function NavigationSidebar() {
                     <DropdownChildLi>
                       <StyledLink>Small section 3</StyledLink>
                     </DropdownChildLi>
-                  </SmallSectionUl>
+                  </DropdownMenuList>
                 )}
               </DropdownParentLi>
 
@@ -1056,18 +1095,18 @@ export function NavigationSidebar() {
                   onClick={() => toggleActivePage("segment")}
                   dropdownSelected={isActive("segment")}
                 >
-                  <DropdownParentSpacing>
+                  <DropdownParentContainer>
                     Segment
                     <SVGIcon
                       width="12px"
                       viewBox="0 0 12 8"
                       d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
                     />
-                  </DropdownParentSpacing>
+                  </DropdownParentContainer>
                 </StyledLink>
 
                 {isActive("segment") && (
-                  <SmallSectionUl>
+                  <DropdownMenuList>
                     <DropdownChildLi>
                       <StyledLink>Small section 1</StyledLink>
                     </DropdownChildLi>
@@ -1077,7 +1116,7 @@ export function NavigationSidebar() {
                     <DropdownChildLi>
                       <StyledLink>Small section 3</StyledLink>
                     </DropdownChildLi>
-                  </SmallSectionUl>
+                  </DropdownMenuList>
                 )}
               </DropdownParentLi>
 
@@ -1086,18 +1125,18 @@ export function NavigationSidebar() {
                   onClick={() => toggleActivePage("tangocard")}
                   dropdownSelected={isActive("tangocard")}
                 >
-                  <DropdownParentSpacing>
+                  <DropdownParentContainer>
                     Tangocard
                     <SVGIcon
                       width="12px"
                       viewBox="0 0 12 8"
                       d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
                     />
-                  </DropdownParentSpacing>
+                  </DropdownParentContainer>
                 </StyledLink>
 
                 {isActive("tangocard") && (
-                  <SmallSectionUl>
+                  <DropdownMenuList>
                     <DropdownChildLi>
                       <StyledLink>Small section 1</StyledLink>
                     </DropdownChildLi>
@@ -1107,7 +1146,7 @@ export function NavigationSidebar() {
                     <DropdownChildLi>
                       <StyledLink>Small section 3</StyledLink>
                     </DropdownChildLi>
-                  </SmallSectionUl>
+                  </DropdownMenuList>
                 )}
               </DropdownParentLi>
 
@@ -1116,18 +1155,18 @@ export function NavigationSidebar() {
                   onClick={() => toggleActivePage("recurly")}
                   dropdownSelected={isActive("recurly")}
                 >
-                  <DropdownParentSpacing>
+                  <DropdownParentContainer>
                     Recurly
                     <SVGIcon
                       width="12px"
                       viewBox="0 0 12 8"
                       d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
                     />
-                  </DropdownParentSpacing>
+                  </DropdownParentContainer>
                 </StyledLink>
 
                 {isActive("recurly") && (
-                  <SmallSectionUl>
+                  <DropdownMenuList>
                     <DropdownChildLi>
                       <StyledLink>Small section 1</StyledLink>
                     </DropdownChildLi>
@@ -1137,7 +1176,7 @@ export function NavigationSidebar() {
                     <DropdownChildLi>
                       <StyledLink>Small section 3</StyledLink>
                     </DropdownChildLi>
-                  </SmallSectionUl>
+                  </DropdownMenuList>
                 )}
               </DropdownParentLi>
 
@@ -1146,18 +1185,18 @@ export function NavigationSidebar() {
                   onClick={() => toggleActivePage("appsflyer")}
                   dropdownSelected={isActive("appsflyer")}
                 >
-                  <DropdownParentSpacing>
+                  <DropdownParentContainer>
                     Appsflyer
                     <SVGIcon
                       width="12px"
                       viewBox="0 0 12 8"
                       d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
                     />
-                  </DropdownParentSpacing>
+                  </DropdownParentContainer>
                 </StyledLink>
 
                 {isActive("appsflyer") && (
-                  <SmallSectionUl>
+                  <DropdownMenuList>
                     <DropdownChildLi>
                       <StyledLink>Small section 1</StyledLink>
                     </DropdownChildLi>
@@ -1167,7 +1206,7 @@ export function NavigationSidebar() {
                     <DropdownChildLi>
                       <StyledLink>Small section 3</StyledLink>
                     </DropdownChildLi>
-                  </SmallSectionUl>
+                  </DropdownMenuList>
                 )}
               </DropdownParentLi>
               <DropdownParentLi>
@@ -1175,18 +1214,18 @@ export function NavigationSidebar() {
                   onClick={() => toggleActivePage("branch")}
                   dropdownSelected={isActive("branch")}
                 >
-                  <DropdownParentSpacing>
+                  <DropdownParentContainer>
                     Branch
                     <SVGIcon
                       width="12px"
                       viewBox="0 0 12 8"
                       d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
                     />
-                  </DropdownParentSpacing>
+                  </DropdownParentContainer>
                 </StyledLink>
 
                 {isActive("branch") && (
-                  <SmallSectionUl>
+                  <DropdownMenuList>
                     <DropdownChildLi>
                       <StyledLink>Small section 1</StyledLink>
                     </DropdownChildLi>
@@ -1196,7 +1235,7 @@ export function NavigationSidebar() {
                     <DropdownChildLi>
                       <StyledLink>Small section 3</StyledLink>
                     </DropdownChildLi>
-                  </SmallSectionUl>
+                  </DropdownMenuList>
                 )}
               </DropdownParentLi>
 
@@ -1205,18 +1244,18 @@ export function NavigationSidebar() {
                   onClick={() => toggleActivePage("stripe")}
                   dropdownSelected={isActive("stripe")}
                 >
-                  <DropdownParentSpacing>
+                  <DropdownParentContainer>
                     Stripe
                     <SVGIcon
                       width="12px"
                       viewBox="0 0 12 8"
                       d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
                     />
-                  </DropdownParentSpacing>
+                  </DropdownParentContainer>
                 </StyledLink>
 
                 {isActive("stripe") && (
-                  <SmallSectionUl>
+                  <DropdownMenuList>
                     <DropdownChildLi>
                       <StyledLink>Small section 1</StyledLink>
                     </DropdownChildLi>
@@ -1226,7 +1265,7 @@ export function NavigationSidebar() {
                     <DropdownChildLi>
                       <StyledLink>Small section 3</StyledLink>
                     </DropdownChildLi>
-                  </SmallSectionUl>
+                  </DropdownMenuList>
                 )}
               </DropdownParentLi>
 
@@ -1235,18 +1274,18 @@ export function NavigationSidebar() {
                   onClick={() => toggleActivePage("zapier")}
                   dropdownSelected={isActive("zapier")}
                 >
-                  <DropdownParentSpacing>
+                  <DropdownParentContainer>
                     Zapier
                     <SVGIcon
                       width="12px"
                       viewBox="0 0 12 8"
                       d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
                     />
-                  </DropdownParentSpacing>
+                  </DropdownParentContainer>
                 </StyledLink>
 
                 {isActive("zapier") && (
-                  <SmallSectionUl>
+                  <DropdownMenuList>
                     <DropdownChildLi>
                       <StyledLink>Small section 1</StyledLink>
                     </DropdownChildLi>
@@ -1256,7 +1295,7 @@ export function NavigationSidebar() {
                     <DropdownChildLi>
                       <StyledLink>Small section 3</StyledLink>
                     </DropdownChildLi>
-                  </SmallSectionUl>
+                  </DropdownMenuList>
                 )}
               </DropdownParentLi>
 
@@ -1265,18 +1304,18 @@ export function NavigationSidebar() {
                   onClick={() => toggleActivePage("stitch")}
                   dropdownSelected={isActive("stitch")}
                 >
-                  <DropdownParentSpacing>
+                  <DropdownParentContainer>
                     Stitch
                     <SVGIcon
                       width="12px"
                       viewBox="0 0 12 8"
                       d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
                     />
-                  </DropdownParentSpacing>
+                  </DropdownParentContainer>
                 </StyledLink>
 
                 {isActive("stitch") && (
-                  <SmallSectionUl>
+                  <DropdownMenuList>
                     <DropdownChildLi>
                       <StyledLink>Small section 1</StyledLink>
                     </DropdownChildLi>
@@ -1286,10 +1325,10 @@ export function NavigationSidebar() {
                     <DropdownChildLi>
                       <StyledLink>Small section 3</StyledLink>
                     </DropdownChildLi>
-                  </SmallSectionUl>
+                  </DropdownMenuList>
                 )}
               </DropdownParentLi>
-            </BigSectionUl>
+            </SubMenuList>
           </MainMenuLi>
         </ul>
       </nav>
