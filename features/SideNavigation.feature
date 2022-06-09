@@ -1,38 +1,24 @@
 Feature: Navigating Sidenav
-    This allows users to easily navigate and select between articles/documents within our help center site.
-    @ui
-    Scenario: Menu Item display a hovered state when hovered
-        Given a user viewing the Side nav
-        When they hover a menu item
-        Then the background color of the menu item changes to a muted green (E7EDEE)
-    @ui
-    Scenario: Core Category Section Item display a selected state when selected
-        Given a user viewing the Side nav
-        When they select a 'Core Category Section' item
-        Then the background color of the menu item changes to a dark green (003B45)
-        And the text color changes to white (FFFFFF)
-        And icon color changes to white (FFFFFF)
-        And they see the corresponding content page opening up
+    This allows users to easily navigate and select between articles/documents within our help center site
 
     @ui
-    Scenario: Core Category Section with navigation arrow takes the user to a new page
-        Given a user viewing the Side nav
-        When they select a 'Core Category Section with navigation arrow' item
-        Then they navigate to a corresponding side bar
-        And they see the corresponding page content opening up
+    @motivating
+    Scenario Outline: Menu item behavior in the side navigation bar
+        Given a user performs a <trigger> on a <menuItem>
+        Then they see that the background color changes to <backgroundColor>
+        And text color changes to <textColor>
+        And text type changes to <textType>
+        And the icon color changes to <iconColor>
+        And they see <action1> and <action2> happening
+        Examples:
 
+            | <menuItem>                                  | <trigger> | <backgroundColor>    | <textColor>         | <textType> | <iconColor>         | <action1>                                             | <action2>                             |
+            | all                                         | hover     | E7EDEE (muted green) | N/A                 | N/A        | N/A                 | N/A                                                   | N/A                                   |
+            | all                                         | N/A       | FFFFFF               | 003B45 (dark green) | normal     | 003B45 (dark green) | N/A                                                   | N/A                                   |
+            | Core Category Section                       | selected  | 003B45 (dark green)  | FFFFFF              | N/A        | FFFFFF              | corresponding content page opening up                 | N/A                                   |
+            | Core Category Section with navigation arrow | selected  | N/A                  | N/A                 | N/A        | N/A                 | navigate to a corresponding side bar                  | corresponding content page opening up |
+            | Parent with dropdown arrow                  | selected  | N/A                  | N/A                 | bold       | N/A                 | arrow point up                                        | N/A                                   |
+            | Parent menu item                            | selected  | 003B45 (dark green)  | FFFFFF              | N/A        | N/A                 | corresponding content page opening up                 | N/A                                   |
+            | Child with dropdown arrow                   | selected  | N/A                  | N/A                 | bold       | N/A                 | arrow point up                                        | N/A                                   |
+            | Child menu item                             | selected  | 003B45 (dark green)  | FFFFFF              | bold       | N/A                 | dropdown line changes to 2px width and green (06966F) | corresponding content page opening up |
 
-    @ui
-    Scenario: 'Parent with dropdown arrow' menu item is expanded
-        Given a user viewing the Side nav
-        When they select a 'Parent with dropdown arrow' menu item
-        Then they see the text of the 'Parent with dropdown arrow'  menu item will be bolded
-        And they see that the arrow will point up
-
-    @ui
-    Scenario: Parent menu item is selected
-        Given a user viewing the Side nav
-        When they select a Parent menu item
-        Then the background color of the menu item changes to a dark green (003B45)
-        And the text color changes to white (FFFFFF)
-        And they see the corresponding content page opening up
