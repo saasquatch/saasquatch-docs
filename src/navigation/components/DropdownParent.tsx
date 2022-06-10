@@ -18,7 +18,6 @@ import { DropdownChild } from "./DropdownChild";
 
 interface MenuParentProps {
   title: string;
-  currentPage: string;
   parentID: string;
   menuItems: MenuItemProps[];
   svgIcon: SVGProps;
@@ -62,7 +61,6 @@ export const DropdownParent: React.FC<MenuParentProps> = ({
           })}
         </DropdownMenuList>
       )}
-      ;
     </DropdownParentLi>
   );
 };

@@ -402,7 +402,6 @@ export function NavigationSidebar() {
               <LeadAndListSeperator />
               <DropdownParent
                 title="Growth Automation"
-                currentPage={currentPage}
                 parentID="growthAuto"
                 menuItems={growthAutoItems}
                 svgIcon={dropdownCaret}
