@@ -17,13 +17,6 @@ import { DropdownChild } from "./components/DropdownChild";
 import { DropdownParent } from "./components/DropdownParent";
 
 /* Growth Automation menu items */
-const growthAutoItems: MenuItemProps[] = [
-  {
-    path: "/growth/ga-101",
-    title: "Growth Automation 101",
-    currentPage: "/growth/ga-101",
-  },
-];
 
 const dropdownCaret: SVGProps = {
   width: "12px",
@@ -288,6 +281,39 @@ export function NavigationSidebar() {
   const [currentPage, setcurrentPage] = useState<string>("/");
   // To change currentPage: setcurrentPage(true) OR setcurrentPage(false)
 
+  const growthAutoItems: MenuItemProps[] = [
+    {
+      path: "/growth/ga-101",
+      title: "Growth Automation 101",
+      currentPage,
+    },
+    {
+      path: "/growth/customer-lifecycle",
+      title: "Growth Automation Customer Lifecycle",
+      currentPage,
+    },
+    {
+      path: "/growth/saasquatch-ga",
+      title: "SaaSquatch Growth Automation Platform",
+      currentPage,
+    },
+    {
+      path: "/program/library",
+      title: "Program Library",
+      currentPage,
+    },
+    {
+      path: "/feature/rewards",
+      title: "Program Reward Options",
+      currentPage,
+    },
+    {
+      path: "/success/ga-analytics",
+      title: "Analytics Overview for Growth Automation Programs",
+      currentPage,
+    },
+  ];
+
   const [activePages, setActivePages] = useState<string[]>([]);
 
   const isActive = (pageKey: string) => activePages.includes(pageKey);
@@ -408,35 +434,6 @@ export function NavigationSidebar() {
                 toggleActivePage={toggleActivePage}
                 isActive={isActive}
               />
-              <DropdownParentLi>
-                <StyledLink
-                  onClick={() => toggleActivePage("referralPrograms")}
-                  dropdownSelected={isActive("referralPrograms")}
-                >
-                  <DropdownParentContainer>
-                    Referral Programs
-                    <SVGIcon
-                      width="12px"
-                      viewBox="0 0 12 8"
-                      d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
-                    />
-                  </DropdownParentContainer>
-                </StyledLink>
-
-                {isActive("referralPrograms") && (
-                  <DropdownMenuList>
-                    <DropdownChildLi>
-                      <StyledLink>Small section 1</StyledLink>
-                    </DropdownChildLi>
-                    <DropdownChildLi>
-                      <StyledLink>Small section 2</StyledLink>
-                    </DropdownChildLi>
-                    <DropdownChildLi>
-                      <StyledLink>Small section 3</StyledLink>
-                    </DropdownChildLi>
-                  </DropdownMenuList>
-                )}
-              </DropdownParentLi>
 
               <DropdownParentLi>
                 <StyledLink
