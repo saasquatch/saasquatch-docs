@@ -13,13 +13,30 @@ import useBrowserEffect from "src/util/useBrowserEffect";
 // import "mmenu-js/dist/mmenu.css"
 
 import styled from "styled-components";
+import { DropdownChild } from "./components/DropdownChild";
+import { DropdownParent } from "./components/DropdownParent";
+
+/* Growth Automation menu items */
+const growthAutoItems: MenuItemProps[] = [
+  {
+    path: "/growth/ga-101",
+    title: "Growth Automation 101",
+    currentPage: "/growth/ga-101",
+  },
+];
+
+const dropdownCaret: SVGProps = {
+  width: "12px",
+  viewBox: "0 0 12 8",
+  d: "M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z",
+};
 
 /* Styled Components */
 
 /* Styled Link (should change style when clicked) */
 /* Parameter: clicked (boolean) */
 /* if: "?"" else: ":" */
-const StyledLink = styled(Link)`
+export const StyledLink = styled(Link)`
   display: flex !important;
   align-items: center !important;
   height: fit-content !important;
@@ -41,7 +58,7 @@ const StyledLink = styled(Link)`
 /* ul styles */
 const SubMenuList = styled.ul``;
 
-const DropdownMenuList = styled.ul`
+export const DropdownMenuList = styled.ul`
   list-style: none !important;
   border-left: 1px solid #003b45 !important;
   margin-left: 12px !important;
@@ -81,12 +98,12 @@ const SubMenuLeadLi = styled.li`
   color: white !important;
 `;
 
-const DropdownParentLi = styled.li`
+export const DropdownParentLi = styled.li`
   font-size: 16px;
   line-height: 24px;
 `;
 
-const DropdownChildLi = styled.li`
+export const DropdownChildLi = styled.li`
   font-family: "Helvetica" !important;
   font-size: 14px;
   line-height: 21px;
@@ -125,7 +142,7 @@ const SubMenuLeadDiv = styled(AllContentDiv)`
   gap: 8px;
 `;
 
-const DropdownParentContainer = styled.div`
+export const DropdownParentContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -215,7 +232,7 @@ const IconSVGDiv = styled.div`
   height: auto;
 `;
 
-const SVGIcon: React.FC<SVGProps> = ({
+export const SVGIcon: React.FC<SVGProps> = ({
   fill,
   width,
   height = "auto",
@@ -383,75 +400,15 @@ export function NavigationSidebar() {
                 </StyledLink>
               </SubMenuLeadLi>
               <LeadAndListSeperator />
-              <DropdownParentLi>
-                <StyledLink
-                  onClick={() => toggleActivePage("growthAuto")}
-                  dropdownSelected={isActive("growthAuto")}
-                >
-                  <DropdownParentContainer>
-                    Growth Automation
-                    <SVGIcon
-                      width="12px"
-                      viewBox="0 0 12 8"
-                      d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
-                    />
-                  </DropdownParentContainer>
-                </StyledLink>
-
-                {isActive("growthAuto") && (
-                  <DropdownMenuList>
-                    <DropdownChildLi>
-                      <StyledLink
-                        to="/growth/ga-101"
-                        clicked={currentPage === "/growth/ga-101"}
-                      >
-                        Growth Automation 101
-                      </StyledLink>
-                    </DropdownChildLi>
-                    <DropdownChildLi>
-                      <StyledLink
-                        to="/growth/customer-lifecycle"
-                        clicked={currentPage === "/growth/customer-lifecycle"}
-                      >
-                        Growth Automation Customer Lifecycle
-                      </StyledLink>
-                    </DropdownChildLi>
-                    <DropdownChildLi>
-                      <StyledLink
-                        to="/growth/saasquatch-ga"
-                        clicked={currentPage === "/growth/saasquatch-ga"}
-                      >
-                        SaaSquatch Growth Automation Platform
-                      </StyledLink>
-                    </DropdownChildLi>
-                    <DropdownChildLi>
-                      <StyledLink
-                        to="/program/library"
-                        clicked={currentPage === "/program/library"}
-                      >
-                        Program Library
-                      </StyledLink>
-                    </DropdownChildLi>
-                    <DropdownChildLi>
-                      <StyledLink
-                        to="/feature/rewards"
-                        clicked={currentPage === "/feature/rewards"}
-                      >
-                        Program Reward Options
-                      </StyledLink>
-                    </DropdownChildLi>
-                    <DropdownChildLi>
-                      <StyledLink
-                        to="/success/ga-analytics"
-                        clicked={currentPage === "/success/ga-analytics"}
-                      >
-                        Analytics Overview for Growth Automation Programs
-                      </StyledLink>
-                    </DropdownChildLi>
-                  </DropdownMenuList>
-                )}
-              </DropdownParentLi>
-
+              <DropdownParent
+                title="Growth Automation"
+                currentPage={currentPage}
+                parentID="growthAuto"
+                menuItems={growthAutoItems}
+                svgIcon={dropdownCaret}
+                toggleActivePage={toggleActivePage}
+                isActive={isActive}
+              />
               <DropdownParentLi>
                 <StyledLink
                   onClick={() => toggleActivePage("referralPrograms")}
@@ -1336,11 +1293,17 @@ export function NavigationSidebar() {
   );
 }
 
-interface SVGProps {
+export interface SVGProps {
   fill?: string;
   width?: string;
   height?: string;
   viewBox?: string;
   d?: string;
   clicked?: boolean;
+}
+
+export interface MenuItemProps {
+  path: string;
+  title: string;
+  currentPage: string;
 }
