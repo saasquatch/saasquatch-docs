@@ -1,8 +1,8 @@
 /*
-    Component: Drop-down menu parent (e.g. "Growth Automation" with dropdown caret)
-    Purpose: Renders list item with drop-down caret in core category sub-section.
-    Contains: One drop-down parent (title and icon).
-              All menu items (drop-down children) within the parent.
+    Component: Subcategory List
+    Purpose: When you click a core category in the main menu, you are lead to this list.
+    Contains: Core category list item (first item in list, not a drop-down).
+              All drop-down menus within this core category.
     Author: Madeline Solis de Ovando
 */
 

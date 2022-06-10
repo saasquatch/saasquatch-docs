@@ -281,6 +281,29 @@ export function NavigationSidebar() {
   const [currentPage, setcurrentPage] = useState<string>("/");
   // To change currentPage: setcurrentPage(true) OR setcurrentPage(false)
 
+  const adminPortalItems: MenuItemProps[] = [
+    {
+      path: "/success/using-referral-saasquatch/",
+      title: "Using the SaaSquatch Portal",
+      currentPage,
+    },
+    {
+      path: "/success/navigating-the-portal/",
+      title: "Navigating the SaaSquatch Portal",
+      currentPage,
+    },
+    {
+      path: "/success/referral-feed/",
+      title: "The Referral Feed",
+      currentPage,
+    },
+    {
+      path: "/features/analytics/",
+      title: "Program Analytics",
+      currentPage,
+    },
+  ];
+
   const growthAutoItems: MenuItemProps[] = [
     {
       path: "/growth/ga-101",
@@ -297,21 +320,59 @@ export function NavigationSidebar() {
       title: "SaaSquatch Growth Automation Platform",
       currentPage,
     },
+  ];
+
+  const referralProgramsItems: MenuItemProps[] = [
     {
-      path: "/program/library",
-      title: "Program Library",
+      path: "/success/intro/",
+      title: "Referral Programs 101",
       currentPage,
     },
     {
-      path: "/feature/rewards",
-      title: "Program Reward Options",
+      path: "/success/referral-program-optimization/",
+      title: "Referral Program Optimization",
       currentPage,
     },
     {
-      path: "/success/ga-analytics",
-      title: "Analytics Overview for Growth Automation Programs",
+      path: "/success/core-topics/",
+      title: "The SaaSquatch Referral Program Loop",
       currentPage,
     },
+    {
+      path: "/success/touchpoints/",
+      title: "Referral Marketing Channels",
+      currentPage,
+    },
+    {
+      path: "/success/referral-program-retargeting/",
+      title: "Referral Program Retargeting",
+      currentPage,
+    },
+    {
+      path: "/success/share-options/",
+      title: "Referral Program Sharing Options",
+      currentPage,
+    },
+  ];
+
+  const fraudSecurityManageItems: MenuItemProps[] = [
+    {
+      path: "/success/referral-security/",
+      title: "Security Management System",
+      currentPage,
+    },
+    {
+      path: "/fraud-and-security/",
+      title: "Fraud, Security & Fake Referrals",
+      currentPage,
+    },
+  ];
+
+  const array: MenuItemProps[][] = [
+    adminPortalItems,
+    growthAutoItems,
+    referralProgramsItems,
+    fraudSecurityManageItems,
   ];
 
   const [activePages, setActivePages] = useState<string[]>([]);
@@ -353,12 +414,11 @@ export function NavigationSidebar() {
   }, []);
 
   useEffect(() => {
-    const path = window.location.pathname;
-    const hash = window.location.hash;
+    const path = history.location.pathname;
+    const hash = history.location.hash;
     const pathAndHash = path + hash;
     setcurrentPage(pathAndHash);
-  }, [window.location.pathname, window.location.hash]);
-  // when this is updated, useEffect runs again
+  }, [history.location.pathname, history.location.hash]);
 
   return (
     <Styles.Container>
@@ -427,6 +487,14 @@ export function NavigationSidebar() {
               </SubMenuLeadLi>
               <LeadAndListSeperator />
               <DropdownParent
+                title="SaaSquatch Admin Portal"
+                parentID="adminPortal"
+                menuItems={adminPortalItems}
+                svgIcon={dropdownCaret}
+                toggleActivePage={toggleActivePage}
+                isActive={isActive}
+              />
+              <DropdownParent
                 title="Growth Automation"
                 parentID="growthAuto"
                 menuItems={growthAutoItems}
@@ -434,186 +502,22 @@ export function NavigationSidebar() {
                 toggleActivePage={toggleActivePage}
                 isActive={isActive}
               />
-
-              <DropdownParentLi>
-                <StyledLink
-                  onClick={() => toggleActivePage("programReferences")}
-                  dropdownSelected={isActive("programReferences")}
-                >
-                  <DropdownParentContainer>
-                    Program References
-                    <SVGIcon
-                      width="12px"
-                      viewBox="0 0 12 8"
-                      d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
-                    />
-                  </DropdownParentContainer>
-                </StyledLink>
-
-                {isActive("programReferences") && (
-                  <DropdownMenuList>
-                    <DropdownChildLi>
-                      <StyledLink>Small section 1</StyledLink>
-                    </DropdownChildLi>
-                    <DropdownChildLi>
-                      <StyledLink>Small section 2</StyledLink>
-                    </DropdownChildLi>
-                    <DropdownChildLi>
-                      <StyledLink>Small section 3</StyledLink>
-                    </DropdownChildLi>
-                  </DropdownMenuList>
-                )}
-              </DropdownParentLi>
-
-              <DropdownParentLi>
-                <StyledLink
-                  onClick={() => toggleActivePage("adminPortal")}
-                  dropdownSelected={isActive("adminPortal")}
-                >
-                  <DropdownParentContainer>
-                    Administration Portal
-                    <SVGIcon
-                      width="12px"
-                      viewBox="0 0 12 8"
-                      d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
-                    />
-                  </DropdownParentContainer>
-                </StyledLink>
-
-                {isActive("adminPortal") && (
-                  <DropdownMenuList>
-                    <DropdownChildLi>
-                      <StyledLink>Small section 1</StyledLink>
-                    </DropdownChildLi>
-                    <DropdownChildLi>
-                      <StyledLink>Small section 2</StyledLink>
-                    </DropdownChildLi>
-                    <DropdownChildLi>
-                      <StyledLink>Small section 3</StyledLink>
-                    </DropdownChildLi>
-                  </DropdownMenuList>
-                )}
-              </DropdownParentLi>
-
-              <DropdownParentLi>
-                <StyledLink
-                  onClick={() => toggleActivePage("programReference")}
-                  dropdownSelected={isActive("programReference")}
-                >
-                  <DropdownParentContainer>
-                    Program Reference
-                    <SVGIcon
-                      width="12px"
-                      viewBox="0 0 12 8"
-                      d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
-                    />
-                  </DropdownParentContainer>
-                </StyledLink>
-
-                {isActive("programReference") && (
-                  <DropdownMenuList>
-                    <DropdownChildLi>
-                      <StyledLink>Small section 1</StyledLink>
-                    </DropdownChildLi>
-                    <DropdownChildLi>
-                      <StyledLink>Small section 2</StyledLink>
-                    </DropdownChildLi>
-                    <DropdownChildLi>
-                      <StyledLink>Small section 3</StyledLink>
-                    </DropdownChildLi>
-                  </DropdownMenuList>
-                )}
-              </DropdownParentLi>
-
-              <DropdownParentLi>
-                <StyledLink
-                  onClick={() => toggleActivePage("programResources")}
-                  dropdownSelected={isActive("programResources")}
-                >
-                  <DropdownParentContainer>
-                    Program Resources
-                    <SVGIcon
-                      width="12px"
-                      viewBox="0 0 12 8"
-                      d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
-                    />
-                  </DropdownParentContainer>
-                </StyledLink>
-
-                {isActive("programResources") && (
-                  <DropdownMenuList>
-                    <DropdownChildLi>
-                      <StyledLink>Small section 1</StyledLink>
-                    </DropdownChildLi>
-                    <DropdownChildLi>
-                      <StyledLink>Small section 2</StyledLink>
-                    </DropdownChildLi>
-                    <DropdownChildLi>
-                      <StyledLink>Small section 3</StyledLink>
-                    </DropdownChildLi>
-                  </DropdownMenuList>
-                )}
-              </DropdownParentLi>
-
-              <DropdownParentLi>
-                <StyledLink
-                  onClick={() => toggleActivePage("w9Compliance")}
-                  dropdownSelected={isActive("w9Compliance")}
-                >
-                  <DropdownParentContainer>
-                    W-9 Compliance
-                    <SVGIcon
-                      width="12px"
-                      viewBox="0 0 12 8"
-                      d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
-                    />
-                  </DropdownParentContainer>
-                </StyledLink>
-
-                {isActive("w9Compliance") && (
-                  <DropdownMenuList>
-                    <DropdownChildLi>
-                      <StyledLink>Small section 1</StyledLink>
-                    </DropdownChildLi>
-                    <DropdownChildLi>
-                      <StyledLink>Small section 2</StyledLink>
-                    </DropdownChildLi>
-                    <DropdownChildLi>
-                      <StyledLink>Small section 3</StyledLink>
-                    </DropdownChildLi>
-                  </DropdownMenuList>
-                )}
-              </DropdownParentLi>
-
-              <DropdownParentLi>
-                <StyledLink
-                  onClick={() => toggleActivePage("imports")}
-                  dropdownSelected={isActive("imports")}
-                >
-                  <DropdownParentContainer>
-                    Imports
-                    <SVGIcon
-                      width="12px"
-                      viewBox="0 0 12 8"
-                      d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
-                    />
-                  </DropdownParentContainer>
-                </StyledLink>
-
-                {isActive("imports") && (
-                  <DropdownMenuList>
-                    <DropdownChildLi>
-                      <StyledLink>Small section 1</StyledLink>
-                    </DropdownChildLi>
-                    <DropdownChildLi>
-                      <StyledLink>Small section 2</StyledLink>
-                    </DropdownChildLi>
-                    <DropdownChildLi>
-                      <StyledLink>Small section 3</StyledLink>
-                    </DropdownChildLi>
-                  </DropdownMenuList>
-                )}
-              </DropdownParentLi>
+              <DropdownParent
+                title="Referral Programs"
+                parentID="referralPrograms"
+                menuItems={referralProgramsItems}
+                svgIcon={dropdownCaret}
+                toggleActivePage={toggleActivePage}
+                isActive={isActive}
+              />
+              <DropdownParent
+                title="Fraud and Security Management"
+                parentID="fraudSecurityManage"
+                menuItems={fraudSecurityManageItems}
+                svgIcon={dropdownCaret}
+                toggleActivePage={toggleActivePage}
+                isActive={isActive}
+              />
             </SubMenuList>
           </MainMenuLi>
 
