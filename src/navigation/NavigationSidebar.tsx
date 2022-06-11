@@ -13,8 +13,9 @@ import useBrowserEffect from "src/util/useBrowserEffect";
 // import "mmenu-js/dist/mmenu.css"
 
 import styled from "styled-components";
-import { DropdownChild } from "./components/DropdownChild";
-import { DropdownParent } from "./components/DropdownParent";
+import { DropdownChild, MenuItemProps } from "./components/DropdownChild";
+import { DropdownParent, MenuParentProps } from "./components/DropdownParent";
+import { SubcategoryList } from "./components/SubcategoryList";
 
 /* Growth Automation menu items */
 
@@ -22,6 +23,12 @@ const dropdownCaret: SVGProps = {
   width: "12px",
   viewBox: "0 0 12 8",
   d: "M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z",
+};
+
+const graphGrowthIcon: SVGProps = {
+  width: "70%",
+  viewBox: "0 0 65 38",
+  d: "M43.3333 8.125C41.3359 8.125 39.7222 6.50508 39.7222 4.5C39.7222 2.49492 41.3359 0.875 43.3333 0.875H61.3889C63.3863 0.875 65 2.49492 65 4.5V22.625C65 24.6301 63.3863 26.25 61.3889 26.25C59.3915 26.25 57.7778 24.6301 57.7778 22.625V13.2566L38.6615 32.4352C37.2509 33.8512 34.9714 33.8512 33.5608 32.4352L21.5651 20.5066L6.16484 36.0602C4.75425 37.4762 2.46797 37.4762 1.0576 36.0602C-0.352535 34.6441 -0.352535 32.3559 1.0576 30.9398L19.1163 12.8148C20.5269 11.3988 22.8064 11.3988 24.217 12.8148L36.1111 24.7434L52.6658 8.02305L43.3333 8.125Z",
 };
 
 /* Styled Components */
@@ -84,7 +91,7 @@ const MainMenuLi = styled.li`
   }
 `;
 
-const SubMenuLeadLi = styled.li`
+export const SubMenuLeadLi = styled.li`
   font-size: 16px;
   line-height: 24px;
   background-color: "#003B45" !important;
@@ -108,7 +115,7 @@ export const DropdownChildLi = styled.li`
   }
 `;
 
-const LeadAndListSeperator = styled.li`
+export const LeadAndListSeperator = styled.li`
   height: 6px;
   border-bottom: 1px solid #e2e2e2;
 `;
@@ -120,7 +127,7 @@ const IconAndTextDiv = styled.div`
   gap: 18px;
 `;
 
-const LeadIconAndTextDiv = styled.div`
+export const LeadIconAndTextDiv = styled.div`
   display: flex;
   gap: 8px;
 `;
@@ -131,7 +138,7 @@ const AllContentDiv = styled.div`
 `;
 
 // @ts-ignore
-const SubMenuLeadDiv = styled(AllContentDiv)`
+export const SubMenuLeadDiv = styled(AllContentDiv)`
   gap: 8px;
 `;
 
@@ -281,6 +288,51 @@ export function NavigationSidebar() {
   const [currentPage, setcurrentPage] = useState<string>("/");
   // To change currentPage: setcurrentPage(true) OR setcurrentPage(false)
 
+  const [activePages, setActivePages] = useState<string[]>([]);
+
+  const isActive = (pageKey: string) => activePages.includes(pageKey);
+
+  const toggleActivePage = (pageKey: string) => {
+    setActivePages((prev) =>
+      prev.includes(pageKey)
+        ? removePageKey(prev, pageKey)
+        : addPageKey(prev, pageKey)
+    );
+  };
+
+  function clearActivePages() {
+    setActivePages([]);
+  }
+
+  const removePageKey = (keys: string[], pageKey: string) =>
+    keys.filter((key) => key !== pageKey);
+
+  const addPageKey = (keys: string[], pageKey: string) => [...keys, pageKey];
+
+  // Clears isActive array to close open dropdowns
+  useEffect(() => {
+    const arrows = document.getElementsByClassName("mm-next");
+
+    Array.from(arrows).forEach((arrow) => {
+      arrow.addEventListener("click", clearActivePages);
+    });
+
+    return () => {
+      const arrows = document.getElementsByClassName("mm-next");
+
+      Array.from(arrows).forEach((arrow) => {
+        arrow.removeEventListener("click", clearActivePages);
+      });
+    };
+  }, []);
+
+  useEffect(() => {
+    const path = history.location.pathname;
+    const hash = history.location.hash;
+    const pathAndHash = path + hash;
+    setcurrentPage(pathAndHash);
+  }, [history.location.pathname, history.location.hash]);
+
   const adminPortalItems: MenuItemProps[] = [
     {
       path: "/success/using-referral-saasquatch/",
@@ -368,57 +420,40 @@ export function NavigationSidebar() {
     },
   ];
 
-  const array: MenuItemProps[][] = [
-    adminPortalItems,
-    growthAutoItems,
-    referralProgramsItems,
-    fraudSecurityManageItems,
+  const learningSaasquatchDropdowns: MenuParentProps[] = [
+    {
+      title: "SaaSquatch Admin Portal",
+      parentID: "adminPortal",
+      menuItems: adminPortalItems,
+      svgIcon: dropdownCaret,
+      toggleActivePage,
+      isActive,
+    },
+    {
+      title: "Growth Automation",
+      parentID: "growthAuto",
+      menuItems: growthAutoItems,
+      svgIcon: dropdownCaret,
+      toggleActivePage,
+      isActive,
+    },
+    {
+      title: "Referral Programs",
+      parentID: "referralPrograms",
+      menuItems: referralProgramsItems,
+      svgIcon: dropdownCaret,
+      toggleActivePage,
+      isActive,
+    },
+    {
+      title: "Fraud and Security Management",
+      parentID: "fraudSecurityManage",
+      menuItems: fraudSecurityManageItems,
+      svgIcon: dropdownCaret,
+      toggleActivePage,
+      isActive,
+    },
   ];
-
-  const [activePages, setActivePages] = useState<string[]>([]);
-
-  const isActive = (pageKey: string) => activePages.includes(pageKey);
-
-  const toggleActivePage = (pageKey: string) => {
-    setActivePages((prev) =>
-      prev.includes(pageKey)
-        ? removePageKey(prev, pageKey)
-        : addPageKey(prev, pageKey)
-    );
-  };
-
-  function clearActivePages() {
-    setActivePages([]);
-  }
-
-  const removePageKey = (keys: string[], pageKey: string) =>
-    keys.filter((key) => key !== pageKey);
-
-  const addPageKey = (keys: string[], pageKey: string) => [...keys, pageKey];
-
-  // Clears isActive array to close open dropdowns
-  useEffect(() => {
-    const arrows = document.getElementsByClassName("mm-next");
-
-    Array.from(arrows).forEach((arrow) => {
-      arrow.addEventListener("click", clearActivePages);
-    });
-
-    return () => {
-      const arrows = document.getElementsByClassName("mm-next");
-
-      Array.from(arrows).forEach((arrow) => {
-        arrow.removeEventListener("click", clearActivePages);
-      });
-    };
-  }, []);
-
-  useEffect(() => {
-    const path = history.location.pathname;
-    const hash = history.location.hash;
-    const pathAndHash = path + hash;
-    setcurrentPage(pathAndHash);
-  }, [history.location.pathname, history.location.hash]);
 
   return (
     <Styles.Container>
@@ -465,60 +500,13 @@ export function NavigationSidebar() {
               </AllContentDiv>
             </StyledLink>
             {/* Success Center Subcategories */}
-            <SubMenuList>
-              <SubMenuLeadLi>
-                <StyledLink
-                  to="/success/"
-                  clicked={currentPage === "/success/"}
-                >
-                  {" "}
-                  <SubMenuLeadDiv>
-                    <LeadIconAndTextDiv>
-                      <SVGIcon
-                        clicked={currentPage === "/success/"}
-                        width="70%"
-                        viewBox="0 0 65 38"
-                        d="M43.3333 8.125C41.3359 8.125 39.7222 6.50508 39.7222 4.5C39.7222 2.49492 41.3359 0.875 43.3333 0.875H61.3889C63.3863 0.875 65 2.49492 65 4.5V22.625C65 24.6301 63.3863 26.25 61.3889 26.25C59.3915 26.25 57.7778 24.6301 57.7778 22.625V13.2566L38.6615 32.4352C37.2509 33.8512 34.9714 33.8512 33.5608 32.4352L21.5651 20.5066L6.16484 36.0602C4.75425 37.4762 2.46797 37.4762 1.0576 36.0602C-0.352535 34.6441 -0.352535 32.3559 1.0576 30.9398L19.1163 12.8148C20.5269 11.3988 22.8064 11.3988 24.217 12.8148L36.1111 24.7434L52.6658 8.02305L43.3333 8.125Z"
-                      />
-                      Success Center
-                    </LeadIconAndTextDiv>
-                  </SubMenuLeadDiv>
-                </StyledLink>
-              </SubMenuLeadLi>
-              <LeadAndListSeperator />
-              <DropdownParent
-                title="SaaSquatch Admin Portal"
-                parentID="adminPortal"
-                menuItems={adminPortalItems}
-                svgIcon={dropdownCaret}
-                toggleActivePage={toggleActivePage}
-                isActive={isActive}
-              />
-              <DropdownParent
-                title="Growth Automation"
-                parentID="growthAuto"
-                menuItems={growthAutoItems}
-                svgIcon={dropdownCaret}
-                toggleActivePage={toggleActivePage}
-                isActive={isActive}
-              />
-              <DropdownParent
-                title="Referral Programs"
-                parentID="referralPrograms"
-                menuItems={referralProgramsItems}
-                svgIcon={dropdownCaret}
-                toggleActivePage={toggleActivePage}
-                isActive={isActive}
-              />
-              <DropdownParent
-                title="Fraud and Security Management"
-                parentID="fraudSecurityManage"
-                menuItems={fraudSecurityManageItems}
-                svgIcon={dropdownCaret}
-                toggleActivePage={toggleActivePage}
-                isActive={isActive}
-              />
-            </SubMenuList>
+            <SubcategoryList
+              title="Learning SaaSquatch"
+              path="/success/"
+              currentPage={currentPage}
+              svgIcon={graphGrowthIcon}
+              dropdowns={learningSaasquatchDropdowns}
+            />
           </MainMenuLi>
 
           <MainMenuLi>
@@ -1200,10 +1188,4 @@ export interface SVGProps {
   viewBox?: string;
   d?: string;
   clicked?: boolean;
-}
-
-export interface MenuItemProps {
-  path: string;
-  title: string;
-  currentPage: string;
 }

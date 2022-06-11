@@ -8,61 +8,62 @@
 
 import React from "react";
 import {
-  DropdownParentLi,
-  DropdownParentContainer,
+  LeadAndListSeperator,
+  LeadIconAndTextDiv,
   StyledLink,
-  DropdownMenuList,
+  SubMenuLeadDiv,
+  SubMenuLeadLi,
   SVGIcon,
   SVGProps,
-  MenuItemProps,
 } from "../NavigationSidebar";
-import { DropdownChild } from "./DropdownChild";
+import { DropdownParent, MenuParentProps } from "./DropdownParent";
 
-interface MenuParentProps {
+interface SubcategoryProps {
   title: string;
-  parentID: string;
-  menuItems: MenuItemProps[];
+  path: string;
+  currentPage: string;
   svgIcon: SVGProps;
-  toggleActivePage: (pageKey: string) => void;
-  isActive: (pageKey: string) => boolean;
+  dropdowns: MenuParentProps[];
 }
 
-export const DropdownParent: React.FC<MenuParentProps> = ({
+export const SubcategoryList: React.FC<SubcategoryProps> = ({
   title,
-  parentID,
-  menuItems,
+  path,
+  currentPage,
   svgIcon,
-  toggleActivePage,
-  isActive,
+  dropdowns,
 }) => {
   return (
-    <DropdownParentLi>
-      <StyledLink
-        onClick={() => toggleActivePage(parentID)}
-        dropdownSelected={isActive(parentID)}
-      >
-        <DropdownParentContainer>
-          {title}
-          <SVGIcon
-            width={svgIcon.width}
-            viewBox={svgIcon.viewBox}
-            d={svgIcon.d}
-          />
-        </DropdownParentContainer>
-      </StyledLink>
-      {isActive(parentID) && (
-        <DropdownMenuList>
-          {menuItems.map((item) => {
-            return (
-              <DropdownChild
-                path={item.path}
-                title={item.title}
-                currentPage={item.currentPage}
+    <ul>
+      <SubMenuLeadLi>
+        <StyledLink to={path} clicked={currentPage === path}>
+          {" "}
+          <SubMenuLeadDiv>
+            <LeadIconAndTextDiv>
+              <SVGIcon
+                clicked={currentPage === path}
+                width={svgIcon.width}
+                viewBox={svgIcon.viewBox}
+                d={svgIcon.d}
               />
-            );
-          })}
-        </DropdownMenuList>
-      )}
-    </DropdownParentLi>
+              {title}
+            </LeadIconAndTextDiv>
+          </SubMenuLeadDiv>
+        </StyledLink>
+      </SubMenuLeadLi>
+      <LeadAndListSeperator />
+      {dropdowns.map((dropdown) => {
+        return (
+          <DropdownParent
+            title={dropdown.title}
+            parentID={dropdown.parentID}
+            menuItems={dropdown.menuItems}
+            svgIcon={dropdown.svgIcon}
+            toggleActivePage={dropdown.toggleActivePage}
+            isActive={dropdown.isActive}
+          />
+        );
+      })}
+    </ul>
   );
 };

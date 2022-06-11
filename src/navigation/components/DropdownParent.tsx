@@ -14,11 +14,10 @@ import {
   DropdownMenuList,
   SVGIcon,
   SVGProps,
-  MenuItemProps,
 } from "../NavigationSidebar";
-import { DropdownChild } from "./DropdownChild";
+import { DropdownChild, MenuItemProps } from "./DropdownChild";
 
-interface MenuParentProps {
+export interface MenuParentProps {
   title: string;
   parentID: string;
   menuItems: MenuItemProps[];
