@@ -18,7 +18,7 @@ import {
 } from "../NavigationSidebar";
 import { DropdownParent, MenuParentProps } from "./DropdownParent";
 
-interface SubcategoryProps {
+export interface SubcategoryProps {
   title: string;
   path: string;
   currentPage: string;

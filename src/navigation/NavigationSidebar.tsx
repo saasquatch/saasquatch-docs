@@ -15,7 +15,11 @@ import useBrowserEffect from "src/util/useBrowserEffect";
 import styled from "styled-components";
 import { DropdownChild, MenuItemProps } from "./components/DropdownChild";
 import { DropdownParent, MenuParentProps } from "./components/DropdownParent";
-import { SubcategoryList } from "./components/SubcategoryList";
+import {
+  SubcategoryList,
+  SubcategoryProps,
+} from "./components/SubcategoryList";
+import { CoreCategory } from "./components/CoreCategory";
 
 /* Growth Automation menu items */
 
@@ -29,6 +33,17 @@ const graphGrowthIcon: SVGProps = {
   width: "70%",
   viewBox: "0 0 65 38",
   d: "M43.3333 8.125C41.3359 8.125 39.7222 6.50508 39.7222 4.5C39.7222 2.49492 41.3359 0.875 43.3333 0.875H61.3889C63.3863 0.875 65 2.49492 65 4.5V22.625C65 24.6301 63.3863 26.25 61.3889 26.25C59.3915 26.25 57.7778 24.6301 57.7778 22.625V13.2566L38.6615 32.4352C37.2509 33.8512 34.9714 33.8512 33.5608 32.4352L21.5651 20.5066L6.16484 36.0602C4.75425 37.4762 2.46797 37.4762 1.0576 36.0602C-0.352535 34.6441 -0.352535 32.3559 1.0576 30.9398L19.1163 12.8148C20.5269 11.3988 22.8064 11.3988 24.217 12.8148L36.1111 24.7434L52.6658 8.02305L43.3333 8.125Z",
+};
+
+const graphGrowthIconBig: SVGProps = {
+  ...graphGrowthIcon,
+  width: "100%",
+};
+
+const bullHornIcon: SVGProps = {
+  width: "85%",
+  viewBox: "0 0 22 22",
+  d: "M20.625 7.71718C21.4242 8.09531 22 9.11367 22 10.3125C22 11.5113 21.4242 12.5297 20.625 12.9078V19.25C20.625 19.8043 20.2898 20.307 19.7742 20.5219C19.2629 20.7324 18.6699 20.6164 18.2789 20.2211L16.4012 18.309C14.3387 16.2465 11.5414 15.125 8.62383 15.125H8.25V20.625C8.25 21.3855 7.63555 22 6.875 22H4.125C3.36574 22 2.75 21.3855 2.75 20.625V15.125C1.23105 15.125 0 13.8918 0 12.375V8.25C0 6.7332 1.23105 5.5 2.75 5.5H8.62383C11.5414 5.5 14.3387 4.33984 16.4012 2.2782L18.2789 0.402741C18.6699 0.00951264 19.2629 -0.108114 19.7742 0.10471C20.2898 0.317534 20.625 0.818979 20.625 1.375V7.71718ZM8.62383 8.25H8.25V12.375H8.62383C12.0527 12.375 15.3484 13.6555 17.875 15.9543V4.6707C15.3484 6.96953 12.0527 8.25 8.62383 8.25Z",
 };
 
 /* Styled Components */
@@ -75,7 +90,7 @@ const NestedList = styled.ul`
 `;
 
 /* Different list items in order of size */
-const MainMenuLi = styled.li`
+export const MainMenuLi = styled.li`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -121,7 +136,7 @@ export const LeadAndListSeperator = styled.li`
 `;
 
 /* Divs for spacing within each list item (space between SVG and text) */
-const IconAndTextDiv = styled.div`
+export const IconAndTextDiv = styled.div`
   display: flex;
   align-items: center;
   gap: 18px;
@@ -131,7 +146,7 @@ export const LeadIconAndTextDiv = styled.div`
   display: flex;
   gap: 8px;
 `;
-const AllContentDiv = styled.div`
+export const AllContentDiv = styled.div`
   width: 100%;
   display: flex !important;
   justify-content: space-between !important;
@@ -174,7 +189,7 @@ const SeperatorLine = styled.div`
   background-color: #e2e2e2;
 `;
 
-const ArrowDiv = styled.div`
+export const ArrowDiv = styled.div`
   display: flex !important;
   justify-self: end !important;
 `;
@@ -455,59 +470,36 @@ export function NavigationSidebar() {
     },
   ];
 
+  const learningSaasquatchSubCategories: SubcategoryProps = {
+    title: "Learning SaaSquatch",
+    path: "/success/",
+    currentPage,
+    svgIcon: graphGrowthIcon,
+    dropdowns: learningSaasquatchDropdowns,
+  };
+
   return (
     <Styles.Container>
       <nav id="my-menu">
         <ul className="baseMenu">
-          <MainMenuLi>
-            {/* When history changes (something is clicked) then useEffect will update the value of currentPage */}
-            <StyledLink
-              to="/product-news"
-              clicked={currentPage === "/product-news"}
-              onClick={() => setActivePages([])}
-            >
-              <IconAndTextDiv>
-                <SVGIcon
-                  clicked={currentPage === "/product-news"}
-                  width="85%"
-                  viewBox="0 0 22 22"
-                  d="M20.625 7.71718C21.4242 8.09531 22 9.11367 22 10.3125C22 11.5113 21.4242 12.5297 20.625 12.9078V19.25C20.625 19.8043 20.2898 20.307 19.7742 20.5219C19.2629 20.7324 18.6699 20.6164 18.2789 20.2211L16.4012 18.309C14.3387 16.2465 11.5414 15.125 8.62383 15.125H8.25V20.625C8.25 21.3855 7.63555 22 6.875 22H4.125C3.36574 22 2.75 21.3855 2.75 20.625V15.125C1.23105 15.125 0 13.8918 0 12.375V8.25C0 6.7332 1.23105 5.5 2.75 5.5H8.62383C11.5414 5.5 14.3387 4.33984 16.4012 2.2782L18.2789 0.402741C18.6699 0.00951264 19.2629 -0.108114 19.7742 0.10471C20.2898 0.317534 20.625 0.818979 20.625 1.375V7.71718ZM8.62383 8.25H8.25V12.375H8.62383C12.0527 12.375 15.3484 13.6555 17.875 15.9543V4.6707C15.3484 6.96953 12.0527 8.25 8.62383 8.25Z"
-                />
-                SaaSquatch Product News
-              </IconAndTextDiv>
-            </StyledLink>
-          </MainMenuLi>
+          <CoreCategory
+            title="Product Updates"
+            path="/product-news"
+            currentPage={currentPage}
+            icon={bullHornIcon}
+            hasNextPage={false}
+            setActivePages={setActivePages}
+          />
 
-          <MainMenuLi>
-            <StyledLink to="/success/" onClick={() => setActivePages([])}>
-              <AllContentDiv>
-                <IconAndTextDiv>
-                  <SVGIcon
-                    width="100%"
-                    viewBox="0 0 65 38"
-                    d="M43.3333 8.125C41.3359 8.125 39.7222 6.50508 39.7222 4.5C39.7222 2.49492 41.3359 0.875 43.3333 0.875H61.3889C63.3863 0.875 65 2.49492 65 4.5V22.625C65 24.6301 63.3863 26.25 61.3889 26.25C59.3915 26.25 57.7778 24.6301 57.7778 22.625V13.2566L38.6615 32.4352C37.2509 33.8512 34.9714 33.8512 33.5608 32.4352L21.5651 20.5066L6.16484 36.0602C4.75425 37.4762 2.46797 37.4762 1.0576 36.0602C-0.352535 34.6441 -0.352535 32.3559 1.0576 30.9398L19.1163 12.8148C20.5269 11.3988 22.8064 11.3988 24.217 12.8148L36.1111 24.7434L52.6658 8.02305L43.3333 8.125Z"
-                  />
-                  Success Center
-                </IconAndTextDiv>
-                <ArrowDiv>
-                  <SVGIcon
-                    width="35%"
-                    viewBox="0 0 8 13"
-                    d="M0 1.91L4.58 6.5L0 11.09L1.41 12.5L7.41 6.5L1.41 0.5L0 1.91Z"
-                    fill="#003B45"
-                  />
-                </ArrowDiv>
-              </AllContentDiv>
-            </StyledLink>
-            {/* Success Center Subcategories */}
-            <SubcategoryList
-              title="Learning SaaSquatch"
-              path="/success/"
-              currentPage={currentPage}
-              svgIcon={graphGrowthIcon}
-              dropdowns={learningSaasquatchDropdowns}
-            />
-          </MainMenuLi>
+          <CoreCategory
+            title="Learning SaaSquatch"
+            path="/success/"
+            currentPage={currentPage}
+            icon={graphGrowthIconBig}
+            hasNextPage={true}
+            subcategoryList={learningSaasquatchSubCategories}
+            setActivePages={setActivePages}
+          />
 
           <MainMenuLi>
             <StyledLink to="/developer/" onClick={() => setActivePages([])}>
