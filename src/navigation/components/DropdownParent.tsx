@@ -43,6 +43,7 @@ export const DropdownParent: React.FC<MenuParentProps> = ({
         <DropdownParentContainer>
           {title}
           <SVGIcon
+            dropdownSelected={isActive(parentID)}
             width={svgIcon.width}
             viewBox={svgIcon.viewBox}
             d={svgIcon.d}

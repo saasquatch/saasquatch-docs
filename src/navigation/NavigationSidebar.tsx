@@ -75,7 +75,7 @@ const SubMenuList = styled.ul``;
 
 export const DropdownMenuList = styled.ul`
   list-style: none !important;
-  border-left: 1px solid #003b45 !important;
+  /* border-left: 1px solid #003b45 !important; */
   margin-left: 12px !important;
 `;
 
@@ -124,6 +124,7 @@ export const DropdownChildLi = styled.li`
   line-height: 21px;
   font-weight: 400;
   color: #003b45;
+  border-left: 1px solid #003b45 !important;
 
   ${StyledLink} {
     padding: 8px 10px;
@@ -254,6 +255,7 @@ export const SVGIcon: React.FC<SVGProps> = ({
   viewBox,
   d,
   clicked,
+  dropdownSelected,
 }) => {
   return (
     <IconSVGDiv>
@@ -262,6 +264,7 @@ export const SVGIcon: React.FC<SVGProps> = ({
         height={height}
         viewBox={viewBox}
         fill={clicked ? "white" : "#003B45"}
+        transform={dropdownSelected ? "rotate(180)" : "rotate(0)"}
         xmlns="http://www.w3.org/2000/svg"
       >
         <path d={d} />
@@ -299,12 +302,8 @@ export function NavigationSidebar() {
   }, [modalRoot]);
 
   /* Clicked list item changes, will be applied to StyledLink */
-  /* This allows us to set the value of currentPage */
   const [currentPage, setcurrentPage] = useState<string>("/");
-  // To change currentPage: setcurrentPage(true) OR setcurrentPage(false)
-
   const [activePages, setActivePages] = useState<string[]>([]);
-
   const isActive = (pageKey: string) => activePages.includes(pageKey);
 
   const toggleActivePage = (pageKey: string) => {
@@ -314,7 +313,6 @@ export function NavigationSidebar() {
         : addPageKey(prev, pageKey)
     );
   };
-
   function clearActivePages() {
     setActivePages([]);
   }
@@ -324,7 +322,6 @@ export function NavigationSidebar() {
 
   const addPageKey = (keys: string[], pageKey: string) => [...keys, pageKey];
 
-  // Clears isActive array to close open dropdowns
   useEffect(() => {
     const arrows = document.getElementsByClassName("mm-next");
 
@@ -1180,4 +1177,5 @@ export interface SVGProps {
   viewBox?: string;
   d?: string;
   clicked?: boolean;
+  dropdownSelected?: boolean;
 }
