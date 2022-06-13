@@ -21,7 +21,7 @@ export const DropdownChild: React.FC<MenuItemProps> = ({
   currentPage,
 }) => {
   return (
-    <DropdownChildLi>
+    <DropdownChildLi clicked={currentPage === path}>
       <StyledLink to={path} clicked={currentPage === path}>
         {title}
       </StyledLink>
