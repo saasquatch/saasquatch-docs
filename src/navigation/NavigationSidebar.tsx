@@ -62,7 +62,6 @@ export const StyledLink = styled(Link)`
   /* Drop-down menu clicking style change */
   font-weight: ${(props) =>
     props.dropdownSelected || props.clicked ? "700" : "400"};
-  margin-left: -0.5px !important;
 
   &:hover {
     /* Clicked hovering behaviour */

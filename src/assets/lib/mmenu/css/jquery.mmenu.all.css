@@ -946,6 +946,7 @@ html.mm-dropdown.mm-opened:not(.mm-opening) .mm-menu {
 .mm-navbar .mm-breadcrumbs > * {
   display: inline-block;
   padding: 10px 3px;
+  color: #06966f !important;
 }
 .mm-navbar .mm-breadcrumbs > a {
   text-decoration: none;
