@@ -69,6 +69,7 @@
   overflow-x: hidden;
   overflow-y: auto;
   padding: 0 20px;
+  right: -1px; /* Gets rid of 1px border glitch in main menu */
 }
 .mm-listview .mm-divider,
 .mm-listview > li > a,
