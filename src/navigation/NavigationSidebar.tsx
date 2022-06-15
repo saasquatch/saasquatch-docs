@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import useBrowserEffect from "src/util/useBrowserEffect";
 import { createContainer } from "unstated-next";
+import ApiSidebar from "./ApiSidebar";
 import { CoreCategoryController } from "./components/CoreCategory";
 import { bullHornIcon, graphGrowthIconBig } from "./components/icons";
 import "./mmenu-overrides.css";
@@ -106,6 +107,7 @@ export function NavigationSidebar() {
             hasNextPage={true}
             subcategoryList={learningSaasquatchSubCategories}
           />
+          <ApiSidebar />
         </ul>
       </nav>
     </Styles.Container>
