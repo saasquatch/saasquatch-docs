@@ -32,7 +32,8 @@ export const HelpCenterLogo = styled.div`
 `;
 
 export const Search = styled.div`
-  padding: 5px;
+  padding: 8px 12px;
+  margin: none !important;
   // Override default from mmenu
   text-align: left;
 `;
