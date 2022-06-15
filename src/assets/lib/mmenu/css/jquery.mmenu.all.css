@@ -579,7 +579,7 @@ html.mm-opening.mm-columns-2 .mm-slideout {
     transform: translate3d(140px, 0, 0);
   }
 }
-@media all and (min-width: 1100px) {
+@media all and (min-width: 768px) {
   html.mm-opening.mm-columns-2 .mm-slideout {
     -webkit-transform: translate3d(880px, 0, 0);
     transform: translate3d(880px, 0, 0);
@@ -947,10 +947,10 @@ html.mm-dropdown.mm-opened:not(.mm-opening) .mm-menu {
 .mm-navbar .mm-breadcrumbs > * {
   display: inline-block;
   padding: 10px 3px;
-  color: #06966f !important;
+  color: #00694d !important;
 }
 .mm-navbar .mm-breadcrumbs > a {
-  text-decoration: none;
+  text-decoration: underline;
 }
 .mm-navbar.mm-hasbtns .mm-breadcrumbs {
   margin-left: -40px;

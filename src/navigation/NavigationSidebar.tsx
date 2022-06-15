@@ -48,9 +48,6 @@ const bullHornIcon: SVGProps = {
 
 /* Styled Components */
 
-/* Styled Link (should change style when clicked) */
-/* Parameter: clicked (boolean) */
-/* if: "?"" else: ":" */
 export const StyledLink = styled(Link)`
   display: flex !important;
   align-items: center !important;
