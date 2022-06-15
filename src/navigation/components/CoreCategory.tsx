@@ -9,16 +9,17 @@
 */
 
 import React from "react";
+
+import { DropdownParent, MenuParentProps } from "./DropdownParent";
 import {
-  AllContentDiv,
-  ArrowDiv,
-  IconAndTextDiv,
   MainMenuLi,
   StyledLink,
-  SVGIcon,
+  AllContentDiv,
+  IconAndTextDiv,
+  ArrowDiv,
   SVGProps,
-} from "../NavigationSidebar";
-import { DropdownParent, MenuParentProps } from "./DropdownParent";
+  SidebarSVGIcon,
+} from "./styled";
 import { SubcategoryList, SubcategoryProps } from "./SubcategoryList";
 
 interface CoreCategoryProps {
@@ -46,11 +47,15 @@ export const CoreCategory: React.FC<CoreCategoryProps> = ({
         <StyledLink to={path} onClick={() => setActivePages([])}>
           <AllContentDiv>
             <IconAndTextDiv>
-              <SVGIcon width={icon.width} viewBox={icon.viewBox} d={icon.d} />
+              <SidebarSVGIcon
+                width={icon.width}
+                viewBox={icon.viewBox}
+                d={icon.d}
+              />
               {title}
             </IconAndTextDiv>
             <ArrowDiv>
-              <SVGIcon
+              <SidebarSVGIcon
                 width="35%"
                 viewBox="0 0 8 13"
                 d="M0 1.91L4.58 6.5L0 11.09L1.41 12.5L7.41 6.5L1.41 0.5L0 1.91Z"
@@ -77,7 +82,7 @@ export const CoreCategory: React.FC<CoreCategoryProps> = ({
           onClick={() => setActivePages([])}
         >
           <IconAndTextDiv>
-            <SVGIcon
+            <SidebarSVGIcon
               clicked={currentPage === path}
               width={icon.width}
               viewBox={icon.viewBox}

@@ -7,15 +7,15 @@
 */
 
 import React from "react";
-import {
-  DropdownParentLi,
-  DropdownParentContainer,
-  StyledLink,
-  DropdownMenuList,
-  SVGIcon,
-  SVGProps,
-} from "../NavigationSidebar";
 import { DropdownChild, MenuItemProps } from "./DropdownChild";
+import {
+  DropdownMenuList,
+  DropdownParentContainer,
+  DropdownParentLi,
+  SidebarSVGIcon,
+  StyledLink,
+  SVGProps,
+} from "./styled";
 
 export interface MenuParentProps {
   title: string;
@@ -42,7 +42,7 @@ export const DropdownParent: React.FC<MenuParentProps> = ({
       >
         <DropdownParentContainer>
           {title}
-          <SVGIcon
+          <SidebarSVGIcon
             dropdownSelected={isActive(parentID)}
             width={svgIcon.width}
             viewBox={svgIcon.viewBox}

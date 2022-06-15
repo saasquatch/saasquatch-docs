@@ -1,6 +1,6 @@
+import React from "react";
 import styled from "styled-components";
 import { HashLink as Link } from "react-router-hash-link";
-import { SVGProps } from "./icons";
 
 export const StyledLink = styled(Link)`
   display: flex !important;
@@ -200,9 +200,7 @@ export const IconSVGDiv = styled.div`
   width: 25px;
   height: auto;
 `;
-
-export const SVGIcon: React.FC<SVGProps> = ({
-  fill,
+export const SidebarSVGIcon: React.FC<SVGProps> = ({
   width,
   height = "auto",
   viewBox,
@@ -225,3 +223,12 @@ export const SVGIcon: React.FC<SVGProps> = ({
     </IconSVGDiv>
   );
 };
+export interface SVGProps {
+  fill?: string;
+  width?: string;
+  height?: string;
+  viewBox?: string;
+  d?: string;
+  clicked?: boolean;
+  dropdownSelected?: boolean;
+}

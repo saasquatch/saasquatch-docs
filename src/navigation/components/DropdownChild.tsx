@@ -7,7 +7,7 @@
 
 import React from "react";
 import styled from "styled-components";
-import { DropdownChildLi, StyledLink } from "../NavigationSidebar";
+import { DropdownChildLi, StyledLink } from "./styled";
 
 export interface MenuItemProps {
   path: string;

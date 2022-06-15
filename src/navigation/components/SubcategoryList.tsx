@@ -7,16 +7,17 @@
 */
 
 import React from "react";
+
+import { DropdownParent, MenuParentProps } from "./DropdownParent";
 import {
-  LeadAndListSeperator,
-  LeadIconAndTextDiv,
+  SubMenuLeadLi,
   StyledLink,
   SubMenuLeadDiv,
-  SubMenuLeadLi,
-  SVGIcon,
+  LeadIconAndTextDiv,
+  LeadAndListSeperator,
   SVGProps,
-} from "../NavigationSidebar";
-import { DropdownParent, MenuParentProps } from "./DropdownParent";
+  SidebarSVGIcon,
+} from "./styled";
 
 export interface SubcategoryProps {
   title: string;
@@ -40,7 +41,7 @@ export const SubcategoryList: React.FC<SubcategoryProps> = ({
           {" "}
           <SubMenuLeadDiv>
             <LeadIconAndTextDiv>
-              <SVGIcon
+              <SidebarSVGIcon
                 clicked={currentPage === path}
                 width={svgIcon.width}
                 viewBox={svgIcon.viewBox}
