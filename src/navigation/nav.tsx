@@ -62,8 +62,9 @@ function findElementForCurrentUrl() {
   return foundElement;
 }
 
+export const MMenuID = "my-menu";
 export default function init(search: HTMLElement, history: History<any>) {
-  var menuDom = jQuery("#my-menu");
+  var menuDom = jQuery(`#${MMenuID}`);
 
   const foundElement = findElementForCurrentUrl();
 

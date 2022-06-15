@@ -7,33 +7,24 @@
 */
 
 import React from "react";
-import { DropdownChild, MenuItemProps } from "./DropdownChild";
+import { MMenuContext } from "../NavigationSidebar";
+import { DropdownChildController } from "./DropdownChild";
 import {
   DropdownMenuList,
   DropdownParentContainer,
   DropdownParentLi,
   SidebarSVGIcon,
-  StyledLink,
-  SVGProps,
-} from "./styled";
+  StyledLink} from "./styled";
+import { MenuParentProps } from "../types/MenuParentProps";
 
-export interface MenuParentProps {
-  title: string;
-  parentID: string;
-  menuItems: MenuItemProps[];
-  svgIcon: SVGProps;
-  toggleActivePage: (pageKey: string) => void;
-  isActive: (pageKey: string) => boolean;
-}
-
-export const DropdownParent: React.FC<MenuParentProps> = ({
+export const DropdownParentController: React.FC<MenuParentProps> = ({
   title,
   parentID,
   menuItems,
   svgIcon,
-  toggleActivePage,
-  isActive,
 }) => {
+  const { isActive, toggleActivePage } = MMenuContext.useContainer();
+
   return (
     <DropdownParentLi>
       <StyledLink
@@ -53,13 +44,7 @@ export const DropdownParent: React.FC<MenuParentProps> = ({
       {isActive(parentID) && (
         <DropdownMenuList>
           {menuItems.map((item) => {
-            return (
-              <DropdownChild
-                path={item.path}
-                title={item.title}
-                currentPage={item.currentPage}
-              />
-            );
+            return <DropdownChildController {...item} />;
           })}
         </DropdownMenuList>
       )}

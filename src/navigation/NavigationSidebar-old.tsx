@@ -1,15 +1,14 @@
-import React, { useRef, useState } from "react";
-import { useHistory } from "react-router-dom";
 import { History } from "history";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { HashLink as Link } from "react-router-hash-link";
-import { createContainer } from "unstated-next";
-
-import * as Styles from "./NavStyles";
-import init from "./nav";
-
-import "./mmenu-overrides.css";
-import ApiSidebar from "./ApiSidebar";
 import useBrowserEffect from "src/util/useBrowserEffect";
+import { createContainer } from "unstated-next";
+import ApiSidebar from "./ApiSidebar";
+import "./mmenu-overrides.css";
+import init from "./nav";
+import * as Styles from "./NavStyles";
+
 // import "mmenu-js/dist/mmenu.css"
 
 function useMMenu() {
@@ -545,44 +544,17 @@ export function NavigationSidebar() {
                   <li>
                     <Link to="/api/errors">Errors</Link>
                   </li>
-                  <li className="Divider">Webhooks</li>
-                  <li>
-                    <Link to="/api/webhooks">Webhooks Overview</Link>
-                  </li>
-                  <li>
-                    <Link to="/api/webhooks/security">Webhooks Security</Link>
-                  </li>
+                  <Divider>Webhooks</Divider>
+                  <LeafLink to="/api/webhooks">Webhooks Overview</LeafLink>
+                  <LeafLink to="/api/webhooks/security">Webhooks Security</LeafLink>
 
-                  <li className="Divider">API Reference</li>
-                  <li>
-                    <Link to="/api/methods">Full list of Methods</Link>
-                  </li>
-
+                  <Divider>API Reference</Divider>
+                  <LeafLink to="/api/methods">Full list of Methods</LeafLink>
                   <ApiSidebar />
-                  <li>
-                    <Link to="/api/methods#hidden">Hidden Endpoints</Link>
-                  </li>
+                  <LeafLink to="/api/methods#hidden">Hidden Endpoints</LeafLink>
                 </ul>
               </li>
-              <li>
-                <Link to="/graphql/reference/">
-                  <Styles.GraphQLLogo className="fa fa-fw" />
-                  GraphQL API
-                </Link>
-                <ul>
-                  <li className="Divider">GraphQL Reference</li>
-                  <li>
-                    <Link to="/graphql/reference">Reference</Link>
-                  </li>
-
-                  <li className="Divider">GraphQL Tutorials</li>
-                  <li>
-                    <Link to="/graphql/custom-widget">
-                      Custom Widget via GraphQL
-                    </Link>
-                  </li>
-                </ul>
-              </li>
+              <GraphQLSection />
             </ul>
           </li>
         </ul>
@@ -590,3 +562,48 @@ export function NavigationSidebar() {
     </Styles.Container>
   );
 }
+
+const GraphQLSection = ()=>{
+  return <Section
+      to="/graphql/reference/"
+      title={
+        <>
+          <Styles.GraphQLLogo className="fa fa-fw" />
+          GraphQL API
+        </>
+      }
+    >
+      <Divider>GraphQL Reference</Divider>
+      <LeafLink to="/graphql/reference">Reference</LeafLink>
+
+      <Divider>GraphQL Tutorials</Divider>
+      <LeafLink to="/graphql/custom-widget">
+        Custom Widget via GraphQL
+      </LeafLink>
+    </Section>
+}
+
+const Section = (props: {
+  children: React.ReactNode;
+  to: string;
+  title: React.ReactNode;
+}) => {
+  return (
+    <li>
+      <Link to={props.to}>{props.title}</Link>
+      <ul>{props.children}</ul>
+    </li>
+  );
+};
+
+const Divider = (props: { children: React.ReactNode }) => {
+  return <li className="Divider">{props.children}</li>;
+};
+
+const LeafLink = (props: { to: string; children: React.ReactNode }) => {
+  return (
+    <li>
+      <Link to={props.to}>{props.children}</Link>
+    </li>
+  );
+};

@@ -6,20 +6,15 @@
 */
 
 import React from "react";
-import styled from "styled-components";
+import { MMenuContext } from "../NavigationSidebar";
+import { MenuItemProps } from "../types/MenuItemProps";
 import { DropdownChildLi, StyledLink } from "./styled";
 
-export interface MenuItemProps {
-  path: string;
-  title: string;
-  currentPage: string;
-}
-
-export const DropdownChild: React.FC<MenuItemProps> = ({
+export const DropdownChildController: React.FC<MenuItemProps> = ({
   path,
   title,
-  currentPage,
 }) => {
+  const { currentPage } = MMenuContext.useContainer();
   return (
     <DropdownChildLi clicked={currentPage === path}>
       <StyledLink to={path} clicked={currentPage === path}>

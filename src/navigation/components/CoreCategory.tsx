@@ -9,42 +9,40 @@
 */
 
 import React from "react";
-
-import { DropdownParent, MenuParentProps } from "./DropdownParent";
+import { MMenuContext } from "../NavigationSidebar";
+import { SubcategoryProps } from "../types/SubcategoryProps";
+import { SVGProps } from "../types/SVGProps";
 import {
-  MainMenuLi,
-  StyledLink,
   AllContentDiv,
-  IconAndTextDiv,
   ArrowDiv,
-  SVGProps,
+  IconAndTextDiv,
+  MainMenuLi,
   SidebarSVGIcon,
+  StyledLink,
 } from "./styled";
-import { SubcategoryList, SubcategoryProps } from "./SubcategoryList";
+import { SubcategoryListController } from "./SubcategoryList";
 
 interface CoreCategoryProps {
   title: string;
   path: string;
-  currentPage: string;
   icon: SVGProps;
   hasNextPage: boolean;
   subcategoryList?: SubcategoryProps;
-  setActivePages: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-export const CoreCategory: React.FC<CoreCategoryProps> = ({
+export const CoreCategoryController: React.FC<CoreCategoryProps> = ({
   title,
   path,
-  currentPage,
   icon,
   hasNextPage,
   subcategoryList,
-  setActivePages,
 }) => {
+  const { clearActivePages, currentPage } = MMenuContext.useContainer();
+
   if (hasNextPage) {
     return (
       <MainMenuLi>
-        <StyledLink to={path} onClick={() => setActivePages([])}>
+        <StyledLink to={path} onClick={clearActivePages}>
           <AllContentDiv>
             <IconAndTextDiv>
               <SidebarSVGIcon
@@ -64,13 +62,7 @@ export const CoreCategory: React.FC<CoreCategoryProps> = ({
             </ArrowDiv>
           </AllContentDiv>
         </StyledLink>
-        <SubcategoryList
-          title={subcategoryList.title}
-          currentPage={subcategoryList.currentPage}
-          path={subcategoryList.path}
-          svgIcon={subcategoryList.svgIcon}
-          dropdowns={subcategoryList.dropdowns}
-        />
+        <SubcategoryListController {...subcategoryList} />
       </MainMenuLi>
     );
   } else {
@@ -79,7 +71,7 @@ export const CoreCategory: React.FC<CoreCategoryProps> = ({
         <StyledLink
           to={path}
           clicked={currentPage === path}
-          onClick={() => setActivePages([])}
+          onClick={clearActivePages}
         >
           <IconAndTextDiv>
             <SidebarSVGIcon

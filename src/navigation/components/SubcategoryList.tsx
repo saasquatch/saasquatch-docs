@@ -7,33 +7,26 @@
 */
 
 import React from "react";
-
-import { DropdownParent, MenuParentProps } from "./DropdownParent";
+import { MMenuContext } from "../NavigationSidebar";
+import { SubcategoryProps } from "../types/SubcategoryProps";
+import { DropdownParentController } from "./DropdownParent";
 import {
-  SubMenuLeadLi,
+  LeadAndListSeperator,
+  LeadIconAndTextDiv,
+  SidebarSVGIcon,
   StyledLink,
   SubMenuLeadDiv,
-  LeadIconAndTextDiv,
-  LeadAndListSeperator,
-  SVGProps,
-  SidebarSVGIcon,
+  SubMenuLeadLi,
 } from "./styled";
 
-export interface SubcategoryProps {
-  title: string;
-  path: string;
-  currentPage: string;
-  svgIcon: SVGProps;
-  dropdowns: MenuParentProps[];
-}
-
-export const SubcategoryList: React.FC<SubcategoryProps> = ({
+export const SubcategoryListController: React.FC<SubcategoryProps> = ({
   title,
   path,
-  currentPage,
   svgIcon,
   dropdowns,
 }) => {
+  const { currentPage } = MMenuContext.useContainer();
+
   return (
     <ul>
       <SubMenuLeadLi>
@@ -53,18 +46,9 @@ export const SubcategoryList: React.FC<SubcategoryProps> = ({
         </StyledLink>
       </SubMenuLeadLi>
       <LeadAndListSeperator />
-      {dropdowns.map((dropdown) => {
-        return (
-          <DropdownParent
-            title={dropdown.title}
-            parentID={dropdown.parentID}
-            menuItems={dropdown.menuItems}
-            svgIcon={dropdown.svgIcon}
-            toggleActivePage={dropdown.toggleActivePage}
-            isActive={dropdown.isActive}
-          />
-        );
-      })}
+      {dropdowns.map((dropdown) => (
+        <DropdownParentController {...dropdown} />
+      ))}
     </ul>
   );
 };
