@@ -75,12 +75,16 @@ export const DropdownChildLi = styled.li<{ clicked: boolean }>`
   line-height: 21px;
   font-weight: 400;
   color: #003b45;
-
   border-left: ${(props) =>
     props.clicked ? "2px solid #06966F" : "1px solid #003b45"} !important;
-
+  background-color: ${(props) => props.clicked && "#003b45"};
+  &:hover {
+    background-color: ${(props) =>
+      props.clicked ? "#003B45" : "#e7edee"} !important;
+  }
   ${StyledLink} {
     padding: 8px 10px;
+    margin-left: 1px; //Gets rid of gap glitch between border and fill
   }
 `;
 
