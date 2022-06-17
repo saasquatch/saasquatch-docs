@@ -164,8 +164,8 @@ li.mm-vertical.mm-opened > .mm-panel {
   content: "";
   border: 2px solid transparent;
   display: block;
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   margin: auto;
   position: absolute;
   top: 0;
@@ -246,7 +246,7 @@ li.mm-vertical.mm-opened > .mm-panel {
 .mm-listview > li > a,
 .mm-listview > li > span {
   color: inherit;
-  display: block;
+  display: flex;
   /* Got rid of this */
   padding: 10px 10px 10px 10px;
   margin: 0;

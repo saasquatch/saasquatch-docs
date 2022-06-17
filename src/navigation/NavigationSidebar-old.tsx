@@ -546,7 +546,9 @@ export function NavigationSidebar() {
                   </li>
                   <Divider>Webhooks</Divider>
                   <LeafLink to="/api/webhooks">Webhooks Overview</LeafLink>
-                  <LeafLink to="/api/webhooks/security">Webhooks Security</LeafLink>
+                  <LeafLink to="/api/webhooks/security">
+                    Webhooks Security
+                  </LeafLink>
 
                   <Divider>API Reference</Divider>
                   <LeafLink to="/api/methods">Full list of Methods</LeafLink>
@@ -563,8 +565,9 @@ export function NavigationSidebar() {
   );
 }
 
-const GraphQLSection = ()=>{
-  return <Section
+const GraphQLSection = () => {
+  return (
+    <Section
       to="/graphql/reference/"
       title={
         <>
@@ -577,11 +580,10 @@ const GraphQLSection = ()=>{
       <LeafLink to="/graphql/reference">Reference</LeafLink>
 
       <Divider>GraphQL Tutorials</Divider>
-      <LeafLink to="/graphql/custom-widget">
-        Custom Widget via GraphQL
-      </LeafLink>
+      <LeafLink to="/graphql/custom-widget">Custom Widget via GraphQL</LeafLink>
     </Section>
-}
+  );
+};
 
 const Section = (props: {
   children: React.ReactNode;
