@@ -1,20 +1,24 @@
 /*
-    Component: Drop-down menu child 
-    Purpose: Renders list item (leaf) that belongs to drop-down menu.
-    Contains: Title of leaf node, entire item is a link to an article.
+    Component: Drop-down menu child
+    Purpose: Renders list item that goes inside drop-down menu
     Author: Madeline Solis de Ovando
 */
 
 import React from "react";
-import { MMenuContext } from "../NavigationSidebar";
-import { MenuItemProps } from "../types/MenuItemProps";
-import { DropdownChildLi, StyledLink } from "./styled";
+import styled from "styled-components";
+import { DropdownChildLi, StyledLink } from "../NavigationSidebar";
 
-export const DropdownChildController: React.FC<MenuItemProps> = ({
+interface Props {
+  path: string;
+  title: string;
+  currentPage: string;
+}
+
+export const DropdownChild: React.FC<Props> = ({
   path,
   title,
+  currentPage,
 }) => {
-  const { currentPage } = MMenuContext.useContainer();
   return (
     <DropdownChildLi clicked={currentPage === path}>
       <StyledLink to={path} clicked={currentPage === path}>

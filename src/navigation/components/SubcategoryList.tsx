@@ -7,48 +7,62 @@
 */
 
 import React from "react";
-import { MMenuContext } from "../NavigationSidebar";
-import { SubcategoryProps } from "../types/SubcategoryProps";
-import { DropdownParentController } from "./DropdownParent";
 import {
-  LeadAndListSeperator,
-  LeadIconAndTextDiv,
-  SidebarSVGIcon,
+  DropdownParentLi,
+  DropdownParentContainer,
   StyledLink,
-  SubMenuLeadDiv,
-  SubMenuLeadLi,
-} from "./styled";
+  DropdownMenuList,
+  SVGIcon,
+  SVGProps,
+  MenuItemProps,
+} from "../NavigationSidebar";
+import { DropdownChild } from "./DropdownChild";
 
-export const SubcategoryListController: React.FC<SubcategoryProps> = ({
+interface MenuParentProps {
+  title: string;
+  parentID: string;
+  menuItems: MenuItemProps[];
+  svgIcon: SVGProps;
+  toggleActivePage: (pageKey: string) => void;
+  isActive: (pageKey: string) => boolean;
+}
+
+export const DropdownParent: React.FC<MenuParentProps> = ({
   title,
-  path,
+  parentID,
+  menuItems,
   svgIcon,
-  dropdowns,
+  toggleActivePage,
+  isActive,
 }) => {
-  const { currentPage } = MMenuContext.useContainer();
-
   return (
-    <ul>
-      <SubMenuLeadLi>
-        <StyledLink to={path} clicked={currentPage === path}>
-          {" "}
-          <SubMenuLeadDiv>
-            <LeadIconAndTextDiv>
-              <SidebarSVGIcon
-                clicked={currentPage === path}
-                width={svgIcon.width}
-                viewBox={svgIcon.viewBox}
-                d={svgIcon.d}
+    <DropdownParentLi>
+      <StyledLink
+        onClick={() => toggleActivePage(parentID)}
+        dropdownSelected={isActive(parentID)}
+      >
+        <DropdownParentContainer>
+          {title}
+          <SVGIcon
+            width={svgIcon.width}
+            viewBox={svgIcon.viewBox}
+            d={svgIcon.d}
+          />
+        </DropdownParentContainer>
+      </StyledLink>
+      {isActive(parentID) && (
+        <DropdownMenuList>
+          {menuItems.map((item) => {
+            return (
+              <DropdownChild
+                path={item.path}
+                title={item.title}
+                currentPage={item.currentPage}
               />
-              {title}
-            </LeadIconAndTextDiv>
-          </SubMenuLeadDiv>
-        </StyledLink>
-      </SubMenuLeadLi>
-      <LeadAndListSeperator />
-      {dropdowns.map((dropdown) => (
-        <DropdownParentController {...dropdown} />
-      ))}
-    </ul>
+            );
+          })}
+        </DropdownMenuList>
+      )}
+    </DropdownParentLi>
   );
 };
