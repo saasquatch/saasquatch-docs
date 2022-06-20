@@ -1,19 +1,16 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useHistory } from "react-router-dom";
 import { History } from "history";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { HashLink as Link } from "react-router-hash-link";
-import { createContainer } from "unstated-next";
-
-import * as Styles from "./NavStyles";
-import init from "./nav";
-
-import "./mmenu-overrides.css";
-import ApiSidebar from "./ApiSidebar";
 import useBrowserEffect from "src/util/useBrowserEffect";
 // import "mmenu-js/dist/mmenu.css"
-
 import styled from "styled-components";
+import { createContainer } from "unstated-next";
 import { integrationsIcon, SVGProps } from "./components/icons";
+import { MenuItemView, useMenuItemHook } from "./MenuItemView";
+import "./mmenu-overrides.css";
+import init from "./nav";
+import * as Styles from "./NavStyles";
 
 export interface MenuItemProps {
   path: string;
@@ -33,7 +30,7 @@ export const StyledLink = styled(Link)`
   }
 `;
 
-const DropDownParent = styled(Link)`
+const DropDownStyledLink = styled(Link)`
   font-family: "Helvetica";
   display: flex;
   align-items: center;
@@ -49,8 +46,8 @@ const DropDownParent = styled(Link)`
     background-color: #e7edee;
   }
 `;
-// @ts-ignore
-const Title = styled(DropDownParent)`
+
+const Title = styled(DropDownStyledLink as any)`
   flex-direction: row;
   justify-content: start;
   gap: 8px;
@@ -68,13 +65,13 @@ const IconAndTextDiv = styled.div`
   gap: 18px;
 `;
 
-const CoreCategoryStyle = styled(DropDownParent)`
+const CoreCategoryStyle = styled(DropDownStyledLink as any)`
   justify-content: start;
   gap: 18px;
   padding: 8px 12px;
 `;
 
-const LeafStyle = styled(DropDownParent)`
+const LeafLink = styled(DropDownStyledLink as any)`
   font-size: 14px;
   line-height: 21px;
   font-weight: 400;
@@ -267,15 +264,16 @@ export function NavigationSidebar() {
             title="Integrations"
             icon={integrationsIcon}
           >
-            <DropDown title="Salesforce"></DropDown>
-            <LeavesUl>
-              <Leaf to="/salesforce/">Salesforce Integration</Leaf>
-              <Leaf to="/salesforce/user-guide/">Salesforce User Guide</Leaf>
-              <Leaf to="/salesforce/faq/">Salesforce FAQ</Leaf>
-              <Leaf to="/salesforce/install-guide/">
-                Salesforce Install Guide
-              </Leaf>
-            </LeavesUl>
+            <DropDownLi title="Salesforce">
+              <LeavesUl>
+                <Leaf to="/salesforce/">Salesforce Integration</Leaf>
+                <Leaf to="/salesforce/user-guide/">Salesforce User Guide</Leaf>
+                <Leaf to="/salesforce/faq/">Salesforce FAQ</Leaf>
+                <Leaf to="/salesforce/install-guide/">
+                  Salesforce Install Guide
+                </Leaf>
+              </LeavesUl>
+            </DropDownLi>
           </CoreCategory>
         </ul>
       </nav>
@@ -304,27 +302,32 @@ const CoreCategory = (props: {
           </Title>
         </li>
         <DivideLine />
+
         {props.children}
       </ul>
     </li>
   );
 };
 
-const DropDown = (props: { title: string }) => {
+const DropDownLi = (props: { title: string; children?: React.ReactNode }) => {
   return (
-    <li>
-      <DropDownParent>
-        {props.title}
-        <SVGIcon
-          width="12px"
-          viewBox="0 0 12 8"
-          d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
-        />
-      </DropDownParent>
-    </li>
+    <MenuItemView {...useMenuItemHook()} title={props.title}>
+      {props.children}
+    </MenuItemView>
   );
+  // return (
+  //   <li className="mm-vertical">
+  //     <DropDownStyledLink>
+  //       {props.title}
+  //       <SVGIcon
+  //         width="12px"
+  //         viewBox="0 0 12 8"
+  //         d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
+  //       />
+  //     </DropDownStyledLink>
+  //     {props.children}
+  //   </li>
+  // );
 };
 
-const Leaf = (props: { to: string; children: React.ReactNode }) => {
-  return <LeafStyle to={props.to}>{props.children}</LeafStyle>;
-};
+const Leaf = LeafLink;

@@ -1,129 +1,70 @@
-import React, { useRef } from "react";
-import { useSiteData } from "react-static";
-import { HashLink as Link } from "react-router-hash-link";
-import slug from "slug";
-
-import * as Styles from "./NavStyles";
-import { EndpointSummary, EndpointSummarySet } from "src/api/Types";
-import { MMenuContext } from "./NavigationSidebar";
-import { VersionContext } from "components/useVersion";
 import { Tooltip } from "components/Tooltip";
+import { VersionContext } from "components/useVersion";
+import React from "react";
+import { HashLink as Link } from "react-router-hash-link";
+import { useSiteData } from "react-static";
+import slug from "slug";
+import { EndpointSummary, EndpointSummarySet } from "src/api/Types";
+import { MenuItemView, useMenuItemHook } from "./MenuItemView";
 
-function openVeritcalParent($l, mmenuApi) {
-  // var $l = $panel.parent();
-
-  if ($l.hasClass("mm-opened")) {
-    $l.removeClass("mm-opened");
-  } else {
-    $l.addClass("mm-opened");
-  }
-
-  // var $sub = $l.parents(".mm-subopened");
-  // if ($sub.length) {
-  //   console.log("Opening submenu", $l);
-  //   mmenuApi.openPanel($sub.first());
-  //   return;
-  // }
-
-  // mmenuApi.trigger( 'openPanel' 	, $panel );
-  // mmenuApi.trigger( 'openingPanel', $panel );
-  // mmenuApi.trigger( 'openedPanel'	, $panel );
-}
-
-function useMenuItemHook({ tag, idx }) {
-  const { apiRoutes, apiRoutesByTag } = useSiteData<{
+function useEndpoints(tag: string) {
+  const { apiRoutes } = useSiteData<{
     apiRoutes: EndpointSummary[];
     apiRoutesByTag: EndpointSummarySet;
   }>();
-  const { version, versionLabel, showTags } = VersionContext.useContainer();
-  const { mmenuApi } = MMenuContext.useContainer();
-  const parent = useRef(null);
-
+  const { showTags } = VersionContext.useContainer();
   const endpoints = apiRoutes
     .filter((route) => route.tags.includes(tag))
     .filter((route) => showTags(route.tags));
-
-  const id = "#mm-" + (90 + idx);
-  const doOpen = (e) => {
-    e.preventDefault();
-    // console.log("Opening panel", mmenuApi, jQuery(id));
-    openVeritcalParent(jQuery(parent.current), mmenuApi);
-  };
-  const anchor = slug(tag);
-  return {
-    data: {
-      tag,
-      endpoints,
-    },
-    states: {
-      id,
-      anchor,
-    },
-    callbacks: {
-      doOpen,
-    },
-    refs: {
-      parent,
-    },
-  };
+  return endpoints;
 }
 
 function MenuItem(props: { tag: string; idx: number }) {
-  return <MenuItemView {...useMenuItemHook(props)} />;
-}
-
-function MenuItemView({
-  states,
-  callbacks,
-  refs,
-  data,
-}: ReturnType<typeof useMenuItemHook>) {
-  if (data.endpoints.length <= 0) {
+  const { tag } = props;
+  const endpoints = useEndpoints(tag);
+  if (endpoints.length <= 0) {
     return null;
   }
   return (
-    <li className="mm-vertical" ref={refs.parent}>
-      <span
-        className="mm-next mm-fullsubopen"
-        // href={id}
-        data-target={states.id}
-        onClick={callbacks.doOpen}
-      ></span>
-      <span onClick={callbacks.doOpen}>{data.tag}</span>
-      <div className="mm-panel mm-vertical developerCenter" id={states.id}>
-        <ul className="nav-onpage mm-listview mm-vertical developerCenter">
-          <li>
-            {" "}
-            <Link to={"/api/methods#" + states.anchor}>
-              {data.tag} Overview
-            </Link>
-          </li>
-          {data.endpoints.map((route) => {
-            return (
-              <li key={route.anchor}>
-                <Link to={"/api/methods#" + route.anchor}>
-                  <span
-                    className={
-                      "label docs-label-" + route.httpMethod.toLowerCase()
-                    }
-                    style={{
-                      width: "47px",
-                      textAlign: "center",
-                    }}
-                  >
-                    {route.httpMethod.toUpperCase()}
-                  </span>{" "}
-                  {route.summary}
-                  {route.tags.includes("Open Endpoint") && (
-                    <OpenEndpointLabel />
-                  )}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    </li>
+    <MenuItemView {...useMenuItemHook()}>
+      <ApiSidebarChildren endpoints={endpoints} tag={tag} />
+    </MenuItemView>
+  );
+}
+
+function ApiSidebarChildren({
+  endpoints,
+  tag,
+}: {
+  endpoints: EndpointSummary[];
+  tag: string;
+}) {
+  const children = endpoints.map((route) => {
+    return (
+      <li key={route.anchor}>
+        <Link to={"/api/methods#" + route.anchor}>
+          <span
+            className={"label docs-label-" + route.httpMethod.toLowerCase()}
+            style={{
+              width: "47px",
+              textAlign: "center",
+            }}
+          >
+            {route.httpMethod.toUpperCase()}
+          </span>{" "}
+          {route.summary}
+          {route.tags.includes("Open Endpoint") && <OpenEndpointLabel />}
+        </Link>
+      </li>
+    );
+  });
+  return (
+    <>
+      <li>
+        <Link to={"/api/methods#" + slug(tag)}>{tag} Overview</Link>
+      </li>
+      {children}
+    </>
   );
 }
 
