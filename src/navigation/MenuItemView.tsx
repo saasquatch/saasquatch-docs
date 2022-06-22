@@ -1,4 +1,18 @@
 import React, { useRef } from "react";
+import styled from "styled-components";
+
+const StyledLi = styled.li`
+  display: flex;
+  align-items: center;
+  /* width: 100%; */
+  font-size: 16px;
+  line-height: 24px;
+  /* text-align: center; */
+  padding: 8px 12px !important;
+  &:hover {
+    background-color: #e7edee;
+  }
+`;
 
 export function MenuItemView(props: MenuItemViewProps) {
   return (
@@ -9,7 +23,7 @@ export function MenuItemView(props: MenuItemViewProps) {
         data-target={props.id}
         onClick={props.onOpen}
       ></span>
-      <span onClick={props.onOpen}>{props.title}</span>
+      <StyledLi onClick={props.onOpen}>{props.title}</StyledLi>
       <div className="mm-panel mm-vertical" id={props.id}>
         <ul className="nav-onpage mm-listview mm-vertical">{props.children}</ul>
       </div>

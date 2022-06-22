@@ -96,7 +96,7 @@
 .mm-listview .mm-vertical .mm-panel,
 .mm-vertical .mm-listview .mm-panel {
   display: none;
-  padding: 10px 0 10px 10px;
+  /* padding: 10px 0 10px 10px; */
 }
 .mm-listview .mm-vertical .mm-panel .mm-listview > li:last-child:after,
 .mm-vertical .mm-listview .mm-panel .mm-listview > li:last-child:after {
@@ -377,7 +377,7 @@ li.mm-vertical.mm-opened > .mm-panel {
 .mm-menu .mm-listview > li.mm-opened.mm-vertical > a.mm-next,
 .mm-menu.mm-vertical .mm-listview > li.mm-opened > .mm-panel,
 .mm-menu.mm-vertical .mm-listview > li.mm-opened > a.mm-next {
-  background: rgba(0, 0, 0, 0.05);
+  background: white;
 }
 .mm-page {
   box-sizing: border-box;
