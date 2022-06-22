@@ -7,7 +7,8 @@ const StyledLi = styled.li`
   /* width: 100%; */
   font-size: 16px;
   line-height: 24px;
-  /* text-align: center; */
+  vertical-align: middle;
+  text-align: center;
   padding: 8px 12px !important;
   &:hover {
     background-color: #e7edee;

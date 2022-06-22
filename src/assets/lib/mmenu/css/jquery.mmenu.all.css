@@ -116,12 +116,13 @@ li.mm-vertical.mm-opened > .mm-panel {
   top: 16px;
   bottom: auto;
 }
+/* Drop-down arrow when drop-down is open */
 .mm-listview > li.mm-vertical.mm-opened > .mm-next:after,
 .mm-vertical .mm-listview > li.mm-opened > .mm-next:after {
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-  right: 19px;
+  -webkit-transform: rotate(-135deg);
+  -ms-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+  /* right: 19px; */
 }
 .mm-btn {
   width: 40px;
@@ -170,9 +171,9 @@ li.mm-vertical.mm-opened > .mm-panel {
   position: absolute;
   top: 0;
   bottom: 0;
-  -webkit-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
-  transform: rotate(-45deg);
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 .mm-prev:before {
   border-right: none;
@@ -296,6 +297,7 @@ li.mm-vertical.mm-opened > .mm-panel {
 }
 .mm-listview .mm-next.mm-fullsubopen {
   width: 100%;
+  height: 40px; /*Height of drop-down parent*/
 }
 .mm-listview .mm-next.mm-fullsubopen:before {
   border-left: none;

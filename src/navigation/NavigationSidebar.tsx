@@ -111,8 +111,9 @@ const APIDropdownParentLi = styled.li`
 `;
 
 const DivideLine = styled.li`
-  height: 6px;
+  height: 8px;
   border-bottom: 1px solid #e2e2e2;
+  margin-bottom: 8px !important;
 `;
 
 /* Divs for spacing within each list item (space between SVG and text) */
