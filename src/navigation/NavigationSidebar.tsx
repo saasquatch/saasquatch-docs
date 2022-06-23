@@ -267,12 +267,14 @@ export function NavigationSidebar() {
           >
             <DropDownLi title="Salesforce">
               <LeavesUl>
-                <Leaf to="/salesforce/">Salesforce Integration</Leaf>
-                <Leaf to="/salesforce/user-guide/">Salesforce User Guide</Leaf>
-                <Leaf to="/salesforce/faq/">Salesforce FAQ</Leaf>
-                <Leaf to="/salesforce/install-guide/">
+                <LeafLink to="/salesforce/">Salesforce Integration</LeafLink>
+                <LeafLink to="/salesforce/user-guide/">
+                  Salesforce User Guide
+                </LeafLink>
+                <LeafLink to="/salesforce/faq/">Salesforce FAQ</LeafLink>
+                <LeafLink to="/salesforce/install-guide/">
                   Salesforce Install Guide
-                </Leaf>
+                </LeafLink>
               </LeavesUl>
             </DropDownLi>
           </CoreCategory>
@@ -316,19 +318,4 @@ const DropDownLi = (props: { title: string; children?: React.ReactNode }) => {
       {props.children}
     </MenuItemView>
   );
-  // return (
-  //   <li className="mm-vertical">
-  //     <DropDownStyledLink>
-  //       {props.title}
-  //       <SVGIcon
-  //         width="12px"
-  //         viewBox="0 0 12 8"
-  //         d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
-  //       />
-  //     </DropDownStyledLink>
-  //     {props.children}
-  //   </li>
-  // );
 };
-
-const Leaf = LeafLink;
