@@ -159,6 +159,8 @@ li.mm-vertical.mm-opened > .mm-panel {
   border-top: none;
   right: 25px;
 }
+
+/* Main menu AND closed drop-down arrows */
 .mm-arrow:after,
 .mm-next:after,
 .mm-prev:before {

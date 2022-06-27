@@ -65,10 +65,18 @@ const IconAndTextDiv = styled.div`
   gap: 18px;
 `;
 
-const CoreCategoryStyle = styled(DropDownStyledLink as any)`
+const CoreCategoryLink = styled(DropDownStyledLink as any)`
   justify-content: start;
   gap: 18px;
   padding: 8px 12px;
+`;
+
+const CoreLi = styled.li`
+  & > a.mm-next {
+    -webkit-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+  }
 `;
 
 const LeafLink = styled(DropDownStyledLink as any)`
@@ -249,14 +257,14 @@ export function NavigationSidebar() {
       <nav id="my-menu">
         <ul className="baseMenu">
           <li>
-            <CoreCategoryStyle to="/product-news">
+            <CoreCategoryLink to="/product-news">
               <SVGIcon
                 width="85%"
                 viewBox="0 0 22 22"
                 d="M20.625 7.71718C21.4242 8.09531 22 9.11367 22 10.3125C22 11.5113 21.4242 12.5297 20.625 12.9078V19.25C20.625 19.8043 20.2898 20.307 19.7742 20.5219C19.2629 20.7324 18.6699 20.6164 18.2789 20.2211L16.4012 18.309C14.3387 16.2465 11.5414 15.125 8.62383 15.125H8.25V20.625C8.25 21.3855 7.63555 22 6.875 22H4.125C3.36574 22 2.75 21.3855 2.75 20.625V15.125C1.23105 15.125 0 13.8918 0 12.375V8.25C0 6.7332 1.23105 5.5 2.75 5.5H8.62383C11.5414 5.5 14.3387 4.33984 16.4012 2.2782L18.2789 0.402741C18.6699 0.00951264 19.2629 -0.108114 19.7742 0.10471C20.2898 0.317534 20.625 0.818979 20.625 1.375V7.71718ZM8.62383 8.25H8.25V12.375H8.62383C12.0527 12.375 15.3484 13.6555 17.875 15.9543V4.6707C15.3484 6.96953 12.0527 8.25 8.62383 8.25Z"
               />
               SaaSquatch Product News
-            </CoreCategoryStyle>
+            </CoreCategoryLink>
           </li>
 
           {/* Integrations starts here */}
@@ -292,10 +300,10 @@ const CoreCategory = (props: {
 }) => {
   return (
     <li>
-      <CoreCategoryStyle to={props.to}>
+      <CoreCategoryLink to={props.to}>
         <SVGIcon {...props.icon} />
         {props.title}
-      </CoreCategoryStyle>
+      </CoreCategoryLink>
       <ul>
         <li>
           <Title to={props.to}>
