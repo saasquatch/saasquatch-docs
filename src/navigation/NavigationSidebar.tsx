@@ -71,11 +71,13 @@ const CoreCategoryLink = styled(DropDownStyledLink as any)`
   padding: 8px 12px;
 `;
 
+/* Styled component to make main menu arrow point rightwards */
 const CoreLi = styled.li`
   & > a.mm-next {
     -webkit-transform: rotate(-90deg);
     -ms-transform: rotate(-90deg);
     transform: rotate(-90deg);
+    top: -5px;
   }
 `;
 
@@ -299,7 +301,7 @@ const CoreCategory = (props: {
   icon: SVGProps;
 }) => {
   return (
-    <li>
+    <li className="right-arrow">
       <CoreCategoryLink to={props.to}>
         <SVGIcon {...props.icon} />
         {props.title}
@@ -313,7 +315,6 @@ const CoreCategory = (props: {
           </Title>
         </li>
         <DivideLine />
-
         {props.children}
       </ul>
     </li>

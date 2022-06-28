@@ -4,6 +4,16 @@
 *
 */
 
+/* Class to make main menu arrow point rightwards (and transforms up by 5px) */
+.right-arrow {
+    & > a.mm-next {
+        -webkit-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+        top: -5px;   // this is low key hacky
+    }
+}
+
 #my-menu {
     small{
         font-size: 12px;
@@ -30,7 +40,8 @@
             -webkit-transform: rotate(-90deg);
             -ms-transform: rotate(-90deg);
             transform: rotate(-90deg);
-          }
+            top: -5px;   // this is low key hacky
+        }
 
         &.successCenter span:after{
             content: "Learn how to use Referral SaaSquatch";

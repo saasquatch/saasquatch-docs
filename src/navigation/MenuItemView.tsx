@@ -18,6 +18,7 @@ const StyledLi = styled.li`
 export function MenuItemView(props: MenuItemViewProps) {
   return (
     <li className="mm-vertical" ref={props.parentRef}>
+      {/* Getting rid of span helps, just makes arrow disappear */}
       <span
         className="mm-next mm-fullsubopen"
         // href={id}
