@@ -6,7 +6,11 @@ import useBrowserEffect from "src/util/useBrowserEffect";
 // import "mmenu-js/dist/mmenu.css"
 import styled from "styled-components";
 import { createContainer } from "unstated-next";
-import { integrationsIcon, SVGProps } from "./components/icons";
+import {
+  integrationsIcon,
+  runningProgramsIcon,
+  SVGProps,
+} from "./components/icons";
 import { MenuItemView, useMenuItemHook } from "./MenuItemView";
 import "./mmenu-overrides.css";
 import init from "./nav";
@@ -258,6 +262,131 @@ export function NavigationSidebar() {
     <Styles.Container>
       <nav id="my-menu">
         <ul className="baseMenu">
+          {/* Running Programs starts here */}
+          <CoreCategory
+            to="#"
+            title="Running Programs"
+            icon={runningProgramsIcon}
+          >
+            <DropDownLi title="Analytics and Reporting">
+              <LeavesUl>
+                <LeafLink to="#">
+                  Analytics Overview for Growth Automation Programs
+                </LeafLink>
+                <LeafLink to="#">Program and Portal Statistics</LeafLink>
+                <LeafLink to="#">
+                  Understanding Your Program Analytics Data
+                </LeafLink>
+                <LeafLink to="#">Program Reports</LeafLink>
+              </LeavesUl>
+            </DropDownLi>
+
+            <DropDownLi title="User Management">
+              <LeavesUl>
+                <LeafLink to="#">
+                  Manual User Actions: Add a Reward, Referral or Event
+                </LeafLink>
+                <LeafLink to="#">Managing Existing User Rewards</LeafLink>
+                <LeafLink to="#">User Purchase & Refund Event</LeafLink>
+                <LeafLink to="#">Participant Deletion</LeafLink>
+                <LeafLink to="#">Attribution</LeafLink>
+                <LeafLink to="#">Identification</LeafLink>
+              </LeavesUl>
+            </DropDownLi>
+
+            <DropDownLi title="Bulk Imports">
+              <LeavesUl>
+                <LeafLink to="#">Bulk User Import</LeafLink>
+                <LeafLink to="#">Bulk Reward Redemption Import</LeafLink>
+                <LeafLink to="#">Bulk User Delete Import</LeafLink>
+                <LeafLink to="#">Bulk Event Delete Import</LeafLink>
+              </LeavesUl>
+            </DropDownLi>
+
+            <DropDownLi title="Managing W-9 Compliance" to="#"></DropDownLi>
+          </CoreCategory>
+
+          {/* Integrations starts here */}
+          <CoreCategory
+            to="/integrations/"
+            title="Integrations"
+            icon={integrationsIcon}
+          >
+            <DropDownLi title="Salesforce">
+              <LeavesUl>
+                <LeafLink to="#">User Guide</LeafLink>
+                <LeafLink to="#">FAQ</LeafLink>
+                <LeafLink to="#">Install Guide</LeafLink>
+                <LeafLink to="#">Immediate Object Upsertion</LeafLink>
+                <LeafLink to="#">
+                  Using a Salesforce APEX Trigger to upsert a Lead
+                </LeafLink>
+              </LeavesUl>
+            </DropDownLi>
+
+            <DropDownLi title="AppsFlyer">
+              <LeavesUl>
+                <LeafLink to="#">Quickstart</LeafLink>
+                <LeafLink to="#">Tech Reference</LeafLink>
+              </LeavesUl>
+            </DropDownLi>
+
+            <DropDownLi title="SFTP Import">
+              <LeavesUl>
+                <LeafLink to="#">Configuration Guide</LeafLink>
+              </LeavesUl>
+            </DropDownLi>
+
+            <DropDownLi title="Branch Metrics">
+              <LeavesUl>
+                <LeafLink to="#">Quickstart</LeafLink>
+                <LeafLink to="#">Reference</LeafLink>
+              </LeavesUl>
+            </DropDownLi>
+
+            <DropDownLi title="Segment">
+              <LeavesUl>
+                <LeafLink to="#">Integration</LeafLink>
+                <LeafLink to="#">Integration 2</LeafLink>
+                <LeafLink to="#">Subscription</LeafLink>
+                <LeafLink to="#">Stream</LeafLink>
+                <LeafLink to="#">Segment Web Plugin Quickstart</LeafLink>
+              </LeavesUl>
+            </DropDownLi>
+
+            <DropDownLi title="Stripe">
+              <LeavesUl>
+                <LeafLink to="#">Install Guide</LeafLink>
+                <LeafLink to="#">V2 Stripe Integration Install Guide</LeafLink>
+              </LeavesUl>
+            </DropDownLi>
+
+            <DropDownLi title="TangoCard">
+              <LeavesUl>
+                <LeafLink to="#">Setup Guide</LeafLink>
+              </LeavesUl>
+            </DropDownLi>
+
+            <DropDownLi title="Zapier">
+              <LeavesUl>
+                <LeafLink to="#">Quickstart Guide</LeafLink>
+              </LeavesUl>
+            </DropDownLi>
+
+            <DropDownLi title="Recurly">
+              <LeavesUl>
+                <LeafLink to="#">Classic Recurly Install Guide</LeafLink>
+                <LeafLink to="#">Install Guide</LeafLink>
+              </LeavesUl>
+            </DropDownLi>
+
+            <DropDownLi title="Stitch">
+              <LeavesUl>
+                <LeafLink to="#">Integration Guide</LeafLink>
+              </LeavesUl>
+            </DropDownLi>
+          </CoreCategory>
+
           <li>
             <CoreCategoryLink to="/product-news">
               <SVGIcon
@@ -268,26 +397,6 @@ export function NavigationSidebar() {
               SaaSquatch Product News
             </CoreCategoryLink>
           </li>
-
-          {/* Integrations starts here */}
-          <CoreCategory
-            to="/integrations/"
-            title="Integrations"
-            icon={integrationsIcon}
-          >
-            <DropDownLi title="Salesforce">
-              <LeavesUl>
-                <LeafLink to="/salesforce/">Salesforce Integration</LeafLink>
-                <LeafLink to="/salesforce/user-guide/">
-                  Salesforce User Guide
-                </LeafLink>
-                <LeafLink to="/salesforce/faq/">Salesforce FAQ</LeafLink>
-                <LeafLink to="/salesforce/install-guide/">
-                  Salesforce Install Guide
-                </LeafLink>
-              </LeavesUl>
-            </DropDownLi>
-          </CoreCategory>
         </ul>
       </nav>
     </Styles.Container>
@@ -321,7 +430,11 @@ const CoreCategory = (props: {
   );
 };
 
-const DropDownLi = (props: { title: string; children?: React.ReactNode }) => {
+const DropDownLi = (props: {
+  title: string;
+  children?: React.ReactNode;
+  to?: string;
+}) => {
   return (
     <MenuItemView {...useMenuItemHook()} title={props.title}>
       {props.children}
