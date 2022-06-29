@@ -106,9 +106,11 @@
 li.mm-vertical.mm-opened > .mm-panel {
   display: block;
 }
+
+/* Also drop-down parent?? */
 .mm-listview > li.mm-vertical > .mm-next,
 .mm-vertical .mm-listview > li > .mm-next {
-  height: 40px;
+  height: fit-content;
   bottom: auto;
 }
 .mm-listview > li.mm-vertical > .mm-next:after,

@@ -410,7 +410,7 @@ const CoreCategory = (props: {
   icon: SVGProps;
 }) => {
   return (
-    <li className="right-arrow">
+    <li>
       <CoreCategoryLink to={props.to}>
         <SVGIcon {...props.icon} />
         {props.title}

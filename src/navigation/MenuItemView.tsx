@@ -1,14 +1,17 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
 
-const StyledLi = styled.li`
-  display: flex;
+const StyledSpan = styled.span`
+  display: block;
+  /* display: flex; */
+  height: fit-content;
   align-items: center;
-  /* width: 100%; */
+  width: auto !important;
   font-size: 16px;
   line-height: 24px;
-  vertical-align: middle;
+  /* vertical-align: middle; */
   text-align: center;
+  position: relative !important;
   padding: 8px 12px !important;
   &:hover {
     background-color: #e7edee;
@@ -18,14 +21,14 @@ const StyledLi = styled.li`
 export function MenuItemView(props: MenuItemViewProps) {
   return (
     <li className="mm-vertical" ref={props.parentRef}>
-      {/* Getting rid of span helps, just makes arrow disappear */}
-      <span
-        className="mm-next mm-fullsubopen"
+      <StyledSpan
+        className="mm-next"
         // href={id}
         data-target={props.id}
         onClick={props.onOpen}
-      ></span>
-      <StyledLi onClick={props.onOpen}>{props.title}</StyledLi>
+      >
+        {props.title}
+      </StyledSpan>
       <div className="mm-panel mm-vertical" id={props.id}>
         <ul className="nav-onpage mm-listview mm-vertical">{props.children}</ul>
       </div>
