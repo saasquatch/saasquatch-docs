@@ -3,13 +3,11 @@ import styled from "styled-components";
 
 const StyledSpan = styled.span`
   display: block;
-  /* display: flex; */
   height: fit-content;
   align-items: center;
   width: auto !important;
   font-size: 16px;
   line-height: 24px;
-  /* vertical-align: middle; */
   text-align: center;
   position: relative !important;
   padding: 8px 12px !important;
@@ -18,7 +16,30 @@ const StyledSpan = styled.span`
   }
 `;
 
+//@ts-ignore
+const NestedStyledSpan = styled(StyledSpan)`
+  font-size: 14px;
+`;
+
 export function MenuItemView(props: MenuItemViewProps) {
+  if (props.nestedDropDown)
+    return (
+      <li className="mm-vertical" ref={props.parentRef}>
+        <NestedStyledSpan
+          className="mm-next"
+          // href={id}
+          data-target={props.id}
+          onClick={props.onOpen}
+        >
+          {props.title}
+        </NestedStyledSpan>
+        <div className="mm-panel mm-vertical" id={props.id}>
+          <ul className="nav-onpage mm-listview mm-vertical">
+            {props.children}
+          </ul>
+        </div>
+      </li>
+    );
   return (
     <li className="mm-vertical" ref={props.parentRef}>
       <StyledSpan
@@ -42,6 +63,7 @@ export type MenuItemViewProps = {
   id: string;
   children?: React.ReactNode;
   parentRef: React.MutableRefObject<any>;
+  nestedDropDown?: boolean;
 };
 
 function openVerticalPanel($l) {
