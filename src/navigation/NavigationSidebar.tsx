@@ -58,7 +58,9 @@ const DropDownStyledLink = styled(Link)`
 export const TitleLink = styled(DropDownStyledLink as any)`
   flex-direction: row;
   justify-content: start;
+  line-height: 24px;
   gap: 8px;
+  padding: 8px 12px;
 `;
 
 const MainMenuLi = styled.li`
@@ -89,11 +91,17 @@ const CoreLi = styled.li`
   }
 `;
 
-const LeafLink = styled(DropDownStyledLink as any)`
+const SmallLeafLink = styled(DropDownStyledLink as any)`
   font-size: 14px;
   line-height: 21px;
   font-weight: 400;
-  padding: 8px 10px;
+  padding: 8px 12px;
+`;
+
+//@ts-ignore
+const BigLeafLink = styled(SmallLeafLink)`
+  font-size: 16px;
+  line-height: 24px;
 `;
 
 /* ul styles */
@@ -128,7 +136,7 @@ const APIDropdownParentLi = styled.li`
   }
 `;
 
-export const DivideLine = styled.li`
+export const DivideLineLi = styled.li`
   height: 8px;
   border-bottom: 1px solid #e2e2e2;
   margin-bottom: 8px !important;
@@ -139,15 +147,15 @@ export const DivideLine = styled.li`
 const AllContentDiv = styled.div``;
 
 /* Seperator styled components (to seperate versions, webhooks, etc. in Dev Center section) */
-const SeperatorSpacing = styled.div`
+const SeparatorLi = styled.li`
   display: flex;
   flex-direction: row;
-  align-items: center;
-  padding: 5px 0px 5px 11px;
+  /* align-items: center; */
+  padding: 5px 0px 5px 11px !important;
   gap: 10px;
 `;
 
-const SeperatorText = styled.p`
+const SeparatorSpan = styled.span`
   align-self: center;
   width: fit-content;
   white-space: nowrap;
@@ -158,10 +166,10 @@ const SeperatorText = styled.p`
   margin: 0 !important;
 `;
 
-const SeperatorLine = styled.div`
+const SeparatorLine = styled.div`
   height: 1px;
   width: 100%;
-  background-color: #e2e2e2;
+  background-color: #e2e2e2 !important;
 `;
 
 const ArrowDiv = styled.div`
@@ -270,38 +278,56 @@ export function NavigationSidebar() {
           <CoreCategory to="#" title="Learning SaaSquatch" icon={learningIcon}>
             <DropDownMenuItem title="SaaSquatch Admin Portal">
               <LeavesUl>
-                <LeafLink to="#">Using the SaaSquatch Portal</LeafLink>
-                <LeafLink to="#">Navigating the SaaSquatch Portal</LeafLink>
-                <LeafLink to="#">The Referral Feed</LeafLink>
-                <LeafLink to="#">Program Analytics</LeafLink>
+                <SmallLeafLink to="#">
+                  Using the SaaSquatch Portal
+                </SmallLeafLink>
+                <SmallLeafLink to="#">
+                  Navigating the SaaSquatch Portal
+                </SmallLeafLink>
+                <SmallLeafLink to="#">The Referral Feed</SmallLeafLink>
+                <SmallLeafLink to="#">Program Analytics</SmallLeafLink>
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="Growth Automation">
               <LeavesUl>
-                <LeafLink to="#">Growth Automation 101</LeafLink>
-                <LeafLink to="#">Growth Automation Customer Lifecycle</LeafLink>
-                <LeafLink to="#">
+                <SmallLeafLink to="#">Growth Automation 101</SmallLeafLink>
+                <SmallLeafLink to="#">
+                  Growth Automation Customer Lifecycle
+                </SmallLeafLink>
+                <SmallLeafLink to="#">
                   SaaSquatch Growth Automation Platform
-                </LeafLink>
+                </SmallLeafLink>
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="Referral Programs">
               <LeavesUl>
-                <LeafLink to="#">Referral Programs 101</LeafLink>
-                <LeafLink to="#">Referral Program Optimization</LeafLink>
-                <LeafLink to="#">The SaaSquatch Referral Program Loop</LeafLink>
-                <LeafLink to="#">Referral Marketing Channels</LeafLink>
-                <LeafLink to="#">Referral Program Retargeting</LeafLink>
-                <LeafLink to="#">Referral Program Sharing Options</LeafLink>
+                <SmallLeafLink to="#">Referral Programs 101</SmallLeafLink>
+                <SmallLeafLink to="#">
+                  Referral Program Optimization
+                </SmallLeafLink>
+                <SmallLeafLink to="#">
+                  The SaaSquatch Referral Program Loop
+                </SmallLeafLink>
+                <SmallLeafLink to="#">
+                  Referral Marketing Channels
+                </SmallLeafLink>
+                <SmallLeafLink to="#">
+                  Referral Program Retargeting
+                </SmallLeafLink>
+                <SmallLeafLink to="#">
+                  Referral Program Sharing Options
+                </SmallLeafLink>
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="Fraud and Security Management">
               <LeavesUl>
-                <LeafLink to="#">Security Management System</LeafLink>
-                <LeafLink to="#">Fraud, Security & Fake Referrals</LeafLink>
+                <SmallLeafLink to="#">Security Management System</SmallLeafLink>
+                <SmallLeafLink to="#">
+                  Fraud, Security & Fake Referrals
+                </SmallLeafLink>
               </LeavesUl>
             </DropDownMenuItem>
           </CoreCategory>
@@ -310,71 +336,73 @@ export function NavigationSidebar() {
           <CoreCategory to="#" title="Building Programs " icon={buildingIcon}>
             <DropDownMenuItem title="Programs">
               <LeavesUl>
-                <LeafLink to="#">
+                <SmallLeafLink to="#">
                   Growth Automation Program General Quickstart
-                </LeafLink>
-                <DropDownMenuItem title="Program Library" nestedDropDown>
+                </SmallLeafLink>
+                <DropDownMenuItem title="Program Library" isNestedDropDown>
                   <LeavesUl>
-                    <LeafLink to="#">Birthday & Anniversary</LeafLink>
-                    <LeafLink to="#">Referral Program With Objectives</LeafLink>
-                    <LeafLink to="#">Partner</LeafLink>
-                    <LeafLink to="#">Win Back</LeafLink>
-                    <LeafLink to="#">VIP</LeafLink>
-                    <LeafLink to="#">Signup</LeafLink>
-                    <LeafLink to="#">Regional Signup</LeafLink>
-                    <LeafLink to="#">Profile Completion</LeafLink>
-                    <LeafLink to="#">Points Rewards</LeafLink>
+                    <SmallLeafLink to="#">Birthday & Anniversary</SmallLeafLink>
+                    <SmallLeafLink to="#">
+                      Referral Program With Objectives
+                    </SmallLeafLink>
+                    <SmallLeafLink to="#">Partner</SmallLeafLink>
+                    <SmallLeafLink to="#">Win Back</SmallLeafLink>
+                    <SmallLeafLink to="#">VIP</SmallLeafLink>
+                    <SmallLeafLink to="#">Signup</SmallLeafLink>
+                    <SmallLeafLink to="#">Regional Signup</SmallLeafLink>
+                    <SmallLeafLink to="#">Profile Completion</SmallLeafLink>
+                    <SmallLeafLink to="#">Points Rewards</SmallLeafLink>
                   </LeavesUl>
                 </DropDownMenuItem>
-                <LeafLink to="#">Growth Automation Program Mechanisms</LeafLink>
-                <LeafLink to="#">
+                <SmallLeafLink to="#">
+                  Growth Automation Program Mechanisms
+                </SmallLeafLink>
+                <SmallLeafLink to="#">
                   Growth Automational Referral Program - Quickstart
-                </LeafLink>
+                </SmallLeafLink>
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="Program Widget">
               <LeavesUl>
-                <LeafLink to="#">Customize Program Widgets</LeafLink>
-                <LeafLink to="#">Custom Program Themes</LeafLink>
-                <LeafLink to="#">Mobile Widget</LeafLink>
+                <SmallLeafLink to="#">Customize Program Widgets</SmallLeafLink>
+                <SmallLeafLink to="#">Custom Program Themes</SmallLeafLink>
+                <SmallLeafLink to="#">Mobile Widget</SmallLeafLink>
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="Rewards">
               <LeavesUl>
-                <LeafLink to="#">Program Reward Options</LeafLink>
-                <LeafLink to="#">Gift Card Rewards</LeafLink>
-                <LeafLink to="#">Fuel Tank Rewards</LeafLink>
-                <LeafLink to="#">Reward Exchange</LeafLink>
-                <LeafLink to="#">Conversion</LeafLink>
+                <SmallLeafLink to="#">Program Reward Options</SmallLeafLink>
+                <SmallLeafLink to="#">Gift Card Rewards</SmallLeafLink>
+                <SmallLeafLink to="#">Fuel Tank Rewards</SmallLeafLink>
+                <SmallLeafLink to="#">Reward Exchange</SmallLeafLink>
+                <SmallLeafLink to="#">Conversion</SmallLeafLink>
               </LeavesUl>
             </DropDownMenuItem>
 
-            <DropDownMenuItem
-              title="User Segmentation"
-              to="#"
-            ></DropDownMenuItem>
+            <BigLeafLink to="#">User Segmentation</BigLeafLink>
 
             <DropDownMenuItem title="Program Emails">
               <LeavesUl>
-                <LeafLink to="#">Designing Your Program Emails</LeafLink>
-                <LeafLink to="#">Email Template Short Tags</LeafLink>
-                <LeafLink to="#">Blocked Email Domains</LeafLink>
+                <SmallLeafLink to="#">
+                  Designing Your Program Emails
+                </SmallLeafLink>
+                <SmallLeafLink to="#">Email Template Short Tags</SmallLeafLink>
+                <SmallLeafLink to="#">Blocked Email Domains</SmallLeafLink>
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="W9 Compliance">
               <LeavesUl>
-                <LeafLink to="#">W-9 Compliance</LeafLink>
-                <LeafLink to="#">Configuring Your Rewards for W-9</LeafLink>
+                <SmallLeafLink to="#">W-9 Compliance</SmallLeafLink>
+                <SmallLeafLink to="#">
+                  Configuring Your Rewards for W-9
+                </SmallLeafLink>
               </LeavesUl>
             </DropDownMenuItem>
 
-            <DropDownMenuItem
-              title="Program Internationalization"
-              to="#"
-            ></DropDownMenuItem>
+            <BigLeafLink to="#">Program Internationalization</BigLeafLink>
           </CoreCategory>
 
           {/* Running Programs starts here */}
@@ -385,43 +413,48 @@ export function NavigationSidebar() {
           >
             <DropDownMenuItem title="Analytics and Reporting">
               <LeavesUl>
-                <LeafLink to="#">
+                <SmallLeafLink to="#">
                   Analytics Overview for Growth Automation Programs
-                </LeafLink>
-                <LeafLink to="#">Program and Portal Statistics</LeafLink>
-                <LeafLink to="#">
+                </SmallLeafLink>
+                <SmallLeafLink to="#">
+                  Program and Portal Statistics
+                </SmallLeafLink>
+                <SmallLeafLink to="#">
                   Understanding Your Program Analytics Data
-                </LeafLink>
-                <LeafLink to="#">Program Reports</LeafLink>
+                </SmallLeafLink>
+                <SmallLeafLink to="#">Program Reports</SmallLeafLink>
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="User Management">
               <LeavesUl>
-                <LeafLink to="#">
+                <SmallLeafLink to="#">
                   Manual User Actions: Add a Reward, Referral or Event
-                </LeafLink>
-                <LeafLink to="#">Managing Existing User Rewards</LeafLink>
-                <LeafLink to="#">User Purchase & Refund Event</LeafLink>
-                <LeafLink to="#">Participant Deletion</LeafLink>
-                <LeafLink to="#">Attribution</LeafLink>
-                <LeafLink to="#">Identification</LeafLink>
+                </SmallLeafLink>
+                <SmallLeafLink to="#">
+                  Managing Existing User Rewards
+                </SmallLeafLink>
+                <SmallLeafLink to="#">
+                  User Purchase & Refund Event
+                </SmallLeafLink>
+                <SmallLeafLink to="#">Participant Deletion</SmallLeafLink>
+                <SmallLeafLink to="#">Attribution</SmallLeafLink>
+                <SmallLeafLink to="#">Identification</SmallLeafLink>
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="Bulk Imports">
               <LeavesUl>
-                <LeafLink to="#">Bulk User Import</LeafLink>
-                <LeafLink to="#">Bulk Reward Redemption Import</LeafLink>
-                <LeafLink to="#">Bulk User Delete Import</LeafLink>
-                <LeafLink to="#">Bulk Event Delete Import</LeafLink>
+                <SmallLeafLink to="#">Bulk User Import</SmallLeafLink>
+                <SmallLeafLink to="#">
+                  Bulk Reward Redemption Import
+                </SmallLeafLink>
+                <SmallLeafLink to="#">Bulk User Delete Import</SmallLeafLink>
+                <SmallLeafLink to="#">Bulk Event Delete Import</SmallLeafLink>
               </LeavesUl>
             </DropDownMenuItem>
 
-            <DropDownMenuItem
-              title="Managing W-9 Compliance"
-              to="#"
-            ></DropDownMenuItem>
+            <BigLeafLink to="#">Managing W-9 Compliance</BigLeafLink>
           </CoreCategory>
 
           {/* Integrations starts here */}
@@ -432,75 +465,81 @@ export function NavigationSidebar() {
           >
             <DropDownMenuItem title="Salesforce">
               <LeavesUl>
-                <LeafLink to="#">User Guide</LeafLink>
-                <LeafLink to="#">FAQ</LeafLink>
-                <LeafLink to="#">Install Guide</LeafLink>
-                <LeafLink to="#">Immediate Object Upsertion</LeafLink>
-                <LeafLink to="#">
+                <SmallLeafLink to="#">User Guide</SmallLeafLink>
+                <SmallLeafLink to="#">FAQ</SmallLeafLink>
+                <SmallLeafLink to="#">Install Guide</SmallLeafLink>
+                <SmallLeafLink to="#">Immediate Object Upsertion</SmallLeafLink>
+                <SmallLeafLink to="#">
                   Using a Salesforce APEX Trigger to upsert a Lead
-                </LeafLink>
+                </SmallLeafLink>
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="AppsFlyer">
               <LeavesUl>
-                <LeafLink to="#">Quickstart</LeafLink>
-                <LeafLink to="#">Tech Reference</LeafLink>
+                <SmallLeafLink to="#">Quickstart</SmallLeafLink>
+                <SmallLeafLink to="#">Tech Reference</SmallLeafLink>
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="SFTP Import">
               <LeavesUl>
-                <LeafLink to="#">Configuration Guide</LeafLink>
+                <SmallLeafLink to="#">Configuration Guide</SmallLeafLink>
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="Branch Metrics">
               <LeavesUl>
-                <LeafLink to="#">Quickstart</LeafLink>
-                <LeafLink to="#">Reference</LeafLink>
+                <SmallLeafLink to="#">Quickstart</SmallLeafLink>
+                <SmallLeafLink to="#">Reference</SmallLeafLink>
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="Segment">
               <LeavesUl>
-                <LeafLink to="#">Integration</LeafLink>
-                <LeafLink to="#">Integration 2</LeafLink>
-                <LeafLink to="#">Subscription</LeafLink>
-                <LeafLink to="#">Stream</LeafLink>
-                <LeafLink to="#">Segment Web Plugin Quickstart</LeafLink>
+                <SmallLeafLink to="#">Integration</SmallLeafLink>
+                <SmallLeafLink to="#">Integration 2</SmallLeafLink>
+                <SmallLeafLink to="#">Subscription</SmallLeafLink>
+                <SmallLeafLink to="#">Stream</SmallLeafLink>
+                <SmallLeafLink to="#">
+                  Segment Web Plugin Quickstart
+                </SmallLeafLink>
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="Stripe">
               <LeavesUl>
-                <LeafLink to="#">Install Guide</LeafLink>
-                <LeafLink to="#">V2 Stripe Integration Install Guide</LeafLink>
+                <SmallLeafLink to="#">Install Guide</SmallLeafLink>
+                <SmallLeafLink to="#">
+                  V2 Stripe Integration Install Guide
+                </SmallLeafLink>
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="TangoCard">
               <LeavesUl>
-                <LeafLink to="#">Setup Guide</LeafLink>
+                <SmallLeafLink to="#">Setup Guide</SmallLeafLink>
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="Zapier">
               <LeavesUl>
-                <LeafLink to="#">Quickstart Guide</LeafLink>
+                <SmallLeafLink to="#">Quickstart Guide</SmallLeafLink>
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="Recurly">
               <LeavesUl>
-                <LeafLink to="#">Classic Recurly Install Guide</LeafLink>
-                <LeafLink to="#">Install Guide</LeafLink>
+                <SmallLeafLink to="#">
+                  Classic Recurly Install Guide
+                </SmallLeafLink>
+                <SmallLeafLink to="#">Install Guide</SmallLeafLink>
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="Stitch">
               <LeavesUl>
-                <LeafLink to="#">Integration Guide</LeafLink>
+                <SmallLeafLink to="#">Integration Guide</SmallLeafLink>
               </LeavesUl>
             </DropDownMenuItem>
           </CoreCategory>
@@ -509,81 +548,144 @@ export function NavigationSidebar() {
           <CoreCategory to="#" title="Developer Resources" icon={devIcon}>
             <DropDownMenuItem title="Dev Guides">
               <LeavesUl>
-                <LeafLink to="#">SaaSquatch & Emails</LeafLink>
-                <LeafLink to="#">Custom Short Domains</LeafLink>
-                <LeafLink to="#">Referral Security</LeafLink>
-                <LeafLink to="#">Account Structure</LeafLink>
-                <LeafLink to="#">Marketo</LeafLink>
-                <LeafLink to="#">Instapage</LeafLink>
-                <LeafLink to="#">Custom User Fields</LeafLink>
-                <LeafLink to="#">User Widget Types</LeafLink>
-                <LeafLink to="#">Message Links</LeafLink>
-                <LeafLink to="#">Conversion Tech Guide</LeafLink>
-                <LeafLink to="#">Attribution Tech Guide</LeafLink>
-                <LeafLink to="#">Breaking Changes</LeafLink>
-                <LeafLink to="#">Common Pitfalls</LeafLink>
-                <LeafLink to="#">
+                <SmallLeafLink to="#">SaaSquatch & Emails</SmallLeafLink>
+                <SmallLeafLink to="#">Custom Short Domains</SmallLeafLink>
+                <SmallLeafLink to="#">Referral Security</SmallLeafLink>
+                <SmallLeafLink to="#">Account Structure</SmallLeafLink>
+                <SmallLeafLink to="#">Marketo</SmallLeafLink>
+                <SmallLeafLink to="#">Instapage</SmallLeafLink>
+                <SmallLeafLink to="#">Custom User Fields</SmallLeafLink>
+                <SmallLeafLink to="#">User Widget Types</SmallLeafLink>
+                <SmallLeafLink to="#">Message Links</SmallLeafLink>
+                <SmallLeafLink to="#">Conversion Tech Guide</SmallLeafLink>
+                <SmallLeafLink to="#">Attribution Tech Guide</SmallLeafLink>
+                <SmallLeafLink to="#">Breaking Changes</SmallLeafLink>
+                <SmallLeafLink to="#">Common Pitfalls</SmallLeafLink>
+                <SmallLeafLink to="#">
                   Writing a Web Component for SaaSquatch
-                </LeafLink>
+                </SmallLeafLink>
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="Squatch.js">
               <LeavesUl>
-                <LeafLink to="#">About</LeafLink>
-                <LeafLink to="#">Signed Requests</LeafLink>
-                <LeafLink to="#">
+                <SmallLeafLink to="#">About</SmallLeafLink>
+                <SmallLeafLink to="#">Signed Requests</SmallLeafLink>
+                <SmallLeafLink to="#">
                   Issue Code List (list of 53 issue links)
-                </LeafLink>
-                <LeafLink to="#">Quickstart</LeafLink>
-                <LeafLink to="#">Advanced Use Cases</LeafLink>
-                <LeafLink to="#">Reference</LeafLink>
-                <LeafLink to="#">Tracking Cookies</LeafLink>
+                </SmallLeafLink>
+                <Separator text="Version 2" />
+                <SmallLeafLink to="#">Quickstart</SmallLeafLink>
+                <SmallLeafLink to="#">Advanced Use Cases</SmallLeafLink>
+                <SmallLeafLink to="#">Reference</SmallLeafLink>
+                <SmallLeafLink to="#">Tracking Cookies</SmallLeafLink>
               </LeavesUl>
             </DropDownMenuItem>
             <DropDownMenuItem title="API">
               <LeavesUl>
-                <DropDownMenuItem title="GraphQL API" nestedDropDown>
+                <DropDownMenuItem title="GraphQL API" isNestedDropDown>
                   <LeavesUl>
-                    <LeafLink to="#">GraphQL Reference</LeafLink>
-                    <LeafLink to="#">Custom Widget via GraphQL</LeafLink>
+                    <SmallLeafLink to="#">GraphQL Reference</SmallLeafLink>
+                    <SmallLeafLink to="#">
+                      Custom Widget via GraphQL
+                    </SmallLeafLink>
                   </LeavesUl>
                 </DropDownMenuItem>
 
-                <DropDownMenuItem title="REST API " nestedDropDown>
+                <DropDownMenuItem title="REST API " isNestedDropDown>
                   <LeavesUl>
-                    <LeafLink to="#">API Overview</LeafLink>
-                    <LeafLink to="#">Authentication</LeafLink>
-                    <LeafLink to="#">API Open Endpoints</LeafLink>
-                    <LeafLink to="#">Errors</LeafLink>
+                    <SmallLeafLink to="#">API Overview</SmallLeafLink>
+                    <SmallLeafLink to="#">Authentication</SmallLeafLink>
+                    <SmallLeafLink to="#">API Open Endpoints</SmallLeafLink>
+                    <SmallLeafLink to="#">Errors</SmallLeafLink>
                   </LeavesUl>
                 </DropDownMenuItem>
 
-                <DropDownMenuItem title="REST API Reference" nestedDropDown>
+                <DropDownMenuItem title="REST API Reference" isNestedDropDown>
                   <LeavesUl>
-                    <LeafLink to="#">Full list of Methods</LeafLink>
+                    <SmallLeafLink to="#">Full list of Methods</SmallLeafLink>
                     <DropDownMenuItem
                       title="Account (Account Overview)"
-                      nestedDropDown
+                      isNestedDropDown
                     >
                       <LeavesUl>
-                        <LeafLink to="#">Delete an account</LeafLink>
+                        <SmallLeafLink to="#">Delete an account</SmallLeafLink>
                       </LeavesUl>
                     </DropDownMenuItem>
 
-                    <LeafLink to="#">User (User Overview)</LeafLink>
-                    <LeafLink to="#">User Event (User Event Overview)</LeafLink>
-                    <LeafLink to="#">
-                      Share Links (Share Links Overview)
-                    </LeafLink>
-                    <LeafLink to="#">
-                      Referral Code (Referral Code Overview)
-                    </LeafLink>
-                    <LeafLink to="#">Referral (Referral Overview)</LeafLink>
-                    <LeafLink to="#">Reward Balance (RB Overview)</LeafLink>
-                    <LeafLink to="#">Reward (Reward Overview)</LeafLink>
-                    <LeafLink to="#">Export (Overview)</LeafLink>
-                    <LeafLink to="#">Hidden Endpoints</LeafLink>
+                    <DropDownMenuItem
+                      title="User (User Overview)"
+                      isNestedDropDown
+                    >
+                      <LeavesUl>
+                        <SmallLeafLink to="#">All methods</SmallLeafLink>
+                      </LeavesUl>
+                    </DropDownMenuItem>
+
+                    <DropDownMenuItem
+                      title="User Event (User Event Overview)"
+                      isNestedDropDown
+                    >
+                      <LeavesUl>
+                        <SmallLeafLink to="#">All methods</SmallLeafLink>
+                      </LeavesUl>
+                    </DropDownMenuItem>
+
+                    <DropDownMenuItem
+                      title="Share Links (Share Links Overview)"
+                      isNestedDropDown
+                    >
+                      <LeavesUl>
+                        <SmallLeafLink to="#">All methods</SmallLeafLink>
+                      </LeavesUl>
+                    </DropDownMenuItem>
+
+                    <DropDownMenuItem
+                      title="Referral Code (Referral Code Overview)"
+                      isNestedDropDown
+                    >
+                      <LeavesUl>
+                        <SmallLeafLink to="#">All methods</SmallLeafLink>
+                      </LeavesUl>
+                    </DropDownMenuItem>
+
+                    <DropDownMenuItem
+                      title="Referral (Referral Overview)"
+                      isNestedDropDown
+                    >
+                      <LeavesUl>
+                        <SmallLeafLink to="#">All methods</SmallLeafLink>
+                      </LeavesUl>
+                    </DropDownMenuItem>
+
+                    <DropDownMenuItem
+                      title="Reward Balance (RB Overview)"
+                      isNestedDropDown
+                    >
+                      <LeavesUl>
+                        <SmallLeafLink to="#">All methods</SmallLeafLink>
+                      </LeavesUl>
+                    </DropDownMenuItem>
+
+                    <DropDownMenuItem
+                      title="Reward (Reward Overview)"
+                      isNestedDropDown
+                    >
+                      <LeavesUl>
+                        <SmallLeafLink to="#">All methods</SmallLeafLink>
+                      </LeavesUl>
+                    </DropDownMenuItem>
+
+                    <DropDownMenuItem
+                      title="Export (Overview)"
+                      isNestedDropDown
+                    >
+                      <LeavesUl>
+                        <SmallLeafLink to="#">All methods</SmallLeafLink>
+                      </LeavesUl>
+                    </DropDownMenuItem>
+
+                    <SmallLeafLink to="#">Hidden Endpoints</SmallLeafLink>
                   </LeavesUl>
                 </DropDownMenuItem>
               </LeavesUl>
@@ -591,27 +693,24 @@ export function NavigationSidebar() {
 
             <DropDownMenuItem title="Webhook">
               <LeavesUl>
-                <LeafLink to="#">Overview</LeafLink>
-                <LeafLink to="#">Webhook Security</LeafLink>
-                <LeafLink to="#">All methods</LeafLink>
+                <SmallLeafLink to="#">Overview</SmallLeafLink>
+                <SmallLeafLink to="#">Webhook Security</SmallLeafLink>
+                <SmallLeafLink to="#">All methods</SmallLeafLink>
               </LeavesUl>
             </DropDownMenuItem>
 
-            <DropDownMenuItem title="JSON Web Tokens" to="#"></DropDownMenuItem>
-            <DropDownMenuItem
-              title="Testing Best Practices"
-              to="#"
-            ></DropDownMenuItem>
+            <BigLeafLink to="#">JSON Web Tokens</BigLeafLink>
+            <BigLeafLink to="#">Testing Best Practices</BigLeafLink>
 
             <DropDownMenuItem title="Mobile">
               <LeavesUl>
-                <LeafLink to="#">Android</LeafLink>
-                <LeafLink to="#">iOS </LeafLink>
+                <SmallLeafLink to="#">Android</SmallLeafLink>
+                <SmallLeafLink to="#">iOS </SmallLeafLink>
               </LeavesUl>
             </DropDownMenuItem>
           </CoreCategory>
 
-          {/* <li>
+          <li>
             <CoreCategoryLink to="/product-news">
               <SVGIcon
                 width="85%"
@@ -620,7 +719,7 @@ export function NavigationSidebar() {
               />
               SaaSquatch Product News
             </CoreCategoryLink>
-          </li> */}
+          </li>
         </ul>
       </nav>
     </Styles.Container>
@@ -644,15 +743,25 @@ const DropDownMenuItem = (props: {
   title: string;
   children?: React.ReactNode;
   to?: string;
-  nestedDropDown?: boolean;
+  isNestedDropDown?: boolean;
 }) => {
   return (
     <MenuItemView
       {...useMenuItemHook()}
       title={props.title}
-      nestedDropDown={props.nestedDropDown}
+      isNestedDropDown={props.isNestedDropDown}
     >
       {props.children}
     </MenuItemView>
+  );
+};
+
+/* Line won't show up */
+const Separator = (props: { text: string }) => {
+  return (
+    <SeparatorLi>
+      <SeparatorSpan>{props.text}</SeparatorSpan>
+      <SeparatorLine />
+    </SeparatorLi>
   );
 };

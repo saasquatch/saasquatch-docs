@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { SVGProps } from "./components/icons";
 import {
   CoreCategoryLink,
-  DivideLine,
+  DivideLineLi,
   MMenuContext,
   SVGIcon,
   TitleLink,
@@ -31,7 +31,7 @@ export const CoreCategoryView = (props: {
             {props.title}
           </TitleLink>
         </li>
-        <DivideLine />
+        <DivideLineLi />
         {props.children}
       </ul>
     </li>

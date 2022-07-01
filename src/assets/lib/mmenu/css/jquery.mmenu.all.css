@@ -248,13 +248,10 @@ li.mm-vertical.mm-opened > .mm-panel {
   margin: 0;
   padding: 0;
 }
+
 .mm-listview > li > a,
 .mm-listview > li > span {
-  color: inherit;
   display: flex;
-  /* Got rid of this */
-  padding: 10px 10px 10px 10px;
-  margin: 0;
 }
 .mm-listview > li > a.mm-arrow,
 .mm-listview > li > span.mm-arrow {

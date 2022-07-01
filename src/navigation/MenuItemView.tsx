@@ -22,7 +22,7 @@ const NestedStyledSpan = styled(StyledSpan)`
 `;
 
 export function MenuItemView(props: MenuItemViewProps) {
-  if (props.nestedDropDown)
+  if (props.isNestedDropDown)
     return (
       <li className="mm-vertical" ref={props.parentRef}>
         <NestedStyledSpan
@@ -63,7 +63,7 @@ export type MenuItemViewProps = {
   id: string;
   children?: React.ReactNode;
   parentRef: React.MutableRefObject<any>;
-  nestedDropDown?: boolean;
+  isNestedDropDown?: boolean;
 };
 
 function openVerticalPanel($l) {
