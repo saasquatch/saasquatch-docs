@@ -9,6 +9,7 @@ import {
   TitleLink,
 } from "./NavigationSidebar";
 
+// Revert back: don't need TitleArrowDiv, get rid of SidebarSVG
 const TitleArrowDiv = styled.div`
   display: flex !important;
   justify-content: space-between !important;
