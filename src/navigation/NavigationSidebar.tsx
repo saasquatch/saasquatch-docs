@@ -107,7 +107,7 @@ const BigLeafLink = styled(SmallLeafLink)`
 /* ul styles */
 
 export const LeavesUl = styled.ul`
-  list-style: none !important;
+  /* list-style: none !important; */
   margin-left: 12px !important;
   border-left: 1px solid #003b45 !important;
 `;
@@ -147,10 +147,12 @@ export const DivideLineLi = styled.li`
 const AllContentDiv = styled.div``;
 
 /* Seperator styled components (to seperate versions, webhooks, etc. in Dev Center section) */
-const SeparatorLi = styled.li`
+const SeparatorLi = styled.li``;
+
+const SeparatorDiv = styled.li`
   display: flex;
   flex-direction: row;
-  /* align-items: center; */
+  align-items: center;
   padding: 5px 0px 5px 11px !important;
   gap: 10px;
 `;
@@ -167,8 +169,8 @@ const SeparatorSpan = styled.span`
 `;
 
 const SeparatorLine = styled.div`
-  height: 1px;
-  width: 100%;
+  height: 1px !important;
+  width: 100% !important;
   background-color: #e2e2e2 !important;
 `;
 
@@ -645,7 +647,17 @@ export function NavigationSidebar() {
                       isNestedDropDown
                     >
                       <LeavesUl>
-                        <SmallLeafLink to="#">All methods</SmallLeafLink>
+                        <APILeaf to="#" title="Lookup a referral code">
+                          <GreenButton>Get</GreenButton>
+                        </APILeaf>
+                        <APILeaf to="#" title="Lookup a referral code">
+                          <GreenButton>Get</GreenButton>
+                          <GreyButton>Open Endpoint</GreyButton>
+                        </APILeaf>
+                        <APILeaf to="#" title="Apply a referral code">
+                          <OrangeButton>Post</OrangeButton>
+                          <GreyButton>Open Endpoint</GreyButton>
+                        </APILeaf>
                       </LeavesUl>
                     </DropDownMenuItem>
 
@@ -756,12 +768,43 @@ const DropDownMenuItem = (props: {
   );
 };
 
-/* Line won't show up */
+/* Line won't show up; div doesn't work */
 const Separator = (props: { text: string }) => {
   return (
-    <SeparatorLi>
+    <SeparatorDiv>
       <SeparatorSpan>{props.text}</SeparatorSpan>
       <SeparatorLine />
-    </SeparatorLi>
+    </SeparatorDiv>
+  );
+};
+
+{
+  /* <DropdownChildLi clicked={currentPage === "#"}>
+  <StyledLink to="#" clicked={currentPage === "#"}>
+    <APIDiv>
+      Lookup a referral code 
+      <ButtonsContainerDiv>
+        <GreenButton>GET</GreenButton>
+        <GreyButton>Open Endpoint</GreyButton>
+      </ButtonsContainerDiv>
+    </APIDiv>
+  </StyledLink>
+</DropdownChildLi>; */
+}
+
+const APILeaf = (props: {
+  to: string;
+  title: string;
+  children?: React.ReactNode;
+}) => {
+  return (
+    <li>
+      <SmallLeafLink to={props.to}>
+        <APIDiv>
+          {props.title}
+          <ButtonsContainerDiv>{props.children}</ButtonsContainerDiv>
+        </APIDiv>
+      </SmallLeafLink>
+    </li>
   );
 };
