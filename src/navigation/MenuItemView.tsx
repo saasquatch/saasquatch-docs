@@ -8,9 +8,8 @@ const StyledSpan = styled.span`
   width: auto !important;
   font-size: 16px;
   line-height: 24px;
-  text-align: center;
   position: relative !important;
-  padding: 8px 12px !important;
+  padding: 8px 20% 8px 12px !important;
   cursor: pointer;
   &:hover {
     background-color: #e7edee;

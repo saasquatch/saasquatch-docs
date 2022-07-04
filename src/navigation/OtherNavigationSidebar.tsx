@@ -174,7 +174,7 @@ export const DropdownParentContainer = styled.div`
 `;
 
 /* Seperator styled components (to seperate versions, webhooks, etc. in Dev Center section) */
-const SeperatorSpacing = styled.div`
+const SeperatorSpacingDiv = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -182,7 +182,7 @@ const SeperatorSpacing = styled.div`
   gap: 10px;
 `;
 
-const SeperatorText = styled.p`
+const SeperatorTextP = styled.p`
   align-self: center;
   width: fit-content;
   white-space: nowrap;
@@ -584,9 +584,10 @@ export function NavigationSidebar() {
                     <DropdownChildLi clicked={currentPage === "#"}>
                       <StyledLink>Salesforce FAQ</StyledLink>
                     </DropdownChildLi>
-                    <SeperatorSpacing>
-                      <SeperatorText>Version 2</SeperatorText> <SeperatorLine />
-                    </SeperatorSpacing>
+                    <SeperatorSpacingDiv>
+                      <SeperatorTextP>Version 2</SeperatorTextP>{" "}
+                      <SeperatorLine />
+                    </SeperatorSpacingDiv>
                     <DropdownChildLi clicked={currentPage === "#"}>
                       <StyledLink>Squatch.js Quickstart</StyledLink>
                     </DropdownChildLi>
@@ -629,18 +630,20 @@ export function NavigationSidebar() {
                     <DropdownChildLi clicked={currentPage === "#"}>
                       <StyledLink>Errors</StyledLink>
                     </DropdownChildLi>
-                    <SeperatorSpacing>
-                      <SeperatorText>Webhooks</SeperatorText> <SeperatorLine />
-                    </SeperatorSpacing>
+                    <SeperatorSpacingDiv>
+                      <SeperatorTextP>Webhooks</SeperatorTextP>{" "}
+                      <SeperatorLine />
+                    </SeperatorSpacingDiv>
                     <DropdownChildLi clicked={currentPage === "#"}>
                       <StyledLink>Webhooks Overview</StyledLink>
                     </DropdownChildLi>
                     <DropdownChildLi clicked={currentPage === "#"}>
                       <StyledLink>Webhooks Security</StyledLink>
                     </DropdownChildLi>
-                    <SeperatorSpacing>
-                      <SeperatorText>Webhooks</SeperatorText> <SeperatorLine />
-                    </SeperatorSpacing>
+                    <SeperatorSpacingDiv>
+                      <SeperatorTextP>Webhooks</SeperatorTextP>{" "}
+                      <SeperatorLine />
+                    </SeperatorSpacingDiv>
                     <DropdownChildLi clicked={currentPage === "#"}>
                       <StyledLink>Full List of Methods</StyledLink>
                     </DropdownChildLi>

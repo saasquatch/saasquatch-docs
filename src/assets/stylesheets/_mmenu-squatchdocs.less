@@ -13,6 +13,14 @@
     }
 }
 
+.core-spacing {
+    // display: flex !important;
+    // flex-direction: row;
+    & > a.mm-next {
+        display: hidden !important;
+    }
+}
+
 #my-menu {
     small{
         font-size: 12px;
@@ -36,9 +44,10 @@
 
         // Makes main menu arrow point right
         & > a.mm-next {
-            -webkit-transform: rotate(-90deg);
-            -ms-transform: rotate(-90deg);
-            transform:  rotate(-90deg) ;
+            display: none !important;
+            // -webkit-transform: rotate(-90deg);
+            // -ms-transform: rotate(-90deg);
+            // transform:  rotate(-90deg) ;
         }
 
         &.successCenter span:after{
