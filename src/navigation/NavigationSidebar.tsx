@@ -771,26 +771,14 @@ const DropDownMenuItem = (props: {
 /* Line won't show up; div doesn't work */
 const Separator = (props: { text: string }) => {
   return (
-    <SeparatorDiv>
-      <SeparatorSpan>{props.text}</SeparatorSpan>
-      <SeparatorLine />
-    </SeparatorDiv>
+    <li>
+      <SeparatorDiv>
+        <SeparatorSpan>{props.text}</SeparatorSpan>
+        <SeparatorLine />
+      </SeparatorDiv>
+    </li>
   );
 };
-
-{
-  /* <DropdownChildLi clicked={currentPage === "#"}>
-  <StyledLink to="#" clicked={currentPage === "#"}>
-    <APIDiv>
-      Lookup a referral code 
-      <ButtonsContainerDiv>
-        <GreenButton>GET</GreenButton>
-        <GreyButton>Open Endpoint</GreyButton>
-      </ButtonsContainerDiv>
-    </APIDiv>
-  </StyledLink>
-</DropdownChildLi>; */
-}
 
 const APILeaf = (props: {
   to: string;
