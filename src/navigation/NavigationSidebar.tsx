@@ -153,9 +153,8 @@ export const DivideLineLi = styled.li`
 const AllContentDiv = styled.div``;
 
 /* Seperator styled components (to seperate versions, webhooks, etc. in Dev Center section) */
-const SeparatorLi = styled.li``;
 
-const SeparatorDiv = styled.li`
+const SeparatorLi = styled.li`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -1162,55 +1161,156 @@ export function NavigationSidebar() {
                 clicked={currentPage === "/api/methods"}
               />
 
-              <DropDownMenuItem
-                title="Account (Account Overview)"
-                isNestedDropDown
-              >
+              <DropDownMenuItem title="Account" isNestedDropDown>
                 <ArticleLeaf
-                  to="#"
+                  to="/api/methods#Account"
+                  title="Account Overview"
+                  size="small"
+                  clicked={currentPage === "/api/methods#Account"}
+                />
+                <MethodLeaf
+                  to="/api/methods#open_delete_account"
                   title="Delete an account"
-                  size="small"
-                  clicked={currentPage === "#"}
-                />
+                  clicked={currentPage === "/api/methods#open_delete_account"}
+                >
+                  <GreyButton>DELETE</GreyButton>
+                  <GreyButton>Open Endpoint</GreyButton>
+                </MethodLeaf>
               </DropDownMenuItem>
 
-              <DropDownMenuItem title="User (User Overview)" isNestedDropDown>
+              <DropDownMenuItem title="User" isNestedDropDown>
                 <ArticleLeaf
-                  to="#"
-                  title="All methods"
+                  to="/api/methods#User"
+                  title="User Overview"
                   size="small"
-                  clicked={currentPage === "#"}
+                  clicked={currentPage === "/api/methods#User"}
                 />
+                <MethodLeaf
+                  to="/api/methods#get_user_pii"
+                  title="Lookup a user PII"
+                  clicked={currentPage === "/api/methods#get_user_pii"}
+                >
+                  <GreenButton>get</GreenButton>
+                </MethodLeaf>
+                <MethodLeaf
+                  to="/api/methods#block_user"
+                  title="Block user"
+                  clicked={currentPage === "/api/methods#block_user"}
+                >
+                  <OrangeButton>post</OrangeButton>
+                </MethodLeaf>
+                <MethodLeaf
+                  to="/api/methods#unblock_user"
+                  title="Unblock user"
+                  clicked={currentPage === "/api/methods#unblock_user"}
+                >
+                  <OrangeButton>post</OrangeButton>
+                </MethodLeaf>
+                <MethodLeaf
+                  to="/api/methods#list_users"
+                  title="List users"
+                  clicked={currentPage === "/api/methods#list_users"}
+                >
+                  <GreenButton>get</GreenButton>
+                </MethodLeaf>
+                <MethodLeaf
+                  to="/api/methods#open_user_upsert"
+                  title="User Upsert"
+                  clicked={currentPage === "/api/methods#open_user_upsert"}
+                >
+                  <OrangeButton>put</OrangeButton>
+                  <GreyButton>Open Endpoint</GreyButton>
+                </MethodLeaf>
+                <MethodLeaf
+                  to="/api/methods#open_create_user"
+                  title="Create a user and account"
+                  clicked={currentPage === "/api/methods#open_create_user"}
+                >
+                  <OrangeButton>post</OrangeButton>
+                  <GreyButton>Open Endpoint</GreyButton>
+                </MethodLeaf>
+                <MethodLeaf
+                  to="/api/methods#open_get_user"
+                  title="Lookup a user"
+                  clicked={currentPage === "/api/methods#open_get_user"}
+                >
+                  <GreenButton>get</GreenButton>
+                  <GreyButton>Open Endpoint</GreyButton>
+                </MethodLeaf>
+                <MethodLeaf
+                  to="/api/methods#open_delete_user"
+                  title="Delete a user"
+                  clicked={currentPage === "/api/methods#open_delete_user"}
+                >
+                  <GreyButton>DELETE</GreyButton>
+                  <GreyButton>Open Endpoint</GreyButton>
+                </MethodLeaf>
+                <MethodLeaf
+                  to="/api/methods#create_cookie_user"
+                  title="Create Cookie User"
+                  clicked={currentPage === "/api/methods#create_cookie_user"}
+                >
+                  <OrangeButton>put</OrangeButton>
+                  <GreyButton>Open Endpoint</GreyButton>
+                </MethodLeaf>
+                <MethodLeaf
+                  to="/api/methods#open_get_user_by_code"
+                  title="Get a user by a referral code"
+                  clicked={currentPage === "/api/methods#open_get_user_by_code"}
+                >
+                  <GreenButton>get</GreenButton>
+                  <GreyButton>Open Endpoint</GreyButton>
+                </MethodLeaf>
               </DropDownMenuItem>
 
-              <DropDownMenuItem
-                title="User Event (User Event Overview)"
-                isNestedDropDown
-              >
+              <DropDownMenuItem title="User Event" isNestedDropDown>
                 <ArticleLeaf
-                  to="#"
-                  title="All methods"
+                  to="/api/methods#User-Event"
+                  title="User Event Overview"
                   size="small"
-                  clicked={currentPage === "#"}
+                  clicked={currentPage === "/api/methods#User-Event"}
                 />
+                <MethodLeaf
+                  to="/api/methods#trackEvent"
+                  title="Track User Event"
+                  clicked={currentPage === "/api/methods#trackEvent"}
+                >
+                  <OrangeButton>post</OrangeButton>
+                  <GreyButton>Open Endpoint</GreyButton>
+                </MethodLeaf>
               </DropDownMenuItem>
 
-              <DropDownMenuItem
-                title="Share Links (Share Links Overview)"
-                isNestedDropDown
-              >
+              <DropDownMenuItem title="Share Links" isNestedDropDown>
                 <ArticleLeaf
-                  to="#"
-                  title="All methods"
+                  to="/api/methods#Share-Links"
+                  title="Share Links Overview"
                   size="small"
-                  clicked={currentPage === "#"}
+                  clicked={currentPage === "/api/methods#Share-Links"}
                 />
+                <MethodLeaf
+                  to="/api/methods#get_shareurls"
+                  title="Lookup a user's share URLs"
+                  clicked={currentPage === "/api/methods#get_shareurls"}
+                >
+                  <GreenButton>get</GreenButton>
+                </MethodLeaf>
+                <MethodLeaf
+                  to="/api/methods#open_get_shareurls"
+                  title="Lookup a user's share URLs"
+                  clicked={currentPage === "/api/methods#open_get_shareurls"}
+                >
+                  <GreenButton>get</GreenButton>
+                  <GreyButton>Open Endpoint</GreyButton>
+                </MethodLeaf>
               </DropDownMenuItem>
 
-              <DropDownMenuItem
-                title="Referral Code (Referral Code Overview)"
-                isNestedDropDown
-              >
+              <DropDownMenuItem title="Referral Code" isNestedDropDown>
+                <ArticleLeaf
+                  to="/api/methods#Referral-Code"
+                  title="Referral Code Overview"
+                  size="small"
+                  clicked={currentPage === "/api/methods#Referral-Code"}
+                />
                 <MethodLeaf
                   to="/api/methods#get_code"
                   title="Lookup a referral code"
@@ -1236,29 +1336,139 @@ export function NavigationSidebar() {
                 </MethodLeaf>
               </DropDownMenuItem>
 
-              <DropDownMenuItem
-                title="Referral (Referral Overview)"
-                isNestedDropDown
-              >
-                <SmallLeafLink to="#">All methods</SmallLeafLink>
+              <DropDownMenuItem title="Referral" isNestedDropDown>
+                <ArticleLeaf
+                  to="/api/methods#Referral"
+                  title="Referral Overview"
+                  size="small"
+                  clicked={currentPage === "/api/methods#Referral"}
+                />
+                <MethodLeaf
+                  to="/api/methods#list_referrals"
+                  title="List referrals"
+                  clicked={currentPage === "/api/methods#list_referrals"}
+                >
+                  <GreenButton>get</GreenButton>
+                </MethodLeaf>
+                <MethodLeaf
+                  to="/api/methods#get_referral"
+                  title="Lookup a Referral"
+                  clicked={currentPage === "/api/methods#get_referral"}
+                >
+                  <GreenButton>get</GreenButton>
+                </MethodLeaf>
+                <MethodLeaf
+                  to="/api/methods#open_list_referrals"
+                  title="List referrals"
+                  clicked={currentPage === "/api/methods#open_list_referrals"}
+                >
+                  <GreenButton>get</GreenButton>
+                  <GreyButton>Open Endpoint</GreyButton>
+                </MethodLeaf>
               </DropDownMenuItem>
 
-              <DropDownMenuItem
-                title="Reward Balance (RB Overview)"
-                isNestedDropDown
-              >
-                <SmallLeafLink to="#">All methods</SmallLeafLink>
+              <DropDownMenuItem title="Reward Balance" isNestedDropDown>
+                <ArticleLeaf
+                  to="/api/methods#Reward-Balance"
+                  title="Reward Balance Overview"
+                  size="small"
+                  clicked={currentPage === "/api/methods#Reward-Balance"}
+                />
+                <MethodLeaf
+                  to="/api/methods#list_balances"
+                  title="List reward balances"
+                  clicked={currentPage === "/api/methods#list_balances"}
+                >
+                  <GreenButton>get</GreenButton>
+                </MethodLeaf>
+                <MethodLeaf
+                  to="/api/methods#debit_balance"
+                  title="Debit a reward balance"
+                  clicked={currentPage === "/api/methods#debit_balance"}
+                >
+                  <OrangeButton>post</OrangeButton>
+                </MethodLeaf>
               </DropDownMenuItem>
 
-              <DropDownMenuItem
-                title="Reward (Reward Overview)"
-                isNestedDropDown
-              >
-                <SmallLeafLink to="#">All methods</SmallLeafLink>
+              <DropDownMenuItem title="Reward" isNestedDropDown>
+                <ArticleLeaf
+                  to="/api/methods#Reward"
+                  title="Reward Overview"
+                  size="small"
+                  clicked={currentPage === "/api/methods#Reward"}
+                />
+                <MethodLeaf
+                  to="/api/methods#list_rewards"
+                  title="List an account's rewards"
+                  clicked={currentPage === "/api/methods#list_rewards"}
+                >
+                  <GreenButton>get</GreenButton>
+                </MethodLeaf>
+                <MethodLeaf
+                  to="/api/methods#lookup_reward"
+                  title="Lookup a single reward"
+                  clicked={currentPage === "/api/methods#lookup_reward"}
+                >
+                  <GreenButton>get</GreenButton>
+                </MethodLeaf>
+                <MethodLeaf
+                  to="/api/methods#debit_reward"
+                  title="Redeem a single reward"
+                  clicked={currentPage === "/api/methods#debit_reward"}
+                >
+                  <OrangeButton>post</OrangeButton>
+                </MethodLeaf>
+                <MethodLeaf
+                  to="/api/methods#cancel_reward"
+                  title="Cancel a single reward"
+                  clicked={currentPage === "/api/methods#cancel_reward"}
+                >
+                  <OrangeButton>post</OrangeButton>
+                </MethodLeaf>
+                <MethodLeaf
+                  to="/api/methods#create_reward"
+                  title="Create a single reward"
+                  clicked={currentPage === "/api/methods#create_reward"}
+                >
+                  <OrangeButton>post</OrangeButton>
+                </MethodLeaf>
               </DropDownMenuItem>
 
-              <DropDownMenuItem title="Export (Overview)" isNestedDropDown>
-                <SmallLeafLink to="#">All methods</SmallLeafLink>
+              <DropDownMenuItem title="Export" isNestedDropDown>
+                <ArticleLeaf
+                  to="/api/methods#Export"
+                  title="Export Overview"
+                  size="small"
+                  clicked={currentPage === "/api/methods#Export"}
+                />
+                <MethodLeaf
+                  to="/api/methods#create_export"
+                  title="Create an Export"
+                  clicked={currentPage === "/api/methods#create_export"}
+                >
+                  <OrangeButton>post</OrangeButton>
+                </MethodLeaf>
+                <MethodLeaf
+                  to="/api/methods#get_export"
+                  title="Lookup an Export"
+                  clicked={currentPage === "/api/methods#get_export"}
+                >
+                  <GreenButton>get</GreenButton>
+                </MethodLeaf>
+                <MethodLeaf
+                  to="/api/methods#download_export"
+                  title="Download an Export"
+                  clicked={currentPage === "/api/methods#download_export"}
+                >
+                  <GreenButton>get</GreenButton>
+                </MethodLeaf>
+                <MethodLeaf
+                  to="/api/methods#list_exports"
+                  title="List Exports"
+                  clicked={currentPage === "/api/methods#list_exports"}
+                >
+                  <GreenButton>get</GreenButton>
+                </MethodLeaf>
               </DropDownMenuItem>
 
               <SmallLeafLink to="#">Hidden Endpoints</SmallLeafLink>
@@ -1277,6 +1487,34 @@ export function NavigationSidebar() {
                 size="small"
                 clicked={currentPage === "/api/webhooks/security"}
               />
+              <MethodLeaf
+                to="/api/methods#create_webhook"
+                title="Create a webhook subscription"
+                clicked={currentPage === "/api/methods#create_webhook"}
+              >
+                <OrangeButton>post</OrangeButton>
+              </MethodLeaf>
+              <MethodLeaf
+                to="/api/methods#list_webhooks"
+                title="List webhook subscriptions"
+                clicked={currentPage === "/api/methods#list_webhooks"}
+              >
+                <GreenButton>get</GreenButton>
+              </MethodLeaf>
+              <MethodLeaf
+                to="/api/methods#delete_webhook"
+                title="Delete a webhook subscription"
+                clicked={currentPage === "/api/methods#delete_webhook"}
+              >
+                <GreyButton>DELETE</GreyButton>
+              </MethodLeaf>
+              <MethodLeaf
+                to="/api/methods#test_webhook"
+                title="Test a webhook subscription"
+                clicked={currentPage === "/api/methods#test_webhook"}
+              >
+                <OrangeButton>post</OrangeButton>
+              </MethodLeaf>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="Mobile">
@@ -1361,11 +1599,12 @@ const DropDownMenuItem = (props: {
 /* Line won't show up; div doesn't work */
 const Separator = (props: { text: string }) => {
   return (
+    // nested li makes line appear, otherwise there is no line :(
     <li>
-      <SeparatorDiv>
+      <SeparatorLi>
         <SeparatorSpan>{props.text}</SeparatorSpan>
         <SeparatorLine />
-      </SeparatorDiv>
+      </SeparatorLi>
     </li>
   );
 };
