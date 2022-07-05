@@ -49,11 +49,13 @@ const DropDownStyledLink = styled(Link)`
     props.clicked ? "#003B45" : "white"} !important;
   color: ${(props) => (props.clicked ? "white" : "#003B45")} !important;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: ${(props) =>
+    props.dropdownSelected || props.clicked ? "700" : "400"} !important;
   line-height: 24px;
   padding: 8px 12px;
   &:hover {
-    background-color: #e7edee;
+    background-color: ${(props) =>
+      props.clicked ? "#003B45" : "#e7edee"} !important;
   }
 `;
 
@@ -304,254 +306,434 @@ export function NavigationSidebar() {
             to="/success/"
             title="Learning SaaSquatch"
             icon={learningIcon}
+            currentPage={currentPage}
           >
             <DropDownMenuItem title="SaaSquatch Admin Portal">
               <LeavesUl>
-                <SmallLeafLink to="/success/using-referral-saasquatch">
-                  Using the SaaSquatch Portal
-                </SmallLeafLink>
-                <SmallLeafLink to="/success/navigating-the-portal">
-                  Navigating the SaaSquatch Portal
-                </SmallLeafLink>
-                <SmallLeafLink to="/success/referral-feed">
-                  The Referral Feed
-                </SmallLeafLink>
-                <SmallLeafLink to="/features/analytics">
-                  Program Analytics
-                </SmallLeafLink>
+                <Leaf
+                  to="/success/using-referral-saasquatch"
+                  title="Using the SaaSquatch Portal"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/success/navigating-the-portal"
+                  title="Navigating the SaaSquatch Portal"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/success/referral-feed"
+                  title="The Referral Feed"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/features/analytics"
+                  title="Program Analytics"
+                  size="small"
+                  currentPage={currentPage}
+                />
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="Growth Automation">
               <LeavesUl>
-                <SmallLeafLink to="/growth/ga-101">
-                  Growth Automation 101
-                </SmallLeafLink>
-                <SmallLeafLink to="/growth/customer-lifecycle">
-                  Growth Automation Customer Lifecycle
-                </SmallLeafLink>
-                <SmallLeafLink to="/growth/saasquatch-ga">
-                  SaaSquatch Growth Automation Platform
-                </SmallLeafLink>
+                <Leaf
+                  to="/growth/ga-101"
+                  title="Growth Automation 101"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/growth/customer-lifecycle"
+                  title="Growth Automation Customer Lifecycle"
+                  size="small"
+                  currentPage={currentPage}
+                />
+
+                <Leaf
+                  to="/growth/saasquatch-ga"
+                  title="SaaSquatch Growth Automation Platform"
+                  size="small"
+                  currentPage={currentPage}
+                />
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="Referral Programs">
               <LeavesUl>
-                <SmallLeafLink to="/success/intro">
-                  Referral Programs 101
-                </SmallLeafLink>
-                <SmallLeafLink to="/referral-program-optimization">
-                  Referral Program Optimization
-                </SmallLeafLink>
-                <SmallLeafLink to="/success/core-topics">
-                  The SaaSquatch Referral Program Loop
-                </SmallLeafLink>
-                <SmallLeafLink to="/success/touchpoints">
-                  Referral Marketing Channels
-                </SmallLeafLink>
-                <SmallLeafLink to="/success/referral-program-retargeting">
-                  Referral Program Retargeting
-                </SmallLeafLink>
-                <SmallLeafLink to="/success/share-options">
-                  Referral Program Sharing Options
-                </SmallLeafLink>
+                <Leaf
+                  to="/success/intro"
+                  title="Referral Programs 101"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/referral-program-optimization"
+                  title="Referral Program Optimization"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/success/core-topics"
+                  title="The SaaSquatch Referral Program Loop"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/success/touchpoints"
+                  title="Referral Marketing Channels"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/success/referral-program-retargeting"
+                  title="Referral Program Retargeting"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/success/share-options"
+                  title="Referral Program Sharing Options"
+                  size="small"
+                  currentPage={currentPage}
+                />
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="Fraud and Security Management">
               <LeavesUl>
-                <SmallLeafLink to="/success/referral-security">
-                  Security Management System
-                </SmallLeafLink>
-                <SmallLeafLink to="/fraud-and-security">
-                  Fraud, Security & Fake Referrals
-                </SmallLeafLink>
+                <Leaf
+                  to="/success/referral-security"
+                  title="Security Management System"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/fraud-and-security"
+                  title="Fraud, Security & Fake Referrals"
+                  size="small"
+                  currentPage={currentPage}
+                />
               </LeavesUl>
             </DropDownMenuItem>
           </CoreCategory>
 
           {/* Building Programs starts here */}
           <CoreCategory
-            to="/success/"
+            to="#"
             title="Building Programs "
             icon={buildingIcon}
+            currentPage={currentPage}
           >
             <DropDownMenuItem title="Programs">
               <LeavesUl>
-                <SmallLeafLink to="/growth/quickstart">
-                  Growth Automation Program General Quickstart
-                </SmallLeafLink>
+                <SmallLeafLink
+                  to="/growth/quickstart"
+                  title="Growth Automation Program General Quickstart"
+                  size="small"
+                  currentPage={currentPage}
+                />
                 <DropDownMenuItem title="Program Library" isNestedDropDown>
                   <LeavesUl>
-                    <SmallLeafLink to="/program/birthday-program">
-                      Birthday & Anniversary
-                    </SmallLeafLink>
-                    <SmallLeafLink to="/program/referral-program-with-objectives-prod">
-                      Referral Program With Objectives
-                    </SmallLeafLink>
-                    <SmallLeafLink to="/program/partner-program">
-                      Partner
-                    </SmallLeafLink>
-                    <SmallLeafLink to="/program/win-back-program">
-                      Win Back
-                    </SmallLeafLink>
-                    <SmallLeafLink to="/program/vip-program">VIP</SmallLeafLink>
-                    <SmallLeafLink to="/program/signup-reward">
-                      Signup
-                    </SmallLeafLink>
-                    <SmallLeafLink to="/program/regional-signup">
-                      Regional Signup
-                    </SmallLeafLink>
-                    <SmallLeafLink to="/program/profile-completion-reward">
-                      Profile Completion
-                    </SmallLeafLink>
-                    <SmallLeafLink to="/program/points-program">
-                      Points Rewards
-                    </SmallLeafLink>
+                    <Leaf
+                      to="/program/birthday-program"
+                      title="Birthday & Anniversary"
+                      size="small"
+                      currentPage={currentPage}
+                    />
+                    <Leaf
+                      to="/program/referral-program-with-objectives-prod"
+                      title="Referral Program With Objectives"
+                      size="small"
+                      currentPage={currentPage}
+                    />
+                    <Leaf
+                      to="/program/partner-program"
+                      title="Partner"
+                      size="small"
+                      currentPage={currentPage}
+                    />
+                    <Leaf
+                      to="/program/win-back-program"
+                      title="Win Back"
+                      size="small"
+                      currentPage={currentPage}
+                    />
+                    <Leaf
+                      to="/program/vip-program"
+                      title="VIP"
+                      size="small"
+                      currentPage={currentPage}
+                    />
+                    <Leaf
+                      to="/program/signup-reward"
+                      title="Signup"
+                      size="small"
+                      currentPage={currentPage}
+                    />
+                    <Leaf
+                      to="/program/regional-signup"
+                      title="Regional Signup"
+                      size="small"
+                      currentPage={currentPage}
+                    />
+                    <Leaf
+                      to="/program/profile-completion-reward"
+                      title="Profile Completion"
+                      size="small"
+                      currentPage={currentPage}
+                    />
+                    <Leaf
+                      to="/program/points-program"
+                      title="Points Rewards"
+                      size="small"
+                      currentPage={currentPage}
+                    />
                   </LeavesUl>
                 </DropDownMenuItem>
-                <SmallLeafLink to="/growth/ga-mechanisms">
-                  Growth Automation Program Mechanisms
-                </SmallLeafLink>
-                <SmallLeafLink to="/guides/referral-quickstart">
-                  Growth Automational Referral Program - Quickstart
-                </SmallLeafLink>
+                <Leaf
+                  to="/growth/ga-mechanisms"
+                  title="Growth Automation Program Mechanisms"
+                  size="small"
+                  currentPage={currentPage}
+                />
+
+                <Leaf
+                  to="/guides/referral-quickstart"
+                  title="Growth Automational Referral Program - Quickstart"
+                  size="small"
+                  currentPage={currentPage}
+                />
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="Program Widget">
               <LeavesUl>
-                <SmallLeafLink to="/designer/widget-editor">
-                  Customizing Program Widgets
-                </SmallLeafLink>
-                <SmallLeafLink to="/themes/custom">
-                  Custom Program Themes
-                </SmallLeafLink>
-                <SmallLeafLink to="/mobile/widget">Mobile Widget</SmallLeafLink>
+                <Leaf
+                  to="/designer/widget-editor"
+                  title="Customizing Program Widgets"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/themes/custom"
+                  title="Custom Program Themes"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/mobile/widget"
+                  title="Mobile Widget"
+                  size="small"
+                  currentPage={currentPage}
+                />
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="Rewards">
               <LeavesUl>
-                <SmallLeafLink to="/feature/rewards">
-                  Program Reward Options
-                </SmallLeafLink>
-                <SmallLeafLink to="/success/gift-card-rewards">
-                  Gift Card Rewards
-                </SmallLeafLink>
-                <SmallLeafLink to="/features/rewards-fuel-tank">
-                  Fuel Tank Rewards
-                </SmallLeafLink>
-                <SmallLeafLink to="/features/reward-exchange">
-                  Reward Exchange
-                </SmallLeafLink>
-                <SmallLeafLink to="/topics/conversion">
-                  Conversion
-                </SmallLeafLink>
+                <Leaf
+                  to="/feature/rewards"
+                  title="Program Reward Options"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/success/gift-card-rewards"
+                  title="Gift Card Rewards"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/features/rewards-fuel-tank"
+                  title="Fuel Tank Rewards"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/features/reward-exchange"
+                  title="Reward Exchange"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/topics/conversion"
+                  title="Conversion"
+                  size="small"
+                  currentPage={currentPage}
+                />
               </LeavesUl>
             </DropDownMenuItem>
 
-            <BigLeafLink to="/features/user-segmentation">
-              User Segmentation
-            </BigLeafLink>
+            <Leaf
+              to="/features/user-segmentation"
+              title="User Segmentation"
+              size="big"
+              currentPage={currentPage}
+            />
 
             <DropDownMenuItem title="Program Emails">
               <LeavesUl>
-                <SmallLeafLink to="/designer/email-editor">
-                  Designing Your Program Emails
-                </SmallLeafLink>
-                <SmallLeafLink to="/designer/short-tags">
-                  Email Template Short Tags
-                </SmallLeafLink>
-                <SmallLeafLink to="/developer/blocked-email-domains">
-                  Blocked Email Domains
-                </SmallLeafLink>
+                <Leaf
+                  to="/designer/email-editor"
+                  title="Designing Your Program Emails"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/designer/short-tags"
+                  title="Email Template Short Tags"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/developer/blocked-email-domains"
+                  title="Blocked Email Domains"
+                  size="small"
+                  currentPage={currentPage}
+                />
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="W9 Compliance">
               <LeavesUl>
-                <SmallLeafLink to="/features/w-9-compliance">
-                  W-9 Compliance
-                </SmallLeafLink>
-                <SmallLeafLink to="/features/configuring-your-reward-catalog-for-w-9">
-                  Configuring Your Rewards for W-9
-                </SmallLeafLink>
+                <Leaf
+                  to="/features/w-9-compliance"
+                  title="W-9 Compliance"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/features/configuring-your-reward-catalog-for-w-9"
+                  title="Configuring Your Rewards for W-9"
+                  size="small"
+                  currentPage={currentPage}
+                />
               </LeavesUl>
             </DropDownMenuItem>
 
-            <BigLeafLink to="/features/program-i18n">
-              Program Internationalization
-            </BigLeafLink>
+            <Leaf
+              to="/features/program-i18n"
+              title="Program Internationalization"
+              size="big"
+              currentPage={currentPage}
+            />
           </CoreCategory>
 
           {/* Running Programs starts here */}
           <CoreCategory
-            to="/success/"
+            to="#"
             title="Running Programs"
             icon={runningProgramsIcon}
+            currentPage={currentPage}
           >
             <DropDownMenuItem title="Analytics and Reporting">
               <LeavesUl>
-                <SmallLeafLink to="/success/ga-analytics">
-                  Analytics Overview for Growth Automation Programs
-                </SmallLeafLink>
-                <SmallLeafLink to="/features/program-and-portal-statistics">
-                  Program and Portal Statistics
-                </SmallLeafLink>
-                <SmallLeafLink to="/success/analytics-data">
-                  Understanding Your Program Analytics Data
-                </SmallLeafLink>
-                <SmallLeafLink to="/features/reports/">
-                  Program Reports
-                </SmallLeafLink>
+                <Leaf
+                  to="/success/ga-analytics"
+                  title="Analytics Overview for Growth Automation Programs"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/features/program-and-portal-statistics"
+                  title="Program and Portal Statistics"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/success/analytics-data"
+                  title="Understanding Your Program Analytics Data"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/features/reports/"
+                  title="Program Reports"
+                  size="small"
+                  currentPage={currentPage}
+                />
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="User Management">
               <LeavesUl>
-                <SmallLeafLink to="/guides/one-time">
-                  Manual User Actions: Add a Reward, Referral or Event
-                </SmallLeafLink>
-                <SmallLeafLink to="/guides/manage-rewards">
-                  Managing Existing User Rewards
-                </SmallLeafLink>
-                <SmallLeafLink to="/developer/purchase-object">
-                  User Purchase & Refund Event
-                </SmallLeafLink>
-                <SmallLeafLink to="/features/participant-deletion">
-                  Participant Deletion
-                </SmallLeafLink>
-                <SmallLeafLink to="/topics/attribution">
-                  Attribution
-                </SmallLeafLink>
-                <SmallLeafLink to="/topics/identification">
-                  Identification
-                </SmallLeafLink>
+                <Leaf
+                  to="/guides/one-time"
+                  title="Manual User Actions: Add a Reward, Referral or Event"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/guides/manage-rewards"
+                  title="Managing Existing User Rewards"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/developer/purchase-object"
+                  title="User Purchase & Refund Event"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/features/participant-deletion"
+                  title="Participant Deletion"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/topics/attribution"
+                  title="Attribution"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/topics/identification"
+                  title="Identification"
+                  size="small"
+                  currentPage={currentPage}
+                />
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="Bulk Imports">
               <LeavesUl>
-                <SmallLeafLink to="/guides/user-import">
-                  Bulk User Import
-                </SmallLeafLink>
-                <SmallLeafLink to="/guides/bulk-reward-redemption">
-                  Bulk Reward Redemption Import
-                </SmallLeafLink>
-                <SmallLeafLink to="/guides/bulk-user-delete">
-                  Bulk User Delete Import
-                </SmallLeafLink>
-                <SmallLeafLink to="/guides/event-import">
-                  Bulk Event Import
-                </SmallLeafLink>
+                <Leaf
+                  to="/guides/user-import"
+                  title="Bulk User Import"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/guides/bulk-reward-redemption"
+                  title="Bulk Reward Redemption Import"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/guides/bulk-user-delete"
+                  title="Bulk User Delete Import"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/guides/event-import"
+                  title="Bulk Event Import"
+                  size="small"
+                  currentPage={currentPage}
+                />
               </LeavesUl>
             </DropDownMenuItem>
 
-            <BigLeafLink to="/features/managing-w-9-compliance-for-participants">
-              Managing W-9 Compliance
-            </BigLeafLink>
+            <Leaf
+              to="/features/managing-w-9-compliance-for-participants"
+              title="Managing W-9 Compliance"
+              size="big"
+              currentPage={currentPage}
+            />
           </CoreCategory>
 
           {/* Integrations starts here */}
@@ -559,133 +741,245 @@ export function NavigationSidebar() {
             to="/integrations/"
             title="Integrations"
             icon={integrationsIcon}
+            currentPage={currentPage}
           >
             <DropDownMenuItem title="Salesforce">
               <LeavesUl>
-                <SmallLeafLink to="/salesforce/">
-                  Salesforce Integration
-                </SmallLeafLink>
-                <SmallLeafLink to="/salesforce/user-guide">
-                  User Guide
-                </SmallLeafLink>
-                <SmallLeafLink to="/salesforce/faq">FAQ</SmallLeafLink>
-                <SmallLeafLink to="/salesforce/install-guide">
-                  Install Guide
-                </SmallLeafLink>
-                <SmallLeafLink to="/salesforce/immediate-object-upsertion">
-                  Immediate Object Upsertion
-                </SmallLeafLink>
-                <SmallLeafLink to="/salesforce/using-salesforce-apex-trigger-to-upsert-lead">
-                  Using a Salesforce APEX Trigger to upsert a Lead
-                </SmallLeafLink>
+                <Leaf
+                  to="/salesforce/"
+                  title="Salesforce Integration"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/salesforce/user-guide"
+                  title="User Guide"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/salesforce/faq"
+                  title="FAQ"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/salesforce/install-guide"
+                  title="Install Guide"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/salesforce/immediate-object-upsertion"
+                  title="Immediate Object Upsertion"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/salesforce/using-salesforce-apex-trigger-to-upsert-lead"
+                  title="Using a Salesforce APEX Trigger to upsert a Lead"
+                  size="small"
+                  currentPage={currentPage}
+                />
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="AppsFlyer">
               <LeavesUl>
-                <SmallLeafLink to="/appsflyer-software-integration/">
-                  AppsFlyer Integration
-                </SmallLeafLink>
-                <SmallLeafLink to="/mobile/appsflyer">Quickstart</SmallLeafLink>
-                <SmallLeafLink to="/mobile/appsflyer/reference">
-                  Tech Reference
-                </SmallLeafLink>
+                <Leaf
+                  to="/appsflyer-software-integration/"
+                  title="AppsFlyer Integration"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/mobile/appsflyer"
+                  title="Quickstart"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/mobile/appsflyer/reference"
+                  title="Tech Reference"
+                  size="small"
+                  currentPage={currentPage}
+                />
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="SFTP Import">
               <LeavesUl>
-                <SmallLeafLink to="/sftp/">SFTP Integration</SmallLeafLink>
-                <SmallLeafLink to="/integrations/sftp">
-                  Configuration Guide
-                </SmallLeafLink>
+                <Leaf
+                  to="/sftp/"
+                  title="SFTP Integration"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/integrations/sftp"
+                  title="Configuration Guide"
+                  size="small"
+                  currentPage={currentPage}
+                />
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="Branch Metrics">
               <LeavesUl>
-                <SmallLeafLink to="/branch-metrics/">
-                  Branch Metrics Integration
-                </SmallLeafLink>
-                <SmallLeafLink to="/mobile/branch-metrics">
-                  Quickstart
-                </SmallLeafLink>
-                <SmallLeafLink to="/mobile/branch-metrics/reference">
-                  Reference
-                </SmallLeafLink>
+                <Leaf
+                  to="/branch-metrics/"
+                  title="Branch Metrics Integration"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/mobile/branch-metrics"
+                  title="Quickstart"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/mobile/branch-metrics/reference"
+                  title="Reference"
+                  size="small"
+                  currentPage={currentPage}
+                />
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="Segment">
               <LeavesUl>
-                <SmallLeafLink to="/developer/segment">
-                  Segment Integration
-                </SmallLeafLink>
-                <SmallLeafLink to="/integrations/segment-v2/">
-                  Segment V2
-                </SmallLeafLink>
-                <SmallLeafLink to="/integrations/segment-v2/subscription">
-                  Subscription
-                </SmallLeafLink>
-                <SmallLeafLink to="/integrations/segment-v2/stream">
-                  Stream
-                </SmallLeafLink>
-                <SmallLeafLink to="/developer/segment/quickstart">
-                  Segment Web Plugin Quickstart
-                </SmallLeafLink>
+                <Leaf
+                  to="/developer/segment"
+                  title="Segment Integration"
+                  size="small"
+                  currentPage={currentPage}
+                />
+
+                <Leaf
+                  to="/integrations/segment-v2/"
+                  title="Segment V2"
+                  size="small"
+                  currentPage={currentPage}
+                />
+
+                <Leaf
+                  to="/integrations/segment-v2/subscription"
+                  title="Subscription"
+                  size="small"
+                  currentPage={currentPage}
+                />
+
+                <Leaf
+                  to="/integrations/segment-v2/stream"
+                  title="Stream"
+                  size="small"
+                  currentPage={currentPage}
+                />
+
+                <Leaf
+                  to="/developer/segment/quickstart"
+                  title="Segment Web Plugin Quickstart"
+                  size="small"
+                  currentPage={currentPage}
+                />
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="Stripe">
               <LeavesUl>
-                <SmallLeafLink to="/stripe">Stripe Integration</SmallLeafLink>
-                <SmallLeafLink to="/developer/stripe">
-                  Install Guide
-                </SmallLeafLink>
-                <SmallLeafLink to="/developer/stripe-v2-install-guide">
-                  V2 Stripe Integration Install Guide
-                </SmallLeafLink>
+                <Leaf
+                  to="/stripe"
+                  title="Stripe Integration"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/developer/stripe"
+                  title="Install Guide"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/developer/stripe-v2-install-guide"
+                  title="V2 Stripe Integration Install Guide"
+                  size="small"
+                  currentPage={currentPage}
+                />
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="TangoCard">
               <LeavesUl>
-                <SmallLeafLink to="/tangocard">
-                  TangoCard Integration
-                </SmallLeafLink>
-                <SmallLeafLink to="/tangocard-connection">
-                  Setup Guide
-                </SmallLeafLink>
+                <Leaf
+                  to="/tangocard"
+                  title="TangoCard Integration"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/tangocard-connection"
+                  title="Setup Guide"
+                  size="small"
+                  currentPage={currentPage}
+                />
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="Zapier">
               <LeavesUl>
-                <SmallLeafLink to="/zapier">Zapier Integration</SmallLeafLink>
-                <SmallLeafLink to="/integrations/zapier">
-                  Quickstart Guide
-                </SmallLeafLink>
+                <Leaf
+                  to="/zapier"
+                  title="Zapier Integration"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/integrations/zapier"
+                  title="Quickstart Guide"
+                  size="small"
+                  currentPage={currentPage}
+                />
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="Recurly">
               <LeavesUl>
-                <SmallLeafLink to="/recurly">Recurly Integration</SmallLeafLink>
-                <SmallLeafLink to="/developer/recurly/classic">
-                  Classic Recurly Install Guide
-                </SmallLeafLink>
-                <SmallLeafLink to="/developer/recurly">
-                  Install Guide
-                </SmallLeafLink>
+                <Leaf
+                  to="/recurly"
+                  title="Recurly Integration"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/developer/recurly/classic"
+                  title="Classic Recurly Install Guide"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/developer/recurly"
+                  title="Install Guide"
+                  size="small"
+                  currentPage={currentPage}
+                />
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="Stitch">
               <LeavesUl>
-                <SmallLeafLink to="/stitch">Stitch Integration</SmallLeafLink>
-                <SmallLeafLink to="/developer/stitch/quickstart">
-                  Integration Guide
-                </SmallLeafLink>
+                <Leaf
+                  to="/stitch"
+                  title="Stitch Integration"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/developer/stitch/quickstart"
+                  title="Integration Guide"
+                  size="small"
+                  currentPage={currentPage}
+                />
               </LeavesUl>
             </DropDownMenuItem>
           </CoreCategory>
@@ -695,74 +989,142 @@ export function NavigationSidebar() {
             to="/developer/"
             title="Developer Resources"
             icon={devIcon}
+            currentPage={currentPage}
           >
             <DropDownMenuItem title="Dev Guides">
               <LeavesUl>
-                <SmallLeafLink to="/topics/email">
-                  SaaSquatch & Emails
-                </SmallLeafLink>
-                <SmallLeafLink to="/customshortdomainguide">
-                  Custom Short Domains
-                </SmallLeafLink>
-                <SmallLeafLink to="/developer/referral-security">
-                  Referral Security
-                </SmallLeafLink>
-                <SmallLeafLink to="/shared-vs-solo-accounts">
-                  Account Structure
-                </SmallLeafLink>
-                <SmallLeafLink to="/guides/marketo-form">Marketo</SmallLeafLink>
-                <SmallLeafLink to="/guides/instapage-form">
-                  Instapage
-                </SmallLeafLink>
-                <SmallLeafLink to="/features/custom-user-fields/">
-                  Custom User Fields
-                </SmallLeafLink>
-                <SmallLeafLink to="/topics/widget-types">
-                  User Widget Types
-                </SmallLeafLink>
-                <SmallLeafLink to="/features/message-links">
-                  Message Links
-                </SmallLeafLink>
-                <SmallLeafLink to="/developer/conversion">
-                  Conversion Tech Guide
-                </SmallLeafLink>
-                <SmallLeafLink to="/developer/attribution">
-                  Attribution Tech Guide
-                </SmallLeafLink>
-                <SmallLeafLink to="/breaking-changes">
-                  Breaking Changes
-                </SmallLeafLink>
-                <SmallLeafLink to="/bestpractices/common-pitfalls">
-                  Common Pitfalls
-                </SmallLeafLink>
-                <SmallLeafLink to="/developer/widgets/writing-a-web-component-for-saasquatch">
-                  Writing a Web Component for SaaSquatch
-                </SmallLeafLink>
+                <Leaf
+                  to="/topics/email"
+                  title="SaaSquatch & Emails"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/customshortdomainguide"
+                  title="Custom Short Domains"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/developer/referral-security"
+                  title="Referral Security"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/shared-vs-solo-accounts"
+                  title="Account Structure"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/guides/marketo-form"
+                  title="Marketo"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/guides/instapage-form"
+                  title="Instapage"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/features/custom-user-fields/"
+                  title="Custom User Fields"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/topics/widget-types"
+                  title="User Widget Types"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/features/message-links"
+                  title="Message Links"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/developer/conversion"
+                  title="Conversion Tech Guide"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/developer/attribution"
+                  title="Attribution Tech Guide"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/breaking-changes"
+                  title="Breaking Changes"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/bestpractices/common-pitfalls"
+                  title="Common Pitfalls"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/developer/widgets/writing-a-web-component-for-saasquatch"
+                  title="Writing a Web Component for SaaSquatch"
+                  size="small"
+                  currentPage={currentPage}
+                />
               </LeavesUl>
             </DropDownMenuItem>
 
             <DropDownMenuItem title="Squatch.js">
               <LeavesUl>
-                <SmallLeafLink to="/developer/squatchjs">About</SmallLeafLink>
-                <SmallLeafLink to="/squatchjs/signed-requests">
-                  Signed Requests
-                </SmallLeafLink>
-                <SmallLeafLink to="/developer/squatchjs/issue">
-                  Issue Code List (list of 53 issue links)
-                </SmallLeafLink>
+                <Leaf
+                  to="/developer/squatchjs"
+                  title="About"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/squatchjs/signed-requests"
+                  title="Signed Requests"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/developer/squatchjs/issue"
+                  title="Issue Code List (list of 53 issue links)"
+                  size="small"
+                  currentPage={currentPage}
+                />
                 <Separator text="Version 2" />
-                <SmallLeafLink to="/developer/squatchjs/v2">
-                  Quickstart
-                </SmallLeafLink>
-                <SmallLeafLink to="/developer/squatchjs/v2/advanced-use-cases">
-                  Advanced Use Cases
-                </SmallLeafLink>
-                <SmallLeafLink to="/developer/squatchjs/v2/reference">
-                  Reference
-                </SmallLeafLink>
-                <SmallLeafLink to="/developer/squatchjs/cookies">
-                  Tracking Cookies
-                </SmallLeafLink>
+                <Leaf
+                  to="/developer/squatchjs/v2"
+                  title="Quickstart"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/developer/squatchjs/v2/advanced-use-cases"
+                  title="Advanced Use Cases"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/developer/squatchjs/v2/reference"
+                  title="Reference"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/developer/squatchjs/cookies"
+                  title="Tracking Cookies"
+                  size="small"
+                  currentPage={currentPage}
+                />
               </LeavesUl>
             </DropDownMenuItem>
 
@@ -770,39 +1132,70 @@ export function NavigationSidebar() {
               <LeavesUl>
                 <DropDownMenuItem title="GraphQL API" isNestedDropDown>
                   <LeavesUl>
-                    <SmallLeafLink to="/graphql/reference">
-                      GraphQL Reference
-                    </SmallLeafLink>
-                    <SmallLeafLink to="/graphql/custom-widget">
-                      Custom Widget via GraphQL
-                    </SmallLeafLink>
+                    <Leaf
+                      to="/graphql/reference"
+                      title="GraphQL Reference"
+                      size="small"
+                      currentPage={currentPage}
+                    />
+                    <Leaf
+                      to="/graphql/custom-widget"
+                      title="Custom Widget via GraphQL"
+                      size="small"
+                      currentPage={currentPage}
+                    />
                   </LeavesUl>
                 </DropDownMenuItem>
 
                 <DropDownMenuItem title="REST API " isNestedDropDown>
                   <LeavesUl>
-                    <SmallLeafLink to="/api">API Overview</SmallLeafLink>
-                    <SmallLeafLink to="/api/authentication">
-                      Authentication
-                    </SmallLeafLink>
-                    <SmallLeafLink to="/api/openendpoints">
-                      API Open Endpoints
-                    </SmallLeafLink>
-                    <SmallLeafLink to="/api/errors">Errors</SmallLeafLink>
+                    <Leaf
+                      to="/api"
+                      title="API Overview"
+                      size="small"
+                      currentPage={currentPage}
+                    />
+                    <Leaf
+                      to="/api/authentication"
+                      title="Authentication"
+                      size="small"
+                      currentPage={currentPage}
+                    />
+                    <Leaf
+                      to="/api/openendpoints"
+                      title="API Open Endpoints"
+                      size="small"
+                      currentPage={currentPage}
+                    />
+                    <Leaf
+                      to="/api/errors"
+                      title="Errors"
+                      size="small"
+                      currentPage={currentPage}
+                    />
                   </LeavesUl>
                 </DropDownMenuItem>
 
                 <DropDownMenuItem title="REST API Reference" isNestedDropDown>
                   <LeavesUl>
-                    <SmallLeafLink to="/api/methods">
-                      Full list of Methods
-                    </SmallLeafLink>
+                    <Leaf
+                      to="/api/methods"
+                      title="Full list of Methods"
+                      size="small"
+                      currentPage={currentPage}
+                    />
+
                     <DropDownMenuItem
                       title="Account (Account Overview)"
                       isNestedDropDown
                     >
                       <LeavesUl>
-                        <SmallLeafLink to="#">Delete an account</SmallLeafLink>
+                        <Leaf
+                          to="#"
+                          title="Delete an account"
+                          size="small"
+                          currentPage={currentPage}
+                        />
                       </LeavesUl>
                     </DropDownMenuItem>
 
@@ -811,7 +1204,12 @@ export function NavigationSidebar() {
                       isNestedDropDown
                     >
                       <LeavesUl>
-                        <SmallLeafLink to="#">All methods</SmallLeafLink>
+                        <Leaf
+                          to="#"
+                          title="All methods"
+                          size="small"
+                          currentPage={currentPage}
+                        />
                       </LeavesUl>
                     </DropDownMenuItem>
 
@@ -820,7 +1218,12 @@ export function NavigationSidebar() {
                       isNestedDropDown
                     >
                       <LeavesUl>
-                        <SmallLeafLink to="#">All methods</SmallLeafLink>
+                        <Leaf
+                          to="#"
+                          title="All methods"
+                          size="small"
+                          currentPage={currentPage}
+                        />
                       </LeavesUl>
                     </DropDownMenuItem>
 
@@ -829,7 +1232,12 @@ export function NavigationSidebar() {
                       isNestedDropDown
                     >
                       <LeavesUl>
-                        <SmallLeafLink to="#">All methods</SmallLeafLink>
+                        <Leaf
+                          to="#"
+                          title="All methods"
+                          size="small"
+                          currentPage={currentPage}
+                        />
                       </LeavesUl>
                     </DropDownMenuItem>
 
@@ -838,14 +1246,26 @@ export function NavigationSidebar() {
                       isNestedDropDown
                     >
                       <LeavesUl>
-                        <APILeaf to="#" title="Lookup a referral code">
+                        <APILeaf
+                          to="/api/methods#get_code"
+                          title="Lookup a referral code"
+                          currentPage={currentPage}
+                        >
                           <GreenButton>Get</GreenButton>
                         </APILeaf>
-                        <APILeaf to="#" title="Lookup a referral code">
+                        <APILeaf
+                          to="/api/methods#open_validate_code"
+                          title="Lookup a referral code"
+                          currentPage={currentPage}
+                        >
                           <GreenButton>Get</GreenButton>
                           <GreyButton>Open Endpoint</GreyButton>
                         </APILeaf>
-                        <APILeaf to="#" title="Apply a referral code">
+                        <APILeaf
+                          to="/api/methods#open_apply_code"
+                          title="Apply a referral code"
+                          currentPage={currentPage}
+                        >
                           <OrangeButton>Post</OrangeButton>
                           <GreyButton>Open Endpoint</GreyButton>
                         </APILeaf>
@@ -896,26 +1316,55 @@ export function NavigationSidebar() {
 
             <DropDownMenuItem title="Webhook">
               <LeavesUl>
-                <SmallLeafLink to="/api/webhooks">Overview</SmallLeafLink>
-                <SmallLeafLink to="/api/webhooks/security">
-                  Webhook Security
-                </SmallLeafLink>
+                <Leaf
+                  to="/api/webhooks"
+                  title="Overview"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/api/webhooks/security"
+                  title="Webhook Security"
+                  size="small"
+                  currentPage={currentPage}
+                />
                 <SmallLeafLink to="#">All methods</SmallLeafLink>
               </LeavesUl>
             </DropDownMenuItem>
 
-            <BigLeafLink to="/topics/json-web-tokens">
-              JSON Web Tokens
-            </BigLeafLink>
-            <BigLeafLink to="/developer/testing">
-              Testing Best Practices
-            </BigLeafLink>
+            <Leaf
+              to="/topics/json-web-tokens"
+              title="JSON Web Tokens"
+              size="big"
+              currentPage={currentPage}
+            />
+            <Leaf
+              to="/developer/testing"
+              title="Testing Best Practices"
+              size="big"
+              currentPage={currentPage}
+            />
 
             <DropDownMenuItem title="Mobile">
               <LeavesUl>
-                <SmallLeafLink to="/mobile">Overview</SmallLeafLink>
-                <SmallLeafLink to="/mobile/android">Android</SmallLeafLink>
-                <SmallLeafLink to="/mobile/ios">iOS </SmallLeafLink>
+                <Leaf
+                  to="/mobile"
+                  title="Overview"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/mobile/android"
+                  title="Android"
+                  size="small"
+                  currentPage={currentPage}
+                />
+                <Leaf
+                  to="/mobile/ios"
+                  title="iOS"
+                  size="small"
+                  currentPage={currentPage}
+                />
               </LeavesUl>
             </DropDownMenuItem>
           </CoreCategory>
@@ -974,14 +1423,34 @@ const Separator = (props: { text: string }) => {
   );
 };
 
+const Leaf = (props: {
+  to: string;
+  title: string;
+  size: string;
+  currentPage?: string;
+}) => {
+  if (props.size == "small")
+    return (
+      <SmallLeafLink to={props.to} clicked={props.currentPage === props.to}>
+        {props.title}
+      </SmallLeafLink>
+    );
+  return (
+    <BigLeafLink to={props.to} clicked={props.currentPage === props.to}>
+      {props.title}
+    </BigLeafLink>
+  );
+};
+
 const APILeaf = (props: {
   to: string;
   title: string;
   children?: React.ReactNode;
+  currentPage?: string;
 }) => {
   return (
     <li>
-      <SmallLeafLink to={props.to}>
+      <SmallLeafLink to={props.to} clicked={props.currentPage === props.to}>
         <APIDiv>
           {props.title}
           <ButtonsContainerDiv>{props.children}</ButtonsContainerDiv>
