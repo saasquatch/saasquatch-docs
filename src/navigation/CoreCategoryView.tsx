@@ -9,7 +9,7 @@ import {
   TitleLink,
 } from "./NavigationSidebar";
 
-// Revert back: don't need TitleArrowDiv, get rid of SidebarSVG
+// Revert back: don't need TitleArrowDiv, get rid of SidebarSVG, revert squatchdocs.less, exclude conditional rendering from CoreCategoryView, paste old Product News into NavigationSidebar.tsx
 const TitleArrowDiv = styled.div`
   display: flex !important;
   justify-content: space-between !important;
@@ -27,13 +27,14 @@ export const CoreCategoryView = (props: {
   title: string;
   icon: SVGProps;
   parentRef: any; //re-assign type
+  clicked?: boolean;
 }) => {
   return (
     <li ref={props.parentRef}>
       {/* <a class="mm-next" href="#mm-3" goes here, sibling of CoreCategoryLink */}
-      <CoreCategoryLink to={props.to}>
+      <CoreCategoryLink to={props.to} clicked={props.clicked}>
         <IconTitleDiv>
-          <SidebarSVG {...props.icon} />
+          <SidebarSVG {...props.icon} clicked={props.clicked} />
           {props.title}
         </IconTitleDiv>
         {props.children && (

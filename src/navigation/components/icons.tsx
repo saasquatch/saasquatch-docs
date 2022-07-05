@@ -2,6 +2,7 @@ export interface SVGProps {
   width: string;
   viewBox: string;
   d: string;
+  clicked?: boolean;
 }
 
 export const dropdownCaret: SVGProps = {

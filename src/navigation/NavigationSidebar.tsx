@@ -1,5 +1,5 @@
 import { History } from "history";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { HashLink as Link } from "react-router-hash-link";
 import useBrowserEffect from "src/util/useBrowserEffect";
@@ -45,8 +45,9 @@ const DropDownStyledLink = styled(Link)`
   align-items: center;
   justify-content: space-between;
   height: fit-content;
-  background-color: "white";
-  color: #003b45;
+  background-color: ${(props) =>
+    props.clicked ? "#003B45" : "white"} !important;
+  color: ${(props) => (props.clicked ? "white" : "#003B45")} !important;
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
@@ -230,14 +231,19 @@ const IconSVGDiv = styled.div`
   height: auto;
 `;
 
-export const SidebarSVG: React.FC<SVGProps> = ({ width, viewBox, d }) => {
+export const SidebarSVG: React.FC<SVGProps> = ({
+  width,
+  viewBox,
+  d,
+  clicked,
+}) => {
   return (
     <IconSVGDiv>
       <svg
         width={width}
         height="auto"
         viewBox={viewBox}
-        fill="#003B45"
+        fill={clicked ? "white" : "#003B45"}
         xmlns="http://www.w3.org/2000/svg"
       >
         <path d={d} />
@@ -274,10 +280,25 @@ export function NavigationSidebar() {
     mmenu.mmenuApi = init(modalRoot, history);
   }, [modalRoot]);
 
+  const [currentPage, setcurrentPage] = useState<string>("/");
+  useEffect(() => {
+    const path = history.location.pathname;
+    const hash = history.location.hash;
+    const pathAndHash = path + hash;
+    setcurrentPage(pathAndHash);
+  }, [history.location.pathname, history.location.hash]);
+
   return (
     <Styles.Container>
       <nav id="my-menu">
         <ul className="baseMenu">
+          {/* SaaSquatch Product News starts here */}
+          <CoreCategory
+            to="/product-news"
+            title="SaaSquatch Product News"
+            icon={newsIcon}
+            currentPage={currentPage}
+          />
           {/* Learning SaaSquatch starts here */}
           <CoreCategory
             to="/success/"
@@ -898,12 +919,6 @@ export function NavigationSidebar() {
               </LeavesUl>
             </DropDownMenuItem>
           </CoreCategory>
-
-          <CoreCategory
-            to="/product-news"
-            title="SaaSquatch Product News"
-            icon={newsIcon}
-          />
         </ul>
       </nav>
     </Styles.Container>
@@ -915,9 +930,16 @@ const CoreCategory = (props: {
   to: string;
   title: string;
   icon: SVGProps;
+  currentPage?: string;
 }) => {
   return (
-    <CoreCategoryView {...useCoreCategoryHook()} {...props}>
+    <CoreCategoryView
+      {...useCoreCategoryHook()}
+      to={props.to}
+      title={props.title}
+      icon={props.icon}
+      clicked={props.currentPage === props.to}
+    >
       {props.children}
     </CoreCategoryView>
   );
