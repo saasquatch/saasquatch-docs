@@ -32,9 +32,9 @@ export const CoreCategoryView = (props: {
   return (
     <li ref={props.parentRef}>
       {/* <a class="mm-next" href="#mm-3" goes here, sibling of CoreCategoryLink */}
-      <CoreCategoryLink to={props.to}>
+      <CoreCategoryLink to={props.to} clicked={props.clicked}>
         <IconTitleDiv>
-          <SidebarSVG {...props.icon} />
+          <SidebarSVG {...props.icon} clicked={props.clicked} />
           {props.title}
         </IconTitleDiv>
         {props.children && (
@@ -48,9 +48,9 @@ export const CoreCategoryView = (props: {
       {props.children && (
         <ul>
           <li>
-            <TitleLink to={props.to} clicked={props.clicked}>
+            <TitleLink to={props.to}>
               {" "}
-              <SidebarSVG {...props.icon} width="70%" clicked={props.clicked} />
+              <SidebarSVG {...props.icon} width="70%" />
               {props.title}
             </TitleLink>
           </li>

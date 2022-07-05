@@ -299,14 +299,14 @@ export function NavigationSidebar() {
             to="/product-news"
             title="SaaSquatch Product News"
             icon={newsIcon}
-            currentPage={currentPage}
+            clicked={currentPage === "/product-news"}
           />
           {/* Learning SaaSquatch starts here */}
           <CoreCategory
             to="/success/"
             title="Learning SaaSquatch"
             icon={learningIcon}
-            currentPage={currentPage}
+            clicked={currentPage === "/success/"}
           >
             <DropDownMenuItem title="SaaSquatch Admin Portal">
               <LeavesUl>
@@ -314,25 +314,25 @@ export function NavigationSidebar() {
                   to="/success/using-referral-saasquatch"
                   title="Using the SaaSquatch Portal"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/success/using-referral-saasquatch"}
                 />
                 <Leaf
                   to="/success/navigating-the-portal"
                   title="Navigating the SaaSquatch Portal"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/success/navigating-the-portal"}
                 />
                 <Leaf
                   to="/success/referral-feed"
                   title="The Referral Feed"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/success/referral-feed"}
                 />
                 <Leaf
                   to="/features/analytics"
                   title="Program Analytics"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/features/analytics"}
                 />
               </LeavesUl>
             </DropDownMenuItem>
@@ -343,20 +343,20 @@ export function NavigationSidebar() {
                   to="/growth/ga-101"
                   title="Growth Automation 101"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/growth/ga-101"}
                 />
                 <Leaf
                   to="/growth/customer-lifecycle"
                   title="Growth Automation Customer Lifecycle"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/growth/customer-lifecycle"}
                 />
 
                 <Leaf
                   to="/growth/saasquatch-ga"
                   title="SaaSquatch Growth Automation Platform"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/growth/saasquatch-ga"}
                 />
               </LeavesUl>
             </DropDownMenuItem>
@@ -367,37 +367,39 @@ export function NavigationSidebar() {
                   to="/success/intro"
                   title="Referral Programs 101"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/success/intro"}
                 />
                 <Leaf
                   to="/referral-program-optimization"
                   title="Referral Program Optimization"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/referral-program-optimization"}
                 />
                 <Leaf
                   to="/success/core-topics"
                   title="The SaaSquatch Referral Program Loop"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/success/core-topics"}
                 />
                 <Leaf
                   to="/success/touchpoints"
                   title="Referral Marketing Channels"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/success/touchpoints"}
                 />
                 <Leaf
                   to="/success/referral-program-retargeting"
                   title="Referral Program Retargeting"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={
+                    currentPage === "/success/referral-program-retargeting"
+                  }
                 />
                 <Leaf
                   to="/success/share-options"
                   title="Referral Program Sharing Options"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/success/share-options"}
                 />
               </LeavesUl>
             </DropDownMenuItem>
@@ -408,13 +410,13 @@ export function NavigationSidebar() {
                   to="/success/referral-security"
                   title="Security Management System"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/success/referral-security"}
                 />
                 <Leaf
                   to="/fraud-and-security"
                   title="Fraud, Security & Fake Referrals"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/fraud-and-security"}
                 />
               </LeavesUl>
             </DropDownMenuItem>
@@ -425,7 +427,7 @@ export function NavigationSidebar() {
             to="#"
             title="Building Programs "
             icon={buildingIcon}
-            currentPage={currentPage}
+            clicked={currentPage === "#"}
           >
             <DropDownMenuItem title="Programs">
               <LeavesUl>
@@ -433,7 +435,7 @@ export function NavigationSidebar() {
                   to="/growth/quickstart"
                   title="Growth Automation Program General Quickstart"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/growth/quickstart"}
                 />
                 <DropDownMenuItem title="Program Library" isNestedDropDown>
                   <LeavesUl>
@@ -441,55 +443,60 @@ export function NavigationSidebar() {
                       to="/program/birthday-program"
                       title="Birthday & Anniversary"
                       size="small"
-                      currentPage={currentPage}
+                      clicked={currentPage === "/program/birthday-program"}
                     />
                     <Leaf
                       to="/program/referral-program-with-objectives-prod"
                       title="Referral Program With Objectives"
                       size="small"
-                      currentPage={currentPage}
+                      clicked={
+                        currentPage ===
+                        "/program/referral-program-with-objectives-prod"
+                      }
                     />
                     <Leaf
                       to="/program/partner-program"
                       title="Partner"
                       size="small"
-                      currentPage={currentPage}
+                      clicked={currentPage === "/program/partner-program"}
                     />
                     <Leaf
                       to="/program/win-back-program"
                       title="Win Back"
                       size="small"
-                      currentPage={currentPage}
+                      clicked={currentPage === "/program/win-back-program"}
                     />
                     <Leaf
                       to="/program/vip-program"
                       title="VIP"
                       size="small"
-                      currentPage={currentPage}
+                      clicked={currentPage === "/program/vip-program"}
                     />
                     <Leaf
                       to="/program/signup-reward"
                       title="Signup"
                       size="small"
-                      currentPage={currentPage}
+                      clicked={currentPage === "/program/signup-reward"}
                     />
                     <Leaf
                       to="/program/regional-signup"
                       title="Regional Signup"
                       size="small"
-                      currentPage={currentPage}
+                      clicked={currentPage === "/program/regional-signup"}
                     />
                     <Leaf
                       to="/program/profile-completion-reward"
                       title="Profile Completion"
                       size="small"
-                      currentPage={currentPage}
+                      clicked={
+                        currentPage === "/program/profile-completion-reward"
+                      }
                     />
                     <Leaf
                       to="/program/points-program"
                       title="Points Rewards"
                       size="small"
-                      currentPage={currentPage}
+                      clicked={currentPage === "/program/points-program"}
                     />
                   </LeavesUl>
                 </DropDownMenuItem>
@@ -497,14 +504,14 @@ export function NavigationSidebar() {
                   to="/growth/ga-mechanisms"
                   title="Growth Automation Program Mechanisms"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/growth/ga-mechanisms"}
                 />
 
                 <Leaf
                   to="/guides/referral-quickstart"
                   title="Growth Automational Referral Program - Quickstart"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/guides/referral-quickstart"}
                 />
               </LeavesUl>
             </DropDownMenuItem>
@@ -515,19 +522,19 @@ export function NavigationSidebar() {
                   to="/designer/widget-editor"
                   title="Customizing Program Widgets"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/designer/widget-editor"}
                 />
                 <Leaf
                   to="/themes/custom"
                   title="Custom Program Themes"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/themes/custom"}
                 />
                 <Leaf
                   to="/mobile/widget"
                   title="Mobile Widget"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/mobile/widget"}
                 />
               </LeavesUl>
             </DropDownMenuItem>
@@ -538,31 +545,31 @@ export function NavigationSidebar() {
                   to="/feature/rewards"
                   title="Program Reward Options"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/feature/rewards"}
                 />
                 <Leaf
                   to="/success/gift-card-rewards"
                   title="Gift Card Rewards"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/success/gift-card-rewards"}
                 />
                 <Leaf
                   to="/features/rewards-fuel-tank"
                   title="Fuel Tank Rewards"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/features/rewards-fuel-tank"}
                 />
                 <Leaf
                   to="/features/reward-exchange"
                   title="Reward Exchange"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/features/reward-exchange"}
                 />
                 <Leaf
                   to="/topics/conversion"
                   title="Conversion"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/topics/conversion"}
                 />
               </LeavesUl>
             </DropDownMenuItem>
@@ -571,7 +578,7 @@ export function NavigationSidebar() {
               to="/features/user-segmentation"
               title="User Segmentation"
               size="big"
-              currentPage={currentPage}
+              clicked={currentPage === "/features/user-segmentation"}
             />
 
             <DropDownMenuItem title="Program Emails">
@@ -580,19 +587,19 @@ export function NavigationSidebar() {
                   to="/designer/email-editor"
                   title="Designing Your Program Emails"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/designer/email-editor"}
                 />
                 <Leaf
                   to="/designer/short-tags"
                   title="Email Template Short Tags"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/designer/short-tags"}
                 />
                 <Leaf
                   to="/developer/blocked-email-domains"
                   title="Blocked Email Domains"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/developer/blocked-email-domains"}
                 />
               </LeavesUl>
             </DropDownMenuItem>
@@ -603,13 +610,16 @@ export function NavigationSidebar() {
                   to="/features/w-9-compliance"
                   title="W-9 Compliance"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/features/w-9-compliance"}
                 />
                 <Leaf
                   to="/features/configuring-your-reward-catalog-for-w-9"
                   title="Configuring Your Rewards for W-9"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={
+                    currentPage ===
+                    "/features/configuring-your-reward-catalog-for-w-9"
+                  }
                 />
               </LeavesUl>
             </DropDownMenuItem>
@@ -618,7 +628,7 @@ export function NavigationSidebar() {
               to="/features/program-i18n"
               title="Program Internationalization"
               size="big"
-              currentPage={currentPage}
+              clicked={currentPage === "/features/program-i18n"}
             />
           </CoreCategory>
 
@@ -627,7 +637,7 @@ export function NavigationSidebar() {
             to="#"
             title="Running Programs"
             icon={runningProgramsIcon}
-            currentPage={currentPage}
+            clicked={currentPage === "#"}
           >
             <DropDownMenuItem title="Analytics and Reporting">
               <LeavesUl>
@@ -635,25 +645,27 @@ export function NavigationSidebar() {
                   to="/success/ga-analytics"
                   title="Analytics Overview for Growth Automation Programs"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/success/ga-analytics"}
                 />
                 <Leaf
                   to="/features/program-and-portal-statistics"
                   title="Program and Portal Statistics"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={
+                    currentPage === "/features/program-and-portal-statistics"
+                  }
                 />
                 <Leaf
                   to="/success/analytics-data"
                   title="Understanding Your Program Analytics Data"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/success/analytics-data"}
                 />
                 <Leaf
                   to="/features/reports/"
                   title="Program Reports"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/features/reports/"}
                 />
               </LeavesUl>
             </DropDownMenuItem>
@@ -664,37 +676,37 @@ export function NavigationSidebar() {
                   to="/guides/one-time"
                   title="Manual User Actions: Add a Reward, Referral or Event"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/guides/one-time"}
                 />
                 <Leaf
                   to="/guides/manage-rewards"
                   title="Managing Existing User Rewards"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/guides/manage-rewards"}
                 />
                 <Leaf
                   to="/developer/purchase-object"
                   title="User Purchase & Refund Event"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/developer/purchase-object"}
                 />
                 <Leaf
                   to="/features/participant-deletion"
                   title="Participant Deletion"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/features/participant-deletion"}
                 />
                 <Leaf
                   to="/topics/attribution"
                   title="Attribution"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/topics/attribution"}
                 />
                 <Leaf
                   to="/topics/identification"
                   title="Identification"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/topics/identification"}
                 />
               </LeavesUl>
             </DropDownMenuItem>
@@ -705,25 +717,25 @@ export function NavigationSidebar() {
                   to="/guides/user-import"
                   title="Bulk User Import"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/guides/user-import"}
                 />
                 <Leaf
                   to="/guides/bulk-reward-redemption"
                   title="Bulk Reward Redemption Import"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/guides/bulk-reward-redemption"}
                 />
                 <Leaf
                   to="/guides/bulk-user-delete"
                   title="Bulk User Delete Import"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/guides/bulk-user-delete"}
                 />
                 <Leaf
                   to="/guides/event-import"
                   title="Bulk Event Import"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/guides/event-import"}
                 />
               </LeavesUl>
             </DropDownMenuItem>
@@ -732,7 +744,10 @@ export function NavigationSidebar() {
               to="/features/managing-w-9-compliance-for-participants"
               title="Managing W-9 Compliance"
               size="big"
-              currentPage={currentPage}
+              clicked={
+                currentPage ===
+                "/features/managing-w-9-compliance-for-participants"
+              }
             />
           </CoreCategory>
 
@@ -741,7 +756,7 @@ export function NavigationSidebar() {
             to="/integrations/"
             title="Integrations"
             icon={integrationsIcon}
-            currentPage={currentPage}
+            clicked={currentPage === "/integrations/"}
           >
             <DropDownMenuItem title="Salesforce">
               <LeavesUl>
@@ -749,37 +764,42 @@ export function NavigationSidebar() {
                   to="/salesforce/"
                   title="Salesforce Integration"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/salesforce/"}
                 />
                 <Leaf
                   to="/salesforce/user-guide"
                   title="User Guide"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/salesforce/user-guide"}
                 />
                 <Leaf
                   to="/salesforce/faq"
                   title="FAQ"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/salesforce/faq"}
                 />
                 <Leaf
                   to="/salesforce/install-guide"
                   title="Install Guide"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/salesforce/install-guide"}
                 />
                 <Leaf
                   to="/salesforce/immediate-object-upsertion"
                   title="Immediate Object Upsertion"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={
+                    currentPage === "/salesforce/immediate-object-upsertion"
+                  }
                 />
                 <Leaf
                   to="/salesforce/using-salesforce-apex-trigger-to-upsert-lead"
                   title="Using a Salesforce APEX Trigger to upsert a Lead"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={
+                    currentPage ===
+                    "/salesforce/using-salesforce-apex-trigger-to-upsert-lead"
+                  }
                 />
               </LeavesUl>
             </DropDownMenuItem>
@@ -790,19 +810,19 @@ export function NavigationSidebar() {
                   to="/appsflyer-software-integration/"
                   title="AppsFlyer Integration"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/appsflyer-software-integration/"}
                 />
                 <Leaf
                   to="/mobile/appsflyer"
                   title="Quickstart"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/mobile/appsflyer"}
                 />
                 <Leaf
                   to="/mobile/appsflyer/reference"
                   title="Tech Reference"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/mobile/appsflyer/reference"}
                 />
               </LeavesUl>
             </DropDownMenuItem>
@@ -813,13 +833,13 @@ export function NavigationSidebar() {
                   to="/sftp/"
                   title="SFTP Integration"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/sftp/"}
                 />
                 <Leaf
                   to="/integrations/sftp"
                   title="Configuration Guide"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/integrations/sftp"}
                 />
               </LeavesUl>
             </DropDownMenuItem>
@@ -830,19 +850,19 @@ export function NavigationSidebar() {
                   to="/branch-metrics/"
                   title="Branch Metrics Integration"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/branch-metrics/"}
                 />
                 <Leaf
                   to="/mobile/branch-metrics"
                   title="Quickstart"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/mobile/branch-metrics"}
                 />
                 <Leaf
                   to="/mobile/branch-metrics/reference"
                   title="Reference"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/mobile/branch-metrics/reference"}
                 />
               </LeavesUl>
             </DropDownMenuItem>
@@ -853,35 +873,37 @@ export function NavigationSidebar() {
                   to="/developer/segment"
                   title="Segment Integration"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/developer/segment"}
                 />
 
                 <Leaf
                   to="/integrations/segment-v2/"
                   title="Segment V2"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/integrations/segment-v2/"}
                 />
 
                 <Leaf
                   to="/integrations/segment-v2/subscription"
                   title="Subscription"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={
+                    currentPage === "/integrations/segment-v2/subscription"
+                  }
                 />
 
                 <Leaf
                   to="/integrations/segment-v2/stream"
                   title="Stream"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/integrations/segment-v2/stream"}
                 />
 
                 <Leaf
                   to="/developer/segment/quickstart"
                   title="Segment Web Plugin Quickstart"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/developer/segment/quickstart"}
                 />
               </LeavesUl>
             </DropDownMenuItem>
@@ -892,19 +914,19 @@ export function NavigationSidebar() {
                   to="/stripe"
                   title="Stripe Integration"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/stripe"}
                 />
                 <Leaf
                   to="/developer/stripe"
                   title="Install Guide"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/developer/stripe"}
                 />
                 <Leaf
                   to="/developer/stripe-v2-install-guide"
                   title="V2 Stripe Integration Install Guide"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/developer/stripe-v2-install-guide"}
                 />
               </LeavesUl>
             </DropDownMenuItem>
@@ -915,13 +937,13 @@ export function NavigationSidebar() {
                   to="/tangocard"
                   title="TangoCard Integration"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/tangocard"}
                 />
                 <Leaf
                   to="/tangocard-connection"
                   title="Setup Guide"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/tangocard-connection"}
                 />
               </LeavesUl>
             </DropDownMenuItem>
@@ -932,13 +954,13 @@ export function NavigationSidebar() {
                   to="/zapier"
                   title="Zapier Integration"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/zapier"}
                 />
                 <Leaf
                   to="/integrations/zapier"
                   title="Quickstart Guide"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/integrations/zapier"}
                 />
               </LeavesUl>
             </DropDownMenuItem>
@@ -949,19 +971,19 @@ export function NavigationSidebar() {
                   to="/recurly"
                   title="Recurly Integration"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/recurly"}
                 />
                 <Leaf
                   to="/developer/recurly/classic"
                   title="Classic Recurly Install Guide"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/developer/recurly/classic"}
                 />
                 <Leaf
                   to="/developer/recurly"
                   title="Install Guide"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/developer/recurly"}
                 />
               </LeavesUl>
             </DropDownMenuItem>
@@ -972,13 +994,13 @@ export function NavigationSidebar() {
                   to="/stitch"
                   title="Stitch Integration"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/stitch"}
                 />
                 <Leaf
                   to="/developer/stitch/quickstart"
                   title="Integration Guide"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/developer/stitch/quickstart"}
                 />
               </LeavesUl>
             </DropDownMenuItem>
@@ -989,7 +1011,7 @@ export function NavigationSidebar() {
             to="/developer/"
             title="Developer Resources"
             icon={devIcon}
-            currentPage={currentPage}
+            clicked={currentPage === "/developer/"}
           >
             <DropDownMenuItem title="Dev Guides">
               <LeavesUl>
@@ -997,85 +1019,88 @@ export function NavigationSidebar() {
                   to="/topics/email"
                   title="SaaSquatch & Emails"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/topics/email"}
                 />
                 <Leaf
                   to="/customshortdomainguide"
                   title="Custom Short Domains"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/customshortdomainguide"}
                 />
                 <Leaf
                   to="/developer/referral-security"
                   title="Referral Security"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/developer/referral-security"}
                 />
                 <Leaf
                   to="/shared-vs-solo-accounts"
                   title="Account Structure"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/shared-vs-solo-accounts"}
                 />
                 <Leaf
                   to="/guides/marketo-form"
                   title="Marketo"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/guides/marketo-form"}
                 />
                 <Leaf
                   to="/guides/instapage-form"
                   title="Instapage"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/guides/instapage-form"}
                 />
                 <Leaf
                   to="/features/custom-user-fields/"
                   title="Custom User Fields"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/features/custom-user-fields/"}
                 />
                 <Leaf
                   to="/topics/widget-types"
                   title="User Widget Types"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/topics/widget-types"}
                 />
                 <Leaf
                   to="/features/message-links"
                   title="Message Links"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/features/message-links"}
                 />
                 <Leaf
                   to="/developer/conversion"
                   title="Conversion Tech Guide"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/developer/conversion"}
                 />
                 <Leaf
                   to="/developer/attribution"
                   title="Attribution Tech Guide"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/developer/attribution"}
                 />
                 <Leaf
                   to="/breaking-changes"
                   title="Breaking Changes"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/breaking-changes"}
                 />
                 <Leaf
                   to="/bestpractices/common-pitfalls"
                   title="Common Pitfalls"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/bestpractices/common-pitfalls"}
                 />
                 <Leaf
                   to="/developer/widgets/writing-a-web-component-for-saasquatch"
                   title="Writing a Web Component for SaaSquatch"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={
+                    currentPage ===
+                    "/developer/widgets/writing-a-web-component-for-saasquatch"
+                  }
                 />
               </LeavesUl>
             </DropDownMenuItem>
@@ -1086,44 +1111,46 @@ export function NavigationSidebar() {
                   to="/developer/squatchjs"
                   title="About"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/developer/squatchjs"}
                 />
                 <Leaf
                   to="/squatchjs/signed-requests"
                   title="Signed Requests"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/squatchjs/signed-requests"}
                 />
                 <Leaf
                   to="/developer/squatchjs/issue"
                   title="Issue Code List (list of 53 issue links)"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/developer/squatchjs/issue"}
                 />
                 <Separator text="Version 2" />
                 <Leaf
                   to="/developer/squatchjs/v2"
                   title="Quickstart"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/developer/squatchjs/v2"}
                 />
                 <Leaf
                   to="/developer/squatchjs/v2/advanced-use-cases"
                   title="Advanced Use Cases"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={
+                    currentPage === "/developer/squatchjs/v2/advanced-use-cases"
+                  }
                 />
                 <Leaf
                   to="/developer/squatchjs/v2/reference"
                   title="Reference"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/developer/squatchjs/v2/reference"}
                 />
                 <Leaf
                   to="/developer/squatchjs/cookies"
                   title="Tracking Cookies"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/developer/squatchjs/cookies"}
                 />
               </LeavesUl>
             </DropDownMenuItem>
@@ -1136,13 +1163,13 @@ export function NavigationSidebar() {
                       to="/graphql/reference"
                       title="GraphQL Reference"
                       size="small"
-                      currentPage={currentPage}
+                      clicked={currentPage === "/graphql/reference"}
                     />
                     <Leaf
                       to="/graphql/custom-widget"
                       title="Custom Widget via GraphQL"
                       size="small"
-                      currentPage={currentPage}
+                      clicked={currentPage === "/graphql/custom-widget"}
                     />
                   </LeavesUl>
                 </DropDownMenuItem>
@@ -1153,25 +1180,25 @@ export function NavigationSidebar() {
                       to="/api"
                       title="API Overview"
                       size="small"
-                      currentPage={currentPage}
+                      clicked={currentPage === "/api"}
                     />
                     <Leaf
                       to="/api/authentication"
                       title="Authentication"
                       size="small"
-                      currentPage={currentPage}
+                      clicked={currentPage === "/api/authentication"}
                     />
                     <Leaf
                       to="/api/openendpoints"
                       title="API Open Endpoints"
                       size="small"
-                      currentPage={currentPage}
+                      clicked={currentPage === "/api/openendpoints"}
                     />
                     <Leaf
                       to="/api/errors"
                       title="Errors"
                       size="small"
-                      currentPage={currentPage}
+                      clicked={currentPage === "/api/errors"}
                     />
                   </LeavesUl>
                 </DropDownMenuItem>
@@ -1182,7 +1209,7 @@ export function NavigationSidebar() {
                       to="/api/methods"
                       title="Full list of Methods"
                       size="small"
-                      currentPage={currentPage}
+                      clicked={currentPage === "/api/methods"}
                     />
 
                     <DropDownMenuItem
@@ -1194,7 +1221,7 @@ export function NavigationSidebar() {
                           to="#"
                           title="Delete an account"
                           size="small"
-                          currentPage={currentPage}
+                          clicked={currentPage === "#"}
                         />
                       </LeavesUl>
                     </DropDownMenuItem>
@@ -1208,7 +1235,7 @@ export function NavigationSidebar() {
                           to="#"
                           title="All methods"
                           size="small"
-                          currentPage={currentPage}
+                          clicked={currentPage === "#"}
                         />
                       </LeavesUl>
                     </DropDownMenuItem>
@@ -1222,7 +1249,7 @@ export function NavigationSidebar() {
                           to="#"
                           title="All methods"
                           size="small"
-                          currentPage={currentPage}
+                          clicked={currentPage === "#"}
                         />
                       </LeavesUl>
                     </DropDownMenuItem>
@@ -1236,7 +1263,7 @@ export function NavigationSidebar() {
                           to="#"
                           title="All methods"
                           size="small"
-                          currentPage={currentPage}
+                          clicked={currentPage === "#"}
                         />
                       </LeavesUl>
                     </DropDownMenuItem>
@@ -1249,14 +1276,16 @@ export function NavigationSidebar() {
                         <APILeaf
                           to="/api/methods#get_code"
                           title="Lookup a referral code"
-                          currentPage={currentPage}
+                          clicked={currentPage === "/api/methods#get_code"}
                         >
                           <GreenButton>Get</GreenButton>
                         </APILeaf>
                         <APILeaf
                           to="/api/methods#open_validate_code"
                           title="Lookup a referral code"
-                          currentPage={currentPage}
+                          clicked={
+                            currentPage === "/api/methods#open_validate_code"
+                          }
                         >
                           <GreenButton>Get</GreenButton>
                           <GreyButton>Open Endpoint</GreyButton>
@@ -1264,7 +1293,9 @@ export function NavigationSidebar() {
                         <APILeaf
                           to="/api/methods#open_apply_code"
                           title="Apply a referral code"
-                          currentPage={currentPage}
+                          clicked={
+                            currentPage === "/api/methods#open_apply_code"
+                          }
                         >
                           <OrangeButton>Post</OrangeButton>
                           <GreyButton>Open Endpoint</GreyButton>
@@ -1320,13 +1351,13 @@ export function NavigationSidebar() {
                   to="/api/webhooks"
                   title="Overview"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/api/webhooks"}
                 />
                 <Leaf
                   to="/api/webhooks/security"
                   title="Webhook Security"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/api/webhooks/security"}
                 />
                 <SmallLeafLink to="#">All methods</SmallLeafLink>
               </LeavesUl>
@@ -1336,13 +1367,13 @@ export function NavigationSidebar() {
               to="/topics/json-web-tokens"
               title="JSON Web Tokens"
               size="big"
-              currentPage={currentPage}
+              clicked={currentPage === "/topics/json-web-tokens"}
             />
             <Leaf
               to="/developer/testing"
               title="Testing Best Practices"
               size="big"
-              currentPage={currentPage}
+              clicked={currentPage === "/developer/testing"}
             />
 
             <DropDownMenuItem title="Mobile">
@@ -1351,19 +1382,19 @@ export function NavigationSidebar() {
                   to="/mobile"
                   title="Overview"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/mobile"}
                 />
                 <Leaf
                   to="/mobile/android"
                   title="Android"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/mobile/android"}
                 />
                 <Leaf
                   to="/mobile/ios"
                   title="iOS"
                   size="small"
-                  currentPage={currentPage}
+                  clicked={currentPage === "/mobile/ios"}
                 />
               </LeavesUl>
             </DropDownMenuItem>
@@ -1379,7 +1410,7 @@ const CoreCategory = (props: {
   to: string;
   title: string;
   icon: SVGProps;
-  currentPage?: string;
+  clicked?: boolean;
 }) => {
   return (
     <CoreCategoryView
@@ -1387,7 +1418,7 @@ const CoreCategory = (props: {
       to={props.to}
       title={props.title}
       icon={props.icon}
-      clicked={props.currentPage === props.to}
+      clicked={props.clicked}
     >
       {props.children}
     </CoreCategoryView>
@@ -1427,16 +1458,16 @@ const Leaf = (props: {
   to: string;
   title: string;
   size: string;
-  currentPage?: string;
+  clicked?: boolean;
 }) => {
   if (props.size == "small")
     return (
-      <SmallLeafLink to={props.to} clicked={props.currentPage === props.to}>
+      <SmallLeafLink to={props.to} clicked={props.clicked}>
         {props.title}
       </SmallLeafLink>
     );
   return (
-    <BigLeafLink to={props.to} clicked={props.currentPage === props.to}>
+    <BigLeafLink to={props.to} clicked={props.clicked}>
       {props.title}
     </BigLeafLink>
   );
@@ -1446,11 +1477,11 @@ const APILeaf = (props: {
   to: string;
   title: string;
   children?: React.ReactNode;
-  currentPage?: string;
+  clicked?: boolean;
 }) => {
   return (
     <li>
-      <SmallLeafLink to={props.to} clicked={props.currentPage === props.to}>
+      <SmallLeafLink to={props.to} clicked={props.clicked}>
         <APIDiv>
           {props.title}
           <ButtonsContainerDiv>{props.children}</ButtonsContainerDiv>
