@@ -841,13 +841,6 @@ export function NavigationSidebar() {
               />
 
               <ArticleLeaf
-                to="/developer/segment"
-                title="Segment Integration Reference"
-                size="small"
-                clicked={currentPage === "/developer/segment"}
-              />
-
-              <ArticleLeaf
                 to="/integrations/segment-v2/"
                 title="Segment V2"
                 size="small"
@@ -868,6 +861,13 @@ export function NavigationSidebar() {
                 title="Stream"
                 size="small"
                 clicked={currentPage === "/integrations/segment-v2/stream"}
+              />
+
+              <ArticleLeaf
+                to="/developer/segment"
+                title="Segment Integration Reference"
+                size="small"
+                clicked={currentPage === "/developer/segment"}
               />
 
               <ArticleLeaf
