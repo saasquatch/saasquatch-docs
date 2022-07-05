@@ -3,6 +3,7 @@ export interface SVGProps {
   viewBox: string;
   d: string;
   clicked?: boolean;
+  clickedArticle?: boolean;
 }
 
 export const dropdownCaret: SVGProps = {

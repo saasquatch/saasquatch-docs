@@ -46,16 +46,17 @@ const DropDownStyledLink = styled(Link)`
   justify-content: space-between;
   height: fit-content;
   background-color: ${(props) =>
-    props.clicked ? "#003B45" : "white"} !important;
-  color: ${(props) => (props.clicked ? "white" : "#003B45")} !important;
+    props.clicked || props.clickedArticle ? "#003B45" : "white"} !important;
+  color: ${(props) =>
+    props.clicked || props.clickedArticle ? "white" : "#003B45"} !important;
   font-size: 16px;
   font-weight: ${(props) =>
-    props.dropdownSelected || props.clicked ? "700" : "400"} !important;
+    props.clicked || props.clickedArticle ? "700" : "400"} !important;
   line-height: 24px;
   padding: 8px 12px;
   &:hover {
     background-color: ${(props) =>
-      props.clicked ? "#003B45" : "#e7edee"} !important;
+      props.clicked || props.clickedArticle ? "#003B45" : "#e7edee"} !important;
   }
 `;
 
@@ -238,6 +239,7 @@ export const SidebarSVG: React.FC<SVGProps> = ({
   viewBox,
   d,
   clicked,
+  clickedArticle: clickedArticle,
 }) => {
   return (
     <IconSVGDiv>
@@ -245,7 +247,7 @@ export const SidebarSVG: React.FC<SVGProps> = ({
         width={width}
         height="auto"
         viewBox={viewBox}
-        fill={clicked ? "white" : "#003B45"}
+        fill={clicked || clickedArticle ? "white" : "#003B45"}
         xmlns="http://www.w3.org/2000/svg"
       >
         <path d={d} />
@@ -299,7 +301,7 @@ export function NavigationSidebar() {
             to="/product-news"
             title="SaaSquatch Product News"
             icon={newsIcon}
-            clicked={currentPage === "/product-news"}
+            clickedArticle={currentPage === "/product-news"}
           />
           {/* Learning SaaSquatch starts here */}
           <CoreCategory
@@ -1411,6 +1413,7 @@ const CoreCategory = (props: {
   title: string;
   icon: SVGProps;
   clicked?: boolean;
+  clickedArticle?: boolean;
 }) => {
   return (
     <CoreCategoryView
@@ -1419,6 +1422,7 @@ const CoreCategory = (props: {
       title={props.title}
       icon={props.icon}
       clicked={props.clicked}
+      clickedArticle={props.clickedArticle}
     >
       {props.children}
     </CoreCategoryView>
