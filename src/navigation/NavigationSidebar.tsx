@@ -96,12 +96,20 @@ const CoreLi = styled.li`
     top: -5px;
   }
 `;
-
-const SmallLeafLink = styled(DropDownStyledLink as any)`
+// DropdownChildLi = styled.li<{ clicked: boolean }>
+const SmallLeafLink = styled(DropDownStyledLink as any)<{ clicked: boolean }>`
   font-size: 14px;
   line-height: 21px;
   font-weight: 400;
   padding: 8px 12px;
+  margin-left: 12px;
+  border-left: ${(props) =>
+    props.clicked ? "2px solid #06966F" : "1px solid #003b45"} !important;
+  background-color: ${(props) => props.clicked && "#003b45"};
+  &:hover {
+    background-color: ${(props) =>
+      props.clicked ? "#003B45" : "#e7edee"} !important;
+  }
 `;
 
 //@ts-ignore
@@ -204,8 +212,9 @@ const GreenButton = styled.button`
   text-transform: uppercase;
   font-weight: 700;
   font-size: 12px;
+  line-height: 18px;
   color: #ffffff;
-  background-color: #06966f;
+  background-color: #007a5b;
   padding: 2px 5px;
   width: fit-content;
   height: fit-content;
@@ -295,17 +304,10 @@ export function NavigationSidebar() {
     <Styles.Container>
       <nav id="my-menu">
         <ul className="baseMenu">
-          {/* SaaSquatch Product News starts here */}
-          <CoreCategory
-            to="/product-news"
-            title="SaaSquatch Product News"
-            icon={newsIcon}
-            clickedArticle={currentPage === "/product-news"}
-          />
           {/* Learning SaaSquatch starts here */}
           <CoreCategory
             to="#"
-            title="Learning SaaSquatch"
+            title="NULL Learning SaaSquatch"
             icon={learningIcon}
             clicked={currentPage === "#"}
           >
@@ -418,7 +420,7 @@ export function NavigationSidebar() {
           {/* Building Programs starts here */}
           <CoreCategory
             to="#"
-            title="Building Programs "
+            title="NULL Building Programs"
             icon={buildingIcon}
             clicked={currentPage === "#"}
           >
@@ -1470,8 +1472,12 @@ export function NavigationSidebar() {
                   <GreenButton>get</GreenButton>
                 </MethodLeaf>
               </DropDownMenuItem>
-
-              <SmallLeafLink to="#">Hidden Endpoints</SmallLeafLink>
+              <ArticleLeaf
+                to="/api/methods#hidden"
+                title="Hidden Endpoints"
+                size="small"
+                clicked={currentPage === "/api/methods#hidden"}
+              />
             </DropDownMenuItem>
 
             <DropDownMenuItem title="Webhook">
@@ -1551,6 +1557,13 @@ export function NavigationSidebar() {
               clicked={currentPage === "/developer/testing"}
             />
           </CoreCategory>
+          {/* SaaSquatch Product News starts here */}
+          <CoreCategory
+            to="/product-news"
+            title="SaaSquatch Product News"
+            icon={newsIcon}
+            clickedArticle={currentPage === "/product-news"}
+          />
         </ul>
       </nav>
     </Styles.Container>

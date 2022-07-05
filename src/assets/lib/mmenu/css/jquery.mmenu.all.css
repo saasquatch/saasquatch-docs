@@ -89,13 +89,11 @@
   height: 20px;
 }
 
-/* Drop-down menu list: left indent and border */
+/* Drop-down menu list */
 .mm-vertical .mm-panel {
   -webkit-transform: none;
   -ms-transform: none;
   transform: none;
-  margin-left: 12px;
-  border-left: 1px solid #003b45;
 }
 .mm-listview .mm-vertical .mm-panel,
 .mm-vertical .mm-listview .mm-panel {
