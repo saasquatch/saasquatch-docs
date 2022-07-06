@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
-import { SVGProps } from "./components/icons";
+import { SVGProps } from "./components/IconsSidebar";
 import {
   CoreCategoryLink,
   DivideLineLi,

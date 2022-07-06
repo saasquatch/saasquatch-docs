@@ -14,15 +14,14 @@ import {
   newsIcon,
   runningProgramsIcon,
   SVGProps,
-} from "./components/icons";
+} from "./components/IconsSidebar";
 import { CoreCategoryView, useCoreCategoryHook } from "./CoreCategoryView";
 import { MenuItemView, useMenuItemHook } from "./MenuItemView";
 import "./mmenu-overrides.css";
 import init from "./nav";
 import * as Styles from "./NavStyles";
 
-// reduced
-const StyledLink = styled(Link)`
+export const CoreCategoryLink = styled(Link)`
   font-family: "Helvetica";
   display: flex;
   align-items: center;
@@ -45,21 +44,14 @@ const StyledLink = styled(Link)`
   }
 `;
 
-export const TitleLink = styled(StyledLink as any)`
+export const TitleLink = styled(CoreCategoryLink as any)`
   justify-content: start;
   gap: 8px;
 `;
 
-export const CoreCategoryLink = styled(StyledLink as any)`
-  /* justify-content: start; */
-  /* gap: 18px; */
-  padding: 8px 12px;
-  width: auto;
-`;
-
-const LeafLink = styled(StyledLink as any)<{ clicked: boolean }>`
-  font-size: ${(props) => (props.size == "big" ? "16px" : "14px")};
-  line-height: ${(props) => (props.size == "big" ? "24px" : "21px")};
+export const LeafLink = styled(CoreCategoryLink as any)<{ clicked: boolean }>`
+  font-size: ${(props) => (props.isSubCategory ? "16px" : "14px")};
+  line-height: ${(props) => (props.isSubCategory ? "24px" : "21px")};
   font-weight: 400;
   padding: 8px 12px;
   background-color: ${(props) => props.clicked && "#003b45"};
@@ -80,18 +72,6 @@ export const LeavesUl = styled.ul`
 `;
 
 /* Different list items in order of size */
-
-const APIDropdownParentLi = styled.li`
-  font-family: "Helvetica" !important;
-  font-size: 14px;
-  line-height: 21px;
-  font-weight: 400;
-  color: #003b45;
-  border-left: 1px solid #003b45;
-  ${StyledLink} {
-    padding: 8px 10px;
-  }
-`;
 
 export const DivideLineLi = styled.li`
   height: 8px;
@@ -127,7 +107,7 @@ const SeparatorLine = styled.div`
 `;
 
 /* Referral code list items styled components (contain buttons and different layout than other list items) */
-const APIDiv = styled.div`
+const MethodDiv = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -149,9 +129,9 @@ const GreenButton = styled.button`
   line-height: 18px;
   color: #ffffff;
   background-color: #007a5b;
-  padding: 2px 5px;
   width: fit-content;
   height: fit-content;
+  padding: 2px 5px;
   border-radius: 4px;
   border: none;
   cursor: pointer;
@@ -181,7 +161,7 @@ export const SidebarSVG: React.FC<SVGProps> = ({
   viewBox,
   d,
   clicked,
-  clickedArticle: clickedArticle,
+  clickedArticle,
 }) => {
   return (
     <IconSVGDiv>
@@ -198,7 +178,6 @@ export const SidebarSVG: React.FC<SVGProps> = ({
   );
 };
 
-/* MMenu Stuff */
 function useMMenu() {
   const [mmenuApi, setMMenuApi] = useState(null);
   return {
@@ -496,14 +475,14 @@ export function NavigationSidebar() {
               to="/features/user-segmentation"
               title="User Segmentation"
               clicked={currentPage === "/features/user-segmentation"}
-              size="big"
+              isSubCategory
             />
 
             <ArticleLeaf
               to="/features/program-i18n"
               title="Program Internationalization"
               clicked={currentPage === "/features/program-i18n"}
-              size="big"
+              isSubCategory
             />
           </CoreCategory>
 
@@ -602,7 +581,7 @@ export function NavigationSidebar() {
                 currentPage ===
                 "/features/managing-w-9-compliance-for-participants"
               }
-              size={"big"}
+              isSubCategory
             />
           </CoreCategory>
 
@@ -1353,13 +1332,13 @@ export function NavigationSidebar() {
               to="/topics/json-web-tokens"
               title="JSON Web Tokens"
               clicked={currentPage === "/topics/json-web-tokens"}
-              size={"big"}
+              isSubCategory
             />
             <ArticleLeaf
               to="/developer/testing"
               title="Testing Best Practices"
               clicked={currentPage === "/developer/testing"}
-              size={"big"}
+              isSubCategory
             />
           </CoreCategory>
           {/* SaaSquatch Product News starts here */}
@@ -1414,7 +1393,6 @@ const DropDownMenuItem = (props: {
   );
 };
 
-/* Line won't show up; div doesn't work */
 const Separator = (props: { text: string }) => {
   return (
     // nested li makes line appear, otherwise there is no line :(
@@ -1430,12 +1408,16 @@ const Separator = (props: { text: string }) => {
 const ArticleLeaf = (props: {
   to: string;
   title: string;
-  clicked?: boolean;
-  size?: string;
+  clicked: boolean;
+  isSubCategory?: boolean;
 }) => {
   return (
     <li>
-      <LeafLink to={props.to} clicked={props.clicked} size={props.size}>
+      <LeafLink
+        to={props.to}
+        clicked={props.clicked}
+        isSubCategory={props.isSubCategory}
+      >
         {props.title}
       </LeafLink>
     </li>
@@ -1451,10 +1433,10 @@ const MethodLeaf = (props: {
   return (
     <li>
       <LeafLink to={props.to} clicked={props.clicked}>
-        <APIDiv>
+        <MethodDiv>
           {props.title}
           <ButtonsContainerDiv>{props.children}</ButtonsContainerDiv>
-        </APIDiv>
+        </MethodDiv>
       </LeafLink>
     </li>
   );
