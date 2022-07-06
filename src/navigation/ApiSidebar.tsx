@@ -5,6 +5,7 @@ import { HashLink as Link } from "react-router-hash-link";
 import { useSiteData } from "react-static";
 import slug from "slug";
 import { EndpointSummary, EndpointSummarySet } from "src/api/Types";
+import styled from "styled-components";
 import { ApiMenuItemView } from "./ApiMenuItemView";
 import { MenuItemView, useMenuItemHook } from "./MenuItemView";
 import {
@@ -15,6 +16,79 @@ import {
   MethodLeaf,
   OrangeButton,
 } from "./NavigationSidebar";
+
+export const CoreCategoryLink = styled(Link)`
+  font-family: "Helvetica";
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: fit-content;
+  color: ${(props) =>
+    props.clicked || props.clickedArticle ? "white" : "#003B45"} !important;
+`;
+
+export const LeafLink = styled(Link as any)<{ clicked: boolean }>`
+  font-size: ${(props) => (props.isSubCategory ? "16px" : "14px")};
+  line-height: ${(props) => (props.isSubCategory ? "24px" : "21px")};
+  font-weight: 400;
+  padding: 8px 12px;
+  background-color: ${(props) => props.clicked && "#003b45"};
+  margin-left: ${(props) =>
+    props.clicked && !props.isSubCategory ? "-1px" : "0px"};
+  border-left: ${(props) =>
+    props.clicked && !props.isSubCategory ? "2px solid #007A5B" : "0px"};
+  &:hover {
+    background-color: ${(props) =>
+      props.clicked ? "#003B45" : "#e7edee"} !important;
+  }
+`;
+
+const MethodDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+`;
+
+const LabelsDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+`;
+
+export const StyledLabelSpan = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 18px;
+  color: #ffffff;
+  width: fit-content;
+  height: fit-content;
+  padding: 2px 5px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+`;
+
+// export const MethodLeaf = (props: {
+//   to: string;
+//   title: string;
+//   children?: React.ReactNode;
+// }) => {
+//   const currentPage = React.useContext(CurrentPageContext);
+//   return (
+//     <li>
+//       <LeafLink to={props.to} clicked={currentPage === props.to}>
+//         <MethodDiv>
+//           {props.title}
+//           <ButtonsContainerDiv>{props.children}</ButtonsContainerDiv>
+//         </MethodDiv>
+//       </LeafLink>
+//     </li>
+//   );
+// };
 
 function useEndpoints(tag: string) {
   const { apiRoutes } = useSiteData<{
@@ -36,7 +110,7 @@ function ApiMenuItem(props: { tag: string; idx: number }) {
   }
   return (
     <ApiMenuItemView {...useMenuItemHook()}>
-      {/* <ApiSidebarChildren endpoints={endpoints} tag={tag} /> */}
+      <ApiSidebarChildren endpoints={endpoints} tag={tag} />
     </ApiMenuItemView>
   );
 }
@@ -49,28 +123,36 @@ function ApiSidebarChildren({
   tag: string;
 }) {
   const children = endpoints.map((route) => {
+    console.log({ route });
+    // REMEMBER: sub this in
+    const path = "/api/methods#" + route.anchor;
     return (
+      // this is one list item (e.g. Account Overview, Delete an Account)
       <li key={route.anchor}>
-        <Link to={"/api/methods#" + route.anchor}>
-          <span
-            className={"label docs-label-" + route.httpMethod.toLowerCase()}
-            style={{
-              width: "47px",
-              textAlign: "center",
-            }}
-          >
-            {route.httpMethod.toUpperCase()}
-          </span>{" "}
-          {route.summary}
-          {route.tags.includes("Open Endpoint") && <OpenEndpointLabel />}
-        </Link>
+        {/* We want:
+              1. Title (summary)
+              2. First button (httpMethod.toUpperCase()), e.g. "POST"
+              3. Second button if it exists ("Open Endpoint") */}
+        <LeafLink to={"/api/methods#" + route.anchor}>
+          <MethodDiv>
+            {route.summary}
+            <LabelsDiv>
+              <StyledLabelSpan
+                className={"label docs-label-" + route.httpMethod.toLowerCase()}
+              >
+                {route.httpMethod.toUpperCase()}
+              </StyledLabelSpan>
+              {route.tags.includes("Open Endpoint") && <OpenEndpointLabel />}
+            </LabelsDiv>
+          </MethodDiv>
+        </LeafLink>
       </li>
     );
   });
   return (
     <>
       <li>
-        <Link to={"/api/methods#" + slug(tag)}>{tag} Overview</Link>
+        <LeafLink to={"/api/methods#" + slug(tag)}>{tag} Overview</LeafLink>
       </li>
       {children}
     </>
@@ -88,7 +170,15 @@ function OpenEndpointLabel() {
       }
       placement="right"
     >
-      <span className="label pull-right">Open Endpoint</span>
+      <StyledLabelSpan
+        className="label pull-right"
+        style={{
+          backgroundColor: "#999999",
+          textTransform: "none",
+        }}
+      >
+        Open Endpoint
+      </StyledLabelSpan>
     </Tooltip>
   );
 }
@@ -98,6 +188,8 @@ export default function ApiSidebar() {
     apiRoutes: EndpointSummary[];
     apiRoutesByTag: EndpointSummarySet;
   }>();
+
+  console.log({ apiRoutesByTag });
 
   return (
     <>

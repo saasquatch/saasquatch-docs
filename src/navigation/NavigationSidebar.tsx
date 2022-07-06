@@ -122,7 +122,7 @@ const ButtonsContainerDiv = styled.div`
   gap: 4px;
 `;
 
-export const GreenButton = styled.button`
+export const GreenButton = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -730,6 +730,7 @@ export function NavigationSidebar() {
                 <ArticleLeaf to="/api/errors" title="Errors" />
 
                 <Separator text="REST API Reference" />
+                <ArticleLeaf to="/api/methods" title="Full list of Methods" />
                 {/* To hard-code API sidebar: paste everything inside commented out ApiSidebar() */}
                 <ApiSidebar />
               </DropDownMenuItem>

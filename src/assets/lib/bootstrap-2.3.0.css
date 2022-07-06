@@ -5677,6 +5677,7 @@ a.thumbnail:focus {
   background-color: #999;
 }
 
+/* Using styled component instead */
 .label {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
