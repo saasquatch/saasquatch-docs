@@ -5,7 +5,6 @@ import { HashLink as Link } from "react-router-hash-link";
 import { useSiteData } from "react-static";
 import slug from "slug";
 import { EndpointSummary, EndpointSummarySet } from "src/api/Types";
-import { ApiMenuItemView } from "./ApiMenuItemView";
 import { MenuItemView, useMenuItemHook } from "./MenuItemView";
 import {
   ArticleLeaf,
@@ -28,16 +27,16 @@ function useEndpoints(tag: string) {
   return endpoints;
 }
 
-function ApiMenuItem(props: { tag: string; idx: number }) {
+function MenuItem(props: { tag: string; idx: number }) {
   const { tag } = props;
   const endpoints = useEndpoints(tag);
   if (endpoints.length <= 0) {
     return null;
   }
   return (
-    <ApiMenuItemView {...useMenuItemHook()}>
-      {/* <ApiSidebarChildren endpoints={endpoints} tag={tag} /> */}
-    </ApiMenuItemView>
+    <MenuItemView {...useMenuItemHook()}>
+      <ApiSidebarChildren endpoints={endpoints} tag={tag} />
+    </MenuItemView>
   );
 }
 
@@ -104,7 +103,7 @@ export default function ApiSidebar() {
       {Object.keys(apiRoutesByTag)
         .filter((tag) => tag)
         .map((tag, idx) => (
-          <ApiMenuItem tag={tag} idx={idx} key={tag} />
+          <MenuItem tag={tag} idx={idx} key={tag} />
         ))}
     </>
   );
