@@ -56,8 +56,10 @@ export const LeafLink = styled(CoreCategoryLink as any)<{ clicked: boolean }>`
   font-weight: 400;
   padding: 8px 12px;
   background-color: ${(props) => props.clicked && "#003b45"};
-  margin-left: ${(props) => props.clicked && "-1px"};
-  border-left: ${(props) => props.clicked && "2px solid #007A5B"};
+  margin-left: ${(props) =>
+    props.clicked && !props.isSubCategory ? "-1px" : "0px"};
+  border-left: ${(props) =>
+    props.clicked && !props.isSubCategory ? "2px solid #007A5B" : "0px"};
   &:hover {
     background-color: ${(props) =>
       props.clicked ? "#003B45" : "#e7edee"} !important;
@@ -430,10 +432,10 @@ export function NavigationSidebar() {
 
             {/* Running Programs starts here */}
             <CoreCategory
-              to="#"
-              title="NULL Running Programs"
+              to="/features/rewards-fuel-tank/"
+              title="Running Programs"
               icon={runningProgramsIcon}
-              clicked={currentPage === "#"}
+              clicked={currentPage === "/features/rewards-fuel-tank/"}
             >
               <DropDownMenuItem title="Analytics and Reporting">
                 <ArticleLeaf
