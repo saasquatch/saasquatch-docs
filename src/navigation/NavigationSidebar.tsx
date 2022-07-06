@@ -21,32 +21,17 @@ import "./mmenu-overrides.css";
 import init from "./nav";
 import * as Styles from "./NavStyles";
 
-export interface MenuItemProps {
-  path: string;
-  title: string;
-  currentPage: string;
-}
-
-export const StyledLink = styled(Link)`
-  display: flex !important;
-  align-items: center !important;
-  height: fit-content !important;
-  background-color: "white";
-  color: #003b45;
-  font-weight: 400;
-  &:hover {
-    background-color: #e7edee;
-  }
-`;
-
-const DropDownStyledLink = styled(Link)`
+// reduced
+const StyledLink = styled(Link)`
   font-family: "Helvetica";
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: fit-content;
   background-color: ${(props) =>
-    props.clicked || props.clickedArticle ? "#003B45" : "white"} !important;
+    props.clicked || props.clickedArticle
+      ? "var(--sq-nav-surface-primary)"
+      : "white"} !important;
   color: ${(props) =>
     props.clicked || props.clickedArticle ? "white" : "#003B45"} !important;
   font-size: 16px;
@@ -60,62 +45,30 @@ const DropDownStyledLink = styled(Link)`
   }
 `;
 
-export const TitleLink = styled(DropDownStyledLink as any)`
-  flex-direction: row;
+export const TitleLink = styled(StyledLink as any)`
   justify-content: start;
-  line-height: 24px;
   gap: 8px;
-  padding: 8px 12px;
 `;
 
-const MainMenuLi = styled.li`
-  & > a.mm-next {
-    display: none;
-  }
-`;
-
-const IconAndTextDiv = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 18px;
-`;
-
-export const CoreCategoryLink = styled(DropDownStyledLink as any)`
+export const CoreCategoryLink = styled(StyledLink as any)`
   /* justify-content: start; */
   /* gap: 18px; */
   padding: 8px 12px;
   width: auto;
 `;
 
-/* Styled component to make main menu arrow point rightwards */
-const CoreLi = styled.li`
-  & > a.mm-next {
-    -webkit-transform: rotate(-90deg);
-    -ms-transform: rotate(-90deg);
-    transform: rotate(-90deg);
-    top: -5px;
-  }
-`;
-// DropdownChildLi = styled.li<{ clicked: boolean }>
-const SmallLeafLink = styled(DropDownStyledLink as any)<{ clicked: boolean }>`
-  font-size: 14px;
-  line-height: 21px;
+const LeafLink = styled(StyledLink as any)<{ clicked: boolean }>`
+  font-size: ${(props) => (props.size == "big" ? "16px" : "14px")};
+  line-height: ${(props) => (props.size == "big" ? "24px" : "21px")};
   font-weight: 400;
   padding: 8px 12px;
-  margin-left: 12px;
-  border-left: ${(props) =>
-    props.clicked ? "2px solid #06966F" : "1px solid #003b45"} !important;
   background-color: ${(props) => props.clicked && "#003b45"};
+  margin-left: ${(props) => props.clicked && "-1px"};
+  border-left: ${(props) => props.clicked && "2px solid #007A5B"};
   &:hover {
     background-color: ${(props) =>
       props.clicked ? "#003B45" : "#e7edee"} !important;
   }
-`;
-
-//@ts-ignore
-const BigLeafLink = styled(SmallLeafLink)`
-  font-size: 16px;
-  line-height: 24px;
 `;
 
 /* ul styles */
@@ -124,16 +77,6 @@ export const LeavesUl = styled.ul`
   /* list-style: none !important; */
   margin-left: 12px !important;
   border-left: 1px solid #003b45 !important;
-`;
-
-const NestedList = styled.ul`
-  list-style: none !important;
-  border-left: 1px solid #003b45 !important;
-  margin-left: 12px !important;
-  ${StyledLink} {
-    padding: 0px 0px !important;
-    width: 100%;
-  }
 `;
 
 /* Different list items in order of size */
@@ -155,10 +98,6 @@ export const DivideLineLi = styled.li`
   border-bottom: 1px solid #e2e2e2;
   margin-bottom: 8px !important;
 `;
-
-/* Divs for spacing within each list item (space between SVG and text) */
-
-const AllContentDiv = styled.div``;
 
 /* Seperator styled components (to seperate versions, webhooks, etc. in Dev Center section) */
 
@@ -185,11 +124,6 @@ const SeparatorLine = styled.div`
   height: 1px !important;
   width: 100% !important;
   background-color: #e2e2e2 !important;
-`;
-
-const ArrowDiv = styled.div`
-  display: flex !important;
-  justify-self: end !important;
 `;
 
 /* Referral code list items styled components (contain buttons and different layout than other list items) */
@@ -306,34 +240,30 @@ export function NavigationSidebar() {
         <ul className="baseMenu">
           {/* Learning SaaSquatch starts here */}
           <CoreCategory
-            to="#"
-            title="NULL Learning SaaSquatch"
+            to="/success/"
+            title="Learning SaaSquatch"
             icon={learningIcon}
-            clicked={currentPage === "#"}
+            clicked={currentPage === "/success/"}
           >
             <DropDownMenuItem title="SaaSquatch Admin Portal">
               <ArticleLeaf
                 to="/success/using-referral-saasquatch"
                 title="Using the SaaSquatch Portal"
-                size="small"
                 clicked={currentPage === "/success/using-referral-saasquatch"}
               />
               <ArticleLeaf
                 to="/success/navigating-the-portal"
                 title="Navigating the SaaSquatch Portal"
-                size="small"
                 clicked={currentPage === "/success/navigating-the-portal"}
               />
               <ArticleLeaf
                 to="/success/referral-feed"
                 title="The Referral Feed"
-                size="small"
                 clicked={currentPage === "/success/referral-feed"}
               />
               <ArticleLeaf
                 to="/features/analytics"
                 title="Program Analytics"
-                size="small"
                 clicked={currentPage === "/features/analytics"}
               />
             </DropDownMenuItem>
@@ -342,20 +272,17 @@ export function NavigationSidebar() {
               <ArticleLeaf
                 to="/growth/ga-101"
                 title="Growth Automation 101"
-                size="small"
                 clicked={currentPage === "/growth/ga-101"}
               />
               <ArticleLeaf
                 to="/growth/customer-lifecycle"
                 title="Growth Automation Customer Lifecycle"
-                size="small"
                 clicked={currentPage === "/growth/customer-lifecycle"}
               />
 
               <ArticleLeaf
                 to="/growth/saasquatch-ga"
                 title="SaaSquatch Growth Automation Platform"
-                size="small"
                 clicked={currentPage === "/growth/saasquatch-ga"}
               />
             </DropDownMenuItem>
@@ -364,31 +291,26 @@ export function NavigationSidebar() {
               <ArticleLeaf
                 to="/success/intro"
                 title="Referral Programs 101"
-                size="small"
                 clicked={currentPage === "/success/intro"}
               />
               <ArticleLeaf
                 to="/referral-program-optimization"
                 title="Referral Program Optimization"
-                size="small"
                 clicked={currentPage === "/referral-program-optimization"}
               />
               <ArticleLeaf
                 to="/success/core-topics"
                 title="The SaaSquatch Referral Program Loop"
-                size="small"
                 clicked={currentPage === "/success/core-topics"}
               />
               <ArticleLeaf
                 to="/success/touchpoints"
                 title="Referral Marketing Channels"
-                size="small"
                 clicked={currentPage === "/success/touchpoints"}
               />
               <ArticleLeaf
                 to="/success/referral-program-retargeting"
                 title="Referral Program Retargeting"
-                size="small"
                 clicked={
                   currentPage === "/success/referral-program-retargeting"
                 }
@@ -396,7 +318,6 @@ export function NavigationSidebar() {
               <ArticleLeaf
                 to="/success/share-options"
                 title="Referral Program Sharing Options"
-                size="small"
                 clicked={currentPage === "/success/share-options"}
               />
             </DropDownMenuItem>
@@ -405,13 +326,11 @@ export function NavigationSidebar() {
               <ArticleLeaf
                 to="/success/referral-security"
                 title="Security Management System"
-                size="small"
                 clicked={currentPage === "/success/referral-security"}
               />
               <ArticleLeaf
                 to="/fraud-and-security"
                 title="Fraud, Security & Fake Referrals"
-                size="small"
                 clicked={currentPage === "/fraud-and-security"}
               />
             </DropDownMenuItem>
@@ -425,23 +344,20 @@ export function NavigationSidebar() {
             clicked={currentPage === "#"}
           >
             <DropDownMenuItem title="Programs">
-              <SmallLeafLink
+              <ArticleLeaf
                 to="/growth/quickstart"
                 title="Growth Automation Program General Quickstart"
-                size="small"
                 clicked={currentPage === "/growth/quickstart"}
               />
               <DropDownMenuItem title="Program Library" isNestedDropDown>
                 <ArticleLeaf
                   to="/program/birthday-program"
                   title="Birthday & Anniversary"
-                  size="small"
                   clicked={currentPage === "/program/birthday-program"}
                 />
                 <ArticleLeaf
                   to="/program/referral-program-with-objectives-prod"
                   title="Referral Program With Objectives"
-                  size="small"
                   clicked={
                     currentPage ===
                     "/program/referral-program-with-objectives-prod"
@@ -450,57 +366,48 @@ export function NavigationSidebar() {
                 <ArticleLeaf
                   to="/program/partner-program"
                   title="Partner"
-                  size="small"
                   clicked={currentPage === "/program/partner-program"}
                 />
                 <ArticleLeaf
                   to="/program/win-back-program"
                   title="Win Back"
-                  size="small"
                   clicked={currentPage === "/program/win-back-program"}
                 />
                 <ArticleLeaf
                   to="/program/vip-program"
                   title="VIP"
-                  size="small"
                   clicked={currentPage === "/program/vip-program"}
                 />
                 <ArticleLeaf
                   to="/program/signup-reward"
                   title="Signup"
-                  size="small"
                   clicked={currentPage === "/program/signup-reward"}
                 />
                 <ArticleLeaf
                   to="/program/regional-signup"
                   title="Regional Signup"
-                  size="small"
                   clicked={currentPage === "/program/regional-signup"}
                 />
                 <ArticleLeaf
                   to="/program/profile-completion-reward"
                   title="Profile Completion"
-                  size="small"
                   clicked={currentPage === "/program/profile-completion-reward"}
                 />
                 <ArticleLeaf
                   to="/program/points-program"
                   title="Points Rewards"
-                  size="small"
                   clicked={currentPage === "/program/points-program"}
                 />
               </DropDownMenuItem>
               <ArticleLeaf
                 to="/growth/ga-mechanisms"
                 title="Growth Automation Program Mechanisms"
-                size="small"
                 clicked={currentPage === "/growth/ga-mechanisms"}
               />
 
               <ArticleLeaf
                 to="/guides/referral-quickstart"
                 title="Growth Automational Referral Program - Quickstart"
-                size="small"
                 clicked={currentPage === "/guides/referral-quickstart"}
               />
             </DropDownMenuItem>
@@ -509,19 +416,16 @@ export function NavigationSidebar() {
               <ArticleLeaf
                 to="/designer/widget-editor"
                 title="Customizing Program Widgets"
-                size="small"
                 clicked={currentPage === "/designer/widget-editor"}
               />
               <ArticleLeaf
                 to="/themes/custom"
                 title="Custom Program Themes"
-                size="small"
                 clicked={currentPage === "/themes/custom"}
               />
               <ArticleLeaf
                 to="/mobile/widget"
                 title="Mobile Widget"
-                size="small"
                 clicked={currentPage === "/mobile/widget"}
               />
             </DropDownMenuItem>
@@ -530,31 +434,26 @@ export function NavigationSidebar() {
               <ArticleLeaf
                 to="/feature/rewards"
                 title="Program Reward Options"
-                size="small"
                 clicked={currentPage === "/feature/rewards"}
               />
               <ArticleLeaf
                 to="/success/gift-card-rewards"
                 title="Gift Card Rewards"
-                size="small"
                 clicked={currentPage === "/success/gift-card-rewards"}
               />
               <ArticleLeaf
                 to="/features/rewards-fuel-tank"
                 title="Fuel Tank Rewards"
-                size="small"
                 clicked={currentPage === "/features/rewards-fuel-tank"}
               />
               <ArticleLeaf
                 to="/features/reward-exchange"
                 title="Reward Exchange"
-                size="small"
                 clicked={currentPage === "/features/reward-exchange"}
               />
               <ArticleLeaf
                 to="/topics/conversion"
                 title="Conversion"
-                size="small"
                 clicked={currentPage === "/topics/conversion"}
               />
             </DropDownMenuItem>
@@ -563,19 +462,16 @@ export function NavigationSidebar() {
               <ArticleLeaf
                 to="/designer/email-editor"
                 title="Designing Your Program Emails"
-                size="small"
                 clicked={currentPage === "/designer/email-editor"}
               />
               <ArticleLeaf
                 to="/designer/short-tags"
                 title="Email Template Short Tags"
-                size="small"
                 clicked={currentPage === "/designer/short-tags"}
               />
               <ArticleLeaf
                 to="/developer/blocked-email-domains"
                 title="Blocked Email Domains"
-                size="small"
                 clicked={currentPage === "/developer/blocked-email-domains"}
               />
             </DropDownMenuItem>
@@ -584,13 +480,11 @@ export function NavigationSidebar() {
               <ArticleLeaf
                 to="/features/w-9-compliance"
                 title="W-9 Compliance"
-                size="small"
                 clicked={currentPage === "/features/w-9-compliance"}
               />
               <ArticleLeaf
                 to="/features/configuring-your-reward-catalog-for-w-9"
                 title="Configuring Your Rewards for W-9"
-                size="small"
                 clicked={
                   currentPage ===
                   "/features/configuring-your-reward-catalog-for-w-9"
@@ -601,36 +495,34 @@ export function NavigationSidebar() {
             <ArticleLeaf
               to="/features/user-segmentation"
               title="User Segmentation"
-              size="big"
               clicked={currentPage === "/features/user-segmentation"}
+              size="big"
             />
 
             <ArticleLeaf
               to="/features/program-i18n"
               title="Program Internationalization"
-              size="big"
               clicked={currentPage === "/features/program-i18n"}
+              size="big"
             />
           </CoreCategory>
 
           {/* Running Programs starts here */}
           <CoreCategory
-            to="/success/"
-            title="Running Programs"
+            to="#"
+            title="NULL Running Programs"
             icon={runningProgramsIcon}
-            clicked={currentPage === "/success/"}
+            clicked={currentPage === "#"}
           >
             <DropDownMenuItem title="Analytics and Reporting">
               <ArticleLeaf
                 to="/success/ga-analytics"
                 title="Analytics Overview for Growth Automation Programs"
-                size="small"
                 clicked={currentPage === "/success/ga-analytics"}
               />
               <ArticleLeaf
                 to="/features/program-and-portal-statistics"
                 title="Program and Portal Statistics"
-                size="small"
                 clicked={
                   currentPage === "/features/program-and-portal-statistics"
                 }
@@ -638,13 +530,11 @@ export function NavigationSidebar() {
               <ArticleLeaf
                 to="/success/analytics-data"
                 title="Understanding Your Program Analytics Data"
-                size="small"
                 clicked={currentPage === "/success/analytics-data"}
               />
               <ArticleLeaf
                 to="/features/reports/"
                 title="Program Reports"
-                size="small"
                 clicked={currentPage === "/features/reports/"}
               />
             </DropDownMenuItem>
@@ -653,37 +543,31 @@ export function NavigationSidebar() {
               <ArticleLeaf
                 to="/guides/one-time"
                 title="Manual User Actions: Add a Reward, Referral or Event"
-                size="small"
                 clicked={currentPage === "/guides/one-time"}
               />
               <ArticleLeaf
                 to="/guides/manage-rewards"
                 title="Managing Existing User Rewards"
-                size="small"
                 clicked={currentPage === "/guides/manage-rewards"}
               />
               <ArticleLeaf
                 to="/developer/purchase-object"
                 title="User Purchase & Refund Event"
-                size="small"
                 clicked={currentPage === "/developer/purchase-object"}
               />
               <ArticleLeaf
                 to="/features/participant-deletion"
                 title="Participant Deletion"
-                size="small"
                 clicked={currentPage === "/features/participant-deletion"}
               />
               <ArticleLeaf
                 to="/topics/attribution"
                 title="Attribution"
-                size="small"
                 clicked={currentPage === "/topics/attribution"}
               />
               <ArticleLeaf
                 to="/topics/identification"
                 title="Identification"
-                size="small"
                 clicked={currentPage === "/topics/identification"}
               />
             </DropDownMenuItem>
@@ -692,25 +576,21 @@ export function NavigationSidebar() {
               <ArticleLeaf
                 to="/guides/user-import"
                 title="Bulk User Import"
-                size="small"
                 clicked={currentPage === "/guides/user-import"}
               />
               <ArticleLeaf
                 to="/guides/bulk-reward-redemption"
                 title="Bulk Reward Redemption Import"
-                size="small"
                 clicked={currentPage === "/guides/bulk-reward-redemption"}
               />
               <ArticleLeaf
                 to="/guides/bulk-user-delete"
                 title="Bulk User Delete Import"
-                size="small"
                 clicked={currentPage === "/guides/bulk-user-delete"}
               />
               <ArticleLeaf
                 to="/guides/event-import"
                 title="Bulk Event Import"
-                size="small"
                 clicked={currentPage === "/guides/event-import"}
               />
             </DropDownMenuItem>
@@ -718,11 +598,11 @@ export function NavigationSidebar() {
             <ArticleLeaf
               to="/features/managing-w-9-compliance-for-participants"
               title="Managing W-9 Compliance"
-              size="big"
               clicked={
                 currentPage ===
                 "/features/managing-w-9-compliance-for-participants"
               }
+              size={"big"}
             />
           </CoreCategory>
 
@@ -737,31 +617,26 @@ export function NavigationSidebar() {
               <ArticleLeaf
                 to="/salesforce/"
                 title="Salesforce Integration"
-                size="small"
                 clicked={currentPage === "/salesforce/"}
               />
               <ArticleLeaf
                 to="/salesforce/user-guide"
                 title="User Guide"
-                size="small"
                 clicked={currentPage === "/salesforce/user-guide"}
               />
               <ArticleLeaf
                 to="/salesforce/faq"
                 title="FAQ"
-                size="small"
                 clicked={currentPage === "/salesforce/faq"}
               />
               <ArticleLeaf
                 to="/salesforce/install-guide"
                 title="Install Guide"
-                size="small"
                 clicked={currentPage === "/salesforce/install-guide"}
               />
               <ArticleLeaf
                 to="/salesforce/immediate-object-upsertion"
                 title="Immediate Object Upsertion"
-                size="small"
                 clicked={
                   currentPage === "/salesforce/immediate-object-upsertion"
                 }
@@ -769,7 +644,6 @@ export function NavigationSidebar() {
               <ArticleLeaf
                 to="/salesforce/using-salesforce-apex-trigger-to-upsert-lead"
                 title="Using a Salesforce APEX Trigger to upsert a Lead"
-                size="small"
                 clicked={
                   currentPage ===
                   "/salesforce/using-salesforce-apex-trigger-to-upsert-lead"
@@ -781,19 +655,16 @@ export function NavigationSidebar() {
               <ArticleLeaf
                 to="/appsflyer-software-integration/"
                 title="AppsFlyer Integration"
-                size="small"
                 clicked={currentPage === "/appsflyer-software-integration/"}
               />
               <ArticleLeaf
                 to="/mobile/appsflyer"
                 title="Quickstart"
-                size="small"
                 clicked={currentPage === "/mobile/appsflyer"}
               />
               <ArticleLeaf
                 to="/mobile/appsflyer/reference"
                 title="Tech Reference"
-                size="small"
                 clicked={currentPage === "/mobile/appsflyer/reference"}
               />
             </DropDownMenuItem>
@@ -802,13 +673,11 @@ export function NavigationSidebar() {
               <ArticleLeaf
                 to="/sftp/"
                 title="SFTP Integration"
-                size="small"
                 clicked={currentPage === "/sftp/"}
               />
               <ArticleLeaf
                 to="/integrations/sftp"
                 title="Configuration Guide"
-                size="small"
                 clicked={currentPage === "/integrations/sftp"}
               />
             </DropDownMenuItem>
@@ -817,19 +686,16 @@ export function NavigationSidebar() {
               <ArticleLeaf
                 to="/branch-metrics/"
                 title="Branch Metrics Integration"
-                size="small"
                 clicked={currentPage === "/branch-metrics/"}
               />
               <ArticleLeaf
                 to="/mobile/branch-metrics"
                 title="Quickstart"
-                size="small"
                 clicked={currentPage === "/mobile/branch-metrics"}
               />
               <ArticleLeaf
                 to="/mobile/branch-metrics/reference"
                 title="Reference"
-                size="small"
                 clicked={currentPage === "/mobile/branch-metrics/reference"}
               />
             </DropDownMenuItem>
@@ -838,21 +704,18 @@ export function NavigationSidebar() {
               <ArticleLeaf
                 to="/segment/"
                 title="Segment Integration"
-                size="small"
                 clicked={currentPage === "/segment/"}
               />
 
               <ArticleLeaf
                 to="/integrations/segment-v2/"
                 title="Segment V2"
-                size="small"
                 clicked={currentPage === "/integrations/segment-v2/"}
               />
 
               <ArticleLeaf
                 to="/integrations/segment-v2/subscription"
                 title="Subscription"
-                size="small"
                 clicked={
                   currentPage === "/integrations/segment-v2/subscription"
                 }
@@ -861,21 +724,18 @@ export function NavigationSidebar() {
               <ArticleLeaf
                 to="/integrations/segment-v2/stream"
                 title="Stream"
-                size="small"
                 clicked={currentPage === "/integrations/segment-v2/stream"}
               />
 
               <ArticleLeaf
                 to="/developer/segment"
                 title="Segment Integration Reference"
-                size="small"
                 clicked={currentPage === "/developer/segment"}
               />
 
               <ArticleLeaf
                 to="/developer/segment/quickstart"
                 title="Segment Web Plugin Quickstart"
-                size="small"
                 clicked={currentPage === "/developer/segment/quickstart"}
               />
             </DropDownMenuItem>
@@ -884,19 +744,16 @@ export function NavigationSidebar() {
               <ArticleLeaf
                 to="/stripe"
                 title="Stripe Integration"
-                size="small"
                 clicked={currentPage === "/stripe"}
               />
               <ArticleLeaf
                 to="/developer/stripe"
                 title="Install Guide"
-                size="small"
                 clicked={currentPage === "/developer/stripe"}
               />
               <ArticleLeaf
                 to="/developer/stripe-v2-install-guide"
                 title="V2 Stripe Integration Install Guide"
-                size="small"
                 clicked={currentPage === "/developer/stripe-v2-install-guide"}
               />
             </DropDownMenuItem>
@@ -905,13 +762,11 @@ export function NavigationSidebar() {
               <ArticleLeaf
                 to="/tangocard"
                 title="TangoCard Integration"
-                size="small"
                 clicked={currentPage === "/tangocard"}
               />
               <ArticleLeaf
                 to="/tangocard-connection"
                 title="Setup Guide"
-                size="small"
                 clicked={currentPage === "/tangocard-connection"}
               />
             </DropDownMenuItem>
@@ -920,13 +775,11 @@ export function NavigationSidebar() {
               <ArticleLeaf
                 to="/zapier"
                 title="Zapier Integration"
-                size="small"
                 clicked={currentPage === "/zapier"}
               />
               <ArticleLeaf
                 to="/integrations/zapier"
                 title="Quickstart Guide"
-                size="small"
                 clicked={currentPage === "/integrations/zapier"}
               />
             </DropDownMenuItem>
@@ -935,19 +788,16 @@ export function NavigationSidebar() {
               <ArticleLeaf
                 to="/recurly"
                 title="Recurly Integration"
-                size="small"
                 clicked={currentPage === "/recurly"}
               />
               <ArticleLeaf
                 to="/developer/recurly/classic"
                 title="Classic Recurly Install Guide"
-                size="small"
                 clicked={currentPage === "/developer/recurly/classic"}
               />
               <ArticleLeaf
                 to="/developer/recurly"
                 title="Install Guide"
-                size="small"
                 clicked={currentPage === "/developer/recurly"}
               />
             </DropDownMenuItem>
@@ -956,13 +806,11 @@ export function NavigationSidebar() {
               <ArticleLeaf
                 to="/stitch"
                 title="Stitch Integration"
-                size="small"
                 clicked={currentPage === "/stitch"}
               />
               <ArticleLeaf
                 to="/developer/stitch/quickstart"
                 title="Integration Guide"
-                size="small"
                 clicked={currentPage === "/developer/stitch/quickstart"}
               />
             </DropDownMenuItem>
@@ -979,85 +827,71 @@ export function NavigationSidebar() {
               <ArticleLeaf
                 to="/topics/email"
                 title="SaaSquatch & Emails"
-                size="small"
                 clicked={currentPage === "/topics/email"}
               />
               <ArticleLeaf
                 to="/customshortdomainguide"
                 title="Custom Short Domains"
-                size="small"
                 clicked={currentPage === "/customshortdomainguide"}
               />
               <ArticleLeaf
                 to="/developer/referral-security"
                 title="Referral Security"
-                size="small"
                 clicked={currentPage === "/developer/referral-security"}
               />
               <ArticleLeaf
                 to="/shared-vs-solo-accounts"
                 title="Account Structure"
-                size="small"
                 clicked={currentPage === "/shared-vs-solo-accounts"}
               />
               <ArticleLeaf
                 to="/guides/marketo-form"
                 title="Marketo"
-                size="small"
                 clicked={currentPage === "/guides/marketo-form"}
               />
               <ArticleLeaf
                 to="/guides/instapage-form"
                 title="Instapage"
-                size="small"
                 clicked={currentPage === "/guides/instapage-form"}
               />
               <ArticleLeaf
                 to="/features/custom-user-fields/"
                 title="Custom User Fields"
-                size="small"
                 clicked={currentPage === "/features/custom-user-fields/"}
               />
               <ArticleLeaf
                 to="/topics/widget-types"
                 title="User Widget Types"
-                size="small"
                 clicked={currentPage === "/topics/widget-types"}
               />
               <ArticleLeaf
                 to="/features/message-links"
                 title="Message Links"
-                size="small"
                 clicked={currentPage === "/features/message-links"}
               />
               <ArticleLeaf
                 to="/developer/conversion"
                 title="Conversion Tech Guide"
-                size="small"
                 clicked={currentPage === "/developer/conversion"}
               />
               <ArticleLeaf
                 to="/developer/attribution"
                 title="Attribution Tech Guide"
-                size="small"
                 clicked={currentPage === "/developer/attribution"}
               />
               <ArticleLeaf
                 to="/breaking-changes"
                 title="Breaking Changes"
-                size="small"
                 clicked={currentPage === "/breaking-changes"}
               />
               <ArticleLeaf
                 to="/bestpractices/common-pitfalls"
                 title="Common Pitfalls"
-                size="small"
                 clicked={currentPage === "/bestpractices/common-pitfalls"}
               />
               <ArticleLeaf
                 to="/developer/widgets/writing-a-web-component-for-saasquatch"
                 title="Writing a Web Component for SaaSquatch"
-                size="small"
                 clicked={
                   currentPage ===
                   "/developer/widgets/writing-a-web-component-for-saasquatch"
@@ -1069,32 +903,27 @@ export function NavigationSidebar() {
               <ArticleLeaf
                 to="/developer/squatchjs"
                 title="About"
-                size="small"
                 clicked={currentPage === "/developer/squatchjs"}
               />
               <ArticleLeaf
                 to="/squatchjs/signed-requests"
                 title="Signed Requests"
-                size="small"
                 clicked={currentPage === "/squatchjs/signed-requests"}
               />
               <ArticleLeaf
                 to="/developer/squatchjs/issue"
-                title="Issue Code List (list of 53 issue links)"
-                size="small"
+                title="Issue Code List"
                 clicked={currentPage === "/developer/squatchjs/issue"}
               />
               <Separator text="Version 2" />
               <ArticleLeaf
                 to="/developer/squatchjs/v2"
                 title="Quickstart"
-                size="small"
                 clicked={currentPage === "/developer/squatchjs/v2"}
               />
               <ArticleLeaf
                 to="/developer/squatchjs/v2/advanced-use-cases"
                 title="Advanced Use Cases"
-                size="small"
                 clicked={
                   currentPage === "/developer/squatchjs/v2/advanced-use-cases"
                 }
@@ -1102,13 +931,11 @@ export function NavigationSidebar() {
               <ArticleLeaf
                 to="/developer/squatchjs/v2/reference"
                 title="Reference"
-                size="small"
                 clicked={currentPage === "/developer/squatchjs/v2/reference"}
               />
               <ArticleLeaf
                 to="/developer/squatchjs/cookies"
                 title="Tracking Cookies"
-                size="small"
                 clicked={currentPage === "/developer/squatchjs/cookies"}
               />
             </DropDownMenuItem>
@@ -1118,13 +945,11 @@ export function NavigationSidebar() {
               <ArticleLeaf
                 to="/graphql/reference"
                 title="GraphQL Reference"
-                size="small"
                 clicked={currentPage === "/graphql/reference"}
               />
               <ArticleLeaf
                 to="/graphql/custom-widget"
                 title="Custom Widget via GraphQL"
-                size="small"
                 clicked={currentPage === "/graphql/custom-widget"}
               />
 
@@ -1132,25 +957,21 @@ export function NavigationSidebar() {
               <ArticleLeaf
                 to="/api"
                 title="API Overview"
-                size="small"
                 clicked={currentPage === "/api"}
               />
               <ArticleLeaf
                 to="/api/authentication"
                 title="Authentication"
-                size="small"
                 clicked={currentPage === "/api/authentication"}
               />
               <ArticleLeaf
                 to="/api/openendpoints"
                 title="API Open Endpoints"
-                size="small"
                 clicked={currentPage === "/api/openendpoints"}
               />
               <ArticleLeaf
                 to="/api/errors"
                 title="Errors"
-                size="small"
                 clicked={currentPage === "/api/errors"}
               />
 
@@ -1159,7 +980,6 @@ export function NavigationSidebar() {
               <ArticleLeaf
                 to="/api/methods"
                 title="Full list of Methods"
-                size="small"
                 clicked={currentPage === "/api/methods"}
               />
 
@@ -1167,7 +987,6 @@ export function NavigationSidebar() {
                 <ArticleLeaf
                   to="/api/methods#Account"
                   title="Account Overview"
-                  size="small"
                   clicked={currentPage === "/api/methods#Account"}
                 />
                 <MethodLeaf
@@ -1184,7 +1003,6 @@ export function NavigationSidebar() {
                 <ArticleLeaf
                   to="/api/methods#User"
                   title="User Overview"
-                  size="small"
                   clicked={currentPage === "/api/methods#User"}
                 />
                 <MethodLeaf
@@ -1269,7 +1087,6 @@ export function NavigationSidebar() {
                 <ArticleLeaf
                   to="/api/methods#User-Event"
                   title="User Event Overview"
-                  size="small"
                   clicked={currentPage === "/api/methods#User-Event"}
                 />
                 <MethodLeaf
@@ -1286,7 +1103,6 @@ export function NavigationSidebar() {
                 <ArticleLeaf
                   to="/api/methods#Share-Links"
                   title="Share Links Overview"
-                  size="small"
                   clicked={currentPage === "/api/methods#Share-Links"}
                 />
                 <MethodLeaf
@@ -1310,7 +1126,6 @@ export function NavigationSidebar() {
                 <ArticleLeaf
                   to="/api/methods#Referral-Code"
                   title="Referral Code Overview"
-                  size="small"
                   clicked={currentPage === "/api/methods#Referral-Code"}
                 />
                 <MethodLeaf
@@ -1342,7 +1157,6 @@ export function NavigationSidebar() {
                 <ArticleLeaf
                   to="/api/methods#Referral"
                   title="Referral Overview"
-                  size="small"
                   clicked={currentPage === "/api/methods#Referral"}
                 />
                 <MethodLeaf
@@ -1373,7 +1187,6 @@ export function NavigationSidebar() {
                 <ArticleLeaf
                   to="/api/methods#Reward-Balance"
                   title="Reward Balance Overview"
-                  size="small"
                   clicked={currentPage === "/api/methods#Reward-Balance"}
                 />
                 <MethodLeaf
@@ -1396,7 +1209,6 @@ export function NavigationSidebar() {
                 <ArticleLeaf
                   to="/api/methods#Reward"
                   title="Reward Overview"
-                  size="small"
                   clicked={currentPage === "/api/methods#Reward"}
                 />
                 <MethodLeaf
@@ -1440,7 +1252,6 @@ export function NavigationSidebar() {
                 <ArticleLeaf
                   to="/api/methods#Export"
                   title="Export Overview"
-                  size="small"
                   clicked={currentPage === "/api/methods#Export"}
                 />
                 <MethodLeaf
@@ -1475,7 +1286,6 @@ export function NavigationSidebar() {
               <ArticleLeaf
                 to="/api/methods#hidden"
                 title="Hidden Endpoints"
-                size="small"
                 clicked={currentPage === "/api/methods#hidden"}
               />
             </DropDownMenuItem>
@@ -1484,13 +1294,11 @@ export function NavigationSidebar() {
               <ArticleLeaf
                 to="/api/webhooks"
                 title="Overview"
-                size="small"
                 clicked={currentPage === "/api/webhooks"}
               />
               <ArticleLeaf
                 to="/api/webhooks/security"
                 title="Webhook Security"
-                size="small"
                 clicked={currentPage === "/api/webhooks/security"}
               />
               <MethodLeaf
@@ -1527,19 +1335,16 @@ export function NavigationSidebar() {
               <ArticleLeaf
                 to="/mobile"
                 title="Overview"
-                size="small"
                 clicked={currentPage === "/mobile"}
               />
               <ArticleLeaf
                 to="/mobile/android"
                 title="Android"
-                size="small"
                 clicked={currentPage === "/mobile/android"}
               />
               <ArticleLeaf
                 to="/mobile/ios"
                 title="iOS"
-                size="small"
                 clicked={currentPage === "/mobile/ios"}
               />
             </DropDownMenuItem>
@@ -1547,14 +1352,14 @@ export function NavigationSidebar() {
             <ArticleLeaf
               to="/topics/json-web-tokens"
               title="JSON Web Tokens"
-              size="big"
               clicked={currentPage === "/topics/json-web-tokens"}
+              size={"big"}
             />
             <ArticleLeaf
               to="/developer/testing"
               title="Testing Best Practices"
-              size="big"
               clicked={currentPage === "/developer/testing"}
+              size={"big"}
             />
           </CoreCategory>
           {/* SaaSquatch Product News starts here */}
@@ -1625,21 +1430,15 @@ const Separator = (props: { text: string }) => {
 const ArticleLeaf = (props: {
   to: string;
   title: string;
-  size: string;
   clicked?: boolean;
+  size?: string;
 }) => {
-  if (props.size == "small")
-    return (
-      <li>
-        <SmallLeafLink to={props.to} clicked={props.clicked}>
-          {props.title}
-        </SmallLeafLink>
-      </li>
-    );
   return (
-    <BigLeafLink to={props.to} clicked={props.clicked}>
-      {props.title}
-    </BigLeafLink>
+    <li>
+      <LeafLink to={props.to} clicked={props.clicked} size={props.size}>
+        {props.title}
+      </LeafLink>
+    </li>
   );
 };
 
@@ -1651,12 +1450,12 @@ const MethodLeaf = (props: {
 }) => {
   return (
     <li>
-      <SmallLeafLink to={props.to} clicked={props.clicked}>
+      <LeafLink to={props.to} clicked={props.clicked}>
         <APIDiv>
           {props.title}
           <ButtonsContainerDiv>{props.children}</ButtonsContainerDiv>
         </APIDiv>
-      </SmallLeafLink>
+      </LeafLink>
     </li>
   );
 };

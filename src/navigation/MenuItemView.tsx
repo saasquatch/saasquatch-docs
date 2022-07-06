@@ -1,13 +1,13 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
 
-const StyledSpan = styled.span`
+const StyledSpan = styled.span<{ isNestedDropDown: boolean }>`
   display: block;
   height: fit-content;
   align-items: center;
   width: auto !important;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: ${(props) => (props.isNestedDropDown ? "14px" : "16px")};
+  line-height: ${(props) => (props.isNestedDropDown ? "21px" : "24px")};
   position: relative !important;
   padding: 8px 20% 8px 12px !important;
   cursor: pointer;
@@ -16,33 +16,11 @@ const StyledSpan = styled.span`
   }
 `;
 
-//@ts-ignore
-const NestedStyledSpan = styled(StyledSpan)`
-  font-size: 14px;
-`;
-
 export function MenuItemView(props: MenuItemViewProps) {
-  if (props.isNestedDropDown)
-    return (
-      <li className="mm-vertical" ref={props.parentRef}>
-        <NestedStyledSpan
-          className="mm-next"
-          // href={id}
-          data-target={props.id}
-          onClick={props.onOpen}
-        >
-          {props.title}
-        </NestedStyledSpan>
-        <div className="mm-panel mm-vertical" id={props.id}>
-          <ul className="nav-onpage mm-listview mm-vertical">
-            {props.children}
-          </ul>
-        </div>
-      </li>
-    );
   return (
     <li className="mm-vertical" ref={props.parentRef}>
       <StyledSpan
+        isNestedDropDown={props.isNestedDropDown}
         className="mm-next"
         // href={id}
         data-target={props.id}
@@ -50,7 +28,11 @@ export function MenuItemView(props: MenuItemViewProps) {
       >
         {props.title}
       </StyledSpan>
-      <div className="mm-panel mm-vertical" id={props.id}>
+      <div
+        className="mm-panel mm-vertical"
+        id={props.id}
+        style={{ marginLeft: "12px", borderLeft: "1px solid #003B45" }}
+      >
         <ul className="nav-onpage mm-listview mm-vertical">{props.children}</ul>
       </div>
     </li>
