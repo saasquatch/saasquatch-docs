@@ -5,12 +5,12 @@ import slug from "slug";
 
 import * as Styles from "./NavStyles";
 import { EndpointSummary, EndpointSummarySet } from "src/api/Types";
-import { MMenuContext } from "./NavigationSidebar";
+import { CurrentPageContext, MMenuContext } from "./NavigationSidebar";
 import { VersionContext } from "components/useVersion";
 import { Tooltip } from "components/Tooltip";
 import styled from "styled-components";
 
-const StyledSpan = styled.span`
+const StyledApiSpan = styled.span`
   display: block;
   height: fit-content;
   align-items: center;
@@ -28,13 +28,12 @@ const StyledSpan = styled.span`
 export const StyledApiLink = styled(Link as any)<{ clicked: boolean }>`
   font-size: ${(props) => (props.isSubCategory ? "16px" : "14px")};
   line-height: ${(props) => (props.isSubCategory ? "24px" : "21px")};
-  font-weight: 400;
+  font-weight: ${(props) => (props.clicked ? "700" : "400")} !important;
   padding: 8px 12px;
-  background-color: ${(props) => props.clicked && "#003b45"};
-  margin-left: ${(props) =>
-    props.clicked && !props.isSubCategory ? "-1px" : "0px"};
-  border-left: ${(props) =>
-    props.clicked && !props.isSubCategory ? "2px solid #007A5B" : "0px"};
+  color: ${(props) => (props.clicked ? "white" : "#003B45")} !important;
+  background-color: ${(props) => (props.clicked ? "#003b45" : "white")};
+  margin-left: ${(props) => (props.clicked ? "-1px" : "0px")};
+  border-left: ${(props) => (props.clicked ? "2px solid #007A5B" : "0px")};
   &:hover {
     background-color: ${(props) =>
       props.clicked ? "#003B45" : "#e7edee"} !important;
@@ -142,17 +141,19 @@ function MenuItemView({
   if (data.endpoints.length <= 0) {
     return null;
   }
+  const statesPath = "/api/methods#" + states.anchor;
+  const currentPage = React.useContext(CurrentPageContext);
   return (
     /* API menu item (drop-down) */
     <li className="mm-vertical" ref={refs.parent}>
-      <StyledSpan
+      <StyledApiSpan
         className="mm-next mm-fullsubopen"
         // href={id}
         data-target={states.id}
         onClick={callbacks.doOpen}
       >
         {data.tag}
-      </StyledSpan>
+      </StyledApiSpan>
       <div
         className="mm-panel mm-vertical"
         id={states.id}
@@ -161,16 +162,21 @@ function MenuItemView({
         <ul className="nav-onpage mm-listview mm-vertical">
           <li>
             {" "}
-            <StyledApiLink to={"/api/methods#" + states.anchor}>
+            <StyledApiLink to={statesPath} clicked={currentPage === statesPath}>
               {data.tag} Overview
             </StyledApiLink>
           </li>
 
           {/* API menu item child */}
           {data.endpoints.map((route) => {
+            const routePath = "/api/methods#" + route.anchor;
+            const currentPage = React.useContext(CurrentPageContext);
             return (
               <li key={route.anchor}>
-                <StyledApiLink to={"/api/methods#" + route.anchor}>
+                <StyledApiLink
+                  to={routePath}
+                  clicked={currentPage === routePath}
+                >
                   <MethodDiv>
                     {route.summary}
                     <LabelsDiv>
@@ -207,10 +213,11 @@ function ApiMenuItemChildren({
     console.log({ route });
     // REMEMBER: sub this in
     const path = "/api/methods#" + route.anchor;
+    // const currentPage = React.useContext(CurrentPageContext);
     return (
       // this is one list item (e.g. Account Overview, Delete an Account)
       <li key={route.anchor}>
-        <StyledApiLink to={"/api/methods#" + route.anchor}>
+        <StyledApiLink to={path}>
           <MethodDiv>
             {route.summary}
             <LabelsDiv>
