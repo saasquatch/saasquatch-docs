@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { SidebarSVGProps } from "./SidebarIcons";
 
 export const CoreCategoryLink = styled(Link)`
-  font-family: "Helvetica";
+  font-family: var(--sq-font-family-sans);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -12,9 +12,11 @@ export const CoreCategoryLink = styled(Link)`
   background-color: ${(props) =>
     props.clicked || props.clickedArticle
       ? "var(--sq-nav-surface-primary)"
-      : "white"};
+      : "var(--sq-nav-surface-secondary)"};
   color: ${(props) =>
-    props.clicked || props.clickedArticle ? "white" : "#003B45"};
+    props.clicked || props.clickedArticle
+      ? "white"
+      : "var(--sq-nav-text-on-secondary)"};
   font-size: 16px;
   font-weight: ${(props) =>
     props.clicked || props.clickedArticle
@@ -24,7 +26,9 @@ export const CoreCategoryLink = styled(Link)`
   padding: 8px 12px;
   &:hover {
     background-color: ${(props) =>
-      props.clicked || props.clickedArticle ? "#003B45" : "#e7edee"};
+      props.clicked || props.clickedArticle
+        ? "var(--sq-nav-surface-primary)"
+        : "#e7edee"};
   }
 `;
 
@@ -44,7 +48,7 @@ export const LeafLink = styled(CoreCategoryLink as any)<{ clicked: boolean }>`
 
 export const LeavesUl = styled.ul`
   margin-left: 12px;
-  border-left: 1px solid #003b45;
+  border-left: 1px solid var(--sq-nav-surface-primary);
 `;
 /* Line in between core category title (e.g. "Developer Resources") and its subcategories */
 
@@ -98,7 +102,9 @@ export const SidebarSVG: React.FC<SidebarSVGProps> = ({
         width={width}
         height="auto"
         viewBox={viewBox}
-        fill={clicked || clickedArticle ? "white" : "#003B45"}
+        fill={
+          clicked || clickedArticle ? "white" : "var(--sq-nav-surface-primary)"
+        }
         xmlns="http://www.w3.org/2000/svg"
       >
         <path d={d} />

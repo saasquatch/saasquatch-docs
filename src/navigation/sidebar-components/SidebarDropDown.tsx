@@ -48,7 +48,10 @@ export function DropDownView(props: DropDownProps) {
       <div
         className="mm-panel mm-vertical"
         id={props.id}
-        style={{ marginLeft: "12px", borderLeft: "1px solid #003B45" }}
+        style={{
+          marginLeft: "12px",
+          borderLeft: "1px solid var(--sq-nav-surface-primary)",
+        }}
       >
         <ul className="nav-onpage mm-listview mm-vertical">{props.children}</ul>
       </div>

@@ -30,12 +30,15 @@ export const StyledApiLink = styled(Link)<{ clicked: boolean }>`
   line-height: ${(props) => (props.isSubCategory ? "24px" : "21px")};
   font-weight: ${(props) => (props.clicked ? "700" : "400")};
   padding: 8px 12px;
-  color: ${(props) => (props.clicked ? "white" : "#003B45")};
-  background-color: ${(props) => (props.clicked ? "#003b45" : "white")};
+  color: ${(props) =>
+    props.clicked ? "white" : "var(--sq-nav-text-on-secondary)"};
+  background-color: ${(props) =>
+    props.clicked ? "var(--sq-nav-surface-primary)" : "white"};
   margin-left: ${(props) => (props.clicked ? "-1px" : "0px")};
   border-left: ${(props) => (props.clicked ? "2px solid #007A5B" : "0px")};
   &:hover {
-    background-color: ${(props) => (props.clicked ? "#003B45" : "#e7edee")};
+    background-color: ${(props) =>
+      props.clicked ? "var(--sq-nav-surface-primary)" : "#e7edee"};
   }
 `;
 
@@ -157,7 +160,10 @@ function ApiMenuItemView({
       <div
         className="mm-panel mm-vertical"
         id={states.id}
-        style={{ marginLeft: "12px", borderLeft: "1px solid #003B45" }}
+        style={{
+          marginLeft: "12px",
+          borderLeft: "1px solid var(--sq-nav-surface-primary)",
+        }}
       >
         <ul className="nav-onpage mm-listview mm-vertical">
           <li>
