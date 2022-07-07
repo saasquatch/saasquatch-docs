@@ -1,33 +1,31 @@
-import { Tooltip } from "components/Tooltip";
-import { VersionContext } from "components/useVersion";
-import React from "react";
-import { HashLink as Link } from "react-router-hash-link";
+import React, { useRef } from "react";
 import { useSiteData } from "react-static";
+import { HashLink as Link } from "react-router-hash-link";
 import slug from "slug";
-import { EndpointSummary, EndpointSummarySet } from "src/api/Types";
-import styled from "styled-components";
-import { ApiMenuItemView } from "./ApiMenuItemView";
-import { MenuItemView, useMenuItemHook } from "./MenuItemView";
-import {
-  ArticleLeaf,
-  DropDownMenuItem,
-  GreenButton,
-  GreyButton,
-  MethodLeaf,
-  OrangeButton,
-} from "./NavigationSidebar";
 
-export const CoreCategoryLink = styled(Link)`
-  font-family: "Helvetica";
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+import * as Styles from "./NavStyles";
+import { EndpointSummary, EndpointSummarySet } from "src/api/Types";
+import { MMenuContext } from "./NavigationSidebar";
+import { VersionContext } from "components/useVersion";
+import { Tooltip } from "components/Tooltip";
+import styled from "styled-components";
+
+const StyledSpan = styled.span`
+  display: block;
   height: fit-content;
-  color: ${(props) =>
-    props.clicked || props.clickedArticle ? "white" : "#003B45"} !important;
+  align-items: center;
+  width: auto !important;
+  font-size: 14px;
+  line-height: 21px;
+  position: relative !important;
+  padding: 8px 20% 8px 12px !important;
+  cursor: pointer;
+  &:hover {
+    background-color: #e7edee;
+  }
 `;
 
-export const LeafLink = styled(Link as any)<{ clicked: boolean }>`
+export const StyledApiLink = styled(Link as any)<{ clicked: boolean }>`
   font-size: ${(props) => (props.isSubCategory ? "16px" : "14px")};
   line-height: ${(props) => (props.isSubCategory ? "24px" : "21px")};
   font-weight: 400;
@@ -72,50 +70,133 @@ export const StyledLabelSpan = styled.span`
   cursor: pointer;
 `;
 
-// export const MethodLeaf = (props: {
-//   to: string;
-//   title: string;
-//   children?: React.ReactNode;
-// }) => {
-//   const currentPage = React.useContext(CurrentPageContext);
-//   return (
-//     <li>
-//       <LeafLink to={props.to} clicked={currentPage === props.to}>
-//         <MethodDiv>
-//           {props.title}
-//           <ButtonsContainerDiv>{props.children}</ButtonsContainerDiv>
-//         </MethodDiv>
-//       </LeafLink>
-//     </li>
-//   );
-// };
+function openVeritcalParent($l, mmenuApi) {
+  // var $l = $panel.parent();
 
-function useEndpoints(tag: string) {
-  const { apiRoutes } = useSiteData<{
+  if ($l.hasClass("mm-opened")) {
+    $l.removeClass("mm-opened");
+  } else {
+    $l.addClass("mm-opened");
+  }
+
+  // var $sub = $l.parents(".mm-subopened");
+  // if ($sub.length) {
+  //   console.log("Opening submenu", $l);
+  //   mmenuApi.openPanel($sub.first());
+  //   return;
+  // }
+
+  // mmenuApi.trigger( 'openPanel' 	, $panel );
+  // mmenuApi.trigger( 'openingPanel', $panel );
+  // mmenuApi.trigger( 'openedPanel'	, $panel );
+}
+
+function useMenuItemHook({ tag, idx }) {
+  const { apiRoutes, apiRoutesByTag } = useSiteData<{
     apiRoutes: EndpointSummary[];
     apiRoutesByTag: EndpointSummarySet;
   }>();
-  const { showTags } = VersionContext.useContainer();
+  const { version, versionLabel, showTags } = VersionContext.useContainer();
+  const { mmenuApi } = MMenuContext.useContainer();
+  const parent = useRef(null);
+
   const endpoints = apiRoutes
     .filter((route) => route.tags.includes(tag))
     .filter((route) => showTags(route.tags));
-  return endpoints;
+
+  const id = "#mm-" + (90 + idx);
+  const doOpen = (e) => {
+    e.preventDefault();
+    // console.log("Opening panel", mmenuApi, jQuery(id));
+    openVeritcalParent(jQuery(parent.current), mmenuApi);
+  };
+  const anchor = slug(tag);
+  return {
+    data: {
+      tag,
+      endpoints,
+    },
+    states: {
+      id,
+      anchor,
+    },
+    callbacks: {
+      doOpen,
+    },
+    refs: {
+      parent,
+    },
+  };
 }
 
-function ApiMenuItem(props: { tag: string; idx: number }) {
-  const { tag } = props;
-  const endpoints = useEndpoints(tag);
-  if (endpoints.length <= 0) {
+function MenuItem(props: { tag: string; idx: number }) {
+  return <MenuItemView {...useMenuItemHook(props)} />;
+}
+
+function MenuItemView({
+  states,
+  callbacks,
+  refs,
+  data,
+}: ReturnType<typeof useMenuItemHook>) {
+  if (data.endpoints.length <= 0) {
     return null;
   }
   return (
-    <ApiMenuItemView {...useMenuItemHook()}>
-      <ApiSidebarChildren endpoints={endpoints} tag={tag} />
-    </ApiMenuItemView>
+    /* API menu item (drop-down) */
+    <li className="mm-vertical" ref={refs.parent}>
+      <StyledSpan
+        className="mm-next mm-fullsubopen"
+        // href={id}
+        data-target={states.id}
+        onClick={callbacks.doOpen}
+      >
+        {data.tag}
+      </StyledSpan>
+      <div
+        className="mm-panel mm-vertical"
+        id={states.id}
+        style={{ marginLeft: "12px", borderLeft: "1px solid #003B45" }}
+      >
+        <ul className="nav-onpage mm-listview mm-vertical">
+          <li>
+            {" "}
+            <StyledApiLink to={"/api/methods#" + states.anchor}>
+              {data.tag} Overview
+            </StyledApiLink>
+          </li>
+
+          {/* API menu item child */}
+          {data.endpoints.map((route) => {
+            return (
+              <li key={route.anchor}>
+                <StyledApiLink to={"/api/methods#" + route.anchor}>
+                  <MethodDiv>
+                    {route.summary}
+                    <LabelsDiv>
+                      <StyledLabelSpan
+                        className={
+                          "label docs-label-" + route.httpMethod.toLowerCase()
+                        }
+                      >
+                        {route.httpMethod.toUpperCase()}
+                      </StyledLabelSpan>
+                      {route.tags.includes("Open Endpoint") && (
+                        <OpenEndpointLabel />
+                      )}
+                    </LabelsDiv>
+                  </MethodDiv>
+                </StyledApiLink>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </li>
   );
 }
 
-function ApiSidebarChildren({
+function ApiMenuItemChildren({
   endpoints,
   tag,
 }: {
@@ -129,11 +210,7 @@ function ApiSidebarChildren({
     return (
       // this is one list item (e.g. Account Overview, Delete an Account)
       <li key={route.anchor}>
-        {/* We want:
-              1. Title (summary)
-              2. First button (httpMethod.toUpperCase()), e.g. "POST"
-              3. Second button if it exists ("Open Endpoint") */}
-        <LeafLink to={"/api/methods#" + route.anchor}>
+        <StyledApiLink to={"/api/methods#" + route.anchor}>
           <MethodDiv>
             {route.summary}
             <LabelsDiv>
@@ -145,14 +222,16 @@ function ApiSidebarChildren({
               {route.tags.includes("Open Endpoint") && <OpenEndpointLabel />}
             </LabelsDiv>
           </MethodDiv>
-        </LeafLink>
+        </StyledApiLink>
       </li>
     );
   });
   return (
     <>
       <li>
-        <LeafLink to={"/api/methods#" + slug(tag)}>{tag} Overview</LeafLink>
+        <StyledApiLink to={"/api/methods#" + slug(tag)}>
+          {tag} Overview
+        </StyledApiLink>
       </li>
       {children}
     </>
@@ -170,15 +249,7 @@ function OpenEndpointLabel() {
       }
       placement="right"
     >
-      <StyledLabelSpan
-        className="label pull-right"
-        style={{
-          backgroundColor: "#999999",
-          textTransform: "none",
-        }}
-      >
-        Open Endpoint
-      </StyledLabelSpan>
+      <span className="label pull-right">Open Endpoint</span>
     </Tooltip>
   );
 }
@@ -189,225 +260,13 @@ export default function ApiSidebar() {
     apiRoutesByTag: EndpointSummarySet;
   }>();
 
-  console.log({ apiRoutesByTag });
-
   return (
     <>
       {Object.keys(apiRoutesByTag)
         .filter((tag) => tag)
         .map((tag, idx) => (
-          <ApiMenuItem tag={tag} idx={idx} key={tag} />
+          <MenuItem tag={tag} idx={idx} key={tag} />
         ))}
     </>
   );
 }
-
-// export default function ApiSidebar() {
-//   return (
-//     <div>
-//       <ArticleLeaf to="/api/methods" title="Full list of Methods" />
-
-//       <DropDownMenuItem title="Account" isNestedDropDown>
-//         <ArticleLeaf to="/api/methods#Account" title="Account Overview" />
-//         <MethodLeaf
-//           to="/api/methods#open_delete_account"
-//           title="Delete an account"
-//         >
-//           <GreyButton>DELETE</GreyButton>
-//           <GreyButton>Open Endpoint</GreyButton>
-//         </MethodLeaf>
-//       </DropDownMenuItem>
-
-//       <DropDownMenuItem title="User" isNestedDropDown>
-//         <ArticleLeaf to="/api/methods#User" title="User Overview" />
-//         <MethodLeaf to="/api/methods#get_user_pii" title="Lookup a user PII">
-//           <GreenButton>get</GreenButton>
-//         </MethodLeaf>
-//         <MethodLeaf to="/api/methods#block_user" title="Block user">
-//           <OrangeButton>post</OrangeButton>
-//         </MethodLeaf>
-//         <MethodLeaf to="/api/methods#unblock_user" title="Unblock user">
-//           <OrangeButton>post</OrangeButton>
-//         </MethodLeaf>
-//         <MethodLeaf to="/api/methods#list_users" title="List users">
-//           <GreenButton>get</GreenButton>
-//         </MethodLeaf>
-//         <MethodLeaf to="/api/methods#open_user_upsert" title="User Upsert">
-//           <OrangeButton>put</OrangeButton>
-//           <GreyButton>Open Endpoint</GreyButton>
-//         </MethodLeaf>
-//         <MethodLeaf
-//           to="/api/methods#open_create_user"
-//           title="Create a user and account"
-//         >
-//           <OrangeButton>post</OrangeButton>
-//           <GreyButton>Open Endpoint</GreyButton>
-//         </MethodLeaf>
-//         <MethodLeaf to="/api/methods#open_get_user" title="Lookup a user">
-//           <GreenButton>get</GreenButton>
-//           <GreyButton>Open Endpoint</GreyButton>
-//         </MethodLeaf>
-//         <MethodLeaf to="/api/methods#open_delete_user" title="Delete a user">
-//           <GreyButton>DELETE</GreyButton>
-//           <GreyButton>Open Endpoint</GreyButton>
-//         </MethodLeaf>
-//         <MethodLeaf
-//           to="/api/methods#create_cookie_user"
-//           title="Create Cookie User"
-//         >
-//           <OrangeButton>put</OrangeButton>
-//           <GreyButton>Open Endpoint</GreyButton>
-//         </MethodLeaf>
-//         <MethodLeaf
-//           to="/api/methods#open_get_user_by_code"
-//           title="Get a user by a referral code"
-//         >
-//           <GreenButton>get</GreenButton>
-//           <GreyButton>Open Endpoint</GreyButton>
-//         </MethodLeaf>
-//       </DropDownMenuItem>
-
-//       <DropDownMenuItem title="User Event" isNestedDropDown>
-//         <ArticleLeaf to="/api/methods#User-Event" title="User Event Overview" />
-//         <MethodLeaf to="/api/methods#trackEvent" title="Track User Event">
-//           <OrangeButton>post</OrangeButton>
-//           <GreyButton>Open Endpoint</GreyButton>
-//         </MethodLeaf>
-//       </DropDownMenuItem>
-
-//       <DropDownMenuItem title="Share Links" isNestedDropDown>
-//         <ArticleLeaf
-//           to="/api/methods#Share-Links"
-//           title="Share Links Overview"
-//         />
-//         <MethodLeaf
-//           to="/api/methods#get_shareurls"
-//           title="Lookup a user's share URLs"
-//         >
-//           <GreenButton>get</GreenButton>
-//         </MethodLeaf>
-//         <MethodLeaf
-//           to="/api/methods#open_get_shareurls"
-//           title="Lookup a user's share URLs"
-//         >
-//           <GreenButton>get</GreenButton>
-//           <GreyButton>Open Endpoint</GreyButton>
-//         </MethodLeaf>
-//       </DropDownMenuItem>
-
-//       <DropDownMenuItem title="Referral Code" isNestedDropDown>
-//         <ArticleLeaf
-//           to="/api/methods#Referral-Code"
-//           title="Referral Code Overview"
-//         />
-//         <MethodLeaf to="/api/methods#get_code" title="Lookup a referral code">
-//           <GreenButton>Get</GreenButton>
-//         </MethodLeaf>
-//         <MethodLeaf
-//           to="/api/methods#open_validate_code"
-//           title="Lookup a referral code"
-//         >
-//           <GreenButton>Get</GreenButton>
-//           <GreyButton>Open Endpoint</GreyButton>
-//         </MethodLeaf>
-//         <MethodLeaf
-//           to="/api/methods#open_apply_code"
-//           title="Apply a referral code"
-//         >
-//           <OrangeButton>Post</OrangeButton>
-//           <GreyButton>Open Endpoint</GreyButton>
-//         </MethodLeaf>
-//       </DropDownMenuItem>
-
-//       <DropDownMenuItem title="Referral" isNestedDropDown>
-//         <ArticleLeaf to="/api/methods#Referral" title="Referral Overview" />
-//         <MethodLeaf to="/api/methods#list_referrals" title="List referrals">
-//           <GreenButton>get</GreenButton>
-//         </MethodLeaf>
-//         <MethodLeaf to="/api/methods#get_referral" title="Lookup a Referral">
-//           <GreenButton>get</GreenButton>
-//         </MethodLeaf>
-//         <MethodLeaf
-//           to="/api/methods#open_list_referrals"
-//           title="List referrals"
-//         >
-//           <GreenButton>get</GreenButton>
-//           <GreyButton>Open Endpoint</GreyButton>
-//         </MethodLeaf>
-//       </DropDownMenuItem>
-
-//       <DropDownMenuItem title="Reward Balance" isNestedDropDown>
-//         <ArticleLeaf
-//           to="/api/methods#Reward-Balance"
-//           title="Reward Balance Overview"
-//         />
-//         <MethodLeaf
-//           to="/api/methods#list_balances"
-//           title="List reward balances"
-//         >
-//           <GreenButton>get</GreenButton>
-//         </MethodLeaf>
-//         <MethodLeaf
-//           to="/api/methods#debit_balance"
-//           title="Debit a reward balance"
-//         >
-//           <OrangeButton>post</OrangeButton>
-//         </MethodLeaf>
-//       </DropDownMenuItem>
-
-//       <DropDownMenuItem title="Reward" isNestedDropDown>
-//         <ArticleLeaf to="/api/methods#Reward" title="Reward Overview" />
-//         <MethodLeaf
-//           to="/api/methods#list_rewards"
-//           title="List an account's rewards"
-//         >
-//           <GreenButton>get</GreenButton>
-//         </MethodLeaf>
-//         <MethodLeaf
-//           to="/api/methods#lookup_reward"
-//           title="Lookup a single reward"
-//         >
-//           <GreenButton>get</GreenButton>
-//         </MethodLeaf>
-//         <MethodLeaf
-//           to="/api/methods#debit_reward"
-//           title="Redeem a single reward"
-//         >
-//           <OrangeButton>post</OrangeButton>
-//         </MethodLeaf>
-//         <MethodLeaf
-//           to="/api/methods#cancel_reward"
-//           title="Cancel a single reward"
-//         >
-//           <OrangeButton>post</OrangeButton>
-//         </MethodLeaf>
-//         <MethodLeaf
-//           to="/api/methods#create_reward"
-//           title="Create a single reward"
-//         >
-//           <OrangeButton>post</OrangeButton>
-//         </MethodLeaf>
-//       </DropDownMenuItem>
-
-//       <DropDownMenuItem title="Export" isNestedDropDown>
-//         <ArticleLeaf to="/api/methods#Export" title="Export Overview" />
-//         <MethodLeaf to="/api/methods#create_export" title="Create an Export">
-//           <OrangeButton>post</OrangeButton>
-//         </MethodLeaf>
-//         <MethodLeaf to="/api/methods#get_export" title="Lookup an Export">
-//           <GreenButton>get</GreenButton>
-//         </MethodLeaf>
-//         <MethodLeaf
-//           to="/api/methods#download_export"
-//           title="Download an Export"
-//         >
-//           <GreenButton>get</GreenButton>
-//         </MethodLeaf>
-//         <MethodLeaf to="/api/methods#list_exports" title="List Exports">
-//           <GreenButton>get</GreenButton>
-//         </MethodLeaf>
-//       </DropDownMenuItem>
-//       <ArticleLeaf to="/api/methods#hidden" title="Hidden Endpoints" />
-//     </div>
-//   );
-// }

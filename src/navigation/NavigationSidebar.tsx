@@ -17,7 +17,7 @@ import {
   SVGProps,
 } from "./components/IconsSidebar";
 import { CoreCategoryView, useCoreCategoryHook } from "./CoreCategoryView";
-import { MenuItemView, useMenuItemHook } from "./MenuItemView";
+import { MenuItemView, useMenuItemHook } from "./DropDownView";
 import "./mmenu-overrides.css";
 import init from "./nav";
 import * as Styles from "./NavStyles";

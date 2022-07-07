@@ -552,7 +552,7 @@ export function NavigationSidebar() {
 
                   <Divider>API Reference</Divider>
                   <LeafLink to="/api/methods">Full list of Methods</LeafLink>
-                  <ApiSidebar />
+                  {/* <ApiSidebar /> */}
                   <LeafLink to="/api/methods#hidden">Hidden Endpoints</LeafLink>
                 </ul>
               </li>
