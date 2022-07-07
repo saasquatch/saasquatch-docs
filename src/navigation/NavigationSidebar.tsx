@@ -731,40 +731,7 @@ export function NavigationSidebar() {
 
                 <Separator text="REST API Reference" />
                 <ArticleLeaf to="/api/methods" title="Full list of Methods" />
-                {/* To hard-code API sidebar: paste everything inside commented out ApiSidebar() */}
                 <ApiSidebar />
-              </DropDownMenuItem>
-
-              <DropDownMenuItem title="Webhook">
-                <ArticleLeaf to="/api/webhooks" title="Overview" />
-                <ArticleLeaf
-                  to="/api/webhooks/security"
-                  title="Webhook Security"
-                />
-                <MethodLeaf
-                  to="/api/methods#create_webhook"
-                  title="Create a webhook subscription"
-                >
-                  <OrangeButton>post</OrangeButton>
-                </MethodLeaf>
-                <MethodLeaf
-                  to="/api/methods#list_webhooks"
-                  title="List webhook subscriptions"
-                >
-                  <GreenButton>get</GreenButton>
-                </MethodLeaf>
-                <MethodLeaf
-                  to="/api/methods#delete_webhook"
-                  title="Delete a webhook subscription"
-                >
-                  <GreyButton>DELETE</GreyButton>
-                </MethodLeaf>
-                <MethodLeaf
-                  to="/api/methods#test_webhook"
-                  title="Test a webhook subscription"
-                >
-                  <OrangeButton>post</OrangeButton>
-                </MethodLeaf>
               </DropDownMenuItem>
 
               <DropDownMenuItem title="Mobile">
