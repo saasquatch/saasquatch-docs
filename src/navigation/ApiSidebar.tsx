@@ -25,18 +25,17 @@ const StyledApiSpan = styled.span`
   }
 `;
 
-export const StyledApiLink = styled(Link as any)<{ clicked: boolean }>`
+export const StyledApiLink = styled(Link)<{ clicked: boolean }>`
   font-size: ${(props) => (props.isSubCategory ? "16px" : "14px")};
   line-height: ${(props) => (props.isSubCategory ? "24px" : "21px")};
-  font-weight: ${(props) => (props.clicked ? "700" : "400")} !important;
+  font-weight: ${(props) => (props.clicked ? "700" : "400")};
   padding: 8px 12px;
-  color: ${(props) => (props.clicked ? "white" : "#003B45")} !important;
+  color: ${(props) => (props.clicked ? "white" : "#003B45")};
   background-color: ${(props) => (props.clicked ? "#003b45" : "white")};
   margin-left: ${(props) => (props.clicked ? "-1px" : "0px")};
   border-left: ${(props) => (props.clicked ? "2px solid #007A5B" : "0px")};
   &:hover {
-    background-color: ${(props) =>
-      props.clicked ? "#003B45" : "#e7edee"} !important;
+    background-color: ${(props) => (props.clicked ? "#003B45" : "#e7edee")};
   }
 `;
 
@@ -128,11 +127,11 @@ function useMenuItemHook({ tag, idx }) {
   };
 }
 
-function MenuItem(props: { tag: string; idx: number }) {
-  return <MenuItemView {...useMenuItemHook(props)} />;
+function ApiMenuItem(props: { tag: string; idx: number }) {
+  return <ApiMenuItemView {...useMenuItemHook(props)} />;
 }
 
-function MenuItemView({
+function ApiMenuItemView({
   states,
   callbacks,
   refs,
@@ -143,6 +142,7 @@ function MenuItemView({
   }
   const statesPath = "/api/methods#" + states.anchor;
   const currentPage = React.useContext(CurrentPageContext);
+  console.log(currentPage);
   return (
     /* API menu item (drop-down) */
     <li className="mm-vertical" ref={refs.parent}>
@@ -272,7 +272,7 @@ export default function ApiSidebar() {
       {Object.keys(apiRoutesByTag)
         .filter((tag) => tag)
         .map((tag, idx) => (
-          <MenuItem tag={tag} idx={idx} key={tag} />
+          <ApiMenuItem tag={tag} idx={idx} key={tag} />
         ))}
     </>
   );

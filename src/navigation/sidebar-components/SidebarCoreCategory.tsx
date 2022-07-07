@@ -1,19 +1,15 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
-import { SVGProps } from "./components/IconsSidebar";
+import { SidebarSVGProps } from "./SidebarIcons";
+import { MMenuContext } from "../NavigationSidebar";
 import {
   CoreCategoryLink,
   DivideLineLi,
-  MMenuContext,
   SidebarSVG as SidebarSVG,
   TitleLink,
-} from "./NavigationSidebar";
+} from "./SidebarStyledComponents";
 
 // Revert back: don't need TitleArrowDiv, get rid of SidebarSVG, revert squatchdocs.less, exclude conditional rendering from CoreCategoryView, paste old Product News into NavigationSidebar.tsx
-const TitleArrowDiv = styled.div`
-  display: flex !important;
-  justify-content: space-between !important;
-`;
 
 const IconTitleDiv = styled.div`
   display: flex;
@@ -21,18 +17,40 @@ const IconTitleDiv = styled.div`
   align-items: center;
   gap: 18px;
 `;
+
+export const CoreCategory = (props: {
+  children?: React.ReactNode;
+  to: string;
+  title: string;
+  icon: SidebarSVGProps;
+  clicked?: boolean;
+  clickedArticle?: boolean;
+}) => {
+  return (
+    <CoreCategoryView
+      {...useCoreCategoryHook()}
+      to={props.to}
+      title={props.title}
+      icon={props.icon}
+      clicked={props.clicked}
+      clickedArticle={props.clickedArticle}
+    >
+      {props.children}
+    </CoreCategoryView>
+  );
+};
+
 export const CoreCategoryView = (props: {
   children?: React.ReactNode;
   to: string;
   title: string;
-  icon: SVGProps;
+  icon: SidebarSVGProps;
   parentRef: any; //re-assign type
   clicked?: boolean;
   clickedArticle?: boolean;
 }) => {
   return (
     <li ref={props.parentRef}>
-      {/* <a class="mm-next" href="#mm-3" goes here, sibling of CoreCategoryLink */}
       <CoreCategoryLink to={props.to} clickedArticle={props.clickedArticle}>
         <IconTitleDiv>
           <SidebarSVG {...props.icon} clickedArticle={props.clickedArticle} />
@@ -61,14 +79,6 @@ export const CoreCategoryView = (props: {
       )}
     </li>
   );
-};
-
-export type MenuItemViewProps = {
-  title?: string;
-  onOpen: (e: React.MouseEvent) => unknown;
-  id: string;
-  children?: React.ReactNode;
-  parentRef: React.MutableRefObject<any>;
 };
 
 function openPanel($l) {

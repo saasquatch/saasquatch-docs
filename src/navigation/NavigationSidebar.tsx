@@ -1,10 +1,8 @@
 import { History } from "history";
-import React, { useEffect, useState, createContext, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { HashLink as Link } from "react-router-hash-link";
 import useBrowserEffect from "src/util/useBrowserEffect";
 // import "mmenu-js/dist/mmenu.css"
-import styled from "styled-components";
 import { createContainer } from "unstated-next";
 import ApiSidebar from "./ApiSidebar";
 import {
@@ -14,173 +12,18 @@ import {
   learningIcon,
   newsIcon,
   runningProgramsIcon,
-  SVGProps,
-} from "./components/IconsSidebar";
-import { CoreCategoryView, useCoreCategoryHook } from "./CoreCategoryView";
-import { MenuItemView, useMenuItemHook } from "./DropDownView";
+} from "./sidebar-components/SidebarIcons";
+import { CoreCategory } from "./sidebar-components/SidebarCoreCategory";
+import { DropDown } from "./sidebar-components/SidebarDropDown";
 import "./mmenu-overrides.css";
 import init from "./nav";
 import * as Styles from "./NavStyles";
-
-export const CoreCategoryLink = styled(Link)`
-  font-family: "Helvetica";
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: fit-content;
-  background-color: ${(props) =>
-    props.clicked || props.clickedArticle
-      ? "var(--sq-nav-surface-primary)"
-      : "white"} !important;
-  color: ${(props) =>
-    props.clicked || props.clickedArticle ? "white" : "#003B45"} !important;
-  font-size: 16px;
-  font-weight: ${(props) =>
-    props.clicked || props.clickedArticle ? "700" : "400"} !important;
-  line-height: 24px;
-  padding: 8px 12px;
-  &:hover {
-    background-color: ${(props) =>
-      props.clicked || props.clickedArticle ? "#003B45" : "#e7edee"} !important;
-  }
-`;
-
-export const TitleLink = styled(CoreCategoryLink as any)`
-  justify-content: start;
-  gap: 8px;
-`;
-
-export const LeafLink = styled(CoreCategoryLink as any)<{ clicked: boolean }>`
-  font-size: ${(props) => (props.isSubCategory ? "16px" : "14px")};
-  line-height: ${(props) => (props.isSubCategory ? "24px" : "21px")};
-  font-weight: 400;
-  padding: 8px 12px;
-  background-color: ${(props) => props.clicked && "#003b45"};
-  margin-left: ${(props) =>
-    props.clicked && !props.isSubCategory ? "-1px" : "0px"};
-  border-left: ${(props) =>
-    props.clicked && !props.isSubCategory ? "2px solid #007A5B" : "0px"};
-  &:hover {
-    background-color: ${(props) =>
-      props.clicked ? "#003B45" : "#e7edee"} !important;
-  }
-`;
-
-/* ul styles */
-
-export const LeavesUl = styled.ul`
-  /* list-style: none !important; */
-  margin-left: 12px !important;
-  border-left: 1px solid #003b45 !important;
-`;
-
-/* Different list items in order of size */
-
-export const DivideLineLi = styled.li`
-  height: 8px;
-  border-bottom: 1px solid #e2e2e2;
-  margin-bottom: 8px !important;
-`;
-
-/* Seperator styled components (to seperate versions, webhooks, etc. in Dev Center section) */
-
-const SeparatorLi = styled.li`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 5px 0px 5px 11px !important;
-  gap: 10px;
-`;
-
-const SeparatorSpan = styled.span`
-  align-self: center;
-  width: fit-content;
-  white-space: nowrap;
-  text-transform: uppercase;
-  color: #999999;
-  font-size: 12px;
-  line-height: 18px;
-  margin: 0 !important;
-`;
-
-const SeparatorLine = styled.div`
-  height: 1px !important;
-  width: 100% !important;
-  background-color: #e2e2e2 !important;
-`;
-
-/* Referral code list items styled components (contain buttons and different layout than other list items) */
-const MethodDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-`;
-
-const ButtonsContainerDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 4px;
-`;
-
-export const GreenButton = styled.span`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-transform: uppercase;
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 18px;
-  color: #ffffff;
-  background-color: #007a5b;
-  width: fit-content;
-  height: fit-content;
-  padding: 2px 5px;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-`;
-
-// @ts-ignore
-export const OrangeButton = styled(GreenButton)`
-  background-color: #e79533;
-`;
-
-//@ts-ignore
-export const GreyButton = styled(GreenButton)`
-  background-color: #999999;
-  text-transform: capitalize;
-`;
-
-/* SVG icon container and render function */
-const IconSVGDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 25px;
-  height: auto;
-`;
-
-export const SidebarSVG: React.FC<SVGProps> = ({
-  width,
-  viewBox,
-  d,
-  clicked,
-  clickedArticle,
-}) => {
-  return (
-    <IconSVGDiv>
-      <svg
-        width={width}
-        height="auto"
-        viewBox={viewBox}
-        fill={clicked || clickedArticle ? "white" : "#003B45"}
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path d={d} />
-      </svg>
-    </IconSVGDiv>
-  );
-};
+import {
+  SeparatorLi,
+  SeparatorSpan,
+  SeparatorLine,
+} from "./sidebar-components/SidebarStyledComponents";
+import { ArticleLeaf } from "./sidebar-components/SidebarArticleLeaf";
 
 function useMMenu() {
   const [mmenuApi, setMMenuApi] = useState(null);
@@ -199,8 +42,7 @@ export const MMenuContext = createContainer(useMMenu);
 export const modalRoot =
   typeof document === "undefined" ? undefined : document.createElement("div");
 
-// So leaf components (ArticleLeaf and MethodLeaf) have access to currentPage (defined in NavigationSidebar())
-// Props drilling used in CoreCategoryView
+// Context for current page
 export const CurrentPageContext = React.createContext("/");
 
 /* Rendering Function */
@@ -228,12 +70,12 @@ export function NavigationSidebar() {
           <ul className="baseMenu">
             {/* Learning SaaSquatch starts here */}
             <CoreCategory
-              to="/success/"
-              title="Learning SaaSquatch"
+              to="#"
+              title="NULL Learning SaaSquatch"
               icon={learningIcon}
-              clicked={currentPage === "/success/"}
+              clicked={currentPage === "#"}
             >
-              <DropDownMenuItem title="SaaSquatch Admin Portal">
+              <DropDown title="SaaSquatch Admin Portal">
                 <ArticleLeaf
                   to="/success/using-referral-saasquatch"
                   title="Using the SaaSquatch Portal"
@@ -250,9 +92,9 @@ export function NavigationSidebar() {
                   to="/features/analytics"
                   title="Program Analytics"
                 />
-              </DropDownMenuItem>
+              </DropDown>
 
-              <DropDownMenuItem title="Growth Automation">
+              <DropDown title="Growth Automation">
                 <ArticleLeaf
                   to="/growth/ga-101"
                   title="Growth Automation 101"
@@ -266,9 +108,9 @@ export function NavigationSidebar() {
                   to="/growth/saasquatch-ga"
                   title="SaaSquatch Growth Automation Platform"
                 />
-              </DropDownMenuItem>
+              </DropDown>
 
-              <DropDownMenuItem title="Referral Programs">
+              <DropDown title="Referral Programs">
                 <ArticleLeaf
                   to="/success/intro"
                   title="Referral Programs 101"
@@ -293,9 +135,9 @@ export function NavigationSidebar() {
                   to="/success/share-options"
                   title="Referral Program Sharing Options"
                 />
-              </DropDownMenuItem>
+              </DropDown>
 
-              <DropDownMenuItem title="Fraud and Security Management">
+              <DropDown title="Fraud and Security Management">
                 <ArticleLeaf
                   to="/success/referral-security"
                   title="Security Management System"
@@ -304,22 +146,22 @@ export function NavigationSidebar() {
                   to="/fraud-and-security"
                   title="Fraud, Security & Fake Referrals"
                 />
-              </DropDownMenuItem>
+              </DropDown>
             </CoreCategory>
 
             {/* Building Programs starts here */}
             <CoreCategory
-              to="#"
-              title="NULL Building Programs"
+              to="/success/"
+              title="Building Programs"
               icon={buildingIcon}
-              clicked={currentPage === "#"}
+              clicked={currentPage === "/success/"}
             >
-              <DropDownMenuItem title="Programs">
+              <DropDown title="Programs">
                 <ArticleLeaf
                   to="/growth/quickstart"
                   title="Growth Automation Program General Quickstart"
                 />
-                <DropDownMenuItem title="Program Library" isNestedDropDown>
+                <DropDown title="Program Library" isNestedDropDown>
                   <ArticleLeaf
                     to="/program/birthday-program"
                     title="Birthday & Anniversary"
@@ -347,7 +189,7 @@ export function NavigationSidebar() {
                     to="/program/points-program"
                     title="Points Rewards"
                   />
-                </DropDownMenuItem>
+                </DropDown>
                 <ArticleLeaf
                   to="/growth/ga-mechanisms"
                   title="Growth Automation Program Mechanisms"
@@ -357,9 +199,9 @@ export function NavigationSidebar() {
                   to="/guides/referral-quickstart"
                   title="Growth Automational Referral Program - Quickstart"
                 />
-              </DropDownMenuItem>
+              </DropDown>
 
-              <DropDownMenuItem title="Program Widget">
+              <DropDown title="Program Widget">
                 <ArticleLeaf
                   to="/designer/widget-editor"
                   title="Customizing Program Widgets"
@@ -369,9 +211,9 @@ export function NavigationSidebar() {
                   title="Custom Program Themes"
                 />
                 <ArticleLeaf to="/mobile/widget" title="Mobile Widget" />
-              </DropDownMenuItem>
+              </DropDown>
 
-              <DropDownMenuItem title="Rewards">
+              <DropDown title="Rewards">
                 <ArticleLeaf
                   to="/feature/rewards"
                   title="Program Reward Options"
@@ -389,9 +231,9 @@ export function NavigationSidebar() {
                   title="Reward Exchange"
                 />
                 <ArticleLeaf to="/topics/conversion" title="Conversion" />
-              </DropDownMenuItem>
+              </DropDown>
 
-              <DropDownMenuItem title="Program Emails">
+              <DropDown title="Program Emails">
                 <ArticleLeaf
                   to="/designer/email-editor"
                   title="Designing Your Program Emails"
@@ -404,9 +246,9 @@ export function NavigationSidebar() {
                   to="/developer/blocked-email-domains"
                   title="Blocked Email Domains"
                 />
-              </DropDownMenuItem>
+              </DropDown>
 
-              <DropDownMenuItem title="W9 Compliance">
+              <DropDown title="W9 Compliance">
                 <ArticleLeaf
                   to="/features/w-9-compliance"
                   title="W-9 Compliance"
@@ -415,7 +257,7 @@ export function NavigationSidebar() {
                   to="/features/configuring-your-reward-catalog-for-w-9"
                   title="Configuring Your Rewards for W-9"
                 />
-              </DropDownMenuItem>
+              </DropDown>
 
               <ArticleLeaf
                 to="/features/user-segmentation"
@@ -437,7 +279,7 @@ export function NavigationSidebar() {
               icon={runningProgramsIcon}
               clicked={currentPage === "/features/rewards-fuel-tank/"}
             >
-              <DropDownMenuItem title="Analytics and Reporting">
+              <DropDown title="Analytics and Reporting">
                 <ArticleLeaf
                   to="/success/ga-analytics"
                   title="Analytics Overview for Growth Automation Programs"
@@ -451,9 +293,9 @@ export function NavigationSidebar() {
                   title="Understanding Your Program Analytics Data"
                 />
                 <ArticleLeaf to="/features/reports/" title="Program Reports" />
-              </DropDownMenuItem>
+              </DropDown>
 
-              <DropDownMenuItem title="User Management">
+              <DropDown title="User Management">
                 <ArticleLeaf
                   to="/guides/one-time"
                   title="Manual User Actions: Add a Reward, Referral or Event"
@@ -475,9 +317,9 @@ export function NavigationSidebar() {
                   to="/topics/identification"
                   title="Identification"
                 />
-              </DropDownMenuItem>
+              </DropDown>
 
-              <DropDownMenuItem title="Bulk Imports">
+              <DropDown title="Bulk Imports">
                 <ArticleLeaf
                   to="/guides/user-import"
                   title="Bulk User Import"
@@ -494,7 +336,7 @@ export function NavigationSidebar() {
                   to="/guides/event-import"
                   title="Bulk Event Import"
                 />
-              </DropDownMenuItem>
+              </DropDown>
 
               <ArticleLeaf
                 to="/features/managing-w-9-compliance-for-participants"
@@ -510,7 +352,7 @@ export function NavigationSidebar() {
               icon={integrationsIcon}
               clicked={currentPage === "/integrations/"}
             >
-              <DropDownMenuItem title="Salesforce">
+              <DropDown title="Salesforce">
                 <ArticleLeaf to="/salesforce/" title="Salesforce Integration" />
                 <ArticleLeaf to="/salesforce/user-guide" title="User Guide" />
                 <ArticleLeaf to="/salesforce/faq" title="FAQ" />
@@ -526,9 +368,9 @@ export function NavigationSidebar() {
                   to="/salesforce/using-salesforce-apex-trigger-to-upsert-lead"
                   title="Using a Salesforce APEX Trigger to upsert a Lead"
                 />
-              </DropDownMenuItem>
+              </DropDown>
 
-              <DropDownMenuItem title="AppsFlyer">
+              <DropDown title="AppsFlyer">
                 <ArticleLeaf
                   to="/appsflyer-software-integration/"
                   title="AppsFlyer Integration"
@@ -538,17 +380,17 @@ export function NavigationSidebar() {
                   to="/mobile/appsflyer/reference"
                   title="Tech Reference"
                 />
-              </DropDownMenuItem>
+              </DropDown>
 
-              <DropDownMenuItem title="SFTP Import">
+              <DropDown title="SFTP Import">
                 <ArticleLeaf to="/sftp/" title="SFTP Integration" />
                 <ArticleLeaf
                   to="/integrations/sftp"
                   title="Configuration Guide"
                 />
-              </DropDownMenuItem>
+              </DropDown>
 
-              <DropDownMenuItem title="Branch Metrics">
+              <DropDown title="Branch Metrics">
                 <ArticleLeaf
                   to="/branch-metrics/"
                   title="Branch Metrics Integration"
@@ -558,9 +400,9 @@ export function NavigationSidebar() {
                   to="/mobile/branch-metrics/reference"
                   title="Reference"
                 />
-              </DropDownMenuItem>
+              </DropDown>
 
-              <DropDownMenuItem title="Segment">
+              <DropDown title="Segment">
                 <ArticleLeaf to="/segment/" title="Segment Integration" />
 
                 <ArticleLeaf
@@ -587,46 +429,46 @@ export function NavigationSidebar() {
                   to="/developer/segment/quickstart"
                   title="Segment Web Plugin Quickstart"
                 />
-              </DropDownMenuItem>
+              </DropDown>
 
-              <DropDownMenuItem title="Stripe">
+              <DropDown title="Stripe">
                 <ArticleLeaf to="/stripe" title="Stripe Integration" />
                 <ArticleLeaf to="/developer/stripe" title="Install Guide" />
                 <ArticleLeaf
                   to="/developer/stripe-v2-install-guide"
                   title="V2 Stripe Integration Install Guide"
                 />
-              </DropDownMenuItem>
+              </DropDown>
 
-              <DropDownMenuItem title="TangoCard">
+              <DropDown title="TangoCard">
                 <ArticleLeaf to="/tangocard" title="TangoCard Integration" />
                 <ArticleLeaf to="/tangocard-connection" title="Setup Guide" />
-              </DropDownMenuItem>
+              </DropDown>
 
-              <DropDownMenuItem title="Zapier">
+              <DropDown title="Zapier">
                 <ArticleLeaf to="/zapier" title="Zapier Integration" />
                 <ArticleLeaf
                   to="/integrations/zapier"
                   title="Quickstart Guide"
                 />
-              </DropDownMenuItem>
+              </DropDown>
 
-              <DropDownMenuItem title="Recurly">
+              <DropDown title="Recurly">
                 <ArticleLeaf to="/recurly" title="Recurly Integration" />
                 <ArticleLeaf
                   to="/developer/recurly/classic"
                   title="Classic Recurly Install Guide"
                 />
                 <ArticleLeaf to="/developer/recurly" title="Install Guide" />
-              </DropDownMenuItem>
+              </DropDown>
 
-              <DropDownMenuItem title="Stitch">
+              <DropDown title="Stitch">
                 <ArticleLeaf to="/stitch" title="Stitch Integration" />
                 <ArticleLeaf
                   to="/developer/stitch/quickstart"
                   title="Integration Guide"
                 />
-              </DropDownMenuItem>
+              </DropDown>
             </CoreCategory>
 
             {/* Developer Resources starts here */}
@@ -636,7 +478,7 @@ export function NavigationSidebar() {
               icon={devIcon}
               clicked={currentPage === "/developer/"}
             >
-              <DropDownMenuItem title="Dev Guides">
+              <DropDown title="Dev Guides">
                 <ArticleLeaf to="/topics/email" title="SaaSquatch & Emails" />
                 <ArticleLeaf
                   to="/customshortdomainguide"
@@ -681,9 +523,9 @@ export function NavigationSidebar() {
                   to="/developer/widgets/writing-a-web-component-for-saasquatch"
                   title="Writing a Web Component for SaaSquatch"
                 />
-              </DropDownMenuItem>
+              </DropDown>
 
-              <DropDownMenuItem title="Squatch.js">
+              <DropDown title="Squatch.js">
                 <ArticleLeaf to="/developer/squatchjs" title="About" />
                 <ArticleLeaf
                   to="/squatchjs/signed-requests"
@@ -707,9 +549,9 @@ export function NavigationSidebar() {
                   to="/developer/squatchjs/cookies"
                   title="Tracking Cookies"
                 />
-              </DropDownMenuItem>
+              </DropDown>
 
-              <DropDownMenuItem title="API">
+              <DropDown title="API">
                 <Separator text="GraphQL API" />
                 <ArticleLeaf
                   to="/graphql/reference"
@@ -732,13 +574,25 @@ export function NavigationSidebar() {
                 <Separator text="REST API Reference" />
                 <ArticleLeaf to="/api/methods" title="Full list of Methods" />
                 <ApiSidebar />
-              </DropDownMenuItem>
+                <ArticleLeaf
+                  to="/api/methods#hidden"
+                  title="Hidden Endpoints"
+                />
+              </DropDown>
 
-              <DropDownMenuItem title="Mobile">
+              <DropDown title="Webhook">
+                <ArticleLeaf to="/api/webhooks" title="Overview" />
+                <ArticleLeaf
+                  to="/api/webhooks/security"
+                  title="Webhook Security"
+                />
+              </DropDown>
+
+              <DropDown title="Mobile">
                 <ArticleLeaf to="/mobile" title="Overview" />
                 <ArticleLeaf to="/mobile/android" title="Android" />
                 <ArticleLeaf to="/mobile/ios" title="iOS" />
-              </DropDownMenuItem>
+              </DropDown>
 
               <ArticleLeaf
                 to="/topics/json-web-tokens"
@@ -765,45 +619,6 @@ export function NavigationSidebar() {
   );
 }
 
-const CoreCategory = (props: {
-  children?: React.ReactNode;
-  to: string;
-  title: string;
-  icon: SVGProps;
-  clicked?: boolean;
-  clickedArticle?: boolean;
-}) => {
-  return (
-    <CoreCategoryView
-      {...useCoreCategoryHook()}
-      to={props.to}
-      title={props.title}
-      icon={props.icon}
-      clicked={props.clicked}
-      clickedArticle={props.clickedArticle}
-    >
-      {props.children}
-    </CoreCategoryView>
-  );
-};
-
-export const DropDownMenuItem = (props: {
-  title: string;
-  children?: React.ReactNode;
-  to?: string;
-  isNestedDropDown?: boolean;
-}) => {
-  return (
-    <MenuItemView
-      {...useMenuItemHook()}
-      title={props.title}
-      isNestedDropDown={props.isNestedDropDown}
-    >
-      {props.children}
-    </MenuItemView>
-  );
-};
-
 const Separator = (props: { text: string }) => {
   return (
     // nested li makes line appear, otherwise there is no line :(
@@ -812,43 +627,6 @@ const Separator = (props: { text: string }) => {
         <SeparatorSpan>{props.text}</SeparatorSpan>
         <SeparatorLine />
       </SeparatorLi>
-    </li>
-  );
-};
-
-export const ArticleLeaf = (props: {
-  to: string;
-  title: string;
-  isSubCategory?: boolean;
-}) => {
-  const currentPage = React.useContext(CurrentPageContext);
-  return (
-    <li>
-      <LeafLink
-        to={props.to}
-        clicked={currentPage === props.to}
-        isSubCategory={props.isSubCategory}
-      >
-        {props.title}
-      </LeafLink>
-    </li>
-  );
-};
-
-export const MethodLeaf = (props: {
-  to: string;
-  title: string;
-  children?: React.ReactNode;
-}) => {
-  const currentPage = React.useContext(CurrentPageContext);
-  return (
-    <li>
-      <LeafLink to={props.to} clicked={currentPage === props.to}>
-        <MethodDiv>
-          {props.title}
-          <ButtonsContainerDiv>{props.children}</ButtonsContainerDiv>
-        </MethodDiv>
-      </LeafLink>
     </li>
   );
 };

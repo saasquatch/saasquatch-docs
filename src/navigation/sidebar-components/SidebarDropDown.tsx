@@ -16,7 +16,24 @@ const StyledSpan = styled.span<{ isNestedDropDown: boolean }>`
   }
 `;
 
-export function MenuItemView(props: MenuItemViewProps) {
+export const DropDown = (props: {
+  title: string;
+  children?: React.ReactNode;
+  to?: string;
+  isNestedDropDown?: boolean;
+}) => {
+  return (
+    <DropDownView
+      {...useDropDownHook()}
+      title={props.title}
+      isNestedDropDown={props.isNestedDropDown}
+    >
+      {props.children}
+    </DropDownView>
+  );
+};
+
+export function DropDownView(props: DropDownProps) {
   return (
     <li className="mm-vertical" ref={props.parentRef}>
       <StyledSpan
@@ -39,7 +56,7 @@ export function MenuItemView(props: MenuItemViewProps) {
   );
 }
 
-export type MenuItemViewProps = {
+export type DropDownProps = {
   title?: string;
   onOpen: (e: React.MouseEvent) => unknown;
   id: string;
@@ -57,7 +74,7 @@ function openVerticalPanel($l) {
 }
 
 let incrNumber = 1;
-export function useMenuItemHook(): MenuItemViewProps {
+export function useDropDownHook(): DropDownProps {
   // const { mmenuApi } = MMenuContext.useContainer();
   const parentRef = useRef(null);
 

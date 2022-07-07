@@ -378,7 +378,7 @@ li.mm-vertical.mm-opened > .mm-panel {
 /* .mm-menu .mm-listview>li.mm-selected>a:not(.mm-next),.mm-menu .mm-listview>li.mm-selected>span{color:#fff;background:#003B45} */
 .mm-menu .mm-listview > li.mm-selected > a:not(.mm-next),
 .mm-menu .mm-listview > li.mm-selected > span {
-  color: #003b45;
+  color: white;
 }
 .mm-menu .mm-divider,
 .mm-menu .mm-listview > li.mm-opened.mm-vertical > .mm-panel,
