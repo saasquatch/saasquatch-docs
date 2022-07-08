@@ -1,13 +1,22 @@
+/*  Name: SidebarDropDown
+    Purpose: Contains drop-down component and view for drop-downs in docs navigation sidebar.
+    Author: M. Solis de Ovando
+*/
+
 import React, { useRef } from "react";
 import styled from "styled-components";
 
 const StyledSpan = styled.span<{ isNestedDropDown: boolean }>`
-  display: block;
-  height: fit-content;
+  display: flex; //block
   align-items: center;
+  text-align: center;
+  /* height: fit-content; */
   width: auto !important;
-  font-size: ${(props) => (props.isNestedDropDown ? "14px" : "16px")};
-  line-height: ${(props) => (props.isNestedDropDown ? "21px" : "24px")};
+  font-size: ${(props) =>
+    props.isNestedDropDown
+      ? "var(--sq-font-size-regular)"
+      : "var(--sq-font-size-caption)"};
+  line-height: 24px;
   position: relative !important;
   padding: 8px 20% 8px 12px !important;
   cursor: pointer;
@@ -49,7 +58,7 @@ export function DropDownView(props: DropDownProps) {
         className="mm-panel mm-vertical"
         id={props.id}
         style={{
-          marginLeft: "12px",
+          marginLeft: "var(--sq-spacing-small)",
           borderLeft: "1px solid var(--sq-nav-surface-primary)",
         }}
       >

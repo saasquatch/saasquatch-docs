@@ -1,3 +1,8 @@
+/*  Name: SidebarIcons
+    Purpose: Contains SVGs that are used in docs navigation sidebar (icons for core categories).
+    Author: M. Solis de Ovando
+*/
+
 export interface SidebarSVGProps {
   width: string;
   viewBox: string;
@@ -7,7 +12,7 @@ export interface SidebarSVGProps {
 }
 
 export const dropdownCaret: SidebarSVGProps = {
-  width: "12px",
+  width: "var(--sq-icon-size-small)",
   viewBox: "0 0 12 8",
   d: "M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z",
 };

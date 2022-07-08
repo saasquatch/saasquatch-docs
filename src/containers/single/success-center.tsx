@@ -9,7 +9,7 @@ const PageWrapper = styled.div`
   padding: 0 50px;
 `;
 
-//SVG icons Success Center cards
+//SVG icons & Success Center cards
 
 const saasGrowthAutoIcon: SVGProps = {
   fill: "#65bd60",

@@ -347,6 +347,21 @@ async function getRoutes() {
       getData: () => ({ guides, integrations }),
       template: "src/containers/single/guides",
     },
+    {
+      path: "/learning-saasquatch",
+      getData: async () => ({ }),
+      template: "src/containers/single/learning-saasquatch",
+    },
+    {
+      path: "/building-programs",
+      getData: async () => ({ }),
+      template: "src/containers/single/building-programs",
+    },
+    {
+      path: "/running-programs",
+      getData: async () => ({ }),
+      template: "src/containers/single/running-programs",
+    },
   ];
   const contentfulPages = entries
     .map(contentfulpagifier)

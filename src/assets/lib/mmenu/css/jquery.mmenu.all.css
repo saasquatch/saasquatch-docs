@@ -115,17 +115,19 @@ li.mm-vertical.mm-opened > .mm-panel {
   height: fit-content;
   bottom: auto;
 }
+
+/* Drop-down arrow position */
 .mm-listview > li.mm-vertical > .mm-next:after,
 .mm-vertical .mm-listview > li > .mm-next:after {
-  top: 16px;
+  top: 14px;
   bottom: auto;
 }
 /* Drop-down arrow when drop-down is open */
 .mm-listview > li.mm-vertical.mm-opened > .mm-next:after,
 .mm-vertical .mm-listview > li.mm-opened > .mm-next:after {
-  -webkit-transform: rotate(-135deg);
-  -ms-transform: rotate(-135deg);
-  transform: rotate(-135deg);
+  -webkit-transform: translate(0px, 5px) rotate(-135deg);
+  -ms-transform: translate(0px, 5px) rotate(-135deg);
+  transform: translate(0px, 5px) rotate(-135deg);
   /* right: 19px; */
 }
 .mm-btn {

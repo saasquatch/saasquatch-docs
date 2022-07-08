@@ -1,3 +1,8 @@
+/*  Name: NavigationSidebar
+    Purpose: Renders docs navigation sidebar.
+    Author: M. Solis de Ovando
+*/
+
 import { History } from "history";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
@@ -38,12 +43,10 @@ function useMMenu() {
 }
 
 export const MMenuContext = createContainer(useMMenu);
+export const CurrentPageContext = React.createContext("/");
 
 export const modalRoot =
   typeof document === "undefined" ? undefined : document.createElement("div");
-
-// Context for current page
-export const CurrentPageContext = React.createContext("/");
 
 /* Rendering Function */
 export function NavigationSidebar() {
@@ -70,10 +73,10 @@ export function NavigationSidebar() {
           <ul className="baseMenu">
             {/* Learning SaaSquatch starts here */}
             <CoreCategory
-              to="#"
-              title="NULL Learning SaaSquatch"
+              to="/learning-saasquatch"
+              title="Learning SaaSquatch"
               icon={learningIcon}
-              clicked={currentPage === "#"}
+              clicked={currentPage === "/learning-saasquatch"}
             >
               <DropDown title="SaaSquatch Admin Portal">
                 <ArticleLeaf
@@ -151,10 +154,10 @@ export function NavigationSidebar() {
 
             {/* Building Programs starts here */}
             <CoreCategory
-              to="/success/"
+              to="/building-programs"
               title="Building Programs"
               icon={buildingIcon}
-              clicked={currentPage === "/success/"}
+              clicked={currentPage === "/building-programs"}
             >
               <DropDown title="Programs">
                 <ArticleLeaf
@@ -274,10 +277,10 @@ export function NavigationSidebar() {
 
             {/* Running Programs starts here */}
             <CoreCategory
-              to="/features/rewards-fuel-tank/"
+              to="/running-programs"
               title="Running Programs"
               icon={runningProgramsIcon}
-              clicked={currentPage === "/features/rewards-fuel-tank/"}
+              clicked={currentPage === "/running-programs"}
             >
               <DropDown title="Analytics and Reporting">
                 <ArticleLeaf
@@ -563,6 +566,7 @@ export function NavigationSidebar() {
                 />
 
                 <Separator text="REST API" />
+
                 <ArticleLeaf to="/api" title="API Overview" />
                 <ArticleLeaf to="/api/authentication" title="Authentication" />
                 <ArticleLeaf
@@ -572,8 +576,10 @@ export function NavigationSidebar() {
                 <ArticleLeaf to="/api/errors" title="Errors" />
 
                 <Separator text="REST API Reference" />
+
                 <ArticleLeaf to="/api/methods" title="Full list of Methods" />
                 <ApiSidebar />
+
                 <ArticleLeaf
                   to="/api/methods#hidden"
                   title="Hidden Endpoints"
@@ -605,6 +611,7 @@ export function NavigationSidebar() {
                 isSubCategory
               />
             </CoreCategory>
+
             {/* SaaSquatch Product News starts here */}
             <CoreCategory
               to="/product-news"

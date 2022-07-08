@@ -1,3 +1,8 @@
+/*  Name: SidebarCoreCategory
+    Purpose: Contains component, view, and hook for docs navigation sidebar core category.
+    Author: M. Solis de Ovando
+*/
+
 import React, { useRef } from "react";
 import styled from "styled-components";
 import { SidebarSVGProps } from "./SidebarIcons";
@@ -8,8 +13,6 @@ import {
   SidebarSVG as SidebarSVG,
   TitleLink,
 } from "./SidebarStyledComponents";
-
-// Revert back: don't need TitleArrowDiv, get rid of SidebarSVG, revert squatchdocs.less, exclude conditional rendering from CoreCategoryView, paste old Product News into NavigationSidebar.tsx
 
 const IconTitleDiv = styled.div`
   display: flex;
