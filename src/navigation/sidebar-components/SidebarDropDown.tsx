@@ -7,10 +7,8 @@ import React, { useRef } from "react";
 import styled from "styled-components";
 
 const StyledSpan = styled.span<{ isNestedDropDown: boolean }>`
-  display: flex; //block
+  display: block;
   align-items: center;
-  text-align: center;
-  /* height: fit-content; */
   width: auto !important;
   font-size: ${(props) =>
     props.isNestedDropDown

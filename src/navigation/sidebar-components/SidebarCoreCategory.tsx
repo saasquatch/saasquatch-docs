@@ -56,12 +56,16 @@ export const CoreCategoryView = (props: {
     <li ref={props.parentRef}>
       <CoreCategoryLink to={props.to} clickedArticle={props.clickedArticle}>
         <IconTitleDiv>
-          <SidebarSVG {...props.icon} clickedArticle={props.clickedArticle} />
+          <SidebarSVG
+            {...props.icon}
+            width="20px"
+            clickedArticle={props.clickedArticle}
+          />
           {props.title}
         </IconTitleDiv>
         {props.children && (
           <SidebarSVG
-            width="35%"
+            width="9px"
             viewBox="0 0 8 13"
             d="M0 1.91L4.58 6.5L0 11.09L1.41 12.5L7.41 6.5L1.41 0.5L0 1.91Z"
           />
