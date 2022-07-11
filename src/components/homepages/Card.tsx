@@ -7,13 +7,15 @@ export const CardGrid = styled.div`
   padding-top: 20px;
   -moz-column-count: 2;
   column-count: 2;
-  column-gap: 30px;
+  column-gap: 36px;
+  column-fill: balance;
 
   & > * {
-    margin-bottom: 30px;
+    width: 100%;
+    margin-bottom: 36px;
   }
 
-  @media (max-width: 599px) {
+  @media (max-width: 550px) {
     display: grid;
     grid-template-columns: 1fr;
   }
@@ -21,26 +23,20 @@ export const CardGrid = styled.div`
 
 const CardContainerDiv = styled.div`
   background-color: #ffffff;
-  max-width: 500px;
   height: fit-content;
-  padding: 0px 27px 27px 27px;
+  padding: 28px;
   border: 1px solid #e2e2e2;
   border-radius: 4px;
   box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.08);
   display: flex;
   justify-self: center;
-  gap: 25px;
+  gap: 24px;
   -webkit-column-break-inside: avoid;
   cursor: pointer;
 
-  @media (max-width: 1025px) {
-    max-width: 300px;
+  @media (max-width: 1300px) {
     flex-direction: column;
     align-items: center;
-  }
-
-  @media (max-width: 599px) {
-    max-width: 100%;
   }
 `;
 
@@ -62,34 +58,31 @@ const CardBodyDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 5px;
+  gap: 12px;
 `;
 
 const CardTitleH3 = styled.h3`
   font-weight: 700;
   font-size: 18px;
-  line-height: 22px !important;
   color: #003b45;
-  line-height: 18px;
-  @media (max-width: 1025px) {
-    margin-top: 0px;
-  }
+  line-height: 20px;
+  margin: 0 !important;
 `;
 
 const CardDescriptionP = styled.p`
   font-weight: 400;
   font-size: 14px;
-  line-height: 21px;
+  line-height: 20px;
   color: #575757;
+  margin: 0 !important;
 `;
 
 const CardLinkA = styled.a`
   font-weight: 700;
   font-size: 14px;
-  line-height: 14px;
+  line-height: 20px;
   color: #06966f !important;
   text-decoration: none !important;
-  margin-top: 5px;
 
   &:hover,
   :focus {
@@ -185,19 +178,21 @@ export const Card: React.FC<CardProps> = ({
   return (
     <CardLinkWrapperA href={linkUrl}>
       <CardContainerDiv>
-        <CardImageDiv>
-          {svgSrc && (
-            <SVGIcon
-              fill={svgSrc.fill}
-              width={svgSrc.width}
-              height={svgSrc.height}
-              viewBox={svgSrc.viewBox}
-              d={svgSrc.d}
-            />
-          )}
-          {imageSrc && <img src={imageSrc} />}
-          {iconCode && <Icon iconCode={iconCode} />}
-        </CardImageDiv>
+        {(svgSrc || imageSrc || iconCode) && (
+          <CardImageDiv>
+            {svgSrc && (
+              <SVGIcon
+                fill={svgSrc.fill}
+                width={svgSrc.width}
+                height={svgSrc.height}
+                viewBox={svgSrc.viewBox}
+                d={svgSrc.d}
+              />
+            )}
+            {imageSrc && <img src={imageSrc} />}
+            {iconCode && <Icon iconCode={iconCode} />}
+          </CardImageDiv>
+        )}
         <CardBodyDiv>
           <CardTitleH3>{title}</CardTitleH3>
           <CardDescriptionP>{description}</CardDescriptionP>
@@ -214,7 +209,6 @@ export interface CardProps {
   imageSrc?: string;
   iconCode?: string;
   svgSrc?: SVGProps;
-
   title: string;
   description: string;
   linkText: string;
