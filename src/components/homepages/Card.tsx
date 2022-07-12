@@ -81,17 +81,17 @@ const CardLinkA = styled.a`
   font-weight: 700;
   font-size: 14px;
   line-height: 20px;
-  color: #06966f !important;
+  color: #007a5b !important;
   text-decoration: none !important;
 
   &:hover,
   :focus {
-    color: #00694d !important;
+    color: #00654c !important;
     text-decoration: underline !important;
   }
 
   &:visited {
-    color: #00694d;
+    color: #00654c;
     text-decoration: none !important;
   }
 `;
