@@ -64,13 +64,11 @@ export const CoreCategoryView = (props: {
           {props.title}
         </IconTitleDiv>
         {props.children && (
-          <div style={{ position: "absolute", right: "5px" }}>
-            <SidebarSVG
-              width="9px"
-              viewBox="0 0 8 13"
-              d="M0 1.91L4.58 6.5L0 11.09L1.41 12.5L7.41 6.5L1.41 0.5L0 1.91Z"
-            />
-          </div>
+          <SidebarSVG
+            width="9px"
+            viewBox="0 0 8 13"
+            d="M0 1.91L4.58 6.5L0 11.09L1.41 12.5L7.41 6.5L1.41 0.5L0 1.91Z"
+          />
         )}
       </CoreCategoryLink>
       {props.children && (

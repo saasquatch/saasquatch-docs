@@ -44,3 +44,12 @@ body {
     border-right-width: 2px;
   }
 }
+
+/* @media (min-width: 1025px) {
+  #my-menu.mm-menu {
+    width: 340px !important;
+  }
+  .mm-page.mm-slideout {
+    margin-left: 340px !important;
+  }
+} */

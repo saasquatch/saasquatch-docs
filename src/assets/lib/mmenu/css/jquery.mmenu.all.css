@@ -432,6 +432,17 @@ html.mm-blocking #mm-blocker {
   min-width: 140px;
   max-width: 440px;
 }
+
+/* @media (max-width: 768px) {
+  .mm-menu.mm-offcanvas {
+    width: 440px !important;
+  }
+}
+@media (max-width: 480px) {
+  .mm-menu.mm-offcanvas {
+    width: 320px !important;
+  }
+} */
 .mm-menu.mm-offcanvas.mm-current {
   display: block;
 }

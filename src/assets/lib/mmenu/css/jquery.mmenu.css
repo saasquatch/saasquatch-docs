@@ -402,6 +402,12 @@ html.mm-blocking #mm-blocker {
   min-width: 140px;
   max-width: 440px;
 }
+
+/* @media (max-width: 768px) {
+  .mm-menu.mm-offcanvas {
+    width: 440px;
+  }
+} */
 .mm-menu.mm-offcanvas.mm-current {
   display: block;
 }
