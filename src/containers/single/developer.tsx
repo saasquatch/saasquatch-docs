@@ -19,6 +19,25 @@ const devGuides = {
   linkUrl: "https://docs.saasquatch.com/guides",
 };
 
+<<<<<<< HEAD
+=======
+const jsonWeb = {
+  title: "JSON Web Tokens",
+  description:
+    "Used to validate the data being supplied to Referral SaaSquatch.",
+  linkText: "Learn more",
+  linkUrl: "https://docs.saasquatch.com/topics/json-web-tokens",
+};
+
+const bestPractices = {
+  title: "Testing Best Practices",
+  description:
+    "Recommended program development process with SaaSquatch to minimize technical errors and installation deficiencies.",
+  linkText: "Learn more",
+  linkUrl: "https://docs.saasquatch.com/developer/testing",
+};
+
+>>>>>>> 52b0b2243cdb7d7a1e3981861a2a6153ec5f66a6
 const squatchJS = {
   title: "Squatch.js",
   description:
@@ -39,6 +58,12 @@ const webhook = {
   description: "This is the content for Webhooks subcategory.",
   linkText: "Learn more",
   linkUrl: "https://docs.saasquatch.com/api/webhooks/",
+const graphQLAPI = {
+  title: "GraphQL API",
+  description:
+    "API for building custom widgets, integrations, and admin interfaces based on GraphQL.",
+  linkText: "Learn more",
+  linkUrl: "https://docs.saasquatch.com/graphql/reference/",
 };
 
 const mobile = {
