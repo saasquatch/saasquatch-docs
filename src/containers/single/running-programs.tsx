@@ -47,7 +47,6 @@ export default function render() {
                   iconCode={card.iconCode}
                   imageSrc={card.imageSrc}
                   svgSrc={card.svgSrc}
-                  linkText={card.linkText}
                   linkUrl={card.linkUrl}
                 />
               </div>

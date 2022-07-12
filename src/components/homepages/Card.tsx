@@ -38,6 +38,11 @@ const CardContainerDiv = styled.div`
     flex-direction: column;
     align-items: center;
   }
+
+  :hover {
+    box-shadow: 3px 3px 7px rgb(0, 122, 91, 0.1);
+    border-color: #b5cdc7;
+  }
 `;
 
 const CardLinkWrapperA = styled.a`
@@ -75,25 +80,6 @@ const CardDescriptionP = styled.p`
   line-height: 20px;
   color: #575757;
   margin: 0 !important;
-`;
-
-const CardLinkA = styled.a`
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 20px;
-  color: #007a5b !important;
-  text-decoration: none !important;
-
-  &:hover,
-  :focus {
-    color: #00654c !important;
-    text-decoration: underline !important;
-  }
-
-  &:visited {
-    color: #00654c;
-    text-decoration: none !important;
-  }
 `;
 
 // Icon styled components
@@ -172,7 +158,6 @@ export const Card: React.FC<CardProps> = ({
   svgSrc,
   imageSrc,
   iconCode,
-  linkText,
   linkUrl,
 }) => {
   return (
@@ -196,7 +181,6 @@ export const Card: React.FC<CardProps> = ({
         <CardBodyDiv>
           <CardTitleH3>{title}</CardTitleH3>
           <CardDescriptionP>{description}</CardDescriptionP>
-          <CardLinkA href={linkUrl}>{linkText}</CardLinkA>
         </CardBodyDiv>
       </CardContainerDiv>
     </CardLinkWrapperA>
@@ -211,7 +195,6 @@ export interface CardProps {
   svgSrc?: SVGProps;
   title: string;
   description: string;
-  linkText: string;
   linkUrl: string;
 }
 
