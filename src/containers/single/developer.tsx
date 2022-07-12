@@ -19,6 +19,35 @@ const devGuides = {
   linkUrl: "https://docs.saasquatch.com/guides",
 };
 
+const squatchJS = {
+  title: "Squatch.js",
+  description:
+    "One-stop shop to integrate a SaaSquatch program into your website or web app.",
+  linkText: "Learn more",
+  linkUrl: "https://docs.saasquatch.com/developer/squatchjs",
+};
+
+const restAPI = {
+  title: "REST API",
+  description: "Build your own custom logic on top of your referral program.",
+  linkText: "Learn more",
+  linkUrl: "https://docs.saasquatch.com/api",
+};
+
+const webhook = {
+  title: "Webhook",
+  description: "This is the content for Webhooks subcategory.",
+  linkText: "Learn more",
+  linkUrl: "https://docs.saasquatch.com/api/webhooks/",
+};
+
+const mobile = {
+  title: "Mobile",
+  description: "Learn how to grow with a referral program on a mobile app.",
+  linkText: "Learn more",
+  linkUrl: "https://docs.saasquatch.com/mobile",
+};
+
 const jsonWeb = {
   title: "JSON Web Tokens",
   description:
@@ -35,46 +64,16 @@ const bestPractices = {
   linkUrl: "https://docs.saasquatch.com/developer/testing",
 };
 
-const squatchJS = {
-  title: "Squatch.js",
-  description:
-    "One-stop shop to integrate a SaaSquatch program into your website or web app.",
-  linkText: "Learn more",
-  linkUrl: "https://docs.saasquatch.com/developer/squatchjs",
-};
-
-const restAPI = {
-  title: "REST API",
-  description: "Build your own custom logic on top of your referral program.",
-  linkText: "Learn more",
-  linkUrl: "https://docs.saasquatch.com/api",
-};
-
-const graphQLAPI = {
-  title: "GraphQL API",
-  description:
-    "API for building custom widgets, integrations, and admin interfaces based on GraphQL.",
-  linkText: "Learn more",
-  linkUrl: "https://docs.saasquatch.com/graphql/reference/",
-};
-
-const mobile = {
-  title: "Mobile",
-  description: "Learn how to grow with a referral program on a mobile app.",
-  linkText: "Learn more",
-  linkUrl: "https://docs.saasquatch.com/mobile",
-};
-
 // Cards to be rendered array & render function
 
 const CardsArray: Array<CardProps> = [
   devGuides,
-  jsonWeb,
-  bestPractices,
   squatchJS,
   restAPI,
-  graphQLAPI,
+  webhook,
   mobile,
+  jsonWeb,
+  bestPractices,
 ];
 
 export default function render() {

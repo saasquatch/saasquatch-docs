@@ -115,14 +115,14 @@ const stitch = {
 
 const CardsArray: Array<CardProps> = [
   salesForce,
-  sftpImport,
-  segment,
-  tangoCard,
-  recurly,
   appsFlyer,
+  sftpImport,
   branchMetrics,
+  segment,
   stripe,
+  tangoCard,
   zapier,
+  recurly,
   stitch,
 ];
 
