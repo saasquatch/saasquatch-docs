@@ -482,6 +482,7 @@ export function NavigationSidebar() {
               clicked={currentPage === "/developer/"}
             >
               <DropDown title="Dev Guides">
+                <ArticleLeaf to="/guides/" title="Overview" />
                 <ArticleLeaf to="/topics/email" title="SaaSquatch & Emails" />
                 <ArticleLeaf
                   to="/customshortdomainguide"
