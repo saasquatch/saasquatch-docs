@@ -58,11 +58,12 @@ Feature: Docs Footer
             | large laptop | 1920px     | 4            |
 
     @ui
-    Scenario: Visual design of the footer categories and sub-categories
+    Scenario: Visual design of the footer 
         Given a user viewing the footer
         Then they see that the <category> font type is <fontType>
         And the <category> font case is <case>
         And there is <line> line under the text
+        And there is the saasquatch 3 pine tree logo visible in the bottom right corner of the footer
 
             | category     | fontType | case       | line |
             | Header       | bold     | upper case | no   |
