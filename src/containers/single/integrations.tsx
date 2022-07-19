@@ -115,14 +115,14 @@ const stitch = {
 
 const CardsArray: Array<CardProps> = [
   salesForce,
-  sftpImport,
-  segment,
-  tangoCard,
-  recurly,
   appsFlyer,
+  sftpImport,
   branchMetrics,
+  segment,
   stripe,
+  tangoCard,
   zapier,
+  recurly,
   stitch,
 ];
 
@@ -144,7 +144,6 @@ export default function render() {
                 iconCode={card.iconCode}
                 imageSrc={card.imageSrc}
                 svgSrc={card.svgSrc}
-                linkText={card.linkText}
                 linkUrl={card.linkUrl}
               />
             </div>
