@@ -2,69 +2,65 @@
 @author:lilla
 Feature: Docs Home pages
 
-    Display the home page items for Developer Center, Integrations and Success Center. Each home page has cards to navigate to specific pages.
-    Each card has a Logo/Image, a Title, a Description and link.
+    There are 5 home pages for the docs site, accessible from the sidenavbar. Each home page has cards to navigate to specific pages.
+    Each card has a Title, a Description and works as a button link.
 
     Background: A user arrives on the SaaSquatch help center page
-        Given the user uses the side navigation bar
-        And selects one of the following items:
-            | Developer Center |
-            | Integrations     |
-            | Success Center   |
+        Given the user looks at the side navigation bar
+        Then they see the following main category items
+            | Learning SaaSquatch     |
+            | Building Programs       |
+            | Running Programs        |
+            | Integrations            |
+            | Developer Resources     |
+            | SaaSquatch Product News |
+        And these items are leading to home pages
+        But the "SaaSquatch Product News" does not have a home page, it's a list of news items
+
+    @ui
+    Scenario: Home pages are designed to display the available main areas from the page
+        Given the user arrives on a home page
+        Then they see a header
+        And a description of the page
+        And they see cards
+
+    @ui
+    Scenario Outline: The number of cards diplayed in a row depends on the screen size
+        Given the user looks at a home page from a <screensize>
+        Then they see <numberOfCardsinaRow> cards in a row
+        Examples:
+            | screensize   | numberOfCardsinaRow |
+            | Desktop      | 2                   |
+            | Small laptop | 2                   |
+            | Tablet       | 2                   |
+            | Mobile       | 1                   |
+
+    @ui
+    Scenario: Cards are designed to highlight the main information about the category
+        Given the user looks at a card on a home page
+        Then they see a title in bold
+        And a description in normal font type
+        And the whole card is a button to navigate to the page
+        And the card has a grey shadow
+
+         @motivating
+    Scenario: Integration homepage cards are special cards with a logo
+    Given the user looks at a card on the "Integrations" home page
+        Then they see the logo of the company we are integrating with
+        And they see a title in bold
+        And a description in normal font type
+        And the whole card is a button to navigate to the page
+        And the card has a grey shadow
+
+    @ui
+    Scenario: The cards background shadow is changing on hover over
+        Given the user looks at a card on a home page
+        When they hover over the cards
+        Then the border turns slightly green #B5CDC7
+        And the drop shadow turns a slight green #007A5B 10% opacity
 
     @motivating
-    Scenario Outline: Cards and navigation items are shown on the page depending on the screen size
+    Scenario: The cards are used to navigate further
         Given the user is on a home page
-        And the screen size is <screenSize>
-        Then menu cards are visible in the center of the page in <numberOfColumns> columns
-        And the navigation bar at the top is <topNavigationBarType>
-        And the footer has <footerSections> sections
-        And the side navigation bar is <sideNavigationType>
-
-        Examples:
-
-            | screenSize   | topNavigationBarType | footerSections | sideNavigationType | numberOfColumns |
-            | small laptop | full                 | 1x4            | full               | 2               |
-            | tablet       | 3 dots and filter    | 2x2            | sandwich           | 2               |
-            | mobile       | 3 dots and filter    | 2x2            | sandwich           | 1               |
-
-    @motivating
-    Scenario Outline: Cards on the home pages are links to more content
-        Given the user is on a home page
-        And clicks on the <linkType>
-        Then a new page opens up with specific content related to the link
-        Examples:
-            | linkType |
-            | card     |
-            | ReadMore |
-
-    @motivating
-    Scenario Outline: List of available links from the home pages
-        Given the user is on the <homePage> home page the user can see the <cards> card
-        And they click on the card
-        Then the card takes the them to the <links> page
-
-        Examples:
-
-            | homePage         | cards                        | links                                                       |
-            | Success Center   | SaaSquatch Growth Automation | https://docs.saasquatch.com/growth/saasquatch-ga/           |
-            | Success Center   | Program Library              | https://docs.saasquatch.com/program/library/                |
-            | Success Center   | Program Setup Quickstart     | https://docs.saasquatch.com/growth/quickstart/              |
-            | Success Center   | Referral Program Quickstart  | https://docs.saasquatch.com/guides/referral-quickstart/     |
-            | Developer Center | Dev Guides                   | https://docs.saasquatch.com/guides/                         |
-            | Developer Center | JSON Web Tokens              | https://docs.saasquatch.com/topics/json-web-tokens/         |
-            | Developer Center | Testing Best Practices       | https://docs.saasquatch.com/developer/testing/              |
-            | Developer Center | Squatch.js                   | https://docs.saasquatch.com/developer/squatchjs/            |
-            | Developer Center | REST API                     | https://docs.saasquatch.com/api/                            |
-            | Developer Center | GraphQL API                  | https://docs.saasquatch.com/graphql/reference/              |
-            | Developer Center | Mobile                       | https://docs.saasquatch.com/mobile/                         |
-            | Integrations     | Salesforce                   | https://docs.saasquatch.com/salesforce/                     |
-            | Integrations     | SFTP Import                  | https://docs.saasquatch.com/sftp/                           |
-            | Integrations     | Segment                      | https://docs.saasquatch.com/segment/                        |
-            | Integrations     | TangoCard                    | https://docs.saasquatch.com/tangocard/                      |
-            | Integrations     | Recurly                      | https://docs.saasquatch.com/recurly/                        |
-            | Integrations     | AppsFlyer                    | https://docs.saasquatch.com/appsflyer-software-integration/ |
-            | Integrations     | Branch Metrics               | https://docs.saasquatch.com/branch-metrics/                 |
-            | Integrations     | Stripe                       | https://docs.saasquatch.com/stripe/                         |
-            | Integrations     | Zapier                       | https://docs.saasquatch.com/zapier/                         |
-            | Integrations     | Stitch                       | https://docs.saasquatch.com/stitch/                         |
+        And clicks on a card
+        Then a new page opens up with specific content related to the card

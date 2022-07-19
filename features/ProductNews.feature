@@ -3,14 +3,14 @@
 
 Feature: Product News Page
 
-    Display the Product News Page with cards to navigate to news.
+    Product News Page shows a list of product news about SaaSquatch product updates, improvements, and new feature releases.
 
     @motivating
     Scenario Outline: Product news updates can be filtered by type
         Given a user selects from the type dropdown
         When they select <postType>
         Then they see a list of <postType>
-        
+
         Examples:
 
             | postType         |
@@ -35,12 +35,16 @@ Feature: Product News Page
     Scenario Outline: News cards are showing on the page in one column regardless of the screen size
         Given a user looks at the card
         Then they see the following items
-            | cardParts |
-            | Title     |
-            | Date      |
-            | Tags      |
-            | Content   |
+        
+            | cardParts         |
+            | Title             |
+            | Date              |
+            | Tags              |
+            | Content           |
+            | Learn More button |
+
         And the layout stays the same for <screensize> screen sizes
+
         Examples:
 
             | screensize   |
