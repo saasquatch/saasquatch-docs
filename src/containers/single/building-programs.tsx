@@ -15,49 +15,49 @@ const programs = {
   title: "Programs",
   description:
     "Learn more about all things program-related, from a quickstart guide to detailed descriptions of each of our available program types and how they work.",
-  linkUrl: "#",
+  linkUrl: "/growth/quickstart",
 };
 
 const programWidgets = {
   title: "Program Widgets",
   description:
     "Most users will engage with your program through a program widget. The articles in this section will support you in creating a memorable end user experience through widget editing and customization.",
-  linkUrl: "#",
+  linkUrl: "/designer/widget-editor",
 };
 
 const rewards = {
   title: "Rewards",
   description:
     "Choosing the right reward is essential for your program’s success. Learn more about our program reward options, including gift card rewards, reward exchange, and more.",
-  linkUrl: "#",
+  linkUrl: "/feature/rewards",
 };
 
 const userSegmentation = {
   title: "User Segmentation",
   description:
     "Divide your users into groups based on shared characteristics to improve program personalization and ROI. Learn how to create user segments and add participants to them in this article.",
-  linkUrl: "#",
+  linkUrl: "/features/user-segmentation",
 };
 
 const programEmails = {
   title: "Program Emails",
   description:
     "Program emails can be configured to send at many stages of the referral lifecycle, from the start of a referral through to conversion. Learn how to design your program emails and add personalized content with short tags.",
-  linkUrl: "#",
+  linkUrl: "/designer/email-editor",
 };
 
 const w9Compliance = {
   title: "W-9 Compliance",
   description:
     "Learn how SaaSquatch helps you remain W-9 compliant when rewarding your U.S. participants. This section explains W-9 compliance for your tenant and your reward catalog.",
-  linkUrl: "#",
+  linkUrl: "/features/w-9-compliance",
 };
 
 const programInternational = {
   title: "Program Internationalization",
   description:
     "Translate and adapt your SaaSquatch programs to support each of the languages and regions you operate in. Learn more about how to internationalize your programs here.",
-  linkUrl: "#",
+  linkUrl: "/features/program-i18n",
 };
 
 const microsites = {

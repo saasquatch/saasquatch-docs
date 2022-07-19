@@ -15,28 +15,28 @@ const analyticsReporting = {
   title: "Analytics and Reporting",
   description:
     "Our built-in analytics dashboards provide you with vital information about your program’s growth and performance. Learn more about analytics and statistics and how to understand them here.",
-  linkUrl: "#",
+  linkUrl: "/success/ga-analytics",
 };
 
 const userManagement = {
   title: "User Management",
   description:
     "Learn everything you need to know about adding and deleting user and event data, user purchase and refund events, attribution and identification, and more.",
-  linkUrl: "#",
+  linkUrl: "/guides/one-time",
 };
 
 const bulkImports = {
   title: "Bulk Imports",
   description:
     "Our Admin Portal allows you to bulk import users, reward redemption information, and user or event deletions. Learn how to perform these actions here.",
-  linkUrl: "#",
+  linkUrl: "/guides/user-import",
 };
 
 const managingw9 = {
   title: "Managing W-9 Compliance",
   description:
     "Learn how SaaSquatch helps you remain W-9 compliant when rewarding your U.S. participants. This section walks you through managing and assessing users’ W-9 compliance in our Admin Portal.",
-  linkUrl: "#",
+  linkUrl: "/features/managing-w-9-compliance-for-participants",
 };
 
 // Cards to be rendered array & render function

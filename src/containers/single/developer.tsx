@@ -15,47 +15,47 @@ const devGuides = {
   title: "Dev Guides",
   description:
     "This section contains quickstart guides and other materials to help you understand and work with custom user fields, conversion and attribution tech, custom web components, Marketo and Instapage, and more.",
-  linkUrl: "https://docs.saasquatch.com/guides",
+  linkUrl: "/guides/",
 };
 
 const jsonWeb = {
   title: "JSON Web Tokens",
   description: "THIS IS PLACEHOLDER TEXT",
-  linkUrl: "https://docs.saasquatch.com/topics/json-web-tokens",
+  linkUrl: "/topics/json-web-tokens",
 };
 
 const bestPractices = {
   title: "Testing Best Practices",
   description:
     "Your SaaSquatch account has both a test and a live tenant. Learn about our best practices for testing with sample data, debugging, and more.",
-  linkUrl: "https://docs.saasquatch.com/developer/testing",
+  linkUrl: "/developer/testing",
 };
 
 const squatchJS = {
   title: "Squatch.js",
   description:
     "Learn about our custom JavaScript library, squatch.js. We have general information about the library available, as well as a quickstart guide, list of issue codes, advanced use cases, reference materials, and more.",
-  linkUrl: "https://docs.saasquatch.com/developer/squatchjs",
+  linkUrl: "/developer/squatchjs",
 };
 
 const api = {
   title: "API",
   description:
     "Find documentation and reference materials related to GraphQL and REST API.",
-  linkUrl: "https://docs.saasquatch.com/api",
+  linkUrl: "/api",
 };
 
 const webhook = {
   title: "Webhook",
   description: "Learn about webhooks, webhook security, and more.",
-  linkUrl: "https://docs.saasquatch.com/api/webhooks/",
+  linkUrl: "/api/webhooks",
 };
 
 const mobile = {
   title: "Mobile",
   description:
     "Our iOS and Android SDKs integrate SaaSquatch programs natively into your apps. This section walks you through using them.",
-  linkUrl: "https://docs.saasquatch.com/mobile",
+  linkUrl: "/mobile",
 };
 
 // Cards to be rendered array & render function
