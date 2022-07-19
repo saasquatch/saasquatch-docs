@@ -87,6 +87,7 @@ Feature: Navigating Sidenav
         Given the user is on the SaaSquatch docs page at any location
         Then a search input field is shown in the sidebar
         And the default state for the search input field is empty
+        And the search is working expected
 
     Scenario: In the side navbar there are different menu item types
         Given the user is on the docs portal
@@ -131,13 +132,12 @@ Feature: Navigating Sidenav
         When the user clicks on the "article" item
         Then the article opens up in the central section of the page
 
-    Scenario: The core category item at the top of the navbar with an icon stays there until you are at that area and used to navigate back to the home page of this category
+    Scenario: The core category item at the top of the navbar with an icon stays there until you are at that category and used to navigate back to the home page of this category
         Given the user navigates within a core category
         Then they see that the "Core category item at the top of the navbar with an icon" item is visible all the time
-        When they click on this item
-        Then the side navbar closes
-        And shows all the sub-categories under the core category closed
-        And the home page opens up for this core category
+        When they click on this item from anywhere withing the category
+        Then the home page opens up for this core category
+        And it changes to a selected state until the user is on the home page
 
     Scenario: The navbar items within a dropdown could be separated into further categories by a line and title
         Given the user opens up a "navigation item with an arrow down"
