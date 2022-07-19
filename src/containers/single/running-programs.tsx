@@ -54,9 +54,7 @@ export default function render() {
       <PageWrapper>
         <PageHeader
           title="Running Programs"
-          highlights="You’ve built your program—what now? Here, we’ll give you all the info you need to run your program successfully, from user management, to analytics, and beyond. 
-          <br/>
-          <br/>
+          highlights="<p style='margin-bottom: 12px;'>You’ve built your program—what now? Here, we’ll give you all the info you need to run your program successfully, from user management, to analytics, and beyond.</p> 
           Click the cards below to learn more about each topic.
           "
           category="landingPages"

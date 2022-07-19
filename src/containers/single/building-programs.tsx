@@ -86,9 +86,7 @@ export default function render() {
       <PageWrapper>
         <PageHeader
           title="Building Programs"
-          highlights="We’ve prepared these articles to help you design and deploy your perfect program—whether you’re building one for the first time or the fifth. This is where you’ll find more information about various program types; how to customize your end user experience through widgets, emails; how to maintain W-9 compliance; and more. 
-          <br />
-          <br />
+          highlights="<p style='margin-bottom: 12px;'>We’ve prepared these articles to help you design and deploy your perfect program—whether you’re building one for the first time or the fifth. This is where you’ll find more information about various program types; how to customize your end user experience through widgets, emails; how to maintain W-9 compliance; and more.</p> 
           Click the cards below to learn more about each topic.
           "
           category="landingPages"

@@ -76,9 +76,7 @@ export default function render() {
       <PageWrapper>
         <PageHeader
           title="Developer Center"
-          highlights="This is the one-stop shop for everything you need to know about our APIs, webhooks, mobile SDKs, and JavaScript library, squatch.js. We have dev guides, testing best practices, and more available to help you understand the tech that powers our platform.  
-          <br/>
-          <br/>
+          highlights="<p style='margin-bottom: 12px;'>This is the one-stop shop for everything you need to know about our APIs, webhooks, mobile SDKs, and JavaScript library, squatch.js. We have dev guides, testing best practices, and more available to help you understand the tech that powers our platform.</p>  
           Click the cards below to learn more about each topic.
           "
           category="landingPages" // right??
