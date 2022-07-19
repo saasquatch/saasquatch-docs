@@ -64,7 +64,7 @@ const microsites = {
   title: "Microsites",
   description:
     "Microsites are often used by clients with affiliate or partner programs. Here, you’ll learn how to set them up and use our microsite editor to customize your end users’ experience.",
-  linkUrl: "#",
+  linkUrl: "/building-programs/microsites/quickstart-guide/",
 };
 
 // Cards to be rendered array & render function

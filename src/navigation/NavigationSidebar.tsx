@@ -263,8 +263,22 @@ export function NavigationSidebar() {
               </DropDown>
 
               <DropDown title="Microsites">
-                <ArticleLeaf to="/designer/widget-editor" title="Information" />
-                <ArticleLeaf to="/themes/custom" title="More information" />
+                <ArticleLeaf
+                  to="/building-programs/microsites/quickstart-guide/"
+                  title="Microsite Quickstart Guide"
+                />
+                <ArticleLeaf
+                  to="/building-programs/microsites/microsite-editor/"
+                  title="SaaSquatch Microsite Editor"
+                />
+                <ArticleLeaf
+                  to="/building-programs/microsites/customizing-microsites/"
+                  title="Customizing Microsites"
+                />
+                <ArticleLeaf
+                  to="/building-programs/microsites/custom-domain/"
+                  title="Setting Up a Custom Domain for a Microsite"
+                />
               </DropDown>
 
               <ArticleLeaf
