@@ -14,7 +14,7 @@ const PageWrapper = styled.div`
 const salesForce = {
   title: "Salesforce",
   description:
-    "Salesforce is the world's leading cloud CRM. SaaSquatch is a managed package built on the Force.com that lets you track your referrals in Salesforce.",
+    "Salesforce is the world's leading cloud CRM. SaaSquatch is a managed package built on Force.com that lets you track your referrals in Salesforce.",
   imageSrc:
     "https://images.ctfassets.net/s68ib1kj8k5n/6lanuIP3dr7CaMAXnjFit6/ec0d742b72e09235769d1d84dc8e8668/salesforce-integration.png",
   linkText: "Read more about Salesforce",
@@ -24,7 +24,7 @@ const salesForce = {
 const sftpImport = {
   title: "SFTP Import",
   description:
-    "SFTP is a secure standard for transfering files. The SFTP Import Integration allows you to upload import files to a SaaSquatch-managed SFTP server for bulk processing.",
+    "SFTP is a secure standard for transferring files. The SFTP Import Integration allows you to upload import files to a SaaSquatch-managed SFTP server for bulk processing.",
   imageSrc:
     "//images.ctfassets.net/s68ib1kj8k5n/4xcpmocHGJyM8qFVSsmFhP/da4f20bca7d2a811abbebb07299f5f72/Group_20.png",
   linkText: "Read more about SFTP Import",
@@ -54,7 +54,7 @@ const tangoCard = {
 const recurly = {
   title: "Recurly",
   description:
-    "Recurly is a fantastic subscription management tool. SaaSquatch's Recurly integration uses Recurly to automatically track referred subscriptions and give people discounts and credits.",
+    "Recurly is a fantastic subscription management tool. SaaSquatch's Recurly integration uses Recurly to automatically track referred subscriptions and give your users discounts and credits.",
   imageSrc:
     "//images.ctfassets.net/s68ib1kj8k5n/4yf7wHTinCyqAm8SCRDTE6/83e7d3a3c6062ac4258ac46bf36c75a9/recurly-integration.png",
   linkText: "Read more about Recurly",
@@ -64,7 +64,7 @@ const recurly = {
 const appsFlyer = {
   title: "AppsFlyer",
   description:
-    "AppsFlyer is a SaaS mobile marketing analytics and attribution platform. SaaSquatch integrates with AppsFlyer to provide better user experience, additional attribution, personalization and analytics by using AppsFlyer's OneLink attribution links.",
+    "AppsFlyer is a SaaS mobile marketing analytics and attribution platform. SaaSquatch integrates with AppsFlyer to provide a better user experience and additional attribution, personalization and analytics by using AppsFlyer's OneLink attribution links.",
   imageSrc:
     "//images.ctfassets.net/s68ib1kj8k5n/WXPaAQBgDz0zu2fWw0ntu/335adb7f439dac9221e0a3e67e9cc702/appsflyerLogo.png",
   linkText: "Read more about AppsFlyer",
@@ -84,7 +84,7 @@ const branchMetrics = {
 const stripe = {
   title: "Stripe",
   description:
-    "Stripe is a fantastic payment platform built for developers. SaaSquatch's Stripe integration uses Stripe Connect to automatically create new referral codes, track referred subscriptions and give people discounts.",
+    "Stripe is a powerful payment platform built for developers. SaaSquatch's Stripe integration uses Stripe Connect to automatically create new referral codes, track referred subscriptions and give people discounts.",
   imageSrc:
     "//images.ctfassets.net/s68ib1kj8k5n/euVWUVNzVHyrUl54ip3tW/b21b817658b996e2882028b2ffb3cd7f/stripe-integration.png",
   linkText: "Read more about Stripe",
@@ -131,7 +131,7 @@ export default function render() {
     <PageWrapper>
       <PageHeader
         title="Integrations"
-        highlights="SaaSquatch integrates with a number of platforms from payment systems that manage automatic referral tracking and fulfillment, to tag management systems that simplify installing integrating widgets inside your product, to mobile deeplinking platforms that let you optimize and personalize the mobile referral experience."
+        highlights="SaaSquatch integrates with a number of platforms, from payment systems that manage automatic referral tracking and fulfillment, to tag management systems that simplify installing integrating widgets inside your product, to mobile deeplinking platforms that let you optimize and personalize the mobile referral experience."
         category="landingPages" // right??
       />
       <CardGrid>

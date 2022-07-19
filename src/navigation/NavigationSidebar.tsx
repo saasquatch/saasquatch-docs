@@ -251,7 +251,7 @@ export function NavigationSidebar() {
                 />
               </DropDown>
 
-              <DropDown title="W9 Compliance">
+              <DropDown title="W-9 Compliance">
                 <ArticleLeaf
                   to="/features/w-9-compliance"
                   title="W-9 Compliance"
@@ -260,6 +260,11 @@ export function NavigationSidebar() {
                   to="/features/configuring-your-reward-catalog-for-w-9"
                   title="Configuring Your Rewards for W-9"
                 />
+              </DropDown>
+
+              <DropDown title="Microsites">
+                <ArticleLeaf to="/designer/widget-editor" title="Information" />
+                <ArticleLeaf to="/themes/custom" title="More information" />
               </DropDown>
 
               <ArticleLeaf

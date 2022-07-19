@@ -14,53 +14,47 @@ const PageWrapper = styled.div`
 const devGuides = {
   title: "Dev Guides",
   description:
-    "Learn how to use our tools to create your own referral and loyalty programs.",
-  linkText: "Learn more",
+    "This section contains quickstart guides and other materials to help you understand and work with custom user fields, conversion and attribution tech, custom web components, Marketo and Instapage, and more.",
   linkUrl: "https://docs.saasquatch.com/guides",
 };
 
 const jsonWeb = {
   title: "JSON Web Tokens",
-  description:
-    "Used to validate the data being supplied to Referral SaaSquatch.",
-  linkText: "Learn more",
+  description: "THIS IS PLACEHOLDER TEXT",
   linkUrl: "https://docs.saasquatch.com/topics/json-web-tokens",
 };
 
 const bestPractices = {
   title: "Testing Best Practices",
   description:
-    "Recommended program development process with SaaSquatch to minimize technical errors and installation deficiencies.",
-  linkText: "Learn more",
+    "Your SaaSquatch account has both a test and a live tenant. Learn about our best practices for testing with sample data, debugging, and more.",
   linkUrl: "https://docs.saasquatch.com/developer/testing",
 };
 
 const squatchJS = {
   title: "Squatch.js",
   description:
-    "One-stop shop to integrate a SaaSquatch program into your website or web app.",
-  linkText: "Learn more",
+    "Learn about our custom JavaScript library, squatch.js. We have general information about the library available, as well as a quickstart guide, list of issue codes, advanced use cases, reference materials, and more.",
   linkUrl: "https://docs.saasquatch.com/developer/squatchjs",
 };
 
-const restAPI = {
-  title: "REST API",
-  description: "Build your own custom logic on top of your referral program.",
-  linkText: "Learn more",
+const api = {
+  title: "API",
+  description:
+    "Find documentation and reference materials related to GraphQL and REST API.",
   linkUrl: "https://docs.saasquatch.com/api",
 };
 
 const webhook = {
   title: "Webhook",
-  description: "This is the content for Webhooks subcategory.",
-  linkText: "Learn more",
+  description: "Learn about webhooks, webhook security, and more.",
   linkUrl: "https://docs.saasquatch.com/api/webhooks/",
 };
 
 const mobile = {
   title: "Mobile",
-  description: "Learn how to grow with a referral program on a mobile app.",
-  linkText: "Learn more",
+  description:
+    "Our iOS and Android SDKs integrate SaaSquatch programs natively into your apps. This section walks you through using them.",
   linkUrl: "https://docs.saasquatch.com/mobile",
 };
 
@@ -69,7 +63,7 @@ const mobile = {
 const CardsArray: Array<CardProps> = [
   devGuides,
   squatchJS,
-  restAPI,
+  api,
   webhook,
   mobile,
   jsonWeb,
@@ -82,7 +76,11 @@ export default function render() {
       <PageWrapper>
         <PageHeader
           title="Developer Center"
-          highlights="SaaSquatch is a full platform for running growth automation programs across web, mobile and all your digital properties."
+          highlights="This is the one-stop shop for everything you need to know about our APIs, webhooks, mobile SDKs, and JavaScript library, squatch.js. We have dev guides, testing best practices, and more available to help you understand the tech that powers our platform.  
+          <br/>
+          <br/>
+          Click the cards below to learn more about each topic.
+          "
           category="landingPages" // right??
         />
         <CardGrid>

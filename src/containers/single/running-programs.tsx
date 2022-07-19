@@ -11,21 +11,41 @@ const PageWrapper = styled.div`
 
 //SVG icons & Running Programs cards
 
-const placeholder = {
-  title: "Learning SaaSquatch Placeholder",
+const analyticsReporting = {
+  title: "Analytics and Reporting",
   description:
-    "Learn more about how to automate and grow your Customer Lifetime Value.",
-  linkText: "No link",
+    "Our built-in analytics dashboards provide you with vital information about your program’s growth and performance. Learn more about analytics and statistics and how to understand them here.",
+  linkUrl: "#",
+};
+
+const userManagement = {
+  title: "User Management",
+  description:
+    "Learn everything you need to know about adding and deleting user and event data, user purchase and refund events, attribution and identification, and more.",
+  linkUrl: "#",
+};
+
+const bulkImports = {
+  title: "Bulk Imports",
+  description:
+    "Our Admin Portal allows you to bulk import users, reward redemption information, and user or event deletions. Learn how to perform these actions here.",
+  linkUrl: "#",
+};
+
+const managingw9 = {
+  title: "Managing W-9 Compliance",
+  description:
+    "Learn how SaaSquatch helps you remain W-9 compliant when rewarding your U.S. participants. This section walks you through managing and assessing users’ W-9 compliance in our Admin Portal.",
   linkUrl: "#",
 };
 
 // Cards to be rendered array & render function
 
 const CardsArray: Array<CardProps> = [
-  placeholder,
-  placeholder,
-  placeholder,
-  placeholder,
+  analyticsReporting,
+  userManagement,
+  bulkImports,
+  managingw9,
 ];
 
 export default function render() {
@@ -34,7 +54,11 @@ export default function render() {
       <PageWrapper>
         <PageHeader
           title="Running Programs"
-          highlights="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          highlights="You’ve built your program—what now? Here, we’ll give you all the info you need to run your program successfully, from user management, to analytics, and beyond. 
+          <br/>
+          <br/>
+          Click the cards below to learn more about each topic.
+          "
           category="landingPages"
         />
         <CardGrid>

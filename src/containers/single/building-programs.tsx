@@ -11,21 +11,73 @@ const PageWrapper = styled.div`
 
 //SVG icons & Building Programs cards
 
-const placeholder = {
-  title: "Learning SaaSquatch Placeholder",
+const programs = {
+  title: "Programs",
   description:
-    "Learn more about how to automate and grow your Customer Lifetime Value.",
-  linkText: "No link",
+    "Learn more about all things program-related, from a quickstart guide to detailed descriptions of each of our available program types and how they work.",
+  linkUrl: "#",
+};
+
+const programWidgets = {
+  title: "Program Widgets",
+  description:
+    "Most users will engage with your program through a program widget. The articles in this section will support you in creating a memorable end user experience through widget editing and customization.",
+  linkUrl: "#",
+};
+
+const rewards = {
+  title: "Rewards",
+  description:
+    "Choosing the right reward is essential for your program’s success. Learn more about our program reward options, including gift card rewards, reward exchange, and more.",
+  linkUrl: "#",
+};
+
+const userSegmentation = {
+  title: "User Segmentation",
+  description:
+    "Divide your users into groups based on shared characteristics to improve program personalization and ROI. Learn how to create user segments and add participants to them in this article.",
+  linkUrl: "#",
+};
+
+const programEmails = {
+  title: "Program Emails",
+  description:
+    "Program emails can be configured to send at many stages of the referral lifecycle, from the start of a referral through to conversion. Learn how to design your program emails and add personalized content with short tags.",
+  linkUrl: "#",
+};
+
+const w9Compliance = {
+  title: "W-9 Compliance",
+  description:
+    "Learn how SaaSquatch helps you remain W-9 compliant when rewarding your U.S. participants. This section explains W-9 compliance for your tenant and your reward catalog.",
+  linkUrl: "#",
+};
+
+const programInternational = {
+  title: "Program Internationalization",
+  description:
+    "Translate and adapt your SaaSquatch programs to support each of the languages and regions you operate in. Learn more about how to internationalize your programs here.",
+  linkUrl: "#",
+};
+
+const microsites = {
+  title: "Microsites",
+  description:
+    "Microsites are often used by clients with affiliate or partner programs. Here, you’ll learn how to set them up and use our microsite editor to customize your end users’ experience.",
   linkUrl: "#",
 };
 
 // Cards to be rendered array & render function
 
 const CardsArray: Array<CardProps> = [
-  placeholder,
-  placeholder,
-  placeholder,
-  placeholder,
+  programs,
+  programWidgets,
+  rewards,
+  userSegmentation,
+  programEmails,
+  w9Compliance,
+  programInternational,
+  microsites,
 ];
 
 export default function render() {
@@ -34,7 +86,11 @@ export default function render() {
       <PageWrapper>
         <PageHeader
           title="Building Programs"
-          highlights="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          highlights="We’ve prepared these articles to help you design and deploy your perfect program—whether you’re building one for the first time or the fifth. This is where you’ll find more information about various program types; how to customize your end user experience through widgets, emails; how to maintain W-9 compliance; and more. 
+          <br />
+          <br />
+          Click the cards below to learn more about each topic.
+          "
           category="landingPages"
         />
         <CardGrid>
