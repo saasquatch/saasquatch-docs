@@ -71,6 +71,13 @@ export function NavigationSidebar() {
       <Styles.Container>
         <nav id="my-menu">
           <ul className="baseMenu">
+            {/* SaaSquatch Product News starts here */}
+            <CoreCategory
+              to="/product-news"
+              title="SaaSquatch Product News"
+              icon={newsIcon}
+              clickedArticle={currentPage === "/product-news"}
+            />
             {/* Learning SaaSquatch starts here */}
             <CoreCategory
               to="/learning-saasquatch"
@@ -119,7 +126,7 @@ export function NavigationSidebar() {
                   title="Referral Programs 101"
                 />
                 <ArticleLeaf
-                  to="/referral-program-optimization"
+                  to="/success/referral-program-optimization"
                   title="Referral Program Optimization"
                 />
                 <ArticleLeaf
@@ -160,11 +167,8 @@ export function NavigationSidebar() {
               clicked={currentPage === "/building-programs"}
             >
               <DropDown title="Programs">
-                <ArticleLeaf
-                  to="/growth/quickstart"
-                  title="Growth Automation Program General Quickstart"
-                />
                 <DropDown title="Program Library" isNestedDropDown>
+                  <ArticleLeaf to="/program/library/" title="Overview" />
                   <ArticleLeaf
                     to="/program/birthday-program"
                     title="Birthday & Anniversary"
@@ -193,6 +197,11 @@ export function NavigationSidebar() {
                     title="Points Rewards"
                   />
                 </DropDown>
+                <ArticleLeaf
+                  to="/growth/quickstart"
+                  title="Growth Automation Program General Quickstart"
+                />
+
                 <ArticleLeaf
                   to="/growth/ga-mechanisms"
                   title="Growth Automation Program Mechanisms"
@@ -551,7 +560,7 @@ export function NavigationSidebar() {
               <DropDown title="Squatch.js">
                 <ArticleLeaf to="/developer/squatchjs" title="About" />
                 <ArticleLeaf
-                  to="/squatchjs/signed-requests"
+                  to="/developer/squatchjs/signed-requests/"
                   title="Signed Requests"
                 />
                 <ArticleLeaf
@@ -575,16 +584,6 @@ export function NavigationSidebar() {
               </DropDown>
 
               <DropDown title="API">
-                <Separator text="GraphQL API" />
-                <ArticleLeaf
-                  to="/graphql/reference"
-                  title="GraphQL Reference"
-                />
-                <ArticleLeaf
-                  to="/graphql/custom-widget"
-                  title="Custom Widget via GraphQL"
-                />
-
                 <Separator text="REST API" />
 
                 <ArticleLeaf to="/api" title="API Overview" />
@@ -594,6 +593,15 @@ export function NavigationSidebar() {
                   title="API Open Endpoints"
                 />
                 <ArticleLeaf to="/api/errors" title="Errors" />
+                <Separator text="GraphQL API" />
+                <ArticleLeaf
+                  to="/graphql/reference"
+                  title="GraphQL Reference"
+                />
+                <ArticleLeaf
+                  to="/graphql/custom-widget"
+                  title="Custom Widget via GraphQL"
+                />
 
                 <Separator text="REST API Reference" />
 
@@ -615,9 +623,9 @@ export function NavigationSidebar() {
               </DropDown>
 
               <DropDown title="Mobile">
-                <ArticleLeaf to="/mobile" title="Overview" />
-                <ArticleLeaf to="/mobile/android" title="Android" />
-                <ArticleLeaf to="/mobile/ios" title="iOS" />
+                <ArticleLeaf to="/mobile/" title="Overview" />
+                <ArticleLeaf to="/mobile/android/" title="Android" />
+                <ArticleLeaf to="/mobile/ios/" title="iOS" />
               </DropDown>
 
               <ArticleLeaf
@@ -631,14 +639,6 @@ export function NavigationSidebar() {
                 isSubCategory
               />
             </CoreCategory>
-
-            {/* SaaSquatch Product News starts here */}
-            <CoreCategory
-              to="/product-news"
-              title="SaaSquatch Product News"
-              icon={newsIcon}
-              clickedArticle={currentPage === "/product-news"}
-            />
           </ul>
         </nav>
       </Styles.Container>
