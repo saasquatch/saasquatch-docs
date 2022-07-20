@@ -185,9 +185,6 @@ export default {
       "saasquatch-webpack",
       {
         externals: {
-          // Jsdom is not used in the browser, but this tells Webpack not to bundle it
-          // Required for make dompurify isomorphic
-          jsdom: "jsDom",
           jquery: "jQuery",
           "highlight.js": "hljs",
         },
@@ -280,7 +277,6 @@ async function getRoutes() {
 
   // TODO: Move this to a plugin, to allow content to me moved to contentful, or `src` directory
   const issues = rawFiles
-    // .filter(r => multimatch([r.path], ["issues/rs*.*"]).length > 0)
     .filter(
       (r) => r.path.includes("squatchjs/issue") && !r.path.includes("template")
     )

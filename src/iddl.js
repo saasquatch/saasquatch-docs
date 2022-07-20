@@ -1,7 +1,4 @@
-import { buildSchema, buildClientSchema, getIntrospectionQuery } from "graphql";
-import { schema as idl } from "./saasquatch";
-
-export const schema = buildSchema(idl);
+import { buildClientSchema, getIntrospectionQuery } from "graphql";
 
 export async function graphQLFetcher(graphQLParams) {
   // TODO: Need to enable CORS on https://app.referralsaasquatch.com/api/v1/graphql to enable this to not use a random tenant's alias

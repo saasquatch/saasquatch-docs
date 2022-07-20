@@ -5,7 +5,6 @@ import styled from "styled-components";
 import uuidv4 from "uuid/v4";
 
 import parse from "html-react-parser";
-import DOMPurify from "../util/IsomoprhicDomPurify";
 import { replace } from "../navigation/replace";
 import useBrowserEffect from "src/util/useBrowserEffect";
 
@@ -157,7 +156,6 @@ export default function Markdown({ source }: { source: string }) {
   const comp = useMemo(() => {
     try {
       const rawMarkup = marked(source, { sanitize: false, renderer: renderer });
-      // const betterHtml = DOMPurify.sanitize(rawMarkup);
       const component = parse(rawMarkup, { replace });
       return component;
     } catch (e) {

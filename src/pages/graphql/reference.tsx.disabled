@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 
 import styled from "styled-components";
-import "./graphqlExplorer-overrides.css"
-// @ts-ignore
+import "./graphqlExplorer-overrides.css";
 import { DocExplorer } from "graphiql/dist/components/DocExplorer.js";
-import { schema, graphQLFetcher, getSchema } from "../../iddl";
-
-// import Markdown from "../../components/Markdown";
+import { getSchema } from "../../iddl";
 import PageHeader from "../../components/PageHeader";
 
 import "graphiql/graphiql.css";
@@ -69,10 +66,7 @@ export default function reference() {
         </h3>
         <Container>
           <div className="graphiql-container">
-            <DocExplorer
-              schema={schema}
-              // fetcher={graphQLFetcher}
-            />
+            <DocExplorer schema={schema} />
           </div>
         </Container>
       </>
