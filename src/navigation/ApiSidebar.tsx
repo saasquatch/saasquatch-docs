@@ -20,11 +20,10 @@ const StyledApiSpan = styled.span`
   height: fit-content;
   align-items: center;
   width: auto !important;
-  font-size: var(--sq-font-size-regular);
+  font-size: 14px;
   line-height: 21px;
   position: relative !important;
-  padding: var(--sq-spacing-x-small) 20% var(--sq-spacing-x-small)
-    var(--sq-spacing-small) !important;
+  padding: 8px 20% 8px 12px !important;
   cursor: pointer;
   &:hover {
     background-color: #e7edee;
@@ -32,29 +31,16 @@ const StyledApiSpan = styled.span`
 `;
 
 export const StyledApiLink = styled(Link)<{ clicked: boolean }>`
-  font-size: ${(props) =>
-    props.isSubCategory
-      ? "var(--sq-font-size-caption)"
-      : "var(--sq-font-size-regular)"};
+  font-size: ${(props) => (props.isSubCategory ? "16px" : "14px")};
   line-height: 21px;
-  font-weight: ${(props) =>
-    props.clicked
-      ? "var(--sq-font-weight-bold)"
-      : "var(--sq-font-weight-regular)"};
-  padding: var(--sq-spacing-x-small) var(--sq-spacing-small);
-  color: ${(props) =>
-    props.clicked
-      ? "var(--sq-nav-text-on-primary)"
-      : "var(--sq-nav-text-on-secondary)"};
-  background-color: ${(props) =>
-    props.clicked
-      ? "var(--sq-nav-surface-primary)"
-      : "var(--sq-nav-surface-secondary)"};
+  font-weight: ${(props) => (props.clicked ? "700" : "400")};
+  padding: 8px 12px;
+  color: ${(props) => (props.clicked ? "#ffffff" : "#003b45")};
+  background-color: ${(props) => (props.clicked ? "#003b45" : "#ffffff")};
   margin-left: ${(props) => (props.clicked ? "-1px" : "0px")};
   border-left: ${(props) => (props.clicked ? "2px solid #007A5B" : "0px")};
   &:hover {
-    background-color: ${(props) =>
-      props.clicked ? "var(--sq-nav-surface-primary)" : "#e7edee"};
+    background-color: ${(props) => (props.clicked ? "#003b45" : "#e7edee")};
   }
 `;
 
@@ -67,7 +53,7 @@ const MethodDiv = styled.div`
 const LabelsDiv = styled.div`
   display: flex;
   flex-direction: row;
-  gap: var(--sq-spacing-xx-small);
+  gap: 4px;
 `;
 
 export const StyledLabelSpan = styled.span`
@@ -75,13 +61,13 @@ export const StyledLabelSpan = styled.span`
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
-  font-weight: var(--sq-font-weight-bold);
-  font-size: var(--sq-font-size-small);
-  line-height: var(--sq-line-height-button-large);
-  color: var(--sq-nav-surface-secondary);
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 18px;
+  color: #ffffff;
   width: fit-content;
   height: fit-content;
-  padding: var(--sq-spacing-xxx-small) 5px;
+  padding: 2px 5px;
   border-radius: 4px;
   border: none;
   cursor: pointer;
@@ -177,8 +163,8 @@ function ApiMenuItemView({
         className="mm-panel mm-vertical"
         id={states.id}
         style={{
-          marginLeft: "var(--sq-spacing-small)",
-          borderLeft: "1px solid var(--sq-nav-surface-primary)",
+          marginLeft: "12px",
+          borderLeft: "1px solid #003b45",
         }}
       >
         <ul className="nav-onpage mm-listview mm-vertical">
