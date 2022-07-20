@@ -28,7 +28,7 @@ const growthAuto = {
 const programs = {
   title: "Programs",
   description:
-    "Referral programs are at the heart of what we do. Here you’ll find a crash course on all things related to referral programs, like how to optimize and market your program.",
+    "Loyalty and referral programs are at the heart of what we do. Here you’ll find an overview of the programs we offer, as well as suggestions on how to market and optimize your program effectively.",
   linkUrl: "/success/intro",
 };
 
