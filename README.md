@@ -1,4 +1,4 @@
-SaaSquatch Documentation
+XXXXSaaSquatch Documentation
 =============
 
 [![Build Status](https://api.travis-ci.org/saasquatch/saasquatch-docs.png)](https://travis-ci.org/saasquatch/saasquatch-docs) [![Dependency Status](https://david-dm.org/saasquatch/saasquatch-docs.svg)](https://david-dm.org/saasquatch/saasquatch-docs)
