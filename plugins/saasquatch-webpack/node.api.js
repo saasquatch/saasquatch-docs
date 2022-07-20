@@ -6,10 +6,10 @@
 export default ({ externals }) => {
   return {
     webpack: (config, { stage }) => {
-      // if (stage === "prod") {
-      //   config.externals = externals;
-      // } else if (stage === "dev") {
-      // }
+      if (stage === "prod") {
+        config.externals = externals;
+      } else if (stage === "dev") {
+      }
       return config;
     },
   };
