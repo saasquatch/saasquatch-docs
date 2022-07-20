@@ -6,9 +6,8 @@
 export default ({ externals }) => {
   return {
     webpack: (config, { stage }) => {
-      console.log("JOHAN", stage, config.externals);
       if (stage === "prod") {
-        config.externals = externals;
+        config.externals.push(externals);
       } else if (stage === "dev") {
       }
       return config;
