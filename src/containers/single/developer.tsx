@@ -20,7 +20,8 @@ const devGuides = {
 
 const jsonWeb = {
   title: "JSON Web Tokens",
-  description: "THIS IS PLACEHOLDER TEXT",
+  description:
+    "Learn about how JSON Web Tokens are used to validate the data being supplied to SaaSquatch in Signed Requests made through squatch.js and Open Endpoints.",
   linkUrl: "/topics/json-web-tokens",
 };
 

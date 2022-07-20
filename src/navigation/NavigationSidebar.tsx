@@ -120,7 +120,7 @@ export function NavigationSidebar() {
                 />
               </DropDown>
 
-              <DropDown title="Referral Programs">
+              <DropDown title="Programs">
                 <ArticleLeaf
                   to="/success/intro"
                   title="Referral Programs 101"
@@ -223,6 +223,10 @@ export function NavigationSidebar() {
                   title="Custom Program Themes"
                 />
                 <ArticleLeaf to="/mobile/widget" title="Mobile Widget" />
+                <ArticleLeaf
+                  to="/features/program-and-portal-statistics/"
+                  title="Program and Portal Statistics"
+                />
               </DropDown>
 
               <DropDown title="Rewards">
@@ -257,17 +261,6 @@ export function NavigationSidebar() {
                 <ArticleLeaf
                   to="/developer/blocked-email-domains"
                   title="Blocked Email Domains"
-                />
-              </DropDown>
-
-              <DropDown title="W-9 Compliance">
-                <ArticleLeaf
-                  to="/features/w-9-compliance"
-                  title="W-9 Compliance"
-                />
-                <ArticleLeaf
-                  to="/features/configuring-your-reward-catalog-for-w-9"
-                  title="Configuring Your Rewards for W-9"
                 />
               </DropDown>
 
@@ -314,10 +307,6 @@ export function NavigationSidebar() {
                 <ArticleLeaf
                   to="/success/ga-analytics"
                   title="Analytics Overview for Growth Automation Programs"
-                />
-                <ArticleLeaf
-                  to="/features/program-and-portal-statistics"
-                  title="Program and Portal Statistics"
                 />
                 <ArticleLeaf
                   to="/success/analytics-data"
@@ -369,11 +358,20 @@ export function NavigationSidebar() {
                 />
               </DropDown>
 
-              <ArticleLeaf
-                to="/features/managing-w-9-compliance-for-participants"
-                title="Managing W-9 Compliance"
-                isSubCategory
-              />
+              <DropDown title="W-9 Compliance">
+                <ArticleLeaf
+                  to="/features/w-9-compliance"
+                  title="W-9 Compliance"
+                />
+                <ArticleLeaf
+                  to="/features/configuring-your-reward-catalog-for-w-9"
+                  title="Configuring Your Rewards for W-9"
+                />
+                <ArticleLeaf
+                  to="/features/managing-w-9-compliance-for-participants"
+                  title="Managing W-9 Compliance"
+                />
+              </DropDown>
             </CoreCategory>
 
             {/* Integrations starts here */}

@@ -25,8 +25,8 @@ const growthAuto = {
   linkUrl: "/growth/ga-101",
 };
 
-const referralPrograms = {
-  title: "Referral Programs",
+const programs = {
+  title: "Programs",
   description:
     "Referral programs are at the heart of what we do. Here you’ll find a crash course on all things related to referral programs, like how to optimize and market your program.",
   linkUrl: "/success/intro",
@@ -44,7 +44,7 @@ const fraudSecurity = {
 const CardsArray: Array<CardProps> = [
   adminPortal,
   growthAuto,
-  referralPrograms,
+  programs,
   fraudSecurity,
 ];
 
