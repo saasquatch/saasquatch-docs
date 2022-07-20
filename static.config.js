@@ -193,8 +193,8 @@ export default {
         },
       },
     ],
-    "react-static-plugin-typescript",
-    "react-static-plugin-less",
+    require.resolve("react-static-plugin-typescript"),
+    require.resolve("react-static-plugin-less"),
     [
       require.resolve("react-static-plugin-source-filesystem"),
       {
@@ -309,12 +309,12 @@ async function getRoutes() {
     },
     {
       path: "/success",
-      getData: async () => ({ }),
+      getData: async () => ({}),
       template: "src/containers/single/success-center",
     },
     {
       path: "/developer",
-      getData: async () => ({ }),
+      getData: async () => ({}),
       template: "src/containers/single/developer",
     },
     {
@@ -349,17 +349,17 @@ async function getRoutes() {
     },
     {
       path: "/learning-saasquatch",
-      getData: async () => ({ }),
+      getData: async () => ({}),
       template: "src/containers/single/learning-saasquatch",
     },
     {
       path: "/building-programs",
-      getData: async () => ({ }),
+      getData: async () => ({}),
       template: "src/containers/single/building-programs",
     },
     {
       path: "/running-programs",
-      getData: async () => ({ }),
+      getData: async () => ({}),
       template: "src/containers/single/running-programs",
     },
   ];
@@ -408,30 +408,33 @@ const HTTP_METHODS = [
  * @return {import("src/api/Types").EndpointSummary[]}
  */
 function getEndpoints(swagger) {
-  return Object.keys(swagger.paths).reduce((
-    /** @type {import("src/api/Types").EndpointSummary[]} */ acc,
-    /** @type {string} */ path
-  ) => {
-    const methods = swagger.paths[path];
-    const subEndpoints = Object.keys(methods)
-      .filter((httpMethod) =>
-        // ignore other parts of Path like `parameters`
-        HTTP_METHODS.includes(/** @type {any} */ httpMethod)
-      )
-      .map((/** @type {string} */ httpMethod) => {
-        /** @type {import("swagger-schema-official").Operation} */ const method =
-          methods[httpMethod];
-        return {
-          httpMethod,
-          path,
-          summary: method.summary,
-          anchor: method["x-docs-anchor"],
-          tags: method.tags,
-        };
-      });
+  return Object.keys(swagger.paths).reduce(
+    (
+      /** @type {import("src/api/Types").EndpointSummary[]} */ acc,
+      /** @type {string} */ path
+    ) => {
+      const methods = swagger.paths[path];
+      const subEndpoints = Object.keys(methods)
+        .filter((httpMethod) =>
+          // ignore other parts of Path like `parameters`
+          HTTP_METHODS.includes(/** @type {any} */ httpMethod)
+        )
+        .map((/** @type {string} */ httpMethod) => {
+          /** @type {import("swagger-schema-official").Operation} */ const method =
+            methods[httpMethod];
+          return {
+            httpMethod,
+            path,
+            summary: method.summary,
+            anchor: method["x-docs-anchor"],
+            tags: method.tags,
+          };
+        });
 
-    return [...acc, ...subEndpoints];
-  }, []);
+      return [...acc, ...subEndpoints];
+    },
+    []
+  );
 }
 
 /**
