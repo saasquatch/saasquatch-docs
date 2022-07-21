@@ -181,20 +181,20 @@ export default {
   },
   getRoutes: getRoutes,
   plugins: [
-    // [
-    //   "saasquatch-webpack",
-    //   {
-    //     externals: {
-    //       // Jsdom is not used in the browser, but this tells Webpack not to bundle it
-    //       // Required for make dompurify isomorphic
-    //       jsdom: "jsDom",
-    //       jquery: "jQuery",
-    //       "highlight.js": "hljs",
-    //     },
-    //   },
-    // ],
-    require.resolve("react-static-plugin-typescript"),
-    require.resolve("react-static-plugin-less"),
+    [
+      "saasquatch-webpack",
+      {
+        externals: {
+          // Jsdom is not used in the browser, but this tells Webpack not to bundle it
+          // Required for make dompurify isomorphic
+          jsdom: "jsDom",
+          jquery: "jQuery",
+          "highlight.js": "hljs",
+        },
+      },
+    ],
+    "react-static-plugin-typescript",
+    "react-static-plugin-less",
     [
       require.resolve("react-static-plugin-source-filesystem"),
       {
