@@ -136,6 +136,7 @@ async function getSwagger() {
 }
 
 export default {
+  maxThreads: 1,
   Document: Bottom,
   entry: path.join(__dirname, "src", "index.tsx"),
   paths: {
