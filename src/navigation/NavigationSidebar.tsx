@@ -61,10 +61,8 @@ export function NavigationSidebar() {
   const [currentPage, setcurrentPage] = useState<string>("/");
   useEffect(() => {
     const path = history.location.pathname;
-    const hash = history.location.hash;
-    const pathAndHash = path + hash;
-    setcurrentPage(pathAndHash);
-  }, [history.location.pathname, history.location.hash]);
+    setcurrentPage(path);
+  }, [history.location.pathname]);
 
   return (
     <CurrentPageContext.Provider value={currentPage}>
@@ -278,7 +276,7 @@ export function NavigationSidebar() {
                   title="Customizing Microsites"
                 />
                 <ArticleLeaf
-                  to="/building-programs/microsites/custom-domain/"
+                  to="/setting-up-a-custom-subdomain-for-your-hosted-portal/"
                   title="Setting Up a Custom Domain for a Microsite"
                 />
               </DropDown>
