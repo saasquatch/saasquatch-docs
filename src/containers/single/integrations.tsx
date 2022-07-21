@@ -18,7 +18,7 @@ const salesForce = {
   imageSrc:
     "https://images.ctfassets.net/s68ib1kj8k5n/6lanuIP3dr7CaMAXnjFit6/ec0d742b72e09235769d1d84dc8e8668/salesforce-integration.png",
   linkText: "Read more about Salesforce",
-  linkUrl: "https://docs.saasquatch.com/salesforce",
+  linkUrl: "/salesforce/",
 };
 
 const sftpImport = {
@@ -28,7 +28,7 @@ const sftpImport = {
   imageSrc:
     "//images.ctfassets.net/s68ib1kj8k5n/4xcpmocHGJyM8qFVSsmFhP/da4f20bca7d2a811abbebb07299f5f72/Group_20.png",
   linkText: "Read more about SFTP Import",
-  linkUrl: "https://docs.saasquatch.com/sftp",
+  linkUrl: "/sftp/",
 };
 
 const segment = {
@@ -38,7 +38,7 @@ const segment = {
   imageSrc:
     "//images.ctfassets.net/s68ib1kj8k5n/4WAnPRXEeTebAvBx5XSS7w/2a673fbfa3f2e63a5b632f120923a3f8/segment-integration.png",
   linkText: "Read more about Segment",
-  linkUrl: "https://docs.saasquatch.com/segment",
+  linkUrl: "/segment/",
 };
 
 const tangoCard = {
@@ -48,7 +48,7 @@ const tangoCard = {
   imageSrc:
     "//images.ctfassets.net/s68ib1kj8k5n/3iNXzSopraTDMW21LCOLlG/652eacfbfbd2258ea2971573d19cbd2a/tangocard-integration.png",
   linkText: "Read more about TangoCard",
-  linkUrl: "https://docs.saasquatch.com/tangocard",
+  linkUrl: "/tangocard/",
 };
 
 const recurly = {
@@ -58,7 +58,7 @@ const recurly = {
   imageSrc:
     "//images.ctfassets.net/s68ib1kj8k5n/4yf7wHTinCyqAm8SCRDTE6/83e7d3a3c6062ac4258ac46bf36c75a9/recurly-integration.png",
   linkText: "Read more about Recurly",
-  linkUrl: "https://docs.saasquatch.com/recurly",
+  linkUrl: "/recurly/",
 };
 
 const appsFlyer = {
@@ -68,7 +68,7 @@ const appsFlyer = {
   imageSrc:
     "//images.ctfassets.net/s68ib1kj8k5n/WXPaAQBgDz0zu2fWw0ntu/335adb7f439dac9221e0a3e67e9cc702/appsflyerLogo.png",
   linkText: "Read more about AppsFlyer",
-  linkUrl: "https://docs.saasquatch.com/appsflyer-software-integration",
+  linkUrl: "/appsflyer-software-integration/",
 };
 
 const branchMetrics = {
@@ -78,7 +78,7 @@ const branchMetrics = {
   imageSrc:
     "//images.ctfassets.net/s68ib1kj8k5n/2JQ76joxW94dJ7rPZ4EVIf/483ea68bf61bf803b4984e0075f597cb/branch-integration.png",
   linkText: "Read more about Branch",
-  linkUrl: "https://docs.saasquatch.com/branch-metrics",
+  linkUrl: "/branch-metrics/",
 };
 
 const stripe = {
@@ -88,7 +88,7 @@ const stripe = {
   imageSrc:
     "//images.ctfassets.net/s68ib1kj8k5n/euVWUVNzVHyrUl54ip3tW/b21b817658b996e2882028b2ffb3cd7f/stripe-integration.png",
   linkText: "Read more about Stripe",
-  linkUrl: "https://docs.saasquatch.com/stripe",
+  linkUrl: "/stripe/",
 };
 
 const zapier = {
@@ -98,7 +98,7 @@ const zapier = {
   imageSrc:
     "//images.ctfassets.net/s68ib1kj8k5n/5bB95sRsNbh2BL1D5eqGLk/d94c7c939b6caeaccc17ee3acd08ba73/zapier-integration.png",
   linkText: "Read more about Zapier",
-  linkUrl: "https://docs.saasquatch.com/zapier",
+  linkUrl: "/zapier/",
 };
 
 const stitch = {
@@ -108,7 +108,7 @@ const stitch = {
   imageSrc:
     "//images.ctfassets.net/s68ib1kj8k5n/g5rQMil3Rx4J4kXxR70VZ/21ce1d0e8f19d8094c5ec071e0d3a65f/stitch-integration.png",
   linkText: "Read more about Stitch",
-  linkUrl: "https://docs.saasquatch.com/stitch",
+  linkUrl: "/stitch/",
 };
 
 // Cards to be rendered array & render function

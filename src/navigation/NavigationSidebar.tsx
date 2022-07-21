@@ -402,7 +402,7 @@ export function NavigationSidebar() {
                   to="/appsflyer-software-integration/"
                   title="AppsFlyer Integration"
                 />
-                <ArticleLeaf to="/mobile/appsflyer" title="Quickstart" />
+                <ArticleLeaf to="/mobile/appsflyer/" title="Quickstart" />
                 <ArticleLeaf
                   to="/mobile/appsflyer/reference"
                   title="Tech Reference"
@@ -448,7 +448,7 @@ export function NavigationSidebar() {
                 />
 
                 <ArticleLeaf
-                  to="/developer/segment"
+                  to="/developer/segment/"
                   title="Segment Integration Reference"
                 />
 
@@ -459,7 +459,7 @@ export function NavigationSidebar() {
               </DropDown>
 
               <DropDown title="Stripe">
-                <ArticleLeaf to="/stripe" title="Stripe Integration" />
+                <ArticleLeaf to="/stripe/" title="Stripe Integration" />
                 <ArticleLeaf to="/developer/stripe" title="Install Guide" />
                 <ArticleLeaf
                   to="/developer/stripe-v2-install-guide"
@@ -468,12 +468,12 @@ export function NavigationSidebar() {
               </DropDown>
 
               <DropDown title="TangoCard">
-                <ArticleLeaf to="/tangocard" title="TangoCard Integration" />
+                <ArticleLeaf to="/tangocard/" title="TangoCard Integration" />
                 <ArticleLeaf to="/tangocard-connection" title="Setup Guide" />
               </DropDown>
 
               <DropDown title="Zapier">
-                <ArticleLeaf to="/zapier" title="Zapier Integration" />
+                <ArticleLeaf to="/zapier/" title="Zapier Integration" />
                 <ArticleLeaf
                   to="/integrations/zapier"
                   title="Quickstart Guide"
@@ -481,7 +481,7 @@ export function NavigationSidebar() {
               </DropDown>
 
               <DropDown title="Recurly">
-                <ArticleLeaf to="/recurly" title="Recurly Integration" />
+                <ArticleLeaf to="/recurly/" title="Recurly Integration" />
                 <ArticleLeaf
                   to="/developer/recurly/classic"
                   title="Classic Recurly Install Guide"
@@ -490,7 +490,7 @@ export function NavigationSidebar() {
               </DropDown>
 
               <DropDown title="Stitch">
-                <ArticleLeaf to="/stitch" title="Stitch Integration" />
+                <ArticleLeaf to="/stitch/" title="Stitch Integration" />
                 <ArticleLeaf
                   to="/developer/stitch/quickstart"
                   title="Integration Guide"
