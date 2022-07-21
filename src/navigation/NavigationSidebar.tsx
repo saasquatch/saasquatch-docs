@@ -392,7 +392,7 @@ export function NavigationSidebar() {
                         </Link>
                       </li>
                       <li>
-                        <Link to="/building-programs/microsites/custom-domain">
+                        <Link to="/setting-up-a-custom-subdomain-for-your-hosted-portal/">
                           Setting Up a Custom Domain for a Microsite
                         </Link>
                       </li>
