@@ -136,6 +136,11 @@ async function getSwagger() {
 }
 
 export default {
+  // WARNING: react-static uses a module called `swimmer` to schedule HTML exports in a set of threads.
+  //          swimmer doesn't actually appear to function correctly in Node >=12, so we can no longer do
+  //          multi-threaded exports. This will force the max threads to 1, and make sure that we can
+  //          still build on newer Node versions.
+  maxThreads: 1,
   Document: Bottom,
   entry: path.join(__dirname, "src", "index.tsx"),
   paths: {
@@ -309,12 +314,12 @@ async function getRoutes() {
     },
     {
       path: "/success",
-      getData: async () => ({ }),
+      getData: async () => ({}),
       template: "src/containers/single/success-center",
     },
     {
       path: "/developer",
-      getData: async () => ({ }),
+      getData: async () => ({}),
       template: "src/containers/single/developer",
     },
     {
@@ -393,30 +398,33 @@ const HTTP_METHODS = [
  * @return {import("src/api/Types").EndpointSummary[]}
  */
 function getEndpoints(swagger) {
-  return Object.keys(swagger.paths).reduce((
-    /** @type {import("src/api/Types").EndpointSummary[]} */ acc,
-    /** @type {string} */ path
-  ) => {
-    const methods = swagger.paths[path];
-    const subEndpoints = Object.keys(methods)
-      .filter((httpMethod) =>
-        // ignore other parts of Path like `parameters`
-        HTTP_METHODS.includes(/** @type {any} */ httpMethod)
-      )
-      .map((/** @type {string} */ httpMethod) => {
-        /** @type {import("swagger-schema-official").Operation} */ const method =
-          methods[httpMethod];
-        return {
-          httpMethod,
-          path,
-          summary: method.summary,
-          anchor: method["x-docs-anchor"],
-          tags: method.tags,
-        };
-      });
+  return Object.keys(swagger.paths).reduce(
+    (
+      /** @type {import("src/api/Types").EndpointSummary[]} */ acc,
+      /** @type {string} */ path
+    ) => {
+      const methods = swagger.paths[path];
+      const subEndpoints = Object.keys(methods)
+        .filter((httpMethod) =>
+          // ignore other parts of Path like `parameters`
+          HTTP_METHODS.includes(/** @type {any} */ httpMethod)
+        )
+        .map((/** @type {string} */ httpMethod) => {
+          /** @type {import("swagger-schema-official").Operation} */ const method =
+            methods[httpMethod];
+          return {
+            httpMethod,
+            path,
+            summary: method.summary,
+            anchor: method["x-docs-anchor"],
+            tags: method.tags,
+          };
+        });
 
-    return [...acc, ...subEndpoints];
-  }, []);
+      return [...acc, ...subEndpoints];
+    },
+    []
+  );
 }
 
 /**
