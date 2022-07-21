@@ -372,6 +372,33 @@ export function NavigationSidebar() {
                       Customize Program Widgets
                     </Link>
                   </li>
+
+                  <li>
+                    <span>Microsites</span>
+                    <ul>
+                      <li>
+                        <Link to="/building-programs/microsites/quickstart-guide">
+                          Microsite Quickstart Guide
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/building-programs/microsites/microsite-editor">
+                          SaaSquatch Microsite Editor
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/building-programs/microsites/customizing-microsites">
+                          Customizing Microsites
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/building-programs/microsites/custom-domain">
+                          Setting Up a Custom Domain for a Microsite
+                        </Link>
+                      </li>
+                    </ul>
+                  </li>
+
                   <li className="Divider">Program Reference</li>
                   <li>
                     <Link to="/growth/quickstart">
