@@ -380,7 +380,7 @@ export function NavigationSidebar() {
               clicked={currentPage === "/integrations/"}
             >
               <DropDown title="Salesforce">
-                <ArticleLeaf to="/salesforce/" title="Salesforce Integration" />
+                <ArticleLeaf to="/salesforce" title="Salesforce Integration" />
                 <ArticleLeaf to="/salesforce/user-guide" title="User Guide" />
                 <ArticleLeaf to="/salesforce/faq" title="FAQ" />
                 <ArticleLeaf
@@ -625,12 +625,12 @@ export function NavigationSidebar() {
               </DropDown>
 
               <ArticleLeaf
-                to="/topics/json-web-tokens"
+                to="/topics/json-web-tokens/"
                 title="JSON Web Tokens"
                 isSubCategory
               />
               <ArticleLeaf
-                to="/developer/testing"
+                to="/developer/testing/"
                 title="Testing Best Practices"
                 isSubCategory
               />
