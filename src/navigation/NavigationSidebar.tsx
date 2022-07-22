@@ -513,11 +513,11 @@ export function NavigationSidebar() {
                   title="Custom Short Domains"
                 />
                 <ArticleLeaf
-                  to="/developer/referral-security"
+                  to="/developer/referral-security/"
                   title="Referral Security"
                 />
                 <ArticleLeaf
-                  to="/shared-vs-solo-accounts"
+                  to="/shared-vs-solo-accounts/"
                   title="Account Structure"
                 />
                 <ArticleLeaf to="/guides/marketo-form" title="Marketo" />
