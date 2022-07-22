@@ -402,7 +402,7 @@ export function NavigationSidebar() {
                   to="/appsflyer-software-integration/"
                   title="AppsFlyer Integration"
                 />
-                <ArticleLeaf to="/mobile/appsflyer/" title="Quickstart" />
+                <ArticleLeaf to="/mobile/appsflyer" title="Quickstart" />
                 <ArticleLeaf
                   to="/mobile/appsflyer/reference"
                   title="Tech Reference"
@@ -460,7 +460,7 @@ export function NavigationSidebar() {
 
               <DropDown title="Stripe">
                 <ArticleLeaf to="/stripe/" title="Stripe Integration" />
-                <ArticleLeaf to="/developer/stripe" title="Install Guide" />
+                <ArticleLeaf to="/developer/stripe/" title="Install Guide" />
                 <ArticleLeaf
                   to="/developer/stripe-v2-install-guide"
                   title="V2 Stripe Integration Install Guide"
@@ -625,7 +625,7 @@ export function NavigationSidebar() {
               </DropDown>
 
               <ArticleLeaf
-                to="/topics/json-web-tokens/"
+                to="/topics/json-web-tokens"
                 title="JSON Web Tokens"
                 isSubCategory
               />
