@@ -29,6 +29,7 @@ import {
   SeparatorLine,
 } from "./sidebar-components/SidebarStyledComponents";
 import { ArticleLeaf } from "./sidebar-components/SidebarArticleLeaf";
+import { stripTrailingSlash } from "./sidebar-components/stripTrailingSlash";
 
 function useMMenu() {
   const [mmenuApi, setMMenuApi] = useState(null);
@@ -61,7 +62,7 @@ export function NavigationSidebar() {
   const [currentPage, setcurrentPage] = useState<string>("/");
   useEffect(() => {
     const path = history.location.pathname;
-    setcurrentPage(path);
+    setcurrentPage(stripTrailingSlash(path));
   }, [history.location.pathname]);
 
   return (
@@ -85,7 +86,7 @@ export function NavigationSidebar() {
             >
               <DropDown title="SaaSquatch Admin Portal">
                 <ArticleLeaf
-                  to="/success/using-referral-saasquatch"
+                  to="/success/using-referral-saasquatch/"
                   title="Using the SaaSquatch Portal"
                 />
                 <ArticleLeaf
@@ -374,10 +375,10 @@ export function NavigationSidebar() {
 
             {/* Integrations starts here */}
             <CoreCategory
-              to="/integrations/"
+              to="/integrations"
               title="Integrations"
               icon={integrationsIcon}
-              clicked={currentPage === "/integrations/"}
+              clicked={currentPage === "/integrations"}
             >
               <DropDown title="Salesforce">
                 <ArticleLeaf to="/salesforce" title="Salesforce Integration" />
@@ -500,10 +501,10 @@ export function NavigationSidebar() {
 
             {/* Developer Resources starts here */}
             <CoreCategory
-              to="/developer/"
+              to="/developer"
               title="Developer Resources"
               icon={devIcon}
-              clicked={currentPage === "/developer/"}
+              clicked={currentPage === "/developer"}
             >
               <DropDown title="Dev Guides">
                 <ArticleLeaf to="/guides/" title="Overview" />

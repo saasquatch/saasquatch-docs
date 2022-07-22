@@ -3,21 +3,22 @@
     Author: M. Solis de Ovando
 */
 
-import React from "react";
+import React, { useContext } from "react";
 import { LeafLink } from "./SidebarStyledComponents";
 import { CurrentPageContext } from "../NavigationSidebar";
+import { stripTrailingSlash } from "./stripTrailingSlash";
 
 export const ArticleLeaf = (props: {
   to: string;
   title: string;
   isSubCategory?: boolean;
 }) => {
-  const currentPage = React.useContext(CurrentPageContext);
+  const currentPage = useContext(CurrentPageContext);
   return (
     <li>
       <LeafLink
-        to={props.to}
-        clicked={currentPage === props.to}
+        to={stripTrailingSlash(props.to)}
+        clicked={currentPage === stripTrailingSlash(props.to)}
         isSubCategory={props.isSubCategory}
       >
         {props.title}
