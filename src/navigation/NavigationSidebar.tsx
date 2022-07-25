@@ -602,13 +602,7 @@ export function NavigationSidebar() {
 
                 <Separator text="REST API Reference" />
 
-                <ArticleLeaf to="/api/methods" title="Full list of Methods" />
                 <ApiSidebar />
-
-                <ArticleLeaf
-                  to="/api/methods#hidden"
-                  title="Hidden Endpoints"
-                />
               </DropDown>
 
               <DropDown title="Webhook">

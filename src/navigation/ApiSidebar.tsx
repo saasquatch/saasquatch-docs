@@ -3,7 +3,8 @@
     Updated by M. Solis de Ovando
 */
 
-import React, { useRef } from "react";
+import { History } from "history";
+import React, { useEffect, useRef, useState } from "react";
 import { useSiteData } from "react-static";
 import { HashLink as Link } from "react-router-hash-link";
 import slug from "slug";
@@ -14,6 +15,9 @@ import { CurrentPageContext, MMenuContext } from "./NavigationSidebar";
 import { VersionContext } from "components/useVersion";
 import { Tooltip } from "components/Tooltip";
 import styled from "styled-components";
+import { useHistory, useLocation } from "react-router";
+import { stripTrailingSlash } from "./sidebar-components/stripTrailingSlash";
+import { ArticleLeaf } from "./sidebar-components/SidebarArticleLeaf";
 
 const StyledApiSpan = styled.span`
   display: block;
@@ -41,6 +45,7 @@ export const StyledApiLink = styled(Link)<{ clicked: boolean }>`
   border-left: ${(props) => (props.clicked ? "2px solid #007A5B" : "0px")};
   &:hover {
     background-color: ${(props) => (props.clicked ? "#003b45" : "#e7edee")};
+    color: ${(props) => (props.clicked ? "#ffffff" : "#003b45")};
   }
 `;
 
@@ -114,6 +119,15 @@ function useMenuItemHook({ tag, idx }) {
     openVeritcalParent(jQuery(parent.current), mmenuApi);
   };
   const anchor = slug(tag);
+
+  const [currentHash, setCurrentHash] = useState<string>("#");
+  const history: History<any> = useHistory();
+  useEffect(() => {
+    console.log("history.location.hash: " + history.location.hash);
+    const hash = history.location.hash;
+    setCurrentHash(stripTrailingSlash(hash));
+  }, [history.location.hash]);
+
   return {
     data: {
       tag,
@@ -129,6 +143,7 @@ function useMenuItemHook({ tag, idx }) {
     refs: {
       parent,
     },
+    currentHash,
   };
 }
 
@@ -141,72 +156,84 @@ function ApiMenuItemView({
   callbacks,
   refs,
   data,
+  currentHash,
 }: ReturnType<typeof useMenuItemHook>) {
   if (data.endpoints.length <= 0) {
     return null;
   }
   const statesPath = "/api/methods#" + states.anchor;
+  console.log("data.tag: " + data.tag);
   const currentPage = React.useContext(CurrentPageContext);
-  console.log(currentPage);
+  // console.log(currentPage);
   return (
     /* API menu item (drop-down) */
-    <li className="mm-vertical" ref={refs.parent}>
-      <StyledApiSpan
-        className="mm-next mm-fullsubopen"
-        // href={id}
-        data-target={states.id}
-        onClick={callbacks.doOpen}
-      >
-        {data.tag}
-      </StyledApiSpan>
-      <div
-        className="mm-panel mm-vertical"
-        id={states.id}
-        style={{
-          marginLeft: "12px",
-          borderLeft: "1px solid #003b45",
-        }}
-      >
-        <ul className="nav-onpage mm-listview mm-vertical">
-          <li>
-            {" "}
-            <StyledApiLink to={statesPath} clicked={currentPage === statesPath}>
-              {data.tag} Overview
-            </StyledApiLink>
-          </li>
+    <>
+      <li className="mm-vertical" ref={refs.parent}>
+        <StyledApiSpan
+          className="mm-next mm-fullsubopen"
+          // href={id}
+          data-target={states.id}
+          onClick={callbacks.doOpen}
+        >
+          {data.tag}
+        </StyledApiSpan>
+        <div
+          className="mm-panel mm-vertical"
+          id={states.id}
+          style={{
+            marginLeft: "12px",
+            borderLeft: "1px solid #003b45",
+          }}
+        >
+          <ul className="nav-onpage mm-listview mm-vertical">
+            <li>
+              {" "}
+              <StyledApiLink
+                to={statesPath}
+                clicked={
+                  currentHash === stripTrailingSlash("#" + states.anchor)
+                }
+              >
+                {data.tag} Overview
+              </StyledApiLink>
+            </li>
 
-          {/* API menu item child */}
-          {data.endpoints.map((route) => {
-            const routePath = "/api/methods#" + route.anchor;
-            const currentPage = React.useContext(CurrentPageContext);
-            return (
-              <li key={route.anchor}>
-                <StyledApiLink
-                  to={routePath}
-                  clicked={currentPage === routePath}
-                >
-                  <MethodDiv>
-                    {route.summary}
-                    <LabelsDiv>
-                      <StyledLabelSpan
-                        className={
-                          "label docs-label-" + route.httpMethod.toLowerCase()
-                        }
-                      >
-                        {route.httpMethod.toUpperCase()}
-                      </StyledLabelSpan>
-                      {route.tags.includes("Open Endpoint") && (
-                        <OpenEndpointLabel />
-                      )}
-                    </LabelsDiv>
-                  </MethodDiv>
-                </StyledApiLink>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    </li>
+            {/* API menu item child */}
+            {data.endpoints.map((route) => {
+              const routePath = "/api/methods#" + route.anchor;
+              console.log("route.anchor: " + route.anchor);
+              // const currentPage = React.useContext(CurrentPageContext);
+              return (
+                <li key={route.anchor}>
+                  <StyledApiLink
+                    to={routePath}
+                    clicked={
+                      currentHash === stripTrailingSlash("#" + route.anchor)
+                    }
+                  >
+                    <MethodDiv>
+                      {route.summary}
+                      <LabelsDiv>
+                        <StyledLabelSpan
+                          className={
+                            "label docs-label-" + route.httpMethod.toLowerCase()
+                          }
+                        >
+                          {route.httpMethod.toUpperCase()}
+                        </StyledLabelSpan>
+                        {route.tags.includes("Open Endpoint") && (
+                          <OpenEndpointLabel />
+                        )}
+                      </LabelsDiv>
+                    </MethodDiv>
+                  </StyledApiLink>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </li>
+    </>
   );
 }
 
@@ -276,11 +303,13 @@ export default function ApiSidebar() {
 
   return (
     <>
+      <ArticleLeaf to="/api/methods" title="Full list of Methods" />
       {Object.keys(apiRoutesByTag)
         .filter((tag) => tag)
         .map((tag, idx) => (
           <ApiMenuItem tag={tag} idx={idx} key={tag} />
         ))}
+      <ArticleLeaf to="/api/methods#hidden" title="Hidden Endpoints" />
     </>
   );
 }
