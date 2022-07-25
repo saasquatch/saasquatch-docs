@@ -44,12 +44,14 @@ function findElementForCurrentUrl() {
     var thatUrlWithHashNoSlash = thatUrl + window.location.hash;
     if (thisUrl == thatUrlWithHash || thisUrl == thatUrlWithHashNoSlash) {
       // Checks for HASH/ANCHOR based mapping first
+      console.log("this depth2: ", this);
       found(jQuery(this).parent("li"), 2);
       return;
     }
 
     // Checks for that URL minus any trailing slashes
     if (thisUrl == thatUrl) {
+      console.log("this depth1: ", this);
       found(jQuery(this).parent("li"), 1);
     }
   });
@@ -180,8 +182,8 @@ function connectHistoryListener(history: History<any>, myMenu: any) {
 
 /**
  * Uses the mmenu API to open the correct page for the current URL
- * 
- * @param myMenu 
+ *
+ * @param myMenu
  */
 function updateSidebarForCurrentURL(myMenu: any) {
   const foundElement = findElementForCurrentUrl();
@@ -196,30 +198,30 @@ function updateSidebarForCurrentURL(myMenu: any) {
       // myMenu.
     } else {
       //close menu when you change page
-      myMenu.close()
+      myMenu.close();
       // Open the right panel
       myMenu.setSelected(foundElement);
     }
-    // Open closest top-level panel
-    const parent = foundElement.closest(".mm-panel");
-    if (parent && parent.length) {
-      // console.log("Opening parent panel", parent);
-      myMenu.openPanel(parent);
-    }
-
     const dropdown = foundElement.parents(".mm-vertical");
+    console.log("dropdown: ", dropdown);
+    console.log("dropdown.length: ", dropdown.length);
     if (dropdown && dropdown.length) {
       // console.log("Opening parent panel", parent);
       myMenu.openPanel(dropdown);
-      // if (dropdown.hasClass("mm-opened")) {
-      //   // Aready open
-      // } else {
-
-      //   dropdown.addClass("mm-opened");
-      // }
+      //   if (dropdown.hasClass("mm-opened")) {
+      //     // Aready open
+      //   } else {
+      //     dropdown.addClass("mm-opened");
+      //   }
+    }
+    // Open closest top-level panel
+    const parent = foundElement.closest(".mm-panel");
+    console.log(parent);
+    if (parent && parent.length) {
+      // console.log("Opening parent panel", parent);
+      myMenu.openPanel(parent);
     }
   } else {
     myMenu.setSelected(null);
   }
 }
-

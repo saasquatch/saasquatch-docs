@@ -99,10 +99,10 @@ function openPanel($l) {
 let incrNumber = 1;
 export function useCoreCategoryHook() {
   const { mmenuApi } = MMenuContext.useContainer();
-  console.log({ mmenuApi });
+  // console.log({ mmenuApi });
   const parentRef = useRef(null);
   const id = "#mm-" + incrNumber++;
-  console.log({ id });
+  // console.log({ id });
   const onClick = (e: React.MouseEvent) => {
     e.preventDefault();
     mmenuApi.openPanel(jQuery(parentRef.current));

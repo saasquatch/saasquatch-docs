@@ -21,7 +21,6 @@ export const ArticleLeaf = (props: {
   const hash = history.location.hash;
 
   const checkUrlIsMethod = () => {
-    console.log("currentPage-articleLeaf: ", currentPage);
     if (currentPage == "/api/methods") {
       if (hash) {
         return hash === "#hidden" &&

@@ -123,7 +123,6 @@ function useMenuItemHook({ tag, idx }) {
   const [currentHash, setCurrentHash] = useState<string>("#");
   const history: History<any> = useHistory();
   useEffect(() => {
-    console.log("history.location.hash: " + history.location.hash);
     const hash = history.location.hash;
     setCurrentHash(stripTrailingSlash(hash));
   }, [history.location.hash]);
@@ -162,9 +161,7 @@ function ApiMenuItemView({
     return null;
   }
   const statesPath = "/api/methods#" + states.anchor;
-  console.log("data.tag: " + data.tag);
   const currentPage = React.useContext(CurrentPageContext);
-  // console.log(currentPage);
   return (
     /* API menu item (drop-down) */
     <>
@@ -201,7 +198,6 @@ function ApiMenuItemView({
             {/* API menu item child */}
             {data.endpoints.map((route) => {
               const routePath = "/api/methods#" + route.anchor;
-              console.log("route.anchor: " + route.anchor);
               // const currentPage = React.useContext(CurrentPageContext);
               return (
                 <li key={route.anchor}>
@@ -245,7 +241,6 @@ function ApiMenuItemChildren({
   tag: string;
 }) {
   const children = endpoints.map((route) => {
-    console.log({ route });
     const path = "/api/methods#" + route.anchor;
     // const currentPage = React.useContext(CurrentPageContext);
     return (
