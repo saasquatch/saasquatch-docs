@@ -303,13 +303,17 @@ export default function ApiSidebar() {
 
   return (
     <>
-      <ArticleLeaf to="/api/methods" title="Full list of Methods" />
+      <ArticleLeaf to="/api/methods" title="Full list of Methods" apiMethod />
       {Object.keys(apiRoutesByTag)
         .filter((tag) => tag)
         .map((tag, idx) => (
           <ApiMenuItem tag={tag} idx={idx} key={tag} />
         ))}
-      <ArticleLeaf to="/api/methods#hidden" title="Hidden Endpoints" />
+      <ArticleLeaf
+        to="/api/methods#hidden"
+        title="Hidden Endpoints"
+        apiMethod
+      />
     </>
   );
 }
