@@ -136,6 +136,11 @@ async function getSwagger() {
 }
 
 export default {
+  // WARNING: react-static uses a module called `swimmer` to schedule HTML exports in a set of threads.
+  //          swimmer doesn't actually appear to function correctly in Node >=12, so we can no longer do
+  //          multi-threaded exports. This will force the max threads to 1, and make sure that we can
+  //          still build on newer Node versions.
+  maxThreads: 1,
   Document: Bottom,
   entry: path.join(__dirname, "src", "index.tsx"),
   paths: {
@@ -193,8 +198,8 @@ export default {
         },
       },
     ],
-    require.resolve("react-static-plugin-typescript"),
-    require.resolve("react-static-plugin-less"),
+    "react-static-plugin-typescript",
+    "react-static-plugin-less",
     [
       require.resolve("react-static-plugin-source-filesystem"),
       {

@@ -1,6 +1,6 @@
 /**
- * 
- * 
+ *
+ *
  * Allows webpack customization (used to be part of core react-static, but not anymore)
  */
 export default ({ externals }) => {
@@ -11,6 +11,6 @@ export default ({ externals }) => {
       } else if (stage === "dev") {
       }
       return config;
-    }
+    },
   };
 };

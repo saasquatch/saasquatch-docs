@@ -29,6 +29,7 @@ import {
   SeparatorLine,
 } from "./sidebar-components/SidebarStyledComponents";
 import { ArticleLeaf } from "./sidebar-components/SidebarArticleLeaf";
+import { stripTrailingSlash } from "./sidebar-components/stripTrailingSlash";
 
 function useMMenu() {
   const [mmenuApi, setMMenuApi] = useState(null);
@@ -61,10 +62,8 @@ export function NavigationSidebar() {
   const [currentPage, setcurrentPage] = useState<string>("/");
   useEffect(() => {
     const path = history.location.pathname;
-    const hash = history.location.hash;
-    const pathAndHash = path + hash;
-    setcurrentPage(pathAndHash);
-  }, [history.location.pathname, history.location.hash]);
+    setcurrentPage(stripTrailingSlash(path));
+  }, [history.location.pathname]);
 
   return (
     <CurrentPageContext.Provider value={currentPage}>
@@ -87,7 +86,7 @@ export function NavigationSidebar() {
             >
               <DropDown title="SaaSquatch Admin Portal">
                 <ArticleLeaf
-                  to="/success/using-referral-saasquatch"
+                  to="/success/using-referral-saasquatch/"
                   title="Using the SaaSquatch Portal"
                 />
                 <ArticleLeaf
@@ -278,7 +277,7 @@ export function NavigationSidebar() {
                   title="Customizing Microsites"
                 />
                 <ArticleLeaf
-                  to="/building-programs/microsites/custom-domain/"
+                  to="/setting-up-a-custom-subdomain-for-your-hosted-portal/"
                   title="Setting Up a Custom Domain for a Microsite"
                 />
               </DropDown>
@@ -373,16 +372,24 @@ export function NavigationSidebar() {
                 />
               </DropDown>
             </CoreCategory>
+            {/* needs to be removed */}
+            <CoreCategory
+              to="/salesforce"
+              title="Salesforce"
+              icon={integrationsIcon}
+              clicked={currentPage === "/integrations"}
+            ></CoreCategory>
+            {/* needs to be removed */}
 
             {/* Integrations starts here */}
             <CoreCategory
-              to="/integrations/"
+              to="/integrations"
               title="Integrations"
               icon={integrationsIcon}
-              clicked={currentPage === "/integrations/"}
+              clicked={currentPage === "/integrations"}
             >
               <DropDown title="Salesforce">
-                <ArticleLeaf to="/salesforce/" title="Salesforce Integration" />
+                <ArticleLeaf to="/salesforce" title="Salesforce Integration" />
                 <ArticleLeaf to="/salesforce/user-guide" title="User Guide" />
                 <ArticleLeaf to="/salesforce/faq" title="FAQ" />
                 <ArticleLeaf
@@ -450,7 +457,7 @@ export function NavigationSidebar() {
                 />
 
                 <ArticleLeaf
-                  to="/developer/segment"
+                  to="/developer/segment/"
                   title="Segment Integration Reference"
                 />
 
@@ -461,8 +468,8 @@ export function NavigationSidebar() {
               </DropDown>
 
               <DropDown title="Stripe">
-                <ArticleLeaf to="/stripe" title="Stripe Integration" />
-                <ArticleLeaf to="/developer/stripe" title="Install Guide" />
+                <ArticleLeaf to="/stripe/" title="Stripe Integration" />
+                <ArticleLeaf to="/developer/stripe/" title="Install Guide" />
                 <ArticleLeaf
                   to="/developer/stripe-v2-install-guide"
                   title="V2 Stripe Integration Install Guide"
@@ -470,12 +477,12 @@ export function NavigationSidebar() {
               </DropDown>
 
               <DropDown title="TangoCard">
-                <ArticleLeaf to="/tangocard" title="TangoCard Integration" />
+                <ArticleLeaf to="/tangocard/" title="TangoCard Integration" />
                 <ArticleLeaf to="/tangocard-connection" title="Setup Guide" />
               </DropDown>
 
               <DropDown title="Zapier">
-                <ArticleLeaf to="/zapier" title="Zapier Integration" />
+                <ArticleLeaf to="/zapier/" title="Zapier Integration" />
                 <ArticleLeaf
                   to="/integrations/zapier"
                   title="Quickstart Guide"
@@ -483,7 +490,7 @@ export function NavigationSidebar() {
               </DropDown>
 
               <DropDown title="Recurly">
-                <ArticleLeaf to="/recurly" title="Recurly Integration" />
+                <ArticleLeaf to="/recurly/" title="Recurly Integration" />
                 <ArticleLeaf
                   to="/developer/recurly/classic"
                   title="Classic Recurly Install Guide"
@@ -492,7 +499,7 @@ export function NavigationSidebar() {
               </DropDown>
 
               <DropDown title="Stitch">
-                <ArticleLeaf to="/stitch" title="Stitch Integration" />
+                <ArticleLeaf to="/stitch/" title="Stitch Integration" />
                 <ArticleLeaf
                   to="/developer/stitch/quickstart"
                   title="Integration Guide"
@@ -502,10 +509,10 @@ export function NavigationSidebar() {
 
             {/* Developer Resources starts here */}
             <CoreCategory
-              to="/developer/"
+              to="/developer"
               title="Developer Resources"
               icon={devIcon}
-              clicked={currentPage === "/developer/"}
+              clicked={currentPage === "/developer"}
             >
               <DropDown title="Dev Guides">
                 <ArticleLeaf to="/guides/" title="Overview" />
@@ -515,11 +522,11 @@ export function NavigationSidebar() {
                   title="Custom Short Domains"
                 />
                 <ArticleLeaf
-                  to="/developer/referral-security"
+                  to="/developer/referral-security/"
                   title="Referral Security"
                 />
                 <ArticleLeaf
-                  to="/shared-vs-solo-accounts"
+                  to="/shared-vs-solo-accounts/"
                   title="Account Structure"
                 />
                 <ArticleLeaf to="/guides/marketo-form" title="Marketo" />
@@ -603,13 +610,7 @@ export function NavigationSidebar() {
 
                 <Separator text="REST API Reference" />
 
-                <ArticleLeaf to="/api/methods" title="Full list of Methods" />
                 <ApiSidebar />
-
-                <ArticleLeaf
-                  to="/api/methods#hidden"
-                  title="Hidden Endpoints"
-                />
               </DropDown>
 
               <DropDown title="Webhook">
@@ -632,7 +633,7 @@ export function NavigationSidebar() {
                 isSubCategory
               />
               <ArticleLeaf
-                to="/developer/testing"
+                to="/developer/testing/"
                 title="Testing Best Practices"
                 isSubCategory
               />

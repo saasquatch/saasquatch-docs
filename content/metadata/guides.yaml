@@ -1,166 +1,81 @@
-API:
-    name: API
-    linkText: Read more about our SaaSquatch REST API
-    slug: /api
-    types:
-     - library
-    icon: fa-code
-    summary: |
-        The SaaSquatch REST API lets you build your own custom logic on top of your referral program.
-Squatch.js:
-    name: Squatch.js
-    linkText: Read more about our Squatch.js Javascript Library
-    slug: /developer/squatchjs
-    types:
-     - library
-    icon: fa-code
-    summary: |
-        squatch.js is the SaaSquatch JavaScript SDK, and provides an easy way to integrate into your website or web app.
-
 SaaSquatch & Emails:
-    name: SaaSquatch & Emails
-    linkText: Read more about our email functionality
-    slug: /topics/email
-    types:
-     - feature
-    icon: fa-envelope-o
-    summary: |
-        The SaaSquatch platform enables you to configure when emails are sent to participants throughout the customer life cycle.
+  name: SaaSquatch & Emails
+  linkText: Read more about our email functionality
+  slug: /topics/email
+  types:
+    - feature
+  icon: fa-envelope-o
+  summary: |
+    The SaaSquatch platform enables you to configure when emails are sent to participants throughout the customer life cycle.
 Custom Short Domains:
-    name: Custom Short Domains
-    linkText: Read more about our custom short domains
-    slug: /customshortdomainguide
-    types:
-     - feature
-    icon: fa-link
-    summary: |
-        The SaaSquatch system supports the use of Custom Short Domains which allow you to change the format of the referral links shared by your users.
+  name: Custom Short Domains
+  linkText: Read more about our custom short domains
+  slug: /customshortdomainguide
+  types:
+    - feature
+  icon: fa-link
+  summary: |
+    The SaaSquatch system supports the use of Custom Short Domains which allow you to change the format of the referral links shared by your users.
 Security Management System:
-    name: Referral Security
-    linkText: Read more about our security management system
-    slug: /developer/referral-security/
-    types:
-     - feature
-    icon: fa-lock
-    summary: |
-        SaaSquatch's Security Management System protects your program from unwanted referral activity.
+  name: Referral Security
+  linkText: Read more about our security management system
+  slug: /developer/referral-security/
+  types:
+    - feature
+  icon: fa-lock
+  summary: |
+    SaaSquatch's Security Management System protects your program from unwanted referral activity.
 Account Structure:
-    name: Account Structure
-    linkText: Read more about our shared vs. solo accounts
-    slug: /shared-vs-solo-accounts/
-    types:
-     - feature
-    icon: fa-user-circle-o
-    summary: |
-        The SaaSquatch system provides flexible options for structuring how participants are grouped in your project.
-
-JSON:
-    name: JSON Web Tokens
-    linkText: Read more about our JWTs
-    slug: /topics/json-web-tokens
-    types:
-     - features
-    icon: fa-code
-    summary: |
-        JSON Web Tokens are used to validate the data being supplied to Referral SaaSquatch in Signed Requests made through squatch.js and Open Endpoints.
-
-Blocked Email Domains:
-    name: Blocked Email Domains
-    linkText: Read more about options for blocking email domains
-    slug: /developer/blocked-email-domains
-    types:
-     - feature
-    icon: fa-ban
-    summary: |
-        SaaSquatch provides the ability to check referrals against a list of suspicious email domains.
-Program Reports:
-    name: Program Reports
-    linkText: Read more about the available program reports
-    slug: /features/reports
-    types:
-     - feature
-    icon: fa-file-text-o
-    summary: |
-        Downloadable program reports with participant, reward, and referral information.
+  name: Account Structure
+  linkText: Read more about our shared vs. solo accounts
+  slug: /shared-vs-solo-accounts/
+  types:
+    - feature
+  icon: fa-user-circle-o
+  summary: |
+    The SaaSquatch system provides flexible options for structuring how participants are grouped in your project.
 Marketo Forms:
-    name: Marketo Forms
-    linkText: Read more about our support for Marketo Forms
-    slug: /guides/marketo-form
-    types:
-     - integration
-    image: marketo-integration.png
-    summary: |
-        Leveraging your existing Marketo Forms to automatically add Referred Sigunps into your referral program.
+  name: Marketo Forms
+  linkText: Read more about our support for Marketo Forms
+  slug: /guides/marketo-form
+  types:
+    - integration
+  image: marketo-integration.png
+  summary: |
+    Leveraging your existing Marketo Forms to automatically add Referred Sigunps into your referral program.
 Instapage Forms:
-    name: Instapages Forms
-    linkText: Read more about our support for Instapage Forms
-    slug: /guides/instapage-form
-    types:
-     - integration
-    image: instapage-integration.png
-    summary: |
-        Leveraging your existing Instapage Forms to automatically add Referred Signups into your referral program.
+  name: Instapages Forms
+  linkText: Read more about our support for Instapage Forms
+  slug: /guides/instapage-form
+  types:
+    - integration
+  image: instapage-integration.png
+  summary: |
+    Leveraging your existing Instapage Forms to automatically add Referred Signups into your referral program.
 Custom User Fields:
-    name: Custom User Fields
-    linkText: Read more about the available custom user fields
-    slug: /features/custom-user-fields
-    types:
-     - feature
-    icon: fa-user-plus
-    summary: |
-        Include custom information about users in your SaaSquatch project.
+  name: Custom User Fields
+  linkText: Read more about the available custom user fields
+  slug: /features/custom-user-fields/
+  types:
+    - feature
+  icon: fa-user-plus
+  summary: |
+    Include custom information about users in your SaaSquatch project.
 User Widget Types:
-    name: User Widget Types
-    linkText: Read more about the available widget types
-    slug: /topics/widget-types
-    types:
-     - feature
-    icon: fa-window-restore
-    summary: |
-        Display different types of widgets to users in your SaaSquatch Program.
-Custom Rewards Fuel Tank:
-    name: Custom Rewards Fuel Tank
-    linkText: Find out more about our Fuel Tank functionality
-    slug: /features/rewards-fuel-tank
-    types:
-     - feature
-     - reward
-    icon: fa-ticket
-    summary: |
-        Provide your program participants with Custom Reward Codes.
-User Segmentation:
-    name: User Segmentation
-    linkText: Learn more about User Segmentation
-    slug: /features/user-segmentation
-    types:
-     - feature
-    icon: fa-users
-    summary: |
-        Create and manage intelligent segments of participants within your SaaSquatch project.
-Bulk User Import:
-    name: Bulk User Import
-    linkText: Learn more about our User Import functionality
-    slug: /guides/user-import
-    types:
-     - feature
-    icon: fa-upload
-    summary: |
-        Upload users into your SaaSquatch project to create or update user information.
-Bulk Reward Redemption:
-    name: Bulk Reward Redemption
-    linkText: Learn more about our Bulk Reward Redemption functionality
-    slug: /guides/bulk-reward-redemption
-    types:
-     - feature
-    icon: fa-money
-    summary: |
-        Fulfill multiple rewards at once using our batch export/import process.
+  name: User Widget Types
+  linkText: Read more about the available widget types
+  slug: /topics/widget-types
+  types:
+    - feature
+  icon: fa-window-restore
+  summary: |
+    Display different types of widgets to users in your SaaSquatch Program.
 Message Links:
-    name: Message Links
-    linkText: Learn more about Message Link functionality
-    slug: /features/message-links
-    types:
-     - feature
-    icon: fa-comments
-    summary: |
-        The SaaSquatch system offers dynamic capability to build share buttons for each of your programs and share mediums.
+  name: Message Links
+  linkText: Learn more about Message Link functionality
+  slug: /features/message-links
+  types:
+    - feature
+  icon: fa-comments
+  summary: |
+    The SaaSquatch system offers dynamic capability to build share buttons for each of your programs and share mediums.
