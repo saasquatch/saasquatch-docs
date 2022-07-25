@@ -15,7 +15,7 @@ if (typeof document !== "undefined") {
 }
 var categories = ["successCenter", "developerCenter", "designerCenter"];
 
-function findElementForCurrentUrl() {
+function findElementForCurrentUrl(location: any) {
   /**
    * Sets the current page nav item as "Selected"
    *
@@ -39,10 +39,10 @@ function findElementForCurrentUrl() {
       return;
     }
 
-    var thatUrl = window.location.pathname.replace(/\/+$/, "");
+    var thatUrl = location.pathname.replace(/\/+$/, "");
 
-    var thatUrlWithHash = window.location.pathname + window.location.hash;
-    var thatUrlWithHashNoSlash = thatUrl + window.location.hash;
+    var thatUrlWithHash = location.pathname + location.hash;
+    var thatUrlWithHashNoSlash = thatUrl + location.hash;
     if (thisUrl == thatUrlWithHash || thisUrl == thatUrlWithHashNoSlash) {
       // Checks for HASH/ANCHOR based mapping first
       console.log("this depth2: ", this);
@@ -69,7 +69,7 @@ export const MMenuID = "my-menu";
 export default function init(search: HTMLElement, history: History<any>) {
   var menuDom = jQuery(`#${MMenuID}`);
 
-  const foundElement = findElementForCurrentUrl();
+  const foundElement = findElementForCurrentUrl(window.location);
 
   if (foundElement) {
     foundElement.addClass("Selected");
@@ -154,7 +154,7 @@ export default function init(search: HTMLElement, history: History<any>) {
 
   const myMenu = menuDom.data("mmenu");
 
-  updateSidebarForCurrentURL(myMenu);
+  updateSidebarForCurrentURL(myMenu, window.location);
   connectMobileToggle(myMenu);
   connectHistoryListener(history, myMenu);
 
@@ -177,8 +177,7 @@ function connectMobileToggle(myMenu: any) {
 function connectHistoryListener(history: History<any>, myMenu: any) {
   history.listen((location) => {
     //Do your stuff here
-    console.log("see if thats working");
-    updateSidebarForCurrentURL(myMenu);
+    updateSidebarForCurrentURL(myMenu, location);
   });
 }
 
@@ -187,14 +186,8 @@ function connectHistoryListener(history: History<any>, myMenu: any) {
  *
  * @param myMenu
  */
-function updateSidebarForCurrentURL(myMenu: any) {
-  const foundElement = findElementForCurrentUrl();
-  // console.log(
-  //   "Found element",
-  //   foundElement,
-  //   "for path",
-  //   window.location.pathname
-  // );
+function updateSidebarForCurrentURL(myMenu: any, location: any) {
+  const foundElement = findElementForCurrentUrl(location);
   if (foundElement) {
     if (foundElement.hasClass("mm-vertical")) {
       // myMenu.
@@ -204,24 +197,26 @@ function updateSidebarForCurrentURL(myMenu: any) {
       // Open the right panel
       myMenu.setSelected(foundElement);
     }
-    const dropdown = foundElement.parents(".mm-vertical");
-    console.log("dropdown: ", dropdown);
-    console.log("dropdown.length: ", dropdown.length);
-    if (dropdown && dropdown.length) {
-      // console.log("Opening parent panel", parent);
-      myMenu.openPanel(dropdown);
-      //   if (dropdown.hasClass("mm-opened")) {
-      //     // Aready open
-      //   } else {
-      //     dropdown.addClass("mm-opened");
-      //   }
+
+    const highest = foundElement.closest(".mm-highest");
+    if (highest && highest.length) {
+      myMenu.openPanel(highest)
+    }
+
+    const hidden = foundElement.closest(".mm-hidden");
+    if (hidden && hidden.length) {
+      myMenu.openPanel(hidden)
     }
     // Open closest top-level panel
     const parent = foundElement.closest(".mm-panel");
     console.log(parent);
     if (parent && parent.length) {
-      // console.log("Opening parent panel", parent);
       myMenu.openPanel(parent);
+    }
+
+    const dropdown = foundElement.parents(".mm-vertical");
+    if (dropdown && dropdown.length) {
+      myMenu.openPanel(dropdown);
     }
   } else {
     myMenu.setSelected(null);
