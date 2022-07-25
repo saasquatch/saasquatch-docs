@@ -134,7 +134,9 @@ export default function render() {
       <PageWrapper>
         <PageHeader
           title="Dev Guides"
-          highlights="The SaaSquatch Guides show you how to use our tools to create your own world-class referral and loyalty programs."
+          highlights="<p style='margin-bottom: 16px;'>The SaaSquatch Guides show you how to use our tools to create your own world-class referral and loyalty programs.</p>
+          Click the cards below to learn more about each topic.
+          "
           category="landingPages"
         />
         <CardGrid>
