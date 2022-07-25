@@ -1,5 +1,6 @@
 import React from "react";
 import { History } from "history";
+import { MMenuContext } from "./NavigationSidebar";
 
 let jQuery;
 if (typeof document !== "undefined") {
@@ -176,6 +177,7 @@ function connectMobileToggle(myMenu: any) {
 function connectHistoryListener(history: History<any>, myMenu: any) {
   history.listen((location) => {
     //Do your stuff here
+    console.log("see if thats working");
     updateSidebarForCurrentURL(myMenu);
   });
 }

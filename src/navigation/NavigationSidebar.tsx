@@ -372,6 +372,14 @@ export function NavigationSidebar() {
                 />
               </DropDown>
             </CoreCategory>
+            {/* needs to be removed */}
+            <CoreCategory
+              to="/salesforce"
+              title="Salesforce"
+              icon={integrationsIcon}
+              clicked={currentPage === "/integrations"}
+            ></CoreCategory>
+            {/* needs to be removed */}
 
             {/* Integrations starts here */}
             <CoreCategory
