@@ -4,7 +4,7 @@
 */
 
 import { History } from "history";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useHistory } from "react-router-dom";
 import useBrowserEffect from "src/util/useBrowserEffect";
 // import "mmenu-js/dist/mmenu.css"
@@ -59,11 +59,7 @@ export function NavigationSidebar() {
     mmenu.mmenuApi = init(modalRoot, history);
   }, [modalRoot]);
 
-  const [currentPage, setcurrentPage] = useState<string>("/");
-  useEffect(() => {
-    const path = history.location.pathname;
-    setcurrentPage(stripTrailingSlash(path));
-  }, [history.location.pathname]);
+  const currentPage = stripTrailingSlash(history.location.pathname);
 
   return (
     <CurrentPageContext.Provider value={currentPage}>
@@ -431,8 +427,6 @@ export function NavigationSidebar() {
               </DropDown>
 
               <DropDown title="Segment">
-                <ArticleLeaf to="/segment/" title="Segment Integration" />
-
                 <ArticleLeaf
                   to="/integrations/segment-v2/"
                   title="Segment V2"
@@ -451,11 +445,6 @@ export function NavigationSidebar() {
                 <ArticleLeaf
                   to="/developer/segment/"
                   title="Segment Integration Reference"
-                />
-
-                <ArticleLeaf
-                  to="/developer/segment/quickstart"
-                  title="Segment Web Plugin Quickstart"
                 />
               </DropDown>
 
@@ -543,7 +532,6 @@ export function NavigationSidebar() {
                   to="/developer/attribution"
                   title="Attribution Tech Guide"
                 />
-                <ArticleLeaf to="/breaking-changes" title="Breaking Changes" />
                 <ArticleLeaf
                   to="/bestpractices/common-pitfalls"
                   title="Common Pitfalls"
@@ -620,6 +608,11 @@ export function NavigationSidebar() {
               </DropDown>
 
               <ArticleLeaf
+                to="/breaking-changes"
+                title="Breaking Changes"
+                isSubCategory
+              />
+              <ArticleLeaf
                 to="/topics/json-web-tokens"
                 title="JSON Web Tokens"
                 isSubCategory
@@ -634,7 +627,6 @@ export function NavigationSidebar() {
         </nav>
       </Styles.Container>
     </CurrentPageContext.Provider>
-
   );
 }
 

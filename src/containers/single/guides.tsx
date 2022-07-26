@@ -88,13 +88,6 @@ const attributionTechGuide = {
   linkUrl: "/developer/attribution",
 };
 
-const breakingChanges = {
-  title: "Breaking Changes",
-  description:
-    "We try our best to ensure backwards compatibility of our products, but sometimes we have to launch breaking changes. Find out about them here, or sign up for our breaking changes mailing list.",
-  linkUrl: "/breaking-changes",
-};
-
 const commonPitfalls = {
   title: "Common Pitfalls",
   description:
@@ -123,7 +116,6 @@ const CardsArray: Array<CardProps> = [
   messageLinks,
   conversionTechGuide,
   attributionTechGuide,
-  breakingChanges,
   commonPitfalls,
   writingWebComponent,
 ];
