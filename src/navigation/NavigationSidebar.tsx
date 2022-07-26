@@ -4,7 +4,7 @@
 */
 
 import { History } from "history";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useHistory } from "react-router-dom";
 import useBrowserEffect from "src/util/useBrowserEffect";
 // import "mmenu-js/dist/mmenu.css"
@@ -59,11 +59,7 @@ export function NavigationSidebar() {
     mmenu.mmenuApi = init(modalRoot, history);
   }, [modalRoot]);
 
-  const [currentPage, setcurrentPage] = useState<string>("/");
-  useEffect(() => {
-    const path = history.location.pathname;
-    setcurrentPage(stripTrailingSlash(path));
-  }, [history.location.pathname]);
+  const currentPage = stripTrailingSlash(history.location.pathname);
 
   return (
     <CurrentPageContext.Provider value={currentPage}>

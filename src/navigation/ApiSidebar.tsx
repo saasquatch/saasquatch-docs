@@ -4,7 +4,7 @@
 */
 
 import { History } from "history";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useSiteData } from "react-static";
 import { HashLink as Link } from "react-router-hash-link";
 import slug from "slug";
@@ -120,12 +120,8 @@ function useMenuItemHook({ tag, idx }) {
   };
   const anchor = slug(tag);
 
-  const [currentHash, setCurrentHash] = useState<string>("#");
   const history: History<any> = useHistory();
-  useEffect(() => {
-    const hash = history.location.hash;
-    setCurrentHash(stripTrailingSlash(hash));
-  }, [history.location.hash]);
+  const currentHash = stripTrailingSlash(history.location.hash);
 
   return {
     data: {
