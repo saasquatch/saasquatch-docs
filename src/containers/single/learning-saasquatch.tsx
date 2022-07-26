@@ -43,8 +43,8 @@ const fraudSecurity = {
 
 const CardsArray: Array<CardProps> = [
   adminPortal,
-  growthAuto,
   programs,
+  growthAuto,
   fraudSecurity,
 ];
 
@@ -54,7 +54,7 @@ export default function render() {
       <PageWrapper>
         <PageHeader
           title="Learning SaaSquatch"
-          highlights="<p style='margin-bottom: 16px;'>Start your SaaSquatch learning journey here. This is where you’ll find help understanding Growth Automation, the SaaSquatch platform, referral programs, and how we ensure that your user data stays secure.</p>
+          highlights="<p style='margin-bottom: 16px;'>Start your SaaSquatch learning journey here. This is where you’ll find help understanding the SaaSquatch platform, Growth Automation, referral programs, and how we ensure that your user data stays secure.</p>
           Click the cards below to learn more about each topic.
           "
           category="landingPages"

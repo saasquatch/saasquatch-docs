@@ -103,22 +103,6 @@ export function NavigationSidebar() {
                 />
               </DropDown>
 
-              <DropDown title="Growth Automation">
-                <ArticleLeaf
-                  to="/growth/ga-101"
-                  title="Growth Automation 101"
-                />
-                <ArticleLeaf
-                  to="/growth/customer-lifecycle"
-                  title="Growth Automation Customer Lifecycle"
-                />
-
-                <ArticleLeaf
-                  to="/growth/saasquatch-ga"
-                  title="SaaSquatch Growth Automation Platform"
-                />
-              </DropDown>
-
               <DropDown title="Programs">
                 <ArticleLeaf
                   to="/success/intro"
@@ -143,6 +127,22 @@ export function NavigationSidebar() {
                 <ArticleLeaf
                   to="/success/share-options"
                   title="Referral Program Sharing Options"
+                />
+              </DropDown>
+
+              <DropDown title="Growth Automation">
+                <ArticleLeaf
+                  to="/growth/ga-101"
+                  title="Growth Automation 101"
+                />
+                <ArticleLeaf
+                  to="/growth/customer-lifecycle"
+                  title="Growth Automation Customer Lifecycle"
+                />
+
+                <ArticleLeaf
+                  to="/growth/saasquatch-ga"
+                  title="SaaSquatch Growth Automation Platform"
                 />
               </DropDown>
 
