@@ -1,6 +1,7 @@
 import React from "react";
 import { History } from "history";
 import { MMenuContext } from "./NavigationSidebar";
+import { double_chevron_left } from "@saasquatch/visual-dev/dist/components/Icon/SVGs";
 
 let jQuery;
 if (typeof document !== "undefined") {
@@ -189,6 +190,12 @@ function connectHistoryListener(history: History<any>, myMenu: any) {
 function updateSidebarForCurrentURL(myMenu: any, location: any) {
   const foundElement = findElementForCurrentUrl(location);
   if (foundElement) {
+    if (location.pathname === "/") {
+      const mainA = document.getElementById("mm-1");
+      if (mainA) {
+        myMenu.openPanel(jQuery(mainA));
+      }
+    }
     if (foundElement.hasClass("mm-vertical")) {
       // myMenu.
     } else {
@@ -200,16 +207,15 @@ function updateSidebarForCurrentURL(myMenu: any, location: any) {
 
     const highest = foundElement.closest(".mm-highest");
     if (highest && highest.length) {
-      myMenu.openPanel(highest)
+      myMenu.openPanel(highest);
     }
 
     const hidden = foundElement.closest(".mm-hidden");
     if (hidden && hidden.length) {
-      myMenu.openPanel(hidden)
+      myMenu.openPanel(hidden);
     }
     // Open closest top-level panel
     const parent = foundElement.closest(".mm-panel");
-    console.log(parent);
     if (parent && parent.length) {
       myMenu.openPanel(parent);
     }
