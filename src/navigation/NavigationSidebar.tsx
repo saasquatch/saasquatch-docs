@@ -634,6 +634,7 @@ export function NavigationSidebar() {
         </nav>
       </Styles.Container>
     </CurrentPageContext.Provider>
+
   );
 }
 
