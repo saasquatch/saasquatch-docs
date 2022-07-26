@@ -605,7 +605,7 @@ export function NavigationSidebar() {
                 <ApiSidebar />
               </DropDown>
 
-              <DropDown title="Webhook">
+              <DropDown title="Webhooks">
                 <ArticleLeaf to="/api/webhooks" title="Overview" />
                 <ArticleLeaf
                   to="/api/webhooks/security"

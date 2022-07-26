@@ -21,7 +21,7 @@ const adminPortal = {
 const growthAuto = {
   title: "Growth Automation",
   description:
-    "What is growth automation, and why is it important for your business? In this section, you’ll find answers to these questions—and how details about SaaSquatch can help you on your journey. ",
+    "What is Growth Automation, and why is it important for your business? In this section, you’ll find answers to these questions and details about how SaaSquatch can help you on your journey. ",
   linkUrl: "/growth/ga-101",
 };
 
@@ -54,7 +54,7 @@ export default function render() {
       <PageWrapper>
         <PageHeader
           title="Learning SaaSquatch"
-          highlights="<p style='margin-bottom: 16px;'>Start your SaaSquatch learning journey here. This is where you’ll find help understanding growth automation, the SaaSquatch platform, referral programs, and how we ensure that your user data stays secure.</p>
+          highlights="<p style='margin-bottom: 16px;'>Start your SaaSquatch learning journey here. This is where you’ll find help understanding Growth Automation, the SaaSquatch platform, referral programs, and how we ensure that your user data stays secure.</p>
           Click the cards below to learn more about each topic.
           "
           category="landingPages"
