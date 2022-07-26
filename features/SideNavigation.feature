@@ -9,7 +9,8 @@ Feature: Navigation Sidenav
     Scenario Outline:
         Given user arrives on the SaaSquatch help center page
         Then they see the <maincategory> main category item with <icon> icon in the side navbar
-
+        And the <maincategory> menu item leads to <homepage> home page
+        Examples:
             | maincategory            | icon              | homepage             |
             | SaaSquatch Product News | megaphone         | /product-news        |
             | Learning SaaSquatch     | graduation cap    | /learning-saasquatch |
@@ -18,49 +19,49 @@ Feature: Navigation Sidenav
             | Integrations            | 3 cubes in a pile | /integrations        |
             | Developer Resources     | </> sign          | /developer           |
 
-        And the <maincategory> menu item leads to <homepage> home page
+
 
     @ui
     @motivating
     Scenario Outline: Navigation bar item has a default state when no action is happening.
         Given a user looks at the <menuItem> menu item in the side navigation bar
         Then they see that the background color is FFFFFF
-        And text color is 003B45 (dark green)
+        And text color is 003B45-dark green
         And text type is normal
-        And the icon color is 003B45 (dark green)
+        And the icon color is 003B45-dark green
         And the dropdown line is <dropdownLine>
         And the arrow points <arrowDirection>
 
         Examples:
 
-            | menuItem                                    | dropdownLine        | arrowDirection |
-            | Core Category Section                       | FFFFFF              | N/A            |
-            | Core Category Section with navigation arrow | FFFFFF              | to the right   |
-            | Parent                                      | FFFFFF              | N/A            |
-            | Parent with dropdown arrow                  | FFFFFF              | down           |
-            | Child                                       | 003B45 (dark green) | N/A            |
-            | Child with dropdown arrow                   | 003B45 (dark green) | down           |
+            | menuItem                                    | dropdownLine      | arrowDirection |
+            | Core Category Section                       | FFFFFF            | N/A            |
+            | Core Category Section with navigation arrow | FFFFFF            | to the right   |
+            | Parent                                      | FFFFFF            | N/A            |
+            | Parent with dropdown arrow                  | FFFFFF            | down           |
+            | Child                                       | 003B45-dark green | N/A            |
+            | Child with dropdown arrow                   | 003B45-dark green | down           |
 
     @ui
     @motivating
     Scenario Outline: Navigation bar item has a hovered over state.
         Given a user hovers over the <menuItem> menu item in the side navigation bar
-        Then they see that the background color is E7EDEE (muted green)
-        And text color is 003B45 (dark green)
+        Then they see that the background color is E7EDEE-muted green
+        And text color is 003B45-dark green
         And text type is normal
-        And the icon color is 003B45 (dark green)
+        And the icon color is 003B45-dark green
         And the dropdown line is <dropdownLine>
         And the arrow points <arrowDirection>
 
         Examples:
 
-            | menuItem                                    | <dropdownLine>      | <arrowDirection> |
-            | Core Category Section                       | FFFFFF              | N/A              |
-            | Core Category Section with navigation arrow | FFFFFF              | to the right     |
-            | Parent                                      | FFFFFF              | N/A              |
-            | Parent with dropdown arrow                  | FFFFFF              | down             |
-            | Child                                       | 003B45 (dark green) | N/A              |
-            | Child with dropdown arrow                   | 003B45 (dark green) | down             |
+            | menuItem                                    | <dropdownLine>    | <arrowDirection> |
+            | Core Category Section                       | FFFFFF            | N/A              |
+            | Core Category Section with navigation arrow | FFFFFF            | to the right     |
+            | Parent                                      | FFFFFF            | N/A              |
+            | Parent with dropdown arrow                  | FFFFFF            | down             |
+            | Child                                       | 003B45-dark green | N/A              |
+            | Child with dropdown arrow                   | 003B45-dark green | down             |
 
     @ui
     @motivating
@@ -76,13 +77,13 @@ Feature: Navigation Sidenav
 
         Examples:
 
-            | <menuItem>                                  | <backgroundColor>   | <textColor>         | <textType> | <iconColor> | <dropdownLine>                                        | <arrowDirection> | <action>                              |
-            | Core Category Section                       | 003B45 (dark green) | FFFFFF              | bold       | FFFFFF      | 003B45 (dark green)                                   | N/A              | corresponding content page opening up |
-            | Core Category Section with navigation arrow | N/A                 | N/A                 | N/A        | N/A         | 003B45 (dark green)                                   | arrow point up   | N/A                                   |
-            | Parent                                      | 003B45 (dark green) | FFFFFF              | N/A        | N/A         | 003B45 (dark green)                                   | N/A              | corresponding content page opening up |
-            | Parent with dropdown arrow                  | FFFFFF              | 003B45 (dark green) | bold       | N/A         | 003B45 (dark green)                                   | arrow point up   | N/A                                   |
-            | Child                                       | 003B45 (dark green) | FFFFFF              | bold       | N/A         | dropdown line changes to 2px width and green (06966F) | N/A              | corresponding content page opening up |
-            | Child with dropdown arrow                   | FFFFFF              | 003B45 (dark green) | bold       | N/A         | 003B45 (dark green)                                   | arrow point up   | N/A                                   |
+            | <menuItem>                                  | <backgroundColor> | <textColor>       | <textType> | <iconColor> | <dropdownLine>                                      | <arrowDirection> | <action>                              |
+            | Core Category Section                       | 003B45-dark green | FFFFFF            | bold       | FFFFFF      | 003B45-dark green                                   | N/A              | corresponding content page opening up |
+            | Core Category Section with navigation arrow | N/A               | N/A               | N/A        | N/A         | 003B45-dark green                                   | arrow point up   | N/A                                   |
+            | Parent                                      | 003B45-dark green | FFFFFF            | N/A        | N/A         | 003B45-dark green                                   | N/A              | corresponding content page opening up |
+            | Parent with dropdown arrow                  | FFFFFF            | 003B45-dark green | bold       | N/A         | 003B45-dark green                                   | arrow point up   | N/A                                   |
+            | Child                                       | 003B45-dark green | FFFFFF            | bold       | N/A         | dropdown line changes to 2px width and green-06966F | N/A              | corresponding content page opening up |
+            | Child with dropdown arrow                   | FFFFFF            | 003B45-dark green | bold       | N/A         | 003B45-dark green                                   | arrow point up   | N/A                                   |
 
     @ui
     Scenario: When a page is not found a custom 404 error page is displayed.
@@ -148,7 +149,7 @@ Feature: Navigation Sidenav
     @ui
     Scenario: The navbar items within a dropdown could be separated into further categories by a line and title
         Given the user opens up a "navigation item with an arrow down"
-        Then they see the articles separated by a grey line with grey text ("example Developer Resources/API")
+        Then they see the articles separated by a grey line with grey text "example Developer Resources/API"
         And this separator item is not clickable
     @motivating
     Scenario: Breadcrumbs are displayed at the top of the sidebar can be used to navigate
@@ -159,15 +160,17 @@ Feature: Navigation Sidenav
         When they click on the "Menu", first level of the breadcrumb
         Then they see the menu changing back to the 6 main categories
         And the second layer of the breadcrumb is not a link, just showing the current sub-category item
+
     @minutia
-    Scenario: Special article menu items for API methods
+    Scenario Outline: Special article menu items for API methods
         Given the user looks at the "Developer Resources/API" section
-        When they open up a method category under REST API REFERENCE section (example: Account)
+        When they open up a method category under REST API REFERENCE section example: Account
         Then they see a that every method has an Overview section
-        And method(s) listed
+        And method/s listed
         And they see badge ui elements to tag <types> method type
         And they see badge ui elements to mark "Open Endpoints"
 
+        Examples:
             | types  |
             | GET    |
             | POST   |
