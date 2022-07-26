@@ -427,8 +427,6 @@ export function NavigationSidebar() {
               </DropDown>
 
               <DropDown title="Segment">
-                <ArticleLeaf to="/segment/" title="Segment Integration" />
-
                 <ArticleLeaf
                   to="/integrations/segment-v2/"
                   title="Segment V2"
@@ -447,11 +445,6 @@ export function NavigationSidebar() {
                 <ArticleLeaf
                   to="/developer/segment/"
                   title="Segment Integration Reference"
-                />
-
-                <ArticleLeaf
-                  to="/developer/segment/quickstart"
-                  title="Segment Web Plugin Quickstart"
                 />
               </DropDown>
 
