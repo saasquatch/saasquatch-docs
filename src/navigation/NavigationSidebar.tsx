@@ -543,7 +543,6 @@ export function NavigationSidebar() {
                   to="/developer/attribution"
                   title="Attribution Tech Guide"
                 />
-                <ArticleLeaf to="/breaking-changes" title="Breaking Changes" />
                 <ArticleLeaf
                   to="/bestpractices/common-pitfalls"
                   title="Common Pitfalls"
@@ -620,6 +619,11 @@ export function NavigationSidebar() {
               </DropDown>
 
               <ArticleLeaf
+                to="/breaking-changes"
+                title="Breaking Changes"
+                isSubCategory
+              />
+              <ArticleLeaf
                 to="/topics/json-web-tokens"
                 title="JSON Web Tokens"
                 isSubCategory
@@ -634,7 +638,6 @@ export function NavigationSidebar() {
         </nav>
       </Styles.Container>
     </CurrentPageContext.Provider>
-
   );
 }
 
