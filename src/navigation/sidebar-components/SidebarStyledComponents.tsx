@@ -92,7 +92,7 @@ export const SidebarSVG: React.FC<SidebarSVGProps> = ({
     <IconSVGDiv>
       <svg
         width={width}
-        height="auto"
+        height="100%"
         viewBox={viewBox}
         fill={clicked || clickedArticle ? "#ffffff" : "#003b45"}
         xmlns="http://www.w3.org/2000/svg"
