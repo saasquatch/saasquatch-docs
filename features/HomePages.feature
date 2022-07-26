@@ -5,7 +5,8 @@ Feature: Docs Home pages
     There are 5 home pages for the docs site, accessible from the sidenavbar. Each home page has cards to navigate to specific pages.
     Each card has a Title, a Description and works as a button link.
 
-    Background: A user arrives on the SaaSquatch help center page
+    @motivating
+    Scenario:  A user arrives on the SaaSquatch help center page
         Given the user looks at the side navigation bar
         Then they see the following main category items
             | Learning SaaSquatch     |
@@ -43,9 +44,9 @@ Feature: Docs Home pages
         And the whole card is a button to navigate to the page
         And the card has a grey shadow
 
-         @motivating
+    @motivating
     Scenario: Integration homepage cards are special cards with a logo
-    Given the user looks at a card on the "Integrations" home page
+        Given the user looks at a card on the "Integrations" home page
         Then they see the logo of the company we are integrating with
         And they see a title in bold
         And a description in normal font type
