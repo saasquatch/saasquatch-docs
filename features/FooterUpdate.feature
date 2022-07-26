@@ -58,7 +58,7 @@ Feature: Docs Footer
             | large laptop | 1920px     | 4            |
 
     @ui
-    Scenario: Visual design of the footer 
+    Scenario Outline: Visual design of the footer 
         Given a user viewing the footer
         Then they see that the <category> font type is <fontType>
         And the <category> font case is <case>
