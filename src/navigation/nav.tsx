@@ -46,14 +46,12 @@ function findElementForCurrentUrl(location: any) {
     var thatUrlWithHashNoSlash = thatUrl + location.hash;
     if (thisUrl == thatUrlWithHash || thisUrl == thatUrlWithHashNoSlash) {
       // Checks for HASH/ANCHOR based mapping first
-      console.log("this depth2: ", this);
       found(jQuery(this).parent("li"), 2);
       return;
     }
 
     // Checks for that URL minus any trailing slashes
     if (thisUrl == thatUrl) {
-      console.log("this depth1: ", this);
       found(jQuery(this).parent("li"), 1);
     }
   });
