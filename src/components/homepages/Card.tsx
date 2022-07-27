@@ -4,15 +4,15 @@ import styled from "styled-components";
 // Card styled components
 
 export const CardGrid = styled.div`
-  padding-top: 20px;
+  padding-top: var(--sq-spacing-large);
   -moz-column-count: 2;
   column-count: 2;
-  column-gap: 36px;
+  column-gap: 36px; // css variable?
   column-fill: balance;
 
   & > * {
     width: 100%;
-    margin-bottom: 36px;
+    margin-bottom: 36px; // css variable?
   }
 
   @media (max-width: 550px) {
@@ -22,15 +22,15 @@ export const CardGrid = styled.div`
 `;
 
 const CardContainerDiv = styled.div`
-  background-color: #ffffff;
+  background-color: var(--sq-nav-surface-secondary);
   height: fit-content;
-  padding: 28px;
-  border: 1px solid #e2e2e2;
-  border-radius: 4px;
-  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.08);
+  padding: 28px; // css variable?
+  border: 1px solid var(--sq-border);
+  border-radius: 4px; // css variable?
+  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.08); // css variable?
   display: flex;
   justify-self: center;
-  gap: 24px;
+  gap: var(--sq-spacing-x-large);
   -webkit-column-break-inside: avoid;
   cursor: pointer;
 
@@ -40,8 +40,8 @@ const CardContainerDiv = styled.div`
   }
 
   :hover {
-    box-shadow: 3px 3px 7px rgb(0, 122, 91, 0.1);
-    border-color: #b5cdc7;
+    box-shadow: 3px 3px 7px rgb(0, 122, 91, 0.1); // css variable?
+    border-color: #b5cdc7; // css variable?
   }
 `;
 
@@ -50,59 +50,59 @@ const CardLinkWrapperA = styled.a`
 `;
 
 const CardImageDiv = styled.div`
-  margin-top: 27px;
-  max-width: 200px;
-  min-width: 155px;
+  margin-top: 27px; // css variable?
+  max-width: 200px; // css variable?
+  min-width: 155px; // css variable?
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
 const CardBodyDiv = styled.div`
-  font-family: Helvetica, Sans-Serif;
+  font-family: var(--sq-font-family-sans);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 12px;
+  gap: var(--sq-spacing-small);
 `;
 
 const CardTitleH3 = styled.h3`
-  font-weight: 700;
-  font-size: 18px;
-  color: #003b45;
-  line-height: 20px;
+  font-weight: var(--sq-font-weight-bold);
+  font-size: var(--sq-font-size-header-three);
+  color: var(--sq-nav-text-on-secondary);
+  line-height: var(--sq-line-height-header-three);
   margin: 0 !important;
 `;
 
 const CardDescriptionP = styled.p`
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  color: #575757;
+  font-weight: var(--sq-font-weight-regular);
+  font-size: var(--sq-font-size-regular);
+  line-height: var(--sq-line-height-regular);
+  color: var(--sq-text);
   margin: 0 !important;
 `;
 
 // Icon styled components
 
 const IconCircleDiv = styled.div`
-  max-width: 250px;
-  min-width: 120px;
-  max-height: 250px;
-  min-height: 120px;
-  font-size: 20px;
-  border-radius: 50%;
-  color: #65bd60;
-  background-color: #003b45;
+  max-width: 250px; // css variable?
+  min-width: 120px; // css variable?
+  max-height: 250px; // css variable?
+  min-height: 120px; // css variable?
+  font-size: 20px; // css variable?
+  border-radius: 50%; // css variable?
+  color: #65bd60; // css variable?
+  background-color: var(--sq-nav-surface-primary);
   display: flex;
   align-items: center;
   justify-content: center;
 
   @media (max-width: 1025px) {
-    max-width: 200px;
-    min-width: 100px;
-    max-height: 200px;
-    min-height: 100px;
-    font-size: 17px;
+    max-width: 200px; // css variable?
+    min-width: 100px; // css variable?
+    max-height: 200px; // css variable?
+    min-height: 100px; // css variable?
+    font-size: 17px; // css variable?
   }
 `;
 
@@ -110,11 +110,11 @@ const IconSVGDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 60px;
+  width: 60px; // css variable?
   height: auto;
 
   @media (max-width: 1025px) {
-    width: 50px;
+    width: 50px; // css variable?
   }
 `;
 

@@ -18,7 +18,7 @@ const IconTitleDiv = styled.div`
   display: flex;
   justify-content: start;
   align-items: center;
-  gap: 18px;
+  gap: 18px; // css variable?
 `;
 
 export const CoreCategory = (props: {

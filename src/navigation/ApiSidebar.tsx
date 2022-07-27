@@ -24,41 +24,60 @@ const StyledApiSpan = styled.span`
   height: fit-content;
   align-items: center;
   width: auto !important;
-  font-size: 14px;
-  line-height: 21px;
+  font-size: var(--sq-font-size-regular);
+  line-height: 21px; // css variable?
   position: relative !important;
-  padding: 8px 20% 8px 12px !important;
+  padding: 8px 20% 8px 12px !important; // css variable?
   cursor: pointer;
   &:hover {
-    background-color: #e7edee;
+    background-color: #e7edee; // css variable?
   }
 `;
 
 export const StyledApiLink = styled(Link)<{ clicked: boolean }>`
-  font-size: ${(props) => (props.isSubCategory ? "16px" : "14px")};
-  line-height: 21px;
-  font-weight: ${(props) => (props.clicked ? "700" : "400")};
-  padding: 8px 12px;
-  color: ${(props) => (props.clicked ? "#ffffff" : "#003b45")};
-  background-color: ${(props) => (props.clicked ? "#003b45" : "#ffffff")};
-  margin-left: ${(props) => (props.clicked ? "-1px" : "0px")};
-  border-left: ${(props) => (props.clicked ? "2px solid #007A5B" : "0px")};
+  font-size: ${(props) =>
+    props.isSubCategory
+      ? "var(--sq-font-size-caption)"
+      : "var(--sq-font-size-regular)"};
+  line-height: 21px; // css variable?
+  font-weight: ${(props) =>
+    props.clicked
+      ? "var(--sq-font-weight-bold)"
+      : "var(--sq-font-weight-regular)"};
+  padding: 8px 12px; // css variable?
+  color: ${(props) =>
+    props.clicked
+      ? "var(--sq-nav-text-on-primary)"
+      : "var(--sq-nav-text-on-secondary)"};
+  background-color: ${(props) =>
+    props.clicked
+      ? "var(--sq-nav-surface-primary)"
+      : "var(--sq-nav-surface-secondary)"};
+  margin-left: ${(props) => (props.clicked ? "-1px" : "0px")}; // css variable?
+  border-left: ${(props) =>
+    props.clicked ? "2px solid #007A5B" : "0px"}; // css variable?
   &:hover {
-    background-color: ${(props) => (props.clicked ? "#003b45" : "#e7edee")};
-    color: ${(props) => (props.clicked ? "#ffffff" : "#003b45")};
+    background-color: ${(props) =>
+      props.clicked
+        ? "var(--sq-nav-surface-primary)"
+        : "#e7edee"}; // css variable?
+    color: ${(props) =>
+      props.clicked
+        ? "var(--sq-nav-text-on-primary)"
+        : "var(--sq-nav-text-on-secondary)"};
   }
 `;
 
 const MethodDiv = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: var(--sq-spacing-xx-small);
 `;
 
 const LabelsDiv = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 4px;
+  gap: var(--sq-spacing-xx-small);
 `;
 
 export const StyledLabelSpan = styled.span`
@@ -66,14 +85,14 @@ export const StyledLabelSpan = styled.span`
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 18px;
-  color: #ffffff;
+  font-weight: var(--sq-font-weight-bold);
+  font-size: var(--sq-font-size-small);
+  line-height: 18px; // css variable?
+  color: var(--sq-nav-surface-secondary);
   width: fit-content;
   height: fit-content;
-  padding: 2px 5px;
-  border-radius: 4px;
+  padding: 2px 5px; // css variable?
+  border-radius: 4px; // css variable?
   border: none;
   cursor: pointer;
 `;

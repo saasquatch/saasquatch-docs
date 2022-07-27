@@ -10,13 +10,16 @@ const StyledSpan = styled.span<{ isNestedDropDown: boolean }>`
   display: block;
   align-items: center;
   width: auto !important;
-  font-size: ${(props) => (props.isNestedDropDown ? "14px" : "16px")};
-  line-height: 24px;
+  font-size: ${(props) =>
+    props.isNestedDropDown
+      ? "var(--sq-font-size-regular)"
+      : "var(--sq-font-size-caption)"};
+  line-height: 24px; // css variable?
   position: relative !important;
-  padding: 8px 20% 8px 12px !important;
+  padding: 8px 20% 8px 12px !important; // css variable?
   cursor: pointer;
   &:hover {
-    background-color: #e7edee;
+    background-color: #e7edee; // css variable?
   }
 `;
 
@@ -53,8 +56,8 @@ export function DropDownView(props: DropDownProps) {
         className="mm-panel mm-vertical"
         id={props.id}
         style={{
-          marginLeft: "12px",
-          borderLeft: "1px solid #003b45",
+          marginLeft: "var(--sq-spacing-small)",
+          borderLeft: "1px solid var(--sq-nav-surface-primary)",
         }}
       >
         <ul className="nav-onpage mm-listview mm-vertical">{props.children}</ul>
