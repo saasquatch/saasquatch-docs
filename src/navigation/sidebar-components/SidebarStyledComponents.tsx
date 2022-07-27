@@ -17,7 +17,7 @@ export const CoreCategoryLink = styled(Link)`
   background-color: ${(props) =>
     props.clicked || props.clickedArticle ? "#003b45" : "#ffffff"};
   color: ${(props) =>
-    props.clicked || props.clickedArticle ? "#ffffff" : "#003b45"};
+    props.clicked || props.clickedArticle ? "#ffffff" : "#003b45"} !important;
   font-size: 16px;
   font-weight: ${(props) =>
     props.clicked || props.clickedArticle ? "700" : "400"} !important;
@@ -26,6 +26,8 @@ export const CoreCategoryLink = styled(Link)`
   &:hover {
     background-color: ${(props) =>
       props.clicked || props.clickedArticle ? "#003b45" : "#e7edee"};
+    color: ${(props) =>
+      props.clicked || props.clickedArticle ? "#ffffff" : "#003b45"} !important;
   }
 `;
 
