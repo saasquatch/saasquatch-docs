@@ -231,8 +231,8 @@ body {
   background-color: #fff;
 }
 
-a {
-  color: #003b45;
+/* a {
+  color: red;
   text-decoration: none;
 }
 
@@ -240,6 +240,10 @@ a:hover {
   color: #005580 !important;
   text-decoration: underline;
 }
+
+a:visited {
+  color: #681DA8;
+} */
 
 .img-rounded {
   -webkit-border-radius: 6px;
