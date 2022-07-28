@@ -27,7 +27,8 @@ const StyledApiSpan = styled.span`
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);
   position: relative !important;
-  padding: 8px 20% 8px 12px !important; // css variable?
+  padding: var(--sq-spacing-x-small) 20% var(--sq-spacing-x-small)
+    var(--sq-spacing-small) !important;
   cursor: pointer;
   &:hover {
     background-color: #e7edee;
@@ -44,7 +45,7 @@ export const StyledApiLink = styled(Link)<{ clicked: boolean }>`
     props.clicked
       ? "var(--sq-font-weight-bold)"
       : "var(--sq-font-weight-regular)"};
-  padding: 8px 12px; // css variable?
+  padding: var(--sq-spacing-x-small) var(--sq-spacing-small);
   color: ${(props) =>
     props.clicked
       ? "var(--sq-nav-text-on-primary)"
@@ -53,7 +54,7 @@ export const StyledApiLink = styled(Link)<{ clicked: boolean }>`
     props.clicked
       ? "var(--sq-nav-surface-primary)"
       : "var(--sq-nav-surface-secondary)"};
-  margin-left: ${(props) => (props.clicked ? "-1px" : "0px")}; // css variable?
+  margin-left: ${(props) => (props.clicked ? "-1px" : "0px")};
   border-left: ${(props) =>
     props.clicked ? "2px solid #007A5B" : "0px"}; // css variable?
   &:hover {
@@ -89,8 +90,8 @@ export const StyledLabelSpan = styled.span`
   color: var(--sq-nav-surface-secondary);
   width: fit-content;
   height: fit-content;
-  padding: 2px 5px; // css variable?
-  border-radius: 4px; // css variable?
+  padding: var(--sq-spacing-xxx-small) var(--sq-spacing-xx-small);
+  border-radius: var(--sq-border-radius-normal);
   border: none;
   cursor: pointer;
 `;

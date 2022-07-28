@@ -14,9 +14,10 @@ const StyledSpan = styled.span<{ isNestedDropDown: boolean }>`
     props.isNestedDropDown
       ? "var(--sq-font-size-regular)"
       : "var(--sq-font-size-caption)"};
-  line-height: 24px; // css variable?
+  line-height: 24px;
   position: relative !important;
-  padding: 8px 20% 8px 12px !important; // css variable?
+  padding: var(--sq-spacing-x-small) 20% var(--sq-spacing-x-small)
+    var(--sq-spacing-small) !important;
   cursor: pointer;
   &:hover {
     background-color: #e7edee;

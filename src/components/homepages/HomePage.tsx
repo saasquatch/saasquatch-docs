@@ -10,7 +10,7 @@ interface HomePageProps {
 }
 
 const PageWrapper = styled.div`
-  padding: 0 50px;
+  padding: 0 var(--sq-spacing-xxx-large);
 `;
 
 export const HomePage: React.FC<HomePageProps> = ({

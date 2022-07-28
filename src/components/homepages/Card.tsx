@@ -26,7 +26,7 @@ const CardContainerDiv = styled.div`
   height: fit-content;
   padding: 24px;
   border: 1px solid var(--sq-border);
-  border-radius: 4px; // css variable?
+  border-radius: var(--sq-border-radius-normal);
   box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.08);
   display: flex;
   justify-self: center;
@@ -70,7 +70,7 @@ const CardTitleH3 = styled.h3`
   font-size: var(--sq-font-size-header-three);
   color: var(--sq-nav-text-on-secondary);
   line-height: var(--sq-line-height-header-three);
-  margin: 0 !important;
+  margin: 0;
 `;
 
 const CardDescriptionP = styled.p`
@@ -78,7 +78,7 @@ const CardDescriptionP = styled.p`
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);
   color: var(--sq-text);
-  margin: 0 !important;
+  margin: 0;
 `;
 
 // Card HTML

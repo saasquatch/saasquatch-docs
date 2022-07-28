@@ -22,13 +22,13 @@ export const CoreCategoryLink = styled(Link)`
     props.clicked || props.clickedArticle
       ? "var(--sq-nav-text-on-primary)"
       : "var(--sq-nav-text-on-secondary)"} !important;
-  font-size: var(--sq-font-size-caption);
+  font-size: var(--sq-font-size-header-three);
   font-weight: ${(props) =>
     props.clicked || props.clickedArticle
       ? "var(--sq-font-weight-bold)"
       : "var(--sq-font-weight-regular)"} !important;
-  line-height: 24px; // css variable?
-  padding: 8px 12px; // css variable?
+  line-height: 24px;
+  padding: var(--sq-spacing-x-small) var(--sq-spacing-small);
   &:hover {
     background-color: ${(props) =>
       props.clicked || props.clickedArticle
@@ -53,7 +53,7 @@ export const LeafLink = styled(CoreCategoryLink as any)<{ clicked: boolean }>`
       : "var(--sq-font-size-regular)"};
   line-height: var(--sq-line-height-regular);
   margin-left: ${(props) =>
-    props.clicked && !props.isSubCategory ? "-1px" : "0px"}; // css variable?
+    props.clicked && !props.isSubCategory ? "-1px" : "0px"};
   border-left: ${(props) =>
     props.clicked && !props.isSubCategory
       ? "2px solid #007A5B"
@@ -63,7 +63,7 @@ export const LeafLink = styled(CoreCategoryLink as any)<{ clicked: boolean }>`
 /* Line in between core category title (e.g. "Developer Resources") and its subcategories */
 export const DivideLineLi = styled.li`
   height: 8px;
-  border-bottom: 1px solid var(--sq-border); // css variable?
+  border-bottom: 1px solid var(--sq-border);
   margin-bottom: var(--sq-spacing-x-small) !important;
 `;
 /* Seperator styled components (to seperate versions, webhooks, etc. in Dev Center section) */
@@ -71,7 +71,8 @@ export const SeparatorLi = styled.li`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 5px 0px 5px 11px; // css variable?
+  padding: var(--sq-spacing-xx-small) 0px var(--sq-spacing-xx-small)
+    var(--sq-spacing-small);
   gap: var(--sq-spacing-x-small);
 `;
 export const SeparatorSpan = styled.span`
@@ -94,7 +95,7 @@ const IconSVGDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 25px; // css variable?
+  width: 25px;
   height: auto;
 `;
 
