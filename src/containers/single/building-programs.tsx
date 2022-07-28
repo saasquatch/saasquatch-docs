@@ -1,15 +1,10 @@
 import { CardGrid, Card, CardProps, SVGProps } from "components/homepages/Card";
+import { HomePage } from "components/homepages/HomePage";
 import PageHeader from "components/PageHeader";
 import * as React from "react";
 import styled from "styled-components";
 
-// Page wrapper & card grid styled components
-
-const PageWrapper = styled.div`
-  padding: 0 50px;
-`;
-
-//SVG icons & Building Programs cards
+// Building Programs cards
 
 const programs = {
   title: "Programs",
@@ -82,32 +77,13 @@ const CardsArray: Array<CardProps> = [
 
 export default function render() {
   return (
-    <>
-      <PageWrapper>
-        <PageHeader
+        <HomePage
           title="Building Programs"
           highlights="<p style='margin-bottom: 16px;'>We’ve prepared these articles to help you design and deploy your perfect program—whether you’re building one for the first time or the fifth. This is where you’ll find more information about various program types; how to customize your end user experience through widgets and emails; how to maintain W-9 compliance; and more.</p> 
           Click the cards below to learn more about each topic.
           "
-          category="landingPages"
+          cards={CardsArray}
         />
-        <CardGrid>
-          {CardsArray.map((card) => {
-            return (
-              <div style={{ display: "inline-block" }}>
-                <Card
-                  title={card.title}
-                  description={card.description}
-                  iconCode={card.iconCode}
-                  imageSrc={card.imageSrc}
-                  svgSrc={card.svgSrc}
-                  linkUrl={card.linkUrl}
-                />
-              </div>
-            );
-          })}
-        </CardGrid>
-      </PageWrapper>
-    </>
+        
   );
 }

@@ -1,15 +1,10 @@
 import { CardGrid, Card, CardProps, SVGProps } from "components/homepages/Card";
+import { HomePage } from "components/homepages/HomePage";
 import PageHeader from "components/PageHeader";
 import * as React from "react";
 import styled from "styled-components";
 
-// Page wrapper & card grid styled components
-
-const PageWrapper = styled.div`
-  padding: 0 50px;
-`;
-
-//SVG icons & Learning SaaSquatch cards
+// Dev Guides cards
 
 const saasquatchEmails = {
   title: "SaaSquatch & Emails",
@@ -122,32 +117,12 @@ const CardsArray: Array<CardProps> = [
 
 export default function render() {
   return (
-    <>
-      <PageWrapper>
-        <PageHeader
-          title="Dev Guides"
-          highlights="<p style='margin-bottom: 16px;'>The SaaSquatch Guides show you how to use our tools to create your own world-class referral and loyalty programs.</p>
+    <HomePage
+      title="Dev Guides"
+      highlights="<p style='margin-bottom: 16px;'>The SaaSquatch Guides show you how to use our tools to create your own world-class referral and loyalty programs.</p>
           Click the cards below to learn more about each topic.
           "
-          category="landingPages"
-        />
-        <CardGrid>
-          {CardsArray.map((card) => {
-            return (
-              <div style={{ display: "inline-block" }}>
-                <Card
-                  title={card.title}
-                  description={card.description}
-                  iconCode={card.iconCode}
-                  imageSrc={card.imageSrc}
-                  svgSrc={card.svgSrc}
-                  linkUrl={card.linkUrl}
-                />
-              </div>
-            );
-          })}
-        </CardGrid>
-      </PageWrapper>
-    </>
+      cards={CardsArray}
+    />
   );
 }

@@ -1,15 +1,11 @@
 import { CardGrid, Card, CardProps } from "components/homepages/Card";
+import { HomePage } from "components/homepages/HomePage";
 import PageHeader from "components/PageHeader";
 import { stringify } from "gray-matter";
 import * as React from "react";
 import styled from "styled-components";
 
-// Page wrapper & card grid styled components
-
-const PageWrapper = styled.div`
-  padding: 0 50px;
-`;
-//SVG icons & Integrations cards
+// Integrations cards
 
 const salesForce = {
   title: "Salesforce",
@@ -128,28 +124,10 @@ const CardsArray: Array<CardProps> = [
 
 export default function render() {
   return (
-    <PageWrapper>
-      <PageHeader
-        title="Integrations"
-        highlights="SaaSquatch integrates with a number of platforms, from payment systems that manage automatic referral tracking and fulfillment, to tag management systems that simplify installing integrating widgets inside your product, to mobile deeplinking platforms that let you optimize and personalize the mobile referral experience."
-        category="landingPages" // right??
-      />
-      <CardGrid>
-        {CardsArray.map((card) => {
-          return (
-            <div style={{ display: "inline-block" }}>
-              <Card
-                title={card.title}
-                description={card.description}
-                iconCode={card.iconCode}
-                imageSrc={card.imageSrc}
-                svgSrc={card.svgSrc}
-                linkUrl={card.linkUrl}
-              />
-            </div>
-          );
-        })}
-      </CardGrid>
-    </PageWrapper>
+    <HomePage
+      title="Integrations"
+      highlights="SaaSquatch integrates with a number of platforms, from payment systems that manage automatic referral tracking and fulfillment, to tag management systems that simplify installing integrating widgets inside your product, to mobile deeplinking platforms that let you optimize and personalize the mobile referral experience."
+      cards={CardsArray}
+    />
   );
 }

@@ -1,15 +1,10 @@
 import { CardGrid, Card, CardProps, SVGProps } from "components/homepages/Card";
+import { HomePage } from "components/homepages/HomePage";
 import PageHeader from "components/PageHeader";
 import * as React from "react";
 import styled from "styled-components";
 
-// Page wrapper & card grid styled components
-
-const PageWrapper = styled.div`
-  padding: 0 50px;
-`;
-
-//SVG icons & Learning SaaSquatch cards
+// Learning SaaSquatch cards
 
 const adminPortal = {
   title: "SaaSquatch Admin Portal",
@@ -50,32 +45,12 @@ const CardsArray: Array<CardProps> = [
 
 export default function render() {
   return (
-    <>
-      <PageWrapper>
-        <PageHeader
-          title="Learning SaaSquatch"
-          highlights="<p style='margin-bottom: 16px;'>Start your SaaSquatch learning journey here. This is where you’ll find help understanding the SaaSquatch platform, Growth Automation, referral programs, and how we ensure that your user data stays secure.</p>
+    <HomePage
+      title="Learning SaaSquatch"
+      highlights="<p style='margin-bottom: 16px;'>Start your SaaSquatch learning journey here. This is where you’ll find help understanding the SaaSquatch platform, Growth Automation, referral programs, and how we ensure that your user data stays secure.</p>
           Click the cards below to learn more about each topic.
           "
-          category="landingPages"
-        />
-        <CardGrid>
-          {CardsArray.map((card) => {
-            return (
-              <div style={{ display: "inline-block" }}>
-                <Card
-                  title={card.title}
-                  description={card.description}
-                  iconCode={card.iconCode}
-                  imageSrc={card.imageSrc}
-                  svgSrc={card.svgSrc}
-                  linkUrl={card.linkUrl}
-                />
-              </div>
-            );
-          })}
-        </CardGrid>
-      </PageWrapper>
-    </>
+      cards={CardsArray}
+    />
   );
 }

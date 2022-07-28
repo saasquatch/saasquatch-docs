@@ -1,15 +1,10 @@
 import { CardGrid, Card, CardProps, SVGProps } from "components/homepages/Card";
+import { HomePage } from "components/homepages/HomePage";
 import PageHeader from "components/PageHeader";
 import * as React from "react";
 import styled from "styled-components";
 
-// Page wrapper & card grid styled components
-
-const PageWrapper = styled.div`
-  padding: 0 50px;
-`;
-
-//SVG icons & Running Programs cards
+// Running Programs cards
 
 const analyticsReporting = {
   title: "Analytics and Reporting",
@@ -50,32 +45,12 @@ const CardsArray: Array<CardProps> = [
 
 export default function render() {
   return (
-    <>
-      <PageWrapper>
-        <PageHeader
-          title="Running Programs"
-          highlights="<p style='margin-bottom: 16px;'>You’ve built your program—what now? Here, we’ll give you all the info you need to run your program successfully, from user management, to analytics, and beyond.</p> 
+    <HomePage
+      title="Running Programs"
+      highlights="<p style='margin-bottom: 16px;'>You’ve built your program—what now? Here, we’ll give you all the info you need to run your program successfully, from user management, to analytics, and beyond.</p> 
           Click the cards below to learn more about each topic.
           "
-          category="landingPages"
-        />
-        <CardGrid>
-          {CardsArray.map((card) => {
-            return (
-              <div style={{ display: "inline-block" }}>
-                <Card
-                  title={card.title}
-                  description={card.description}
-                  iconCode={card.iconCode}
-                  imageSrc={card.imageSrc}
-                  svgSrc={card.svgSrc}
-                  linkUrl={card.linkUrl}
-                />
-              </div>
-            );
-          })}
-        </CardGrid>
-      </PageWrapper>
-    </>
+      cards={CardsArray}
+    />
   );
 }

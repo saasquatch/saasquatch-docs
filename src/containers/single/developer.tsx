@@ -1,15 +1,10 @@
 import { CardGrid, Card, CardProps, SVGProps } from "components/homepages/Card";
+import { HomePage } from "components/homepages/HomePage";
 import PageHeader from "components/PageHeader";
 import * as React from "react";
 import styled from "styled-components";
 
-// Page wrapper & card grid styled components
-
-const PageWrapper = styled.div`
-  padding: 0 50px;
-`;
-
-//SVG icons & Developer Center cards
+// Developer Center cards
 
 const devGuides = {
   title: "Dev Guides",
@@ -73,32 +68,12 @@ const CardsArray: Array<CardProps> = [
 
 export default function render() {
   return (
-    <>
-      <PageWrapper>
-        <PageHeader
-          title="Developer Resources"
-          highlights="<p style='margin-bottom: 16px;'>This is the one-stop shop for everything you need to know about our APIs, webhooks, mobile SDKs, and JavaScript library, squatch.js. We have dev guides, testing best practices, and more available to help you understand the tech that powers our platform.</p>  
+    <HomePage
+      title="Developer Resources"
+      highlights="<p style='margin-bottom: 16px;'>This is the one-stop shop for everything you need to know about our APIs, webhooks, mobile SDKs, and JavaScript library, squatch.js. We have dev guides, testing best practices, and more available to help you understand the tech that powers our platform.</p>  
           Click the cards below to learn more about each topic.
           "
-          category="landingPages" // right??
-        />
-        <CardGrid>
-          {CardsArray.map((card) => {
-            return (
-              <div style={{ display: "inline-block" }}>
-                <Card
-                  title={card.title}
-                  description={card.description}
-                  iconCode={card.iconCode}
-                  imageSrc={card.imageSrc}
-                  svgSrc={card.svgSrc}
-                  linkUrl={card.linkUrl}
-                />
-              </div>
-            );
-          })}
-        </CardGrid>
-      </PageWrapper>
-    </>
+      cards={CardsArray}
+    />
   );
 }
