@@ -56,8 +56,8 @@ export const LeafLink = styled(CoreCategoryLink as any)<{ clicked: boolean }>`
     props.clicked && !props.isSubCategory ? "-1px" : "0px"};
   border-left: ${(props) =>
     props.clicked && !props.isSubCategory
-      ? "2px solid #007A5B"
-      : "0px"}; // css variable?
+      ? "2px solid var(--docs-text-interactive)"
+      : "0px"};
 `;
 
 /* Line in between core category title (e.g. "Developer Resources") and its subcategories */

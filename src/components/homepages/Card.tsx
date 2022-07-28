@@ -41,7 +41,7 @@ const CardContainerDiv = styled.div`
 
   :hover {
     box-shadow: 3px 3px 7px rgb(0, 122, 91, 0.1);
-    border-color: #b5cdc7; // css variable?
+    border-color: var(--docs-card-border-hovered);
   }
 `;
 

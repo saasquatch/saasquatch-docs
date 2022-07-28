@@ -55,7 +55,7 @@ export const StyledApiLink = styled(Link)<{ clicked: boolean }>`
       : "var(--sq-nav-surface-secondary)"};
   margin-left: ${(props) => (props.clicked ? "-1px" : "0px")};
   border-left: ${(props) =>
-    props.clicked ? "2px solid #007A5B" : "0px"}; // css variable?
+    props.clicked ? "2px solid var(--docs-text-interactive)" : "0px"};
   &:hover {
     background-color: ${(props) =>
       props.clicked ? "var(--sq-nav-surface-primary)" : "#e7edee"};
