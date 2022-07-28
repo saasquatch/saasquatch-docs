@@ -5,6 +5,7 @@
 
 import React, { useRef } from "react";
 import styled from "styled-components";
+import { openPanel } from "./openPanel";
 
 const StyledSpan = styled.span<{ isNestedDropDown: boolean }>`
   display: block;
@@ -47,7 +48,6 @@ export function DropDownView(props: DropDownProps) {
       <StyledSpan
         isNestedDropDown={props.isNestedDropDown}
         className="mm-next"
-        // href={id}
         data-target={props.id}
         onClick={props.onOpen}
       >
@@ -76,24 +76,14 @@ export type DropDownProps = {
   isNestedDropDown?: boolean;
 };
 
-function openVerticalPanel($l) {
-  if ($l.hasClass("mm-opened")) {
-    $l.removeClass("mm-opened");
-  } else {
-    $l.addClass("mm-opened");
-  }
-}
-
 let incrNumber = 1;
 export function useDropDownHook(): DropDownProps {
-  // const { mmenuApi } = MMenuContext.useContainer();
   const parentRef = useRef(null);
 
   const id = "#mm-" + (90 + incrNumber++);
   const onOpen = (e: React.MouseEvent) => {
     e.preventDefault();
-    // console.log("Opening panel", mmenuApi, jQuery(id));
-    openVerticalPanel(jQuery(parentRef.current));
+    openPanel(jQuery(parentRef.current));
   };
   return {
     id,

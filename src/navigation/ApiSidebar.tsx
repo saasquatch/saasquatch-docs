@@ -4,18 +4,17 @@
 */
 
 import { History } from "history";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useRef } from "react";
 import { useSiteData } from "react-static";
 import { HashLink as Link } from "react-router-hash-link";
 import slug from "slug";
 
-import * as Styles from "./NavStyles";
 import { EndpointSummary, EndpointSummarySet } from "src/api/Types";
-import { CurrentPageContext, MMenuContext } from "./NavigationSidebar";
+import { MMenuContext } from "./NavigationSidebar";
 import { VersionContext } from "components/useVersion";
 import { Tooltip } from "components/Tooltip";
 import styled from "styled-components";
-import { useHistory, useLocation } from "react-router";
+import { useHistory } from "react-router";
 import { stripTrailingSlash } from "./sidebar-components/stripTrailingSlash";
 import { ArticleLeaf } from "./sidebar-components/SidebarArticleLeaf";
 
@@ -97,24 +96,11 @@ export const StyledLabelSpan = styled.span`
 `;
 
 function openVeritcalParent($l, mmenuApi) {
-  // var $l = $panel.parent();
-
   if ($l.hasClass("mm-opened")) {
     $l.removeClass("mm-opened");
   } else {
     $l.addClass("mm-opened");
   }
-
-  // var $sub = $l.parents(".mm-subopened");
-  // if ($sub.length) {
-  //   console.log("Opening submenu", $l);
-  //   mmenuApi.openPanel($sub.first());
-  //   return;
-  // }
-
-  // mmenuApi.trigger( 'openPanel' 	, $panel );
-  // mmenuApi.trigger( 'openingPanel', $panel );
-  // mmenuApi.trigger( 'openedPanel'	, $panel );
 }
 
 function useMenuItemHook({ tag, idx }) {
@@ -133,7 +119,6 @@ function useMenuItemHook({ tag, idx }) {
   const id = "#mm-" + (90 + idx);
   const doOpen = (e) => {
     e.preventDefault();
-    // console.log("Opening panel", mmenuApi, jQuery(id));
     openVeritcalParent(jQuery(parent.current), mmenuApi);
   };
   const anchor = slug(tag);
@@ -175,14 +160,12 @@ function ApiMenuItemView({
     return null;
   }
   const statesPath = "/api/methods#" + states.anchor;
-  const currentPage = React.useContext(CurrentPageContext);
   return (
     /* API menu item (drop-down) */
     <>
       <li className="mm-vertical" ref={refs.parent}>
         <StyledApiSpan
           className="mm-next mm-fullsubopen"
-          // href={id}
           data-target={states.id}
           onClick={callbacks.doOpen}
         >
@@ -212,7 +195,6 @@ function ApiMenuItemView({
             {/* API menu item child */}
             {data.endpoints.map((route) => {
               const routePath = "/api/methods#" + route.anchor;
-              // const currentPage = React.useContext(CurrentPageContext);
               return (
                 <li key={route.anchor}>
                   <StyledApiLink
@@ -243,47 +225,6 @@ function ApiMenuItemView({
           </ul>
         </div>
       </li>
-    </>
-  );
-}
-
-function ApiMenuItemChildren({
-  endpoints,
-  tag,
-}: {
-  endpoints: EndpointSummary[];
-  tag: string;
-}) {
-  const children = endpoints.map((route) => {
-    const path = "/api/methods#" + route.anchor;
-    // const currentPage = React.useContext(CurrentPageContext);
-    return (
-      // this is one list item (e.g. Account Overview, Delete an Account)
-      <li key={route.anchor}>
-        <StyledApiLink to={path}>
-          <MethodDiv>
-            {route.summary}
-            <LabelsDiv>
-              <StyledLabelSpan
-                className={"label docs-label-" + route.httpMethod.toLowerCase()}
-              >
-                {route.httpMethod.toUpperCase()}
-              </StyledLabelSpan>
-              {route.tags.includes("Open Endpoint") && <OpenEndpointLabel />}
-            </LabelsDiv>
-          </MethodDiv>
-        </StyledApiLink>
-      </li>
-    );
-  });
-  return (
-    <>
-      <li>
-        <StyledApiLink to={"/api/methods#" + slug(tag)}>
-          {tag} Overview
-        </StyledApiLink>
-      </li>
-      {children}
     </>
   );
 }

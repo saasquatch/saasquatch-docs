@@ -7,6 +7,7 @@ import React, { useRef } from "react";
 import styled from "styled-components";
 import { SidebarSVGProps } from "./SidebarIcons";
 import { MMenuContext } from "../NavigationSidebar";
+import { openPanel } from "./openPanel";
 import {
   CoreCategoryLink,
   DivideLineLi,
@@ -67,7 +68,7 @@ export const CoreCategoryView = (props: {
           <SidebarSVG
             width="9px"
             viewBox="0 0 8 13"
-            d="M0 1.91L4.58 6.5L0 11.09L1.41 12.5L7.41 6.5L1.41 0.5L0 1.91Z"
+            path="M0 1.91L4.58 6.5L0 11.09L1.41 12.5L7.41 6.5L1.41 0.5L0 1.91Z"
           />
         )}
       </CoreCategoryLink>
@@ -88,21 +89,11 @@ export const CoreCategoryView = (props: {
   );
 };
 
-function openPanel($l) {
-  if ($l.hasClass("mm-opened")) {
-    $l.removeClass("mm-opened");
-  } else {
-    $l.addClass("mm-opened");
-  }
-}
-
 let incrNumber = 1;
 export function useCoreCategoryHook() {
   const { mmenuApi } = MMenuContext.useContainer();
-  // console.log({ mmenuApi });
   const parentRef = useRef(null);
   const id = "#mm-" + incrNumber++;
-  // console.log({ id });
   const onClick = (e: React.MouseEvent) => {
     e.preventDefault();
     mmenuApi.openPanel(jQuery(parentRef.current));

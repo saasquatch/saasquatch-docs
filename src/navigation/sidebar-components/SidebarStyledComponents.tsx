@@ -102,7 +102,7 @@ const IconSVGDiv = styled.div`
 export const SidebarSVG: React.FC<SidebarSVGProps> = ({
   width,
   viewBox,
-  d,
+  path,
   clicked,
   clickedArticle,
 }) => {
@@ -119,7 +119,7 @@ export const SidebarSVG: React.FC<SidebarSVGProps> = ({
         }
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path d={d} />
+        <path d={path} />
       </svg>
     </IconSVGDiv>
   );
