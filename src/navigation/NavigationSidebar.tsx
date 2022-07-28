@@ -552,7 +552,6 @@ export function NavigationSidebar() {
                   to="/developer/squatchjs/issue"
                   title="Issue Code List"
                 />
-                <Separator text="Version 2" />
                 <ArticleLeaf to="/developer/squatchjs/v2" title="Quickstart" />
                 <ArticleLeaf
                   to="/developer/squatchjs/v2/advanced-use-cases"
@@ -569,15 +568,6 @@ export function NavigationSidebar() {
               </DropDown>
 
               <DropDown title="API">
-                <Separator text="REST API" />
-
-                <ArticleLeaf to="/api" title="API Overview" />
-                <ArticleLeaf to="/api/authentication" title="Authentication" />
-                <ArticleLeaf
-                  to="/api/openendpoints"
-                  title="API Open Endpoints"
-                />
-                <ArticleLeaf to="/api/errors" title="Errors" />
                 <Separator text="GraphQL API" />
                 <ArticleLeaf
                   to="/graphql/reference"
@@ -587,6 +577,14 @@ export function NavigationSidebar() {
                   to="/graphql/custom-widget"
                   title="Custom Widget via GraphQL"
                 />
+                <Separator text="REST API" />
+                <ArticleLeaf to="/api" title="API Overview" />
+                <ArticleLeaf to="/api/authentication" title="Authentication" />
+                <ArticleLeaf
+                  to="/api/openendpoints"
+                  title="API Open Endpoints"
+                />
+                <ArticleLeaf to="/api/errors" title="Errors" />
 
                 <Separator text="REST API Reference" />
 
