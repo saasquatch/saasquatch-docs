@@ -242,6 +242,10 @@ export function NavigationSidebar() {
                   title="Reward Exchange"
                 />
                 <ArticleLeaf to="/topics/conversion" title="Conversion" />
+                <ArticleLeaf
+                  to="/features/leaderboards/"
+                  title="Leaderboards"
+                />
               </DropDown>
 
               <DropDown title="Program Emails">
