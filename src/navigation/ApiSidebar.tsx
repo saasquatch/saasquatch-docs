@@ -25,12 +25,12 @@ const StyledApiSpan = styled.span`
   align-items: center;
   width: auto !important;
   font-size: var(--sq-font-size-regular);
-  line-height: 21px; // css variable?
+  line-height: var(--sq-line-height-regular);
   position: relative !important;
   padding: 8px 20% 8px 12px !important; // css variable?
   cursor: pointer;
   &:hover {
-    background-color: #e7edee; // css variable?
+    background-color: #e7edee;
   }
 `;
 
@@ -58,9 +58,7 @@ export const StyledApiLink = styled(Link)<{ clicked: boolean }>`
     props.clicked ? "2px solid #007A5B" : "0px"}; // css variable?
   &:hover {
     background-color: ${(props) =>
-      props.clicked
-        ? "var(--sq-nav-surface-primary)"
-        : "#e7edee"}; // css variable?
+      props.clicked ? "var(--sq-nav-surface-primary)" : "#e7edee"};
     color: ${(props) =>
       props.clicked
         ? "var(--sq-nav-text-on-primary)"
@@ -87,7 +85,7 @@ export const StyledLabelSpan = styled.span`
   text-transform: uppercase;
   font-weight: var(--sq-font-weight-bold);
   font-size: var(--sq-font-size-small);
-  line-height: 18px; // css variable?
+  line-height: var(--sq-line-height-caption);
   color: var(--sq-nav-surface-secondary);
   width: fit-content;
   height: fit-content;

@@ -33,7 +33,7 @@ export const CoreCategoryLink = styled(Link)`
     background-color: ${(props) =>
       props.clicked || props.clickedArticle
         ? "var(--sq-nav-surface-primary)"
-        : "#e7edee"}; // css variable?
+        : "#e7edee"};
     color: ${(props) =>
       props.clicked || props.clickedArticle
         ? "var(--sq-nav-text-on-primary)"
@@ -51,7 +51,7 @@ export const LeafLink = styled(CoreCategoryLink as any)<{ clicked: boolean }>`
     props.isSubCategory
       ? "var(--sq-font-size-caption)"
       : "var(--sq-font-size-regular)"};
-  line-height: 21px; // css variable?
+  line-height: var(--sq-line-height-regular);
   margin-left: ${(props) =>
     props.clicked && !props.isSubCategory ? "-1px" : "0px"}; // css variable?
   border-left: ${(props) =>

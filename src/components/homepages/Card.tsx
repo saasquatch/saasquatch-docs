@@ -7,12 +7,12 @@ export const CardGrid = styled.div`
   padding-top: var(--sq-spacing-large);
   -moz-column-count: 2;
   column-count: 2;
-  column-gap: 36px; // css variable?
+  column-gap: var(--sq-spacing-xx-large);
   column-fill: balance;
 
   & > * {
     width: 100%;
-    margin-bottom: 36px; // css variable?
+    margin-bottom: var(--sq-spacing-xx-large);
   }
 
   @media (max-width: 550px) {
@@ -102,7 +102,7 @@ const IconCircleDiv = styled.div`
     min-width: 100px; // css variable?
     max-height: 200px; // css variable?
     min-height: 100px; // css variable?
-    font-size: 17px; // css variable?
+    font-size: var(--sq-font-size-header-three);
   }
 `;
 

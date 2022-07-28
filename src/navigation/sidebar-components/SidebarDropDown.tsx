@@ -19,7 +19,7 @@ const StyledSpan = styled.span<{ isNestedDropDown: boolean }>`
   padding: 8px 20% 8px 12px !important; // css variable?
   cursor: pointer;
   &:hover {
-    background-color: #e7edee; // css variable?
+    background-color: #e7edee;
   }
 `;
 
