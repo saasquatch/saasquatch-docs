@@ -48,7 +48,7 @@ export const StyledApiLink = styled(Link)<{ clicked: boolean }>`
   color: ${(props) =>
     props.clicked
       ? "var(--sq-nav-text-on-primary)"
-      : "var(--sq-nav-text-on-secondary)"};
+      : "var(--sq-nav-text-on-secondary)"} !important;
   background-color: ${(props) =>
     props.clicked
       ? "var(--sq-nav-surface-primary)"
