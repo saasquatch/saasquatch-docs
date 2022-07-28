@@ -62,7 +62,7 @@ export const LeafLink = styled(CoreCategoryLink as any)<{ clicked: boolean }>`
 
 /* Line in between core category title (e.g. "Developer Resources") and its subcategories */
 export const DivideLineLi = styled.li`
-  height: 8px; // css variable var(--sq-spacing-x-small) ??
+  height: 8px;
   border-bottom: 1px solid var(--sq-border); // css variable?
   margin-bottom: var(--sq-spacing-x-small) !important;
 `;
@@ -72,7 +72,7 @@ export const SeparatorLi = styled.li`
   flex-direction: row;
   align-items: center;
   padding: 5px 0px 5px 11px; // css variable?
-  gap: 10px; // css variable?
+  gap: var(--sq-spacing-x-small);
 `;
 export const SeparatorSpan = styled.span`
   align-self: center;
@@ -81,7 +81,7 @@ export const SeparatorSpan = styled.span`
   text-transform: uppercase;
   color: var(--sq-nav-text-on-primary-subdued);
   font-size: var(--sq-font-size-small);
-  line-height: 18px; // css variable?
+  line-height: 18px;
   margin: 0 !important;
 `;
 export const SeparatorLine = styled.div`

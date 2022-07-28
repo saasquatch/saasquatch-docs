@@ -32,9 +32,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               <Card
                 title={card.title}
                 description={card.description}
-                iconCode={card.iconCode}
                 imageSrc={card.imageSrc}
-                svgSrc={card.svgSrc}
                 linkUrl={card.linkUrl}
               />
             </div>

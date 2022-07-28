@@ -39,7 +39,7 @@ export const StyledApiLink = styled(Link)<{ clicked: boolean }>`
     props.isSubCategory
       ? "var(--sq-font-size-caption)"
       : "var(--sq-font-size-regular)"};
-  line-height: 21px; // css variable?
+  line-height: var(--sq-line-height-regular);
   font-weight: ${(props) =>
     props.clicked
       ? "var(--sq-font-weight-bold)"
