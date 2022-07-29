@@ -1,9 +1,9 @@
 import React from "react";
-import { History } from "history";
+import { History, Location } from "history";
 import { MMenuContext } from "./NavigationSidebar";
 import { double_chevron_left } from "@saasquatch/visual-dev/dist/components/Icon/SVGs";
 
-let jQuery;
+let jQuery: JQueryStatic;
 if (typeof document !== "undefined") {
   let mmenu = require("jquery.mmenu");
   let Hammer = require("hammerjs");
@@ -16,16 +16,16 @@ if (typeof document !== "undefined") {
 }
 var categories = ["successCenter", "developerCenter", "designerCenter"];
 
-function findElementForCurrentUrl(location: any) {
+function findElementForCurrentUrl(location: Location<unknown>) {
   /**
    * Sets the current page nav item as "Selected"
    *
    * Source: https://css-tricks.com/snippets/jquery/highlight-all-links-to-current-page/
    */
-  var foundElement = null;
+  var foundElement: JQuery<HTMLElement> | null = null;
   var foundDepth = -1;
 
-  function found(el, depth) {
+  function found(el: JQuery<HTMLElement>, depth: number) {
     if (depth > foundDepth) {
       foundElement = el;
       foundDepth = 0;
@@ -68,7 +68,7 @@ export const MMenuID = "my-menu";
 export default function init(search: HTMLElement, history: History<any>) {
   var menuDom = jQuery(`#${MMenuID}`);
 
-  const foundElement = findElementForCurrentUrl(window.location);
+  const foundElement = findElementForCurrentUrl(history.location);
 
   if (foundElement) {
     foundElement.addClass("Selected");
@@ -153,7 +153,7 @@ export default function init(search: HTMLElement, history: History<any>) {
 
   const myMenu = menuDom.data("mmenu");
 
-  updateSidebarForCurrentURL(myMenu, window.location);
+  updateSidebarForCurrentURL(myMenu, history.location);
   connectMobileToggle(myMenu);
   connectHistoryListener(history, myMenu);
 
@@ -173,7 +173,7 @@ function connectMobileToggle(myMenu: any) {
  *
  * Source: https://github.com/ReactTraining/react-router/issues/3554
  */
-function connectHistoryListener(history: History<any>, myMenu: any) {
+function connectHistoryListener(history: History<unknown>, myMenu: any) {
   history.listen((location) => {
     //Do your stuff here
     updateSidebarForCurrentURL(myMenu, location);
@@ -185,7 +185,7 @@ function connectHistoryListener(history: History<any>, myMenu: any) {
  *
  * @param myMenu
  */
-function updateSidebarForCurrentURL(myMenu: any, location: any) {
+function updateSidebarForCurrentURL(myMenu: any, location: Location<unknown>) {
   const foundElement = findElementForCurrentUrl(location);
   if (foundElement) {
     if (location.pathname === "/") {

@@ -10,12 +10,19 @@ import { LeafLink } from "./SidebarStyledComponents";
 import { CurrentPageContext } from "../NavigationSidebar";
 import { stripTrailingSlash } from "./stripTrailingSlash";
 
-export const ArticleLeaf = (props: {
+export interface IArticleLeafProps {
   to: string;
   title: string;
   isSubCategory?: boolean;
   apiMethod?: boolean;
-}) => {
+}
+
+export interface IArticleLeafViewProps extends IArticleLeafProps {
+  currentPage: string;
+  checkUrlIsMethod: () => boolean;
+}
+
+export const useArticleLeaf = (props: IArticleLeafProps) => {
   const currentPage = useContext(CurrentPageContext);
   const history: History<any> = useHistory();
   const hash = history.location.hash;
@@ -35,14 +42,22 @@ export const ArticleLeaf = (props: {
     }
   };
 
+  return {
+    ...props,
+    currentPage,
+    checkUrlIsMethod,
+  };
+};
+
+export const ArticleLeafView = (props: IArticleLeafViewProps) => {
   return (
     <li>
       <LeafLink
         to={stripTrailingSlash(props.to)}
         clicked={
           props.apiMethod
-            ? checkUrlIsMethod()
-            : currentPage === stripTrailingSlash(props.to)
+            ? props.checkUrlIsMethod()
+            : props.currentPage === stripTrailingSlash(props.to)
         }
         isSubCategory={props.isSubCategory}
       >
@@ -50,4 +65,8 @@ export const ArticleLeaf = (props: {
       </LeafLink>
     </li>
   );
+};
+
+export const ArticleLeaf = (props: IArticleLeafProps) => {
+  return <ArticleLeafView {...useArticleLeaf(props)} />;
 };
