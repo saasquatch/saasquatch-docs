@@ -268,18 +268,18 @@ const Change = ({ mermaidMd, title, description, deadline }: ChangeProps) => {
             <Markdown source={description} />
           </Text>
         </div>
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <Name>Timeline</Name>
-          <Text>
-            <MermaidStyles>
-              {mermaidMd && (
+        {mermaidMd && (
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <Name>Timeline</Name>
+            <Text>
+              <MermaidStyles>
                 <div className="mermaid-markdown">
                   <Markdown source={mermaidMd} />
                 </div>
-              )}
-            </MermaidStyles>
-          </Text>
-        </div>
+              </MermaidStyles>
+            </Text>
+          </div>
+        )}
       </Body>
     </ChangeWrapper>
   );
