@@ -241,11 +241,11 @@ export function NavigationSidebar() {
                   to="/features/reward-exchange"
                   title="Reward Exchange"
                 />
-                <ArticleLeaf to="/topics/conversion" title="Conversion" />
                 <ArticleLeaf
                   to="/features/leaderboards/"
                   title="Leaderboards"
                 />
+                <ArticleLeaf to="/topics/conversion" title="Conversion" />
               </DropDown>
 
               <DropDown title="Program Emails">
