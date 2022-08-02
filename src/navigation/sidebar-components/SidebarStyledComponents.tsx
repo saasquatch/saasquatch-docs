@@ -44,6 +44,7 @@ export const CoreCategoryLink = styled(Link)`
 export const TitleLink = styled(CoreCategoryLink as any)`
   justify-content: start;
   gap: var(--sq-spacing-small);
+  font-size: var(--sq-font-size-caption) ;
 `;
 
 export const LeafLink = styled(CoreCategoryLink as any)<{ clicked: boolean }>`
