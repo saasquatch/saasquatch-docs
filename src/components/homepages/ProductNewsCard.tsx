@@ -23,7 +23,6 @@ const CardBaseDiv = styled.div`
 `;
 const CardTitle = styled.h2`
   font-weight: 700 !important;
-  font-size: 24px !important;
   line-height: 28px;
   color: #003b45;
   margin: 0 0 3px 0;

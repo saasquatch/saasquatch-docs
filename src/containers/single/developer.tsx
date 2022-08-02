@@ -37,12 +37,12 @@ const squatchJS = {
 const api = {
   title: "API",
   description:
-    "Find documentation and reference materials related to GraphQL and REST API.",
+    "Find documentation and reference materials related to our GraphQL and REST API.",
   linkUrl: "/api",
 };
 
-const webhook = {
-  title: "Webhook",
+const webhooks = {
+  title: "Webhooks",
   description: "Learn about webhooks, webhook security, and more.",
   linkUrl: "/api/webhooks",
 };
@@ -54,16 +54,24 @@ const mobile = {
   linkUrl: "/mobile",
 };
 
+const breakingChanges = {
+  title: "Breaking Changes",
+  description:
+    "We try our best to ensure backwards compatibility of our products, but sometimes we have to launch breaking changes. Stay up to date with our breaking changes page.",
+  linkUrl: "/breaking-changes",
+};
+
 // Cards to be rendered array & render function
 
 const CardsArray: Array<CardProps> = [
   devGuides,
   squatchJS,
   api,
-  webhook,
+  webhooks,
   mobile,
   jsonWeb,
   bestPractices,
+  breakingChanges,
 ];
 
 export default function render() {

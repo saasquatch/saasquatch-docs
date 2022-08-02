@@ -41,13 +41,6 @@ const programEmails = {
   linkUrl: "/designer/email-editor",
 };
 
-const w9Compliance = {
-  title: "W-9 Compliance",
-  description:
-    "Learn how SaaSquatch helps you remain W-9 compliant when rewarding your U.S. participants. This section explains W-9 compliance for your tenant and your reward catalog.",
-  linkUrl: "/features/w-9-compliance",
-};
-
 const programInternational = {
   title: "Program Internationalization",
   description:
@@ -69,7 +62,6 @@ const CardsArray: Array<CardProps> = [
   programWidgets,
   rewards,
   programEmails,
-  w9Compliance,
   microsites,
   userSegmentation,
   programInternational,
