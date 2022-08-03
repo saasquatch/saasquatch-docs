@@ -9,9 +9,7 @@ import Meta from "./Meta";
  *  Title, highlights, cover image, etc.
  *
  */
-export default function render(
-  props: Entry & { children?: React.ReactNode }
-) {
+export default function render(props: Entry & { children?: React.ReactNode }) {
   //   const Wrapper = props.hero? ({children}:any) => <div className={"hero-unit article " + props.category}>{children}</div> :
 
   return (
@@ -44,8 +42,8 @@ export default function render(
           <blockquote>
             <p>
               This feature is currently in Beta. Please contact our{" "}
-              <a href="mailto:support@saasquatch.com">support team</a>{" "}
-              to learn more about how to enroll.
+              <a href="mailto:support@saasquatch.com">support team</a> to learn
+              more about how to enroll.
             </p>
           </blockquote>
         )}

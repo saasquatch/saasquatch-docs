@@ -14,11 +14,13 @@
   },
   "dependencies": {
     "@reach/router": "^1.2.1",
+    "@saasquatch/visual-dev": "^1.0.2",
     "@types/dompurify": "^2.0.2",
     "anchor-js": "^3.2.2",
     "chai": "^3.5.0",
     "contentful": "^3.8.1",
     "debug": "^2.2.0",
+    "downshift": "^6.1.7",
     "extend": "^3.0.0",
     "get-folder-size": "^1.0.0",
     "hammerjs": "^2.0.8",

@@ -1,98 +1,128 @@
-import React from "react";
+import { CardGrid, Card, CardProps, SVGProps } from "components/homepages/Card";
+import { HomePage } from "components/homepages/HomePage";
+import PageHeader from "components/PageHeader";
+import * as React from "react";
+import styled from "styled-components";
 
-import { useRouteData } from "react-static";
-import { HashLink as Link } from "react-router-hash-link";
+// Dev Guides cards
 
-import PageHeader from "../../components/PageHeader";
-
-const entry = {
-  title: "Guides",
-  highlights: `The SaaSquatch Guides show you how to use our tools to create your own world-class referral and loyalty programs.`,
-  sectionType: "guide",
-  hero: true,
-  // "slug": guides
-  // "template": pages/guides.html
+const saasquatchEmails = {
+  title: "SaaSquatch & Emails",
+  description:
+    "The SaaSquatch platform enables you to configure when emails are sent to participants throughout the customer life cycle.",
+  linkUrl: "/topics/email",
 };
-const id = "js-guides-215kjb2151";
+
+const customShortDomains = {
+  title: "Custom Short Domains",
+  description:
+    "The SaaSquatch system supports the use of Custom Short Domains which allow you to change the format of the referral links shared by your users.",
+  linkUrl: "/customshortdomainguide",
+};
+
+const referralSecurity = {
+  title: "Referral Security",
+  description:
+    "SaaSquatch's Security Management System protects your program from unwanted referral activity.",
+  linkUrl: "/developer/referral-security/",
+};
+
+const accountStructure = {
+  title: "Account Structure",
+  description:
+    "The SaaSquatch system provides flexible options for structuring how participants are grouped in your project.",
+  linkUrl: "/shared-vs-solo-accounts/",
+};
+
+const marketo = {
+  title: "Marketo",
+  description:
+    "Leveraging your existing Marketo Forms to automatically add Referred Sigunps into your referral program.",
+  linkUrl: "/guides/marketo-form",
+};
+
+const instapages = {
+  title: "Instapages",
+  description:
+    "Leveraging your existing Instapage Forms to automatically add Referred Signups into your referral program.",
+  linkUrl: "/guides/instapage-form",
+};
+
+const customUserFields = {
+  title: "Custom User Fields",
+  description:
+    "Include custom information about users in your SaaSquatch project.",
+  linkUrl: "/features/custom-user-fields/",
+};
+
+const userWidgetTypes = {
+  title: "User Widget Types",
+  description:
+    "Display different types of widgets to users in your SaaSquatch Program.",
+  linkUrl: "/topics/widget-types",
+};
+
+const messageLinks = {
+  title: "Message Links",
+  description:
+    "The SaaSquatch system offers dynamic capability to build share buttons for each of your programs and share mediums.",
+  linkUrl: "/features/message-links",
+};
+
+const conversionTechGuide = {
+  title: "Conversion Tech Guide",
+  description:
+    "Conversion is the process of converting in-progress referrals and unlocking rewards. In this guide, we explain how to track conversions.",
+  linkUrl: "/developer/conversion",
+};
+
+const attributionTechGuide = {
+  title: "Attribution Tech Guide",
+  description:
+    "Attribution is the process of building a referral link between two people: the referrer and the referred user. In this guide we explain how to track attribution.",
+  linkUrl: "/developer/attribution",
+};
+
+const commonPitfalls = {
+  title: "Common Pitfalls",
+  description:
+    "Mistakes happen—and that's okay! We're here to help you solve them. Learn about some of the common errors you might encounter when you're getting up and running with SaaSquatch (like forgetting to add a call to action button in your app).",
+  linkUrl: "/bestpractices/common-pitfalls",
+};
+
+const writingWebComponent = {
+  title: "Writing a Web Component for SaaSquatch",
+  description:
+    "You can build your own components to work inside of our widgets and microsites. This article will walk you through the process from start to finish.",
+  linkUrl: "/developer/widgets/writing-a-web-component-for-saasquatch",
+};
+
+// Cards to be rendered array & render function
+
+const CardsArray: Array<CardProps> = [
+  saasquatchEmails,
+  customShortDomains,
+  referralSecurity,
+  accountStructure,
+  marketo,
+  instapages,
+  customUserFields,
+  userWidgetTypes,
+  messageLinks,
+  conversionTechGuide,
+  attributionTechGuide,
+  commonPitfalls,
+  writingWebComponent,
+];
+
 export default function render() {
-  const { guides, integrations } = useRouteData();
-
   return (
-    <PageHeader {...entry}>
-      <div id={id}>
-        {Object.keys(guides).map((key: any) => {
-          const guide = guides[key];
-          return (
-            <div className={"guides-item " + guide.types.join(" ")}>
-              {guide.icon && (
-                <h3 className="text-center no-anchor">{guide.name}</h3>
-              )}
-              <div className="guides-image">
-                <Link className="imageLink" to={guide.slug}>
-                  {guide.icon && (
-                    <i
-                      className={"icon fa fa-6 " + guide.icon}
-                      aria-hidden="true"
-                    ></i>
-                  )}
-                  {guide.image && (
-                    <img
-                      className="image"
-                      src={"/assets/images/integrations/" + guide.image}
-                    />
-                  )}
-                </Link>
-              </div>
-              <p className="highlights guides-icon-highlights">
-                {guide.summary}{" "}
-              </p>
-
-              <p>
-                <Link className="link" to={guide.slug}>
-                  {guide.linkText}.{" "}
-                </Link>
-              </p>
-            </div>
-          );
-        })}
-
-        {integrations
-          .filter(
-            (integration) =>
-              integration.categories &&
-              integration.categories.some(
-                (c) => c == "payment-provider" || c == "tag-manager"
-              )
-          )
-          .map((integration) => {
-            return (
-              <div
-                className={
-                  "guides-item integration " +
-                  (integration.categories
-                    ? integration.categories.join(" ")
-                    : "")
-                }
-              >
-                <div className="guides-image">
-                  <Link className="imageLink" to={integration.guideLink}>
-                    <img
-                      className="image"
-                      src={"/assets/images/integrations/" + integration.logo}
-                    />
-                  </Link>
-                </div>
-                <p className="highlights guides-image-highlights">
-                  {integration.highlights}
-                </p>
-
-                <Link className="link" to={integration.guideLink}>
-                  Read more about {integration.integrationName}
-                </Link>
-              </div>
-            );
-          })}
-      </div>
-    </PageHeader>
+    <HomePage
+      title="Dev Guides"
+      highlights="<p style='margin-bottom: 16px;'>The SaaSquatch Guides show you how to use our tools to create your own world-class referral and loyalty programs.</p>
+          Click the cards below to learn more about each topic.
+          "
+      cards={CardsArray}
+    />
   );
 }

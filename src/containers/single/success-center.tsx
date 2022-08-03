@@ -9,7 +9,7 @@ const PageWrapper = styled.div`
   padding: 0 50px;
 `;
 
-//SVG icons Success Center cards
+//SVG icons & Success Center cards
 
 const saasGrowthAutoIcon: SVGProps = {
   fill: "#65bd60",
@@ -104,10 +104,6 @@ export default function render() {
                 <Card
                   title={card.title}
                   description={card.description}
-                  iconCode={card.iconCode}
-                  imageSrc={card.imageSrc}
-                  svgSrc={card.svgSrc}
-                  linkText={card.linkText}
                   linkUrl={card.linkUrl}
                 />
               </div>

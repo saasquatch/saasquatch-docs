@@ -37,10 +37,10 @@
 
 /* OVERRIDES default h2 styling from the website */
 
-.docs h2 {
-  font-size: 36px;
-  font-weight: 600;
-}
+// .docs h2 {
+//   font-size: 36px;
+//   font-weight: 600;
+// }
 
 // Headings that follow paragraphs have margin at the top
 h2,
@@ -55,21 +55,25 @@ a .link {
 }
 
 a:link {
-  color: #357732;
+  color: var(--sq-text-interactive);
+  text-decoration: none;
 }
-a:visited {
-  color: #255323;
-}
+
 a:hover {
-  color: #255323;
+  color: var(--sq-text-interactive-hovered);
+  text-decoration: underline;
+}
+
+a:visited {
+  color: var(--sq-text-interactive-visited);
 }
 
 #top {
-  color: #003B45 !important;
+  color: #003B45;
 }
 .lead {
-  font-size: 17px;
-  line-height: 26px;
+  font-size: 16px;
+  line-height: 24px;
   color: #575757;
   font-weight: 400 !important;
 }
