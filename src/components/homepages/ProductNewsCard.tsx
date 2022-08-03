@@ -9,7 +9,7 @@ const CardBaseDiv = styled.div`
   padding: 40px 30px 30px;
   background: #ffffff;
 
-  border: 1px solid #e2e2e2;
+  border: 1px solid var(--sq-action-primary-disabled);
 
   box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.08);
   border-radius: 5px;
