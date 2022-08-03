@@ -1,5 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
+import { HashLink as Link } from "react-router-hash-link";
 
 // Card styled components
 
@@ -45,7 +46,7 @@ const CardContainerDiv = styled.div`
   }
 `;
 
-const CardLinkWrapperA = styled.a`
+const CardLinkWrapperLink = styled(Link)`
   text-decoration: none !important;
 `;
 
@@ -90,7 +91,7 @@ export const Card: React.FC<CardProps> = ({
   linkUrl,
 }) => {
   return (
-    <CardLinkWrapperA href={linkUrl}>
+    <CardLinkWrapperLink to={linkUrl}>
       <CardContainerDiv>
         {imageSrc && <CardImageDiv>{<img src={imageSrc} />}</CardImageDiv>}
         <CardBodyDiv>
@@ -98,7 +99,7 @@ export const Card: React.FC<CardProps> = ({
           <CardDescriptionP>{description}</CardDescriptionP>
         </CardBodyDiv>
       </CardContainerDiv>
-    </CardLinkWrapperA>
+    </CardLinkWrapperLink>
   );
 };
 
