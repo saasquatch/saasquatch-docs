@@ -97,6 +97,10 @@ export function NavigationSidebar() {
                   to="/features/analytics"
                   title="Program Analytics"
                 />
+                <ArticleLeaf
+                  to="/success/add-portal-member"
+                  title="Adding New Portal Memebers"
+                />
               </DropDown>
 
               <DropDown title="Programs">
