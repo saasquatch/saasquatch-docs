@@ -209,6 +209,7 @@ export default {
     require.resolve("react-static-plugin-react-router"),
     require.resolve("react-static-plugin-sitemap"),
   ],
+  siteRoot: 'https://deploy-preview-181--saasquatch-docs.netlify.app',
   stagingSiteRoot: 'https://deploy-preview-181--saasquatch-docs.netlify.app',
 };
 
