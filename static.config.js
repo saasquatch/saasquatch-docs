@@ -152,6 +152,7 @@ export default {
     // public: "public", // The public directory (files copied to dist during build)
     // assets: "build2", // The output directory for bundled JS and CSS
     // buildArtifacts: "artifacts" // The output directory for generated (internal) resources
+    siteRoot: 'https://hello.com'
   },
   devServer: {
     //https://webpack.js.org/configuration/dev-server/#devserverdisablehostcheck
