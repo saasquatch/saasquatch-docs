@@ -140,6 +140,7 @@ export default {
   //          swimmer doesn't actually appear to function correctly in Node >=12, so we can no longer do
   //          multi-threaded exports. This will force the max threads to 1, and make sure that we can
   //          still build on newer Node versions.
+  siteRoot: 'https://docs.saasquatch.com/',
   maxThreads: 1,
   Document: Bottom,
   entry: path.join(__dirname, "src", "index.tsx"),
@@ -152,7 +153,6 @@ export default {
     // public: "public", // The public directory (files copied to dist during build)
     // assets: "build2", // The output directory for bundled JS and CSS
     // buildArtifacts: "artifacts" // The output directory for generated (internal) resources
-    siteRoot: 'https://hello.com'
   },
   devServer: {
     //https://webpack.js.org/configuration/dev-server/#devserverdisablehostcheck
