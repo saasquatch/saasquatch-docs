@@ -141,7 +141,7 @@ export default {
   //          multi-threaded exports. This will force the max threads to 1, and make sure that we can
   //          still build on newer Node versions.
   siteRoot: 'https://docs.saasquatch.com/',
-  basePath: "/",
+  basePath: "",
   maxThreads: 1,
   Document: Bottom,
   entry: path.join(__dirname, "src", "index.tsx"),
