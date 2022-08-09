@@ -151,7 +151,7 @@ export default {
     dist: "build", // The production output directory.
     // devDist: "tmp/dev-server", // The development scratch directory.
     // public: "public", // The public directory (files copied to dist during build)
-    // assets: "build2", // The output directory for bundled JS and CSS
+    assets: "build", // The output directory for bundled JS and CSS
     // buildArtifacts: "artifacts" // The output directory for generated (internal) resources
   },
   devServer: {
