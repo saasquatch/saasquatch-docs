@@ -209,7 +209,7 @@ export default {
     require.resolve("react-static-plugin-react-router"),
     require.resolve("react-static-plugin-sitemap"),
   ],
-  siteRoot: 'https://docs.com/',
+  siteRoot: 'https://docs.saasquatcsadadasdasdh.com/',
 };
 
 /**
