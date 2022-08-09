@@ -141,7 +141,6 @@ export default {
   //          multi-threaded exports. This will force the max threads to 1, and make sure that we can
   //          still build on newer Node versions.
   maxThreads: 1,
-  assetsPath: "/",
   Document: Bottom,
   entry: path.join(__dirname, "src", "index.tsx"),
   paths: {
