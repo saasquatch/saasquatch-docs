@@ -210,7 +210,7 @@ export default {
     require.resolve("react-static-plugin-sitemap"),
   ],
   siteRoot: 'https://docs.saasquatch.com/',
-  stagingSiteRoot: 'https://docs.saasquatch.com/',
+  stagingSiteRoot: 'https://deploy-preview-181--saasquatch-docs.netlify.app/',
 };
 
 /**
