@@ -211,7 +211,7 @@ export default {
       require.resolve("react-static-plugin-sitemap"),
       {
         getAttributes: route => ({
-          lastmod: route.entry.sys?.updatedAt,
+          lastmod: route.entry.sys.updatedAt,
         }),
     }
     ]
