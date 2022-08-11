@@ -208,11 +208,6 @@ export default {
     ],
     require.resolve("react-static-plugin-react-router"),
     require.resolve("react-static-plugin-sitemap"),
-    {
-      getAttributes: route => ({
-        lastmod: "10-22-2022",
-      }),
-    }
   ],
   siteRoot: 'https://docs.saasquatch.com/',
   stagingSiteRoot: '',
