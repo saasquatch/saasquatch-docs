@@ -29,7 +29,7 @@ function pageify(entryRaw, i18n){
             contents: fields.content,
             tags: fields.tags,
             slug: fields.slug,
-             
+            date: entry.sys?.updatedAt, 
             fields: fields,
             id: entry.sys.id,
             sectionType: metalsmithSection,
