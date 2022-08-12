@@ -23,7 +23,7 @@ export default () => {
 
       <pre>
         <code>
-          {JSON.stringify(exampleSwaggerSchema(ThemeContext), null, 2)} */}
+          {JSON.stringify(exampleSwaggerSchema(ThemeContext), null, 2)}
         </code>
       </pre>
     </TocFrame>
