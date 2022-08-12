@@ -12,6 +12,9 @@ import productSpaceContentfulpagifier from "./metalsmith/utils/productSpaceConte
 import installguidepagifier from "./metalsmith/utils/installguidepagifier";
 import { Bottom } from "./src/templates/bottom";
 import resolveI18n from "./metalsmith/utils/resolveI18n";
+import { processSchema } from "./src/graphql/processSchema";
+import { schemaText } from "./src/graphql/schema";
+import { createGraphQLRoutes } from "./src/graphql/routes";
 
 /**
  * Map of legacy SWIG to REACT templates
@@ -38,7 +41,7 @@ function getTemplate(legacy) {
   if (!newTemplate) {
     // return "src/containers/HasTOC";
     throw new Error(
-      "Unhanlded template!" +
+      "Unhandled template!" +
         legacy +
         " -- either add an entry in TEMPLATES in static.config.js or refactor some code"
     );
@@ -182,6 +185,7 @@ export default {
       },
       apiRoutes: getEndpoints((await getSwagger()).swagger),
       apiRoutesByTag: endpointsByTag((await getSwagger()).swagger),
+      graphql: processSchema(schemaText),
     };
   },
   getRoutes: getRoutes,
@@ -380,12 +384,15 @@ async function getRoutes() {
     .filter((e) => e)
     .map(legacyPagifierToStatic);
 
+  const processedSchema = processSchema(schemaText);
+
   return [
     ...rawFiles,
     ...contentfulPages,
     ...contentfulProductPages,
     ...installGuides,
     ...staticPages,
+    ...createGraphQLRoutes(processedSchema),
   ];
 }
 

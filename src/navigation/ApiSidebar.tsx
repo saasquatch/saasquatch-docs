@@ -95,7 +95,7 @@ export const StyledLabelSpan = styled.span`
   cursor: pointer;
 `;
 
-function openVeritcalParent($l, mmenuApi) {
+function openVerticalParent($l, mmenuApi) {
   if ($l.hasClass("mm-opened")) {
     $l.removeClass("mm-opened");
   } else {
@@ -119,7 +119,7 @@ function useMenuItemHook({ tag, idx }) {
   const id = "#mm-" + (90 + idx);
   const doOpen = (e) => {
     e.preventDefault();
-    openVeritcalParent(jQuery(parent.current), mmenuApi);
+    openVerticalParent(jQuery(parent.current), mmenuApi);
   };
   const anchor = slug(tag);
 
