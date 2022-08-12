@@ -211,7 +211,7 @@ export default {
       require.resolve("react-static-plugin-sitemap"),
       {
         getAttributes: route => ({
-          lastmod: "10-11-2022"
+          lastmod: route.data.entry ? route.data.entry.title : "No date",
         }),
       }
     ]
