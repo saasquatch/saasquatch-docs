@@ -210,10 +210,8 @@ export default {
     [
       require.resolve("react-static-plugin-sitemap"),
       {
-        getAttributes: route => ({
-          lastmod: route.data.entry.sys.updatedAt,
-        }),
-    }
+        getAttributes: route => (console.log("route.data.entry: ", route.data.entry)),
+      }
     ]
   ],
   siteRoot: 'https://docs.saasquatch.com/',
