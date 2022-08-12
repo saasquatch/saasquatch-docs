@@ -99,7 +99,7 @@ export function NavigationSidebar() {
                 />
                 <ArticleLeaf
                   to="/success/add-portal-member"
-                  title="Adding New Portal Memebers"
+                  title="Adding Admin Users"
                 />
               </DropDown>
 
