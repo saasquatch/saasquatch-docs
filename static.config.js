@@ -135,6 +135,10 @@ async function getSwagger() {
   };
 }
 
+const getModifiedDate = (date) => {
+  return date.toString().slice(0, 10)
+}
+
 export default {
   // WARNING: react-static uses a module called `swimmer` to schedule HTML exports in a set of threads.
   //          swimmer doesn't actually appear to function correctly in Node >=12, so we can no longer do
@@ -211,7 +215,7 @@ export default {
       require.resolve("react-static-plugin-sitemap"),
       {
         getAttributes: route => ({
-          lastmod: route.data.entry && route.data.entry.date && route.data.entry.date.toString(),
+          lastmod: route.data.entry && route.data.entry.date && getModifiedDate(route.data.entry.date),
         }),
       }
     ]
