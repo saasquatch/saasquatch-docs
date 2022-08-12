@@ -75,7 +75,7 @@
     "@types/webpack-env": "^1.14.0",
     "dompurify": "^2.0.11",
     "globby": "^10.0.1",
-    "graphql": "^15.8.0",
+    "graphql": "^16.5.0",
     "gray-matter": "^4.0.2",
     "html-react-parser": "^0.10.3",
     "jquery.mmenu": "^5.7.8",
@@ -100,7 +100,7 @@
     "react-static-plugin-react-router": "^7.2.3",
     "react-sticky": "^6.0.3",
     "styled-components": "^5.3.5",
-    "typescript": "^3.9.10",
+    "typescript": "^4.7.4",
     "unstated-next": "^1.1.0",
     "uuid": "^3.4.0",
     "yaml-loader": "^0.5.0"
