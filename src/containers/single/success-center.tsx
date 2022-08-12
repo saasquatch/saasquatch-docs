@@ -25,7 +25,7 @@ const saasGrowthAuto = {
     "Learn more about how to automate and grow your Customer Lifetime Value.",
   svgSrc: saasGrowthAutoIcon,
   linkText: "Learn more",
-  linkUrl: "https://docs.saasquatch.com/growth/saasquatch-ga/",
+  linkUrl: "/growth/saasquatch-ga/",
 };
 
 const programLibraryIcon: SVGProps = {
@@ -42,7 +42,7 @@ const programLibrary = {
     "A library of the available Growth Automation Programs by SaaSquatch.",
   svgSrc: programLibraryIcon,
   linkText: "Explore library",
-  linkUrl: "https://docs.saasquatch.com/program/library/",
+  linkUrl: "/program/library/",
 };
 
 const programSetupIcon: SVGProps = {
@@ -59,7 +59,7 @@ const programSetupQuickstart = {
     "Learn how to select, configure, and publish a new SaaSquatch Growth Automation Program in minutes.",
   svgSrc: programSetupIcon,
   linkText: "Get started",
-  linkUrl: "https://docs.saasquatch.com/growth/quickstart/",
+  linkUrl: "/growth/quickstart/",
 };
 
 const referralProgramIcon: SVGProps = {
@@ -76,7 +76,7 @@ const referralProgramQuickstart = {
     "End to end guide for setting up a Growth Automation referral program.",
   svgSrc: referralProgramIcon,
   linkText: "Learn more",
-  linkUrl: "https://docs.saasquatch.com/guides/referral-quickstart/",
+  linkUrl: "/guides/referral-quickstart/",
 };
 
 // Cards to be rendered array & render function
