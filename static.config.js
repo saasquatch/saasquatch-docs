@@ -209,10 +209,11 @@ export default {
     require.resolve("react-static-plugin-react-router"),
     [
       require.resolve("react-static-plugin-sitemap"),
+      // {
+      //   lastmod: route.file,
+      // }
       {
-        getAttributes: route => ({
-          lastmod: route.file,
-        }),
+        getAttributes: route => (console.log("route: ", route)),
     }
     ]
   ],
