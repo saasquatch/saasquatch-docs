@@ -26,7 +26,7 @@ function pageify(entryRaw, i18n){
             slug: "program/" + fields.slug,
             screenshot: fields.screenshot,
             //logo: fields.logo,
-             
+            date: entry.sys?.updatedAt, 
             fields: fields,
             id: entry.sys.id,
             sectionType: "successArticle",
