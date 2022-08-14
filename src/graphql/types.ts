@@ -1,26 +1,27 @@
 import { Category } from "./category";
 
+type Maybe<T> = undefined | null | T;
+
 export interface BaseDefinition {
   name: string;
-  url: string | null;
-  description: string | null;
+  url?: Maybe<string>;
+  description: string;
 }
 
 export interface BaseDefinitionWithHTML extends BaseDefinition {
   html: string;
 }
 
-export interface ArgOrFieldDefinition extends BaseDefinition {
-  type: string;
+export interface ArgOrFieldDefinition extends BaseDefinitionWithHTML {
   is_optional: boolean;
-  is_list: boolean;
-  args: ArgOrFieldDefinition[] | null;
-  html: string;
+  args?: Maybe<ArgOrFieldDefinition[]>;
+  deprecationReason: Maybe<string>;
 }
 
 export interface QueryOrMutationDefinition extends BaseDefinitionWithHTML {
-  typeUrl: string | null;
-  args: ArgOrFieldDefinition[];
+  type: BaseDefinition;
+  args?: ArgOrFieldDefinition[];
+  deprecationReason: Maybe<string>;
 }
 
 export interface QueryDefinition extends QueryOrMutationDefinition {}
@@ -28,19 +29,22 @@ export interface MutationDefinition extends QueryOrMutationDefinition {}
 
 export interface ObjectDefinition extends BaseDefinitionWithHTML {
   fields: Record<string, ArgOrFieldDefinition>;
+  interfaces: BaseDefinition[];
 }
 
 export interface ScalarDefinition extends BaseDefinitionWithHTML {}
 
 export interface EnumDefinition extends BaseDefinitionWithHTML {
-  variants: BaseDefinition[];
+  values: (BaseDefinition & { deprecationReason?: Maybe<string> })[];
 }
 
 export interface InterfaceDefinition extends BaseDefinitionWithHTML {
   fields: Record<string, ArgOrFieldDefinition>;
 }
 
-export interface UnionDefinition extends BaseDefinitionWithHTML {}
+export interface UnionDefinition extends BaseDefinitionWithHTML {
+  types: BaseDefinition[];
+}
 
 export interface CategoryEntry {
   name: string;

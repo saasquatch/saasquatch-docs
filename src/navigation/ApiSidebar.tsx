@@ -66,13 +66,13 @@ export const StyledApiLink = styled(Link)<{ clicked: boolean }>`
   }
 `;
 
-const MethodDiv = styled.div`
+export const MethodDiv = styled.div`
   display: flex;
   flex-direction: column;
   gap: var(--sq-spacing-xx-small);
 `;
 
-const LabelsDiv = styled.div`
+export const LabelsDiv = styled.div`
   display: flex;
   flex-direction: row;
   gap: var(--sq-spacing-xx-small);

@@ -476,7 +476,7 @@ type Mutation {
   # Create a user. If the user already exists, this mutation will cause an error.
   createUser(userInput: UserInput!): User!
   # Create a user or update the user if the user already exists.
-  upsertUser(userInput: UserInput!): User!
+  upsertUser(userInput: UserInput!): User! @category(category: "Users")
   # Batched version of upsertUser. It allows a maximum of 100 UserInputs.
   upsertUsers(userInputs: [UserInput!]!): [UserUpsertResult!]!
   # Classic only. Creates an anonymous cookie user that can be upgraded to a regular
@@ -1776,7 +1776,7 @@ type User implements Viewer {
   lastSeenGeoData: RSJsonNode
   firstSeenUserAgent: String
   lastSeenUserAgent: String
-  dateCreated: RSDate
+  dateCreated: RSDate @hidden
   dateBlocked: RSDate
   emailHash: String
   referralSource: String @deprecated

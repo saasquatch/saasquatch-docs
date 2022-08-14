@@ -1,9 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { useRouteData } from "react-static";
 
 import Markdown from "components/Markdown";
 import { MutationDefinition } from "../types";
+import { Link } from "react-router-dom";
 
 export default () => {
   const mutation = useRouteData<MutationDefinition>();
@@ -16,12 +16,17 @@ export default () => {
           <Markdown source={mutation.html} />
         </pre>
       </div>
+      <h2>Returns</h2>
+      <pre>
+        <Link to={mutation.type.url}>{mutation.type.name}</Link>
+      </pre>
+      <br />
+      <Markdown source={mutation.type.description} />
       <h2>Arguments</h2>
       {mutation.args.map((arg) => (
         <div key={arg.name}>
           <pre>
-            {arg.name}:{" "}
-            {arg.url ? <Link to={arg.url}>{arg.type}</Link> : arg.type}
+            <Markdown source={arg.html} />
           </pre>
           <Markdown source={arg.description} />
         </div>

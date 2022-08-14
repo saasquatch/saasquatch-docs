@@ -15,6 +15,7 @@ export function createGraphQLRoutes(graphql: ProcessedSchema): Route[] {
     ...routesFrom(graphql.queries, "query"),
     ...routesFrom(graphql.mutations, "mutation"),
     ...routesFrom(graphql.objects, "object"),
+    ...routesFrom(graphql.inputObjects, "object"),
     ...routesFrom(graphql.interfaces, "interface"),
     ...routesFrom(graphql.enums, "enum"),
     ...routesFrom(graphql.unions, "union"),

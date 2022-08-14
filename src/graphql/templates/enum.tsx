@@ -14,12 +14,15 @@ export default () => {
         <Markdown source={_enum.html} />
       </pre>
       <Markdown source={_enum.description} />
-      <h2>Variants</h2>
-      {_enum.variants.map((variant) => (
-        <div key={variant.name}>
-          <code>{variant.name}</code>
+      <h2>Values</h2>
+      {_enum.values.map((value) => (
+        <div key={value.name}>
+          <pre>{value.name}</pre>
           <br />
-          <Markdown source={variant.description} />
+          {value.deprecationReason ? (
+            <b>DEPRECATED: {value.deprecationReason}</b>
+          ) : null}
+          <Markdown source={value.description} />
         </div>
       ))}
     </div>

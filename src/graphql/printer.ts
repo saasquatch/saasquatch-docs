@@ -64,9 +64,10 @@ export function print(schema: GraphQLSchema, ast: ASTNode): string {
     FieldDefinition: {
       leave: ({ name, arguments: args, type }) =>
         name +
-        (hasMultilineItems(args)
-          ? wrap("(\n", indent(join(args, "\n")), "\n)")
-          : wrap("(", join(args, ", "), ")")) +
+        // (hasMultilineItems(args)
+        //   ? wrap("(\n", indent(join(args, "\n")), "\n)")
+        //   : wrap("(", join(args, ", "), ")")) +
+        wrap("(\n", indent(join(args, "\n")), "\n)") +
         ": " +
         type,
     },

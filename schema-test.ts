@@ -26,7 +26,7 @@ const {
 // console.log(JSON.stringify(objects, null, 2));
 
 // console.log("============ INPUT OBJECTS");
-// console.log(JSON.stringify(inputObjects, null, 2));
+// console.log(JSON.stringify(inputObjects["UserInput"], null, 2));
 
 // console.log("============ SCALARS");
 // console.log(JSON.stringify(scalars, null, 2));
@@ -34,8 +34,8 @@ const {
 // console.log("============ ENUMS");
 // console.log(JSON.stringify(enums, null, 2));
 
-console.log("============ INTERFACES");
-console.log(JSON.stringify(interfaces, null, 2));
+// console.log("============ INTERFACES");
+// console.log(JSON.stringify(interfaces, null, 2));
 
 // console.log("============ UNIONS");
 // console.log(JSON.stringify(unions, null, 2));

@@ -2,7 +2,12 @@ import React, { useMemo, useRef } from "react";
 import { useSiteData } from "react-static";
 import styled from "styled-components";
 
-import { StyledApiLink } from "./ApiSidebar";
+import {
+  StyledApiLink,
+  MethodDiv,
+  LabelsDiv,
+  StyledLabelSpan,
+} from "./ApiSidebar";
 import { Category } from "src/graphql/category";
 import { CategoryEntry, ProcessedSchema } from "src/graphql/types";
 
@@ -27,6 +32,7 @@ const CollapsibleApiMenuHeading = styled.div`
 
 let collapsibleMenuIdx = 0;
 
+// TODO: Factor out
 const CollapsibleApiMenu: React.FC<CollapsibleApiMenuProps> = (props) => {
   const parent = useRef(null);
   const id = useMemo(() => `#mm-collapsible-menu-${collapsibleMenuIdx++}`, []);
@@ -91,7 +97,31 @@ export default () => {
       a.name.localeCompare(b.name)
     );
 
-    function renderItems(name: string, items: CategoryEntry[]) {
+    function renderItems(
+      label: string,
+      labelClass: string,
+      items: CategoryEntry[]
+    ) {
+      return items.map((item) => (
+        <li key={item.url}>
+          <StyledApiLink
+            to={item.url}
+            clicked={window.location.pathname === item.url}
+          >
+            <MethodDiv>
+              {item.name}
+              <LabelsDiv>
+                <StyledLabelSpan className={`label docs-label-${labelClass}`}>
+                  {label}
+                </StyledLabelSpan>
+              </LabelsDiv>
+            </MethodDiv>
+          </StyledApiLink>
+        </li>
+      ));
+    }
+
+    function renderList(name: string, items: CategoryEntry[]) {
       return (
         <CollapsibleApiMenu name={name}>
           {items.map((item) => (
@@ -110,13 +140,13 @@ export default () => {
 
     return (
       <CollapsibleApiMenu key={category.name} name={category.name}>
-        {queries.length ? renderItems("Queries", queries) : null}
-        {mutations.length ? renderItems("Mutations", mutations) : null}
-        {objects.length ? renderItems("Objects", objects) : null}
-        {scalars.length ? renderItems("Scalars", scalars) : null}
-        {enums.length ? renderItems("Enums", enums) : null}
-        {interfaces.length ? renderItems("Interfaces", interfaces) : null}
-        {unions.length ? renderItems("Unions", unions) : null}
+        {queries.length ? renderItems("query", "get", queries) : null}
+        {mutations.length ? renderItems("mutation", "post", mutations) : null}
+        {objects.length ? renderList("Objects", objects) : null}
+        {scalars.length ? renderList("Scalars", scalars) : null}
+        {enums.length ? renderList("Enums", enums) : null}
+        {interfaces.length ? renderList("Interfaces", interfaces) : null}
+        {unions.length ? renderList("Unions", unions) : null}
       </CollapsibleApiMenu>
     );
   }

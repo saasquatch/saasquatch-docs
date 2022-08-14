@@ -1,33 +1,45 @@
+import { AsyncResource } from "async_hooks";
 import {
+  ConstDirectiveNode,
   DirectiveNode,
   GraphQLField,
+  GraphQLFieldMap,
+  GraphQLInputField,
+  GraphQLInputFieldMap,
+  GraphQLInputObjectType,
   GraphQLList,
   GraphQLNonNull,
+  GraphQLObjectType,
   GraphQLType,
   Kind,
 } from "graphql";
 
 export const isOptional = (type: GraphQLType) =>
   !(type instanceof GraphQLNonNull);
-export const isList = (type: GraphQLType) =>
-  type instanceof GraphQLList ||
-  (type instanceof GraphQLNonNull && type.ofType instanceof GraphQLList);
 
-export function iterateFields<
-  Map extends { [key: string]: any },
-  Type extends { getFields: () => Map },
-  Field
->(object: Type, fn: (field: Field) => void) {
-  const fields = object.getFields();
-  const fieldNames = Object.keys(fields);
-  fieldNames.map((fieldName) => fields[fieldName]).forEach(fn);
+export function isGraphQLField(
+  field: GraphQLField<any, any, any> | GraphQLInputField
+): field is GraphQLField<any, any, any> {
+  return (field as any).hasOwnProperty("args");
 }
 
-export function findDirective(
-  field: GraphQLField<any, any, any>,
-  directiveName: string
-) {
-  return field.astNode?.directives?.find(
+export function isGraphQLObjectType(
+  object: GraphQLObjectType | GraphQLInputObjectType
+): object is GraphQLObjectType {
+  return (object as any).hasOwnProperty("getInterfaces");
+}
+
+export function isHidden<
+  AstNode extends { directives?: ReadonlyArray<ConstDirectiveNode> }
+>(astNode: AstNode) {
+  const hiddenDirective = findDirective(astNode, "hidden");
+  return hiddenDirective !== undefined;
+}
+
+export function findDirective<
+  AstNode extends { directives?: ReadonlyArray<ConstDirectiveNode> }
+>(astNode: AstNode, directiveName: string) {
+  return astNode.directives?.find(
     (directive) => directive.name.value === directiveName
   );
 }
@@ -50,8 +62,8 @@ export function getDirectiveArgValue(
 }
 
 export function getCategoryName(field: GraphQLField<any, any, any>) {
-  const categoryDirective = findDirective(field, "category");
-  const hiddenDirective = findDirective(field, "hidden");
+  const categoryDirective = findDirective(field.astNode!, "category");
+  const hiddenDirective = findDirective(field.astNode!, "hidden");
 
   if (!categoryDirective || hiddenDirective) {
     return null;
@@ -68,4 +80,27 @@ export function unwrapType(type: GraphQLType): GraphQLType {
   } else {
     return unwrapType(type.ofType);
   }
+}
+
+type FieldOf<Fields> = Fields extends GraphQLFieldMap<any, any>
+  ? GraphQLField<any, any>
+  : Fields extends GraphQLInputFieldMap
+  ? GraphQLInputField
+  : never;
+
+export function mapFields<Fields, MappedField>(
+  fields: Fields,
+  fn: (field: FieldOf<Fields>) => MappedField | undefined
+): Record<string, MappedField> {
+  const result: Record<string, MappedField> = {};
+  Object.values(fields).forEach((field) => {
+    // Ignore fields marked @hidden
+    if (isHidden(field.astNode!)) return;
+
+    const output = fn(field);
+    if (output) {
+      result[field.name] = output;
+    }
+  });
+  return result;
 }

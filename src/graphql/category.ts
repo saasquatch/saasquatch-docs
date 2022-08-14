@@ -2,7 +2,9 @@ import {
   CategoryEntry,
   EnumDefinition,
   InterfaceDefinition,
+  MutationDefinition,
   ObjectDefinition,
+  QueryDefinition,
   ScalarDefinition,
   UnionDefinition,
 } from "./types";
@@ -17,6 +19,24 @@ export class Category {
   readonly unions: Record<string, CategoryEntry> = {};
 
   constructor(public name: string) {}
+
+  addQuery(queryDef: QueryDefinition) {
+    if (queryDef.url) {
+      this.queries[queryDef.name] = {
+        name: queryDef.name,
+        url: queryDef.url,
+      };
+    }
+  }
+
+  addMutation(mutationDef: MutationDefinition) {
+    if (mutationDef.url) {
+      this.mutations[mutationDef.name] = {
+        name: mutationDef.name,
+        url: mutationDef.url,
+      };
+    }
+  }
 
   addObject(objectDef: ObjectDefinition) {
     if (objectDef.url) {

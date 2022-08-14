@@ -3,12 +3,9 @@ import {
   GraphQLArgument,
   GraphQLEnumType,
   GraphQLField,
-  GraphQLFieldMap,
   GraphQLInputField,
-  GraphQLInputFieldMap,
   GraphQLInputObjectType,
   GraphQLInterfaceType,
-  GraphQLList,
   GraphQLNonNull,
   GraphQLObjectType,
   GraphQLScalarType,
@@ -16,10 +13,8 @@ import {
   GraphQLUnionType,
 } from "graphql";
 
-import { print } from "./printer";
-import * as utils from "./utils";
-import * as urls from "./urls";
 import { Category } from "./category";
+import { print } from "./printer";
 import {
   ArgOrFieldDefinition,
   BaseDefinition,
@@ -32,17 +27,13 @@ import {
   ScalarDefinition,
   UnionDefinition,
 } from "./types";
+import * as urls from "./urls";
+import * as utils from "./utils";
+
+const DEFAULT_DESCRIPTION =
+  "Sorry, this part of the API is currently undocumented. Please let us know so we can improve our documentation!";
 
 export function processSchema(schemaText: string): ProcessedSchema {
-  const categories: Record<string, Category> = {};
-  const queries: Record<string, QueryDefinition> = {};
-  const mutations: Record<string, MutationDefinition> = {};
-  const objects: Record<string, ObjectDefinition> = {};
-  const inputObjects: Record<string, ObjectDefinition> = {};
-  const scalars: Record<string, ScalarDefinition> = {};
-  const enums: Record<string, EnumDefinition> = {};
-  const interfaces: Record<string, InterfaceDefinition> = {};
-  const unions: Record<string, UnionDefinition> = {};
   const schema = buildSchema(schemaText);
 
   const queryType = schema.getQueryType();
@@ -51,6 +42,14 @@ export function processSchema(schemaText: string): ProcessedSchema {
   const mutationType = schema.getMutationType();
   if (!mutationType) throw new Error("Could not find mutation type on schema");
 
+  const categories: Record<string, Category> = {};
+  const objects: Record<string, ObjectDefinition> = {};
+  const inputObjects: Record<string, ObjectDefinition> = {};
+  const scalars: Record<string, ScalarDefinition> = {};
+  const enums: Record<string, EnumDefinition> = {};
+  const interfaces: Record<string, InterfaceDefinition> = {};
+  const unions: Record<string, UnionDefinition> = {};
+
   function getOrCreateCategory(categoryName: string) {
     if (!(categoryName in categories)) {
       categories[categoryName] = new Category(categoryName);
@@ -58,34 +57,28 @@ export function processSchema(schemaText: string): ProcessedSchema {
     return categories[categoryName];
   }
 
-  function isGraphQLField(
-    field: GraphQLField<any, any, any> | GraphQLInputField
-  ): field is GraphQLField<any, any, any> {
-    return (field as any).hasOwnProperty("args");
-  }
-
-  function fieldDefinitionFromField(
+  function definitionFromField(
     field: GraphQLField<any, any, any> | GraphQLInputField,
     category: Category,
     parents?: Set<string>
   ): ArgOrFieldDefinition {
-    // NOTE: Have to duplicate the passed in parents so we don't end up modifying the
+    // NOTE: Have to duplicate the parents so we don't end up modifying the
     //       passed in value.
     const fieldType = processType(field.type, category, new Set(parents));
 
-    const args = isGraphQLField(field)
+    // Fields themselves can have arguments
+    const args = utils.isGraphQLField(field)
       ? processArgs(field.args, category, parents)
       : [];
 
     return {
       name: field.name,
-      type: field.type.toString(),
-      description: field.description || null,
+      description: field.description ?? DEFAULT_DESCRIPTION,
       url: fieldType.url,
       is_optional: utils.isOptional(field.type),
-      is_list: utils.isList(field.type),
-      args,
       html: print(schema, field.astNode!),
+      args,
+      deprecationReason: field.deprecationReason,
     };
   }
 
@@ -103,38 +96,37 @@ export function processSchema(schemaText: string): ProcessedSchema {
       // recursive links
       return {
         name: "",
-        url: null,
-        description: null,
+        description: "",
       };
     } else {
       parents.add(unwrappedType.toString());
     }
 
     if (unwrappedType instanceof GraphQLScalarType) {
-      if (unwrappedType.astNode === undefined) {
-        if (
-          ["String", "Int", "Boolean", "Float", "ID"].includes(
-            unwrappedType.name
-          )
-        ) {
-          return {
-            name: unwrappedType.name,
-            url: null,
-            description: unwrappedType.description || null,
-          };
-        } else {
-          throw new Error(
-            `Built-in scalar not yet supported for processing: ${unwrappedType.name}`
-          );
-        }
-      } else {
-        const scalar =
-          unwrappedType.name in scalars
-            ? scalars[unwrappedType.name]
-            : (scalars[unwrappedType.name] = processScalarType(unwrappedType));
-        category.addScalar(scalar);
-        return scalar;
-      }
+      // if (unwrappedType.astNode === undefined) {
+      //   if (
+      //     ["String", "Int", "Boolean", "Float", "ID"].includes(
+      //       unwrappedType.name
+      //     )
+      //   ) {
+      //     return {
+      //       name: unwrappedType.name,
+      //       url: urls.getScalarUrl(unwrappedType.name),
+      //       description: unwrappedType.description ?? DEFAULT_DESCRIPTION,
+      //     };
+      //   } else {
+      //     throw new Error(
+      //       `Built-in scalar not yet supported for processing: ${unwrappedType.name}`
+      //     );
+      //   }
+      // } else {
+      const scalar =
+        unwrappedType.name in scalars
+          ? scalars[unwrappedType.name]
+          : (scalars[unwrappedType.name] = processScalarType(unwrappedType));
+      category.addScalar(scalar);
+      return scalar;
+      // }
     } else if (unwrappedType instanceof GraphQLEnumType) {
       const _enum =
         unwrappedType.name in enums
@@ -157,7 +149,11 @@ export function processSchema(schemaText: string): ProcessedSchema {
       const union =
         unwrappedType.name in unions
           ? unions[unwrappedType.name]
-          : (unions[unwrappedType.name] = processUnionType(unwrappedType));
+          : (unions[unwrappedType.name] = processUnionType(
+              unwrappedType,
+              category,
+              parents
+            ));
       category.addUnion(union);
       return union;
     } else if (unwrappedType instanceof GraphQLObjectType) {
@@ -175,7 +171,7 @@ export function processSchema(schemaText: string): ProcessedSchema {
       const inputObject =
         unwrappedType.name in inputObjects
           ? inputObjects[unwrappedType.name]
-          : (inputObjects[unwrappedType.name] = processInputObjectType(
+          : (inputObjects[unwrappedType.name] = processObjectType(
               unwrappedType,
               category,
               parents
@@ -189,207 +185,184 @@ export function processSchema(schemaText: string): ProcessedSchema {
     }
   }
 
-  function processUnionType(unionType: GraphQLUnionType) {
+  function processUnionType(
+    unionType: GraphQLUnionType,
+    category: Category,
+    parents?: Set<string>
+  ): UnionDefinition {
     const url = urls.getUnionUrl(unionType.name);
-    const newUnion: UnionDefinition = {
+
+    const types: BaseDefinition[] = unionType.getTypes().map((objectType) => {
+      const type = processType(objectType, category, new Set(parents));
+      return {
+        name: objectType.name,
+        description: objectType.description ?? DEFAULT_DESCRIPTION,
+        url: type.url,
+      };
+    });
+
+    return {
       name: unionType.name,
-      description: unionType.description || null,
+      description: unionType.description ?? DEFAULT_DESCRIPTION,
       url,
       html: print(schema, unionType.astNode!),
+      types,
     };
-    return newUnion;
   }
 
   function processInterfaceType(
     interfaceType: GraphQLInterfaceType,
     category: Category,
     parents?: Set<string>
-  ) {
+  ): InterfaceDefinition {
     const url = urls.getInterfaceUrl(interfaceType.name);
 
-    const fields: Record<string, ArgOrFieldDefinition> = {};
+    const fields = utils.mapFields(interfaceType.getFields(), (field) =>
+      definitionFromField(field, category, parents)
+    );
 
-    utils.iterateFields<
-      GraphQLFieldMap<any, any>,
-      GraphQLInterfaceType,
-      GraphQLField<any, any, any>
-    >(interfaceType, (field) => {
-      fields[field.name] = fieldDefinitionFromField(field, category, parents);
-    });
-
-    const newInterface: InterfaceDefinition = {
+    return {
       name: interfaceType.name,
-      description: interfaceType.description || null,
+      description: interfaceType.description ?? DEFAULT_DESCRIPTION,
       url,
       html: print(schema, interfaceType.astNode!),
       fields,
     };
-    return newInterface;
   }
 
-  function processEnumType(enumType: GraphQLEnumType) {
+  function processEnumType(enumType: GraphQLEnumType): EnumDefinition {
     const url = urls.getEnumUrl(enumType.name);
 
-    const variants: BaseDefinition[] = enumType.getValues().map((value) => ({
+    const values = enumType.getValues().map((value) => ({
       name: value.name,
-      description: value.description || null,
-      url: null,
+      description: value.description ?? DEFAULT_DESCRIPTION,
+      deprecationReason: value.deprecationReason,
     }));
 
-    const newEnum: EnumDefinition = {
+    return {
       name: enumType.name,
-      description: enumType.description || null,
+      description: enumType.description ?? DEFAULT_DESCRIPTION,
       url,
       html: print(schema, enumType.astNode!),
-      variants,
+      values,
     };
-    return newEnum;
   }
 
-  function processScalarType(scalarType: GraphQLScalarType) {
+  function processScalarType(scalarType: GraphQLScalarType): ScalarDefinition {
     const url = urls.getScalarUrl(scalarType.name);
-    const newScalar: ScalarDefinition = {
+    return {
       name: scalarType.name,
-      description: scalarType.description || null,
+      description: scalarType.description ?? DEFAULT_DESCRIPTION,
       url,
-      html: print(schema, scalarType.astNode!),
+      html: scalarType.astNode
+        ? print(schema, scalarType.astNode!)
+        : `scalar ${scalarType.name}`,
     };
-    return newScalar;
   }
 
   function processObjectType(
-    objectType: GraphQLObjectType,
+    objectType: GraphQLObjectType | GraphQLInputObjectType,
     category: Category,
     parents?: Set<string>
-  ) {
-    const fields: Record<string, ArgOrFieldDefinition> = {};
+  ): ObjectDefinition {
+    const fields = utils.mapFields(objectType.getFields(), (field) =>
+      definitionFromField(field, category, parents)
+    );
 
-    utils.iterateFields<
-      GraphQLFieldMap<any, any>,
-      GraphQLObjectType,
-      GraphQLField<any, any, any>
-    >(objectType, (field) => {
-      fields[field.name] = fieldDefinitionFromField(field, category, parents);
-    });
+    const interfaces = utils.isGraphQLObjectType(objectType)
+      ? objectType.getInterfaces().map((interfaceType) => {
+          const type = processType(interfaceType, category, parents);
+          return {
+            name: interfaceType.name,
+            description: interfaceType.description ?? DEFAULT_DESCRIPTION,
+            url: type.url,
+          };
+        })
+      : [];
 
     const url = urls.getObjectUrl(objectType.name);
-    const newObject: ObjectDefinition = {
+
+    return {
       name: objectType.name,
       url,
-      description: objectType.description || null,
+      description: objectType.description ?? DEFAULT_DESCRIPTION,
       fields,
       html: print(schema, objectType.astNode!),
+      interfaces,
     };
-
-    return newObject;
-  }
-
-  function processInputObjectType(
-    inputObjectType: GraphQLInputObjectType,
-    category: Category,
-    parents?: Set<string>
-  ) {
-    const fields: Record<string, ArgOrFieldDefinition> = {};
-
-    utils.iterateFields<
-      GraphQLInputFieldMap,
-      GraphQLInputObjectType,
-      GraphQLInputField
-    >(inputObjectType, (field) => {
-      fields[field.name] = fieldDefinitionFromField(field, category, parents);
-    });
-
-    const url = urls.getObjectUrl(inputObjectType.name);
-    const newInputObject: ObjectDefinition = {
-      name: inputObjectType.name,
-      url,
-      description: inputObjectType.description || null,
-      fields,
-      html: print(schema, inputObjectType.astNode!),
-    };
-
-    return newInputObject;
   }
 
   function processArgs(
-    args: readonly GraphQLArgument[] | undefined,
+    args: readonly GraphQLArgument[],
     category: Category,
     parents?: Set<string>
-  ) {
-    if (!args) return [];
-
-    const argDefs: ArgOrFieldDefinition[] = [];
-
-    for (let arg of args) {
+  ): ArgOrFieldDefinition[] {
+    return args.map((arg) => {
       const argType = processType(arg.type, category, parents);
-      argDefs.push({
+      return {
         name: arg.name,
         url: argType.url,
-        type: arg.type.toString(),
-        description: arg.description || null,
+        description: arg.description ?? DEFAULT_DESCRIPTION,
         is_optional: !(arg.type instanceof GraphQLNonNull),
-        is_list: arg.type instanceof GraphQLList,
-        args: null,
         html: print(schema, arg.astNode!),
-      });
-    }
-
-    return argDefs;
+        deprecationReason: arg.deprecationReason,
+      };
+    });
   }
 
-  utils.iterateFields<
-    GraphQLFieldMap<any, any>,
-    GraphQLObjectType,
-    GraphQLField<any, any, any>
-  >(queryType, (field) => {
+  const queries = utils.mapFields(queryType.getFields(), (field) => {
     const categoryName = utils.getCategoryName(field);
     if (!categoryName) return;
+
     const category = getOrCreateCategory(categoryName);
     const type = processType(field.type, category);
     const args = processArgs(field.args, category);
 
-    queries[field.name] = {
+    const queryDef: QueryDefinition = {
       name: field.name,
       url: urls.getQueryUrl(field.name),
-      description: field.description || null,
-      typeUrl: type?.url || null,
+      description: field.description ?? DEFAULT_DESCRIPTION,
+      type: {
+        name: type.name,
+        url: type.url,
+        description: type.description,
+      },
       args,
       html: print(schema, field.astNode!),
+      deprecationReason: field.deprecationReason,
     };
 
-    category.queries[field.name] = {
-      name: field.name,
-      url: urls.getQueryUrl(field.name),
-    };
+    category.addQuery(queryDef);
+
+    return queryDef;
   });
 
-  utils.iterateFields<
-    GraphQLFieldMap<any, any>,
-    GraphQLObjectType,
-    GraphQLField<any, any, any>
-  >(mutationType, (field) => {
+  const mutations = utils.mapFields(mutationType.getFields(), (field) => {
     const categoryName = utils.getCategoryName(field);
     if (!categoryName) return;
+
     const category = getOrCreateCategory(categoryName);
     const type = processType(field.type, category);
     const args = processArgs(field.args, category);
 
-    mutations[field.name] = {
+    const mutationDef: MutationDefinition = {
       name: field.name,
       url: urls.getMutationUrl(field.name),
-      description: field.description || null,
-      typeUrl: type?.url || null,
+      description: field.description ?? DEFAULT_DESCRIPTION,
+      type: {
+        name: type.name,
+        url: type.url,
+        description: type.description,
+      },
       args,
       html: print(schema, field.astNode!),
+      deprecationReason: field.deprecationReason,
     };
 
-    category.mutations[field.name] = {
-      name: field.name,
-      url: urls.getMutationUrl(field.name),
-    };
+    category.addMutation(mutationDef);
+
+    return mutationDef;
   });
-
-  // TODO: Sort all the stuff in categories
 
   return {
     categories,

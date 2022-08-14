@@ -18,8 +18,6 @@ export const getUnionUrl = (name: string) => `/graphql/union/${name}`;
 
 export function getUrl(type: GraphQLType): [string, string | null] {
   if (type instanceof GraphQLScalarType) {
-    if (["String", "Int", "Boolean", "Float", "ID"].includes(type.name))
-      return [type.name, null];
     return [type.name, getScalarUrl(type.name)];
   } else if (
     type instanceof GraphQLObjectType ||

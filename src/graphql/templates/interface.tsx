@@ -20,10 +20,9 @@ export default () => {
       <h2>Fields</h2>
       {Object.values(_interface.fields).map((field) => (
         <div key={field.name}>
-          <code>
-            {field.name}:{" "}
-            {field.url ? <Link to={field.url}>{field.type}</Link> : field.type}
-          </code>
+          <pre>
+            <Markdown source={field.html} />
+          </pre>
           <br />
           <Markdown source={field.description} />
         </div>

@@ -30,7 +30,8 @@ import {
 } from "./sidebar-components/SidebarStyledComponents";
 import { ArticleLeaf } from "./sidebar-components/SidebarArticleLeaf";
 import { stripTrailingSlash } from "./sidebar-components/stripTrailingSlash";
-import GraphQLSidebar from "./GraphQLSidebar";
+import GraphQLCategorySidebar from "./GraphQLCategorySidebar";
+import GraphQLReferenceSidebar from "./GraphQLReferenceSidebar";
 
 function useMMenu() {
   const [mmenuApi, setMMenuApi] = useState(null);
@@ -578,8 +579,10 @@ export function NavigationSidebar() {
 
               <DropDown title="GraphQL API">
                 <Separator text="Overview" />
+                <Separator text="By Category" />
+                <GraphQLCategorySidebar />
                 <Separator text="Reference" />
-                <GraphQLSidebar />
+                <GraphQLReferenceSidebar />
               </DropDown>
 
               <DropDown title="REST API">
