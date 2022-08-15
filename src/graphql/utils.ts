@@ -1,4 +1,3 @@
-import { AsyncResource } from "async_hooks";
 import {
   ConstDirectiveNode,
   DirectiveNode,
@@ -6,10 +5,8 @@ import {
   GraphQLFieldMap,
   GraphQLInputField,
   GraphQLInputFieldMap,
-  GraphQLInputObjectType,
   GraphQLList,
   GraphQLNonNull,
-  GraphQLObjectType,
   GraphQLType,
   Kind,
 } from "graphql";
@@ -21,12 +18,6 @@ export function isGraphQLField(
   field: GraphQLField<any, any, any> | GraphQLInputField
 ): field is GraphQLField<any, any, any> {
   return (field as any).hasOwnProperty("args");
-}
-
-export function isGraphQLObjectType(
-  object: GraphQLObjectType | GraphQLInputObjectType
-): object is GraphQLObjectType {
-  return (object as any).hasOwnProperty("getInterfaces");
 }
 
 export function isHidden<

@@ -93,7 +93,7 @@ export function processSchema(schemaText: string): ProcessedSchema {
     // if we see something that we've already seen
     if (parents.has(unwrappedType.toString())) {
       // Returning a null URL here is sufficient to make sure we don't have infinitively
-      // recursive links
+      // recursive link
       return {
         name: "",
         description: "",
@@ -251,16 +251,17 @@ export function processSchema(schemaText: string): ProcessedSchema {
       definitionFromField(field, category, parents)
     );
 
-    const interfaces = utils.isGraphQLObjectType(objectType)
-      ? objectType.getInterfaces().map((interfaceType) => {
-          const type = processType(interfaceType, category, parents);
-          return {
-            name: interfaceType.name,
-            description: interfaceType.description ?? DEFAULT_DESCRIPTION,
-            url: type.url,
-          };
-        })
-      : [];
+    const interfaces =
+      objectType instanceof GraphQLObjectType
+        ? objectType.getInterfaces().map((interfaceType) => {
+            const type = processType(interfaceType, category, parents);
+            return {
+              name: interfaceType.name,
+              description: interfaceType.description ?? DEFAULT_DESCRIPTION,
+              url: type.url,
+            };
+          })
+        : [];
 
     const url = urls.getObjectUrl(objectType.name);
 
