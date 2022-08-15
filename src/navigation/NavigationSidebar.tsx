@@ -1,10 +1,5 @@
-/*  Name: NavigationSidebar
-    Purpose: Renders docs navigation sidebar.
-    Author: M. Solis de Ovando
-*/
-
 import { History } from "history";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import useBrowserEffect from "src/util/useBrowserEffect";
 // import "mmenu-js/dist/mmenu.css"
@@ -549,6 +544,10 @@ export function NavigationSidebar() {
                 <ArticleLeaf
                   to="/developer/widgets/writing-a-web-component-for-saasquatch"
                   title="Writing a Web Component for SaaSquatch"
+                />
+                <ArticleLeaf
+                  to="/graphql/custom-widget"
+                  title="Custom Widget via GraphQL"
                 />
               </DropDown>
 
