@@ -4,18 +4,15 @@ import { useRouteData } from "react-static";
 import Markdown from "components/Markdown";
 import { MutationDefinition } from "../types";
 import { Link } from "react-router-dom";
+import Container from "./common/Container";
+import TitleBlock from "./common/TitleBlock";
 
 export default () => {
   const mutation = useRouteData<MutationDefinition>();
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-      <h1>{mutation.name}</h1>
-      <div>
-        <pre>
-          <Markdown source={mutation.html} />
-        </pre>
-      </div>
+    <Container>
+      <TitleBlock def={mutation} />
       <h2>Returns</h2>
       <pre>
         <Link to={mutation.type.url}>{mutation.type.name}</Link>
@@ -31,6 +28,6 @@ export default () => {
           <Markdown source={arg.description} />
         </div>
       ))}
-    </div>
+    </Container>
   );
 };
