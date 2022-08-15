@@ -12,26 +12,24 @@ const entry = {
 export default function render() {
   return (
     <PageHeader {...entry}>
-      <>
-        <Markdown source={started} />
-        <Markdown source={first} />
-        <GraphQLExample {...eg1} />
+      <Markdown source={started} />
+      <Markdown source={first} />
+      <GraphQLExample {...eg1} />
 
-        <Markdown source={rewards} />
-        <GraphQLExample {...rewardExample} />
+      <Markdown source={rewards} />
+      <GraphQLExample {...rewardExample} />
 
-        <Markdown source={referred} />
-        <GraphQLExample {...referredExample} />
+      <Markdown source={referred} />
+      <GraphQLExample {...referredExample} />
 
-        <Markdown source={referrals} />
-        <GraphQLExample {...referralsExample} />
+      <Markdown source={referrals} />
+      <GraphQLExample {...referralsExample} />
 
-        <Markdown source={upsert} />
-        <GraphQLExample {...upsertEg} />
+      <Markdown source={upsert} />
+      <GraphQLExample {...upsertEg} />
 
-        <Markdown source={programInfo} />
-        <GraphQLExample {...programInfoEg} />
-      </>
+      <Markdown source={programInfo} />
+      <GraphQLExample {...programInfoEg} />
     </PageHeader>
   );
 }

@@ -103,30 +103,12 @@ export function processSchema(schemaText: string): ProcessedSchema {
     }
 
     if (unwrappedType instanceof GraphQLScalarType) {
-      // if (unwrappedType.astNode === undefined) {
-      //   if (
-      //     ["String", "Int", "Boolean", "Float", "ID"].includes(
-      //       unwrappedType.name
-      //     )
-      //   ) {
-      //     return {
-      //       name: unwrappedType.name,
-      //       url: urls.getScalarUrl(unwrappedType.name),
-      //       description: unwrappedType.description ?? DEFAULT_DESCRIPTION,
-      //     };
-      //   } else {
-      //     throw new Error(
-      //       `Built-in scalar not yet supported for processing: ${unwrappedType.name}`
-      //     );
-      //   }
-      // } else {
       const scalar =
         unwrappedType.name in scalars
           ? scalars[unwrappedType.name]
           : (scalars[unwrappedType.name] = processScalarType(unwrappedType));
       category.addScalar(scalar);
       return scalar;
-      // }
     } else if (unwrappedType instanceof GraphQLEnumType) {
       const _enum =
         unwrappedType.name in enums
