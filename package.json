@@ -7,6 +7,7 @@
     "build": "TS_NODE_PROJECT=tsconfig.static.json node -r ts-node/register node_modules/.bin/react-static build",
     "bundle": "TS_NODE_PROJECT=tsconfig.static.json node -r ts-node/register node_modules/.bin/react-static bundle",
     "export": "TS_NODE_PROJECT=tsconfig.static.json node -r ts-node/register node_modules/.bin/react-static export",
+    "serve": "serve build -p $PORT -s",
     "gen:xls": "picklesdoc xlsx features docs --testers=2"
   },
   "dependencies": {

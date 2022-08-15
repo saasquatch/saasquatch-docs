@@ -5,7 +5,7 @@ interface CollapsibleApiMenuProps {
   name: string;
 }
 
-const CollapsibleApiMenuHeading = styled.div`
+const CollapsibleApiMenuHeading = styled.span`
   display: block;
   height: fit-content;
   align-items: center;
@@ -25,7 +25,10 @@ let collapsibleMenuIdx = 0;
 
 const CollapsibleApiMenuItem: React.FC<CollapsibleApiMenuProps> = (props) => {
   const parent = useRef(null);
-  const id = useMemo(() => `#mm-collapsible-menu-${collapsibleMenuIdx++}`, []);
+  const id = useMemo(
+    () => `#mm-collapsible-api-menu-item-${collapsibleMenuIdx++}`,
+    []
+  );
 
   function open(e: React.MouseEvent) {
     e.preventDefault();

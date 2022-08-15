@@ -2,7 +2,6 @@ import { History } from "history";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import useBrowserEffect from "src/util/useBrowserEffect";
-// import "mmenu-js/dist/mmenu.css"
 import { createContainer } from "unstated-next";
 import ApiSidebar from "./ApiSidebar";
 import {
