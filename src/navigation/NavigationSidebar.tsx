@@ -578,7 +578,7 @@ export function NavigationSidebar() {
 
               <DropDown title="GraphQL API">
                 <Separator text="Overview" />
-                <ArticleLeaf to="/graphql/reference" title="Overview" />
+                <ArticleLeaf to="/graphql/overview" title="Overview" />
                 <Separator text="By Category" />
                 <GraphQLCategorySidebar />
                 <Separator text="Reference" />

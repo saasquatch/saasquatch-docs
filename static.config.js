@@ -17,6 +17,16 @@ import { schemaText } from "./src/graphql/schema";
 import { createGraphQLRoutes } from "./src/graphql/routes";
 
 /**
+ * Redirect routes to maintain deprecated routes
+ */
+const REDIRECT_ROUTES = [
+  {
+    path: "/graphql/reference",
+    to: "/graphql/overview",
+  },
+];
+
+/**
  * Map of legacy SWIG to REACT templates
  */
 const TEMPLATES = {
@@ -188,7 +198,7 @@ export default {
       graphql: processSchema(schemaText),
     };
   },
-  getRoutes: getRoutes,
+  getRoutes,
   plugins: [
     [
       "saasquatch-webpack",
@@ -306,11 +316,6 @@ async function getRoutes() {
       getData: () => spec,
       template: "src/containers/single/api",
     },
-    // {
-    //   path: "/product-news-old",
-    //   getData: async () => ({ productNews }),
-    //   template: "src/containers/single/product-news-old",
-    // },
     {
       path: "/product-news",
       getData: async () => ({ productNews }),
@@ -385,6 +390,11 @@ async function getRoutes() {
     .map(legacyPagifierToStatic);
 
   const processedSchema = processSchema(schemaText);
+  const redirectRoutes = REDIRECT_ROUTES.map(({ path, to }) => ({
+    path,
+    getData: () => ({ to }),
+    template: "src/containers/redirect",
+  }));
 
   return [
     ...rawFiles,
@@ -392,6 +402,7 @@ async function getRoutes() {
     ...contentfulProductPages,
     ...installGuides,
     ...staticPages,
+    ...redirectRoutes,
     ...createGraphQLRoutes(processedSchema),
   ];
 }
