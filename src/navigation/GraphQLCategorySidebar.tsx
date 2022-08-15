@@ -1,4 +1,6 @@
 import React from "react";
+import { History } from "history";
+import { useHistory } from "react-router";
 import { useSiteData } from "react-static";
 
 import {
@@ -12,6 +14,8 @@ import { CategoryEntry, ProcessedSchema } from "src/graphql/types";
 import CollapsibleApiMenu from "./api/CollapsibleApiMenuItem";
 
 export default () => {
+  const history: History<any> = useHistory();
+
   const { graphql } = useSiteData<{
     graphql: ProcessedSchema;
   }>();
@@ -52,7 +56,7 @@ export default () => {
         <li key={item.url}>
           <StyledApiLink
             to={item.url}
-            $clicked={window.location.pathname === item.url}
+            $clicked={history.location.pathname === item.url}
           >
             <MethodDiv>
               {item.name}
@@ -74,7 +78,7 @@ export default () => {
             <li key={item.url}>
               <StyledApiLink
                 to={item.url}
-                $clicked={window.location.pathname === item.url}
+                $clicked={history.location.pathname === item.url}
               >
                 {item.name}
               </StyledApiLink>
