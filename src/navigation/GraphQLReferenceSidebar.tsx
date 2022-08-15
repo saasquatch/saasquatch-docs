@@ -14,12 +14,12 @@ export default () => {
     graphql: ProcessedSchema;
   }>();
 
-  const queries = Object.values(graphql.queries).sort((a, b) =>
-    a.name.localeCompare(b.name)
-  );
-  const mutations = Object.values(graphql.mutations).sort((a, b) =>
-    a.name.localeCompare(b.name)
-  );
+  // const queries = Object.values(graphql.queries).sort((a, b) =>
+  //   a.name.localeCompare(b.name)
+  // );
+  // const mutations = Object.values(graphql.mutations).sort((a, b) =>
+  //   a.name.localeCompare(b.name)
+  // );
   const objects = [
     ...Object.values(graphql.objects),
     ...Object.values(graphql.inputObjects),
@@ -56,8 +56,8 @@ export default () => {
 
   return (
     <>
-      {queries.length ? renderList("Queries", queries) : null}
-      {mutations.length ? renderList("Mutations", mutations) : null}
+      {/* {queries.length ? renderList("Queries", queries) : null}
+      {mutations.length ? renderList("Mutations", mutations) : null} */}
       {objects.length ? renderList("Objects", objects) : null}
       {scalars.length ? renderList("Scalars", scalars) : null}
       {enums.length ? renderList("Enums", enums) : null}

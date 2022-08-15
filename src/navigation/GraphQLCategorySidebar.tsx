@@ -92,11 +92,11 @@ export default () => {
       <CollapsibleApiMenu key={category.name} name={category.name}>
         {queries.length ? renderItems("query", "get", queries) : null}
         {mutations.length ? renderItems("mutation", "post", mutations) : null}
-        {objects.length ? renderList("Objects", objects) : null}
+        {/* {objects.length ? renderList("Objects", objects) : null}
         {scalars.length ? renderList("Scalars", scalars) : null}
         {enums.length ? renderList("Enums", enums) : null}
         {interfaces.length ? renderList("Interfaces", interfaces) : null}
-        {unions.length ? renderList("Unions", unions) : null}
+        {unions.length ? renderList("Unions", unions) : null} */}
       </CollapsibleApiMenu>
     );
   }

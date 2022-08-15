@@ -25,10 +25,7 @@ let collapsibleMenuIdx = 0;
 
 const CollapsibleApiMenuItem: React.FC<CollapsibleApiMenuProps> = (props) => {
   const parent = useRef(null);
-  const id = useMemo(
-    () => `#mm-collapsible-api-menu-item-${collapsibleMenuIdx++}`,
-    []
-  );
+  const id = useMemo(() => `#mm-collapsible-menu-${collapsibleMenuIdx++}`, []);
 
   function open(e: React.MouseEvent) {
     e.preventDefault();
