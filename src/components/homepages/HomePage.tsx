@@ -28,7 +28,7 @@ export const HomePage: React.FC<HomePageProps> = ({
       <CardGrid>
         {cards.map((card) => {
           return (
-            <div style={{ display: "inline-block" }}>
+            <div key={card.linkUrl} style={{ display: "inline-block" }}>
               <Card
                 title={card.title}
                 description={card.description}
