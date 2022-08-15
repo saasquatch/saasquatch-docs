@@ -54,12 +54,12 @@ export const ArticleLeafView = (props: IArticleLeafViewProps) => {
     <li>
       <LeafLink
         to={stripTrailingSlash(props.to)}
-        clicked={
+        $clicked={
           props.apiMethod
             ? props.checkUrlIsMethod()
             : props.currentPage === stripTrailingSlash(props.to)
         }
-        isSubCategory={props.isSubCategory}
+        $isSubCategory={props.isSubCategory}
       >
         {props.title}
       </LeafLink>

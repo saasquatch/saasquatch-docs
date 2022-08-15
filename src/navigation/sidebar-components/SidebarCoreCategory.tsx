@@ -1,13 +1,7 @@
-/*  Name: SidebarCoreCategory
-    Purpose: Contains component, view, and hook for docs navigation sidebar core category.
-    Author: M. Solis de Ovando
-*/
-
 import React, { useRef } from "react";
 import styled from "styled-components";
 import { SidebarSVGProps } from "./SidebarIcons";
 import { MMenuContext } from "../NavigationSidebar";
-import { openPanel } from "./openPanel";
 import {
   CoreCategoryLink,
   DivideLineLi,
@@ -55,7 +49,7 @@ export const CoreCategoryView = (props: {
 }) => {
   return (
     <li ref={props.parentRef}>
-      <CoreCategoryLink to={props.to} clickedArticle={props.clickedArticle}>
+      <CoreCategoryLink to={props.to} $clickedArticle={props.clickedArticle}>
         <IconTitleDiv>
           <SidebarSVG
             {...props.icon}
@@ -75,7 +69,7 @@ export const CoreCategoryView = (props: {
       {props.children && (
         <ul>
           <li>
-            <TitleLink to={props.to} clicked={props.clicked}>
+            <TitleLink to={props.to} $clicked={props.clicked}>
               {" "}
               <SidebarSVG {...props.icon} width="70%" clicked={props.clicked} />
               {props.title}

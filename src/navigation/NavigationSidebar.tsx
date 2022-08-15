@@ -638,12 +638,9 @@ export function NavigationSidebar() {
 
 const Separator = (props: { text: string }) => {
   return (
-    // nested li makes line appear, otherwise there is no line :(
-    <li>
-      <SeparatorLi>
-        <SeparatorSpan>{props.text}</SeparatorSpan>
-        <SeparatorLine />
-      </SeparatorLi>
-    </li>
+    <SeparatorLi>
+      <SeparatorSpan>{props.text}</SeparatorSpan>
+      <SeparatorLine />
+    </SeparatorLi>
   );
 };

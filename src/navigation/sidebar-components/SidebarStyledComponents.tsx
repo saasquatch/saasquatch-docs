@@ -1,8 +1,3 @@
-/*  Name: SidebarStyledComponents
-    Purpose: Contains styled components that are used in docs navigation sidebar.
-    Author: M. Solis de Ovando
-*/
-
 import React from "react";
 import { HashLink as Link } from "react-router-hash-link";
 import styled from "styled-components";
@@ -15,27 +10,27 @@ export const CoreCategoryLink = styled(Link)`
   justify-content: space-between;
   height: fit-content;
   background-color: ${(props) =>
-    props.clicked || props.clickedArticle
+    props.$clicked || props.$clickedArticle
       ? "var(--sq-nav-surface-primary)"
       : "var(--sq-nav-surface-secondary)"};
   color: ${(props) =>
-    props.clicked || props.clickedArticle
+    props.$clicked || props.$clickedArticle
       ? "var(--sq-nav-text-on-primary)"
       : "var(--sq-nav-text-on-secondary)"} !important;
   font-size: var(--sq-font-size-header-three);
   font-weight: ${(props) =>
-    props.clicked || props.clickedArticle
+    props.$clicked || props.$clickedArticle
       ? "var(--sq-font-weight-bold)"
       : "var(--sq-font-weight-regular)"} !important;
   line-height: 24px;
   padding: var(--sq-spacing-x-small) var(--sq-spacing-small);
   &:hover {
     background-color: ${(props) =>
-      props.clicked || props.clickedArticle
+      props.$clicked || props.$clickedArticle
         ? "var(--sq-nav-surface-primary)"
         : "#e7edee"};
     color: ${(props) =>
-      props.clicked || props.clickedArticle
+      props.$clicked || props.$clickedArticle
         ? "var(--sq-nav-text-on-primary)"
         : "var(--sq-nav-text-on-secondary)"} !important;
   }
@@ -47,16 +42,16 @@ export const TitleLink = styled(CoreCategoryLink as any)`
   font-size: var(--sq-font-size-caption);
 `;
 
-export const LeafLink = styled(CoreCategoryLink as any)<{ clicked: boolean }>`
+export const LeafLink = styled(CoreCategoryLink as any)`
   font-size: ${(props) =>
-    props.isSubCategory
+    props.$isSubCategory
       ? "var(--sq-font-size-caption)"
       : "var(--sq-font-size-regular)"};
   line-height: var(--sq-line-height-regular);
   margin-left: ${(props) =>
-    props.clicked && !props.isSubCategory ? "-1px" : "0px"};
+    props.$clicked && !props.$isSubCategory ? "-1px" : "0px"};
   border-left: ${(props) =>
-    props.clicked && !props.isSubCategory
+    props.$clicked && !props.$isSubCategory
       ? "2px solid var(--docs-text-interactive)"
       : "0px"};
 `;
@@ -69,16 +64,14 @@ export const DivideLineLi = styled.li`
 `;
 /* Seperator styled components (to seperate versions, webhooks, etc. in Dev Center section) */
 export const SeparatorLi = styled.li`
-  display: flex;
+  display: flex !important;
   flex-direction: row;
   align-items: center;
-  padding: var(--sq-spacing-xx-small) 0px var(--sq-spacing-xx-small)
-    var(--sq-spacing-small);
+  padding: var(--sq-spacing-x-small) 0 var(--sq-spacing-x-small)
+    var(--sq-spacing-small) !important;
   gap: var(--sq-spacing-x-small);
 `;
 export const SeparatorSpan = styled.span`
-  align-self: center;
-  width: fit-content;
   white-space: nowrap;
   text-transform: uppercase;
   color: var(--sq-nav-text-on-primary-subdued);
@@ -86,9 +79,9 @@ export const SeparatorSpan = styled.span`
   line-height: 18px;
   margin: 0 !important;
 `;
-export const SeparatorLine = styled.div`
+export const SeparatorLine = styled.span`
+  flex: 1;
   height: 1px !important;
-  width: 100% !important;
   background-color: var(--sq-border) !important;
 `;
 /* SVG icon container and render function */
