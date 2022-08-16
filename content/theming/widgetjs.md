@@ -4,6 +4,7 @@ highlights: Publicly available widget JS API at ```window.widget.rpc = widget.rp
 slug: themes/widgetjs
 sectionType: themes
 template: article.html
+date: '2019-11-18'
 ---
 
 ### Methods

@@ -4,6 +4,7 @@ highlights: Referral SaaSquatch templates use **Handlebars**. Handlebars let you
 slug: themes/templates
 sectionType: themes
 template: article.html
+date: '2019-11-18'
 ---
 
 Templates are easy to use. Here's an example template:

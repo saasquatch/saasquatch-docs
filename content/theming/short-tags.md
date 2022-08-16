@@ -5,6 +5,7 @@ highlights: |
 slug: themes/short-tags
 template: pages/shorttags.html
 sectionType: themes
+date: '2019-11-18'
 ---
 
 
