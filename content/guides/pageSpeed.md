@@ -4,6 +4,7 @@ highlights: This guide explains best practices for making the Referral SaaSquatc
 slug: bestpractices/speed
 sectionType: guide
 template: article.html
+date: '2019-11-18'
 ---
 
 <strong><i class="icon-chevron-right"></i> Keep it in the body.</strong> Place the `&lt;script&gt;` tag examples that we provide right before the `&lt;/body&gt;` tag, or at the very least, keep 

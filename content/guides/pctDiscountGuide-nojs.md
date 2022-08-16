@@ -7,6 +7,7 @@ highlights: |
 slug: guides/percent-discount-nojs
 sectionType: guide
 template: article.html
+date: '2019-11-18'
 ---
 
 

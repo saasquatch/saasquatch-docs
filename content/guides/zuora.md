@@ -4,4 +4,5 @@ highlights: In order to respect Zuora's privacy policies Zuora integration docum
 slug: developer/zuora
 sectionType: guide
 template: article.html
+date: '2019-11-18'
 ---

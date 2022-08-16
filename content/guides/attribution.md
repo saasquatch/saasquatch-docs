@@ -6,6 +6,7 @@ highlights: |
 slug: developer/attribution
 sectionType: guide
 template: hasTableOfContents.html
+date: '2019-11-18'
 ---
 
 
