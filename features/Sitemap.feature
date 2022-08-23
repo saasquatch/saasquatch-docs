@@ -1,40 +1,60 @@
 @owner:Keegan
 @author:Keegan
-
 Feature: Sitemap
 
     @motivating
-    Scenario: Sitemaps are generated on the live site and on staging (note that they are a bit different)
-        Given the user is on <url>
-        Then the user will see a sitemap generated
+    Scenario: Sitemaps are generated on the live site and on staging
+        Given a user is on the <version> docs site
+        When they navigate to <url>
+        Then they see the <version> site map
         Examples:
-            | url                                                                         |
-            | https://docs.saasquatch.com/sitemap.xml                                     |
-            | https://deploy-preview-181--saasquatch-docs.netlify.app/sitemap.staging.xml |
+            | version    | url                                                                                    |
+            | production | https://docs.saasquatch.com/sitemap.xml                                                |
+            | staging    | https://deploy-preview-{deployNumber}--saasquatch-docs.netlify.app/sitemap.staging.xml |
 
     @motivating
-    Scenario: Sitemaps <loc> tags use absolute URL's with the base path being ________
-        Given the user is on the Sitemap with basepath <path>
-        And the user sees a url containing a loc <loc>
+    Scenario: The sitemap is generated with <loc> tags
+        Given the <version> docs site sitemap
+        And the base path for the sitemap is <basePath>
+        Then the loc tags are in format <loc>
         Examples:
-            | path                                                    | loc                                |
-            | https://deploy-preview-181--saasquatch-docs.netlify.app | /about/                            |
-            | https://docs.saasquatch.com                             | https://docs.saasquatch.com/about/ |
+            | version    | basePath                    | loc                                     |
+            | staging    | /                           | /{pagePath}                             |
+            | production | https://docs.saasquatch.com | https://docs.saasquatch.com/{pagePath}/ |
 
     @motivating
-    Scenario: Sitemap <lastMod> tags are added (when?/when are they not there)
-        Given the user is on the Sitemap
-        And the user sees a url containing a loc <loc>
-        Then the user may see a <lastmod> inside the url
+    Scenario: Sitemap <lastMod> tags are added when a page has a date last modified
+        Given the docs site map
+        And a page <mayHave> a last modified date
+        Then the sitemap entry <mayHave> a lastmod tag with the date formated in YYYY-MM-DD
         Examples:
-            | loc          | lastmod    |
-            | /about/      | none       |
-            | /api/errors/ | 2020-07-06 |
+            | mayHave      |
+            | has          |
+            | doesn't have |
+
     @minutia
-    Scenario: Sitemap <lastMod> tags are in ____ format
-        Given the user is on the Sitemap
-        And the user sees a url with a lastmod tag
-        Then the user sees the lastmod tag has a date in the format <format>
+    Scenario Outline: Not all pages get <lastMod> tags
+        Given the docs site map
+        Then the <page> does not have a lastMod tag
         Examples:
-            | format     |
-            | YYYY-MM-DD |
+            | page                         |
+            | /about/                      |
+            | /developer/purchase-object/  |
+            | /graphql/custom-widget/      |
+            | /graphql/reference/          |
+            | /                            |
+            | /mobile/appsflyer/reference/ |
+            | /search/                     |
+            | /api/methods/                |
+            | /product-news/               |
+            | /success/                    |
+            | /developer/                  |
+            | /breaking-changes/           |
+            | /program/library/            |
+            | /developer/squatchjs/issue/  |
+            | /themes/fields/              |
+            | /integrations/               |
+            | /guides/                     |
+            | /learning-saasquatch/        |
+            | /building-programs/          |
+            | /running-programs/           |
