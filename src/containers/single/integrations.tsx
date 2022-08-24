@@ -92,7 +92,7 @@ const zapier = {
   description:
     "Zapier is an online automation tool that connects your apps and services. You can connect two or more apps to automate repetitive tasks without coding or relying on developers to build the integration.",
   imageSrc:
-    "//images.ctfassets.net/s68ib1kj8k5n/5bB95sRsNbh2BL1D5eqGLk/d94c7c939b6caeaccc17ee3acd08ba73/zapier-integration.png",
+    "//images.ctfassets.net/s68ib1kj8k5n/5bB95sRsNbh2BL1D5eqGLk/a10fe712e7948a2b73ecbe379108a556/Group_1.png",
   linkText: "Read more about Zapier",
   linkUrl: "/zapier/",
 };
