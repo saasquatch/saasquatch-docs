@@ -97,6 +97,13 @@ const writingWebComponent = {
   linkUrl: "/developer/widgets/writing-a-web-component-for-saasquatch",
 };
 
+const customGraphQLWidget = {
+  title: "Custom Widget via GraphQL",
+  description:
+    "Our widgets use our GraphQL API, so you can build your own custom widget using simple GraphQL queries and make something unique to meet your requirements.",
+  linkUrl: "/graphql/custom-widget",
+};
+
 // Cards to be rendered array & render function
 
 const CardsArray: Array<CardProps> = [
@@ -113,6 +120,7 @@ const CardsArray: Array<CardProps> = [
   attributionTechGuide,
   commonPitfalls,
   writingWebComponent,
+  customGraphQLWidget,
 ];
 
 export default function render() {

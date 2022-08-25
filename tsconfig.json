@@ -1,12 +1,13 @@
 {
-  "compileOnSave": false,
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
+    "target": "es2015",
+    "module": "es2015",
     "jsx": "preserve",
+    "lib": ["dom", "es2015", "es2016"],
     "allowJs": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "noImplicitAny": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
@@ -19,17 +20,8 @@
     "resolveJsonModule": true,
     "paths": {
       "components/*": ["src/components/*"],
-      "containers/*": ["src/containers/*"],
-      "src/*": ["src/*"],
-      "types/*": ["types/*"]
-    },
-    "lib": ["dom", "es2015", "es2016"]
+      "src/*": ["src/*"]
+    }
   },
-  "exclude": [
-    "artifacts/**/*",
-    "dist/**/*",
-    "build/**/*",
-    "public/**/*",
-    "node_modules"
-  ]
+  "include": ["src/**/*"]
 }

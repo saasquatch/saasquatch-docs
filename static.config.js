@@ -12,6 +12,19 @@ import productSpaceContentfulpagifier from "./metalsmith/utils/productSpaceConte
 import installguidepagifier from "./metalsmith/utils/installguidepagifier";
 import { Bottom } from "./src/templates/bottom";
 import resolveI18n from "./metalsmith/utils/resolveI18n";
+import { processSchema } from "./src/graphql/processSchema";
+import { schemaText } from "./src/graphql/schema";
+import { createGraphQLRoutes } from "./src/graphql/routes";
+
+/**
+ * Redirect routes to maintain deprecated routes
+ */
+const REDIRECT_ROUTES = [
+  {
+    path: "/graphql/reference",
+    to: "/graphql/overview",
+  },
+];
 
 /**
  * Map of legacy SWIG to REACT templates
@@ -38,7 +51,7 @@ function getTemplate(legacy) {
   if (!newTemplate) {
     // return "src/containers/HasTOC";
     throw new Error(
-      "Unhanlded template!" +
+      "Unhandled template!" +
         legacy +
         " -- either add an entry in TEMPLATES in static.config.js or refactor some code"
     );
@@ -182,9 +195,10 @@ export default {
       },
       apiRoutes: getEndpoints((await getSwagger()).swagger),
       apiRoutesByTag: endpointsByTag((await getSwagger()).swagger),
+      graphql: processSchema(schemaText),
     };
   },
-  getRoutes: getRoutes,
+  getRoutes,
   plugins: [
     [
       "saasquatch-webpack",
@@ -302,11 +316,6 @@ async function getRoutes() {
       getData: () => spec,
       template: "src/containers/single/api",
     },
-    // {
-    //   path: "/product-news-old",
-    //   getData: async () => ({ productNews }),
-    //   template: "src/containers/single/product-news-old",
-    // },
     {
       path: "/product-news",
       getData: async () => ({ productNews }),
@@ -380,12 +389,21 @@ async function getRoutes() {
     .filter((e) => e)
     .map(legacyPagifierToStatic);
 
+  const processedSchema = processSchema(schemaText);
+  const redirectRoutes = REDIRECT_ROUTES.map(({ path, to }) => ({
+    path,
+    getData: () => ({ to }),
+    template: "src/containers/redirect",
+  }));
+
   return [
     ...rawFiles,
     ...contentfulPages,
     ...contentfulProductPages,
     ...installGuides,
     ...staticPages,
+    ...redirectRoutes,
+    ...createGraphQLRoutes(processedSchema),
   ];
 }
 

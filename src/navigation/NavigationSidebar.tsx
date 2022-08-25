@@ -1,13 +1,7 @@
-/*  Name: NavigationSidebar
-    Purpose: Renders docs navigation sidebar.
-    Author: M. Solis de Ovando
-*/
-
 import { History } from "history";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import useBrowserEffect from "src/util/useBrowserEffect";
-// import "mmenu-js/dist/mmenu.css"
 import { createContainer } from "unstated-next";
 import ApiSidebar from "./ApiSidebar";
 import {
@@ -30,6 +24,8 @@ import {
 } from "./sidebar-components/SidebarStyledComponents";
 import { ArticleLeaf } from "./sidebar-components/SidebarArticleLeaf";
 import { stripTrailingSlash } from "./sidebar-components/stripTrailingSlash";
+import GraphQLCategorySidebar from "./GraphQLCategorySidebar";
+import GraphQLReferenceSidebar from "./GraphQLReferenceSidebar";
 
 function useMMenu() {
   const [mmenuApi, setMMenuApi] = useState(null);
@@ -548,6 +544,10 @@ export function NavigationSidebar() {
                   to="/developer/widgets/writing-a-web-component-for-saasquatch"
                   title="Writing a Web Component for SaaSquatch"
                 />
+                <ArticleLeaf
+                  to="/graphql/custom-widget"
+                  title="Custom Widget via GraphQL"
+                />
               </DropDown>
 
               <DropDown title="Squatch.js">
@@ -575,17 +575,17 @@ export function NavigationSidebar() {
                 />
               </DropDown>
 
-              <DropDown title="API">
-                <Separator text="GraphQL API" />
-                <ArticleLeaf
-                  to="/graphql/reference"
-                  title="GraphQL Reference"
-                />
-                <ArticleLeaf
-                  to="/graphql/custom-widget"
-                  title="Custom Widget via GraphQL"
-                />
-                <Separator text="REST API" />
+              <DropDown title="GraphQL API">
+                <Separator text="Overview" />
+                <ArticleLeaf to="/graphql/overview" title="Overview" />
+                <Separator text="Queries & Mutations" />
+                <GraphQLCategorySidebar />
+                <Separator text="Reference" />
+                <GraphQLReferenceSidebar />
+              </DropDown>
+
+              <DropDown title="REST API">
+                <Separator text="Overview" />
                 <ArticleLeaf to="/api" title="API Overview" />
                 <ArticleLeaf to="/api/authentication" title="Authentication" />
                 <ArticleLeaf
@@ -594,8 +594,7 @@ export function NavigationSidebar() {
                 />
                 <ArticleLeaf to="/api/errors" title="Errors" />
 
-                <Separator text="REST API Reference" />
-
+                <Separator text="Reference" />
                 <ApiSidebar />
               </DropDown>
 
@@ -638,12 +637,9 @@ export function NavigationSidebar() {
 
 const Separator = (props: { text: string }) => {
   return (
-    // nested li makes line appear, otherwise there is no line :(
-    <li>
-      <SeparatorLi>
-        <SeparatorSpan>{props.text}</SeparatorSpan>
-        <SeparatorLine />
-      </SeparatorLi>
-    </li>
+    <SeparatorLi>
+      <SeparatorSpan>{props.text}</SeparatorSpan>
+      <SeparatorLine />
+    </SeparatorLi>
   );
 };

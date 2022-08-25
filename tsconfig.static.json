@@ -1,0 +1,15 @@
+// As we are importing TypeScript into the static.config.js, we need to run the
+// react-static scripts with ts-node, but with a different configuration to output
+// node-compatible modules.
+//
+// This config is invoked by ts-node via the TS_NODE_PROJECT environment variable
+// in the package.json scripts.
+{
+  "compilerOptions": {
+    "target": "es2021",
+    "module": "node16",
+    "jsx": "preserve",
+    "lib": ["es2015", "es2016"],
+    "strict": true
+  }
+}

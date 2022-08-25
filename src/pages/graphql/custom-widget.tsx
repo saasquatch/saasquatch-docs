@@ -2,18 +2,16 @@ import React from "react";
 
 import Markdown from "../../components/Markdown";
 
-import "graphiql/graphiql.css";
 import GraphQLExample from "../../components/GraphQLExample";
 import PageHeader from "../../components/PageHeader";
 
 const entry = {
   title: "Building a custom Widget using GraphQL",
-  highlights: `This tutorial will walk you through building a custom widget using the SaaSquatch [GraphQL API](/graphql/reference)`
-}
+  highlights: `This tutorial will walk you through building a custom widget using the SaaSquatch [GraphQL API](/graphql/reference)`,
+};
 export default function render() {
   return (
-    <PageHeader {...entry}><>
-
+    <PageHeader {...entry}>
       <Markdown source={started} />
       <Markdown source={first} />
       <GraphQLExample {...eg1} />
@@ -32,7 +30,6 @@ export default function render() {
 
       <Markdown source={programInfo} />
       <GraphQLExample {...programInfoEg} />
-    </>
     </PageHeader>
   );
 }
@@ -119,7 +116,7 @@ const programInfo = `
 
 You can advertise what people will earn from your program by looking up the program by id, and then looking up the program's rewards.
 Every program has a different set of reward keys, so make sure to look this up when you're setting up your program.
-`
+`;
 
 const eg1 = {
   query: `{
@@ -135,7 +132,7 @@ const eg1 = {
     { viewer: { firstName: "Sansa", lastName: "Stark" } },
     null,
     2
-  )
+  ),
 } as const;
 
 const upsertEg = {
@@ -163,13 +160,13 @@ const upsertEg = {
         segments: ["starks", "boltons"],
         customFields: {
           fierce: true,
-          married: true
-        }
-      }
+          married: true,
+        },
+      },
     },
     null,
     2
-  )
+  ),
 } as const;
 
 const rewardExample = {
@@ -197,14 +194,14 @@ const rewardExample = {
         rewards: {
           data: {
             prettyValue: "$10.00",
-            prettyAvailableValue: "$4.75"
-          }
-        }
-      }
+            prettyAvailableValue: "$4.75",
+          },
+        },
+      },
     },
     null,
     2
-  )
+  ),
 } as const;
 
 const referredExample = {
@@ -231,14 +228,14 @@ const referredExample = {
         referredByReferral: {
           referrerUser: {
             firstName: "Jon",
-            lastName: "Snow"
-          }
-        }
-      }
+            lastName: "Snow",
+          },
+        },
+      },
     },
     null,
     2
-  )
+  ),
 } as const;
 
 const referralsExample = {
@@ -270,30 +267,30 @@ const referralsExample = {
             {
               referrerUser: {
                 firstName: "Rob",
-                lastName: "Stark"
-              }
+                lastName: "Stark",
+              },
             },
             {
               referrerUser: {
                 firstName: "Arya",
-                lastName: "Stark"
-              }
+                lastName: "Stark",
+              },
             },
             {
               referrerUser: {
                 firstName: "Catelyn",
-                lastName: "Stark"
-              }
-            }
+                lastName: "Stark",
+              },
+            },
           ],
           totalCount: 1021,
-          count: 3
-        }
-      }
+          count: 3,
+        },
+      },
     },
     null,
     2
-  )
+  ),
 } as const;
 
 const programInfoEg = {
@@ -323,19 +320,19 @@ const programInfoEg = {
         rewards: [
           {
             key: "referredReward",
-            prettyValue: "$10.00"
+            prettyValue: "$10.00",
           },
           {
             key: "referrerTier1",
-            prettyValue: "$20.00"
-          }
+            prettyValue: "$20.00",
+          },
         ],
-        tierOneOnly:{
-          prettyValue: "$20.00"
-        }
-      }
+        tierOneOnly: {
+          prettyValue: "$20.00",
+        },
+      },
     },
     null,
     2
-  )
+  ),
 } as const;
