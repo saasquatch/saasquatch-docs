@@ -1,8 +1,9 @@
+import { getBreadcrumb, isBlank, Search, useSearch } from "@saasquatch/squatch-search";
+import { SearchProps } from "@saasquatch/squatch-search/dist/components/Search/Search";
 import React, { useEffect } from "react";
 import styled from "styled-components";
 
 import Meta from "../components/Meta";
-import { InlineSearch } from "../components/search/InlineSearch";
 
 const Hero = styled.div`
   background: transparent;
@@ -26,6 +27,11 @@ export default function render() {
     // Old old old redirects baced on anchors
     if (document) legacyAnchors();
   });
+  const searchProps: SearchProps = {
+    onGetBreadcrumbs: getBreadcrumb,
+    onIsBlank: isBlank,
+    useSearch: useSearch()
+  }
   return (
     <>
     <Meta title={null} />
@@ -39,8 +45,8 @@ export default function render() {
         choose a help center section on your left to get started.{" "}
       </p>
 
-      <div className="docs-searchbox-full main-page">
-        <InlineSearch />
+      <div>
+        <Search {...searchProps}/>
       </div>
     </Hero>
     </>

@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@reach/router": "^1.2.1",
+    "@saasquatch/squatch-search": "^0.1.0-1",
     "@saasquatch/visual-dev": "^1.0.2",
     "@types/dompurify": "^2.0.2",
     "anchor-js": "^3.2.2",
@@ -51,7 +52,7 @@
     "serve": "^11.3.2",
     "slug": "0.9.1",
     "swagger-parser": "^3.4.1",
-    "use-debounce": "^5.1.0",
+    "use-debounce": "^8.0.3",
     "webpack": "^4.20.2",
     "zenscroll": "^3.3.0"
   },

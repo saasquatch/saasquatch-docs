@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import { HashLink as Link } from "react-router-hash-link";
 
 import * as Styles from "./NavStyles";
-import { InlineSearch } from "components/search/InlineSearch";
 import { modalRoot } from "./NavigationSidebar";
 
 export function PortalifiedSearch() {
@@ -47,7 +46,7 @@ class PortalifiedSearchForBrowser extends React.Component {
           </Link>
         </Styles.HelpCenterLogo>
         <Styles.Search>
-          <InlineSearch Input={Styles.SearchInput} sideBar={true} />
+          <div>Need to put Search in here from new package</div>
         </Styles.Search>
       </>,
       this.el

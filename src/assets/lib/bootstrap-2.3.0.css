@@ -142,7 +142,7 @@ input[type="submit"] {
   -webkit-appearance: button;
 }
 
-label,
+/* label,
 select,
 button,
 input[type="button"],
@@ -151,7 +151,7 @@ input[type="submit"],
 input[type="radio"],
 input[type="checkbox"] {
   cursor: pointer;
-}
+} */
 
 input[type="search"] {
   -webkit-box-sizing: content-box;
