@@ -1868,7 +1868,7 @@ input.search-query {
   border-radius: 14px 0 0 14px;
 }
 
-.form-search input,
+/* .form-search input, */
 .form-inline input,
 .form-horizontal input,
 .form-search textarea,
@@ -1902,7 +1902,7 @@ input.search-query {
   display: none;
 }
 
-.form-search label,
+/* .form-search label, */
 .form-inline label,
 .form-search .btn-group,
 .form-inline .btn-group {
@@ -6381,7 +6381,7 @@ a.badge:focus {
   filter: alpha(opacity=90);
 }
 
-..carousel-caption h4,
+.carousel-caption h4,
 .carousel-caption p {
   line-height: 20px;
   color: #fff;
