@@ -4,15 +4,26 @@ import { HashLink as Link } from "react-router-hash-link";
 
 import * as Styles from "./NavStyles";
 import { modalRoot } from "./NavigationSidebar";
+import { isBlank, Search, SearchProps, useSearch } from "@saasquatch/squatch-search";
+import styled from "styled-components";
 
 export function PortalifiedSearch() {
+  const searchProps: SearchProps = {
+    onIsBlank: isBlank,
+    useSearch: useSearch(),
+    sidebar: true
+  }
   if (typeof document === "undefined") {
     return <div />;
   }
-  return <PortalifiedSearchForBrowser />;
+  return <PortalifiedSearchForBrowser searchProps={searchProps}/>;
 }
 
-class PortalifiedSearchForBrowser extends React.Component {
+const SearchContainer = styled.div`
+  max-width: 470px;
+`;
+
+class PortalifiedSearchForBrowser extends React.Component<any, any> {
   el: HTMLDivElement;
   constructor(props) {
     super(props);
@@ -33,6 +44,7 @@ class PortalifiedSearchForBrowser extends React.Component {
     modalRoot.removeChild(this.el);
   }
   render() {
+    const { searchProps } = this.props;
     return ReactDOM.createPortal(
       <>
         <Styles.Logo>
@@ -45,9 +57,9 @@ class PortalifiedSearchForBrowser extends React.Component {
             <img src="/assets/images/helpcenter.png" />
           </Link>
         </Styles.HelpCenterLogo>
-        <Styles.Search>
-          <div>Need to put Search in here from new package</div>
-        </Styles.Search>
+          <SearchContainer>
+            <Search {...searchProps}/>
+          </SearchContainer>
       </>,
       this.el
     );

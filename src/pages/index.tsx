@@ -1,4 +1,4 @@
-import { getBreadcrumb, isBlank, Search, useSearch } from "@saasquatch/squatch-search";
+import { isBlank, Search, useSearch } from "@saasquatch/squatch-search";
 import { SearchProps } from "@saasquatch/squatch-search/dist/components/Search/Search";
 import React, { useEffect } from "react";
 import styled from "styled-components";
@@ -28,9 +28,9 @@ export default function render() {
     if (document) legacyAnchors();
   });
   const searchProps: SearchProps = {
-    onGetBreadcrumbs: getBreadcrumb,
     onIsBlank: isBlank,
-    useSearch: useSearch()
+    useSearch: useSearch(),
+    background: true
   }
   return (
     <>

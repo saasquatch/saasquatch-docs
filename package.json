@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@reach/router": "^1.2.1",
-    "@saasquatch/squatch-search": "^0.1.0-1",
+    "@saasquatch/squatch-search": "^0.1.0-16",
     "@saasquatch/visual-dev": "^1.0.2",
     "@types/dompurify": "^2.0.2",
     "anchor-js": "^3.2.2",

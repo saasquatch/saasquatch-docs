@@ -56,6 +56,7 @@ function useSchema(schema) {
 
   useEffect(() => {
     let parser = new $RefParser();
+    // @ts-ignore
     parser
       .dereference(schema, {
         resolve: {
