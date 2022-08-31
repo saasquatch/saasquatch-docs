@@ -22,6 +22,11 @@ const Sublogo = styled.img`
   max-width: 250px;
 `;
 
+const SearchContainerDiv = styled.div`
+  max-width: 750px;
+  margin: auto;
+`
+
 export default function render() {
   useEffect(() => {
     // Old old old redirects baced on anchors
@@ -45,9 +50,9 @@ export default function render() {
         choose a help center section on your left to get started.{" "}
       </p>
 
-      <div>
+      <SearchContainerDiv>
         <Search {...searchProps}/>
-      </div>
+      </SearchContainerDiv>
     </Hero>
     </>
   );
