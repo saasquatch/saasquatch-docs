@@ -4,6 +4,7 @@ highlights: Follow this guide to setup a "Give 1 Month, Get 1 Month Referral Pro
 slug: guides/time-reward
 sectionType: guide
 template: hasTableOfContents.html
+date: '2019-11-18'
 ---
 
 <div class="install-guide-checklist">

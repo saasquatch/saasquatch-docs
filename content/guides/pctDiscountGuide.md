@@ -4,6 +4,7 @@ highlights: "Give your users 10% for a year for referring a friend. Follow this 
 slug: guides/percent-discount
 sectionType: guide
 template: article.html
+date: '2019-11-18'
 ---
 <div class="well pull-right span3">
     Alternatively to the API, you can create this type of program using the <a href="/developer/stripe">Stripe</a>, <a href="/developer/recurly">Recurly</a>, <a href="/developer/braintree">Braintree</a> or <a href="/developer/zuora">Zuora</a> connectors.

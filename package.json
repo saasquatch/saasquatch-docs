@@ -5,7 +5,7 @@
     "start": "react-static start",
     "gen:xls": "picklesdoc xlsx features docs --testers=2",
     "stage": "react-static build --staging",
-    "build": "react-static build",
+    "build": "if [ \"$CONTEXT\" = \"deploy-preview\" ]; then react-static build --staging; else react-static build; fi;",
     "bundle": "react-static bundle",
     "export": "react-static export",
     "serve": "serve build -p $PORT -s",

@@ -135,6 +135,10 @@ async function getSwagger() {
   };
 }
 
+const getModifiedDate = (date) => {
+  return date.toString().slice(0, 10)
+}
+
 export default {
   // WARNING: react-static uses a module called `swimmer` to schedule HTML exports in a set of threads.
   //          swimmer doesn't actually appear to function correctly in Node >=12, so we can no longer do
@@ -150,7 +154,7 @@ export default {
     dist: "build", // The production output directory.
     // devDist: "tmp/dev-server", // The development scratch directory.
     // public: "public", // The public directory (files copied to dist during build)
-    // assets: "build2", // The output directory for bundled JS and CSS
+    // assets: "build", // The output directory for bundled JS and CSS
     // buildArtifacts: "artifacts" // The output directory for generated (internal) resources
   },
   devServer: {
@@ -207,8 +211,17 @@ export default {
       },
     ],
     require.resolve("react-static-plugin-react-router"),
-    require.resolve("react-static-plugin-sitemap"),
+    [
+      require.resolve("react-static-plugin-sitemap"),
+      {
+        getAttributes: route => ({
+          lastmod: route.data.entry && route.data.entry.date && getModifiedDate(route.data.entry.date),
+        }),
+      }
+    ]
   ],
+  siteRoot: 'https://docs.saasquatch.com/',
+  stagingSiteRoot: ''
 };
 
 /**

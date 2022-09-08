@@ -7,6 +7,7 @@ highlights: |
 slug: developer/fulfillment
 sectionType: guide
 template: hasTableOfContents.html
+date: '2019-11-18'
 ---
 
 <div class="bs-callout bs-callout-default">

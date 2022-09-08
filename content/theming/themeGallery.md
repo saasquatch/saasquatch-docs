@@ -4,4 +4,5 @@ highlights: A selection of designs that our other customers have created to prov
 slug: themes/custom-theme-gallery
 sectionType: themes
 template: pages/themeGallery.html
+date: '2019-11-18'
 ---

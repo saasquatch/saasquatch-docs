@@ -4,6 +4,7 @@ highlights: The SaaSquatch Webhooks API closely matches that described by the [R
 slug: "api/webhooks"
 sectionType: apiReference
 template: hasTableOfContents.html
+date: '2020-12-02'
 ---
 
 Interacting with third party APIs like SaaSquatch often suffers from two important problems:
