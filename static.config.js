@@ -221,7 +221,7 @@ export default {
     ]
   ],
   siteRoot: 'https://docs.saasquatch.com/',
-  stagingSiteRoot: 'https://deploy-preview-181--saasquatch-docs.netlify.app/'
+  stagingSiteRoot: ''
 };
 
 /**
