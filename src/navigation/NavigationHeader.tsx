@@ -41,18 +41,13 @@ export function NavigationHeader() {
                   </a>
                 </li>
                 <li>
-                  <a href="http://www.saasquatch.com/resources/">
-                    Resources
-                  </a>
-                </li>
-                <li>
-                  <a href="http://www.saasquatch.com/blog/">Blog</a>
+                  <a href="https://www.saasquatch.com/blog/">Blog</a>
                 </li>
                 <li>
                   <a href="https://app.saasquatch.com/">Login</a>
                 </li>
                 <li>
-                  <a href="http://www.saasquatch.com/request-demo">
+                  <a href="https://www.saasquatch.com/request-demo">
                     Schedule a Demo
                   </a>
                 </li>
