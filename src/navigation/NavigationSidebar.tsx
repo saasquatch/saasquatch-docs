@@ -548,6 +548,10 @@ export function NavigationSidebar() {
                   to="/developer/widgets/writing-a-web-component-for-saasquatch"
                   title="Writing a Web Component for SaaSquatch"
                 />
+                <ArticleLeaf
+                  to="/developer/event-idempotency"
+                  title="Event Idempotency"
+                />
               </DropDown>
 
               <DropDown title="Squatch.js">

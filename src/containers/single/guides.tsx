@@ -97,6 +97,13 @@ const writingWebComponent = {
   linkUrl: "/developer/widgets/writing-a-web-component-for-saasquatch",
 };
 
+const eventIdempotency = {
+  title: "Event Idempotency",
+  description:
+    "Learn how to ensure at-most-once processing of user events and prevent duplicates.",
+  linkUrl: "/developer/event-idempotency",
+};
+
 // Cards to be rendered array & render function
 
 const CardsArray: Array<CardProps> = [
@@ -113,6 +120,7 @@ const CardsArray: Array<CardProps> = [
   attributionTechGuide,
   commonPitfalls,
   writingWebComponent,
+  eventIdempotency,
 ];
 
 export default function render() {
