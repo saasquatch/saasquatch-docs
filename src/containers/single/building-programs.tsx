@@ -55,6 +55,13 @@ const microsites = {
   linkUrl: "/building-programs/microsites/quickstart-guide/",
 };
 
+const customAndCalculatedFields = {
+  title: "Custom And Calculated Fields",
+  description:
+    "Custom fields allow you to manage custom values on SaaSquatch participants, while calculated fields to track participant's events and dynamically update field values on their profile. Learn more about custom and calculated fields here. ",
+  linkUrl: "/features/custom-user-fields",
+};
+
 // Cards to be rendered array & render function
 
 const CardsArray: Array<CardProps> = [
@@ -65,17 +72,17 @@ const CardsArray: Array<CardProps> = [
   microsites,
   userSegmentation,
   programInternational,
+  customAndCalculatedFields,
 ];
 
 export default function render() {
   return (
-        <HomePage
-          title="Building Programs"
-          highlights="<p style='margin-bottom: 16px;'>We’ve prepared these articles to help you design and deploy your perfect program—whether you’re building one for the first time or the fifth. This is where you’ll find more information about various program types; how to customize your end user experience through widgets and emails; how to maintain W-9 compliance; and more.</p> 
+    <HomePage
+      title="Building Programs"
+      highlights="<p style='margin-bottom: 16px;'>We’ve prepared these articles to help you design and deploy your perfect program—whether you’re building one for the first time or the fifth. This is where you’ll find more information about various program types; how to customize your end user experience through widgets and emails; how to maintain W-9 compliance; and more.</p> 
           Click the cards below to learn more about each topic.
           "
-          cards={CardsArray}
-        />
-        
+      cards={CardsArray}
+    />
   );
 }
