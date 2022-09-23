@@ -266,6 +266,36 @@ export function NavigationSidebar() {
                   title="Blocked Email Domains"
                 />
               </DropDown>
+              <DropDown title="Custom and Calculated Fields">
+                <ArticleLeaf
+                  to="/features/custom-user-fields/"
+                  title="Custom Fields"
+                />
+                <ArticleLeaf
+                  to="/building-programs/custom-calculated-fields/calculated-fields"
+                  title="Calculated Fields"
+                />
+                <ArticleLeaf
+                  to="/building-programs/custom-calculated-fields/tracking-windows"
+                  title="Tracking Windows for Calculated Fields"
+                />
+                <ArticleLeaf
+                  to="/building-programs/custom-calculated-fields/setting-up-a-calculated-field"
+                  title="Setting Up a Calculated Field"
+                />
+                <ArticleLeaf
+                  to="/building-programs/custom-calculated-fields/edits-to-calculated-fields"
+                  title="Edits to Calculated Fields"
+                />
+                <ArticleLeaf
+                  to="/building-programs/custom-calculated-fields/deleting-a-calculated-field"
+                  title="Deleting a Calculated Field"
+                />
+                <ArticleLeaf
+                  to="/building-programs/custom-calculated-fields/recalculation"
+                  title="Recalculation and Backfilling Values"
+                />
+              </DropDown>
 
               <DropDown title="Microsites">
                 <ArticleLeaf
@@ -520,10 +550,6 @@ export function NavigationSidebar() {
                 />
                 <ArticleLeaf to="/guides/marketo-form" title="Marketo" />
                 <ArticleLeaf to="/guides/instapage-form" title="Instapage" />
-                <ArticleLeaf
-                  to="/features/custom-user-fields/"
-                  title="Custom User Fields"
-                />
                 <ArticleLeaf
                   to="/topics/widget-types"
                   title="User Widget Types"
