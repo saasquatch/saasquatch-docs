@@ -28,7 +28,7 @@ export type Entry = {
 
 // get from gobal color somewhere
 const TOCStylesDiv = styled.div`
-  height: calc(100vh - 60px);
+  height: calc(100vh - 120px);
   overflow-y: scroll;
   scrollbar-width: thin;
 
