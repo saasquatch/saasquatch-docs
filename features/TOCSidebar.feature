@@ -1,7 +1,9 @@
+@owner:Truman
+@author:Truman
 Feature: Table of Contents
 
     @motivating
-    Scenario: Page table of contents displays headings in page
+    Scenario: Table of contents display links of headings from page
         Given a user is viewing an article in the docs
         Then they see a TOC on the right side of the page
         And the TOC has heading "In this Article:"
@@ -26,29 +28,27 @@ Feature: Table of Contents
         Given a user is viewing a docs article with TOC
         Then the first link in the TOC is "Introduction"
         When they click on "Introduction"
-        Then the page scrolls to the first heading
+        Then the page scrolls to the page heading
 
     @motivating
     Scenario Outline: Table of contents support nested links
-        Given a user is viewing a docs <article> with TOC
-        And the TOC has nested links
+        Given a user is viewing a docs article with TOC
+        And the page's content has <headings>
+        Then the TOC has nested links
         When they hover over a nested link
         Then only the nested link is in the hover state
-        When they click the link
+        When they click the nested link
         Then the page scrolls to the corresponding sub-section
         Examples:
-            | article                                |
-            | /success/referral-program-optimization |
-            | /developer/segment                     |
+            | headings    |
+            | h3, h4      |
+            | h3, h4, h5  |
 
     @ui
-    Scenario Outline: Table of content scrolls when overflowing from view
-        Given a user is viewing a docs <article> with TOC
+    Scenario: Table of content scrolls when overflowing from view
+        Given a user is viewing a docs article with TOC
         And the TOC is overflowing from view
         Then they are able to scroll the TOC to access hidden links
-        Examples: 
-            | article                 |
-            | /designer/widget-editor |
 
     @landmine
     Scenario: Clicking on a link in TOC changes spacing in navigation bar
