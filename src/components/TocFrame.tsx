@@ -65,7 +65,7 @@ const TOCStylesDiv = styled.div`
     color: var(--sq-text);
   }
   a:hover {
-    font-weight: 700;
+    font-weight: var( --sq-font-weight-bold);
     border-left: 2px solid #007A5B;
     padding-right: 0;
   }
