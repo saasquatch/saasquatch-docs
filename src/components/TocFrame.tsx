@@ -26,7 +26,6 @@ export type Entry = {
 };
 
 
-// get from gobal color somewhere
 const TOCStylesDiv = styled.div`
   max-height: calc(100vh - 120px);
   overflow-y: scroll;
@@ -39,14 +38,14 @@ const TOCStylesDiv = styled.div`
     margin: 0;
   }
   li > ul{
-    margin-top: 5px
-    margin-left: 12px
+    margin-top: 5px;
+    margin-left: 12px;
   }
   li{
     list-style-type: none;
     line-style:none;
 
-    border-left: 1px solid #E2E2E2;
+    border-left: 1px solid var(--sq-border);
   }
 
   /* clear default <a> styles*/
@@ -57,13 +56,13 @@ const TOCStylesDiv = styled.div`
   }
   a {
     display: inline-block
-    padding: 4px 12px;
+    padding: var(--sq-spacing-xx-small) var(--sq-spacing-small);
 
     font-family: 'Helvetica';
     font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    color: #575757;
+    font-weight: var(--sq-font-weight-regular);
+    font-size: var(--sq-font-size-regular);
+    color: var(--sq-text);
   }
   a:hover {
     font-weight: 700;
