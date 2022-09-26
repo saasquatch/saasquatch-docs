@@ -30,7 +30,10 @@ export type Entry = {
 const TOCStylesDiv = styled.div`
   height: calc(100vh - 120px);
   overflow-y: scroll;
-  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   ul{
     margin: 0;
@@ -54,7 +57,7 @@ const TOCStylesDiv = styled.div`
   }
   a {
     display: inline-block
-    padding: 8px 12px;
+    padding: 4px 12px;
 
     font-family: 'Helvetica';
     font-style: normal;
@@ -81,7 +84,7 @@ export default function render({
 }) {
   return (
     <StickyContainer>
-      {console.log("entry",entry)}
+      {/* {console.log("entry",entry)} */}
       <div className="row-fluid">
         <div className="span9">
           <PageHeader {...entry} children={children}/>
