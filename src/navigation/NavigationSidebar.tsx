@@ -495,8 +495,8 @@ export function NavigationSidebar() {
                 />
               </DropDown>
 
-              <DropDown title="TangoCard">
-                <ArticleLeaf to="/tangocard/" title="TangoCard Integration" />
+              <DropDown title="Tango Card">
+                <ArticleLeaf to="/tangocard/" title="Tango Card Integration" />
                 <ArticleLeaf to="/tangocard-connection" title="Setup Guide" />
               </DropDown>
 
