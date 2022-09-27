@@ -58,7 +58,7 @@ const TOCStylesDiv = styled.div`
     display: inline-block
     padding: var(--sq-spacing-xx-small) var(--sq-spacing-small);
 
-    font-family: 'Helvetica';
+    font-family: 'Helvetica', sans-serif;
     font-style: normal;
     font-weight: var(--sq-font-weight-regular);
     font-size: var(--sq-font-size-regular);
@@ -68,6 +68,9 @@ const TOCStylesDiv = styled.div`
     font-weight: var( --sq-font-weight-bold);
     border-left: 2px solid #007A5B;
     padding-right: 0;
+
+    position:relative;
+    left: -1px;
   }
 `
 
