@@ -17,8 +17,11 @@ const ToCRenderer = {
     const slug = raw.toLowerCase().replace(/[^\w]+/g, '-');
     // TODO: Upgade to newer Marked for better slug support
     // const slug = slugger.slug(raw);
-    const leadingSpace = " ".repeat(level);
-    return leadingSpace + `- [${raw}](#${slug})\n`;
+
+    return level + `- [${raw}](#${slug})\n`;
+
+    // const leadingSpace = " ".repeat(level);
+    // return leadingSpace + `- [${raw}](#${slug})\n`;
   },
   br: empty,
   code: empty,
@@ -39,11 +42,34 @@ const ToCRenderer = {
   codespan: empty
 };
 
+export function parseList(string){
+  const list = string.split("\n");
+  let result = '';
+  let startLevel = undefined;
+
+  list.forEach(str => {
+    const level =  parseInt( str.slice(0,1) );
+    const heading = str.substring(1);
+
+    if( level < startLevel || startLevel === undefined ){
+      startLevel = level;
+    }
+
+    const leadingSpace = "  ".repeat(level - startLevel);
+    result = result + '\n' + leadingSpace + heading;
+  });
+
+  return result;
+}
+
+
 export default function render({ source }) {
   if (!source) return <div />;
   const outs = marked(source, { renderer: ToCRenderer });
-  if (!outs) return <div />;
-  return <Markdown source={outs} />;
+  const parsedList = parseList(outs);
+  if (!parsedList) return <div />;
+
+  return <Markdown source={parsedList} />;
 }
 
 function polyfill() {
