@@ -68,6 +68,9 @@ const TOCStylesDiv = styled.div`
     font-weight: 700;
     border-left: 2px solid #007A5B;
     padding-right: 0;
+
+    position:relative;
+    left: -1px;
   }
 `
 
