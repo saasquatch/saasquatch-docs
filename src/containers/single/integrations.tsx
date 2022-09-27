@@ -38,12 +38,12 @@ const segment = {
 };
 
 const tangoCard = {
-  title: "TangoCard",
+  title: "Tango Card",
   description:
-    "TangoCard allows you to buy, send, and track digital gift card orders. SaaSquatch's TangoCard integration enables you to automatically reward your program participants with gift cards.",
+    "Tango Card allows you to buy, send, and track digital gift card orders. SaaSquatch's Tango Card integration enables you to automatically reward your program participants with gift cards.",
   imageSrc:
     "//images.ctfassets.net/s68ib1kj8k5n/3iNXzSopraTDMW21LCOLlG/652eacfbfbd2258ea2971573d19cbd2a/tangocard-integration.png",
-  linkText: "Read more about TangoCard",
+  linkText: "Read more about Tango Card",
   linkUrl: "/tangocard/",
 };
 
