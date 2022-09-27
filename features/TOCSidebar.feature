@@ -41,8 +41,8 @@ Feature: Table of Contents
         Then the page scrolls to the corresponding sub-section
         Examples:
             | headings    |
-            | h3, h4      |
-            | h3, h4, h5  |
+            | h1, h2, h3, h4, h5, h6      |
+            | h2, h4, h5  |
 
     @ui
     Scenario: Table of content scrolls when overflowing from view
