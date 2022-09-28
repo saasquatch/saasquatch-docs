@@ -21,6 +21,7 @@ Feature: Table of Contents
             | nested    |
 
     @ui
+    @minutia
     Scenario: Table of content items display hover state on hover
         Given a user is viewing a docs article with TOC
         When they hover over a link in TOC
