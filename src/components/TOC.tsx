@@ -42,22 +42,20 @@ const ToCRenderer = {
   codespan: empty
 };
 
-export function parseList(string){
+function parseList(string){
   const list = string.split("\n");
-  let result = '';
   let startLevel = undefined;
 
-  list.forEach(str => {
+  const result = list.reduce((result: String, str: String) => {
+    // separate level and heading
     const level =  parseInt( str.slice(0,1) );
     const heading = str.substring(1);
 
-    if( level < startLevel || startLevel === undefined ){
-      startLevel = level;
-    }
-
+    if( level < startLevel || startLevel === undefined ) startLevel = level;
     const leadingSpace = "  ".repeat(level - startLevel);
-    result = result + '\n' + leadingSpace + heading;
-  });
+
+    return result + leadingSpace + heading + '\n';
+  }, '');
 
   return result;
 }
