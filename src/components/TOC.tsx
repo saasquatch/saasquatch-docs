@@ -44,15 +44,18 @@ const ToCRenderer = {
 
 function parseList(string){
   const list = string.split("\n");
-  let startLevel = undefined;
+  let prevLevel = 0;
+  let cur = 0;
 
   const result = list.reduce((result: String, str: String) => {
     // separate level and heading
     const level =  parseInt( str.slice(0,1) );
     const heading = str.substring(1);
 
-    if( level < startLevel || startLevel === undefined ) startLevel = level;
-    const leadingSpace = "  ".repeat(level - startLevel);
+    cur = (level > prevLevel) ?  cur + 1 : level;
+
+    prevLevel = level;
+    const leadingSpace = "  ".repeat(cur - 1);
 
     return result + leadingSpace + heading + '\n';
   }, '');
