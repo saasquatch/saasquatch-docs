@@ -299,20 +299,28 @@ export function NavigationSidebar() {
 
               <DropDown title="Microsites">
                 <ArticleLeaf
-                  to="/building-programs/microsites/quickstart-guide/"
-                  title="Microsite Quickstart Guide"
+                  to="/building-programs/microsites/microsites-overview"
+                  title="Microsites Overview"
                 />
                 <ArticleLeaf
-                  to="/building-programs/microsites/microsite-editor/"
-                  title="SaaSquatch Microsite Editor"
+                  to="/building-programs/microsites/quickstart-guide"
+                  title="Setting Up a Microsite"
                 />
                 <ArticleLeaf
-                  to="/building-programs/microsites/customizing-microsites/"
-                  title="Customizing Microsites"
+                  to="/building-programs/microsites/customizing-microsites"
+                  title="Customizing Microsite Layouts and Pages"
                 />
                 <ArticleLeaf
-                  to="/setting-up-a-custom-subdomain-for-your-hosted-portal/"
+                  to="/building-programs/microsites/customizing-microsite-lifecycle-emails"
+                  title="Customizing Microsite Lifecycle Emails"
+                />
+                <ArticleLeaf
+                  to="/setting-up-a-custom-subdomain-for-your-hosted-portal"
                   title="Setting Up a Custom Domain for a Microsite"
+                />
+                <ArticleLeaf
+                  to="/building-programs/microsites/microsite-editor"
+                  title="SaaSquatch Microsite Editor"
                 />
               </DropDown>
 
