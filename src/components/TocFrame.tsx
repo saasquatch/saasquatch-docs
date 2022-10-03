@@ -43,8 +43,6 @@ const TOCStylesDiv = styled.div`
   }
   li{
     list-style-type: none;
-    line-style:none;
-
     border-left: 1px solid var(--sq-border);
   }
 
@@ -55,7 +53,7 @@ const TOCStylesDiv = styled.div`
     font-weight: inherit;
   }
   a {
-    display: inline-block
+    display: inline-block;
     padding: var(--sq-spacing-xx-small) var(--sq-spacing-small);
 
     font-family: 'Helvetica', sans-serif;

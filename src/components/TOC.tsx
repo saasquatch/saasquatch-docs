@@ -44,21 +44,39 @@ const ToCRenderer = {
 
 function parseList(string){
   const list = string.split("\n");
-  let prevLevel = 0;
-  let cur = 0;
+  let prev = 0;
+  let spacing = 0;
+  let currentBranch = [];
+  let result = '';
 
-  const result = list.reduce((result: String, str: String) => {
+  
+  list.forEach(str => {
     // separate level and heading
     const level =  parseInt( str.slice(0,1) );
     const heading = str.substring(1);
+    currentBranch = currentBranch.filter(node => node['level'] < level)
+      
+    spacing = 1;
 
-    cur = (level > prevLevel) ?  cur + 1 : level;
+    // Make spacing equal to existing levels
+    currentBranch.forEach((node) => {
+      if (level > node['level']) {
+        spacing += 1
+      } else {
+        return;
+      }
+    })
 
-    prevLevel = level;
-    const leadingSpace = "  ".repeat(cur - 1);
-
-    return result + leadingSpace + heading + '\n';
-  }, '');
+    // No existing levels: Start new branch
+    if (spacing === 1) {
+      currentBranch = [];
+    }
+    currentBranch.push({ level, spacing });
+    
+    prev = level;
+    const leadingSpace = "  ".repeat(spacing - 1);
+    result = result + leadingSpace + heading + '\n';
+  });
 
   return result;
 }
