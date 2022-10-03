@@ -84,7 +84,6 @@ export default function render({
 }) {
   return (
     <StickyContainer>
-      {/* {console.log("entry",entry)} */}
       <div className="row-fluid">
         <div className="span9">
           <PageHeader {...entry} children={children}/>

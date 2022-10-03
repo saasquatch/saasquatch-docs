@@ -19,9 +19,6 @@ const ToCRenderer = {
     // const slug = slugger.slug(raw);
 
     return level + `- [${raw}](#${slug})\n`;
-
-    // const leadingSpace = " ".repeat(level);
-    // return leadingSpace + `- [${raw}](#${slug})\n`;
   },
   br: empty,
   code: empty,
