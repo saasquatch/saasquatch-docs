@@ -34,6 +34,16 @@ export default function render() {
         </p>
 
         <p>
+          <strong>Note:</strong> Events older than 2 years are not accessible
+          via API or visible on the Participants page in the Admin Portal.
+          However, you can continue to access historical data by running an{" "}
+          <a href="/running-programs/creating-an-event-export-report">
+            event export report
+          </a>
+          .
+        </p>
+
+        <p>
           The `purchase` and `refund` events are reserved user events. This
           requires the data of these events to be sent in a defined format using
           the fields below.
