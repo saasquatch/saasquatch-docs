@@ -200,7 +200,7 @@ export function NavigationFooter() {
               reserved.
             </FooterParagraph>
             <FooterParagraph>
-              1017 Fort St, Victoria, British Columbia, V8V 3K5, Canada
+              777 Fort St, Suite 308, Victoria, British Columbia, V8W 1G9, Canada
             </FooterParagraph>
           </BottomContainer>
           <img className="trees" src="/assets/images/saasquatch-trees.png" />

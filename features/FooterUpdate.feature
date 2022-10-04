@@ -36,9 +36,9 @@ Feature: Docs Footer
     Scenario: At the bottom of the footer there is copywrite and address information
         Given a user viewing the bottom of the footer
         Then they see the following information
-            | Company information                                       |
-            | Copyright © 2022 SaaSquatch.com. All rights reserved.     |
-            | 1017 Fort St, Victoria, British Columbia, V8V 3K5, Canada |
+            | Company information                                                 |
+            | Copyright © 2022 SaaSquatch.com. All rights reserved.               |
+            | 777 Fort St, Suite 308, Victoria, British Columbia, V8W 1G9, Canada |
 
 
     @ui
