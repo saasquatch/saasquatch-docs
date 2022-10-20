@@ -36,7 +36,6 @@ export default function render(
 
   
   const plainHighlights = striptags(markdown(props.highlights));
-  console.log(props.robots)
   return (
     <Head>
       <title>{title}</title>
@@ -46,7 +45,7 @@ export default function render(
         }
       />
       {/* SEO content */}
-      <meta name="description" content={props.fields?.seoDescription || props.highlights}/>
+      <meta name="description" content={props.fields?.seoDescription || props?.highlights}/>
         
       <meta property="og:image" content={ogImageURL || ogImage} />
       <meta name="twitter:image" content={ogImageURL || ogImage} />
