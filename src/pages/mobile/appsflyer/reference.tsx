@@ -3,6 +3,8 @@ import Markdown from "../../../components/Markdown";
 import PageHeader from "../../../components/PageHeader"
 import { Properties } from "../../../components/Properties";
 
+
+//UPDATE ME FOR NEW FIELDS
 const appsflyerFields = {
   title:
     "The SaaSquatch integration with AppsFlyer includes these fields as `data` in referral AppsFlyer deep links.\n",
@@ -101,6 +103,7 @@ The SaaSquatch integration with AppsFlyer works as follows:
 
 * SaaSquatch sharelinks will start redirecting to AppsFlyer links
 
+UPDATE ME FOR NEW FIELDS
 * SaaSquatch will create AppsFlyer links dynamically by appending custom attribution parameters to the link provided in your AppsFlyer configuration.
   * These links will have data for: \`af_web_dp\`, \`utm_source\`, \`utm_medium\`, \`utm_campaign\`, \`rsCode\`, \`rsShareMedium\`, \`rsEngagementMedium\` and \`_saasquatch\`
   
@@ -118,6 +121,7 @@ const deepLink = `
 
 When SaaSquatch creates AppsFlyer links dynamically the resulting link and it’s custom attribution parameters produce a deep link similar to the following example:
 
+UPDATE ME FOR NEW FIELDS
 \`\`\`
 {
     "pid": "saasquatch_int",
