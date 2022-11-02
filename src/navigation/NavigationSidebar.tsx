@@ -212,6 +212,18 @@ export function NavigationSidebar() {
                 />
               </DropDown>
 
+              <DropDown title="Participant Experiences">
+                <ArticleLeaf
+                  to="/features/end-user-experiences"
+                  title="End User Experiences"
+                />
+
+                <ArticleLeaf
+                  to="/building-programs/participant-experiences/saasquatch-components/"
+                  title="SaaSquatch Components for Program Widgets and Microsites"
+                />
+              </DropDown>
+
               <DropDown title="Program Widget">
                 <ArticleLeaf
                   to="/designer/widget-editor"
