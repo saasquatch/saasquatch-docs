@@ -127,10 +127,10 @@ export const PersonalisationSelect = () => {
 
   const headerText =
     version === "classic-only"
-      ? "Classic programs"
+      ? "Classic Only"
       : version === "ga-only"
-      ? "new programs"
-      : "all programs";
+      ? "Current"
+      : "Classic Enabled";
 
   return (
     <div style={{ position: "relative" }}>
@@ -140,7 +140,7 @@ export const PersonalisationSelect = () => {
           <Info>
             {open
               ? "Select a personalisation option"
-              : `Docs are being personalised for ${headerText}`}
+              : `${headerText}`}
           </Info>
           {!open ? (
             <ExpandIcon>
