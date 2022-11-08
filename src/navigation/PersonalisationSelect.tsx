@@ -157,24 +157,9 @@ export const PersonalisationSelect = () => {
                 <Award />
               </ListIcon>
               <div>
-                <Name>New Programs</Name>
+                <Name>Current</Name>
                 <Description>
-                  Useful for customers that have started using SaaSquatch since
-                  2019. Hides our classic program documentation.
-                </Description>
-              </div>
-            </Option>
-            <Option onClick={() => setVersion("classic-only")}>
-              <ListIcon active={version === "classic-only"}>
-                <Archive />
-              </ListIcon>
-              <div>
-                <Name>Works with Classic</Name>
-                <Description>
-                  Useful for customers that have started using SaaSquatch before
-                  2019 and are only running a referral program. Hides
-                  documentation that works with new referral and loyalty
-                  programs.
+                  Our current platform.
                 </Description>
               </div>
             </Option>
@@ -183,14 +168,28 @@ export const PersonalisationSelect = () => {
                 <Global />
               </ListIcon>
               <div>
-                <Name>Show Everything</Name>
+                <Name>Classic Enabled</Name>
                 <Description>
-                  Shows all documentation. Useful for customers that have a
-                  program created before 2019, but are also running new loyalty,
+                  Shows all documentation, including both current and classic-only program documentation. 
+                  Useful for customers that have a program created before 2019, but are also running current loyalty,
                   referral or partner programs.
                 </Description>
               </div>
             </Option>
+            <Option onClick={() => setVersion("classic-only")}>
+              <ListIcon active={version === "classic-only"}>
+                <Archive />
+              </ListIcon>
+              <div>
+                <Name>Classic Only</Name>
+                <Description>
+                  Useful for customers that started using SaaSquatch before
+                  2019 and are only running a classic referral program. Hides
+                  documentation that works with current referral and loyalty
+                  programs.
+                </Description>
+              </div>
+            </Option>            
           </OptionWrapper>
         )}
       </Personalisation>
