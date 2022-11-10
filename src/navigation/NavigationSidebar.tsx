@@ -101,6 +101,10 @@ export function NavigationSidebar() {
                   to="/success/add-portal-member"
                   title="Adding Admin Users"
                 />
+                <ArticleLeaf
+                  to="/learning-saasquatch/admin-portal/team-member-roles"
+                  title="Team Member Roles"
+                />
               </DropDown>
 
               <DropDown title="Programs">
