@@ -99,7 +99,7 @@ export function NavigationSidebar() {
                 />
                 <ArticleLeaf
                   to="/success/add-portal-member"
-                  title="Adding Admin Users"
+                  title="Managing Team Members"
                 />
                 <ArticleLeaf
                   to="/learning-saasquatch/admin-portal/team-member-roles"
