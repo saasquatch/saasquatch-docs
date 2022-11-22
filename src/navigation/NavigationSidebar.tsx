@@ -544,6 +544,21 @@ export function NavigationSidebar() {
                   title="Integration Guide"
                 />
               </DropDown>
+              <DropDown title="PayPal">
+                <ArticleLeaf to="/paypal/" title="PayPal Integration" />
+                <ArticleLeaf
+                  to="/integrations/paypal/cash-payouts"
+                  title="Automated Cash Payouts with PayPal"
+                />
+                <ArticleLeaf
+                  to="/integrations/paypal/setting-up-cash-payouts"
+                  title="Setting Up Cash Payouts with PayPal"
+                />
+                <ArticleLeaf
+                  to="/integrations/paypal/reward-statuses"
+                  title="Cash Payouts Reward Statuses"
+                />
+              </DropDown>
             </CoreCategory>
 
             {/* Developer Resources starts here */}
