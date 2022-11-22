@@ -108,7 +108,7 @@ const stitch = {
 };
 
 const paypal = {
-  title: "paypal",
+  title: "PayPal",
   description:
     "Millions of people use PayPal everyday to send and receive money. Our PayPal integration builds on PayPal's security, efficiency and convenience to allow you to payout your rewards automatically.",
   imageSrc:
