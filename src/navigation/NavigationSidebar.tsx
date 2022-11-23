@@ -545,7 +545,7 @@ export function NavigationSidebar() {
                 />
               </DropDown>
               <DropDown title="PayPal">
-                <ArticleLeaf to="/paypal/" title="PayPal Integration" />
+                <ArticleLeaf to="/paypal-payouts/" title="PayPal Integration" />
                 <ArticleLeaf
                   to="/integrations/paypal/cash-payouts"
                   title="Automated Cash Payouts with PayPal"

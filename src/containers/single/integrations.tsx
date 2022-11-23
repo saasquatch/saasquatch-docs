@@ -114,7 +114,7 @@ const paypal = {
   imageSrc:
     "https://images.ctfassets.net/1th1ybv0b2n4/4aWZWt67UL6ZWyc69CBaGg/54805eb9ad339b101ca7868692095046/Type_PayPal_logo.svg",
   linkText: "Read more about paypal",
-  linkUrl: "/paypal/",
+  linkUrl: "/paypal-payouts/",
 };
 
 // Cards to be rendered array & render function
