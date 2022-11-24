@@ -366,6 +366,10 @@ export function NavigationSidebar() {
                   title="Understanding Your Program Analytics Data"
                 />
                 <ArticleLeaf to="/features/reports/" title="Program Reports" />
+                <ArticleLeaf
+                  to="/running-programs/analytics-and-reporting/running-a-report/"
+                  title="Running a Program Report"
+                />
               </DropDown>
 
               <DropDown title="User Management">
