@@ -366,6 +366,10 @@ export function NavigationSidebar() {
                   title="Understanding Your Program Analytics Data"
                 />
                 <ArticleLeaf to="/features/reports/" title="Program Reports" />
+                <ArticleLeaf
+                  to="/running-programs/analytics-and-reporting/running-a-report/"
+                  title="Running a Program Report"
+                />
               </DropDown>
 
               <DropDown title="User Management">
@@ -542,6 +546,21 @@ export function NavigationSidebar() {
                 <ArticleLeaf
                   to="/developer/stitch/quickstart"
                   title="Integration Guide"
+                />
+              </DropDown>
+              <DropDown title="PayPal">
+                <ArticleLeaf to="/paypal-payouts/" title="PayPal Integration" />
+                <ArticleLeaf
+                  to="/integrations/paypal/cash-payouts"
+                  title="Automated Cash Payouts with PayPal"
+                />
+                <ArticleLeaf
+                  to="/integrations/paypal/setting-up-cash-payouts"
+                  title="Setting Up Cash Payouts with PayPal"
+                />
+                <ArticleLeaf
+                  to="/integrations/paypal/reward-statuses"
+                  title="Cash Payouts Reward Statuses"
                 />
               </DropDown>
             </CoreCategory>

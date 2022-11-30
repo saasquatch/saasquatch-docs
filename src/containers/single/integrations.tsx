@@ -107,6 +107,16 @@ const stitch = {
   linkUrl: "/stitch/",
 };
 
+const paypal = {
+  title: "PayPal",
+  description:
+    "Millions of people use PayPal everyday to send and receive money. Our PayPal integration builds on PayPal's security, efficiency and convenience to allow you to payout your rewards automatically.",
+  imageSrc:
+    "https://images.ctfassets.net/1th1ybv0b2n4/4aWZWt67UL6ZWyc69CBaGg/54805eb9ad339b101ca7868692095046/Type_PayPal_logo.svg",
+  linkText: "Read more about paypal",
+  linkUrl: "/paypal-payouts/",
+};
+
 // Cards to be rendered array & render function
 
 const CardsArray: Array<CardProps> = [
@@ -120,6 +130,7 @@ const CardsArray: Array<CardProps> = [
   zapier,
   recurly,
   stitch,
+  paypal,
 ];
 
 export default function render() {
