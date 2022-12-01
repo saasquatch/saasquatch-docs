@@ -701,6 +701,11 @@ export function NavigationSidebar() {
                 title="Testing Best Practices"
                 isSubCategory
               />
+              <ArticleLeaf
+                to="/developer/mint-components-stencilbook/"
+                title="Mint Components"
+                isSubCategory
+              />
             </CoreCategory>
           </ul>
         </nav>

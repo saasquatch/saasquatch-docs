@@ -61,6 +61,12 @@ const breakingChanges = {
   linkUrl: "/breaking-changes",
 };
 
+const mintComponents = {
+  title: "Mint Components Reference",
+  description: "Mint components stencilbook",
+  linkUrl: "/topics/mint-components-stencilbook",
+};
+
 // Cards to be rendered array & render function
 
 const CardsArray: Array<CardProps> = [
@@ -72,6 +78,7 @@ const CardsArray: Array<CardProps> = [
   jsonWeb,
   bestPractices,
   breakingChanges,
+  mintComponents,
 ];
 
 export default function render() {
