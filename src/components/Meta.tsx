@@ -9,11 +9,9 @@ import { Head } from "react-static";
  *
  * Use `Head` from react-static, which is actually just `react-helmet`
  */
-export default function render(
-  props: Entry
-) {
+export default function render(props: Entry) {
   function striptags(s: string) {
-    return s.replace(/(<([^>]+)>)/gi, '');
+    return s.replace(/(<([^>]+)>)/gi, "");
   }
 
   function markdown(s: string) {
@@ -21,13 +19,14 @@ export default function render(
     return marked(s);
   }
 
-  let title:string;
-  if(props.title){
-    title = props.title + " | SaaSquatch " + (props.categoryName || "Documentation");
-  }else{
+  let title: string;
+  if (props.title) {
+    title =
+      props.title + " | SaaSquatch " + (props.categoryName || "Documentation");
+  } else {
     title = "SaaSquatch Help Center";
   }
-    
+
   const plainHighlights = striptags(markdown(props.highlights));
   return (
     <Head>
@@ -66,6 +65,7 @@ export default function render(
         content={props.sectionType}
       />
       <meta name="docsCategory" data-type="string" content={props.category} />
+      <script src="https://fast.ssqt.io/npm/@saasquatch/mint-components@latest/dist/mint-components/mint-components.js"></script>
     </Head>
   );
 }

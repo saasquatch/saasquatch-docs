@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import Meta from "../../components/Meta";
 
 const entry = {
@@ -20,14 +21,20 @@ declare global {
   }
 }
 
+export const StencilbookDiv = styled.div`
+  max-width: 100%;
+  width: 100%;
+  height: 90vh;
+  position: relative;
+`;
+
 export default () => (
   <>
-    <script src="https://fast.ssqt.io/npm/@saasquatch/mint-components@latest/dist/mint-components/mint-components.js"></script>
-    <Meta title={null} />
-    <section className="page">
-      <div className="text-center">
+    <Meta title={"Mint Components"} />
+    <section>
+      <StencilbookDiv>
         <sqm-stencilbook></sqm-stencilbook>
-      </div>
+      </StencilbookDiv>
     </section>
   </>
 );
