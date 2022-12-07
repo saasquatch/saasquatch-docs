@@ -138,9 +138,7 @@ export const PersonalisationSelect = () => {
         <Preview onClick={() => setOpen((o) => !o)}>
           <OptionIcon fill="#a3a3a3" />
           <Info>
-            {open
-              ? "Select a personalisation option"
-              : `${headerText}`}
+            {open ? "Select a personalisation option" : `${headerText}`}
           </Info>
           {!open ? (
             <ExpandIcon>
@@ -159,7 +157,8 @@ export const PersonalisationSelect = () => {
               <div>
                 <Name>Current</Name>
                 <Description>
-                  Our current platform.
+                  Shows documentation for our current platform. Hides
+                  documentation for classic referral programs.
                 </Description>
               </div>
             </Option>
@@ -170,9 +169,10 @@ export const PersonalisationSelect = () => {
               <div>
                 <Name>Classic Enabled</Name>
                 <Description>
-                  Shows all documentation, including both current and classic-only program documentation. 
-                  Useful for customers that have a program created before 2019, but are also running current loyalty,
-                  referral or partner programs.
+                  Shows all documentation, including both current and
+                  classic-only program documentation. Useful for customers that
+                  have a program created before 2019, but are also running
+                  current loyalty, referral or partner programs.
                 </Description>
               </div>
             </Option>
@@ -183,13 +183,13 @@ export const PersonalisationSelect = () => {
               <div>
                 <Name>Classic Only</Name>
                 <Description>
-                  Useful for customers that started using SaaSquatch before
-                  2019 and are only running a classic referral program. Hides
+                  Useful for customers that started using SaaSquatch before 2019
+                  and are only running a classic referral program. Hides
                   documentation that works with current referral and loyalty
                   programs.
                 </Description>
               </div>
-            </Option>            
+            </Option>
           </OptionWrapper>
         )}
       </Personalisation>
