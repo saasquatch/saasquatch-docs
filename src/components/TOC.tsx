@@ -14,11 +14,11 @@ const ToCRenderer = {
     return "";
   },
   heading(text, level, raw, slugger) {
-    const slug = raw.toLowerCase().replace(/[^\w]+/g, '-');
+    const slug = raw.toLowerCase().replace(/[^\w]+/g, "-");
     // TODO: Upgade to newer Marked for better slug support
     // const slug = slugger.slug(raw);
-    const leadingSpace = " ".repeat(level);
-    return leadingSpace + `- [${raw}](#${slug})\n`;
+
+    return level + `- [${raw}](#${slug})\n`;
   },
   br: empty,
   code: empty,
@@ -36,19 +36,59 @@ const ToCRenderer = {
   link: empty,
   image: empty,
   em: empty,
-  codespan: empty
+  codespan: empty,
 };
+
+function parseList(string) {
+  const list = string.split("\n");
+  let prev = 0;
+  let spacing = 0;
+  let currentBranch = [];
+  let result = "";
+
+  list.forEach((str) => {
+    // separate level and heading
+    const level = parseInt(str.slice(0, 1));
+    const heading = str.substring(1);
+    currentBranch = currentBranch.filter((node) => node["level"] < level);
+
+    spacing = 1;
+
+    // Make spacing equal to existing levels
+    currentBranch.forEach((node) => {
+      if (level > node["level"]) {
+        spacing += 1;
+      } else {
+        return;
+      }
+    });
+
+    // No existing levels: Start new branch
+    if (spacing === 1) {
+      currentBranch = [];
+    }
+    currentBranch.push({ level, spacing });
+
+    prev = level;
+    const leadingSpace = "  ".repeat(spacing - 1);
+    result = result + leadingSpace + heading + "\n";
+  });
+
+  return result;
+}
 
 export default function render({ source }) {
   if (!source) return <div />;
   const outs = marked(source, { renderer: ToCRenderer });
-  if (!outs) return <div />;
-  return <Markdown source={outs} />;
+  const parsedList = parseList(outs);
+  if (!parsedList) return <div />;
+
+  return <Markdown source={parsedList} />;
 }
 
 function polyfill() {
   if (!String.prototype.repeat) {
-    String.prototype.repeat = function(count) {
+    String.prototype.repeat = function (count) {
       "use strict";
       if (this == null)
         throw new TypeError("can't convert " + this + " to object");

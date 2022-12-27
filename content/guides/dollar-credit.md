@@ -4,6 +4,7 @@ highlights: Follow this guide to setup a "Give $20, Get $20 Referral Program" us
 slug: guides/dollar-credit
 sectionType: guide
 template: article.html
+date: '2019-11-18'
 ---
 <div class="install-guide-checklist">
     

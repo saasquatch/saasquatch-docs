@@ -7,6 +7,7 @@ highlights: |
 slug: api/errors
 sectionType: apiReference
 template: article.html
+date: '2020-07-06'
 ---
 
 

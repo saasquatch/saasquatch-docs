@@ -6,6 +6,7 @@ c9-installed-software
 artifacts
 tmp
 dist
+docs/
 
 .DS_Store
 .cache 

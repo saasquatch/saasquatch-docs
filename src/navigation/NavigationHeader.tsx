@@ -36,23 +36,18 @@ export function NavigationHeader() {
             <div className="nav-collapse collapse" id="navigation">
               <ul id="menu-primary-navigation" className="nav pull-right">
                 <li>
-                  <a href="https://www.referralsaasquatch.com/">
+                  <a href="https://www.saasquatch.com/">
                     SaaSquatch Home
                   </a>
                 </li>
                 <li>
-                  <a href="http://www.referralsaasquatch.com/resources/">
-                    Resources
-                  </a>
+                  <a href="https://www.saasquatch.com/blog/">Blog</a>
                 </li>
                 <li>
-                  <a href="http://www.referralsaasquatch.com/blog/">Blog</a>
+                  <a href="https://app.saasquatch.com/">Login</a>
                 </li>
                 <li>
-                  <a href="https://app.referralsaasquatch.com/">Login</a>
-                </li>
-                <li>
-                  <a href="http://www.referralsaasquatch.com/request-demo">
+                  <a href="https://www.saasquatch.com/request-demo">
                     Schedule a Demo
                   </a>
                 </li>

@@ -7,6 +7,7 @@ highlights: |
 slug: developer/conversion
 sectionType: guide
 template: hasTableOfContents.html
+date: '2019-11-18'
 ---
 
 For a full explanation of the difference between identification, attribution and conversion, check out [The Basics Success Center Article](/success/intro) and the [Success Center Guide on Conversion](/topics/conversion)

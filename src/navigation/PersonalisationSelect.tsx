@@ -107,10 +107,8 @@ const Description = styled.div`
 
 export const PersonalisationSelect = () => {
   const [open, setOpen] = useState(false);
-  const {
-    version,
-    setVersion: setVersionInner,
-  } = VersionContext.useContainer();
+  const { version, setVersion: setVersionInner } =
+    VersionContext.useContainer();
 
   const setVersion = (version: Version) => {
     setVersionInner(version);

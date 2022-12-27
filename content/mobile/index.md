@@ -5,6 +5,7 @@ slug: mobile
 sectionType: mobile
 template: article.html
 hero: true
+date: '2019-11-18'
 ---
 
 <!--SaaSquatch is a cross-channel referral platform with support for mobile apps, web apps, desktop apps and ecommerce websites.-->

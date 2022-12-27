@@ -16,6 +16,8 @@ import {
 import BrowserOnly from "components/BrowserOnly";
 import { PortalifiedSearch } from "./navigation/PortalifiedSearch";
 import useBrowserEffect from "./util/useBrowserEffect";
+import { CSSVariables } from "@saasquatch/visual-dev";
+import { DocsCSSVariables } from "./DocsGlobalStyle";
 
 // Any routes that start with 'dynamic' will be treated as non-static routes
 addPrefetchExcludes(["dynamic"]);
@@ -51,11 +53,12 @@ function App() {
     const init = require("./assets/js/docs").init;
 
     init();
-
   }, []);
 
   return (
     <Root>
+      <CSSVariables />
+      <DocsCSSVariables />
       <React.Suspense fallback={<em>Loading...</em>}>
         <ScrollToTop />
         <VersionContext.Provider>

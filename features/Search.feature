@@ -68,31 +68,29 @@ Feature: Search
 		And my browser window height is less than allows for the returned results to be displayed
 		Then the search results are limited to 10 of results
 
-	Scenario: Sidebar search results are paginated
+	Scenario Outline: Sidebar search results are paginated
 		Given I am on the SaaSquatch docs page at any location
 		When I enter a <search term> into the search input field that returns a large number of matches
-
-		Examples:
-			| search term |
-			| re          |
-			| s           |
-
 		Then the search results are paginated and a "Next" page link is visible
-
-	Scenario: Sidebar paginated search results can be navigated
-		Given I am on the SaaSquatch docs page at any location
-		When I enter a <search term> into the search input field that returns a large number of matches
-
 		Examples:
 			| search term |
 			| re          |
 			| s           |
 
+
+	Scenario Outline: Sidebar paginated search results can be navigated
+		Given I am on the SaaSquatch docs page at any location
+		When I enter a <search term> into the search input field that returns a large number of matches
 		Then the search results are paginated and a "Next" page link is visible
 		When I click the "Next" page link
 		Then I am shown the next 10 results
 		When I click the "Previous" page link
 		Then I am shown the previous 10 results
+
+		Examples:
+			| search term |
+			| re          |
+			| s           |
 
 	Scenario: Sidebar search results are preserved when the search results section is hidden by clicking outside the results section
 		Given I am on the SaaSquatch docs page at any location
@@ -221,31 +219,27 @@ Feature: Search
 		And my browser window height is less than allows for the returned results to be displayed
 		Then the search results are limited to 10 of results
 
-	Scenario: Main page search results are paginated
+	Scenario Outline: Main page search results are paginated
 		Given I am on the SaaSquatch docs main page
 		When I enter a <search term> into the search input field that returns a large number of matches
-
-		Examples:
-			| search term |
-			| re          |
-			| s           |
-
 		Then the search results are paginated and a "Next" page link is visible
-
-	Scenario: Main page paginated search results can be navigated
-		Given I am on the SaaSquatch docs main page
-		When I enter a <search term> into the search input field that returns a large number of matches
-
 		Examples:
 			| search term |
 			| re          |
 			| s           |
 
+	Scenario Outline: Main page paginated search results can be navigated
+		Given I am on the SaaSquatch docs main page
+		When I enter a <search term> into the search input field that returns a large number of matches
 		Then the search results are paginated and a "Next" page link is visible
 		When I click the "Next" page link
 		Then I am shown the next 10 results
 		When I click the "Previous" page link
 		Then I am shown the previous 10 results
+		Examples:
+			| search term |
+			| re          |
+			| s           |
 
 	Scenario: Main page search results are preserved when the search results section is hidden by clicking outside the results section
 		Given I am on the SaaSquatch docs main page

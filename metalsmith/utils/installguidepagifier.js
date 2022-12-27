@@ -19,7 +19,7 @@ function pageify(entryRaw, i18n){
             contents: fields.installGuide,
             tags: fields.tags,
             slug: "program/" + fields.slug + "/setup-guide",
-
+            date: entry.sys?.updatedAt, 
             fields: fields,
             id: entry.sys.id,
             sectionType: "successArticle",

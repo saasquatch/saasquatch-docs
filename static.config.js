@@ -135,7 +135,16 @@ async function getSwagger() {
   };
 }
 
+const getModifiedDate = (date) => {
+  return date.toString().slice(0, 10)
+}
+
 export default {
+  // WARNING: react-static uses a module called `swimmer` to schedule HTML exports in a set of threads.
+  //          swimmer doesn't actually appear to function correctly in Node >=12, so we can no longer do
+  //          multi-threaded exports. This will force the max threads to 1, and make sure that we can
+  //          still build on newer Node versions.
+  maxThreads: 1,
   Document: Bottom,
   entry: path.join(__dirname, "src", "index.tsx"),
   paths: {
@@ -145,7 +154,7 @@ export default {
     dist: "build", // The production output directory.
     // devDist: "tmp/dev-server", // The development scratch directory.
     // public: "public", // The public directory (files copied to dist during build)
-    // assets: "build2", // The output directory for bundled JS and CSS
+    // assets: "build", // The output directory for bundled JS and CSS
     // buildArtifacts: "artifacts" // The output directory for generated (internal) resources
   },
   devServer: {
@@ -202,8 +211,17 @@ export default {
       },
     ],
     require.resolve("react-static-plugin-react-router"),
-    require.resolve("react-static-plugin-sitemap"),
+    [
+      require.resolve("react-static-plugin-sitemap"),
+      {
+        getAttributes: route => ({
+          lastmod: route.data.entry && route.data.entry.date && getModifiedDate(route.data.entry.date),
+        }),
+      }
+    ]
   ],
+  siteRoot: 'https://docs.saasquatch.com/',
+  stagingSiteRoot: ''
 };
 
 /**
@@ -297,10 +315,25 @@ async function getRoutes() {
       getData: () => spec,
       template: "src/containers/single/api",
     },
+    // {
+    //   path: "/product-news-old",
+    //   getData: async () => ({ productNews }),
+    //   template: "src/containers/single/product-news-old",
+    // },
     {
       path: "/product-news",
       getData: async () => ({ productNews }),
       template: "src/containers/single/product-news",
+    },
+    {
+      path: "/success",
+      getData: async () => ({}),
+      template: "src/containers/single/success-center",
+    },
+    {
+      path: "/developer",
+      getData: async () => ({}),
+      template: "src/containers/single/developer",
     },
     {
       path: "/breaking-changes",
@@ -331,6 +364,21 @@ async function getRoutes() {
       path: "/guides",
       getData: () => ({ guides, integrations }),
       template: "src/containers/single/guides",
+    },
+    {
+      path: "/learning-saasquatch",
+      getData: async () => ({}),
+      template: "src/containers/single/learning-saasquatch",
+    },
+    {
+      path: "/building-programs",
+      getData: async () => ({}),
+      template: "src/containers/single/building-programs",
+    },
+    {
+      path: "/running-programs",
+      getData: async () => ({}),
+      template: "src/containers/single/running-programs",
     },
   ];
   const contentfulPages = entries
@@ -378,30 +426,33 @@ const HTTP_METHODS = [
  * @return {import("src/api/Types").EndpointSummary[]}
  */
 function getEndpoints(swagger) {
-  return Object.keys(swagger.paths).reduce((
-    /** @type {import("src/api/Types").EndpointSummary[]} */ acc,
-    /** @type {string} */ path
-  ) => {
-    const methods = swagger.paths[path];
-    const subEndpoints = Object.keys(methods)
-      .filter((httpMethod) =>
-        // ignore other parts of Path like `parameters`
-        HTTP_METHODS.includes(/** @type {any} */ httpMethod)
-      )
-      .map((/** @type {string} */ httpMethod) => {
-        /** @type {import("swagger-schema-official").Operation} */ const method =
-          methods[httpMethod];
-        return {
-          httpMethod,
-          path,
-          summary: method.summary,
-          anchor: method["x-docs-anchor"],
-          tags: method.tags,
-        };
-      });
+  return Object.keys(swagger.paths).reduce(
+    (
+      /** @type {import("src/api/Types").EndpointSummary[]} */ acc,
+      /** @type {string} */ path
+    ) => {
+      const methods = swagger.paths[path];
+      const subEndpoints = Object.keys(methods)
+        .filter((httpMethod) =>
+          // ignore other parts of Path like `parameters`
+          HTTP_METHODS.includes(/** @type {any} */ httpMethod)
+        )
+        .map((/** @type {string} */ httpMethod) => {
+          /** @type {import("swagger-schema-official").Operation} */ const method =
+            methods[httpMethod];
+          return {
+            httpMethod,
+            path,
+            summary: method.summary,
+            anchor: method["x-docs-anchor"],
+            tags: method.tags,
+          };
+        });
 
-    return [...acc, ...subEndpoints];
-  }, []);
+      return [...acc, ...subEndpoints];
+    },
+    []
+  );
 }
 
 /**

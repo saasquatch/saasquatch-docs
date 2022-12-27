@@ -4,6 +4,7 @@ highlights: Follow this guide to setup a "Give 50, Get 50 Points Referral Progra
 slug: guides/point-reward
 sectionType: guide
 template: article.html
+date: '2019-11-18'
 ---
 
 <div class="install-guide-checklist">

@@ -1,7 +1,9 @@
 import React from "react";
-import { History } from "history";
+import { History, Location } from "history";
+import { MMenuContext } from "./NavigationSidebar";
+import { double_chevron_left } from "@saasquatch/visual-dev/dist/components/Icon/SVGs";
 
-let jQuery;
+let jQuery: JQueryStatic;
 if (typeof document !== "undefined") {
   let mmenu = require("jquery.mmenu");
   let Hammer = require("hammerjs");
@@ -14,16 +16,16 @@ if (typeof document !== "undefined") {
 }
 var categories = ["successCenter", "developerCenter", "designerCenter"];
 
-function findElementForCurrentUrl() {
+function findElementForCurrentUrl(location: Location<unknown>) {
   /**
    * Sets the current page nav item as "Selected"
    *
    * Source: https://css-tricks.com/snippets/jquery/highlight-all-links-to-current-page/
    */
-  var foundElement = null;
+  var foundElement: JQuery<HTMLElement> | null = null;
   var foundDepth = -1;
 
-  function found(el, depth) {
+  function found(el: JQuery<HTMLElement>, depth: number) {
     if (depth > foundDepth) {
       foundElement = el;
       foundDepth = 0;
@@ -38,10 +40,10 @@ function findElementForCurrentUrl() {
       return;
     }
 
-    var thatUrl = window.location.pathname.replace(/\/+$/, "");
+    var thatUrl = location.pathname.replace(/\/+$/, "");
 
-    var thatUrlWithHash = window.location.pathname + window.location.hash;
-    var thatUrlWithHashNoSlash = thatUrl + window.location.hash;
+    var thatUrlWithHash = location.pathname + location.hash;
+    var thatUrlWithHashNoSlash = thatUrl + location.hash;
     if (thisUrl == thatUrlWithHash || thisUrl == thatUrlWithHashNoSlash) {
       // Checks for HASH/ANCHOR based mapping first
       found(jQuery(this).parent("li"), 2);
@@ -62,10 +64,11 @@ function findElementForCurrentUrl() {
   return foundElement;
 }
 
+export const MMenuID = "my-menu";
 export default function init(search: HTMLElement, history: History<any>) {
-  var menuDom = jQuery("#my-menu");
+  var menuDom = jQuery(`#${MMenuID}`);
 
-  const foundElement = findElementForCurrentUrl();
+  const foundElement = findElementForCurrentUrl(history.location);
 
   if (foundElement) {
     foundElement.addClass("Selected");
@@ -150,7 +153,7 @@ export default function init(search: HTMLElement, history: History<any>) {
 
   const myMenu = menuDom.data("mmenu");
 
-  updateSidebarForCurrentURL(myMenu);
+  updateSidebarForCurrentURL(myMenu, history.location);
   connectMobileToggle(myMenu);
   connectHistoryListener(history, myMenu);
 
@@ -170,55 +173,56 @@ function connectMobileToggle(myMenu: any) {
  *
  * Source: https://github.com/ReactTraining/react-router/issues/3554
  */
-function connectHistoryListener(history: History<any>, myMenu: any) {
+function connectHistoryListener(history: History<unknown>, myMenu: any) {
   history.listen((location) => {
     //Do your stuff here
-    updateSidebarForCurrentURL(myMenu);
+    updateSidebarForCurrentURL(myMenu, location);
   });
 }
 
 /**
  * Uses the mmenu API to open the correct page for the current URL
- * 
- * @param myMenu 
+ *
+ * @param myMenu
  */
-function updateSidebarForCurrentURL(myMenu: any) {
-  const foundElement = findElementForCurrentUrl();
-  // console.log(
-  //   "Found element",
-  //   foundElement,
-  //   "for path",
-  //   window.location.pathname
-  // );
+function updateSidebarForCurrentURL(myMenu: any, location: Location<unknown>) {
+  const foundElement = findElementForCurrentUrl(location);
   if (foundElement) {
+    if (location.pathname === "/") {
+      const mainA = document.getElementById("mm-1");
+      if (mainA) {
+        myMenu.openPanel(jQuery(mainA));
+      }
+    }
     if (foundElement.hasClass("mm-vertical")) {
       // myMenu.
     } else {
       //close menu when you change page
-      myMenu.close()
+      myMenu.close();
       // Open the right panel
       myMenu.setSelected(foundElement);
+    }
+
+    const highest = foundElement.closest(".mm-highest");
+    if (highest && highest.length) {
+      myMenu.openPanel(highest);
+    }
+
+    const hidden = foundElement.closest(".mm-hidden");
+    if (hidden && hidden.length) {
+      myMenu.openPanel(hidden);
     }
     // Open closest top-level panel
     const parent = foundElement.closest(".mm-panel");
     if (parent && parent.length) {
-      // console.log("Opening parent panel", parent);
       myMenu.openPanel(parent);
     }
 
     const dropdown = foundElement.parents(".mm-vertical");
     if (dropdown && dropdown.length) {
-      // console.log("Opening parent panel", parent);
       myMenu.openPanel(dropdown);
-      // if (dropdown.hasClass("mm-opened")) {
-      //   // Aready open
-      // } else {
-
-      //   dropdown.addClass("mm-opened");
-      // }
     }
   } else {
     myMenu.setSelected(null);
   }
 }
-
