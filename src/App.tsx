@@ -18,6 +18,7 @@ import { PortalifiedSearch } from "./navigation/PortalifiedSearch";
 import useBrowserEffect from "./util/useBrowserEffect";
 import { CSSVariables } from "@saasquatch/visual-dev";
 import { DocsCSSVariables } from "./DocsGlobalStyle";
+import { PersonlizationStyles } from "./PersonalisationStyles";
 
 // Any routes that start with 'dynamic' will be treated as non-static routes
 addPrefetchExcludes(["dynamic"]);
@@ -62,6 +63,7 @@ function App() {
       <React.Suspense fallback={<em>Loading...</em>}>
         <ScrollToTop />
         <VersionContext.Provider>
+          <PersonlizationStyles />
           <MMenuContext.Provider>
             <StickyContainer>
               <div id="my-page">
