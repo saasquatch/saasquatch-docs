@@ -1,6 +1,6 @@
 import React, { useRef, useMemo } from "react";
 // @ts-ignore no types for marked
-import marked from "marked";
+import { marked } from "marked";
 import styled from "styled-components";
 import uuidv4 from "uuid/v4";
 
@@ -156,7 +156,10 @@ export default function Markdown({ source }: { source: string }) {
 
   const comp = useMemo(() => {
     try {
-      const rawMarkup = marked(source, { sanitize: false, renderer: renderer });
+      const rawMarkup = marked.parse(source, {
+        sanitize: false,
+        renderer: renderer,
+      });
       // const betterHtml = DOMPurify.sanitize(rawMarkup);
       const component = parse(rawMarkup, { replace });
       return component;
