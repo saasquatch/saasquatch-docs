@@ -205,39 +205,36 @@ When SaaSquatch creates AppsFlyer links dynamically the resulting link and it’
 </li>
 </ul>
 <div class="tab-content">
-<div class="tab-pane example-unified-2 active">
-<code>
-{
-    "pid": "saasquatch_int",
-    "c": "saasquatch",
-    "af_web_dp": "http://myReferralLandingPage.com",
-    "utm_source": "invite",
-    "utm_medium": "link",
-    "utm_campaign": "saasquatch",
-    "rsCode": "REFERRALCODE",
-    "rsShareMedium": "UNKNOWN",
-    "rsEngagementMedium": "UNKNOWN",
-    "_saasquatch": "eyJhcHAucmVmZXJyYWxzYWFzcXVhdGNoLmNvbSI6eyJ0ZXN0XzEyMzQ1NjdfQ09ERSI6eyJjb2RlcyI6eyJyZWZlcnJhbCI6IlJFRkVSUkFMQ09ERSJ9LCJjb2Rlc0V4cCI6eyJSRUZFUlJBTENPREUiOjE2Mjk1ODIxOTl9LCJsaW5rcyI6eyJyZWZlcnJhbCI6Imh0dHBzOi8vc3NxdC5jby9temFBMjIifSwibGlua3NFeHAiOnsiaHR0cHM6Ly9zc3F0LmNvL216YUEyMiI6MTYyOTU4MjE5OX19fX0="
-}
-</code>
+  <div class="tab-pane example-unified-2 active">
+    <pre><code>{
+  "pid": "saasquatch_int",
+  "c": "saasquatch",
+  "af_web_dp": "http://myReferralLandingPage.com",
+  "utm_source": "invite",
+  "utm_medium": "link",
+  "utm_campaign": "saasquatch",
+  "rsCode": "REFERRALCODE",
+  "rsShareMedium": "UNKNOWN",
+  "rsEngagementMedium": "UNKNOWN",
+  "_saasquatch": "eyJhcHAucmVmZXJyYWxzYWFzcXVhdGNoLmNvbSI6eyJ0ZXN0XzEyMzQ1NjdfQ09ERSI6eyJjb2RlcyI6eyJyZWZlcnJhbCI6IlJFRkVSUkFMQ09ERSJ9LCJjb2Rlc0V4cCI6eyJSRUZFUlJBTENPREUiOjE2Mjk1ODIxOTl9LCJsaW5rcyI6eyJyZWZlcnJhbCI6Imh0dHBzOi8vc3NxdC5jby9temFBMjIifSwibGlua3NFeHAiOnsiaHR0cHM6Ly9zc3F0LmNvL216YUEyMiI6MTYyOTU4MjE5OX19fX0="
+}</code></pre>
+  </div>
+  <div class="tab-pane example-legacy-2">
+    <pre><code>{
+  "pid": "saasquatch_int",
+  "c": "saasquatch",
+  "af_web_dp": "http://myReferralLandingPage.com",
+  "deep_link_sub1": "eyJhcHAucmVmZXJyYWxzYWFzcXVhdGNoLmNvbSI6eyJ0ZXN0XzEyMzQ1NjdfQ09ERSI6eyJjb2RlcyI6eyJyZWZlcnJhbCI6IlJFRkVSUkFMQ09ERSJ9LCJjb2Rlc0V4cCI6eyJSRUZFUlJBTENPREUiOjE2Mjk1ODIxOTl9LCJsaW5rcyI6eyJyZWZlcnJhbCI6Imh0dHBzOi8vc3NxdC5jby9temFBMjIifSwibGlua3NFeHAiOnsiaHR0cHM6Ly9zc3F0LmNvL216YUEyMiI6MTYyOTU4MjE5OX19fX0=",
+  "deep_link_sub2": "invite",
+  "deep_link_sub3": "link",
+  "deep_link_sub4": "saasquatch",
+  "deep_link_sub5": "REFERRALCODE",
+  "deep_link_sub6": "UNKNOWN",
+  "deep_link_sub7": "UNKNOWN"
+}</code></pre>
+  </div>
 </div>
-<div class="tab-pane example-legacy-2">
-\`\`\`
-{
-    "pid": "saasquatch_int",
-    "c": "saasquatch",
-    "af_web_dp": "http://myReferralLandingPage.com",
-    "deep_link_sub1": "eyJhcHAucmVmZXJyYWxzYWFzcXVhdGNoLmNvbSI6eyJ0ZXN0XzEyMzQ1NjdfQ09ERSI6eyJjb2RlcyI6eyJyZWZlcnJhbCI6IlJFRkVSUkFMQ09ERSJ9LCJjb2Rlc0V4cCI6eyJSRUZFUlJBTENPREUiOjE2Mjk1ODIxOTl9LCJsaW5rcyI6eyJyZWZlcnJhbCI6Imh0dHBzOi8vc3NxdC5jby9temFBMjIifSwibGlua3NFeHAiOnsiaHR0cHM6Ly9zc3F0LmNvL216YUEyMiI6MTYyOTU4MjE5OX19fX0=",
-    "deep_link_sub2": "invite",
-    "deep_link_sub3": "link",
-    "deep_link_sub4": "saasquatch",
-    "deep_link_sub5": "REFERRALCODE",
-    "deep_link_sub6": "UNKNOWN",
-    "deep_link_sub7": "UNKNOWN"
-}
-\`\`\`
-</div>
-</div>
+
 
 There may be other parameters added by AppsFlyer depending on how your OneLink is configured. 
 
