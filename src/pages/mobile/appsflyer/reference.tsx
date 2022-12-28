@@ -127,23 +127,23 @@ export default function render() {
         <Markdown source={howItWorks} />
         <Markdown source={deepLink} />
         <Markdown source={dataFields} />
-        <ul className="nav nav-tabs" id="deep-linking-example">
+        <ul className="nav nav-tabs" id="deep-linking-example-1">
           <li className="active">
-            <a data-toggle="tab" data-target=".example-unified">
+            <a data-toggle="tab" data-target=".example-unified-1">
               Unified Deep Linking
             </a>
           </li>
           <li>
-            <a data-toggle="tab" data-target=".example-legacy">
+            <a data-toggle="tab" data-target=".example-legacy-1">
               Legacy Deep Linking
             </a>
           </li>
         </ul>
         <div className="tab-content">
-          <div className="tab-pane example-unified active">
+          <div className="tab-pane example-unified-1 active">
             <Properties schema={appsflyerFields} />
           </div>
-          <div className="tab-pane example-legacy">
+          <div className="tab-pane example-legacy-1">
             <Properties schema={appsflyerLegacyFields} />
           </div>
         </div>
@@ -175,11 +175,10 @@ The SaaSquatch integration with AppsFlyer works as follows:
 
 * SaaSquatch sharelinks will start redirecting to AppsFlyer links
 
-UPDATE ME FOR NEW FIELDS
-* SaaSquatch will create AppsFlyer links dynamically by appending custom attribution parameters to the link provided in your AppsFlyer configuration.
-  * These links will have data for: \`af_web_dp\`, \`utm_source\`, \`utm_medium\`, \`utm_campaign\`, \`rsCode\`, \`rsShareMedium\`, \`rsEngagementMedium\` and \`_saasquatch\`
-  
-  * You can use \`_saasquatch\` to attribute referrals and the other parameters to customize the mobile landing experience.
+* SaaSquatch will create AppsFlyer links dynamically by passing custom attribution parameters to the link provided in your AppsFlyer configuration.
+  * Using Appsflyer's unified deep linking, data is passed using the \`deep_link_sub1\` through \`deep_link_sub7\` url parameters.
+  * Using Appsflyer's legacy deep linking data is passed using the following url parameters \`af_web_dp\`, \`utm_source\`, \`utm_medium\`, \`utm_campaign\`, \`rsCode\`, \`rsShareMedium\`, \`rsEngagementMedium\` and \`_saasquatch\`
+  * You can use \`deep_link_sub1\` or \`_saasquatch\` depending on your deep linking to attribute referrals and the other parameters to customize the mobile landing experience.
 
 SaaSquatch will redirect all link clicks through AppsFlyer. Mobile users will be directed by AppsFlyer according to your OneLink configuration and desktop users will be directed to the landing page URL you configured for your SaaSquatch program. SaaSquatch passes this URL through the \`af_web_dp\` parameter. If you set the value for \`af_web_dp\` in AppsFlyer it will overwrite the value configured for your SaaSquatch program.
 
@@ -193,20 +192,20 @@ const deepLink = `
 
 When SaaSquatch creates AppsFlyer links dynamically the resulting link and it’s custom attribution parameters produce a deep link similar to the following example:
 
-<ul class="nav nav-tabs" id="deep-linking-example">
+<ul class="nav nav-tabs" id="deep-linking-example-2">
 <li class="active">
-  <a data-toggle="tab" data-target=".example-unified">
+  <a data-toggle="tab" data-target=".example-unified-2">
     Unified Deep Linking
   </a>
 </li>
 <li>
-  <a data-toggle="tab" data-target=".example-legacy">
+  <a data-toggle="tab" data-target=".example-legacy-2">
     Legacy Deep Linking
   </a>
 </li>
 </ul>
 <div class="tab-content">
-<div class="tab-pane example-unified active">
+<div class="tab-pane example-unified-2 active">
 <code>
 {
     "pid": "saasquatch_int",
@@ -222,7 +221,7 @@ When SaaSquatch creates AppsFlyer links dynamically the resulting link and it’
 }
 </code>
 </div>
-<div class="tab-pane example-legacy">
+<div class="tab-pane example-legacy-2">
 \`\`\`
 {
     "pid": "saasquatch_int",
