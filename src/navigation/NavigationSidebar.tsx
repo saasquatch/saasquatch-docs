@@ -621,6 +621,7 @@ export function NavigationSidebar() {
                   to="/developer/event-idempotency"
                   title="Event Idempotency"
                 />
+                <ArticleLeaf to="/developer/bulk-import" title="Bulk Imports" />
               </DropDown>
 
               <DropDown title="Squatch.js">
