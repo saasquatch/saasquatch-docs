@@ -86,7 +86,7 @@
     "json-ref-parser": "^1.0.0",
     "json-schema-ref-parser": "^7.1.2",
     "marked": "^0.3.19",
-    "mermaid": "^8.4.8",
+    "mermaid": "^8.5.1",
     "multimatch": "^4.0.0",
     "mz": "^2.7.0",
     "react-commonmark": "^3.0.0",
