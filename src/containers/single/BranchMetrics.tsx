@@ -14,7 +14,7 @@ const branchFields = {
     },
     "sq_accountId": {
       "type": "string",
-      "description": "The Referrer's account ID. This allows you to look up group or company info. See [Shared vs. Solo accounts](shared-vs-solo-accounts/)"
+      "description": "The Referrer's account ID. This allows you to look up group or company info. See [Shared vs. Solo accounts](/shared-vs-solo-accounts/)"
     },
     "sq_firstName": {
       "type": "string",

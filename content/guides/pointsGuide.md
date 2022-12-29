@@ -1,5 +1,5 @@
 ---
-title: Points Integration Guide
+title: Point Reward
 highlights: Follow this guide to setup a "Give 50, Get 50 Points Referral Program" using the SaaSquatch REST API and Squatch.js
 slug: guides/point-reward
 sectionType: guide

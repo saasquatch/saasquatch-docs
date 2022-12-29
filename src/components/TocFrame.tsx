@@ -14,6 +14,7 @@ import TOC from "./TOC";
  */
 export type Entry = {
   title: string;
+  robots?: string;
   contents?: string;
   highlights?: string;
   hero?: boolean;
@@ -22,7 +23,20 @@ export type Entry = {
   category?: string;
   categoryName?: string;
   sectionType?: string;
-  fields?: { seoDescription?: string };
+  fields?: { 
+    seoDescription?: string,
+    ogFeaturedImage?: {
+      fields?:{
+        file?:{
+          url?: string;
+        }
+      }
+    }  
+    robotsTag?: string,
+    canonicalUrl?: string;
+    
+    
+  };
 };
 
 

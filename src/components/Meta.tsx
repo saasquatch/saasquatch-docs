@@ -1,6 +1,7 @@
 import React from "react";
 import marked from "marked";
-
+// import ogImage from "../assets/images/opengraph-center-crop-helpcenter.png";
+const ogImage =  require("../assets/images/opengraph-center-crop-helpcenter.png");
 import { Entry } from "./TocFrame";
 import { Head } from "react-static";
 
@@ -23,11 +24,17 @@ export default function render(
 
   let title:string;
   if(props.title){
-    title = props.title + " | SaaSquatch " + (props.categoryName || "Documentation");
+    title = props.title + " | SaaSquatch " + (props.categoryName || "Docs");
   }else{
-    title = "SaaSquatch Help Center";
+    title = "SaaSquatch Docs";
   }
-    
+  
+  let ogImageURL:string;
+  if(props?.fields?.ogFeaturedImage != null && Object.keys(props?.fields?.ogFeaturedImage).length > 0){
+    ogImageURL = props?.fields?.ogFeaturedImage[0]?.fields?.file?.url;
+  }
+
+  
   const plainHighlights = striptags(markdown(props.highlights));
   return (
     <Head>
@@ -37,29 +44,20 @@ export default function render(
           "docs sectionType-" + props.sectionType + " " + props.category
         }
       />
+      {/* SEO content */}
+      <meta name="description" content={props.fields?.seoDescription || props?.highlights}/>
+        
+      <meta property="og:image" content={ogImageURL || ogImage} />
+      <meta name="twitter:image" content={ogImageURL || ogImage} />
+      
+      <meta name="robots" content={props.fields?.robotsTag || props?.robots} />
+      <link rel="canonical" href={props.fields?.canonicalUrl}/>
+      
+      
+
       <meta property="og:title" content={title} />
-      <meta
-        className="swiftype"
-        name="title"
-        data-type="string"
-        content={props.title}
-      />
-      <meta
-        className="swiftype"
-        name="body"
-        data-type="text"
-        content={props.fields?.seoDescription || props.highlights}
-      />
-      <meta name="description" content={plainHighlights} />
+      
       <meta property="og:description" content={plainHighlights} />
-
-      <meta
-        className="swiftype"
-        name="type"
-        data-type="enum"
-        content={props.sectionType}
-      />
-
       <meta
         name="docsSectionType"
         data-type="string"
