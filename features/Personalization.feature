@@ -207,4 +207,5 @@ Feature: Personalization
 			| <div>           | <div>        |
 			| # test          |              |
 			| </div>          | # test       |
+			|                 |              |
 			|                 | </div>       |
