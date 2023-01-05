@@ -89,6 +89,6 @@ but you only want to give a referral reward when the referred person [converts](
 Separating attribution from [conversion](/topics/conversion) is particularly useful for combating self-referral and 
 other types of fraud because it means that referrals can be tracked while they are in-progress but not yet complete. The person that made the referral can be notified of the in-progress referrals before a final conversion step is complete and before any rewards are unlocked.
 
-<div class="text-center">![Example share link](/assets/images/attribution/attribution-example.png)</div>
+<div class="text-center"><img src="/assets/images/attribution/attribution-example.png" alt="Example share link"></div>
 
 The above screenshot is an example list of referrals that highlights the difference between attribution and conversion. One of these referral has a referred user who has not yet converted and the other has a referred user who has converted, unlocking $100 of free credit. Both of these referrals have been tracked and attributed back to the referrer that made them happen, but only one of the referrals has converted.
