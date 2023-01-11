@@ -44,7 +44,7 @@ export default function render() {
         </p>
 
         <p>
-          The `purchase` and `refund` events are reserved user events. This
+          The <code>purchase</code> and <code>refund</code> events are reserved user events. This
           requires the data of these events to be sent in a defined format using
           the fields below.
         </p>
