@@ -258,13 +258,21 @@ export function NavigationSidebar() {
                   title="Fuel Tank Rewards"
                 />
                 <ArticleLeaf
-                  to="/features/reward-exchange"
-                  title="Reward Exchange"
-                />
-                <ArticleLeaf
                   to="/features/leaderboards/"
                   title="Leaderboards"
                 />
+
+                <DropDown title="Reward Exchange" isNestedDropDown>
+                  <ArticleLeaf
+                    to="/features/reward-exchange"
+                    title="Reward Exchange"
+                  />
+                  <ArticleLeaf
+                    to="/building-programs/rewards/setting-up-reward-exchange"
+                    title="Setting Up a Reward Exchange Option"
+                  />
+                </DropDown>
+
                 <ArticleLeaf to="/topics/conversion" title="Conversion" />
               </DropDown>
 
