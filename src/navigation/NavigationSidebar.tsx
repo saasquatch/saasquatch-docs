@@ -105,6 +105,10 @@ export function NavigationSidebar() {
                   to="/learning-saasquatch/admin-portal/team-member-roles"
                   title="Team Member Roles"
                 />
+                <ArticleLeaf
+                  to="/learning-saasquatch/admin-portal/single-sign-on"
+                  title="Setting Up Login Rules and Single Sign-On (SSO)"
+                />
               </DropDown>
 
               <DropDown title="Programs">
@@ -221,10 +225,13 @@ export function NavigationSidebar() {
                   to="/features/end-user-experiences"
                   title="End User Experiences"
                 />
-
                 <ArticleLeaf
                   to="/building-programs/participant-experiences/saasquatch-components/"
                   title="SaaSquatch Components for Program Widgets and Microsites"
+                />
+                <ArticleLeaf
+                  to="/building-programs/participant-experiences/configuring-a-custom-domain"
+                  title="Configuring a Custom Domain"
                 />
               </DropDown>
 
