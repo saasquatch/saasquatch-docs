@@ -272,6 +272,7 @@ export function NavigationSidebar() {
                   to="/features/leaderboards/"
                   title="Leaderboards"
                 />
+                <ArticleLeaf to="/topics/conversion" title="Conversion" />
               </DropDown>
 
               <DropDown title="Program Emails">
@@ -337,6 +338,10 @@ export function NavigationSidebar() {
                   title="Customizing Microsite Lifecycle Emails"
                 />
                 <ArticleLeaf
+                  to="/setting-up-a-custom-subdomain-for-your-hosted-portal"
+                  title="Setting Up a Custom Domain for a Microsite"
+                />
+                <ArticleLeaf
                   to="/building-programs/microsites/microsite-editor"
                   title="SaaSquatch Microsite Editor"
                 />
@@ -394,6 +399,11 @@ export function NavigationSidebar() {
                 <ArticleLeaf
                   to="/features/participant-deletion"
                   title="Participant Deletion"
+                />
+                <ArticleLeaf to="/topics/attribution" title="Attribution" />
+                <ArticleLeaf
+                  to="/topics/identification"
+                  title="Identification"
                 />
               </DropDown>
 
@@ -577,6 +587,10 @@ export function NavigationSidebar() {
                 <ArticleLeaf to="/guides/" title="Overview" />
                 <ArticleLeaf to="/topics/email" title="SaaSquatch & Emails" />
                 <ArticleLeaf
+                  to="/customshortdomainguide"
+                  title="Custom Short Domains"
+                />
+                <ArticleLeaf
                   to="/developer/referral-security/"
                   title="Referral Security"
                 />
@@ -593,6 +607,14 @@ export function NavigationSidebar() {
                 <ArticleLeaf
                   to="/features/message-links"
                   title="Message Links"
+                />
+                <ArticleLeaf
+                  to="/developer/conversion"
+                  title="Conversion Tech Guide"
+                />
+                <ArticleLeaf
+                  to="/developer/attribution"
+                  title="Attribution Tech Guide"
                 />
                 <ArticleLeaf
                   to="/bestpractices/common-pitfalls"
