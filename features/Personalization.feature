@@ -171,7 +171,7 @@ Feature: Personalization
 			| Docs are being personalised for Classic programs | classic-only |
 			| Docs are being personalised for all programs     | everything   |
 
-	Scenario Outline: Sidebar menu items are shown/hidden based on selected personalization menu state
+	Scenario Outline: Sidebar menu items are shown/hidden based on selected personalization state
 		Given I am on a SaaSquatch docs page
 		And I see a list of sidebar menu items
 		When I select <filter option> with a corresponding <filter value>
@@ -181,18 +181,18 @@ Feature: Personalization
 			| filter option                                    | filter value |
 			| Docs are being personalised for new programs     | ga-only      |
 			| Docs are being personalised for Classic programs | classic-only |
-			| Docs are being personalised for all programs     | everything   |
+			| Docs are being personalised for all programs     | unset        |
 
 	Scenario Outline: Article content conditionally hides based on personalization state
 		Given I am on a SaaSquatch docs Article
 		And there is content wrapped with a <web component filter> container
 		When I select <filter option> in the personalization menu
-		Then the content marked with <filter> are hidden
-		And the content that are not marked with any filter are shown
+		Then the content wrapped with the <web component filter> are hidden
+		And the content that are not wrapped are shown
 		Examples:
 			| web component filter | filter option                                    |
-			| classic-only         | Docs are being personalised for new programs     |
-			| new-programs-only    | Docs are being personalised for Classic programs |
+			| <classic-only>       | Docs are being personalised for new programs     |
+			| <new-programs-only>  | Docs are being personalised for Classic programs |
 			| N/A                  | Docs are being personalised for all programs     |
 
 	@landmine
