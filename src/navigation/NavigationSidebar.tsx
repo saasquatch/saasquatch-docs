@@ -283,7 +283,7 @@ export function NavigationSidebar() {
                 />
                 <ArticleLeaf
                   to="/designer/short-tags"
-                  title="Email Template Short Tags"
+                  title="Email Template Merge Tags"
                 />
                 <ArticleLeaf
                   to="/developer/blocked-email-domains"
