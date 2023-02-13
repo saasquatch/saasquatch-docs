@@ -104,58 +104,30 @@ export function NavigationFooter() {
               <FooterUL>
                 <TitleLi>Product</TitleLi>
                 <InnerLi>
-                  <a
-                    href="https://app.referralsaasquatch.com/"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    Login
-                  </a>
+                  <a href="https://app.referralsaasquatch.com/">Login</a>
                 </InnerLi>
                 <InnerLi>
-                  <a
-                    href="https://www.saasquatch.com/request-demo"
-                    target="_blank"
-                    rel="noopener"
-                  >
+                  <a href="https://www.saasquatch.com/request-demo">
                     Request Demo
                   </a>
                 </InnerLi>
                 <InnerLi>
-                  <a
-                    href="https://www.saasquatch.com/loyalty-program-software/"
-                    target="_blank"
-                    rel="noopener"
-                  >
+                  <a href="https://www.saasquatch.com/loyalty-program-software/">
                     Customer Loyalty
                   </a>
                 </InnerLi>
                 <InnerLi>
-                  <a
-                    href="https://www.saasquatch.com/referral-program-software/"
-                    target="_blank"
-                    rel="noopener"
-                  >
+                  <a href="https://www.saasquatch.com/referral-program-software/">
                     Customer Referral
                   </a>
                 </InnerLi>
                 <InnerLi>
-                  <a
-                    href="https://www.saasquatch.com/api-integrations/"
-                    target="_blank"
-                    rel="noopener"
-                  >
+                  <a href="https://www.saasquatch.com/api-integrations/">
                     Integrations
                   </a>
                 </InnerLi>
                 <InnerLi>
-                  <a
-                    href="https://status.saasquatch.com/"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    Status Page
-                  </a>
+                  <a href="https://status.saasquatch.com/">Status Page</a>
                 </InnerLi>
               </FooterUL>
             </div>
@@ -163,40 +135,18 @@ export function NavigationFooter() {
               <FooterUL>
                 <TitleLi>Company</TitleLi>
                 <InnerLi>
-                  <a
-                    href="https://www.saasquatch.com/about"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    About
-                  </a>
+                  <a href="https://www.saasquatch.com/about">About</a>
                 </InnerLi>
                 <InnerLi>
-                  <a
-                    href="https://www.saasquatch.com/partners"
-                    target="_blank"
-                    rel="noopener"
-                  >
+                  <a href="https://www.saasquatch.com/partners">
                     Partner Program
                   </a>
                 </InnerLi>
                 <InnerLi>
-                  <a
-                    href="https://www.saasquatch.com/careers"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    Careers
-                  </a>
+                  <a href="https://www.saasquatch.com/careers">Careers</a>
                 </InnerLi>
                 <InnerLi>
-                  <a
-                    href="https://www.saasquatch.com/contact/"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    Contact Us
-                  </a>
+                  <a href="https://www.saasquatch.com/contact/">Contact Us</a>
                 </InnerLi>
               </FooterUL>
             </div>
@@ -204,38 +154,20 @@ export function NavigationFooter() {
               <FooterUL>
                 <TitleLi>Resources</TitleLi>
                 <InnerLi>
-                  <a
-                    href="https://www.saasquatch.com/blog"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    Blog
-                  </a>
+                  <a href="https://www.saasquatch.com/blog">Blog</a>
                 </InnerLi>
                 <InnerLi>
-                  <a
-                    href="https://www.saasquatch.com/the-advocacy-channel-a-customer-marketing-podcast/"
-                    target="_blank"
-                    rel="noopener"
-                  >
+                  <a href="https://www.saasquatch.com/the-advocacy-channel-a-customer-marketing-podcast/">
                     Podcast
                   </a>
                 </InnerLi>
                 <InnerLi>
-                  <a
-                    href="https://www.saasquatch.com/customers"
-                    target="_blank"
-                    rel="noopener"
-                  >
+                  <a href="https://www.saasquatch.com/customers">
                     Case Studies
                   </a>
                 </InnerLi>
                 <InnerLi>
-                  <a
-                    href="https://www.digitalloyaltyacademy.com/"
-                    target="_blank"
-                    rel="noopener"
-                  >
+                  <a href="https://www.digitalloyaltyacademy.com/">
                     Loyalty Academy
                   </a>
                 </InnerLi>
@@ -245,29 +177,17 @@ export function NavigationFooter() {
               <FooterUL>
                 <TitleLi>Legal</TitleLi>
                 <InnerLi>
-                  <a
-                    href="https://www.saasquatch.com/terms-of-service"
-                    target="_blank"
-                    rel="noopener"
-                  >
+                  <a href="https://www.saasquatch.com/terms-of-service">
                     Terms of Service
                   </a>
                 </InnerLi>
                 <InnerLi>
-                  <a
-                    href="https://www.saasquatch.com/privacy-policy"
-                    target="_blank"
-                    rel="noopener"
-                  >
+                  <a href="https://www.saasquatch.com/privacy-policy">
                     Privacy Policy
                   </a>
                 </InnerLi>
                 <InnerLi>
-                  <a
-                    href="https://www.saasquatch.com/terms-of-use"
-                    target="_blank"
-                    rel="noopener"
-                  >
+                  <a href="https://www.saasquatch.com/terms-of-use">
                     Terms of Use
                   </a>
                 </InnerLi>
