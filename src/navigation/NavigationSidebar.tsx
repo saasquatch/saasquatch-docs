@@ -82,14 +82,6 @@ export function NavigationSidebar() {
             >
               <DropDown title="SaaSquatch Admin Portal">
                 <ArticleLeaf
-                  to="/success/using-referral-saasquatch/"
-                  title="Using the SaaSquatch Portal"
-                />
-                <ArticleLeaf
-                  to="/success/navigating-the-portal"
-                  title="Navigating the SaaSquatch Portal"
-                />
-                <ArticleLeaf
                   to="/success/referral-feed"
                   title="The Referral Feed"
                 />
@@ -135,10 +127,6 @@ export function NavigationSidebar() {
               </DropDown>
 
               <DropDown title="Growth Automation">
-                <ArticleLeaf
-                  to="/growth/ga-101"
-                  title="Growth Automation 101"
-                />
                 <ArticleLeaf
                   to="/growth/customer-lifecycle"
                   title="Growth Automation Customer Lifecycle"
@@ -202,17 +190,17 @@ export function NavigationSidebar() {
                 </DropDown>
                 <ArticleLeaf
                   to="/growth/quickstart"
-                  title="Growth Automation Program General Quickstart"
+                  title="Program General Quickstart"
                 />
 
                 <ArticleLeaf
                   to="/growth/ga-mechanisms"
-                  title="Growth Automation Program Mechanisms"
+                  title="Program Mechanisms"
                 />
 
                 <ArticleLeaf
                   to="/guides/referral-quickstart"
-                  title="Growth Automational Referral Program - Quickstart"
+                  title="Referral Program - Quickstart"
                 />
               </DropDown>
 
@@ -232,10 +220,6 @@ export function NavigationSidebar() {
                 <ArticleLeaf
                   to="/designer/widget-editor"
                   title="Customizing Program Widgets"
-                />
-                <ArticleLeaf
-                  to="/themes/custom"
-                  title="Custom Program Themes"
                 />
                 <ArticleLeaf to="/mobile/widget" title="Mobile Widget" />
                 <ArticleLeaf
@@ -281,7 +265,7 @@ export function NavigationSidebar() {
                 />
                 <ArticleLeaf
                   to="/designer/short-tags"
-                  title="Email Template Short Tags"
+                  title="Email Template Merge Tags"
                 />
                 <ArticleLeaf
                   to="/developer/blocked-email-domains"
