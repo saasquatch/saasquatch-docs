@@ -123,7 +123,7 @@ export function NavigationFooter() {
                 </InnerLi>
                 <InnerLi>
                   <a href="https://www.saasquatch.com/api-integrations/">
-                    Intergrations
+                    Integrations
                   </a>
                 </InnerLi>
                 <InnerLi>
@@ -200,7 +200,8 @@ export function NavigationFooter() {
               reserved.
             </FooterParagraph>
             <FooterParagraph>
-              777 Fort St, Suite 308, Victoria, British Columbia, V8W 1G9, Canada
+              777 Fort St, Suite 308, Victoria, British Columbia, V8W 1G9,{""}
+              Canada
             </FooterParagraph>
           </BottomContainer>
           <img className="trees" src="/assets/images/saasquatch-trees.png" />

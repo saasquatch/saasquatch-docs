@@ -517,10 +517,9 @@ export function NavigationSidebar() {
 
               <DropDown title="Stripe">
                 <ArticleLeaf to="/stripe/" title="Stripe Integration" />
-                <ArticleLeaf to="/developer/stripe/" title="Install Guide" />
                 <ArticleLeaf
                   to="/developer/stripe-v2-install-guide"
-                  title="V2 Stripe Integration Install Guide"
+                  title="Install Guide"
                 />
               </DropDown>
 
@@ -539,10 +538,6 @@ export function NavigationSidebar() {
 
               <DropDown title="Recurly">
                 <ArticleLeaf to="/recurly/" title="Recurly Integration" />
-                <ArticleLeaf
-                  to="/developer/recurly/classic"
-                  title="Classic Recurly Install Guide"
-                />
                 <ArticleLeaf to="/developer/recurly" title="Install Guide" />
               </DropDown>
 
