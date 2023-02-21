@@ -82,14 +82,6 @@ export function NavigationSidebar() {
             >
               <DropDown title="SaaSquatch Admin Portal">
                 <ArticleLeaf
-                  to="/success/using-referral-saasquatch/"
-                  title="Using the SaaSquatch Portal"
-                />
-                <ArticleLeaf
-                  to="/success/navigating-the-portal"
-                  title="Navigating the SaaSquatch Portal"
-                />
-                <ArticleLeaf
                   to="/success/referral-feed"
                   title="The Referral Feed"
                 />
