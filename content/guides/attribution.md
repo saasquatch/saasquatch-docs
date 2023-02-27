@@ -10,6 +10,19 @@ date: '2019-11-18'
 ---
 
 
+<classic-only>
+
+Show on classic only
+
+<classic-only>
+
+
+<new-programs-only>
+
+Show on new programs only
+
+</new-programs-only>
+
 All of the methods mentioned in the [introduction to attribution](/topics/attribution) article above work with both Squatch.js and the REST API for tracking referrals. It is possible to track attribution at the same time as conversion or as
 two separate events. This will depend on your business model and the type of program that you're running. For example an eCommerce site may use referral codes to capture a single
 purchase event that both attributes the referral and [marks it as converted](/topics/conversion), completing the referral and unlocking rewards. SaaS companies on the other hand typically attribute referrals on trial or free accounts, and then [convert the referrals](/topics/conversion) when someone pays.
