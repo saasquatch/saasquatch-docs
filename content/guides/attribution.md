@@ -14,7 +14,7 @@ date: '2019-11-18'
 
 Show on classic only
 
-<classic-only>
+</classic-only>
 
 
 <new-programs-only>
