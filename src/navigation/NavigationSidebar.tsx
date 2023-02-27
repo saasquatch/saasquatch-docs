@@ -84,14 +84,17 @@ export function NavigationSidebar() {
                 <ArticleLeaf
                   to="/success/using-referral-saasquatch/"
                   title="Using the SaaSquatch Portal"
+                  personalization="classic-only"
                 />
                 <ArticleLeaf
                   to="/success/navigating-the-portal"
                   title="Navigating the SaaSquatch Portal"
+                  personalization="ga-only"
                 />
                 <ArticleLeaf
                   to="/success/referral-feed"
                   title="The Referral Feed"
+                  personalization="unset"
                 />
                 <ArticleLeaf
                   to="/features/analytics"
