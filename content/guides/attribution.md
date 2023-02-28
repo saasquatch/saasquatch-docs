@@ -77,7 +77,7 @@ those payment systems. Payment system integrations typically rely on Coupon code
 
 
 <div class="bs-callout bs-callout-default">
-  Attribution can be tracked using Squatch.js, the REST API or a payment system connector.
+  Attribution can be tracked using Squatch.js, the REST API or a payment system connector
 </div>
 
 
