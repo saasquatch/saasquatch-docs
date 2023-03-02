@@ -219,7 +219,7 @@ export function NavigationSidebar() {
                 />
                 <ArticleLeaf
                   to="/building-programs/participant-experiences/configuring-a-custom-domain"
-                  title="Configuring a Custom Domain"
+                  title="Setting Up a Domain"
                 />
               </DropDown>
 
@@ -326,10 +326,6 @@ export function NavigationSidebar() {
                 <ArticleLeaf
                   to="/building-programs/microsites/customizing-microsite-lifecycle-emails"
                   title="Customizing Microsite Lifecycle Emails"
-                />
-                <ArticleLeaf
-                  to="/setting-up-a-custom-subdomain-for-your-hosted-portal"
-                  title="Setting Up a Custom Domain for a Microsite"
                 />
                 <ArticleLeaf
                   to="/building-programs/microsites/microsite-editor"
@@ -566,10 +562,6 @@ export function NavigationSidebar() {
               <DropDown title="Dev Guides">
                 <ArticleLeaf to="/guides/" title="Overview" />
                 <ArticleLeaf to="/topics/email" title="SaaSquatch & Emails" />
-                <ArticleLeaf
-                  to="/customshortdomainguide"
-                  title="Custom Short Domains"
-                />
                 <ArticleLeaf
                   to="/developer/referral-security/"
                   title="Referral Security"
