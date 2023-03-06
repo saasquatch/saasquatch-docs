@@ -1,5 +1,5 @@
 import React from "react";
-import marked from "marked";
+import { marked } from "marked";
 
 import Markdown from "./Markdown";
 
@@ -79,7 +79,9 @@ function parseList(string) {
 
 export default function render({ source }) {
   if (!source) return <div />;
-  const outs = marked(source, { renderer: ToCRenderer });
+  marked.use({ renderer: ToCRenderer });
+  const outs = marked.parse(source);
+  marked.use();
   const parsedList = parseList(outs);
   if (!parsedList) return <div />;
 

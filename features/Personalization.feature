@@ -171,9 +171,9 @@ Feature: Personalization
 			| Docs are being personalised for Classic programs | classic-only |
 			| Docs are being personalised for all programs     | everything   |
 
-	Scenario Outline: Sidebar menu items are shown/hidden based on selected personalization menu state
-		Given I am on the SaaSquatch docs page at the ../api/methods location
-		And a list of methods is shown in the sidebar menu under "Full list of Methods"
+	Scenario Outline: Sidebar menu items are shown/hidden based on selected personalization state
+		Given I am on a SaaSquatch docs page
+		And I see a list of sidebar menu items
 		When I select <filter option> with a corresponding <filter value>
 		Then the personalization menu is updated with the new <filter option>
 		And sidebar menu items that do not match <filter value> are hidden
@@ -181,4 +181,31 @@ Feature: Personalization
 			| filter option                                    | filter value |
 			| Docs are being personalised for new programs     | ga-only      |
 			| Docs are being personalised for Classic programs | classic-only |
-			| Docs are being personalised for all programs     | everything   |
+			| Docs are being personalised for all programs     | unset        |
+
+	Scenario Outline: Article content conditionally hides based on personalization state
+		Given I am on a SaaSquatch docs Article
+		And there is content wrapped with a <web component filter> container
+		When I select <filter option> in the personalization menu
+		Then the content wrapped with the <web component filter> are hidden
+		And the content that are not wrapped are shown
+		Examples:
+			| web component filter | filter option                                    |
+			| <classic-only>       | Docs are being personalised for new programs     |
+			| <new-programs-only>  | Docs are being personalised for Classic programs |
+			| N/A                  | Docs are being personalised for all programs     |
+
+	@landmine
+	Scenario: Adding an HTML tag without a newline between markdown content results in unformatted content
+		Given I am on a SaaSquatch docs Article
+		And an HTML tag is wrapping content without a newline e.g. <without newline>
+		Then the markdown within the container is not formatted
+		And when a newline is added e.g. <with newline>
+		Then the markdown is formatted correctly
+		Examples:
+			| without newline | with newline |
+			| <div>           | <div>        |
+			| # test          |              |
+			| </div>          | # test       |
+			|                 |              |
+			|                 | </div>       |
