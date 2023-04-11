@@ -550,6 +550,28 @@ export function NavigationSidebar() {
                   title="Cash Payouts Reward Statuses"
                 />
               </DropDown>
+              <DropDown title="HubSpot">
+                <ArticleLeaf
+                  to="/integrations/hubspot"
+                  title="HubSpot Integration"
+                />
+                <ArticleLeaf
+                  to="/integrations/hubspot/overview/"
+                  title="HubSpot Integration Overview"
+                />
+                <ArticleLeaf
+                  to="/integrations/hubspot/integrating-with-saasquatch/"
+                  title="Integrating SaaSquatch with HubSpot"
+                />
+                <ArticleLeaf
+                  to="/integrations/hubspot/sending-data-from-hubspot-forms/"
+                  title="Sending Data From HubSpot Forms to SaaSquatch"
+                />
+                <ArticleLeaf
+                  to="/integrations/hubspot/integration-behaviours/"
+                  title="HubSpot Integration Behaviors"
+                />
+              </DropDown>
             </CoreCategory>
 
             {/* Developer Resources starts here */}

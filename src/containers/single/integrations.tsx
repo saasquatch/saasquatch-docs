@@ -113,8 +113,18 @@ const paypal = {
     "Millions of people use PayPal everyday to send and receive money. Our PayPal integration builds on PayPal's security, efficiency and convenience to allow you to payout your rewards automatically.",
   imageSrc:
     "https://images.ctfassets.net/1th1ybv0b2n4/4aWZWt67UL6ZWyc69CBaGg/54805eb9ad339b101ca7868692095046/Type_PayPal_logo.svg",
-  linkText: "Read more about paypal",
+  linkText: "Read more about PayPal",
   linkUrl: "/paypal-payouts/",
+};
+
+const hubspot = {
+  title: "HubSpot",
+  description:
+    "Our native HubSpot integration automatically shares participant referral data between the two platforms. By connecting your SaaSquatch participants to contacts in HubSpot, you’ll be able to run powerful customer marketing programs that reward behaviors tied to your sales or marketing process.",
+  imageSrc:
+    "//images.ctfassets.net/s68ib1kj8k5n/1J4Y8q1YZwbi0H7MrjRI1K/bb797595d984150d1b8f940d1fad79b7/hubspot-integration.png",
+  linkText: "Read more about HubSpot",
+  linkUrl: "/integrations/hubspot/",
 };
 
 // Cards to be rendered array & render function
@@ -131,6 +141,7 @@ const CardsArray: Array<CardProps> = [
   recurly,
   stitch,
   paypal,
+  hubspot,
 ];
 
 export default function render() {
