@@ -37,7 +37,7 @@ const CardContainer = styled.div`
   row-gap: 24px;
 `;
 
-const ProgramCard = styled(Card)`
+const ProgramCard = styled(Card as any)`
   max-height: 214px;
   min-height: 214px;
   margin-bottom: 0;
