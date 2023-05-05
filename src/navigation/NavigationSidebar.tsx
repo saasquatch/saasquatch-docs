@@ -215,11 +215,11 @@ export function NavigationSidebar() {
               <DropDown title="Participant Experiences">
                 <ArticleLeaf
                   to="/features/end-user-experiences"
-                  title="End User Experiences"
+                  title="Participant Experiences"
                 />
                 <ArticleLeaf
                   to="/building-programs/participant-experiences/saasquatch-components/"
-                  title="SaaSquatch Components for Program Widgets and Microsites"
+                  title="SaaSquatch Components"
                 />
                 <ArticleLeaf
                   to="/building-programs/participant-experiences/configuring-a-custom-domain"
@@ -228,9 +228,14 @@ export function NavigationSidebar() {
               </DropDown>
 
               <DropDown title="Program Widget">
+                <ArticleLeaf to="/topics/widget-types" title="Widget Types" />
                 <ArticleLeaf
                   to="/designer/widget-editor"
                   title="Customizing Program Widgets"
+                />
+                <ArticleLeaf
+                  to="/building-programs/program-widget/setting-up-an-instant-access-widget/"
+                  title="Setting Up an Instant Access Widget"
                 />
                 <ArticleLeaf to="/mobile/widget" title="Mobile Widget" />
                 <ArticleLeaf
@@ -598,10 +603,6 @@ export function NavigationSidebar() {
                 />
                 <ArticleLeaf to="/guides/marketo-form" title="Marketo" />
                 <ArticleLeaf to="/guides/instapage-form" title="Instapage" />
-                <ArticleLeaf
-                  to="/topics/widget-types"
-                  title="User Widget Types"
-                />
                 <ArticleLeaf
                   to="/features/message-links"
                   title="Message Links"
