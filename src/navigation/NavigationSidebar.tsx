@@ -237,7 +237,6 @@ export function NavigationSidebar() {
                   to="/building-programs/program-widget/setting-up-an-instant-access-widget/"
                   title="Setting Up an Instant Access Widget"
                 />
-                <ArticleLeaf to="/mobile/widget" title="Mobile Widget" />
                 <ArticleLeaf
                   to="/features/program-and-portal-statistics/"
                   title="Program and Portal Statistics"
