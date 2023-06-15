@@ -22,7 +22,10 @@ export type Entry = {
   category?: string;
   categoryName?: string;
   sectionType?: string;
-  fields?: { seoDescription?: string };
+  fields?: { 
+    seoDescription?: string 
+    robotsTag?: string
+  };
 };
 
 
