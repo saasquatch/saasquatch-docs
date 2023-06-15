@@ -49,6 +49,7 @@ export default function render(props: Entry) {
         data-type="text"
         content={props.fields?.seoDescription || props.highlights}
       />
+      <meta name="robots" content={props.fields?.robotsTag || "all"} />
       <meta name="description" content={plainHighlights} />
       <meta property="og:description" content={plainHighlights} />
 
