@@ -218,12 +218,20 @@ export function NavigationSidebar() {
                   title="Participant Experiences"
                 />
                 <ArticleLeaf
-                  to="/building-programs/participant-experiences/saasquatch-components/"
-                  title="SaaSquatch Components"
+                  to="/building-programs/participant-experiences/configuring-a-custom-domain"
+                  title="Set Up a Domain"
                 />
                 <ArticleLeaf
-                  to="/building-programs/participant-experiences/configuring-a-custom-domain"
-                  title="Setting Up a Domain"
+                  to="/building-programs/participant-experiences/vanity-links-and-codes"
+                  title="Assign Vanity Share Links or Codes"
+                />
+                <ArticleLeaf
+                  to="/features/program-and-portal-statistics/"
+                  title="Widget and Microsite Statistics"
+                />
+                <ArticleLeaf
+                  to="/building-programs/participant-experiences/saasquatch-components/"
+                  title="SaaSquatch Components"
                 />
               </DropDown>
 
@@ -236,10 +244,6 @@ export function NavigationSidebar() {
                 <ArticleLeaf
                   to="/building-programs/program-widget/setting-up-an-instant-access-widget/"
                   title="Set Up an Instant Access Widget"
-                />
-                <ArticleLeaf
-                  to="/features/program-and-portal-statistics/"
-                  title="Program and Portal Statistics"
                 />
               </DropDown>
 
