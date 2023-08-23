@@ -10,9 +10,9 @@ export const Logo = styled.div`
   text-align: center;
 
   img {
-    max-width: 160px;
+    max-width: 200px;
     margin-top: 7px;
-    margin-bottom: 0;
+    margin-bottom: 10px;
     margin-left: -25px;
   }
 `;
