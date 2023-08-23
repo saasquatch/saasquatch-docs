@@ -18,7 +18,7 @@ const Logo = styled.img`
 `;
 
 const HeaderH2 = styled.h2`
-  color: #347d30;
+  color: #66be61;
   font-size: 32px;
   font-weight: 400;
   margin-top: 32px;

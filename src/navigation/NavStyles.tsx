@@ -57,7 +57,7 @@ export const ContainerDiv = styled.div`
   justify-content: center;
   background: #003b45;
   align-items: center;
-  padding: 24px 0;
+  padding: 16px 0;
   column-gap: 24px;
 
   @media (max-width: 1600px) {
