@@ -17,8 +17,13 @@ const Logo = styled.img`
   margin-top: 53px;
 `;
 
-const Sublogo = styled.img`
-  max-width: 250px;
+const HeaderH2 = styled.h2`
+  color: #347d30;
+  font-size: 32px;
+  font-weight: 400;
+  margin-top: 32px;
+  margin-bottom: 16px;
+  font-family: "Gotham-Rounded", sans-serif;
 `;
 
 export default function render() {
@@ -28,21 +33,20 @@ export default function render() {
   });
   return (
     <>
-    <Meta title={null} />
-    <Hero className="hero-unit">
-      <Logo src="/assets/images/saasquatch-logo-centered-no-slogan-RGB-300dpi.png" />
-      <Sublogo src="/assets/images/helpcenter.png" />
-      <p></p>
-      <p style={{ marginTop: "40px" }}>
-        We're commited to helping you plan, implement, and manage effective,
-        engaging, and profitable referral and loyalty programs. Search below or
-        choose a help center section on your left to get started.{" "}
-      </p>
+      <Meta title={null} />
+      <Hero className="hero-unit">
+        <Logo src="/assets/images/saasquatch-logo-centered-no-slogan-RGB-300dpi.png" />
+        <HeaderH2>How can we help you today?</HeaderH2>
+        <p>
+          We're commited to helping you plan, implement, and manage effective,
+          engaging, and profitable referral and loyalty programs. Search below
+          or choose a help center section on your left to get started.{" "}
+        </p>
 
-      <div className="docs-searchbox-full main-page">
-        <InlineSearch />
-      </div>
-    </Hero>
+        <div className="docs-searchbox-full main-page">
+          <InlineSearch />
+        </div>
+      </Hero>
     </>
   );
 }
@@ -64,7 +68,7 @@ function legacyAnchors() {
     "bestpractice-buttons": "/bestpractices/buttons",
     "bestpractice-speed": "/bestpractices/speed",
     general: "/faq",
-    pricing: "/faq/pricing"
+    pricing: "/faq/pricing",
   };
   /*
         Best practice for extracting hashes:

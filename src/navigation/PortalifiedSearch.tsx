@@ -36,16 +36,19 @@ class PortalifiedSearchForBrowser extends React.Component {
   render() {
     return ReactDOM.createPortal(
       <>
-        <Styles.Logo>
-          <Link to="/">
-            <img src="/assets/images/saasquatch-logo.png" />
-          </Link>
-        </Styles.Logo>
-        <Styles.HelpCenterLogo>
-          <Link to="/">
-            <img src="/assets/images/helpcenter.png" />
-          </Link>
-        </Styles.HelpCenterLogo>
+        <Styles.ContainerDiv>
+          <Styles.Logo>
+            <Link to="/">
+              <img src="/assets/images/saasquatch-logo.png" />
+            </Link>
+          </Styles.Logo>
+          <Styles.HelpCenterLogo>
+            <Link to="/">
+              <img src="/assets/images/helpcenter.png" />
+            </Link>
+          </Styles.HelpCenterLogo>
+        </Styles.ContainerDiv>
+
         <Styles.Search>
           <InlineSearch Input={Styles.SearchInput} sideBar={true} />
         </Styles.Search>
