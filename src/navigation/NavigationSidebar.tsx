@@ -61,6 +61,14 @@ export function NavigationSidebar() {
 
   const currentPage = stripTrailingSlash(history.location.pathname);
 
+  useBrowserEffect(() => {
+    if (
+      window.location.pathname.startsWith("/developer/squatchjs/v2/reference")
+    ) {
+      window.location.replace("https://saasquatch.github.io/squatch-js");
+    }
+  }, [typeof window !== "undefined" && window.location.pathname]);
+
   return (
     <CurrentPageContext.Provider value={currentPage}>
       <Styles.Container>
