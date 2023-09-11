@@ -180,7 +180,7 @@ export default {
             : // Development / local
               "AIzaSyCrIbUMtCnszBe5kZzkbSMk5ii0PZJ5nqw"),
         ROLLBAR_TOKEN:
-          process.env.ROLLBAR_TOKEN || "a865008ca04947acb3d0a1c719e2d93c",
+          process.env.ROLLBAR_TOKEN || "969cb9a4ebce45cba09a7323bb8cbd65",
         PINGDOM_ID: process.env.PINGDOM_ID || "52c61993abe53d650f000000",
         GTMID: process.env.GTMID || "GTM-PK98FJF",
       },
