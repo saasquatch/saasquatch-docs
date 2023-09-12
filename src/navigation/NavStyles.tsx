@@ -10,10 +10,9 @@ export const Logo = styled.div`
   text-align: center;
 
   img {
-    max-width: 160px;
+    max-width: 200px;
     margin-top: 7px;
-    margin-bottom: 0;
-    margin-left: -25px;
+    margin-bottom: 10px;
   }
 `;
 
@@ -24,10 +23,8 @@ export const HelpCenterLogo = styled.div`
   margin-top: -1px;
 
   img {
-    max-width: 140px;
-    margin-bottom: 15px;
-    margin-left: 5px;
-    margin-top: -3px;
+    max-width: 160px;
+    margin: 0 -36px;
   }
 `;
 
@@ -52,4 +49,21 @@ export const GraphQLLogo = styled.i`
     center center / contain;
   width: 16px;
   height: 16px;
+`;
+
+export const ContainerDiv = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  background: #003b45;
+  align-items: center;
+  padding: 16px 0;
+  column-gap: 24px;
+
+  @media (max-width: 1600px) {
+    flex-direction: column;
+    align-items: flex-end;
+    align-content: center;
+    flex-wrap: wrap;
+  }
 `;
