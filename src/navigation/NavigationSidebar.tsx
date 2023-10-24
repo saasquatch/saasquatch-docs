@@ -633,7 +633,7 @@ export function NavigationSidebar() {
                 <ArticleLeaf to="/developer/bulk-import" title="Bulk Imports" />
               </DropDown>
 
-              <DropDown title="Squatch.js">
+              <DropDown title="Key squatch.JS Scripts">
                 <ArticleLeaf to="/developer/squatchjs" title="About" />
                 <ArticleLeaf
                   to="/developer/squatchjs/signed-requests/"
