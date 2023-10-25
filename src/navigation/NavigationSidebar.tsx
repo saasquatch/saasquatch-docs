@@ -643,7 +643,10 @@ export function NavigationSidebar() {
                   to="/developer/squatchjs/issue"
                   title="Issue Code List"
                 />
-                <ArticleLeaf to="/developer/squatchjs/v2" title="Quickstart" />
+                <ArticleLeaf
+                  to="/developer/squatchjs/v2"
+                  title="Key Squatch.js Scripts"
+                />
                 <ArticleLeaf
                   to="/developer/squatchjs/v2/advanced-use-cases"
                   title="Advanced Use Cases"
