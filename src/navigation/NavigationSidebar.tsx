@@ -633,7 +633,7 @@ export function NavigationSidebar() {
                 <ArticleLeaf to="/developer/bulk-import" title="Bulk Imports" />
               </DropDown>
 
-              <DropDown title="Key squatch.JS Scripts">
+              <DropDown title="Squatch.js">
                 <ArticleLeaf to="/developer/squatchjs" title="About" />
                 <ArticleLeaf
                   to="/developer/squatchjs/signed-requests/"
@@ -643,7 +643,10 @@ export function NavigationSidebar() {
                   to="/developer/squatchjs/issue"
                   title="Issue Code List"
                 />
-                <ArticleLeaf to="/developer/squatchjs/v2" title="Quickstart" />
+                <ArticleLeaf
+                  to="/developer/squatchjs/v2"
+                  title="Key Squatch.js Scripts"
+                />
                 <ArticleLeaf
                   to="/developer/squatchjs/v2/advanced-use-cases"
                   title="Advanced Use Cases"
