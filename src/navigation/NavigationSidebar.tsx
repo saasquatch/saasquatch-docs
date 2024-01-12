@@ -218,6 +218,10 @@ export function NavigationSidebar() {
                   to="/guides/referral-quickstart"
                   title="Referral Program - Quickstart"
                 />
+                <ArticleLeaf
+                  to="/building-programs/programs/create-and-publish-a-program-draft"
+                  title="Create and Publish a Program Draft"
+                />
               </DropDown>
 
               <DropDown title="Participant Experiences">
