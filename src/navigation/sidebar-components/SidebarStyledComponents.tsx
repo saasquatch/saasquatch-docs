@@ -9,7 +9,6 @@ import styled from "styled-components";
 import { SidebarSVGProps } from "./SidebarIcons";
 
 export const CoreCategoryLink = styled(Link)`
-  margin-top: 15px;
   font-family: var(--sq-font-family-sans);
   display: flex;
   align-items: center;
