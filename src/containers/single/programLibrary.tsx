@@ -2,6 +2,8 @@ import React from "react";
 import { useRouteData } from "react-static";
 import styled from "styled-components";
 import { HashLink as Link } from "react-router-hash-link";
+import SVG from "react-inlinesvg";
+
 
 import PageHeader from "../../components/PageHeader";
 
@@ -78,15 +80,7 @@ const IconBorder = styled.div`
   border-image: initial;
   text-align: center;
   flex-shrink: 0;
-`;
-
-const ProgramIcon = styled.span`
-  font-size: 22px;
-  color: #575757;
-  width: 22px;
-  height: 22px;
   color: rgb(143, 167, 187);
-  margin-top: 3px;
 `;
 
 const P = styled.p``;
@@ -101,11 +95,16 @@ interface Props {
 }
 
 const ProgramLibraryCardLabel = ({ icon, name, type }: Partial<Props>) => {
+  const getIconPath = (icon: string) => {
+    return "/assets/images/icons/" + icon || "referral" + ".svg";
+  };
+
+
   return (
     <div style={{ padding: "15px" }}>
       <div style={{ display: "flex", minWidth: "100%" }}>
         <IconBorder>
-          <ProgramIcon className={icon ? icon : "icon-sqh-Referral-Program"} />
+          <SVG src={getIconPath(icon)} width="auto" height={22} title={icon} />
         </IconBorder>
         <LibraryH3>{name}</LibraryH3>
       </div>
