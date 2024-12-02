@@ -69,7 +69,9 @@ const IconBorder = styled.div`
   position: relative;
   width: 35px;
   height: 35px;
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   margin-right: 0px;
   overflow: hidden;
   background: rgb(255, 255, 255);
@@ -98,7 +100,6 @@ const ProgramLibraryCardLabel = ({ icon, name, type }: Partial<Props>) => {
   const getIconPath = (icon: string) => {
     return "/assets/images/icons/" + icon || "referral" + ".svg";
   };
-
 
   return (
     <div style={{ padding: "15px" }}>
