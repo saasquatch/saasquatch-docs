@@ -18,7 +18,7 @@
         },
         {
           "key": "Content-Security-Policy-Report-Only",
-          "value": "default-src 'self'; style-src 'self' i.icomoon.io maxcdn.bootstrapcdn.com 'unsafe-inline'; font-src 'self' maxcdn.bootstrapcdn.com staticcdn.referralsaasquatch.com; script-src 'self' 'unsafe-inline' code.jquery.com cdnjs.cloudflare.com rum-static.pingdom.net www.googletagmanager.com vercel.live www.googleapis.com ssl.google-analytics.com; image-src ssl.google-analytics.com"
+          "value": "default-src 'self'; style-src 'self' i.icomoon.io maxcdn.bootstrapcdn.com 'unsafe-inline'; font-src 'self' maxcdn.bootstrapcdn.com staticcdn.referralsaasquatch.com; script-src 'self' 'unsafe-inline' code.jquery.com cdnjs.cloudflare.com rum-static.pingdom.net www.googletagmanager.com vercel.live www.googleapis.com ssl.google-analytics.com; image-src 'self' ssl.google-analytics.com"
         }
       ]
     }
