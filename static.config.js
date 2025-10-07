@@ -40,7 +40,7 @@ function getTemplate(legacy) {
     throw new Error(
       "Unhanlded template!" +
         legacy +
-        " -- either add an entry in TEMPLATES in static.config.js or refactor some code"
+        " -- either add an entry in TEMPLATES in static.config.js or refactor some code",
     );
   }
   return newTemplate;
@@ -59,7 +59,7 @@ async function getRawFiles() {
       .map(async (p) => ({
         source: await fs.readFile(p, { encoding: "utf8" }),
         fpath: p,
-      }))
+      })),
   );
 
   const matter = require("gray-matter");
@@ -111,7 +111,7 @@ async function getAPIYaml() {
     "node_modules/@saasquatch/schema/yaml/saasquatch-api.yaml",
     {
       encoding: "utf8",
-    }
+    },
   );
   const data = yaml.safeLoad(text);
   return data;
@@ -136,8 +136,8 @@ async function getSwagger() {
 }
 
 const getModifiedDate = (date) => {
-  return date.toString().slice(0, 10)
-}
+  return date.toString().slice(0, 10);
+};
 
 export default {
   // WARNING: react-static uses a module called `swimmer` to schedule HTML exports in a set of threads.
@@ -214,14 +214,17 @@ export default {
     [
       require.resolve("react-static-plugin-sitemap"),
       {
-        getAttributes: route => ({
-          lastmod: route.data.entry && route.data.entry.date && getModifiedDate(route.data.entry.date),
+        getAttributes: (route) => ({
+          lastmod:
+            route.data.entry &&
+            route.data.entry.date &&
+            getModifiedDate(route.data.entry.date),
         }),
-      }
-    ]
+      },
+    ],
   ],
-  siteRoot: 'https://docs.saasquatch.com/',
-  stagingSiteRoot: ''
+  siteRoot: "https://docs.saasquatch.com/",
+  stagingSiteRoot: "",
 };
 
 /**
@@ -254,11 +257,21 @@ function createContentfulClient(accessToken, spaceId) {
  *
  */
 async function getRoutes() {
+  const expectEnv = (env) => {
+    const value = process.env[env];
+    if (!value) throw new Error(`${env} environment variable should be set`);
+    return value;
+  };
+
+  const contentfulDocsSpaceId = expectEnv("CONTENTFUL_DOCS_SPACEID");
+  const contentfulDocsAccessKey = expectEnv("CONTENTFUL_DOCS_ACCESS_KEY");
+  const contentfulProductSpaceId = expectEnv("CONTENTFUL_PRODUCT_SPACEID");
+  const contentfulProduceAccessKey = expectEnv("CONTENTFUL_PRODUCT_ACCESS_KEY");
+
   const spec = await getSwagger();
   const entries = await getContentful({
-    accessKey:
-      "ae31ffc9de0831d887cff9aa3c72d861c323bd09de2a4cafd763c205393976c9",
-    spaceId: "s68ib1kj8k5n",
+    spaceId: contentfulDocsSpaceId,
+    accessKey: contentfulDocsAccessKey,
   });
 
   const filterForType = (type) => {
@@ -286,9 +299,8 @@ async function getRoutes() {
   const guides = await getYaml("metadata/guides.yaml");
 
   const contentfulProduct = await getContentful({
-    accessKey:
-      "950546088e303e9d2328c21ea448fac45dd469b899a36d739bc7300c70512d3b",
-    spaceId: "48ji72u659z5",
+    spaceId: contentfulProductSpaceId,
+    accessKey: contentfulProduceAccessKey,
   });
   const programs = contentfulProduct
     .map(productSpaceContentfulpagifier)
@@ -300,7 +312,7 @@ async function getRoutes() {
   const issues = rawFiles
     // .filter(r => multimatch([r.path], ["issues/rs*.*"]).length > 0)
     .filter(
-      (r) => r.path.includes("squatchjs/issue") && !r.path.includes("template")
+      (r) => r.path.includes("squatchjs/issue") && !r.path.includes("template"),
     )
     .map((r) => r.getData().entry);
 
@@ -429,13 +441,13 @@ function getEndpoints(swagger) {
   return Object.keys(swagger.paths).reduce(
     (
       /** @type {import("src/api/Types").EndpointSummary[]} */ acc,
-      /** @type {string} */ path
+      /** @type {string} */ path,
     ) => {
       const methods = swagger.paths[path];
       const subEndpoints = Object.keys(methods)
         .filter((httpMethod) =>
           // ignore other parts of Path like `parameters`
-          HTTP_METHODS.includes(/** @type {any} */ httpMethod)
+          HTTP_METHODS.includes(/** @type {any} */ httpMethod),
         )
         .map((/** @type {string} */ httpMethod) => {
           /** @type {import("swagger-schema-official").Operation} */ const method =
@@ -451,7 +463,7 @@ function getEndpoints(swagger) {
 
       return [...acc, ...subEndpoints];
     },
-    []
+    [],
   );
 }
 
