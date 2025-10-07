@@ -18,7 +18,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; style-src 'self' i.icomoon.io maxcdn.bootstrapcdn.com 'unsafe-inline'; font-src 'self' maxcdn.bootstrapcdn.com staticcdn.referralsaasquatch.com; script-src 'self' 'unsafe-inline' info.saasquatch.com code.jquery.com cdnjs.cloudflare.com rum-static.pingdom.net www.googletagmanager.com vercel.live www.googleapis.com ssl.google-analytics.com; img-src 'self' ssl.google-analytics.com images.ctfassets.net images.contentful.com www.saasquatch.com www.referralsaasquatch.com res.cloudinary.com; connect-src 'self' rum-collector-2.pingdom.net app.referralsaasquatch.com ws.zoominfo.com; frame-src 'self' www.youtube.com vercel.live"
+          "value": "default-src 'self'; style-src 'self' i.icomoon.io maxcdn.bootstrapcdn.com 'unsafe-inline'; font-src 'self' maxcdn.bootstrapcdn.com staticcdn.referralsaasquatch.com; script-src 'self' 'unsafe-inline' ws.zoominfo.com info.saasquatch.com code.jquery.com cdnjs.cloudflare.com rum-static.pingdom.net www.googletagmanager.com vercel.live www.googleapis.com ssl.google-analytics.com; img-src 'self' ssl.google-analytics.com images.ctfassets.net images.contentful.com www.saasquatch.com www.referralsaasquatch.com res.cloudinary.com; connect-src 'self' rum-collector-2.pingdom.net app.referralsaasquatch.com ws.zoominfo.com; frame-src 'self' www.youtube.com vercel.live"
         }
       ]
     }
