@@ -1,6 +1,6 @@
 ---
 title: Bulk User Import
-highlights: The SaaSquatch portal provides a quick and easy way to bulk upload users into your SaaSquatch project to create or update user information. 
+highlights: The SaaSquatch portal provides a quick and easy way to bulk upload users into your SaaSquatch project to create or update user information.
 slug: guides/user-import
 sectionType: successArticle
 template: hasTableOfContents.html
@@ -12,28 +12,30 @@ tags:
 ---
 
 ### Bulk User Import
+
 Imported new users or update existing users in bulk.
 
 1. Head to your SaaSquatch account.
 2. In the upper right corner of your SaaSquatch account select either your Live or Test tenant.
 3. Click "Participants" in the upper header of your SaaSquatch account.
 4. Click "Import Users" on the right side of the Participants page.
-6. Select "User" from the Import Type section.
-7. Click "Select & Upload" and choose the file to import.
-8. Click "Start Import" to begin the import.
-9. When the import completes a confirmation email is sent.
+5. Select "User" from the Import Type section.
+6. Click "Select & Upload" and choose the file to import.
+7. Click "Start Import" to begin the import.
+8. When the import completes a confirmation email is sent.
 
 > Bulk User imports may take up to 30 minutes depending on queue and file size.
 
 ### Upload Format & Recommendations
 
-- SaaSquatch accepts bulk user imports submitted in `.csv` or `.jsonl` file formats. 
+- SaaSquatch accepts bulk user imports submitted in `.csv` or `.jsonl` file formats.
 - Fields are case sensitive.
-- It is recommended that each import does not exceed 500,000 entries. 
-- Please reference our [sample CSV import file](https://assets.ctfassets.net/s68ib1kj8k5n/7LOYwhDlsI22uuaIMaWImE/71cefe860edc71c0968c8065e1d6e953/sample-user-upload.csv) and [sample JSONL import file](https://assets.ctfassets.net/s68ib1kj8k5n/5rD1ZiKEjqStp54qjDB90N/48918dfa8b53a935c7c83ea5fbf3af77/userImportSample.jsonl).
+- It is recommended that each import does not exceed 500,000 entries.
+- Please reference our [sample CSV import file](/assets/samples/sample-user-upload.csv) and [sample JSONL import file](/assets/samples/userImportSample.jsonl).
 
-### Fields 
-Bulk user imports support both Standard Fields and Custom fields in the upload file. 
+### Fields
+
+Bulk user imports support both Standard Fields and Custom fields in the upload file.
 
 #### Standard Fields
 
@@ -195,18 +197,20 @@ Standard fields are parsed with the same validation as our [Open Endpoint User U
 </table>
 
 #### Custom Fields
+
 [Custom user fields](/features/custom-user-fields) allow for data unique to your participants. Add a custom fields to the column header in this format: customFields.yourCustomFieldName
 
-[Growth Automation](/growth/saasquatch-ga/) programs allow for triggering goals based on custom user fields. 
+[Growth Automation](/growth/saasquatch-ga/) programs allow for triggering goals based on custom user fields.
 
-Example: The [Birthday Program](/program/birthday-program/) allows for a user's birthdate to trigger a goal. First, upload the participant's birthday in --MM-DD format in the customFields.birthday field. Then set the goal to convert on or around their birthday. 
+Example: The [Birthday Program](/program/birthday-program/) allows for a user's birthdate to trigger a goal. First, upload the participant's birthday in --MM-DD format in the customFields.birthday field. Then set the goal to convert on or around their birthday.
 
-Example: Reward participants when they renew their subscription membership. First, include the custom field customFields.subscriptionPaid with the value of yes. Then, set the goal to convert when when customFields.subscriptionPaid is equal to yes. 
+Example: Reward participants when they renew their subscription membership. First, include the custom field customFields.subscriptionPaid with the value of yes. Then, set the goal to convert when when customFields.subscriptionPaid is equal to yes.
 
 > **Note:** Custom fields are not able to accept array or object values.
 
 ### User Segments
-You can include or remove participants from a specific **[user segment](/features/user-segmentation)**. during the bulk user upload process. 
+
+You can include or remove participants from a specific **[user segment](/features/user-segmentation)**. during the bulk user upload process.
 
 1. Head to your SaaSquatch account.
 2. In the upper right corner of your SaaSquatch account select either your Live or Test tenant.
@@ -214,26 +218,29 @@ You can include or remove participants from a specific **[user segment](/feature
 4. Click "Import Users" on the right side of the Participants page.
 5. Select "User" from the Import Type section.
 6. Click "Select & Upload" and choose the file to import.
-7. Select a  segment from the dropdown list below "Select & Upload". 
+7. Select a segment from the dropdown list below "Select & Upload".
 8. Click "Start Import" to begin the import.
 9. When the import completes a confirmation email is sent.
 
-> **Note:** When a segment is selected all participants uploaded at that time will be added to or removed from the selected segment. 
+> **Note:** When a segment is selected all participants uploaded at that time will be added to or removed from the selected segment.
 
 ### Results
+
 When your upload completes you will receive an email notifying you of the result.
 
-You can download import results from the *Import and Export Jobs* page within the Reporting section.
+You can download import results from the _Import and Export Jobs_ page within the Reporting section.
 
 > **Please Note:** Download links will expire after 30 days.
 
 #### Successful Upload
-If the import completes successfully, a file with the user information of those that were successfully imported will be generated and emailed to you. 
 
-The user information that is included in these results is the same as is found in our [User Details Report](/features/reports/#user-details-report). 
+If the import completes successfully, a file with the user information of those that were successfully imported will be generated and emailed to you.
+
+The user information that is included in these results is the same as is found in our [User Details Report](/features/reports/#user-details-report).
 
 #### Errors
-If any non-fatal errors are encountered during the import, then a second results file will also be generated (in addition to the file with the successfully uploaded records). 
+
+If any non-fatal errors are encountered during the import, then a second results file will also be generated (in addition to the file with the successfully uploaded records).
 The errors file includes entries for each error that occurred, including the row number of the record (from the initial import file) that failed, and any associated error messages:
 
 <table class="table">
@@ -262,9 +269,9 @@ This request requires a valid non-empty id
   </td>
   <td class="docs-monospace">BAD_REQUEST</td>
   <td class="docs-monospace">400</td>
-</tr> 
+</tr>
 
 </tbody>
 </table>
 
-In the unlikely event that a fatal system error occurs and the import is interrupted, then the import will appear as **aborted** and will not recover. Please our [Success Team](mailto:success@saasquatch.com) for further assistance. 
+In the unlikely event that a fatal system error occurs and the import is interrupted, then the import will appear as **aborted** and will not recover. Please our [Success Team](mailto:success@saasquatch.com) for further assistance.

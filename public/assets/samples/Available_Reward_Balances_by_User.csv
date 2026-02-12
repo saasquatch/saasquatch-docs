@@ -1,0 +1,4 @@
+firstName,lastName,email,dateBlocked,unitName,currency,availableValue,valueToRedeem,totalRedeemedValue,userId,accountId,unit,segments
+John,Doe,john@example.com,,Point,,200,0,400,abc_123,abc_123,POINT,
+Jimbo,Doe,jimbo@example.com,,Credit,CAD,20,0,0,abc_124,abc_124,CREDIT/CAD,
+Bob,Doe,bob@example.com,,Credit,USD,5,0,10,abc_125,abc_125,CENTS,

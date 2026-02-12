@@ -1,6 +1,6 @@
 ---
 title: Bulk Event Import
-highlights: The SaaSquatch portal provides a quick and easy way to import events within our system. 
+highlights: The SaaSquatch portal provides a quick and easy way to import events within our system.
 slug: guides/event-import
 sectionType: successArticle
 template: hasTableOfContents.html
@@ -15,6 +15,7 @@ tags:
 ---
 
 ### Importing an Event
+
 Imported events link to a user and can trigger both conversion and non-conversion goals.
 
 1. Head to your SaaSquatch account.
@@ -24,18 +25,20 @@ Imported events link to a user and can trigger both conversion and non-conversio
 5. Click "Import" on the right side of the Your Reports page.
 6. Select "User Events" from the Import Type.
 7. Click "Select & Upload" and choose the file to import.
-8. Click "Start Import" to begin the import. 
+8. Click "Start Import" to begin the import.
 9. When the import completes a confirmation email is sent.
 
 > Event imports may take up to 30 minutes depending on queue and file size.
 
 ### Upload Format & Recommendations
-- SaaSquatch accepts event imports submitted in `.csv` or `.jsonl` file formats. 
+
+- SaaSquatch accepts event imports submitted in `.csv` or `.jsonl` file formats.
 - Fields are case sensitive
-- It is recommended that each import does not exceed 500,000 entries. 
-- Please reference our [sample CSV file](https://assets.ctfassets.net/s68ib1kj8k5n/20lD8Gua3EtW8qIahBvciz/152fd3cfaa3f0ee4076a6729bc8d4164/userEventSample.csv) and [sample JSONL file](https://assets.ctfassets.net/s68ib1kj8k5n/2IPDDkVhCgDBPyQrRANfb9/d38643fba660ca1412b7d85f1b7c0f41/userEventSample.jsonl).
+- It is recommended that each import does not exceed 500,000 entries.
+- Please reference our [sample CSV file](/assets/samples/userEventSample.csv) and [sample JSONL file](/assets/samples/userEventSample.jsonl).
 
 #### Standard Fields
+
 <table class="table">
 <thead>
 <tr>
@@ -74,9 +77,10 @@ Imported events link to a user and can trigger both conversion and non-conversio
 </table>
 
 #### Event Fields
-Events sent to SaaSquatch can contain a wide array of fields. This includes event specific information to interface with programs and third party integrations. 
 
-For example, a 'purchase' event would have 'revenue' and 'currency' fields. 
+Events sent to SaaSquatch can contain a wide array of fields. This includes event specific information to interface with programs and third party integrations.
+
+For example, a 'purchase' event would have 'revenue' and 'currency' fields.
 
 When importing an event using .csv, these fields would be represented as: `event.fields.revenue` and `event.fields.currency`.
 
@@ -84,19 +88,22 @@ When importing an event using .csv, these fields would be represented as: `event
 
 To add more fields to an imported event, use the following format:
 
-  __CSV__: `event.fields.yourEventFieldName` 
+**CSV**: `event.fields.yourEventFieldName`
 
-  __JSON__: `"event":{ "key":"yourEventKey", "fields":{"yourEventFieldName":"yourEventFieldValue"}}`
+**JSON**: `"event":{ "key":"yourEventKey", "fields":{"yourEventFieldName":"yourEventFieldValue"}}`
 
 ### Results
-We notify you by email when your import is complete. If you want to review the results of the import, you can go to **Analytics > Reports** and select **Create Report** to get started. 
+
+We notify you by email when your import is complete. If you want to review the results of the import, you can go to **Analytics > Reports** and select **Create Report** to get started.
 
 > **Please Note:** Download links will expire after 30 days.
 
 #### Successful Upload
-If the import completes successfully, a file with the event information of those that were successfully imported will be generated and emailed to you. 
+
+If the import completes successfully, a file with the event information of those that were successfully imported will be generated and emailed to you.
 
 The file will contain the following fields.
+
 <table class="table">
 <thead>
 <tr>
@@ -150,7 +157,8 @@ The file will contain the following fields.
 </table>
 
 #### Errors
-If any non-fatal errors are encountered during the import, then a second results file will also be generated (in addition to the file with the successfully uploaded records). 
+
+If any non-fatal errors are encountered during the import, then a second results file will also be generated (in addition to the file with the successfully uploaded records).
 The errors file includes entries for each error that occurred, including the row number of the record (from the initial import file) that failed, and any associated error messages:
 
 <table class="table">
@@ -179,7 +187,7 @@ This request requires a valid non-empty id
   </td>
   <td class="docs-monospace">BAD_REQUEST</td>
   <td class="docs-monospace">400</td>
-</tr> 
+</tr>
 
 </tbody>
 </table>

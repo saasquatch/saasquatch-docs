@@ -11,8 +11,7 @@ export function replace(domNode: any) {
       href &&
       !href.startsWith("http:") &&
       !href.startsWith("https:") &&
-      !href.startsWith("mailto:") &&
-      !href.startsWith("//assets.ctfassets.net")
+      !href.startsWith("mailto:")
     ) {
       // Local (relative) links pimped with react router navigation
       return (
