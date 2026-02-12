@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "5uY9fkvD7GM8gM8ukCekM4",
+    "type": "Entry",
+    "createdAt": "2017-05-29T23:37:48.824Z",
+    "updatedAt": "2019-10-04T23:23:52.225Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 2736,
+    "revision": 4,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Instapage Form Quickstart Guide",
+    "slug": "guides/instapage-form",
+    "highlights": "A quickstart guide for leveraging your existing Instapage Forms to automatically add referred signups into your referral program.",
+    "content": "Using the [Instapage form submit callback](https://help.instapage.com/hc/en-us/articles/205223588-Form-submit-callback) we can identify incoming Referred Users to the SaaSquatch system and create the referral connections.\n\n### Configure Form Fields to Collect\nIn our example form we are collecting information from `First Name`, `Last Name`, and `Email` form fields. You can also choose to submit additional information from the form like account ID, or locale if that is available. \n\nOnce you know the names of the form fields you would like to pass into the SaaSquatch system to identify the user:\n\n1. Pick a name for the variable, like `form_first_name`\n2. Add the name of the variable and the form field you are looking to pickup into the following example:\n\n```javascript\nvar form_first_name = ijQuery( form ).find( 'input[name=\"'+ base64_encode( 'First Name' ) +'\"]').val();\n```\n\nCreate additional copies of this line of code for each variable you would like to pass into the SaaSquatch system.\n\n### Configure SaaSquatch User Object\nTo pass the form information into the SaaSquatch system we map the form variables to the ones in the SaaSquatch system.\n\nIn the following example, we are passing in the info from the email address, first name, and last name, through their respective variable names, `form_email`, `form_first_name`, and `form_last_name`:\n\n```javascript\nid: form_email,      \naccountId: form_email,       \nemail: form_email,               \nfirstName: form_first_name,       \nlastName: form_last_name\n```\n\nYou might need to adjust these mappings based on the names you have for each of the variables, and the information you are looking to pass to the SaaSquatch system.\n\n### Configure the SaaSquatch Tenant Alias\nThe tenant alias for your program determines which of the [live or test tenant](/success/using-referral-saasquatch/#test-vs-live) of your referral program your Instapages form will be sending data to. We recommend making use of your test tenant right up until you are ready to expose your referral program to your customers. More information on when to use which tenant alias can be found in our [Testing Best Practices](/developer/testing) article. \n\nThe following example shows a code snippet with an example test tenant alias:\n\n```javascript\nsquatch.init({\n  tenantAlias: 'test_ae7bygqkh9gag'\n});\n```\n\n### Building the Final Code Snippet\nOnce you have each of the above steps completed you can drop them into the following code snippet:\n\n```javascript\n&lt;script type=\"text/javascript\">\n  window.instapageFormSubmitSuccess = function( form ){\n    var form_email = ijQuery( form ).find( 'input[name=\"'+ base64_encode( 'Email' ) +'\"]').val();\n    var form_first_name = ijQuery( form ).find( 'input[name=\"'+ base64_encode( 'First Name' ) +'\"]').val();\n    var form_last_name = ijQuery( form ).find( 'input[name=\"'+ base64_encode( 'Last Name' ) +'\"]').val();\n    //Include squatch.js in your webpage\n    !function(a,b){a(\"squatch\",\"https://d2rcp9ak152ke1.cloudfront.net/assets/javascripts/v2/squatch.min.js\",b)}    (function(a,b,c){var d,e,f;c[\"\"+a]={},c[a]={},c[a].ready=function(b){c[\"\" + a].ready =  c[\"\" + a].ready || [];c[\"_\" + a].ready.push(b);},e=document.createElement(\"script\"),e.async=1,e.src=b,f=document.getElementsByTagName(\"script\")[0],f.parentNode.insertBefore(e,f)},this);\n    squatch.ready(function() {        // when squatch.js is ready to use\n      squatch.init({\n        tenantAlias: \"test_ae7bygqkh9gag\"        //configure squatch.js for the tenant you are using\n      });\n      var initObj = {        //object containing the init parameters for squatch.js\n        user: {        //the object for the user you want to upsert                              \n          <strong>\n          id: form_email,      \n          accountId: form_email,       \n          email: form_email,               \n          firstName: form_first_name,       \n          lastName: form_last_name\n          </strong>\n        }\n      };\n      //update/register a referral participant without displaying a widget \n      squatch.api().upsertUser(initObj).then(function(response) {\n        user = response.user;\n      }).catch(function(err){\n        console.log(err);\n      });\n    });\n  };\n&lt;/script>\n```\n\nWith the information being collected from the form, the SaaSquatch user object configured, and SaaSquatch tenant alias added you can place the code snippet on your Instapage. This can be done by adding it to the JavaScript code section under the pages Settings menu in the Instapage editor.\n\n### Configure Tenant Security Settings\nFrom the SaaSquatch Admin Portal, navigate to the [Install page](/success/navigating-the-portal/#install). Change the Secure mode to “Custom” and make sure that the “Create/Update User” option is disabled. \n \nThis will allow you to submit user information from the Instapages from to the SaaSquatch system without your website having to sign the request using a [JWT](/topics/json-web-tokens/) generated from your SaaSquatch API key. More information about Secure Mode can be found on our [Signed Requests](/developer/squatchjs/signed-requests/) page in our docs.\n\n![Highlighted Disable Upsert Method](//images.contentful.com/s68ib1kj8k5n/3cldqWUZfigcug4MaiWYGi/36db2766ed61347ac99db2acca433291/Highlighted_Disable_Upsert_Method.png)\n\n### Next Steps \nCongratulations on connecting up your Instapages form to your SaaSquatch Program! For further details about how to go about installing your referral program please check out our [Quickstart Referral Program Install Guide](/guides/referral-quickstart). \n\n>We also recommend diving deeper into the world of Referral Programs and our platform by reading these documents: \n>\n>- Explore more of the configuration options available in the SaaSquatch Portal in our [Using SaaSquatch](/success/using-referral-saasquatch/) article.\n>- View a list of all Growth Automation Programs available to you by viewing our [Program Library](/program/library).\n"
+  }
+}

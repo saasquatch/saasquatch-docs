@@ -1,0 +1,49 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "5dFMlaflLS0msvzgFKQuni",
+    "type": "Entry",
+    "createdAt": "2021-03-29T23:08:13.218Z",
+    "updatedAt": "2023-03-24T15:19:58.177Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 187,
+    "revision": 6,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Sending Program Emails From a Custom Email Address",
+    "slug": "sending-program-emails-from-a-custom-email-address",
+    "highlights": "How to set up SaaSquatch to send program emails from a custom email address using your own domain.",
+    "content": "By default, all emails sent for your program are sent using the email address `referral@mail.saasquat.ch`. This guide will show you how to setup SaaSquatch to send out program emails through an email address of your choosing. \n\n>*Note:* You will need the assistance of the team that manages your Email Service Provider. This is typically your IT or DevOps team.\n\n### Select an Email Address\nYou will need an email address that makes use of a domain and ideally has a setup for dealing with incoming emails should anyone try to respond to the email they receive. This could be referrals@mycompany.com or support@referrals.mycompany.com. \n\n### Set up SaaSquatch\nOnce you have selected an email address, you will need to set up your SaaSquatch implementation to send emails using the address. This can be done one of two ways: By providing SaaSquatch with your SMTP credentials or by having us create an SPF Record. Your IT or DevOps team should indicate which solution is best for your implementation.\n\n#### SMTP \nTo have SaaSquatch send program emails through your SMTP server, use the following steps. \n\n>Please note that you will need to have the following details:\n>- SMTP Server Hostname\n>- Port\n>- Authentication Method (None, TLS or SSL)\n>- Username & Password\n\n1. Go to the *Settings* page in the SaaSquatch portal and select *Integrations* from the sub-header.\n2. Scroll to the *Custom SMTP Email Server* section and click the down-arrow button.\n3. Enter in the credentials outlined above and click the orange *Connect* button.\n4. The system will then attempt to connect to the SMTP server and let you know if it was successful.\n5. Proceed with [updating the program email addresses](#updating-the-program-email-addresses).\n\n#### DKIM Records\nDKIM Records are a method that allows SaaSquatch to send legitimate emails on your behalf and using your domain. It should be noted that it is not recommended to have more than one DKIM Record for a given domain as it can cause authorization issues. Please use the following steps to set up this integration:\n1. Contact the SaaSquatch Success Team at success@saasquatch.com and inform them that you would like to set up a DKIM Record and which domain you would like it to be for. Your IT or DevOps Team should be aware of this request.\n2. Once you have received the contents for the DKIM Record, have your IT or DevOps Team add it to your DNS Records for the domain.\n3. Let the SaaSquatch Success Team know once the record has been created and they'll perform an authentication to confirm. \n4. Proceed with the following steps to [update the program email addresses](#updating-the-program-email-addresses).\n\n### Updating the Program Email Addresses\n1. Click on *Programs* in the header of the SaaSquatch portal and click *Edit* for the program you would like to adjust the email address for.\n2. Scroll down and click the *Customize* button for each email.\n3. Change the \"From Address\" field with the new email address.\n4. Send a test email to confirm the new settings are working as expected.",
+    "tags": [
+      "Guide"
+    ],
+    "robotsTag": [
+      "noindex"
+    ]
+  }
+}

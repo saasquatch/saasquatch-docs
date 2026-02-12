@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "6X59f8I1JUwem0LsF37UwP",
+    "type": "Entry",
+    "createdAt": "2022-09-29T13:39:36.769Z",
+    "updatedAt": "2023-05-17T00:00:04.236Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 28,
+    "revision": 4,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Microsites Overview",
+    "slug": "building-programs/microsites/microsites-overview",
+    "highlights": "A SaaSquatch-hosted microsite provides a centralized place for your program’s participants to sign up to your program and access the referral widget. Our microsite editor gives you control over what your end users will see by letting you customize layouts, pages, branding elements like fonts and colors, and even the domain.",
+    "content": "We recommend using microsites when your users don’t have a way to register for an account for your program, like if your website doesn’t have an area for users to log in. They’re useful if you’re running partner or affiliate programs. All microsites are [verified access](/topics/widget-types/#verified-access-widgets) only.\n\n## Microsite setup process\n\n> __Important__: Before attempting to set up a microsite, make sure your plan supports one. If you’re not sure or would like to talk about upgrading, then reach out to our [Success team](mailto:success@saasquatch.com) for details.\n\nYou can set up your microsite in a few steps:\n1. Run auto setup to create the microsite.\n2. Add a domain.\n3. Customize your microsite’s layouts and pages to give your participants an experience that’s tailored to your brand and program.\n4. Adjust the lifecycle emails that the site will send out to participants.\n\nSee our other guides that are linked in the sidebar for more information. Our doc on the [SaaSquatch Microsite Editor](https://docs.saasquatch.com/building-programs/microsites/microsite-editor) provides general information about the editor interface and microsite structure.\n",
+    "robotsTag": [
+      "FOLLOW"
+    ],
+    "canonicalUrl": "<link rel=\"canonical\" href=\"URL from Contentful response\"/>"
+  }
+}

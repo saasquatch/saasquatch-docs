@@ -1,0 +1,362 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "5Qp2UvLSDueGiM4wIsg84q",
+    "type": "Entry",
+    "createdAt": "2016-04-04T22:28:52.273Z",
+    "updatedAt": "2018-12-03T23:11:10.068Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 34,
+    "revision": 3,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "faqCategory"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "name": "Pricing",
+    "slug": "faq/pricing",
+    "answers": [
+      {
+        "metadata": {
+          "tags": [],
+          "concepts": []
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "s68ib1kj8k5n"
+            }
+          },
+          "id": "1N3jv8v50sMw4mi4YUyQmE",
+          "type": "Entry",
+          "createdAt": "2016-04-04T22:22:55.478Z",
+          "updatedAt": "2016-04-04T22:22:55.478Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "publishedVersion": 36,
+          "revision": 1,
+          "contentType": {
+            "sys": {
+              "type": "Link",
+              "linkType": "ContentType",
+              "id": "faq"
+            }
+          },
+          "locale": "en-US"
+        },
+        "fields": {
+          "question": "How do I get started?",
+          "answer": "- First you take a look at our pricing page and find the plan that best suits you.\n- Then you enter and confirm your email through our sign-up page.\n- Finally you login to the platform, pick your reward type and start customizing the widget."
+        }
+      },
+      {
+        "metadata": {
+          "tags": [],
+          "concepts": []
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "s68ib1kj8k5n"
+            }
+          },
+          "id": "6Uxs7fYWk0CaIuKuiy4oIu",
+          "type": "Entry",
+          "createdAt": "2016-04-04T22:23:15.726Z",
+          "updatedAt": "2018-12-12T20:41:35.358Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "publishedVersion": 21,
+          "revision": 2,
+          "contentType": {
+            "sys": {
+              "type": "Link",
+              "linkType": "ContentType",
+              "id": "faq"
+            }
+          },
+          "locale": "en-US"
+        },
+        "fields": {
+          "question": "How do you define a participant?",
+          "answer": "A participant is an identified customer who is registered with our system and has a referral link and/or code generated for them. We suggest adding up the total number of customers you work with in one month to determine how many participants you need from our system."
+        }
+      },
+      {
+        "metadata": {
+          "tags": [],
+          "concepts": []
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "s68ib1kj8k5n"
+            }
+          },
+          "id": "5cGGtSHOVGaI6qES0uY862",
+          "type": "Entry",
+          "createdAt": "2016-04-04T22:23:34.670Z",
+          "updatedAt": "2016-04-04T22:23:34.670Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "publishedVersion": 4,
+          "revision": 1,
+          "contentType": {
+            "sys": {
+              "type": "Link",
+              "linkType": "ContentType",
+              "id": "faq"
+            }
+          },
+          "locale": "en-US"
+        },
+        "fields": {
+          "question": "Why is there a setup fee for some tiers?",
+          "answer": "In order to ensure your success with our referral marketing platform we need to get you off on the right foot. Referral marketing is more than just using software, it’s about transforming the way your product interacts with your customers. The fee goes towards aligning time and resources to make sure the program is designed and implemented correctly."
+        }
+      },
+      {
+        "metadata": {
+          "tags": [],
+          "concepts": []
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "s68ib1kj8k5n"
+            }
+          },
+          "id": "338NlddZUQW0caioCq4M86",
+          "type": "Entry",
+          "createdAt": "2016-04-04T22:23:59.405Z",
+          "updatedAt": "2021-04-07T21:38:43.055Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "publishedVersion": 12,
+          "revision": 2,
+          "contentType": {
+            "sys": {
+              "type": "Link",
+              "linkType": "ContentType",
+              "id": "faq"
+            }
+          },
+          "locale": "en-US"
+        },
+        "fields": {
+          "question": "Is the widget customizable?",
+          "answer": "Right now the widget is fully customizable, so you can match the branding of your company. However, we do charge an additional setup fee to do this. We highly recommend this so you can give your users a seamless experience within your product.\n\nIf you're familiar with web components, you can also [write your own web components](/developer/widgets/writing-a-web-component-for-saasquatch) for use inside of SaaSquatch widgets.\n"
+        }
+      },
+      {
+        "metadata": {
+          "tags": [],
+          "concepts": []
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "s68ib1kj8k5n"
+            }
+          },
+          "id": "39uPojubFei6GWSqec6Csc",
+          "type": "Entry",
+          "createdAt": "2016-04-04T22:25:37.830Z",
+          "updatedAt": "2016-04-04T22:25:37.830Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "publishedVersion": 8,
+          "revision": 1,
+          "contentType": {
+            "sys": {
+              "type": "Link",
+              "linkType": "ContentType",
+              "id": "faq"
+            }
+          },
+          "locale": "en-US"
+        },
+        "fields": {
+          "question": "What if I go over my plan limits?",
+          "answer": "There's nothing to worry about. If you go over your plan limits, your program will continue to function normally. At the end of your billing period we will contact you to discuss upgrading your plan.\n\n<div class=\"well\">\n    <h4>Pricing Example</h4>\n    \n    <p>I’m a marketing director looking to buy a referral program for my company that has 25,000 active users.</p> \n    <p>Given that usage I would select the Pro Plan, which would cost $874 per month. (Base of $499 + $375 at $25/1,000 users)</p> \n    <p>This is an example if your service costs $40/month and you want to give both the referring user and the newly referred users 10% off</p>\n    <ul>\n        <li>One of your customers refers a friend to signup</li>\n        <li>That friend signs up, finishes their 15 day trial, and pays their first invoice</li>\n        <li>The new friend gets 10% off their first bill ($4 off)</li>\n        <li>The referrer get 10% off their next bill for the next 12 months (or until their friend cancels their subscription)</li>\n    </ul>\n</div>\n"
+        }
+      },
+      {
+        "metadata": {
+          "tags": [],
+          "concepts": []
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "s68ib1kj8k5n"
+            }
+          },
+          "id": "4ZF530VDJ62EGEkI4uYGWy",
+          "type": "Entry",
+          "createdAt": "2016-04-04T22:24:49.183Z",
+          "updatedAt": "2016-04-04T22:24:49.183Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "publishedVersion": 4,
+          "revision": 1,
+          "contentType": {
+            "sys": {
+              "type": "Link",
+              "linkType": "ContentType",
+              "id": "faq"
+            }
+          },
+          "locale": "en-US"
+        },
+        "fields": {
+          "question": "What happens if a referred customer cancels shortly after they start paying?",
+          "answer": "Our service is focused on driving customer acquisition for your company. So, unfortunately we can't be responsible for customer retention efforts."
+        }
+      },
+      {
+        "metadata": {
+          "tags": [],
+          "concepts": []
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "s68ib1kj8k5n"
+            }
+          },
+          "id": "Qv9utsEpoG0Ag6g4qui4K",
+          "type": "Entry",
+          "createdAt": "2016-04-04T22:25:14.520Z",
+          "updatedAt": "2016-04-04T22:25:14.520Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "publishedVersion": 4,
+          "revision": 1,
+          "contentType": {
+            "sys": {
+              "type": "Link",
+              "linkType": "ContentType",
+              "id": "faq"
+            }
+          },
+          "locale": "en-US"
+        },
+        "fields": {
+          "question": "Does Referral SaaSquatch work with foreign currencies?",
+          "answer": "Yes. We work with any currency that your subscription provider works with. We will charge you in USD at the conversion rate available to us on the day of your invoice."
+        }
+      },
+      {
+        "metadata": {
+          "tags": [],
+          "concepts": []
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "s68ib1kj8k5n"
+            }
+          },
+          "id": "6OowKhu9j22M4scykoQAM6",
+          "type": "Entry",
+          "createdAt": "2016-04-04T22:25:31.221Z",
+          "updatedAt": "2018-12-12T20:31:48.699Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "publishedVersion": 58,
+          "revision": 4,
+          "contentType": {
+            "sys": {
+              "type": "Link",
+              "linkType": "ContentType",
+              "id": "faq"
+            }
+          },
+          "locale": "en-US"
+        },
+        "fields": {
+          "question": "Does Referral SaaSquatch offer volume discounts?",
+          "answer": "Happily! Our Enterprise tier is available for larger more complex solutions. Email us at <a href=\"mailto:sales@saasquat.ch?subject=Enterprise%20Plans\">sales@saasquat.ch</a>."
+        }
+      }
+    ]
+  }
+}

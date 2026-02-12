@@ -1,0 +1,52 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "gFHkHvTuXiDtkPMVw8AZr",
+    "type": "Entry",
+    "createdAt": "2022-03-03T19:03:54.140Z",
+    "updatedAt": "2023-10-30T20:11:17.851Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 101,
+    "revision": 11,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Bulk User Delete",
+    "slug": "guides/bulk-user-delete",
+    "highlights": "The SaaSquatch portal allows you to bulk delete users from your SaaSquatch project.",
+    "content": "> __Warning__: Participant deletion is an irreversible, permanent action that impacts all share links, referrals, events, and analytics connected to the deleted participant. Deleted data is not recoverable. Before starting the deletion process, we recommend confirming that all users in your upload file should be permanently erased from SaaSquatch. See our document on [Participant Deletion](/features/participant-deletion) for more information, or contact our [Support team](mailto:saasquatch-support@impact.com).\n\n### Bulk User Delete\nDelete existing users in bulk.\n\n1. Head to your SaaSquatch account.\n2. In the upper left corner of your SaaSquatch account select either your Live or Test tenant.\n3. Click \"Analytics\" in the upper header of your SaaSquatch account.\n4. Click \"Reports\" in the navigation.\n5. Click \"Import\" on the right side of the Reports page.\n6. Select \"Delete Users\" from the Import Type section.\n7. Click \"Select & Upload\" and choose the file to import.\n8. Click \"Start Import\" to begin the import.\n9. The participants are now deleted. \n\n### Upload Format & Recommendations\n\n- SaaSquatch accepts bulk user deletes submitted in `.csv` or `.jsonl` file formats. \n- Fields are case sensitive.\n- It is recommended that each import does not exceed 500,000 entries. \n- Please reference our [sample CSV import file](https://assets.ctfassets.net/s68ib1kj8k5n/4IWYz9jkNTP4gQiKU5HSnO/09794e8768e3732f6d06ea29a058d388/sample-user-delete.csv) and [sample JSONL import file](https://assets.ctfassets.net/s68ib1kj8k5n/1GMnqK0sMJ9LXXaKyjXOVD/ec39618863613f483703cd6f754b6017/userDeleteImportSample.zip).\n\n### Fields \nBulk user deletes require only an `id` and `accountId` for the users to be deleted, and have some optional fields depending on the behaviour required.\n\n<table class=\"table\">\n<thead>\n<tr>\n    <th >\n        Field\n    </th>\n    <th>\n        Type\n    </th>\n    <th>\n        Description\n    </th>\n</tr>\n</thead>\n<tbody>\n<tr>\n    <td class=\"docs-monospace\">accountId</td>\n    <td>\n         <span class=\"label\">Required</span> \n      <span class=\"muted docs-monospace\">string</span>\n    </td>\n    <td>The unique identifier of the Account that this user belongs to.</td>\n</tr>\n<tr>\n    <td class=\"docs-monospace\">id</td>\n    <td> <span class=\"label\">Required</span> \n      <span class=\"muted docs-monospace\">string</span>\n    </td>\n    <td>The unique identifier provided for this user.</td>\n</tr>\n<tr>\n    <td class=\"docs-monospace\">preserveEmptyAccount</td>\n    <td>\n      <span class=\"muted docs-monospace\">boolean</span>\n    </td>\n    <td>If the user's account is left with no users, by default the account will be deleted. If set, this field will result in the empty account being preserved. This will override the global <code>Preserve Empty Accounts</code> setting for the import job for this row specifically.</td>\n</tr>\n  <tr>\n    <td class=\"docs-monospace\">doNotTrack</td>\n    <td>\n      <span class=\"muted docs-monospace\">boolean</span>\n    </td>\n    <td>Specify <code>true</code> if you would like this user to be deleted with the <code>Do Not Track</code> setting set. This will override the global <code>Do Not Track</code> setting for the import job for this row specifically.</td>\n</tr>\n</tbody>\n</table>\n\n### Results\nWhen your upload completes you will receive an email notifying you of the result.\n\nYou can download import results from the *Reports* page within the Analytics section.\n\n> **Please Note:** Download links will expire after 30 days.\n\n#### Errors\nIf any non-fatal errors are encountered during the import, then a results file will be generated.\n\nThe errors file includes entries for each error that occurred, including the row number of the record (from the initial import file) that failed, and any associated error messages.\n\nIn the unlikely event that a fatal system error occurs and the import is interrupted, then the import will appear as **aborted** and will not recover. Please our [Success Team](mailto:success@saasquatch.com) for further assistance. ",
+    "tags": [
+      "import",
+      "bulk user delete",
+      "user delete"
+    ],
+    "robotsTag": [
+      "FOLLOW"
+    ],
+    "canonicalUrl": "<link rel=\"canonical\" href=\"URL from Contentful response\"/>"
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "ERfg4acPkfTaM4n7dbzxk",
+    "type": "Entry",
+    "createdAt": "2020-08-27T22:21:38.327Z",
+    "updatedAt": "2020-08-31T22:29:39.226Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 39,
+    "revision": 3,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "integration"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "title": "AppsFlyer Software Integration",
+    "integrationName": "AppsFlyer",
+    "slug": "appsflyer-software-integration",
+    "logo": {
+      "metadata": {
+        "tags": [],
+        "concepts": []
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "s68ib1kj8k5n"
+          }
+        },
+        "id": "WXPaAQBgDz0zu2fWw0ntu",
+        "type": "Asset",
+        "createdAt": "2020-08-27T21:50:44.219Z",
+        "updatedAt": "2020-08-27T22:56:51.542Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 26,
+        "revision": 7,
+        "locale": "en-US"
+      },
+      "fields": {
+        "title": "AppsFlyer Integration",
+        "file": {
+          "url": "//images.ctfassets.net/s68ib1kj8k5n/WXPaAQBgDz0zu2fWw0ntu/335adb7f439dac9221e0a3e67e9cc702/appsflyerLogo.png",
+          "details": {
+            "size": 3196,
+            "image": {
+              "width": 225,
+              "height": 225
+            }
+          },
+          "fileName": "appsflyerLogo.png",
+          "contentType": "image/png"
+        }
+      }
+    },
+    "integrationDescription": "AppsFlyer is a SaaS mobile marketing analytics and attribution platform. SaaSquatch integrates with AppsFlyer to provide better user experience, additional attribution, personalization and analytics by using AppsFlyer's OneLink attribution links.",
+    "highlights": "Looking for AppsFlyer software integration? SaaSquatch provides additional referral program attribution, personalization and analytics.",
+    "keyFeatures": [
+      "Improve all aspects of your mobile app referral experience; downloading, installing, and sharing.",
+      "Seamlessly direct Referred Users on mobile to download your app.",
+      "Automatically generated App Links (for Android) and Universal Links (for iOS)",
+      "Track Referred Users through the app store using AppsFlyer deep linking data."
+    ],
+    "moreInfo": [
+      "[AppsFlyer Quickstart](/mobile/appsflyer)",
+      "[AppsFlyer Tech Reference](/mobile/appsflyer/reference)"
+    ],
+    "guideLink": "/mobile/appsflyer",
+    "tags": [
+      "in-directory"
+    ]
+  }
+}

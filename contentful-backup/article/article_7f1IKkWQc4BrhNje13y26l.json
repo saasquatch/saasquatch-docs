@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "7f1IKkWQc4BrhNje13y26l",
+    "type": "Entry",
+    "createdAt": "2019-08-02T00:36:59.674Z",
+    "updatedAt": "2022-08-12T14:11:41.408Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 1206,
+    "revision": 23,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Developer Guide",
+    "title": "Segment Stream",
+    "slug": "integrations/segment-v2/stream",
+    "highlights": "The Segment source speeds up integrating SaaSquatch with other tools in your marketing and analytics stack and can help with use cases such as tracking referral codes in other systems, triggering other workflows when referrals happen, and triggering fulfillment processes for loyalty credits or rewards.\n",
+    "content": "<table class=\"table\">\n<thead>\n<tr>\n<th></th>\n<th>Source / Stream</th>\n<th>Destination / Subscription</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<th>Segment Integration Documentation</th>\n<td>\n<ul>\n<li>Tech Reference</li>\n</ul>\n</td>\n<td>\n<ul>\n<li><a href=\"/integrations/segment-v2/subscription\">Tech Reference</a></li>\n</ul>\n</td>\n</tr>\n</tbody>\n</table>\n\n### Installing the Segment Source\n\n1. Login to the [SaaSquatch Portal](https://app.referralsaasquatch.com)\n\n2. Go to your Integrations page\n\n3. Enable the Segment integration.\n\n![Segment Integration Page](//images.ctfassets.net/s68ib1kj8k5n/6fmuKc3bsJ275aeRwaneSY/72595c12fa6225c7fb5f8dfef7d1e4ae/Screenshot_2021-05-12_140247.png)\n\n4. Login to your Segment account\n\n5. Create a new __HTTP API__ source.\n\n![Segment HTTP API Source](//images.ctfassets.net/s68ib1kj8k5n/6JngTjyjrpnDNQiqly0NVY/8001b2fe4326e8294b769b36d125dbbd/Segment_HTTP_API_Source.png)\n\n6. Copy the __Write Key__ \n\n![Segment Write Key](//images.ctfassets.net/s68ib1kj8k5n/1LtoLJKdMGTOYxYHaQTE55/02d22ae87cec4d5beba651ed3eb167a6/Segment_Write_Key.png)\n\n7. Navigate to the Segment Source tab on the integrations page and paste the __Write Key__ into the Segment write key field.\n\n8. (Optional) Enable/disable event types to be sent\n\n![Segment Data Settings](//images.ctfassets.net/s68ib1kj8k5n/5G4QYnnzLKnIgePfjCvAoE/3f105826b6a5059cd4df1c556303a378/Screenshot_2021-05-12_154742.png)\n\n### Data sent to Segment\n\nThe data that gets sent to Segment is based on the SaaSquatch webhooks. Each webhooks maps to an event type in Segment and can be enabled or disabled individually.\n\n<table class=\"table\">\n<thead>\n<tr>\n<th>SaaSquatch Webhook Name</th>\n<th>Segment Event Name</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><code>referral.created</code></td>\n<td><code>Referral Created</code></td>\n</tr>\n<tr>\n<td><code>reward.created</code></td>\n<td><code>Reward Created</code></td>\n</tr>\n<tr>\n<td><code>user.created</code></td>\n<td><code>Identify</code></td>\n</tr>\n</tbody>\n</table>\n"
+  }
+}

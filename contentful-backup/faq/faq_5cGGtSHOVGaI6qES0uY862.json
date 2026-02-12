@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "5cGGtSHOVGaI6qES0uY862",
+    "type": "Entry",
+    "createdAt": "2016-04-04T22:23:34.670Z",
+    "updatedAt": "2016-04-04T22:23:34.670Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 4,
+    "revision": 1,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "faq"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "question": "Why is there a setup fee for some tiers?",
+    "answer": "In order to ensure your success with our referral marketing platform we need to get you off on the right foot. Referral marketing is more than just using software, it’s about transforming the way your product interacts with your customers. The fee goes towards aligning time and resources to make sure the program is designed and implemented correctly."
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "1Q5bbKlFwtY0p1JRWV9hN6",
+    "type": "Entry",
+    "createdAt": "2020-01-06T22:27:51.863Z",
+    "updatedAt": "2023-02-28T17:58:57.429Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 24,
+    "revision": 6,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "productNews"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "title": " Partner Program",
+    "datePublished": "2018-12-05",
+    "tags": [
+      "feature-release",
+      "product-update"
+    ],
+    "content": "<div class=\"row-fluid\">\n  <div class=\"span7\">\n    <p>\n      As SaaSquatch continues to expand our\n      <a href=\"https:/docs.referralsaasquatch.com/growth/saasquatch-ga\">Growth Automation platform</a\n      >, you can now engage your business affiliates with our all encompassing\n      <bold>Partner Program</bold>!\n    </p>\n    <p>Partner Programs enable you to generate dynamic percentage rewards OR\n      static pre-configured reward values. This supports commission rewards\n      where reward amounts will vary.\n    </p>\n    <p>\n      You can also now define your own metrics to update a user’s information\n      fields, and moderate actions that have been previously performed; e.g.\n      when a refund for a purchase is issued, any rewards associated with that\n      purchase can be canceled.\n    </p>\n    <p>\n      Additionally, participant profile pages have been updated, including the\n      display of the formatted reward <code>name</code> which will now\n      distinguish the reward in a human readable format (i.e. cash from credit\n      rewards).\n    </p>\n    <h4>New Partner Widget</h4>\n    <p>\n      Finally, a brand new <bold>Partner Widget</bold> is now available to boost\n      the visibility of your program and show reward balances to your\n      affiliates.\n      <img src=\"https://www.saasquatch.com/wp-content/uploads/2019/08/Partner-Program-Widget.png\" alt=\"pp-widget\"/>\n    </p>\n    <p>\n      If you’re interested in getting started with a [Partner Program](mailto:\n      support@referralsaasquatch.com?subject=Partner Program) and would like\n      some tips and tricks, your Support team is happy to help!\n    </p>\n  </div>\n  <div class=\"span5\">\n    <img src=\"https://www.saasquatch.com/wp-content/uploads/2019/08/Partner-Program-Rules.png\" alt=\"pp-rules\"/>\n  </div>\n</div>\n"
+  }
+}

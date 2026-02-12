@@ -6,8 +6,9 @@ import resolveAllOf from "json-schema-resolve-allof";
 import contentful from "contentful";
 import fs from "mz/fs";
 import globby from "globby";
+import matter from "gray-matter";
 
-import contentfulpagifier from "./metalsmith/utils/contentfulpagifier";
+// Product Space utilities (still using Contentful until migrated)
 import productSpaceContentfulpagifier from "./metalsmith/utils/productSpaceContentfulpagifier";
 import installguidepagifier from "./metalsmith/utils/installguidepagifier";
 import { Bottom } from "./src/templates/bottom";
@@ -50,7 +51,11 @@ function getTemplate(legacy) {
  * Read files from the `content` directy, & parse the frontmatter
  */
 async function getRawFiles() {
-  const paths = await globby(["content/**/*"]);
+  const paths = await globby([
+    "content/**/*",
+    // Exclude Contentful exports (raw JSON)
+    "!content/contentful/**",
+  ]);
 
   const all = await Promise.all(
     paths
@@ -61,8 +66,6 @@ async function getRawFiles() {
         fpath: p,
       })),
   );
-
-  const matter = require("gray-matter");
 
   return all
     .map(({ source, fpath }) => {
@@ -86,6 +89,88 @@ async function getRawFiles() {
       };
     })
     .filter((x) => x);
+}
+
+/**
+ * Load product news items from local markdown files
+ * @returns {Promise<any[]>}
+ */
+async function getProductNews() {
+  const paths = await globby(["content/product-news/**/*.md"]);
+  
+  /** @type {any[]} */
+  const items = await Promise.all(
+    paths.map(async (p) => {
+      const source = await fs.readFile(p, { encoding: "utf8" });
+      const parsed = matter(source);
+      return {
+        ...parsed.data,
+        content: parsed.content,
+      };
+    })
+  );
+  
+  // Sort by datePublished descending
+  return items.sort((a, b) => {
+    const dateA = a.datePublished ? new Date(a.datePublished).getTime() : 0;
+    const dateB = b.datePublished ? new Date(b.datePublished).getTime() : 0;
+    return dateB - dateA;
+  });
+}
+
+/**
+ * Load breaking changes from local markdown files
+ * @returns {Promise<any[]>}
+ */
+async function getBreakingChanges() {
+  const paths = await globby(["content/breaking-changes/**/*.md"]);
+  
+  /** @type {any[]} */
+  const items = await Promise.all(
+    paths.map(async (p) => {
+      const source = await fs.readFile(p, { encoding: "utf8" });
+      const parsed = matter(source);
+      return {
+        ...parsed.data,
+        content: parsed.content,
+      };
+    })
+  );
+  
+  // Sort by deadline descending
+  return items.sort((a, b) => {
+    const dateA = a.deadline ? new Date(a.deadline).getTime() : 0;
+    const dateB = b.deadline ? new Date(b.deadline).getTime() : 0;
+    return dateB - dateA;
+  });
+}
+
+/**
+ * Load integrations from local markdown files
+ * @returns {Promise<any[]>}
+ */
+async function getIntegrations() {
+  const paths = await globby(["content/integrations/**/*.md"]);
+  
+  /** @type {any[]} */
+  const items = await Promise.all(
+    paths.map(async (p) => {
+      const source = await fs.readFile(p, { encoding: "utf8" });
+      const parsed = matter(source);
+      const data = parsed.data;
+      
+      return {
+        ...data,
+        fields: data,
+        contents: parsed.content,
+        date: data.date,
+        id: data.id,
+        template: "intergrationLander.html",
+      };
+    })
+  );
+  
+  return items.filter((d) => d.tags && d.tags.some((i) => i === "in-directory"));
 }
 
 /**
@@ -263,38 +348,16 @@ async function getRoutes() {
     return value;
   };
 
-  const contentfulDocsSpaceId = expectEnv("CONTENTFUL_DOCS_SPACEID");
-  const contentfulDocsAccessKey = expectEnv("CONTENTFUL_DOCS_ACCESS_KEY");
+  // Product Space still uses Contentful (to be migrated separately)
   const contentfulProductSpaceId = expectEnv("CONTENTFUL_PRODUCT_SPACEID");
   const contentfulProduceAccessKey = expectEnv("CONTENTFUL_PRODUCT_ACCESS_KEY");
 
   const spec = await getSwagger();
-  const entries = await getContentful({
-    spaceId: contentfulDocsSpaceId,
-    accessKey: contentfulDocsAccessKey,
-  });
-
-  const filterForType = (type) => {
-    return (acc, entryRaw) => {
-      const entry = resolveI18n(entryRaw);
-      let fields = entry.fields;
-      if (type !== entry.sys.contentType.sys.id) {
-        return acc;
-      }
-      const newsItem = fields;
-      return [...acc, newsItem];
-    };
-  };
-
-  // Sorted list of news items
-  const productNews = entries
-    .reduce(filterForType("productNews"), [])
-    .sort((a, b) => a.datePublished > b.datePublished);
-
-  // Sorted list of news items
-  const breakingChanges = entries
-    .reduce(filterForType("breakingChange"), [])
-    .sort((a, b) => a.deadline > b.deadline);
+  
+  // Load content from local markdown files (migrated from Docs Space)
+  const productNews = await getProductNews();
+  const breakingChanges = await getBreakingChanges();
+  const integrations = await getIntegrations();
 
   const guides = await getYaml("metadata/guides.yaml");
 
@@ -315,11 +378,6 @@ async function getRoutes() {
       (r) => r.path.includes("squatchjs/issue") && !r.path.includes("template"),
     )
     .map((r) => r.getData().entry);
-
-  const integrations = entries
-    .map(contentfulpagifier)
-    .filter((x) => x)
-    .filter((d) => d.tags && d.tags.some((i) => i == "in-directory"));
 
   const staticPages = [
     {
@@ -393,10 +451,6 @@ async function getRoutes() {
       template: "src/containers/single/running-programs",
     },
   ];
-  const contentfulPages = entries
-    .map(contentfulpagifier)
-    .filter((e) => e)
-    .map(legacyPagifierToStatic);
 
   const contentfulProductPages = programs.map(legacyPagifierToStatic);
 
@@ -407,7 +461,6 @@ async function getRoutes() {
 
   return [
     ...rawFiles,
-    ...contentfulPages,
     ...contentfulProductPages,
     ...installGuides,
     ...staticPages,

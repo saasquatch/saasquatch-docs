@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "2GLLntTHv6p9AHL46f0om4",
+    "type": "Entry",
+    "createdAt": "2022-07-21T13:55:11.712Z",
+    "updatedAt": "2023-07-31T18:38:39.216Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 502,
+    "revision": 8,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Designer Guide",
+    "title": "Setting Up a Microsite",
+    "slug": "building-programs/microsites/quickstart-guide",
+    "highlights": "Get your SaaSquatch-hosted microsite up and running in no time with our setup guide.",
+    "content": "> __Important__: Before attempting to set up a microsite, make sure your plan supports one. If you’re not sure or would like to talk about upgrading, then reach out to our Success team for details.\n\nFor a quick microsite setup experience, we recommend that most clients use the auto setup feature. This guide will show you how. \n\n## 1. Run microsite auto setup\n1. Log on to the SaaSquatch Admin Portal.\n2. Click __Content__ in the top menu bar.\n3. Click the __Setup__ button at the bottom of the Microsite card.\n4. Under the Auto setup heading, click the __Setup Referral Microsite__ button.\n5. Click __Auto setup__ on the popup that appears.\n\n## 2. Link your microsite with your program\nThis step is completed in the microsite editor.\n\n1. Open the microsite editor.\n    - In the microsite card, click the __Edit content__ button to go to the microsite editor.\n    - Click the __Microsite__ tab in the left sidebar menu.\n2. Select the __Microsite Base Layout__ row in the Microsite panel that appears.\n3. Click the __Layers__ tab in the left sidebar menu (under the heading “Current Layout”).\n4. Click the __Program Section__ row in the Layers tab that appears.\n5. In the Edit sidebar menu at the right side of the page, use the dropdown menu to pick your program ID.\n6. Click __Save__ in the top right corner of the page.\n\n## 3. Adjust your microsite participant ID method and registration settings\n> __Note:__ These steps are optional and can be skipped if you don’t want to make changes.\n\n### Changing the ID method\nBy default, your microsite will assign user IDs based on the user’s email address. If you’d prefer to have user IDs randomly generated, you can switch your settings from the microsite setup area. \n\n> *Regardless of the ID method selected, participants can't change their email address after registering.* \n\n1. Go to the __Content__ tab in the Admin Portal.\n2. Click the __Edit Settings__ button on the Microsite card.\n3. Under the Participant Login heading, find the ID Method option.\n4. Click __Edit__.\n5. Change the ID method to Random IDs if desired. \n\n### Modifying the registration form\nThe registration form collects the name and email address of every participant who signs up through your microsite. You can change what information the form collects by modifying the registration form in the microsite editor. \n\n1. Go to the __Content__ tab in the Admin Portal.\n2. Click __Edit content__ on the microsite card.\n3. Go to the __Register__ page. If you used auto setup to create the microsite, then the Register page is under the Logged Out Layout in the Microsite tab.\n4. Add form-specific Microsite Components to the page. \n5. Click __Save__ in the top right corner of the page. \n\n> __Note:__ If you have a Salesforce integration set up, then information collected by the form can be sent directly to Salesforce as a Lead or Contact. For more information and setup instructions, see [Managing Microsite Registration Form Submissions](/building-programs/microsites/registration-forms/).\n\n## 4. Add a domain to your microsite\n> __Note__: This step is optional and can be skipped if you don’t want to make changes.\n\nBy default, your microsite uses a SaaSquatch-branded domain, but many clients opt to use a domain you own. See our guide on [setting up a domain](/building-programs/participant-experiences/configuring-a-custom-domain) if you want to use one for your microsite.\n\n## 5. Add custom HTML to the head of your microsite\nBy default, we include HTML that sets up a tab icon at the top of your browser tab. You can replace the icon with your company’s logo—if you don’t, the tab will show the SaaSquatch logo. The `head` element is also where you can insert SEO-related script tags and other branding/styling elements if desired.\n\n1. Go to the __Content__ tab in the Admin Portal.\n2. Click the __Edit Settings__ button on the Microsite card.\n3. Under the Site Hosting heading, find the Head HTML option.\n4. Click __Edit__.\n5. Paste your script.\n\n## 6. Customize your microsite's layout and pages\nThe default microsite has a template applied, but should be customized before it’s rolled out to your participants. You can customize the layouts, pages, branding, and content of the site. \n\nAt minimum, we recommend:\n- Customizing the dashboard\n- Modifying the brand container\n- Customizing the microsite header\n- Reviewing the lifecycle email templates\n- Editing page content\n\nSee our doc on [Customizing Microsite Layouts and Pages](https://docs.saasquatch.com/building-programs/microsites/customizing-microsites) an in-depth look at how to do these and more.",
+    "robotsTag": [
+      "FOLLOW"
+    ],
+    "canonicalUrl": "<link rel=\"canonical\" href=\"URL from Contentful response\"/>"
+  }
+}

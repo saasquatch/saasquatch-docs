@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "W4D1m0KMYEsWm6M8wyqqg",
+    "type": "Entry",
+    "createdAt": "2016-09-21T23:08:03.047Z",
+    "updatedAt": "2023-07-21T06:38:28.650Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 6691,
+    "revision": 8,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Developer Guide",
+    "title": "Use Google Tag Manager with SaaSquatch",
+    "slug": "guides/using-gtm",
+    "content": "This guide outlines the basic steps needed to leverage your existing Google Tag Manager to run your referral program on your website.\n\n## 1. Create a tag\n\n1. Create a new tag.\n2. For the tag type, select __Custom HTML__.\n3. Drop in the code for the squatch.js init call.\n\n```\n<script>\n\n// Include squatch.js\n!function(a,b){a(\"squatch\",\"https://fast.ssqt.io/squatch-js@2\",b)}(function(a,b,c){var d,e,f;c[\"_\"+a]={},c[a]={},c[a].ready=function(b){c[\"_\" + a].ready =  c[\"_\" + a].ready || [];c[\"_\" + a].ready.push(b);},e=document.createElement(\"script\"),e.async=1,e.src=b,f=document.getElementsByTagName(\"script\")[0],f.parentNode.insertBefore(e,f)},this);\n\n// Push user details for a user who is logged in to your system\nwindow.squatch.ready(function(){    \n      squatch.init({\n// Your tenant alias can be found under Settings -> General\n          tenantAlias: 'test_bpinhag9yagag'\n      });\n// Define your user object \nlet userObj = {\n      id: '5678',\n      accountId: 'abc',\n      email: 'bob@example.com',\n      firstName: 'Bob'\n}\n\n// Upsert the user to SaaSquatch\nsquatch.api().upsertUser(userObj);\n  });\n</script>\n```\n\n## 2. Add a trigger\n\nHow your signup flow works will change what kind of trigger you will need to use.\n\nIn many cases the signup flow makes use of a confirmation page that congratulates the user on their successful signup. For this flow, you can use a trigger of type “Page View” which fires on “Some Page Views”. Select “Page URL contains domain.com/signup_success.html” as the conditional event trigger.\n\n## 3. Add Google Tag manager code to your pages\nGTM recommends placing the required code snippet immediately after the opening `<body>` tag on each page. \n\nThis code can be found in the __Admin > Install__ Google Tag Manager section of the GTM portal.",
+    "seoDescription": "Quickstart guide for leveraging Google Tag Manager (GTM) to integrate your referral program into your website."
+  }
+}

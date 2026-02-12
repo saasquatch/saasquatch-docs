@@ -1,0 +1,46 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "6H2hJnbg23kqpJOTZekisS",
+    "type": "Entry",
+    "createdAt": "2021-03-17T00:06:04.655Z",
+    "updatedAt": "2021-03-17T15:59:38.388Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 226,
+    "revision": 7,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "How To Redeem Points via API",
+    "slug": "how-to-redeem-points-via-api",
+    "highlights": "This article will provide a step-by-step for redeeming a user's points balance via our REST API platform.",
+    "content": "### Points Balance Overview\nAs your user's perform qualifying actions they will receive points based on the program logic of your SaaSquatch program. These points are calculated and stored for each individual but can be checked and redeemed at the account level as well. For more information on how our account/user structure works, please review our page about [Shared vs. Solo Accounts](https://docs.saasquatch.com/shared-vs-solo-accounts/ \"Shared vs. Solo Accounts Doc\") page.\n\n### Recommended Points Redemption Flow\nTo ensure a user has the required amount of points for the planned redemption, it is recommended that a balance check for the user is performed first. If redemption is performed automatically when a user's balance reaches the threshold, it is possible to use the reward.created webhook, otherwise use the List Reward Balances API call to obtain the user's available balance.\n\n1. Check the user's balance by either listening for the [reward.created](https://docs.saasquatch.com/api/webhooks/#reward-created) webhook or sending the [List Reward Balances](https://docs.saasquatch.com/api/methods#list_balances) API Call. For implementations with multiple rewards, be sure to look at the object that has `POINT` as the unit.\n\n2. Once confirmed, send a [Debit Reward Balance](https://docs.saasquatch.com/api/methods#debit_balance) API call to SaaSquatch.\n\n3. Check the response to confirm that the user's balance was successfully debited and show the user their new balance.\n\n### Sample Use Cases\n#### Redeem Points During Checkout\nThis sample flow is designed for a user to view their points balance during check out and request a certain amount be redeemed for a discount on their purchase. This implementation uses a user's email address for their account and user ID fields.\n\n1. When the user begins the checkout process, make a [List Reward Balances](https://docs.saasquatch.com/api/methods#list_balances) call to get their points balance:\n```\ncurl -X GET https://app.referralsaasquatch.com/api/v1/test_addjgg0gz6q0c/reward/balance?accountId=bob%40example.com&userId=bob%40example.com\n  -u :API_KEY \n```\n\n2. When the response is received, subtract the `totalRedeemedCredit` from the `totalAssignedCredit` to see how many points a user has available. For this example, the user has 580 points available (1080 - 500):\n```json\n{\n\"type\": \"CREDIT\",\n\"unit\": \"POINT\",\n\"count\": 5,\n\"totalPendingCredit\": 0,\n\"totalAssignedCredit\": 1080,\n\"totalRedeemedCredit\": 500,\n\"totalExpiredCredit\": 0,\n\"totalCancelledCredit\": 0\n}\n```\n\n3. Show the balance available to the user during their checkout flow and confirm how much they would like to use for their transaction. We recommend adding logic that prevents the user from attempting to deduct more points than they have on hand. \n\n4. Once the order has completed, deduct the amount of points using the [Debit Reward Balance](https://docs.saasquatch.com/api/methods#debit_balance):\n```\ncurl -X POST https://app.referralsaasquatch.com/api/v1/test_addjgg0gz6q0c/credit/bulkredeem \n  -u :API_KEY \n  -H \"Content-Type: application/json\" \n  -d '{\n  \"accountId\": \"bob@example.com\",\n  \"userId\": \"bob@example.com\",\n  \"unit\": \"POINT\",\n  \"amount\": 200\n}'\n```\n\n5. Listen for the response to confirm that the balance was debited. \n```\n{\n    \"creditRedeemed\": 200,\n    \"creditAvailable\": 380,\n    \"unit\": \"POINT\"\n}\n```\n\n#### Automated Redemption\nThis sample flow is designed to automatically issue a reward when a user earns a certain number of rewards. For this example, a reward is issued via a third-party when a user earns 400 points.\n\n1. Listen for a `reward.created` webhook to confirm a user's balance was updated.\n```\n{\n  \"assignedCredit\": 30,\n  \"type\": \"CREDIT\",\n  \"userId\": \"bob@example.com\",\n  \"accountId\": \"bob@example.com\",\n  \"unit\": \"POINT\",\n  \"dateCreated\": 1615542997808,\n  \"id\": \"604b3ad58a45b70017888268\",\n  \"dateGiven\": 1615542997808,\n  \"globalRewardKey\": \"pointsReward,\n  \"programId\": \"points-loyalty\"\n}\n```\n\n2. Check the user's balance using the [List Reward Balances](https://docs.saasquatch.com/api/methods#list_balances):\n```\ncurl -X GET https://app.referralsaasquatch.com/api/v1/test_addjgg0gz6q0c/reward/balance?accountId=bob%40example.com&userId=bob%40example.com\n  -u :API_KEY \n```\n\n3. When the response is received, subtract the `totalRedeemedCredit` from the `totalAssignedCredit` to see how many points a user has available. For this example, the user has 415 points available (1215 - 800):\n```json\n{\n\"type\": \"CREDIT\",\n\"unit\": \"POINT\",\n\"count\": 8,\n\"totalPendingCredit\": 0,\n\"totalAssignedCredit\": 1215,\n\"totalRedeemedCredit\": 800,\n\"totalExpiredCredit\": 0,\n\"totalCancelledCredit\": 0\n}\n```\n\n4. Once the user's balance has been confirmed and they're eligible, deduct the amount of points using the [Debit Reward Balance](https://docs.saasquatch.com/api/methods#debit_balance):\n```\ncurl -X POST https://app.referralsaasquatch.com/api/v1/test_addjgg0gz6q0c/credit/bulkredeem \n  -u :API_KEY \n  -H \"Content-Type: application/json\" \n  -d '{\n  \"accountId\": \"bob@example.com\",\n  \"userId\": \"bob@example.com\",\n  \"unit\": \"POINT\",\n  \"amount\": 400\n}'\n```\n\n5. Listen for the response to confirm that the balance was debited. \n```\n{\n    \"creditRedeemed\": 400,\n    \"creditAvailable\": 15,\n    \"unit\": \"POINT\"\n}\n```\n",
+    "tags": [
+      "Guide"
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "1KaIl0MpJMTyygmqddeItO",
+    "type": "Entry",
+    "createdAt": "2021-03-05T21:40:51.869Z",
+    "updatedAt": "2021-03-07T22:26:21.958Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 77,
+    "revision": 2,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Editing Your Program's Name",
+    "slug": "success/edit-program-name",
+    "highlights": "How to change your SaaSquatch program name after it is created. ",
+    "content": "> This guide only covers how to change the display name of your SaaSquatch program. To change your Program ID, please contact the <a href=\"mailto:support@saasquatch.com\">Support Team</a>.\n\n1. Head to the 'Programs' tab in your SaaSquatch tenant.\n![Programs Tab](//images.ctfassets.net/s68ib1kj8k5n/5OfWSAU0kyXdYBL8UwT8aF/7089b60b7ab9919a9f8de8c01bf67d3c/Screenshot_2021-03-05_1.28.05_PM.png)\n\n2. Click on \"Manage\" under the sub-navigation.\n\n3. Once you have located the program you want to rename, click on the pencil icon to the right-hand side of the program's name. \n![Manage Programs](//images.ctfassets.net/s68ib1kj8k5n/2bHeJleIn8kUCg75eqz2Zp/4836c0769fbb45d3d44d4626db5c7dbe/Screenshot_2021-03-05_1.31.36_PM.png)\n\n3. You should now be able to modify the disaply name of your program. \n![Edit Program Name](//images.ctfassets.net/s68ib1kj8k5n/6FSxSixYabYiuatD19GYH5/c9c7525a2548649a0ddeb87b898dde19/Screenshot_2021-03-05_1.33.30_PM.png)\n\n4. Click on the orange checkmark button to save your edits.\n![Program Name Edited](//images.ctfassets.net/s68ib1kj8k5n/LVJ7PJBU6ACoSJuW9iSBB/96af37bf7799091afce731df2a63bc76/Screenshot_2021-03-05_1.37.54_PM.png)",
+    "tags": [
+      "Guide"
+    ]
+  }
+}

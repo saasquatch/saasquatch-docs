@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "3hszePTw80e0ccEQOkWkcc",
+    "type": "Entry",
+    "createdAt": "2018-03-13T23:39:31.666Z",
+    "updatedAt": "2018-03-13T23:39:31.666Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 82,
+    "revision": 1,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Privacy and Security",
+    "slug": "success/security",
+    "highlights": "Details about the SaaSquatch data security and compliance policy.\n",
+    "content": "### Compliance\n#### Privacy Shield\nSaaSquatch meets the criteria for Privacy Shield certification. [Contact Us](mailto:support@referralsaasquatch.com?subject=Privacy%20Shield) for more details if Privacy Shield is important to your business.\n\n#### GDPR\nSaaSquatch welcomes the GDPR. It protects citizens' fundamental right to privacy and the protection of personal data. It will raise the bar for data protection, security, and compliance across our industry. SaaSquatch is committed to meeting the requirements of GDPR. [Contact Us](mailto:support@referralsaasquatch.com?subject=GDPR) for more details if GDPR is important to your business."
+  }
+}

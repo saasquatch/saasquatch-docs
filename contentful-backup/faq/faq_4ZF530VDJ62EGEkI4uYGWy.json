@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "4ZF530VDJ62EGEkI4uYGWy",
+    "type": "Entry",
+    "createdAt": "2016-04-04T22:24:49.183Z",
+    "updatedAt": "2016-04-04T22:24:49.183Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 4,
+    "revision": 1,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "faq"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "question": "What happens if a referred customer cancels shortly after they start paying?",
+    "answer": "Our service is focused on driving customer acquisition for your company. So, unfortunately we can't be responsible for customer retention efforts."
+  }
+}

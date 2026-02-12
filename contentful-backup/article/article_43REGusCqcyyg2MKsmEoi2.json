@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "43REGusCqcyyg2MKsmEoi2",
+    "type": "Entry",
+    "createdAt": "2017-02-01T19:59:21.552Z",
+    "updatedAt": "2019-02-01T19:13:04.520Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 1702,
+    "revision": 4,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Designer Guide",
+    "title": "Git & Custom Themes",
+    "slug": "themes/git",
+    "highlights": "Custom Referral SaaSquatch themes leverage the power of Git to make theme customization and collaboration easy for you and your team.",
+    "content": "> **Please note:** This article relates to the custom theming functionality for our classic referral programs. Theming, design, and message changes for programs on our Growth Automation platform are available directly within the SaaSquatch admin portal within the configuration for each specific program.\n> \n>Please contact [SaaSquatch Support](support@referralsaasquatch.com) if you have any further questions about customizing the design of your program.\n\n### What is git?\nGit is a version control system for tracking changes in computer files and coordinating work on those files among multiple people. Using git, teams can work on the same project at the same time without stepping on each other's toes.  \n\n#### Learn More about Git\nFor a great introduction to the workings of git and Github we recommend checking out [this interactive tutorial](https://try.github.io) on using git.\n\nGitHub also lets you complete many Git-related actions without using the command line, including: Creating a repository, Forking a repository. For more information on this we recommend the github [getting started with git guide](https://help.github.com/articles/set-up-git/).\n\n### Referral SaaSquatch and Github\nAt Referral SaaSquatch we use Github as the basis for tracking and versioning custom themes. In this way, every Referral SaaSquatch custom theme is actually it's own Github repository.\n\nWe do this because referral programs are usually a collaboration between a lot of people, such as:\n\n - **Creative directors** - want to maintain brand guidelines\n - **Front-end developers** - that want pixel perfect, hex-code exact, matching with their other assets\n - **Copy writers** - that want to update each individual piece of text, share message and notification\n - **Referral SaaSquatch developers** - who can help you customize your widget\n \nGit lets all of these people work on the referral program's theme in parallel without ever losing anyone's changes. It also maintains a history so that we can test new wording, layouts and changes, and roll back those changes if they don't produce the desired results.\n\n#### Using your Theme Repository\n**Pro** and **Enterprise** customers should contact our [support](mailto:support@saasquat.ch) team to get access to your custom theme repository.\n\n  1. Clone your [Github repository](/themes/git)\n    ```\ngit clone https://github.com/saasquatch/MY_CUSTOM_THEME_NAME\n```\n  2. Modify the [templates](/themes/templates) and [assets](/themes/assets) in your theme\n  3. Commit your changes to your Github repository when you are ready to test them\n  4. [Publish](/themes/publish) your updated theme to your test tenant\n  5. Preview your changes in your development environment configured for your test tenant\n  6. [Publish](/themes/publish) your theme to your live tenant\n\nChanges can be made to your theme using this development process even once your referral program is live. You can test out updates to your theme on your test tenant before pushing them to your live program to make sure that everything works before your customers see the changes.\n\n---\n\n### File Layout\n\nAt its core your custom theme is a series of files and folders organized in a standard layout. Handlebars [templates](/themes/templates) are located in the `templates` folder, [assets](/themes/assets) in the `assets` folder,\nand [variables](/themes/variables) defined in `variables.json` schema file.\n\n```\n├── /assets\n|   ├── /css\n|       ├── plaincss.css\n|       └── lesscss.less\n|   ├── /js\n|       └── myscript.js\n|   └── /images\n|       └── logo.png\n├── /templates\n|   ├── widget.hbs\n|   └── partial.hbs\n├── variables.json\n└── Readme.md\n```"
+  }
+}

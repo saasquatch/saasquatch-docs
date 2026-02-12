@@ -1,0 +1,87 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "7plQJdeav6uwwu4S8ciGas",
+    "type": "Entry",
+    "createdAt": "2018-01-18T01:56:49.110Z",
+    "updatedAt": "2023-02-28T18:50:48.470Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 2643,
+    "revision": 10,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Growth Automation 101",
+    "slug": "growth/ga-101",
+    "coverImage": {
+      "metadata": {
+        "tags": [],
+        "concepts": []
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "s68ib1kj8k5n"
+          }
+        },
+        "id": "PFlCPMQGWak4AK4eKSWKM",
+        "type": "Asset",
+        "createdAt": "2018-01-18T01:57:43.372Z",
+        "updatedAt": "2018-01-18T01:57:43.372Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 2,
+        "revision": 1,
+        "locale": "en-US"
+      },
+      "fields": {
+        "title": "GA 101 V3",
+        "file": {
+          "url": "//images.ctfassets.net/s68ib1kj8k5n/PFlCPMQGWak4AK4eKSWKM/53585323b490967574b9b315c12c975a/GA_101_V3.png",
+          "details": {
+            "size": 306242,
+            "image": {
+              "width": 1039,
+              "height": 280
+            }
+          },
+          "fileName": "GA 101 V3.png",
+          "contentType": "image/png"
+        }
+      }
+    },
+    "highlights": "Learn about Growth Automation and how it significantly changes the way consumer marketers attract, win, and retain customers.",
+    "content": "**Simply put, Growth Automation is a strategy for growing your customer lifetime value through automated growth programs.**\n\nThe promise of Growth Automation is the combination of _modern marketing techniques_ and technical advancements in a single, affordable, platform that allows marketers to engage with their customers directly, and with more relevance, than previously possible. \n\n<blockquote style=\"font-size:16px;\"><strong>Growth Automation</strong> is a strategy for automatically <strong>increasing customer lifetime value</strong> with lifecycle marketing programs which combine individualized special offers, omni-channel engagements and artificial intelligence.    \n<br />\n<br />\n- SaaSquatch.com</blockquote>\n\n[GrowthAutomation.org](https://growthautomation.org/growth-automation-manifesto/) defines Growth Automation as being comprised of the following 4 primary values:\n\n**1. The individual customer over the average customer**<br />\n**2. Programs over one off campaigns**<br />\n**3. Customer lifetime value over one more purchase**<br />\n**4. Working programs over creative campaigns**<br />\n<br /><br />\nWant to learn more? Watch the video below in which Will Fraser, SaaSquatch CEO and our Growth Automation Expert, explains what Growth Automation is and how you can use it to boost your business. <br /><br />\n\n<iframe width=\"560\" height=\"315\" style=\"margin:0 15%;\" src=\"https://www.youtube.com/embed/FSphMgIiy-0?rel=0\" frameborder=\"0\" gesture=\"media\" allow=\"encrypted-media\" allowfullscreen></iframe>\n\n### Customer Lifetime Value\nCustomer lifetime value is the key to Growth Automation; as opposed to the beliefs of traditional acquisition marketing, acquiring a new customer is about _more than just a single purchase_.\n\n**Growth Automation strategies increase the amount a customer spends** with you from their initial acquisition all the way through to retention. This way of thinking about customers is not new, and has already been adopted by companies selling everything from high-tech subscription services to bricks-and-mortar stores like Starbucks. Despite the number of companies wanting to use Growth Automation strategies, current digital marketing tools do very little to help marketers create programs specifically to increase lifetime value. \n\n**SaaSquatch's Growth Automation Platform** helps you increase customer lifetime value by empowering you to be able to select, configure, and deploy customized growth programs which individually target each of your customers as they progress through the customer lifecycle, all without custom development.\n\n> Learn more about the components that make up the [Customer Lifecycle](/growth/customer-lifecycle), and how the SaaSquatch system helps you target each of them.\n\n### Programs over Campaigns\n\nGrowth Automation and lifecycle marketing is all about a never-ending customer loop, and that idea doesn't fit with the idea of running short-term campaigns. These long-running programs are intended to continiously add value, grow your revenue, and add customers to your platform for the life of your business.  \n\nThe **SaaSquatch Growth Automation Platform** is built around the idea that continually-running programs, and not just one-off campaigns, should be how customer lifecycle management is handled.\n\nLearn more about the **benefits of Programs over Campaigns** by watching the video below: \n<br /><br />\n\n<iframe width=\"560\" height=\"315\" style=\"margin:0 15%;\" src=\"https://www.youtube.com/embed/7vqbxSWIHdc\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>\n\n>See the full list of our available [Growth Automation Programs](/program/library).\n\n### Individualized Data\nIn the modern marketing climate it has become more important than ever to think of Customer Marketing on a **person-by-person basis**. \n\nFor example: There is no point extending an offer to someone who already purchases at full price every week. \nAdditionally, if a customer has been looking at your product, and is known to respond to discounts of 20% or more, then there is no value in offering them a 10% discount.\n\nWith the SaaSquatch Growth Automation Platform you can engage all your customers individually by presenting the right offer at the right time, all while maximizing customer lifetime value.\n\nLearn more about how the SaaSquatch system enables you to tailor your program engagment based on information about your customers, and their actions.\n\n### Additional Resources\nReady to launch your first Growth Automation program? Follow our [Growth Automation Program Quickstart Guide](/growth/quickstart) to get a new program up and running in minutes.\n\nSee the full list of our **[available Growth Automation Programs](/program/library)**."
+  }
+}

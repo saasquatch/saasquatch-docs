@@ -1,0 +1,46 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "5l5NimHoVqIocmQoEkuIEE",
+    "type": "Entry",
+    "createdAt": "2016-12-22T17:43:48.298Z",
+    "updatedAt": "2023-03-23T17:12:31.243Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 10238,
+    "revision": 7,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Hubspot Quickstart Guide",
+    "slug": "guides/hubspot",
+    "highlights": "A quickstart guide for setting up your referral program using Hubspot.",
+    "content": "This guide outlines the basic steps needed to leverage your existing Hubspot Webpages to run your referral program.\n\nAdditional information about our drag-and-drop installation solution can be found in our [Referral Program Install Guide for Marketers](/guides/morp-install).\n\n### Adding the SaaSquatch Code Snippet\nIn order to display the widget and trigger when you want to convert the referral you will need to add the SaaSquatch code snippet to your Hubspot pages.\n\nTo add the code to your [Hubspot Webpages](https://knowledge.hubspot.com/website-user-guide/how-to-create-and-edit-website-pages), select the Website Pages item from the Content Drop-down in your Hubspot Portal.\n\n>**Note:** If your lead capture page is setup as a Hubspot Landing Page you will find it listed under the [Landing Pages](https://knowledge.hubspot.com/articles/kcs_article/cos-general/how-can-i-edit-my-landing-page-template) item from the Content Drop-down menu in your Hubspot Portal.\n\nYou will need to repeat the following steps for each of the Hubspot pages you setup a URL rule for in the SaaSquatch portal.\n\n1. Select the edit option for the page you would like to add the code to\n2. Add a new \"Custom HTML\" module onto an available space on the webpage layout:\n<br /><br />\n  ![Custom HTML Module](//images.contentful.com/s68ib1kj8k5n/2GKGVChBVmqwqWUKq0WAcs/0f7a6aded96a5b6157678ed62a581825/Custom_HTML_Module.gif)\n<br /><br />\n4. Edit the Custom HTML module and paste the following SaaSquatch code snippet into the Custom HTML mdule text field that appears. \n  \n  **Code Snippet Template:**\n  \n  <pre><code class=\"lang-js\">&lt;script>!function(a,b){a(\"squatch\",\"https://fast.ssqt.io/squatch-js@2\",b)}(function(a,b,c){var d,e,f;c[\"_\"+a]={},c[a]={},c[a].ready=function(b){c[\"_\" + a].ready =  c[\"_\" + a].ready || [];c[\"_\" + a].ready.push(b);},e=document.createElement(\"script\"),e.async=1,e.src=b,f=document.getElementsByTagName(\"script\")[0],f.parentNode.insertBefore(e,f)},this);squatch.ready(function(){squatch.init({tenantAlias:\"<span><strong>YOUR_TENANT_ALIAS_HERE</strong></span>\"});squatch.widgets().createCookieUser({});});&lt;/script>\n</code></pre>\n\n  >**Note:** Make sure to replace `YOUR_TENANT_ALIAS_HERE` with your test tenant alias when you paste the following Tracking Script code snippet onto your the webpage. You can find your **Tenant Alias** on the install page inside the SaaSquatch portal\n  \n  **Example:**\n  \n  ![Custom HTML snippet](//images.contentful.com/s68ib1kj8k5n/3M9Rm9kEHC2AGWQO0qe8u2/331fca3ac8e02f6e5d85ef2f1aa97301/Custom_HTML_snippet.png)\n  \n6. Click \"Save and go to module list\"\n\nRepeat this process for each of the Hubspot Webpages that you setup a URL for inside the SaaSquatch portal.\n\n> #### Program Configuration\n> Before launching your referral program you will need to configure where to display the widget and when to trigger converting completing a referral. This configuration can be done in the SaaSquatch Portal.\n> \n> A complete walkthrough of this process can be found in our [Integration Configuration Article](/guides/integration-quickstart).\n\n### What's next? \nCongratulations on setting up your Referral Program! Although this is super exciting, this is also just the beginning of growing your userbase and revenue. We recommend diving deeper into the world of Referral Programs and our platform by reading these documents: \n\n- Explore more of the configuration options available in the SaaSquatch Portal in our [Using Referral SaaSquatch](/success/using-referral-saasquatch/) article.\n- Learn more about how to protect your referral program against unwanted referral activity by reading up on our [Security Management System](/success/referral-security/).\n- Our [SaaS Guide](/guides/saas-intro/) provides details, examples and further detail on how to integrate the SaaSquatch referral program in your product.\n",
+    "robotsTag": [
+      "noindex"
+    ]
+  }
+}

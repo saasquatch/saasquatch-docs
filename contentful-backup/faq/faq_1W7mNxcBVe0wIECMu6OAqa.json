@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "1W7mNxcBVe0wIECMu6OAqa",
+    "type": "Entry",
+    "createdAt": "2016-04-04T22:21:44.283Z",
+    "updatedAt": "2018-09-17T18:53:51.825Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 52,
+    "revision": 2,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "faq"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "question": "What browsers does Referral SaaSquatch support?",
+    "answer": "Our [squatch.js](/squatchjs/) will run in any browser that supports Javascript. To make sure that our referral widget gives a great user experience, we support our themes on the latest version of major browsers like Chrome, Firefox, and Safari."
+  }
+}

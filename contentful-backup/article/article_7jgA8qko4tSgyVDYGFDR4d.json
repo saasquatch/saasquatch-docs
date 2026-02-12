@@ -1,0 +1,46 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "7jgA8qko4tSgyVDYGFDR4d",
+    "type": "Entry",
+    "createdAt": "2021-05-13T22:25:25.686Z",
+    "updatedAt": "2023-11-16T22:17:00.981Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 423,
+    "revision": 10,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Developer Guide",
+    "title": "SaaSquatch + SFDC: User & Account IDs",
+    "slug": "salesforce/ids-config",
+    "highlights": "The SaaSquatch Salesforce integration requires that you send along both the user's SaaSquatch Account and User ID from SFDC when using an [Invocable Method](https://docs.saasquatch.com/salesforce/user-guide#invocable-method-list) such as `Upsert User by Id` & `Track Event by Id`.",
+    "content": "### Introduction\nThe [Invocable Methods](https://docs.saasquatch.com/salesforce/user-guide#invocable-method-list) `Upsert User by Id` & `Track Event by Id` allow you to make changes to SaaSquatch from Salesforce from records other than the [automatically linked Lead or Contact](https://docs.saasquatch.com/salesforce/faq#how-are-leads-contacts-mapped-), such as Account or Opportunity, as long as you have access to the user's SaaSquatch Account ID and User ID.\n\nThis guide walks you through the recommended configuration of the User ID and Account ID Custom Field(s) in order to make that information accessible on the Account and/or Opportunity Objects.\n\n#### Before You Start\n1. Make sure that you've installed the [SaaSquatch SFDC integration](https://docs.saasquatch.com/salesforce/install-guide) into your Salesforce instance.\n2. Make sure you have administrative access and know how to work with:\n  - [Page Layouts](https://help.salesforce.com/articleView?id=sf.customize_layout.htm&type=5) \n  - [Custom Fields](https://help.salesforce.com/articleView?id=sf.adding_fields.htm&type=5)\n  - [Field Mapping](https://help.salesforce.com/articleView?id=sf.customize_mapleads.htm&type=5)\n5. The below guide assumes that:\n  - Your new Referred Users are being created as Leads, then converted to a Contact, an Account, and an Opportunity when they become eligible,\n  - You intend to [send information to SaaSquatch](https://docs.saasquatch.com/salesforce/user-guide/) for the Referred User that is linked to the Object when certain actions happen within those Accounts or Opportunities.  \n\n#### 1. Setting Up Your ID(s)\n> When making use of the SaaSquatch SalesForce integration, we highly recommend that you use the user's email address as both their SaaSquatch Account ID and User ID. \n\n1. Create your Custom Field(s) on the Lead Object. We recommend:\n  - Using a [Text Field Type](https://help.salesforce.com/articleView?id=sf.custom_field_types.htm&type=5),\n  - That [User & Account ID](https://docs.saasquatch.com/shared-vs-solo-accounts/#solo-accounts) are the same value (thus requiring only one custom field),\n  - That you name your Custom Field(s) something like \"SaaSquatch User/Account ID\",\n  - That if are using an existing field on the Lead Object as your ID(s) (*e.g.* email or Lead ID), [making use of a formula](https://help.salesforce.com/articleView?id=sf.customize_formulas.htm&type=5) to prepopulate the Custom Field(s) so it does not have to be manually entered,\n  - That you add your Custom Field(s) to the [\"SaaSquatch\" Section of your page layout](https://www.process.st/checklist/install-referral-saasquatch-for-salesforce-copy-2/#configure-page-layouts).\n2. Create and place your Custom Field(s) on your Account and/or Opportunity layouts that mirror the field(s) on the Lead:\n  - As these Custom Field(s) will be automatically populated when the Lead converts (if mapped as instructed below), there is no need to insert a formula. \n  - You must create an additional Custom Field on __every__ Object you'd like the original Custom Field from the Lead to persist to when a Lead gets converted (*e.g.* Lead: \"SaaSquatch ID\" > Account: \"SaaSquatch ID\", Opportunity: \"SaaSquatch ID\") \n\n#### 2. Mapping Your ID(s)\n> You only need to map the Custom Fields from the Lead to the Objects you intend to interact with to send information to SaaSquatch. For example, if you only want to trigger on actions that happen in Opportunities, you do not need to map to Accounts.\n\n1. Map To Account\n  -  If you intend to send information to SaaSquatch about the associated user when actions are taken on the Account, map the Custom Field(s) on the Lead to Custom Field(s) on the Account.\n  - Select which Custom Field(s) on the Account the \"SaaSquatch Account/User ID\" field(s) should automatically populate when a Lead is converted (*e.g.* Lead: \"SaaSquatch ID\" > Account: \"SaaSquatch ID\"). \n2. Map to Opportunity\n  -  If you intend to send information to SaaSquatch about the associated user when actions are taken on the Opportunity, map the Custom Field(s) on the Lead to Custom Field(s) on the Opportunity.\n  - Select which Custom Field(s) on the Opportunity the \"SaaSquatch Account/User ID\" field(s) should automatically populate when a Lead is converted (*e.g.* Lead: \"SaaSquatch ID\" > Opportunity: \"SaaSquatch ID\"). \n\n#### 3. Reference Your ID Field(s)\nOnce a Lead has been converted, and the Custom Field(s) mapped to the Account and/or Opportunity, you can then reference those field(s) within a Workflow Rule or within an Apex Trigger.\n",
+    "tags": [
+      "Guide"
+    ]
+  }
+}

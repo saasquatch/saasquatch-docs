@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "12UzGs4znYu2C4sI2CfV8n",
+    "type": "Entry",
+    "createdAt": "2021-04-07T21:29:18.188Z",
+    "updatedAt": "2022-06-09T22:09:23.016Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 68,
+    "revision": 3,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Developer Guide",
+    "title": "Writing a Web Component for SaaSquatch",
+    "slug": "developer/widgets/writing-a-web-component-for-saasquatch",
+    "highlights": "This tutorial will explain how to use [Stencil](https://stenciljs.com/) to build web components to work inside of a SaaSquatch widget. We recommend Stencil for those new to web components and familiar with React-style development.",
+    "content": "## Web Components\n\nSaaSquatch widgets are based on standard HTML and use [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) as the building blocks for your user experience. This makes extending the SaaSquatch widget experience possible for web developers familiar with these web technologies.\n\nAll of SaaSquatch's components are __web components__, for example the component for showing a sharelink with a copy button looks like this:\n\n```html\n<sqh-copy-link-button text=\"Copy\" buttoncolor=\"#5C6164\" textcolor=\"#FFFFFF\"></sqh-copy-link-button>\n```\n\nIn order write web components, you need to write Javascript. This tutorial walks you through using [Stencil](https://stenciljs.com/), a web component compiler, that makes writing web components easier for those familiar with React-style development.\n\n> SaaSquatch also supports web components built frameworks besides Stencil. Some examples include [Vue](https://vuejsdevelopers.com/2018/05/21/vue-js-web-component/), [Angular](https://angular.io/guide/elements) and [React](https://reactjs.org/docs/web-components.html#using-react-in-your-web-components).\n\n## Create your Component Package\n\nTo get started with [Stencil](https://stenciljs.com/), there’s some excellent documentation on the Stencil website.\n\n1. Read the Stencil [Getting Started](https://stenciljs.com/docs/getting-started) documentation\n2. Create a new Stencil project `npm init stencil`\n3. Create a component library\n4. Develop your component library locally using `npm start`\n5. Build your component library for production using `npm run build`\n\nOnce you’re done building your component, you’re ready to deploy it to NPM and start using it in your SaaSquatch widget.\n\n> Contact support@saasquatch.com for a verion of our widget starter. A pre-built npm package template with helpful examples and boilerplate. \n\n### Editability \nEditability is an important part of developing web components for SaaSquatch. You can utilize the power of the SaaSquatch widget editor and make changes to your components without having to edit your HTML. \n\n1. Read the [Stencil Docs Target Read Me](https://www.npmjs.com/package/@raisins/stencil-docs-target) for component and attribute annotation information\n2. Run `npm install @raisins/stencil-docs-target` in your stencil package\n2. Add `plugin({outDir: 'docs'})` as an Output Target in your `stencil.config.js` \n3. Add `\"docs/\"` in the files array of your `package.json`\n4. Add `\"raisins\": \"docs/raisins.json\"` in your `package.json` \n5. Annotate your components and their attributes\n\n## Deploy to NPM\n\nSaaSquatch has a CDN for serving static assets (Javascript, CSS, Images, Icons) from NPM. To include your components, first deploy to NPM.\n\n1. Pick a unique NPM package name, e.g. `my-company-components`\n2. Make sure you’ve built with `npm run build`\n3. Deploy to NPM with `npm publish`\n\n## Add your component library as a dependency\n\nYou will need to add your new NPM package as a **dependency** of your widget inside of SaaSquatch for it to show up.\n\n1. [Login to SaaSquatch](http://app.referralsaasquatch.com/)\n2. Edit your widget\n3. Click on **Settings** in the sidebar of the widget editor\n4. Click on **Add Package**\n5. Click on **Add from NPM**\n6. Include your NPM package name for the version number you just deployed\n7. For file path, this is usually something like `/dist/my-company-components/my-company-components.js`\n5. Click **Add** on the form\n6. Press Save on the widget editor\n7. Refresh the page\n\n## Include your components in the HTML\n\nNow that you have included your component library as a dependency, you are ready to put your components into your widget where they’re needed.\n\n1. Click the **< >** icon in the header\n2. Edit the HTML and include your new component. For example, add `<my-company-form></my-company-form>` after the `<sqh-share-buttons>` but before the `<sqh-referral-list>`\n3. Click the paintbrush icon in the header\n\nOnce you’ve completed these steps, you should see your component render in the editor. When you are happy with your changes, click the save button to apply your changes.\n\n## Troubleshooting\n\nNow that your component is in the HTML, it should be rendering in the page. If it is not rendering, here are some common things to look at to make sure you got it right.\n\n- Make sure that your component renders in your development environment when you run `npm start`. If it doesn’t, then you probably have a problem with your Stencil source code, and should consult the [Stencil documentation](https://stenciljs.com/docs/introduction) or [Stencil slack community](https://stencil-worldwide.herokuapp.com/).\n- Make sure you spelled your NPM package name correctly. You can [search NPM](https://www.npmjs.com/) to make sure it exists on NPM. If you can’t find it, make sure you successfully published it with `npm publish`.\n- Make sure your NPM package is loading correctly. Once you’re added the package as a dependency, you can check your browser console to see if your code has produced any errors when loading.\n- Make sure you’ve spelled your component name correctly. The stencil tutorial starts with a component called `my-first-component` that is included in HTML as `<my-first-component name=\"Max\"></my-first-component>`.\n- Make sure your component is in your HTML. Click on **< >** and check if your component is in there. If not, then retry the steps for including your HTML.\n"
+  }
+}

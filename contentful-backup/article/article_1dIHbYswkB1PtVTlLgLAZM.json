@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "1dIHbYswkB1PtVTlLgLAZM",
+    "type": "Entry",
+    "createdAt": "2023-05-17T00:00:04.063Z",
+    "updatedAt": "2023-05-17T13:31:49.552Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 75,
+    "revision": 2,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Setting Up an Instant Access Widget",
+    "slug": "building-programs/program-widget/setting-up-an-instant-access-widget",
+    "content": "Designed for ecommerce and retail clients, instant access widgets provide your participants and their referred friends with an easy way to engage with your referral program—no password or authentication required. \n\nInstant access widgets can be set up for new referral programs, or for existing referral programs that use [fuel tank rewards](/features/rewards-fuel-tank). \n\n> We recommend setting up new widgets in your test tenant before using them for your live program. See our doc on [widget types](/topics/widget-types) for details about the instant access widgets’ features.\n\n## 1. Set up the widget\n\n1. Sign in to the SaaSquatch Admin Portal. \n2. Use the tenant selection dropdown to pick your live or test tenant.\n3. Create a new program or edit an existing program that already uses fuel tank rewards.\n4. On the *Program Setup* page, click __Customize__ beside either the website referrer widget or the friend widget to open the visual editor. \n    - __Tip:__ If you’re setting up the Friend widget, then select the toggle for *Show automatically to friends*. This is optional but recommended, as it enables the auto popup feature. Auto popup creates a more engaging referred friend experience by making the Friend widget stand out on the landing page. \n5. Adjust the appearance and contents of the template.\n    - __Note:__ Components from the following groups can’t be added to instant access widgets: *Rewards, Statistics, Microsite Components,* or *Referrals*. For more information about how to use the visual editor, see [Customizing Program Widgets](/designer/widget-editor&sa=D&source=docs&ust=1684183524286681&usg=AOvVaw1Mu9k5eW5TPYtSSpKn8CBH).\n6. Save your changes to the widget.\n\nRepeat steps 3 to 5 if you want to set up the other instant access widget.\n\n## 2. Create a fuel tank reward (optional)\n\nIf you’re using a friend widget, then we recommend setting up [fuel tank rewards](/features/rewards-fuel-tank). The fuel tank is a simplified way of handing out rewards using unique coupon codes. Your program participants can redeem these codes for rewards, including discounts, credits and other reward types. Clients supply the coupon codes for the fuel tank. You can either create these codes on your own, or use your existing ecommerce or billing platform to create them for you. \n\n__Note:__ If you already have fuel tank rewards set up for your program, then edit the reward and skip to step 7 to allow it to be used in an instant access widget. \n\n1. In the Admin Portal, go to __Rewards > Catalog__.\n2. Select __Create Reward__.\n3. Name the reward.\n4. Select the __Fuel Tank__ reward type.\n5. Use the __fueltank type__ dropdown list to choose a discount or credit reward.\n6. Set a discount percent, or credit amount and reward unit.\n7. Select __instant access__.\n8. Save the reward.\n\n## 3. Adjust your program rules (optional)\n\nTo start using fuel tank rewards in your program, you’ll need to incorporate them into your program rules. Skip this step if you aren’t using the friend widget to issue coupon codes. \n\n1. In the Admin Portal, go to __Programs__ and edit your program.\n2. On the *Program Setup* page, set your program rules as usual.\n3. Select __Set Reward__ beside the reward name under Section 1.\n4. Select __Pre-configured reward__.\n5. Use the *Reward* dropdown list to pick the fuel tank reward you created. \n6. Save the reward selection.\n\n## 4. Embed the widget\nCongrats! Your instant access widgets are ready to use. The final step is to generate a code snippet to embed into your post-purchase landing page, checkout flow, or wherever you want participants to access them. \n\n1. In the Admin Portal, go to __Settings > Install__.\n2. Go to the *Display widgets* section.\n3. Follow the on-screen instructions to generate the code snippet you need to embed. \n4. Add the code snippet to your ecommerce platform or landing page. ",
+    "seoDescription": "Designed for ecommerce and retail clients, instant access widgets provide your participants and their referred friends with an easy way to engage with your referral program—no password or authentication required. Learn how to set one up for your referral program and add it to your ecommerce or retail platform. ",
+    "robotsTag": [
+      "FOLLOW"
+    ],
+    "canonicalUrl": "<link rel=\"canonical\" href=\"URL from Contentful response\"/>"
+  }
+}

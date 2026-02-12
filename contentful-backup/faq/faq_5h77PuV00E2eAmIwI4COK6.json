@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "5h77PuV00E2eAmIwI4COK6",
+    "type": "Entry",
+    "createdAt": "2016-04-04T22:18:01.044Z",
+    "updatedAt": "2016-04-04T22:18:01.044Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 6,
+    "revision": 1,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "faq"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "question": "Who is Referral SaaSquatch for?",
+    "answer": "Referral SaaSquatch is for companies involved with SaaS, Media and E-Commerce that are looking to reward their existing customers for referring new customers."
+  }
+}

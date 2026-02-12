@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "1uw41ULjHVp9y5SBD1WO8R",
+    "type": "Entry",
+    "createdAt": "2022-11-17T18:57:35.092Z",
+    "updatedAt": "2023-12-07T21:04:52.444Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 21,
+    "revision": 2,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Running a Program Report",
+    "slug": "/running-programs/analytics-and-reporting/running-a-report/",
+    "highlights": "Learn how to run a report for your SaaSquatch programs.",
+    "content": "SaaSquatch offers a variety of program reports to help you understand how your programs are performing and assist you with manual reward fulfillment. For a review of the available report types and what they include, see [Program Reports](/features/reports/).\n\n1. Log on to your SaaSquatch account.\n2. Choose your Live or Test tenant from the dropdown menu at the top left of the page.\n3. Click the __Analytics__ page in the top menu bar.\n4. Click the __Reports__ tab.\n5. Click the orange __Create Report__ button.\n6. Give the report a unique name and choose from one of the report types.\n7. Select or deselect report fields and apply filters that are relevant.\n8. Choose the report format - CSV (.csv) or Excel (.xlsx)\n9. Click __Create Report__ to generate your new report.\n\nThe report will begin generating. Depending on the amount of data requested, this may take some time to complete. We’ll send the person who generated the report an email with a download link when the report is ready to be viewed. Generated reports can also be viewed from the Reports page.    \n\n> __Tip:__ To convert UNIX timestamps to human readable dates, make use of this formula: `=DATE(1970, 1, 1) + (*X / 86400000)`, where `*X` is the A1 notation of the cell you're trying to convert. ",
+    "robotsTag": [
+      "FOLLOW"
+    ],
+    "canonicalUrl": "<link rel=\"canonical\" href=\"URL from Contentful response\"/>"
+  }
+}

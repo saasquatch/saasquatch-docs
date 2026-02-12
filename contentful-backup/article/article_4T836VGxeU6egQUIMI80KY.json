@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "4T836VGxeU6egQUIMI80KY",
+    "type": "Entry",
+    "createdAt": "2017-03-17T16:40:27.572Z",
+    "updatedAt": "2019-01-31T21:01:16.381Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 3287,
+    "revision": 8,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Moderating Referrals",
+    "slug": "guides/moderate-referrals",
+    "highlights": "How to moderate referrals in the Referral SaaSquatch Portal.",
+    "content": "\n\n### Pending Referrals\nReferrals will end up in pending for one of two reasons:\n\n1. When the Security Management System is configured to set all incoming referrals to Pending so they can be reviewed manually before rewards are released.\n  \n![Default to Pending](//images.ctfassets.net/s68ib1kj8k5n/5Nvu6hLuBsY3yRgk254gPu/fc9308c4fe38411edc79f88a15dd2e50/Default_to_Pending.png)\n\n2. When the Security management system is configured to set any referral that has been flagged by one of our Fraud Criteria to Pending so it can be reviewed manually before rewards are released. \n  \n![Set to Pending](//images.ctfassets.net/s68ib1kj8k5n/7Ku2arh1OwlxlAoslMf7SE/50779795fce20934f6bcdd07c03da226/Set_to_Pending.png)\n\n### Referral Details\nUnderstanding why a referral is pending is necessary in order to make an educated decision on whether or not to approve or deny the referral awaiting moderation.\n\nYou and your team can confidently make referral moderation decisions using the detailed information about each referral connection in the [SaaSquatch Security Portal](/success/navigating-the-portal/#security).\n\n![Referral Fraud Flag Info](//images.contentful.com/s68ib1kj8k5n/5oPHm6okGQsm0oqkW8Iiki/c61a0e7c2334156069eb73d37a21c18e/Referral_Fraud_Flag_Info.png)\n\nIn the above example the referral has been flagged as both users sharing a similar email address. You can also see that the two users share the same name and the same IP address.\n\nA full list of the available Fraud Criteria that can be checked by the SaaSquatch system are available in our [Security Management System](/developer/referral-security/#fraud-criteria) article.\n\n### Applying the Moderation\n#### Individual Moderation\nTo approve or deny both sides of the referral simply click of the Approve/Deny button on each of the Referrer/Referred User sides of the referral.\n\n![Moderate Side of Referral](//images.contentful.com/s68ib1kj8k5n/5C1HlPU3S0iM0mWcGgSMIk/42d282bf9048437486538fdd896457bb/Moderate_Side_of_Referral.png)\n\n>**Note:** In many cases the referred user reward is set to automatically be approved. If this true then denying the referred user reward will only remove the reward if it has not already been redeemed. Please check your referral program settings to confirm whether this is the case.\n\n#### Bulk Moderation\nIt is also possible to moderate multiple referrals at the same time. From the main security page simply select the box next to each referral that you would like to moderate, and click the Approve or Deny button for that section.\n\n![Pending Referrals](//images.contentful.com/s68ib1kj8k5n/1fbduWWtmc6kSQeyM22SO2/85a4ded63aef9f809bc6ff61f8cdf2b0/Pending_Referrals.png)"
+  }
+}

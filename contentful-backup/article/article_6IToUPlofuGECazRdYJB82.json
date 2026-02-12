@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "6IToUPlofuGECazRdYJB82",
+    "type": "Entry",
+    "createdAt": "2022-09-21T18:57:02.609Z",
+    "updatedAt": "2023-02-28T18:55:59.046Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 268,
+    "revision": 9,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Setting Up a Calculated Field",
+    "slug": "building-programs/custom-calculated-fields/setting-up-a-calculated-field",
+    "highlights": "Learn how to set up your own calculated fields and use them to power your loyalty or referral program's rules.",
+    "content": "Calculated fields enable you to track events as they come in, set up a calculation using event fields, and store the resulting data on a participant’s profile. Once the calculated field is set up, its value will update dynamically as you send us events that meet your criteria.\n\nThis guide will show you the basic process for setting up a calculated field, including two examples at the end. For more details about how calculated fields work and what types of calculations are possible, see our article on [calculated fields](https://docs.saasquatch.com/building-programs/custom-calculated-fields/calculated-fields). \n\n## Setting up a calculated field\n1. Log on to the SaaSquatch Admin Portal.\n2. Go to the __Data__ page and click the __Fields__ tab.\n    - __Note__: You can also create a calculated field from the Program Setup page when you add or edit a goal or action.  Under the Goal or Action Criteria heading, click the first dropdown menu for the Condition and then select __Create New Calculated Field__.    \n3. Click the orange __Create calculated field__ button at the top right of the page.\n4. Complete the fields:\n    - __Name__\n    - __Event__\n    - __Calculation__\n    - __Event field__, if applicable for your calculation\n5. Apply an optional tracking window if you want to perform a sum or count calculation on a rolling basis. The time zone for your tenant will apply to your calculated field’s tracking window. \n    - __Tip__: For details about the window types and when to use them, see [Tracking Windows for Calculated Fields](https://docs.saasquatch.com/building-programs/custom-calculated-fields/tracking-windows).\n6. If you applied a sliding window, then you can set a maximum value to be counted for each unit of your interval (e.g., each day in a 60 day interval).\n7. Add an optional active period if you want to set a start and end date for the calculation.\n8. Add filters if you only want events that meet specific criteria to be included in the calculation.  \n    - __Note:__ Filters can apply to event characteristics (e.g., revenue amount for a given purchase) or user characteristics (e.g., a count of the number of times a participant makes a purchase over $100)\n9. Review your selections and decide if you want to <a href=\"https://docs.saasquatch.com/building-programs/custom-calculated-fields/recalculation\">backfill the values</a> for all participants.\n10. Click the orange __Save__ button.\n\n### Example: Reward participants who make 3 or more purchases of at least $50 in one month after the referral was started\n> __Scenario:__ You have a referral program and want to reward participants who frequently make sizable purchases soon after they’ve been referred. You determine that for your program, this means any participant who makes 3 or more purchases of at least $50 in the month after the referral starts. A calculated field can help you determine which of your participants meet this threshold and act as the basis for a program rule that issues these participants a reward. \n\nHere’s how the calculation can be set up:\n1. Under the Calculation heading, complete the __Name__ field.\n2. Enter the following values for the event and calculation fields: \n    - __Event__: Purchase\n    - __Calculation__: Count\n> __Note:__ This will set up the calculation to count how many times we receive purchase events that meet your criteria.\n3. Apply a fixed tracking window. This will cause the calculation to reset each month.\n  <ol>\n    <li> Select <strong>Fixed Window</strong>.</li>\n    <li>Choose a <strong>1 calendar month</strong> window duration.</li>\n  </ol> \n4. Add a filter to specify that you only want to count the purchase events with a value of $50 or more: \n   <ol>\n     <li>Click <strong>Add Rule</strong>. </li>\n     <li> For the first Condition dropdown, select the <code>events.fields.revenue</code> field.</li>\n     <li> Change the operator type to <strong>greater than or equal to</strong>.</li>\n     <li> Enter <code>50</code> as the string variable value.</li>\n  </ol>\n\n    > __Tip:__ JSONata expressions only accept whole numbers. When using currency, we recommend using the lowest denomination used in your database configuration. If you’re not sure, contact our [Support team](mailto:support@saasquatch.com) for help.  \n\n5. Review and click __Save__.\n\nThe remaining setup must be done in your referral program. The exact steps to follow depend on the full program setup, but here’s the general process.\n1. Create or edit a goal. \n2. Set it to trigger when a referred user field updates.\n3. Under the Goal Criteria heading, click __Add Rule__. \n4. In the Condition dropdown box:\n  <ol>\n    <li>Select your new calculated field</li>\n    <li>Choose the operator <strong>greater than or equal to</strong></li>\n    <li>Enter <code>3</code> in the variable text box</li> \n  </ol>\n\nThe goal will only trigger now if we receive 3 or more purchase events with a revenue of $50.00 or more. \n\nYou can also add Action Criteria to only trigger the action if these events were received within the first month after we receive the __referral started__ event.\n\n### Example: Reward participants the first time they have spent more than $1000 in the last 90 days \n> __Scenario:__ You want to set up a program rule that rewards the highest-spending members of your Points program. You determine that anyone who spends over $1000 during a 90 day period meets that threshold. A calculated field can help you determine which members of your Points program hit this purchase threshold, and act as the basis for your program rule. \n\nHere’s how the calculation can be set up:\n1. Under the Calculation heading, complete the __Name__ field.\n2. Enter the following values for the event and calculation fields: \n    - __Event__: Purchase\n    - __Calculation__: Sum\n    - __Event field__: Revenue\n> __Note__: This will set up the calculation to sum the `revenue` field for each purchase event\n3. Apply a sliding tracking window of 90 days.\n  <ol>\n    <li> Select <strong>Sliding Window</strong>.</li>\n    <li>Use the slider or dropdown menus to set the window duration at 90 days.</li>\n  </ol>  \n4. Review and click __Save__.\n\nThe remaining setup can be done in your Points program rules. The exact steps to follow depend on the full program setup, but here’s the general process.\n1. Create or edit a goal. \n2. Set it to trigger on a referred user field update.\n3. Set the edge triggering to be the name of the calculated field you just created (e.g., `user.customFields.90DayTotal`).\n4. Under the Goal Criteria heading, click __Add Rule__. \n5. In the Condition dropdown box:\n  <ol>\n    <li> Select your new calculated field</li>\n    <li>Choose the operator <strong>greater than or equal to</strong> </li>\n    <li>Enter <code>1000</code> in the variable text box</li>\n  </ol>  \n\n> __Tip__: JSONata expressions only accept whole numbers. When using currency, we recommend using the lowest denomination used in your database configuration. If you’re not sure, contact our [Support team](mailto:support@saasquatch.com) for help.  \n\nThe goal will now trigger only if the user has made $1000 in purchases over the previous 90 days.\n",
+    "robotsTag": [
+      "FOLLOW"
+    ],
+    "canonicalUrl": "<link rel=\"canonical\" href=\"URL from Contentful response\"/>"
+  }
+}

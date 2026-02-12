@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "7EH0nQh6YE28SQQ2Eymmu4",
+    "type": "Entry",
+    "createdAt": "2016-04-04T22:19:52.255Z",
+    "updatedAt": "2016-04-04T22:19:52.255Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 13,
+    "revision": 1,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "faq"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "question": "Do my customers have to signup with Referral SaaSquatch before they can make a referral?",
+    "answer": "__No, your customers don't need a Referral SaaSquatch account__. By installing Referral SaaSquatch in your app all of your customers will automatically be enrolled. We do this to make inviting friends as fast and seamless as possible, to both increase participation in the program and to protect your brand."
+  }
+}

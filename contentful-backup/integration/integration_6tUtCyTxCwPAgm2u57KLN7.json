@@ -1,0 +1,97 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "6tUtCyTxCwPAgm2u57KLN7",
+    "type": "Entry",
+    "createdAt": "2019-12-05T02:16:30.487Z",
+    "updatedAt": "2022-08-24T23:21:42.800Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 71,
+    "revision": 6,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "integration"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "title": "Zapier Software Integration",
+    "integrationName": "Zapier",
+    "slug": "zapier",
+    "logo": {
+      "metadata": {
+        "tags": [],
+        "concepts": []
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "s68ib1kj8k5n"
+          }
+        },
+        "id": "5bB95sRsNbh2BL1D5eqGLk",
+        "type": "Asset",
+        "createdAt": "2019-12-05T02:16:23.705Z",
+        "updatedAt": "2022-08-24T23:21:34.239Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 28,
+        "revision": 4,
+        "locale": "en-US"
+      },
+      "fields": {
+        "title": "Zapier Integration",
+        "file": {
+          "url": "//images.ctfassets.net/s68ib1kj8k5n/5bB95sRsNbh2BL1D5eqGLk/a10fe712e7948a2b73ecbe379108a556/Group_1.png",
+          "details": {
+            "size": 10956,
+            "image": {
+              "width": 450,
+              "height": 300
+            }
+          },
+          "fileName": "Group 1.png",
+          "contentType": "image/png"
+        }
+      }
+    },
+    "integrationDescription": "Zapier is an online automation tool that connects your apps and services. You can connect two or more apps to automate repetitive tasks without coding or relying on developers to build the integration.",
+    "highlights": "Zapier is an online automation tool that connects your apps and services. You can connect two or more apps to automate repetitive tasks without coding or relying on developers to build the integration.",
+    "keyFeatures": [
+      "Synchronize users between SaaSquatch and your CRM",
+      "Track actions in other platform, trigger programs in SaaSquatch"
+    ],
+    "moreInfo": [
+      "[Zapier Quickstart Guide](/integrations/zapier)"
+    ],
+    "tags": [
+      "in-directory"
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "39uPojubFei6GWSqec6Csc",
+    "type": "Entry",
+    "createdAt": "2016-04-04T22:25:37.830Z",
+    "updatedAt": "2016-04-04T22:25:37.830Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 8,
+    "revision": 1,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "faq"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "question": "What if I go over my plan limits?",
+    "answer": "There's nothing to worry about. If you go over your plan limits, your program will continue to function normally. At the end of your billing period we will contact you to discuss upgrading your plan.\n\n<div class=\"well\">\n    <h4>Pricing Example</h4>\n    \n    <p>I’m a marketing director looking to buy a referral program for my company that has 25,000 active users.</p> \n    <p>Given that usage I would select the Pro Plan, which would cost $874 per month. (Base of $499 + $375 at $25/1,000 users)</p> \n    <p>This is an example if your service costs $40/month and you want to give both the referring user and the newly referred users 10% off</p>\n    <ul>\n        <li>One of your customers refers a friend to signup</li>\n        <li>That friend signs up, finishes their 15 day trial, and pays their first invoice</li>\n        <li>The new friend gets 10% off their first bill ($4 off)</li>\n        <li>The referrer get 10% off their next bill for the next 12 months (or until their friend cancels their subscription)</li>\n    </ul>\n</div>\n"
+  }
+}

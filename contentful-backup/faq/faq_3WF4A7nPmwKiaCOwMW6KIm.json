@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "3WF4A7nPmwKiaCOwMW6KIm",
+    "type": "Entry",
+    "createdAt": "2016-04-04T22:20:20.660Z",
+    "updatedAt": "2016-04-04T22:20:20.660Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 4,
+    "revision": 1,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "faq"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "question": "Can customers complete a referral over the phone?",
+    "answer": "Yes. You will simply add the coupon code they were given to their account manual through your subscription provider. Once that user then logs into your system the referral will be completed."
+  }
+}

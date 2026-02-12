@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "6N0pu9GndKmc0KooMYQQw6",
+    "type": "Entry",
+    "createdAt": "2016-07-20T04:34:25.791Z",
+    "updatedAt": "2023-01-16T14:44:26.844Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 19,
+    "revision": 4,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Conversion",
+    "slug": "topics/conversion",
+    "highlights": "**Conversion** is the process of converting in-progress referrals and unlocking rewards. It is the final of three steps in referral tracking, the first two being [identifying a user](/topics/identification) and [attributing the referral](/topics/attribution) back to the person who referred them. Conversion can happen immediately when someone signs up or checks out, or can be set up to only happen after some future conversion event. In most cases the conversion event would be the purchase of a product or subscription, which can often happen hours or days after a user was first identified or a referral first attributed.",
+    "content": "<div class=\"bs-callout bs-callout-default\">\n    <h4>Definition</h4>\n    Conversion is the process of converting in-progress referrals and unlocking rewards.\n</div>\n\n### Conversion Events\n\nConversion can happen immediately when someone signs up or checks out, or can be set up to only happen after some future conversion event. In most cases\nthe conversion event would be the purchase of a product or subscription, which can often happen hours or days after a user was first identified or a \nreferral first attributed.\n\n - **eCommerce:** The conversion is usually triggered after checkout\n - **B2B SaaS:** The conversion is usually triggered when someone purchases a subscription at the end of a free trial period\n - **Consumer Software:** The conversion is usually triggered when someone has verified their email and finished activating their account\n\n<hr/>"
+  }
+}

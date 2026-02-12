@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "33O0HtgcWHCtURaUMdg2BD",
+    "type": "Entry",
+    "createdAt": "2021-04-01T21:47:37.508Z",
+    "updatedAt": "2021-04-01T22:44:38.607Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 269,
+    "revision": 9,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Powering a Referral Program using Zapier & Hubspot",
+    "slug": "powering-a-referral-program-using-zapier-and-hubspot",
+    "highlights": "This guide will walkthrough the steps required to set up a referral program using Hubspot through our integration with Zapier. ",
+    "content": "By the end of this guide, you will have set up a connection between Hubspot and SaaSquatch using Zapier to transfer data between them. The structure of this example will pull in and store the referrer's referral code from the landing page and will issue when the contact's Lifecycle Stage in Hubspot has been set to \"Customer\" [automatically by Hubspot](https://knowledge.hubspot.com/crm-setup/manage-how-lifecycle-stages-sync-between-objects).\n\n>*Note:* Depending your Zapier plan, it could take up to 15 minutes for new users to make their way from Hubspot through Zapier into SaaSquatch.\n\n### Zap 1: Send Referred User to SaaSquatch\n#### Retrieving the Referral Code\n1. As the new user hits your designated landing page, use squatch.js to [retrieve the referral code](https://docs.saasquatch.com/how-to-pass-referral-codes-to-a-form/).\n\n2. Save the referral code as a custom property for the new contact in Hubspot. We recommend \"Referred By Code\" to prevent confusion.\n\n#### Setting up the Trigger\n1. Create a new Zap in Zapier using Hubspot's \"Contact Recently Created or Updated\" as the trigger. Click *Continue*.\n\n2. Select your Hubspot account from the drop-down menu and click *Continue*.\n\n3. From the \"Additional Properties To Retrieve\" drop-down menu, select \"Contact Information: Referred By Code\" (or whatever you've titled the property from Step 2) and click *Continue*.\n\n4. Click *Test Trigger* and verify that information is flowing into Zapier from Hubspot correctly.\n\n5. Click *Continue* to save the Trigger settings.\n\n#### Setting up the Action\n1. Selecting \"SaaSquatch\" as the App, choose \"Create User\" as the \"Action Event\". Click *Continue*.\n\n2. Select your SaaSquatch account from the drop-down menu and click *Continue*.\n\n3. From the \"Select A Tenant\" drop-down menu, select your Test or Live tenant depending on if your testing this Zap out or setting it up for production.\n\n4. In the \"Basic Information\" section, fill in the User ID and Account ID with the approporiate variables from Hubspot. For simplicity's sake, we recommend using the Contact's email address for both.\n\n5. Add the *First Name* and *Last Name* variables from Hubspot into the \"Name\" field and *Email* into Email.\n\n6. Leave the \"Referable\" field blank.\n\n![Zapier Basic Information screen](//images.ctfassets.net/s68ib1kj8k5n/1qtkdZtcEgyAD2KEQEVE3W/6e7767f3e4072ea6ce50ae42d6f49ed5/Screen_Shot_2021-04-01_at_3.39.50_PM.png)\n\n7. From the \"Enable Advanced Mode?\" drop-down menu, select \"True\" and scroll down to the \"Referred By Codes\" field once it loads.\n\n8. Enter the \"Referred By Code\" propery from Hubspot into the \"Referred By Codes\" field.\n\n![Zapier Referred By Codes](//images.ctfassets.net/s68ib1kj8k5n/7wGpxVMX9aYeNbMPzPZ0Pe/a17551854b5a65d6a470cc981ccf7427/Screen_Shot_2021-04-01_at_2.11.29_PM.png)\n\n9. Scroll down and click *Continue*.\n\n10. Verify all of the information is correct and click the *Test & Continue* button.\n\n11. If everything looks good click the *Turn on Zap*.\n\n12. Test the flow by signing up a new user in your landing page and checking in the *Participants* tab of the SaaSquatch portal to ensure the the user makes it through. \n\n### Zap 2: Send \"Customer\" Event to SaaSquatch\n#### Setting up the Trigger\n1. Create a new Zap in Zapier using Hubspot's \"New Contact Property Change\" as the trigger. Click *Continue*.\n\n2. Select your Hubspot account from the drop-down menu and click *Continue*.\n\n3. Under the \"Property Name\" drop-down menu, select \"Contact Information: Lifecycle Stage\".\n\n4. From the \"Additional Properties To Retrieve\" drop-down menu, select \"Contact Information: Referred By Code\" (or whatever you've titled the property from Step 2) and click *Continue*.\n\n5. Click *Test Trigger* and verify that information is flowing into Zapier from Hubspot correctly.\n\n6. Click *Continue* to save the Trigger settings.\n\n#### Setting up the Action\n1. Selecting \"SaaSquatch\" as the App, choose \"Create Event\" as the \"Action Event\". Click *Continue*.\n\n2. Select your SaaSquatch account from the drop-down menu and click *Continue*.\n\n3. From the \"Select A Tenant\" drop-down menu, select your Test or Live tenant depending on if your testing this Zap out or setting it up for production.\n\n4. Next, fill in the User ID and Account ID with the approporiate variables from Hubspot. For simplicity's sake, we recommend using the Contact's email address for both.\n\n7. For the \"Event\" field, manually type in `lifecycleUpdate` to match the event key SaaSquatch will be listening for.\n\n8. In the \"Fields\" section, enter `lifecycle` for \"Event Fields\" and choose \"Contact information: Lifecycle Stage\" for the right-hand field (see below).\n\n![Zapier lifecycleUpdate Event](//images.ctfassets.net/s68ib1kj8k5n/6SvVubYLrp8OfEsudOnTxp/cea01f3aaec7e3b10e479b3f0b691c4c/Screen_Shot_2021-04-01_at_3.38.20_PM.png)\n\n9. Scroll down and click *Continue*.\n\n10. Verify all of the information is correct and click the *Test & Continue* button.\n\n11. If everything looks good click the *Turn on Zap*.\n\n12. Test the flow by completing a deal linked to a Contact that has previously been sent to SaaSquatch and then verify in the *Participants* tab of the SaaSquatch portal that the event has been added for the user. \n\n>*Note:* To use a different deal stage aside from \"Closed Won\", you will need to set up a [Hubspot Automation](https://knowledge.hubspot.com/chat-and-automation/topics#workflows) to ensure that when the Deal reaches the correct stage, the Contact's Lifecycle Stage is updated as well. Furthermore, you will need to configure your program logic in SaaSquatch to listen for that stage."
+  }
+}

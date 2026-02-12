@@ -1,0 +1,48 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "6QmYRAGRt6aooBLHL6VAit",
+    "type": "Entry",
+    "createdAt": "2021-12-16T16:52:20.588Z",
+    "updatedAt": "2022-05-18T22:09:07.516Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 98,
+    "revision": 4,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Referred user landing page",
+    "slug": "referred-user-landing-page",
+    "highlights": "When a referred user clicks on a share link, they are taken to the referred user landing page on your website. This page explains your product benefits, highlights that they've been referred, and encourages them to become a new customer of yours. ",
+    "content": "The referred user landing page is the first page a new user will see when they click a share link provided by a referrer.  \n\n## Goals of the referred user landing page\n\n- Highlight that the new user has been referred to your product by someone who believes they would benefit from your product. \n- Explain the benefit of your offering to the new referred user. \n- Highlight the reward they will receive by completing the goal you have defined. [This would be applicable to Referred user rewards and double sided rewards]\n\n## Define your program's referred user landing page\n1. Head to your SaaSquatch account.\n2. In the upper right corner of your SaaSquatch account select either your Live or Test tenant.\n3. Select the program where you would like to include the referred user landing page. \n4. Under Section 1, Click the \"Set Link\" in the Landing Page section. \n5. Enter the URL you have chosen for your referred user landing page. \n6. Enter a Fallback URL that also include Squatch.js incase the main URL is unavailable. \n7. Click Save to confirm your referred user landing page. \n",
+    "tags": [
+      "landing page",
+      "referred user landing page"
+    ],
+    "seoDescription": "Define what page a referred user arrives at when they click an advocate's share link..."
+  }
+}

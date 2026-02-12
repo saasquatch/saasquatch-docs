@@ -1,0 +1,46 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "36xmMf9DOMe1cBTwu4XIfA",
+    "type": "Entry",
+    "createdAt": "2023-04-12T17:36:54.600Z",
+    "updatedAt": "2023-04-12T18:03:07.656Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 23,
+    "revision": 4,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "productNews"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "title": "The SaaSquatch x HubSpot Integration ",
+    "datePublished": "2023-04-12",
+    "tags": [
+      "feature-release"
+    ],
+    "content": "We're thrilled to announce the launch of our brand new integration with [HubSpot](https://www.hubspot.com/). \n\nWe’ve paired the power and flexibility of SaaSquatch with HubSpot so you can better track, manage and reward your program's participants.  \n\nWith the new integration you’ll be able to:\n- Trigger rewards when a HubSpot deal stage is changed\n- Make referral connections without leaving HubSpot\n- Send personalized program reminder emails in HubSpot\n- Keep track of who referred whom, right in HubSpot\n- Set up referral programs with minimal configuration\n- And more!\n\nSee it in action [here](https://youtu.be/CABQ-WqEu8U).\n",
+    "ctaLink": "/integrations/hubspot/integrating-with-saasquatch",
+    "ctaButtonText": "Learn how-to set it up yourself"
+  }
+}

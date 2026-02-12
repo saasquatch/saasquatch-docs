@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "2e9dA7mq9TGVDg0N4ncls9",
+    "type": "Entry",
+    "createdAt": "2022-04-21T23:08:55.482Z",
+    "updatedAt": "2022-04-21T23:17:18.531Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 37,
+    "revision": 3,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Leaderboards",
+    "slug": "features/leaderboards",
+    "highlights": "Leaderboards rank participants and allow them to see their rank relative to others.",
+    "content": "## Introduction\nLeaderboards can provide incentive for participants to take action and accomplish program objectives. They add an element of gamification alongside your program.\n\n## Available Leaderboards\nSaaSquatch provides three different types of leaderboards. When used with a program or global widget, they are updated hourly with the latest ranking.\n\n### Top Started Referrers\nThe top started referrers leaderboard ranks participants by their number of started referrals. For example, if:\n- User A refers User B\n- User A refers User C\n\nthen User A has two started referrals and a leaderboard value of two.\n\n### Top Converted Referrers\nThe top converted referrers leaderboard ranks participants by their number of converted referrals. A referral becomes converted when the referred user reaches a [program defined goal](/success/core-topics/#conversion). For example, if:\n\n- User A refers User B\n- User A refers User C\n- User B makes a purchase (which triggers a conversion)\n\nthen User A has one converted referral, and a leaderboard value of one.\n\n### Top Point Earners\nThe top point earners leaderboard ranks participants by the number of points they have earned. It sums all rewards of the `POINT` reward unit that are not canceled or pending. For example, if:\n\n- User A receives 10 points for signing up for a free trial\n- User A receives 20 points for purchasing a one month membership\n\nThen User A has two points rewards and a leaderboard value of 30.\n\n## Leaderboard Ranks\nA user's leaderboard rank is expressible in different ways. There are three different supported ranking algorithms for leaderboards to represent ties.\n\n### Row Number\nRow number is the simplest ranking algorithm. The leaderboard computes a value for each participant, then assigns them a row number.\n\nFor example, consider the following participants and values:\n- User A: 10\n- User B: 1\n- User C: 5\n- User D: 10\n\nIn this ordering, the participants in the leaderboard would be displayed with the following ranks:\n1. User A: 10\n2. User D: 10\n3. User C: 5\n4. User B: 1\n\nNote that both User A and User D have the same value. There's no guarantee about the ordering between users with the same value. Another possible outcome that is valid for row number ranking is:\n1. User D: 10\n2. User A: 10\n3. User C: 5\n4. User B: 1\n\n### Rank\nThe rank algorithm assigns the same leaderboard rank to the same participant value. When ties occur, it leaves numerical gaps in the leaderboard ranking. \n\nFor example, consider the following participants and values:\n- User A: 10\n- User B: 1\n- User C: 5\n- User D: 1\n\nIn this ordering, the participants in the leaderboard would be displayed with the following ranks:\n1. User A: 10\n1. User B: 10\n3. User C: 5\n4. User B: 1\n\nNote that User A and User B have the same rank of 1, and User C gets rank 3. The leaderboard skips rank 2 in the case of the tie. \n\n### Dense Rank\nThe dense rank algorithm assigns the same leaderboard rank to the same participant value. Although unlike the rank algorithm, it does not leave numerical gaps in its ranking.\n\nFor example, consider the following participants and values:\n- User A: 10\n- User B: 1\n- User C: 5\n- User D: 1\n\nIn this ordering, the participants in the leaderboard would be displayed with the following ranks:\n1. User A: 10\n1. User B: 10\n2. User C: 5\n3. User B: 1\n\nNote that User A and User B have the same rank of 1, and User C gets rank 2.\n\n## Filtering Leaderboard Activity\nActivities counting towards a participant's leaderboard value and rank are filterable. Our leaderboards support two optional types of filtering, by program and by time interval.\n\n### Program Based\nLeaderboards can either be globally scoped or program scoped. When globally scoped, leaderboards evaluate referrals or rewards from all programs and sources. When program scoped, leaderboards evaluate only referrals or rewards from a specified program. This gives leaderboards the flexibility to run alongside many or one program.\n\n### Time Based\nLeaderboards are filterable by time intervals with a start and end date. Only referrals or rewards from within the interval are used to compute a participant's leaderboard value. Any activity outside of the interval gets ignored by the leaderboard.\n\n## End User Experience\nLeaderboards can be included into your widgets using our mint components package. They display participants leaderboard value, rank, first name and last initial. The row of the viewing participant gets highlighted in brand color and the rank column is hideable if needed. A customizable empty state is displayed if there are no leaderboard results. \n\n![Points Leaderboard](//images.ctfassets.net/s68ib1kj8k5n/VMAx5358UubE6q92Vc5zo/dfc7f09ac19d108a364781fc0e4f4602/Screen_Shot_2022-04-21_at_3.36.23_PM.png)",
+    "robotsTag": [
+      "FOLLOW"
+    ],
+    "canonicalUrl": "<link rel=\"canonical\" href=\"URL from Contentful response\"/>"
+  }
+}

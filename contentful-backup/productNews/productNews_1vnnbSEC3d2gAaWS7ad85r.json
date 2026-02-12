@@ -1,0 +1,46 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "1vnnbSEC3d2gAaWS7ad85r",
+    "type": "Entry",
+    "createdAt": "2023-03-17T13:52:57.979Z",
+    "updatedAt": "2023-03-17T13:52:57.979Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 24,
+    "revision": 1,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "productNews"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "title": "Self-serve Domain Set-up and Management",
+    "datePublished": "2023-03-17",
+    "tags": [
+      "feature-release"
+    ],
+    "content": "Great news! We've made it easier to set-up and manage custom domains. [Full access](/learning-saasquatch/admin-portal/team-member-roles) team members can now use our self-serve setup flow to easily assign a custom domain to your program’s sharelinks, microsites and emails.\n\n__What are custom domains?__ Custom domains replace the default “.ssqt.co\" domain with a root or subdomain that you already own, providing a more cohesive on-brand experience for your participants. \n\n> An example of a custom domain for a share link: referral.yourdomain.com/unique-referral-code. \n\n__Why use custom domains?__ With SaaSquatch, all program touchpoints can be completely customized to match your brand. Custom domains are one of the many tools you can use in SaaSquatch to create an on-brand participant experience. Providing that on-brand experience builds credibility and trust with your participants, resulting in increased program engagement and participation. \n\nReady to give it a go?",
+    "ctaLink": "https://docs.saasquatch.com/building-programs/participant-experiences/configuring-a-custom-domain/",
+    "ctaButtonText": "Learn how to get started »"
+  }
+}

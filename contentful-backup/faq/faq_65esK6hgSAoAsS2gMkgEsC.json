@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "65esK6hgSAoAsS2gMkgEsC",
+    "type": "Entry",
+    "createdAt": "2016-04-04T22:21:02.594Z",
+    "updatedAt": "2016-04-04T22:21:02.594Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 12,
+    "revision": 1,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "faq"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "question": "Will Referral SaaSquatch scale? Am I too big for Referral SaaSquatch?",
+    "answer": "Referral SaaSquatch is built on world-class infrastructure and modern technology. This means we can seamlessly scale to meet your unique needs as an enterprise customer while providing the reliability you and your customers deserve.\n\n__Have enterprise needs?__ Don't worry, you're not too big. We work with major tech companies every day and can find a solution that fits your needs. Whether you need a custom feature, style or integration partner, we can help you out. Just contact <a href=\"mailto:sales@saasquat.ch?Subject=Enterprise%20Questions\">sales@saasquat.ch</a> if you want to know more."
+  }
+}

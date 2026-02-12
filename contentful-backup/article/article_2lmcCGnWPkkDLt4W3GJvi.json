@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "2lmcCGnWPkkDLt4W3GJvi",
+    "type": "Entry",
+    "createdAt": "2023-08-03T16:20:39.360Z",
+    "updatedAt": "2023-08-03T20:42:21.656Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 132,
+    "revision": 3,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Assign Vanity Share Links or Referral Codes",
+    "slug": "building-programs/participant-experiences/vanity-links-and-codes",
+    "content": "## Overview\nSaaSquatch automatically generates unique share links and referral codes for each of your participants to use when they refer friends in your different programs. We also offer the ability to personalize a participant’s sharing experience by creating vanity share links or vanity referral codes. \n\nVanity links and codes are assigned on a participant-by-participant basis, and must be unique to that participant. Additionally, like all share links and referral codes, they can only be associated with one specific program (if you have more than one running). Each participant can have multiple vanity links and codes active at the same time. \n\nWe typically recommend vanity share information when you want to provide a personalized, memorable link or code for a well-known or top-performing referrer, such as an affiliate or partner. One example would be a social media influencer who shares their referral code for your program in their posts or captions, especially as part of a targeted campaign (such as 10% off their first purchase as a new user).\n\n<table class=\"table table-hover\">\n  <tr>\n    <th></th>\n    <th>Automatically generated example</th>\n    <th>Vanity example</th>\n  </tr>\n  <tr>\n    <td>Referral code</td>\n    <td><code>CODE4746</code></td>\n    <td><code>INFLUENCER10</code></td>\n  </tr>\n  <tr>\n    <td>Share link</td>\n    <td><code>share.yourdomain.com/mzw&lkO</code></td>\n    <td><code>share.yourdomain.com/INFLUENCER10</code></td>\n  </tr>\n </table> \n\n## Open the participant's profile\nAll vanity share links and codes are managed on individual participants' profiles. To view this information on a participant’s profile:\n\n1. Sign in to the Admin Portal.\n2. Go to the __Participants__ page and select the participant whose code you want to change. This opens their participant profile.\n3. Select the __Codes and Links__ tab below the participant’s program info. \n\n## Assign vanity referral codes\nYou can convert an existing referral code to a vanity code, or create a new vanity code. \n\n### Change an existing referral code\n1. Under the *Referral Codes* heading, select the three-dot menu beside the referral code you want to change. \n2. Enter the new referral code in the text box.\n3. (Optional) Deselect *Keep `CODE` as a working referral code* if you want to permanently disable the old referral code.\n    - __Tip__: We recommend disabling the old referral code if you suspect potential referral fraud or if it was, for example, used as part of a now inactive campaign.\n4. (Optional) Deselect *Keep using existing sharelinks* if you want to have a new share link automatically generated.\n5. Save your changes. \n\n### Add a new vanity referral code\n1. Under the *Referral Codes* heading, select __Add Referral Code__.\n2. Select the program you want the referral code to be used for.\n3. Enter a vanity referral code in the text box.\n4. Set the referral code as a primary or secondary referral code for this program.\n    - __Tip__: Secondary referral codes don’t show up in the program widget, emails or other participant touchpoints. Secondary codes can be useful when you want to run targeted campaigns or other limited-time promotions. \n5. Save your changes.\n\nA new unique share link is automatically generated if you select *Set as primary referral code*.  If you want this new share link to match the vanity referral code, then see the section on changing an existing share link.\n\n## Assign vanity share links\n> __Before you begin:__ To use vanity share links, you must have [set up a custom domain](/building-programs/participant-experiences/configuring-a-custom-domain) on your tenant. \n\n### Change an existing share link\nAny existing share links can be modified with vanity information. If you previously created a new vanity referral code, then you can follow this process to customize the share link that was automatically generated. \n\n1. Under the *Sharelinks* heading, select the three-dot menu beside the share link you want to change.\n2. Select __Edit__ and update the text at the end of the URL with the new vanity code.\n3. (Optional) Deselect *Keep `LINK` as a working share link* if you want to permanently disable the old link.\n    - __Tip__: In the event of potential referral fraud or when retiring links from now inactive campaigns, you can return later and disable old links from this menu. \n4. Save your changes.\n\n### Add a new vanity share link\n__Note:__ New vanity share links can be added even when you aren’t creating a corresponding vanity referral code. This option is especially useful for targeted or limited-run campaigns.\n\n1. Under the *Sharelinks* heading, select __Add Sharelink__. \n    - __Note:__ This button is only displayed after you’ve set up a custom domain. \n2. Select the program you want the share link to be used for.\n3. Enter a vanity code in the text box at the end of the URL. If you previously created a new vanity referral code, then you can re-use this code for the share link. \n4. Set the share link as a primary or secondary link for the program.\n    - __Tip:__ Primary links are used in widgets, emails, API and integrations. Secondary links are not.  Secondary share links can be useful when you want to run targeted campaigns or other limited-time promotions. \n5. Save your changes.",
+    "seoDescription": "SaaSquatch automatically generates unique share links and referral codes for each of your participants to use when they refer friends in your different programs.  We also offer the ability to personalize a participant’s sharing experience by creating vanity share links or vanity referral codes. ",
+    "robotsTag": [
+      "FOLLOW"
+    ],
+    "canonicalUrl": "<link rel=\"canonical\" href=\"URL from Contentful response\"/>"
+  }
+}

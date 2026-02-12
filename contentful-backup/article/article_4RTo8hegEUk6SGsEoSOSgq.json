@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "4RTo8hegEUk6SGsEoSOSgq",
+    "type": "Entry",
+    "createdAt": "2017-04-05T18:31:43.979Z",
+    "updatedAt": "2022-08-09T18:11:46.136Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 53,
+    "revision": 8,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Designer Guide",
+    "title": "Theme Variables",
+    "slug": "themes/variables",
+    "highlights": "Theme Variables make themes more customizable through custom fields. \n  It is up to theme developers to define the variables in a [JSON Schema](http://json-schema.org) in the theme git repository. These variables can then be\n  [updated via the SaaSquatch REST API](/api/methods/#update_variables) and then those values rendered in Handlebars templates.",
+    "content": "<br></br>\n![JSON Schema Example](/assets/images/schema-to-json.png)\n\n> <span class=\"label\">Classic only</span> **Please note:** This article relates to the custom theming functionality for our classic referral programs. Theming, design, and message changes for programs on our Growth Automation platform are available directly within the SaaSquatch admin portal within the configuration for each specific program.\n> \n>Please contact <a href=\"mailto:support@referralsaasquatch.com\">Support</a> if you have any further questions about customizing the design of your program.\n\n---\n\nTheme variables consist of three things: a schema, instance values and templates.\n\n1. **A schema** that defines what variables exists and their constraints. Defined in a `variables.json` file located in the root of the theme git repository. This file must be a valid [JSON Schema](http://json-schema.org/).\n2. **Instance values** that you can [lookup](/api/methods/#lookup_variables) and [update](/api/methods/#update_variables) via the SaaSquatch REST API.\n3. **Templates** that use the `variables` helper to lookup variables and render them in the widget.\n\n---\n\n### Schema\n\nConsider the following example schema which includes a custom field `emailShareSubject` embedded within the `shareMessaging` sub-schema. \nSchemas are defined in a `variables.json` file located in the root of the theme git repository and must be a valid [JSON Schema](http://json-schema.org/examples.html).\nThe schema published with your theme is available to be [looked up via the SaaSquatch REST API](/api/methods/#lookup_variables_schema) and as the `variablesSchema` field\nin the [theme context](/themes/fields).\n\n```json\n{\n  \"title\": \"root\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"shareMessaging\": {\n      \"title\": \"Share Messaging\",\n      \"type\": \"object\",\n      \"properties\": {\n        \"emailShareSubject\": {\n          \"type\": \"string\",\n          \"description\": \"Email share subject\",\n          \"minLength\": 4,\n          \"default\": \"Get {{companyName}} for {{programDetails.referredRewardDetails.discountPercent}}% less!\"\n        }\n      }\n    }\n  }\n}\n```\n\n>    #### JSON Schema Validation\n>\n>    The `variables.json` file in the root of the theme is validated against the [JSON Schema Spec](http://json-schema.org/) when the theme is [published](/themes/publish/). If the schema is invalid, an error will be thrown and the publish\n>    will be rejected. If you're publishing using [saasquatch-cli](https://github.com/saasquatch/saasquatch-cli), then you will be able to see the validation error messages that\n>    need to be fixed.\n\n### Values\n\nGiven the schema above, the following represents a possible value for the `shareMessaging` field. These theme variable values\nare available to be [looked up via the SaaSquatch REST API](/api/methods/#lookup_variables) and as the `variables` field in the [theme context](/themes/fields). \n\n```json\n{\n  \"shareMessaging\": {\n    \"emailShareSubject\": \"Get {{companyName}} for {{programDetails.referredRewardDetails.discountPercent}}% less!\"\n  }\n}\n```\n\n>  #### Context references\n>  \n>  Note that these examples include references to other fields from the general [theme context](/themes/fields), like `companyName` and `programDetails.referredRewardDetails.discountPercent`.\n>  Context references like these will be replaced by the actual context values in templates using the `variables` helper. The example usage of `variables` in templates and\n>  the output shown in the examples below show how these context references are replaced.\n\n### Template\n\nTo render a variables value in a Handlebars template, pass the field path to the `variables` helper as a single argument. \nFor example, to render the field `shareMessaging.emailShareSubject` the helper would be used as follows:\n\n```html\n<div>\n  <p>{{variables 'shareMessaging.emailShareSubject'}}</p>\n</div>\n```\n\n### Output\n\nThe variables value will appear in the template rendering output. Note how the variables helper has substituted the theme context reference with a value:\n\n```html\n<div>\n  <p>Get Example Co. for 10% less!</p>\n</div>\n```\n\n>  #### Short Tags in Context references\n>  \n>  [Short tags](/themes/short-tags/) are aliases for context references. When editting from [the portal](https://app.referralsaasquatch.com), context references in theme variables are \n>  replaced by their corresponding [short tags](/themes/short-tags/). These short tag replacements **are not persisted** and they are not valid syntax in the API or templates.\n"
+  }
+}

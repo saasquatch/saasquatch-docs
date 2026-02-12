@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "5BZubW1jyMKk6qKwQMQGes",
+    "type": "Entry",
+    "createdAt": "2017-03-22T22:49:06.011Z",
+    "updatedAt": "2023-03-20T20:03:14.832Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 4426,
+    "revision": 11,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Developer Guide",
+    "title": "Stitch Integration Quickstart",
+    "slug": "developer/stitch/quickstart",
+    "highlights": "How to get started syncing your SaaSquatch program data to a Data Warehouse using Stitch.",
+    "content": ">**Please Note:** The Stitch integration with SaaSquatch can be configured on a per-tenant basis. Your programs contain a separate [Live and Test tenant](/success/using-referral-saasquatch/#test-vs-live), and each can be connected to Stitch independently. Additional details about when to use your Test vs. Live tenant can be found in our article on [testing best practices](/developer/testing/).\n\n### Add the SaaSquatch Integration\n\n<div class=\"row-fluid\">\n  <div class=\"span12\">\n     <h4>1. Retrieve SaaSquatch Program Info</h4>\n    <p>From the <a href=\"http://app.referralsaasquatch.com\">SaaSquatch Admin Portal</a> navigate to <b>Settings > General</b>. Make note of the tenant alias and API key on this page.</p>\n  </div>\n</div>\n<div class=\"row-fluid\">\n  <div class=\"span12\">\n    <h4>2. Open Stitch Account</h4>\n    <p>Navigate to the <a href=\"https://www.stitchdata.com/\">Stitch website</a> and create an account if you don&#39;t already have one.</p>\n  </div>\n  <div class=\"span4\">\n  </div>\n</div>\n<div class=\"row-fluid\">\n  <div class=\"span6\">\n    <h4>3. Add SaaSquatch Integration</h4>\n    <p>Search for, and select, the SaaSquatch integration to add to your Stitch account.</p>\n  </div>\n  <div class=\"span6\">\n\n</a>\n  </div>\n\n  </div>\n</div>\n<div class=\"row-fluid\">\n  <div class=\"span6\">\n    <h4>4. Configure your Referral SaaSquatch Integration</h4>\n  </div>\n  <div class=\"span6\">\n\n  </div>\n</div>\n\n<div class=\"row-fluid\">\n  <div >\n\n  <table class=\"table\">\n    <tr>\n        <th>Field</th>\n        <th>Description</th>\n        <th>Example</th>\n    </tr>\n    <tr>\n        <td><strong>Integration Name</strong></td>\n        <td>A name to give to this Stitch Data Source</td>\n        <td><code>SaaSquatch Live Tenant</code></td>\n    </tr>\n    <tr>\n        <td><strong>Tenant alias</strong></td>\n        <td>The identifying value for the SaaSquatch tenant you're using</td>\n        <td><code>test_bpinhag9gag</code></td>\n    </tr>\n    <tr>\n        <td><strong>API Key</strong></td>\n        <td>The API key for your SaaSquatch tenant, found on the <strong>General</strong> page under the <strong>Settings</strong> section</td>\n        <td><code>TEST_AGFVazAMTsxti2S8s9ZxxIe0GYcMV0F5</code></td>\n    </tr>\n    <tr>\n        <td><strong>Sync Historical Data</strong></td>\n        <td>Default is to sync one year of historical SaaSquatch program data. This can be modified to a custom data value.</td>\n        <td><code>17/03/2017</code></td>\n    </tr>\n    <tr>\n        <td><strong>Replication Frequency</strong></td>\n        <td>How often Stitch will attempt to replicate data from your SaaSquatch program. The default value is every half hour.</td>\n        <td>Every 6 hours</td>\n    </tr>\n\n</table>\n\n</div>\n</div>\n</div>\n\nCongratulations, your SaaSquatch program is now successfully connected to Stitch! Your SaaSquatch data is now ready to be synced into the data destination of your choice.\n\n### Data Destination\nTo begin importing your SaaSquatch data make sure that you have configured a data warehouse as your [Stitch data destination](https://www.stitchdata.com/docs/destinations/choosing-a-stitch-destination).\n\nStitch provides support for, among others, Amazon Redshift, Google BigQuery, and Postgres. \n\n#### Already have a Data Destination configured?\nThat's great! You are all set! Your SaaSquatch data will be available to be synced into the data destination you have already configured in your Stitch account.\n\n#### New to Stitch?\nAre you just getting started with Stitch? Not a problem, you can easily setup a free data warehouse as a Stitch data destination to get started.\n\nThe easiest data destination to get started with is Panoply. With just a few clicks you can have a Panoply account configured directly through Stitch. This will automatically provision a new Amazon Redshift data warehouse for you to use. Follow [Stitch's guide](https://www.stitchdata.com/docs/destinations/panoply/connecting-a-new-panoply-data-warehouse-to-stitch) to get setup with your free Panoply account.\n\nOnce your data destination is setup Stitch will begin importing your SaaSquatch program data at the cadence you configured in the SaaSquatch integration setup.\n\n### Additional Resources\n> - See [Choosing a Destination](https://www.stitchdata.com/docs/destinations/choosing-a-stitch-destination) to learn more about connecting your Stitch account to a Data Warehouse.\n>\n> - See the [Stitch + Saasquatch guide](https://www.stitchdata.com/docs/integrations/saas/referral-saasquatch) for connecting your SaaSuqatch Program to your Stitch account.\n>\n>- Further [technical details](https://www.stitchdata.com/docs/integrations/saas/referral-saasquatch#schema) about the data that Stitch syncs across from SaaSquatch is also available.\n"
+  }
+}

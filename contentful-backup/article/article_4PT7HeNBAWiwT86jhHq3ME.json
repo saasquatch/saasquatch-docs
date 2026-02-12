@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "4PT7HeNBAWiwT86jhHq3ME",
+    "type": "Entry",
+    "createdAt": "2022-09-21T18:53:48.280Z",
+    "updatedAt": "2023-04-26T17:02:54.905Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 49,
+    "revision": 8,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Deleting a Calculated Field",
+    "slug": "building-programs/custom-calculated-fields/deleting-a-calculated-field",
+    "highlights": "Learn how to delete user-created calculated fields.",
+    "content": "<style> \nth, td {\n  border: 1px solid;\n  border-color: #C0C0C0;\n  border-collapse: collapse;\n  padding-left: 10px;\n  padding-right: 10px;\n}\n</style>\n\nYou can delete user-created [calculated fields](https://docs.saasquatch.com/building-programs/custom-calculated-fields/calculated-fields) at any time in the Admin Portal. (The default calculated fields cannot be deleted.)  \n\nThere are slight differences in behavior depending on whether the calculated field you delete has a fixed or sliding [tracking window](https://docs.saasquatch.com/building-programs/custom-calculated-fields/tracking-windows). \n\n<table class=\"table table-hover\">\n\t<tr>\n\t\t<th>If</th>\n\t\t<th>Then the deleted field will...</th>\n\t</tr>\n\t<tr>\n\t\t<td>No tracking window</td>\n\t\t<td>\n\t\t\t<ul>\n\t\t\t\t<li>Remain on participants’ profiles with value frozen in time</li>\n\t\t\t\t<li>Remain visible in the Fields table on the Fields page</li>\n\t\t\t\t<li>Not be calculated in the future</li>\n\t\t\t</ul>\n\t\t</td>\n\t</tr>\n\t<tr>\n\t\t<td>Tracking window</td>\n\t\t<td>\n\t\t\t<ul>\n\t\t\t\t<li>Immediately be removed from participants’ profiles</li>\n\t\t\t\t<li>Remain visible in the Fields table on the Fields page</li>\n\t\t\t\t<li>Not be calculated in the future</li>\n\t\t\t</ul>\n\t\t</td>\n\t</tr>\n</table>\n\n# Deleting a calculated field\n> __Important__: Deleted calculations can’t be restored. This action is permanent. \n\n1. Log on to the SaaSquatch Admin Portal.\n2. Go to the __Data__ page and click the __Fields__ tab.\n3. Find the calculated field you want to delete in the Fields table.\n4. Click the three-dot menu on the right side of the row.\n5. Click __Delete__.\n6. Review the pop-up and confirm if you want to proceed. ",
+    "robotsTag": [
+      "FOLLOW"
+    ],
+    "canonicalUrl": "<link rel=\"canonical\" href=\"URL from Contentful response\"/>"
+  }
+}

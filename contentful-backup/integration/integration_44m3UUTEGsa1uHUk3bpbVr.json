@@ -1,0 +1,99 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "44m3UUTEGsa1uHUk3bpbVr",
+    "type": "Entry",
+    "createdAt": "2019-12-04T23:11:43.745Z",
+    "updatedAt": "2021-01-08T16:11:59.619Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 25,
+    "revision": 3,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "integration"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "title": "Recurly Integration",
+    "integrationName": "Recurly",
+    "slug": "recurly",
+    "logo": {
+      "metadata": {
+        "tags": [],
+        "concepts": []
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "s68ib1kj8k5n"
+          }
+        },
+        "id": "4yf7wHTinCyqAm8SCRDTE6",
+        "type": "Asset",
+        "createdAt": "2019-12-04T23:24:14.286Z",
+        "updatedAt": "2019-12-04T23:24:14.286Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 7,
+        "revision": 1,
+        "locale": "en-US"
+      },
+      "fields": {
+        "title": "Recurly Integration",
+        "file": {
+          "url": "//images.ctfassets.net/s68ib1kj8k5n/4yf7wHTinCyqAm8SCRDTE6/83e7d3a3c6062ac4258ac46bf36c75a9/recurly-integration.png",
+          "details": {
+            "size": 8359,
+            "image": {
+              "width": 450,
+              "height": 300
+            }
+          },
+          "fileName": "recurly-integration.png",
+          "contentType": "image/png"
+        }
+      }
+    },
+    "integrationDescription": "Recurly is a fantastic subscription management tool. SaaSquatch's Recurly integration uses Recurly to automatically track referred subscriptions and give people discounts and credits.",
+    "highlights": " Looking for Recurly software integration? SaaSquatch enables Recurly to create new codes as well as track referred subscriptions and give discounts.",
+    "keyFeatures": [
+      "Sends Recurly webhooks into SaaSquatch as events to trigger automation rules",
+      "Automatically fulfil referral and loyalty rewards as credits on customer's accounts",
+      "Uses a native integration built by SaaSquatch directly on Recurly's API "
+    ],
+    "moreInfo": [
+      "[Recurly Tech Installation Guide](/developer/recurly)"
+    ],
+    "guideLink": "/developer/recurly",
+    "tags": [
+      "in-directory"
+    ]
+  }
+}

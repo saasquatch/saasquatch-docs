@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "JheL8u44LC8jHLFcrK9mv",
+    "type": "Entry",
+    "createdAt": "2022-04-08T00:31:55.991Z",
+    "updatedAt": "2023-05-17T00:00:04.329Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 93,
+    "revision": 11,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Reward Exchange",
+    "slug": "features/reward-exchange",
+    "highlights": "Boost participant satisfaction with our reward exchange feature. Our reward exchange provides participants with options beyond what a program can. This allows them to choose rewards that motivate them the most. ",
+    "content": "## Overview\nReward Exchange is a feature that empowers your participants to exchange reward units they’ve earned for different rewards or other reward units, such as exchanging Points for a gift card. Most loyalty programs offer a set list of predetermined rewards chosen by the business. Integrating more choices into your rewards program can be exactly what you need to boost participation and build customer loyalty. \n\n![Screenshot of reward exchange option](https://res.cloudinary.com/saasquatch/image/upload/v1648662177/squatch-assets/Screenshot_2022-03-30_103003.png)\n\nTo use Reward Exchange in your program, you can set up one or several reward exchange options and choose the rules around:\n- Which reward units your participants can exchange\n- What they can get in return\n- Who can see and use the exchange option\n\nFull Access and Program Manager team members can create a reward exchange option and set its rules. See [Setting Up a Reward Exchange Option](/building-programs/setting-up-reward-exchange) for setup instructions.\n\n## Reward exchange options\nThere are four types of reward exchanges options you can set up. \n\n<table class=\"table table-hover\" style=\"width:100%\">\n\t<tr>\n\t\t<th style=\"width:20%\">Exchange</th>\n\t\t<th style=\"width:30%\">For</th>\n\t\t<th style=\"width:50%\">Example</th>\n\t</tr>\n\t<tr>\n\t\t<td rowspan=\"4\">A reward unit</td>\n\t\t<td>Another reward unit</td>\n\t\t<td>Exchange Points for Dollars</td>\n\t</tr>\n\t<tr>\n\t\t<td>A fixed-value reward in your Reward Catalog</td>\n\t\t<td>Exchange 2000 Points for a 25% discount on a future purchase</td>\n\t</tr>\n\t<tr>\n\t\t<td>A variable-value reward in your Reward Catalog</td>\n\t\t<td>Exchange Points for a gift card through your Tango Card integration. The value of the gift card depends on how many Points the participant redeems</td>\n\t</tr>\n\t<tr>\n\t\t<td>One out of several rewards in a set</td>\n\t\t<td>Exchange Points for different colors of swag</td>\n\t</tr>\n</table>\n\n## Availability options\nWhen setting up a reward exchange option, you can set rules around which participants can see and use it.\n\nBy default, any participant can see a reward exchange option. You can choose to hide the option for participants in specific countries, segments or locales, or set up a customized rule based on information that’s stored in the participant’s default, [custom](/features/custom-user-field) or [calculated fields](/building-programs/custom-calculated-fields/calculated-fields).\n\nYou can also set rules to determine which of your participants can use the exchange option. Participants with a Silver level might see that customers with a Gold level get more favorable exchange options, for example, which can motivate them to increase their engagement. \n\n![Screenshot of unavailable exchange option](https://res.cloudinary.com/saasquatch/image/upload/v1648577466/squatch-assets/Screenshot_2022-03-29_104539.png)\n\n## Participant experience\nParticipants access reward exchange options from a [verified access](/topics/widget-types/#verified-access-widgets) program widget or microsite. You have full control over what your participants see, including the display name, description and image used for the exchange option. \n\n![Reward Exchange - participant experience](//images.ctfassets.net/s68ib1kj8k5n/3XgRBHGrJsB3Zu7z4l5J4o/29ef3d09b45b02b6909279b7816ddbe1/ssrx.png)\n\n## W-9 Tax Compliance\nIf W-9 Tax compliance is active on your tenant, then the enforcement applies to the reward exchange option. Participants are not able to exchange for rewards that would push them over the limit for the tax year. For more information, read our [W-9 Tax Compliance document.](/features/w-9-compliance) \n",
+    "robotsTag": [
+      "FOLLOW"
+    ],
+    "canonicalUrl": "<link rel=\"canonical\" href=\"URL from Contentful response\"/>"
+  }
+}

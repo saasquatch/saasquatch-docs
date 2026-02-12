@@ -1,0 +1,41 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "26wL99EV0ns62N2owl0uJ1",
+    "type": "Entry",
+    "createdAt": "2022-03-25T16:20:01.099Z",
+    "updatedAt": "2022-03-25T16:20:01.099Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 113,
+    "revision": 1,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "breakingChange"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "deadline": "2022-06-23",
+    "title": "Empty accounts will be removed by default during user deletion",
+    "description": "This breaking change affects the `deleteUser` GraphQL mutation and the REST API [user deletion](https://docs.saasquatch.com/api/methods/#open_delete_user) open endpoint.\n\nThe historical default behaviour for these methods of user deletion has been that if the user being deleted is the last user in their account, then the account is not deleted. This is not consistent with the default behaviour when deleting users in our admin portal. \n\nThe new default behaviour is that if the user being deleted is the last user in their account, then the account is deleted. This change brings the default behaviour of user deletion into alignment across our GraphQL, REST API and admin portal. This change will take effect on June 23rd 2022.\n\nThe default behaviour can be overridden with the usage of a field named `preserveEmptyAccount`. We recommend visiting our [GraphQL Explorer](https://docs.saasquatch.com/graphql/reference) and [REST API docs](https://docs.saasquatch.com/api/methods/#open_delete_user) for more details on how to use this field.\n\nPlease check your implementation to ensure that you were not relying on the previous behaviour and update if necessary.\n\nWe are sorry for any inconvience this causes and recommend reaching out to support if you run into issues."
+  }
+}

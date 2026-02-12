@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "3qwFRgrzEQOyesC2cGyQo6",
+    "type": "Entry",
+    "createdAt": "2017-05-29T23:37:43.000Z",
+    "updatedAt": "2019-10-04T23:24:07.661Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 3616,
+    "revision": 6,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Marketo Form Quickstart Guide",
+    "slug": "guides/marketo-form",
+    "highlights": "The guide will show you how to leverage your existing Marketo Forms to automatically add referred signups into your referral program.",
+    "content": "### Include SaaSquatch Library on the Page\n\nThe SaaSquatch [squatch.js library](/developer/squatchjs/) is used to power the referral program tracking script. Load this library by adding the SaaSquatch Library code snippet to the `<body>` tag page you have the Marketo form on:\n\n```javascript\n<script>!function(a,b){a(\"squatch\",\"https://d2rcp9ak152ke1.cloudfront.net/assets/javascripts/v2/squatch.min.js\",b)}(function(a,b,c){var d,e,f;c[\"_\"+a]={},c[a]={},c[a].ready=function(b){c[\"_\" + a].ready =  c[\"_\" + a].ready || [];c[\"_\" + a].ready.push(b);},e=document.createElement(\"script\"),e.async=1,e.src=b,f=document.getElementsByTagName(\"script\")[0],f.parentNode.insertBefore(e,f)},this);</script>\n```\n\n### Configure Code Snippet\nAs the Marketo form and SaaSquatch code snippets are each unique to you there will be certain customizations that need to be made to make sure all the correct form fields get picked up and passed in to the SaaSquatch system.\n\n#### Marketo Snippet\nMarketo will provide you with a JavaScript code snippet to drop on the page where you would like the form to be displayed. We will be adding some SaaSquatch code into this snippet Marketo has provided to enable you to identify users to the SaaSquatch system right from the form.\n\n**Example Marketo Snippet:**\n```\n<script src=\"//app-sjst.marketo.com/js/forms2/js/forms2.js\"></script>\n<form id=\"mktoForm_1057\"></form>\n<script>\n  MktoForms2.loadForm(\"//app-sjst.marketo.com\", \"785-UHP-775\", 1057, function(form){\n  \n  //SaaSquatch code will go here\n    \n  });\n</script>\n```\n\n#### Configure Form Field Names\nDepending on the names of the fields in your form the SaaSquatch code you will configure might be slightly different from the following example. In our example form we have fields named `First Name`, `Last Name`, `Email`. The variables for these form fields are in upper camelCase, and so will look like:\n- First Name -> `FirstName`\n- Last Name -> `LastName`\n- Email -> `Email`\n\nYou can easily include other fields you want to pass to the SaaSquatch system (like account ID if you collect that value) by following the camelCase naming convention: `TwoWords` or `FirstSecond`\n\n**Example form field variables:**\n```\ninitObj.user.id = vals.Email;\ninitObj.user.accountId = vals.Email;\ninitObj.user.email = vals.Email;\ninitObj.user.firstName = vals.FirstName;\ninitObj.user.lastName = vals.LastName;\n```\n\n#### Configure SaaSquatch Tenant Alias\nThe tenant alias for you referral program determines which of the [live or test tenant](/success/using-referral-saasquatch/#test-vs-live) of your referral program your Marketo form will be sending data to. We recommend making use of your test tenant right up until you are ready to expose your referral program to your customers. More information on when to use which tenant alias can be found in our [Testing Best Practices](/developer/testing) article. \n\nThe following example shows configuring your Marketo code snippet with an example test tenant alias.\n```\nsquatch.init({\n  tenantAlias: 'test_ae7bygqkh9gag'\n});\n```\n\n### Add SaaSquatch Snippet into Marketo Form Code\nThe form variables and SaaSquatch tenant alias can now be substituted into the SaaSquatch code snippet:\n\n<pre><code>form.onSuccess(function(values, followUpUrl) {\n\n  //get the form field values\n  var vals = form.vals();\n  window.squatch.ready(function(){\n\n    //configure squatch.js for the tenant you are using\n    <strong>squatch.init({\n      tenantAlias: 'test_ae7bygqkh9gag'\n    });</strong>\n\n    //object containing the init parameters for squatch.js\n    var initObj = { user: { } };\n    \n    <strong>initObj.user.id = vals.Email;\n    initObj.user.accountId = vals.Email;\n    initObj.user.email = vals.Email;\n    initObj.user.firstName = vals.FirstName;\n    initObj.user.lastName = vals.LastName;</strong>\n\n    squatch.api().upsertUser(initObj).then(function(response) {\n      user = response.user;\n    }).catch(function(error){\n      console.log(error);\n    })\n  });\n  \n  setTimeout(function() { waitForSquatch(); }, 1500);\n\n  function waitForSquatch(){\n    location.href = followUpUrl;\n  }\n\n  return false;\n  \n});\n</code></pre>\n\nNow drop the configured SaaSquatch code snippet into your Marketo form code snippet:\n\n<pre><code>\n  &lt;script src=\"//app-sjst.marketo.com/js/forms2/js/forms2.js\">&lt;/script>\n&lt;form id=\"mktoForm_1057\">&lt;/form>\n&lt;script>\n  MktoForms2.loadForm(\"//app-sjst.marketo.com\", \"785-UHP-775\", 1057, function(form){\n  \n  //SaaSquatch code goes here\n    \n  });\n&lt;/script>\n</code></pre>\n\n### Configure Tenant Security Settings\nFrom the SaaSquatch Admin Portal, navigate to the install page. Change the Secure mode to “Custom” and make sure that the “Create/Update User” option is disabled. \n \nThis will allow you to submit user information from the Marketo from to the SaaSquatch system without your website having to sign the request using a [JWT](/topics/json-web-tokens/) generated from your SaaSquatch API key. More information about Secure Mode can be found on our [Signed Requests](/developer/squatchjs/signed-requests/) page in our docs.\n\n![Highlighted Disable Upsert Method](//images.contentful.com/s68ib1kj8k5n/3cldqWUZfigcug4MaiWYGi/36db2766ed61347ac99db2acca433291/Highlighted_Disable_Upsert_Method.png)\n\n### What's next? \nCongratulations on connecting up your marketo form to your Referral Program! For further details about how to go about installing your referral program please check out our [Quickstart Referral Program Install Guide](/guides/referral-quickstart). \n\n> Explore more of the configuration options available in the SaaSquatch Portal in our [Using Referral SaaSquatch](/success/using-referral-saasquatch/) article.\n"
+  }
+}

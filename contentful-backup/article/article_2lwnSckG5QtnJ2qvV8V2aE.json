@@ -1,0 +1,45 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "2lwnSckG5QtnJ2qvV8V2aE",
+    "type": "Entry",
+    "createdAt": "2022-12-28T23:48:23.222Z",
+    "updatedAt": "2023-08-09T15:47:42.587Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 25,
+    "revision": 3,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Developer Guide",
+    "title": "Bulk Imports",
+    "slug": "/developer/bulk-import",
+    "content": "### Bulk Import Options\n\nImport jobs can be started from within the Admin Portal, via SaaSquatch’s SFTP integration, or by using the SaaSquatch API directly.\n\n### File-based bulk imports via the admin portal\nBulk imports can be started from within the SaaSquatch Admin Portal. To get started, go to **Analytics > Reports**, then select **Import**.\n\nFor full instructions on the file-based bulk import process, see our guides on:\n- [Bulk User Import](/guides/user-import)\n- [Bulk User Delete Import](/guides/bulk-user-delete)\n- [Bulk Event Import](/guides/event-import/)\n- [Bulk Reward Redemption Import](/guides/bulk-reward-redemption)\n\n### Bulk imports via SFTP integration\n\nBulk imports can be performed via the SaaSquatch SFTP integration. See our guide on the [SFTP integration here](/integrations/sftp) for instructions on:\n- Enabling and authenticating the integration\n- Generating an SSH key\n- Connecting to the SFTP server\n- Uploading import files and checking their status\n\n### Bulk imports via API\n\nTo start a bulk import job, there are three API requests to be performed. \n- Uploading the import file\n- Validating the import file\n- Starting the import job\n\n#### Uploading the import file\n\nThe `/export/upload` endpoint accepts a file upload in two different ways, either with `multipart/form-data` encoding or as a raw file upload.\n\nExample Request:\n```\ncurl -X POST 'https://app.referralsaasquatch.com/api/v1/{tenant_alias}/export/upload' \\\n        -u :{tenant_api_key} \\\n        --form 'file=@my_file.csv'\n```\nWhen the file is successfully uploaded, a `fileRef` will be returned. The `fileRef` will be used in the next two API requests.\n\nExample Response:\n```\n{\n    “fileRef”: “imports/test_akdq8a9wyvzba/userEvents_63323378e1edcd44b03eed9a.jsonl”\n}\n```\n\n#### Validating the import file\n\nBefore starting your import job, you can use the `validateJobInput` GraphQL mutation to validate the import file before attempting to start the import job.\nThere are two inputs required, the `fileRef` from step 1, and the job `type`. \nThese are the 4 job types available:\n\n- Import Users: `MUTATION/USER`\n- Delete Users: `MUTATION/DELETE_USER`\n- Import User Events: `MUTATION/USER_EVENT`\n- Redeem Reward Balances: `MUTATION/REDEEMABLE_REWARD_BALANCE`\n\nExample:\n```\ncurl -X POST https://app.referralsaasquatch.com/api/v1/{tenant_alias}/graphql \n    -u :{tenant_api_key}\n    -H \"Content-Type: application/json\" \n    -d '{\n    \"operationName\":\"validate\",\n    \"variables\": {\n        \"jobInput\": {\n            \"fileRef\":\"{file_ref}\",\n            \"type\":\"{job_type}\"\n        }\n    },\n    \"query\": \"query validate($jobInput: JobInput!) {validateJobCreation(jobInput: $jobInput) { errors }}\"\n}'\n```\n\nIf there are any errors found in the import file, they will be returned as an array in `errors`. If `errors` is empty, then the same `fileRef` can be used to start an import job in step 3.\n\nExample Response: \n```\n{\n    \"data\": {\n        \"validateJobCreation\": {\n            \"errors\": []\n        }\n    }\n}\n```\n\n#### Starting the import job\n\nTo start the import job, use the `createJob` GraphQL mutation. Provide the `fileRef` and job `type` used in step 2\n\nExample:\n```\ncurl -X POST https://app.referralsaasquatch.com/api/v1/{tenant_alias}/graphql \n    -u :{tenant_api_key}\n    -H \"Content-Type: application/json\" \n    -d '{\n    \"variables\":{\n        \"jobInput\": {\n            \"type\":\"{job_type}\",\n            \"outputFormat\":\"CSV\",\n            \"fileRef\":\"{file_ref}\"\n        }\n    },\n    \"query\":\"mutation ($jobInput: JobInput!) { createJob(jobInput: $jobInput) {id type requester dateCreated}}\"\n}'\n```\n\nThe `id` returned by the mutation can be used to query the status of the job\n\nExample Response:\n```\n{\n    \"data\": {\n        \"createJob\": {\n            \"id\": \"633b1cf34efc053cb50a3f6d\",\n            \"type\": \"MUTATION/USER_EVENT\",\n            \"requester\": \"API\",\n            \"dateCreated\": 1664818419661\n        }\n    }\n}\n```\n\nCheck the status of the import job\n\nTo check the status of the import job, you can use the `job` GraphQL query and provide the job `id` returned in step 3.\n\nExample:\n```\ncurl -X POST https://app.referralsaasquatch.com/api/v1/{tenant_alias}/graphql \n    -u :{tenant_api_key}\n    -H \"Content-Type: application/json\" \n    -d '{\n    \"variables\": {\n        \"id\": \"{job_id}\"\n    },\n    \"query\": \"query ($id: ID!) { job(id: $id) { status stats { recordsProcessed }}}\"\n}'\n```\n\nExample Response:\n```\n{\n    \"data\": {\n        \"job\": {\n            \"status\": \"COMPLETED\",\n            \"stats\": {\n                \"recordsProcessed\": 22\n            }\n        }\n    }\n}\n```\n",
+    "robotsTag": [
+      "FOLLOW"
+    ]
+  }
+}

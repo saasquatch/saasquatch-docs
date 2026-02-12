@@ -1,0 +1,54 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "7w6PCtMY0w8IRCIK90GNzd",
+    "type": "Entry",
+    "createdAt": "2020-03-30T22:20:53.301Z",
+    "updatedAt": "2023-03-24T15:19:34.754Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 247,
+    "revision": 19,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Developer Guide",
+    "title": "Connect a custom domain for Share Links",
+    "slug": "customshortdomainguide",
+    "highlights": "Adding a custom domain to your share links will replace the default “.ssqt.co\" domain when users send their referral share links. Example: referral.your-domain.com/unique-referral-code (subdomain setup) or your-domain.com/unique-referral-code (root domain setup)",
+    "content": "## Recommended Setup - Subdomain - Using CNAME Record\n\nThe Recommended approach uses a subdomain from an existing domains. For example, if your root domain was your-domain.com your Custom Domain Share Link could be: example. your-domain.com followed by the participant’s unique share code. \n\n1. Head to your domain register.\n2. In your DNS settings for your chosen domain, Add this DNS record: \n   - Record type: CNAME\n   - Host (Name): example (Enter your preferred subdomain here)\n   - Value: ssqt.co\n   - TTL: Automatic, or 1 Hour. \n1. Contact your SaaSquatch Solutions Architect, notifying them you have configured the CNAME record.\n2. Verify the custom domain name is arriving on your landing page by heading to any participant in your program and viewing their Share Link. If properly configured you will see your Custom domain Share Link.\n3. Congratulations! Your Share Links are now using a custom domain. \n\n## Alternative Setup - Root Domain - Using A-Record\n1. Contact your SaaSquatch Solutions Architect, notifying them you would like to use a Root domain for your Custom Domain Share Link. SaaSquatch will provide you with a unique A-Record.\n2. Head to your domain register.\n3. In your DNS settings for your chosen domain, Add the A-Record provided by your SaaSquatch Solution Architect. \n4. Contact your SaaSquatch Solutions Architect, notifying them you have configured the A-Record.\n5. SaaSquatch will provision a secure SSL certificate for this domain. SaaSquatch will add the custom domain to your Share Links on your Test Tenant.\n6. Verify the custom domain name is arriving on your landing page by heading to any participant in your program and viewing their Share Link. If properly configured you will see your Custom domain Share Link.\n7. Congratulations! Your Share Links are now using a custom domain.\n\n__Default share links will continue to work even when a Custom Domain Share Link is used.__\n",
+    "tags": [
+      "domain",
+      "subdomain",
+      "short domains",
+      "Share Link",
+      "Custom domain share link"
+    ],
+    "seoDescription": "When your customer shares their referral link, you can ensure the link aligns with your brand by using a custom domain share link... ",
+    "robotsTag": [
+      "noindex"
+    ]
+  }
+}

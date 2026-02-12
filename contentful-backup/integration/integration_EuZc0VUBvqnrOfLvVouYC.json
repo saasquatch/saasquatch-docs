@@ -1,0 +1,98 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "EuZc0VUBvqnrOfLvVouYC",
+    "type": "Entry",
+    "createdAt": "2019-12-05T02:42:51.432Z",
+    "updatedAt": "2019-12-05T02:51:28.115Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 15,
+    "revision": 2,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "integration"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "title": "Tealium Referral Software Integration",
+    "integrationName": "Tealium",
+    "slug": "tealium",
+    "logo": {
+      "metadata": {
+        "tags": [],
+        "concepts": []
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "s68ib1kj8k5n"
+          }
+        },
+        "id": "6yH5qScqL1xK0GGcOjWylq",
+        "type": "Asset",
+        "createdAt": "2019-12-05T02:49:58.187Z",
+        "updatedAt": "2019-12-05T02:49:58.187Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 5,
+        "revision": 1,
+        "locale": "en-US"
+      },
+      "fields": {
+        "title": "Tealium Integration",
+        "file": {
+          "url": "//images.ctfassets.net/s68ib1kj8k5n/6yH5qScqL1xK0GGcOjWylq/7dccd9897f253ccc4cec4773942607e5/tealium-integration.png",
+          "details": {
+            "size": 9536,
+            "image": {
+              "width": 450,
+              "height": 300
+            }
+          },
+          "fileName": "tealium-integration.png",
+          "contentType": "image/png"
+        }
+      }
+    },
+    "highlights": "Looking for Tealium referral software integration? Referral SaaSquatch uses Tealium Tag Management to install your referral program without editing your site.",
+    "integrationDescription": "Referral SaaSquatch's Tealium Enterprise Tag Management integration leverages your existing Tealium setup to install your referral program without needing to edit your website.",
+    "keyFeatures": [
+      "Drag-and-Drop code snippet install",
+      "Leverage existing Tealium Tag Manager setup",
+      "No webpage editing required",
+      "Completely configure your referral program through the SaaSquatch Portal"
+    ],
+    "moreInfo": [
+      "[Tealium Tag Manager Quickstart Guide](/guides/tealium)",
+      "[Drag-and-Drop Integration Configuration](/guides/integration-quickstart)"
+    ],
+    "guideLink": "/guides/tealium"
+  }
+}

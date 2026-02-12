@@ -1,0 +1,89 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "64uqBFEWDScCmiCgmuWSWW",
+    "type": "Entry",
+    "createdAt": "2019-09-18T21:41:03.679Z",
+    "updatedAt": "2023-01-18T17:43:19.857Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 6863,
+    "revision": 5,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Gift Card Rewards",
+    "slug": "success/gift-card-rewards",
+    "ogFeaturedImage": [
+      {
+        "metadata": {
+          "tags": [],
+          "concepts": []
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "s68ib1kj8k5n"
+            }
+          },
+          "id": "3iNXzSopraTDMW21LCOLlG",
+          "type": "Asset",
+          "createdAt": "2019-12-04T22:54:28.750Z",
+          "updatedAt": "2019-12-04T22:54:28.750Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "publishedVersion": 7,
+          "revision": 1,
+          "locale": "en-US"
+        },
+        "fields": {
+          "title": "Tangocard",
+          "file": {
+            "url": "//images.ctfassets.net/s68ib1kj8k5n/3iNXzSopraTDMW21LCOLlG/652eacfbfbd2258ea2971573d19cbd2a/tangocard-integration.png",
+            "details": {
+              "size": 14513,
+              "image": {
+                "width": 450,
+                "height": 300
+              }
+            },
+            "fileName": "tangocard-integration.png",
+            "contentType": "image/png"
+          }
+        }
+      }
+    ],
+    "highlights": "The SaaSquatch Gift Card Integration enables you to automatically provide successful referral participants with gift card rewards.",
+    "content": "The SaaSquatch Gift Card Integration currently supports **Tango Card** as our gift card reward provider. Tango Card offers a wide range of available brands in their catalogue, many of which are available in a number of countries.\n\n<div class=\"row-fluid\">\n  <div class=\"span7\">\n    <h3>Localized Rewards</h3>\n<p>The SaaSquatch Gift Card Integration supports the ability to customize the reward provided to users based on their locale. \nRewards can be customized by locale and currency.\n    <p>A fallback reward can also be configured for participants with no locale, or where no locale-specific reward has been configured.\nThe Gift Card Integration management options provide the ability to easily setup, or modify, the available gift card reward types directly in the SaaSquatch Portal. \n  </div>\n    <div class=\"span5\"><img src=\"//images.contentful.com/s68ib1kj8k5n/1yAoPtRT6sGaekm8giEySw/f04aafb89796290769e7ce7e3d0c3488/tangocard-integration.png\" alt=\"tangocard-integration\">\n</div>\n</div>\n\n### Automated Fulfillment\n<div class=\"row-fluid\">\n  <div class=\"span7\"><p>The SaaSquatch system is able to generate and fulfill gift card rewards for users automatically. Users will be notified by the SaaSquatch system when they have earned a reward, and receive an additional email from your configured gift card provider which will include the details for redeeming their reward.\n    <h3>Reward Security</h3>\n<p>Like every reward generated in the SaaSquatch system, gift card rewards are only generated for a participant when they hit the goalpost (<i>e.g.</i> conversion) defined by your referral or loyalty program.\n  </div>\n  <div class=\"span3\">\n  <div>\n<a class=\"docs-lightbox\" href=\"//images.ctfassets.net/s68ib1kj8k5n/5EqAGcy8lt7MH6u4mfOy0s/a16754ab90589819fdd6219a8bf4eb3e/Screen_Shot_2019-09-17_at_2.37.18_PM.png\" data-lightbox=\"example-set\">\n  <img src=\"//images.ctfassets.net/s68ib1kj8k5n/5EqAGcy8lt7MH6u4mfOy0s/a16754ab90589819fdd6219a8bf4eb3e/Screen_Shot_2019-09-17_at_2.37.18_PM.png\" alt=\"GC Referral Complete Email\">\n  <div><i class=\"fa fa-eye\"></i> Preview</div>\n</a>\n</div>\n</div>\n\n<div class=\"span2\">\n  <div>\n<a class=\"docs-lightbox\" href=\"//images.ctfassets.net/s68ib1kj8k5n/yQTJf6qDFgI3EtR8VOBuS/2e6b756db84627001774b81a896ed1d5/Screen_Shot_2019-09-17_at_2.37.33_PM.png\" data-lightbox=\"example-set\">\n  <img src=\"//images.ctfassets.net/s68ib1kj8k5n/yQTJf6qDFgI3EtR8VOBuS/2e6b756db84627001774b81a896ed1d5/Screen_Shot_2019-09-17_at_2.37.33_PM.png\" alt=\"Amazon GC Email - Live\">\n  <div><i class=\"fa fa-eye\"></i> Preview</div>\n</a>\n</div>\n</div>\n\n</div>\n\n### Daily Reward Limit\nSaaSquatch system's ability to limit the number of rewards that can be handed out in a day is of special interest to referral programs configured to provide gift card rewards.\n\nAny referrals where rewards would haven be generated beyond the configured daily limit would instead be set to pending so that they can be reviewed manually to confirm they are legitimate referrals.\n\nUsed in conjunction with the full suite of available referral security features, this daily reward limit can be helpful as a fallback to avoid gamification of your referral program.\n\n### Other Gift Card Providers\nIs your gift card provider not listed here? \n\nYour SaaSquatch program can still be configured to provide gift card rewards even if you are looking to use a gift card provider we do not support directly. The SaaSquatch system is extremely flexible and can be configured to work with nearly any giftcard provider to fulfill your rewards.\n\nPlease [contact us](mailto:sales@referralsaasquatch.com) to learn more about how we can work with your gift card provider.\n\n## Setting up a Gift Card Integration\nTo discuss adding gift card rewards for your program, contact our [Success team](mailto:success@saasquatch.com). We'll work with you to assess the best type of reward for your needs."
+  }
+}

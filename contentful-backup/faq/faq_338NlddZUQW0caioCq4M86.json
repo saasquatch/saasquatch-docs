@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "338NlddZUQW0caioCq4M86",
+    "type": "Entry",
+    "createdAt": "2016-04-04T22:23:59.405Z",
+    "updatedAt": "2021-04-07T21:38:43.055Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 12,
+    "revision": 2,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "faq"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "question": "Is the widget customizable?",
+    "answer": "Right now the widget is fully customizable, so you can match the branding of your company. However, we do charge an additional setup fee to do this. We highly recommend this so you can give your users a seamless experience within your product.\n\nIf you're familiar with web components, you can also [write your own web components](/developer/widgets/writing-a-web-component-for-saasquatch) for use inside of SaaSquatch widgets.\n"
+  }
+}

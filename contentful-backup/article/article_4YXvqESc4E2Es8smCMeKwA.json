@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "4YXvqESc4E2Es8smCMeKwA",
+    "type": "Entry",
+    "createdAt": "2018-01-15T23:01:42.728Z",
+    "updatedAt": "2023-02-28T18:50:48.432Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 8898,
+    "revision": 6,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Referral Program Retargeting",
+    "slug": "success/referral-program-retargeting",
+    "highlights": "Promote your referral program to your existing user-base through the use of intelligent ad retargeting.",
+    "content": "## Why do it?\n<div class=\"row-fluid\">\n  <div class=\"span7\">\n\n  <p>One of the simplest ways to drive further success with your referral program is to increase the size of the top of the referral funnel. Increasing the overall visitors you drive to your referral program should result in an increase in the number of conversions at the bottom of the funnel.\n\n  <p>Ad retargeting can help engage and activate your existing user-base by:\n  <ul>\n    <li>Getting your message in front them across the web.\n    <li>Driving them towards the referral program in your product where they can learn more about the available rewards. \n    <li>Encouraging them to share out their referral.\n  </ul>\n\n  <p>This retargeting can also typically be done by leveraging your existing outbound infrastructure so as not to require any additional technical resources on your end.\n\n  </div>\n  <div class=\"span5\">\n  <h4 style=\"margin-top:0px;\">Example Retargeting Results</h4>\n  <div>\n<a class=\"docs-lightbox\" href=\"//images.contentful.com/s68ib1kj8k5n/2qwUpPscpqgOO484cSKmOa/f385045dc2621c6514ffd6def8f44659/Example_Retargeting_Analytics_2.png\" data-lightbox=\"example-set\">\n  <img src=\"//images.contentful.com/s68ib1kj8k5n/2qwUpPscpqgOO484cSKmOa/f385045dc2621c6514ffd6def8f44659/Example_Retargeting_Analytics_2.png\" alt=\"Example Retargeting Analytics 2\">\n  <div><i class=\"fa fa-eye\"></i> Preview</div>\n</a>\n</div>\n\n</div>\n</div>\n\n### Audience\nAccurately building the correct audience is key to the success of your retargeting effort. \n\nThe most effective audience for retargeting your referral program is registered users of your product who have not yet engaged with the referral program. These are customers of yours who are probably unaware of the existence, or benefits, of your referral program and its rewards.\n\nBy making sure that only this segment of users are included in the audience, the messaging used in your retargeting can be extremely specific to the motivations that would drive this subset of your users to engage with your referral program.\n\nOne of the most accurate ways of building the correct audience for retargeting your referral program is by using a Dynamic Audience.\n\n#### Dynamic Audience\nUsing a dynamic audience will mean the list of people in your audience is automatically updated when people become eligible/ineligible for your referral program retargeting effort. \n\nOne way of creating this kind of dynamic audience would be using Google Analytics and Google AdWords in combination. \n\nYou can also create similar audiences in [Facebook Ads](https://www.facebook.com/business/help/182371508761821?helpref=faq_content) and [AdRoll](https://help.adroll.com/hc/en-us/articles/212013908-Defining-Your-Audience) by installing their respective tracking scripts on your website.\n\nUsing Google Analytics you can track who has visited pages in your product with the referral widget on them. This information can then be used in AdWords to create a negative audience where only existing users of your product, who have not seen the referral program, are part of the the audience for retargeting.\n\n##### 1. Tracking\nMake sure you have the Google Analytics tracking pixel placed on the page which hosts the referral widget behind the login in your product. This will ensure that you have a clear picture of which users have visited your Referral Widget. \n\nIf you do not already have this tracking pixel in place this should be done right away so you can start building up that segment as soon as possible.  \n\n##### 2. Configure Audience in Google Analytics\nThe target of your referral program retargeting effort is all registered users except those who have visited the referral program. \n\nDetails about how to go about [creating an audience in Google Analytics](https://support.google.com/analytics/answer/2611404?hl=en&ref_topic=2611283) can be found in their documentation. \n\nMore information about [retargeting audiences](https://support.google.com/analytics/answer/2611268?hl=en) can also be found in the Google Analytics documentation. \n\n##### 3. Configure Audience in Google Adwords \n\nWith your audience configured in Google Analytics, ensure your Analytics and AdWords accounts are linked so you can pass this audience across to Google AdWords.\n\n> Details about how to [Use your Remarketing Audiences in AdWords](https://support.google.com/analytics/answer/2611291?hl=en&ref_topic=2611283) can be found in the Google Analytics documentation.\n\n### Frequency Capping\nThere is a high chance that the effectiveness of your ads will decrease over time if they are shown to the same recipients too often.\n\nIn order to reduce the chances of your users experiencing ad fatigue (the point where users become overexposed and response drops) we recommend limiting how often a user is shown the ads for your referral program retargeting to 1-2 times per day.\n\n> To learn more about frequency capping from Google, [click here](https://support.google.com/adwords/answer/117579?hl=en).\n\n### Ad Design/ Messaging\nThe core pieces of a successful referral program retargeting ad include your brand logo, brand colours, and a simple messaging hook.\n\n#### Brand Logo and Colours\nIt is important to use your existing logo and brand colours for your retargeting ads. This will help make sure your users recognize who the ad is from, as they will be more willing to click on an ad from a company they are comfortable with.\n\n##### Example Brand Assets\n![Example Brand Assets 2](//images.contentful.com/s68ib1kj8k5n/fn6aq6KdVKQ4sEomS0Eq4/c7a3def68431b469e0ec94020d6e5f2f/Example_Brand_Assets_2.png)\n\n#### Simple Hook\nUsers at different stages of your customer lifecycle will have different motivations to engage in your referral program. These differences need to be taken into account when designing the messaging for your referral program retargeting. \n\nWould this type of existing user be driven by money/account credit? If so, focusing on the reward of your referral program will be the best way for these users to see the benefit of sharing their referral.\n\nAlternatively, are these existing users typically more altruistic? Appealing to their charitable side might drive them to want to share their referral.\n\nFinally, some people simply love your product and want others to know how awesome it is. Maybe they were just unaware that you had a referral program and this is the push they needed to start sharing.\n\n##### Example Referral Program Retargeting Banner\n![Example Retargeting Ad](//images.contentful.com/s68ib1kj8k5n/3jLL0GwocMQIYigeIm2Esq/40745b4da5e6d8ce25c928e3b63aa6f1/Example_Retargeting_Ad.png)\n\n### User Journey\nThe following flowchart outline how all of these pieces in your referral program retargeting effort will tie together to drive your existing users to participate in your referral program:\n\n![Retargeting Flow](//images.contentful.com/s68ib1kj8k5n/2jTpYIdgPaWKAOwCQe2A04/9a694556de800c57b93cc3712b3387ec/Retargeting_Flow.png)\n\n## Additional Resources\n>Learn more about ways to [optimize your referral program](/success/referral-program-optimization) (including [best practices for landing pages](/success/referral-program-optimization/#personalized-landing-page)).\n>\n>Additional information about the [different channels](/success/touchpoints) through which your users can engage with your referral program, and the [different mediums](/success/share-options) through which they can share their referral, can also be found in our Success Center."
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "2M5mtxkOVzHHv7yvfAiK1B",
+    "type": "Entry",
+    "createdAt": "2019-04-16T22:26:26.596Z",
+    "updatedAt": "2023-11-15T18:51:50.779Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 3226,
+    "revision": 9,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Developer Guide",
+    "title": "Message Links",
+    "slug": "features/message-links",
+    "highlights": "SaaSquatch Message Links can be used to dynamically build SaaSquatch program share buttons for each of your programs and supported share mediums.",
+    "content": "\nEnabling users to share their referral as widely and easily as possible is a key aspect of a successful referral program. \n\nProviding users with this link for each of your supported share mediums (Facebook, Twitter, LinkedIn) can often be complicated as this involves having to manage the format of the link needed to trigger a social share on each platform, while making sure the correct sharelink and pre-filled copy/image is included. \n\n> **SaaSquatch Message Links solve this problem on your behalf:** Using a simple URL format, SaaSquatch Message Links handle the underlying format of each social platforms share functionality, including the users SaaSquatch sharelink and your SaaSquatch program's pre-filled share message copy.\nThis ensures that the same SaaSquatch Message Link pulls in the correct information from SaaSquatch each time it is clicked.\n\n### Example Uses\nThe format of the SaaSquatch Message Links means that you can provide your user the ability to share their referral while only needing to know the partipant's unique SaaSquatch ID, which is typically your own customer ID. \n\nThis enables you to power share buttons in your own email campaigns and transactional emails, or within your app/web login without needing to lookup/import information from SaaSquatch using our API or exports.\n\n### Link Format\n\nMessage links can be easily constructed as the only dynamic fields required are the SaaSquatch IDs of the participant you are providing the link for.\n\nThe following chart outlines the available configuration options for these Message Links, which enable you to choose which user and program they are for, as well as the engagement and share medium they will be sharing the referral through.\n\n<pre><code class=\"lang-curl\">https://app.referralsaasquatch.com/a/{tenant_alias}/message/redirect/{share_medium}?engagementMedium={engagement_medium}&accountId={accountId}&userId={userId}&programId={program_ID}&rsLandingPage={rsLandingPage}</code></pre>\n\n<table class=\"table\">\n    <thead>\n      <tr>\n        <th>Parameter</th>\n        <th>Example</th>\n        <th>Description</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td><code>tenant_alias</code></td>\n        <td><code>test_bpinhag9gag</code></td>\n        <td>Your SaaSquatch project's test or live tenant alias.</td>\n      </tr>\n      <tr>\n        <td><code>share_medium</code></td>\n        <td><code>TWITTER</code></td>\n        <td>The medium through which the Referrer will share this referral (<i>e.g.</i> Twitter share button). The supported values for this field include <code>WHATSAPP</code>, <code>TWITTER</code>, <code>FACEBOOK</code>, <code>FBMESSENGER</code>, <code>PINTEREST</code>, <code>LINKEDIN</code>, <code>LINEMESSENGER</code>, <code>SMS</code>, and <code>EMAIL</code>.</td>\n      </tr>\n      <tr>\n        <td><code>engagement_medium</code></td>\n        <td><code>EMBED</code></td>\n        <td>The medium from which the this user will engage with the referral program (<i>e.g.</i> embedded widget). The supported values for this field include <code>EMBED</code>, <code>POPUP</code>, <code>EMAIL</code>, and <code>MOBILE</code>.</td>\n      </tr>\n      <tr>\n        <td><code>accountId</code></td>\n        <td><code>abc_123</code></td>\n        <td>The SaaSquatch account ID for whom this Message Link is being built.</td>\n      </tr>\n      <tr>\n        <td><code>userId</code></td>\n        <td><code>abc_123</code></td>\n        <td>The SaaSquatch user ID for whom this Message Link is being built.</td>\n      </tr>\n      <tr>\n        <td><code>program_ID</code></td>\n        <td><code>driver-program</code></td>\n        <td>The ID of the SaaSquatch Growth Automation Program for which this user will be sharing their referral.</td>\n      </tr>\n      <tr>\n        <td><code>rsLandingPage</code> (optional)</td>\n        <td><code>https://example.com/driver-program</code></td>\n        <td>Override the landing page of the program to redirect the resulting share link to a different URL. Only different paths on your program's landing page URL are supported, you cannot redirect to a different domain entirely for security reasons.</td>\n      </tr>\n    </tbody>\n  </table>\n\n  #### Example URL Format\n\n  Using the above format, the following is an example of what the Message Link URL would look like for a participant with SaaSquatch user ID/account ID `messageLink` that you would provide to them in an email for them to share through a mobile link for our demo program `klip-referral-program`:\n<pre><code class=\"lang-curl\">https://app.referralsaasquatch.com/a/test_aut32av0b11uc/message/redirect/EMAIL?engagementMedium=MOBILE&accountId=messageLink&userId=messageLink&programId=klip-referral-program</code></pre>"
+  }
+}

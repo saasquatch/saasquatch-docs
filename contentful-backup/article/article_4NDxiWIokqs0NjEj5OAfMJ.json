@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "4NDxiWIokqs0NjEj5OAfMJ",
+    "type": "Entry",
+    "createdAt": "2022-12-01T00:00:07.536Z",
+    "updatedAt": "2023-03-02T19:34:48.357Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 85,
+    "revision": 2,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Team Member Roles and Permissions",
+    "slug": "learning-saasquatch/admin-portal/team-member-roles/",
+    "highlights": "SaaSquatch allows clients to give multiple members of their team access to the SaaSquatch Admin Portal. Team members can be assigned one of four roles: full access, program manager, support or viewer. ",
+    "content": "## About team member roles and permissions\nSaaSquatch allows clients to give multiple members of their team access to the SaaSquatch Admin Portal. Team members can be assigned one of four roles: full access, program manager, support or viewer. \n\nTeam members can be added, removed, or changed on the Project Settings page, which is available to full access team members under the My Account dropdown menu. Check out our doc on [Managing Team Members on your SaaSquatch Account for detailed instructions](/success/add-portal-member/). \n\nWe recommend regularly auditing your list of team members to ensure that only current employees have the right level of access. \n\n## Team member roles\nAll SaaSquatch projects can support multiple team members. Team members can have one of four roles: \n- Full access\n- Program manager\n- Support\n- Viewer\n\n### Full access\nFull access team members can view and edit all elements of your company’s SaaSquatch programs and account setup, including billing and settings. Only people with the full access role can invite other team members to your account or edit the permissions of existing team members. They can’t change their own permissions or remove themselves.\n\nWe recommend reserving full access permissions for those who need access to billing, integrations, and microsite hosting settings.\n\n> Team members who were added to a project before December 2022 were given the full access role by default. If you are the primary point of contact for your company and would like to change current full access team members to another role, then contact us at [support@saasquatch.com](mailto:support@saasquatch.com) for help. \n\n### Program manager\n\nProgram managers can create and manage your company’s programs, rewards, data, analytics, and participant information. They do not have access to billing details or the ability to set up or modify microsites and integrations.\n\nWe recommend the program manager role for high-touch users who need to frequently interact with our platform without making high-level decisions related to billing, integration, account settings. \n\n### Support\nTeam members with the support role have some view permissions and access to the areas of our platform that are more important for troubleshooting. They can view program details, data, and analytics, but they can only modify participant details and information.\n\nWe recommend the support role for anyone involved with troubleshooting how user and event data are transmitted to SaaSquatch.\n\n### Viewer\nViewers have the most limited set of permissions. They’re unable to make changes to your programs or run reports of their own. Instead, they can view programs, data, and analytics, as well as details for individual program participants. They can also export existing reports. \n\nThe viewer role is ideal for someone who needs visibility into your SaaSquatch programs and performance without the ability to modify setup or content. \n\n## Complete list of role permissions\nThe table below lists and compares the full list of permissions for each of the team member roles.\n\n<table class=\"table table-hover\">\n  <tr>\n    <th>Role</th>\n    <th>Permissions</th>\n  </tr>\n  <tr>\n    <td>Viewer</td>\n    <td>\n      <ul>\n        <li>View programs</li>\n        <li>View participants</li>\n        <li>Reports and analytics</li>\n      </ul>\n    </td>\n  </tr>\n  <tr>\n    <td>Support</td>\n    <td> All Viewer permissions, plus:\n      <ul>\n        <li>Participant management</li>\n      </ul>\n    </td>\n  </tr>\n  <tr>\n    <td>Program Manager</td>\n    <td>All Support and Viewer permissions, plus:\n      <ul>\n        <li>Program management</li>\n        <li>Forms</li>\n        <li>Data management</li>\n        <li>Use a domain for share links, emails and microsite</li>\n      </ul>\n    </td>\n  </tr>\n  <tr>\n    <td>Full Access</td>\n    <td> All Program Manager, Support, and Viewer permissions, plus:\n      <ul>\n        <li>Team management</li>\n        <li>Billing</li>\n        <li>Microsite hosting and identity</li>\n        <li>Integration management</li>\n        <li>Domain management and login settings, including SSO</li>\n      </ul>\n    </td>\n  </tr>\n</table>\n",
+    "robotsTag": [
+      "FOLLOW"
+    ],
+    "canonicalUrl": "<link rel=\"canonical\" href=\"URL from Contentful response\"/>"
+  }
+}

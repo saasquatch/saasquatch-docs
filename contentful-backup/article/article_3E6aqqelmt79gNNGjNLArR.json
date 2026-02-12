@@ -1,0 +1,51 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "3E6aqqelmt79gNNGjNLArR",
+    "type": "Entry",
+    "createdAt": "2021-03-02T17:35:08.706Z",
+    "updatedAt": "2023-08-16T14:55:08.165Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 485,
+    "revision": 36,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Setting Up a Custom Subdomain for a SaaSquatch Microsite",
+    "slug": "setting-up-a-custom-subdomain-for-your-hosted-portal",
+    "highlights": "Set a custom subdomain for your SaaSquatch Microsite to align with your brand.",
+    "content": "> __IMPORTANT:__ There's a more recent doc available on this topic. Please go to: [Setting Up a Domain](/building-programs/participant-experiences/configuring-a-custom-domain).\n\n## About SaaSquatch microsites\nSaaSquatch microsites allow your affiliates or customers to sign up and have access to the referral widget. This is ideal when participants referred to your program would not have access to an account on your website (this is common for affiliates, as an example). Check out our [Microsites Overview](https://docs.saasquatch.com/building-programs/microsites/microsites-overview) doc for a high-level overview of the microsite setup process or jump straight into our [detailed setup guide](https://docs.saasquatch.com/building-programs/microsites/quickstart-guide). \n\n## Before you begin\nThis guide is for companies using SaaSquatch microsites. To set up your custom domain, you will need the ability to __either__:\n- __(Recommended)__ Change your DNS (Domain Name Server) settings \n- Configure a reverse proxy to send traffic to the microsite, if you can’t change the DNS settings\n\n### Connect a Custom Subdomain to your SaaSquatch Microsite\nYou can set a custom domain to more closely align with your brand. For instance, you could have `portal.YourCompany.com`.\n\n> __Important:__ You’ll need access to your DNS (Domain Name Server) settings to do this.\n\n1. Head to your domain register.\n2. Add a new DNS record in the DNS settings for your chosen domain.\n    - __Record type__: `CNAME`\n    - __Host (Name)__: (enter your preferred subdomain here)\n    - __Value:__ `ssqt.co`\n    - __TTL__: `Automatic` or `1 Hour`\n3. Notify the [Success team](mailto:success@saasquatch.com) that you have configured the CNAME record for your SaaSquatch microsite.\n\nNext, your Solutions Architect will finish connecting the custom domain to your microsite. \n\n### Configure a reverse proxy for your SaaSquatch Microsite\nIn advanced cases, you can host a reverse proxy to `ssqt.co`. We only recommend this if:\n- You can’t modify your DNS to add the CNAME record to `ssqt.co`\n- You want to manage your own TLS certificate \n\nThis option requires extra setup and infrastructure to be hosted by your technical team. \n\nConfigure the reverse proxy to:\n1. Reverse proxy all requests to your custom domain to go to `ssqt.co`.\n2. Send the Host header with your custom domain along with all requests, for example Host: `referrals.example.com`.\n\n> As SaaSquatch will not have a signed certificate for your custom domain, your reverse proxy will have to accept the default certificate for `ssqt.co` when proxying requests.\n",
+    "tags": [
+      "Guide"
+    ],
+    "seoDescription": "Set up a Custom Subdomain for a SaaSquatch Microsite affiliate referral program.",
+    "robotsTag": [
+      "noindex",
+      "nofollow"
+    ]
+  }
+}

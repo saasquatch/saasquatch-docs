@@ -1,0 +1,45 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "2Wi4tZM7eOBuW9J2V7qzSz",
+    "type": "Entry",
+    "createdAt": "2020-01-06T22:32:55.718Z",
+    "updatedAt": "2020-01-06T22:38:01.487Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 11,
+    "revision": 2,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "productNews"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "title": "Partners V2 - Bulk Redemption",
+    "datePublished": "2019-02-19",
+    "tags": [
+      "feature-release",
+      "product-update"
+    ],
+    "content": "We’re excited to announce the launch of our updated Bulk Redemption component allowing you to quickly and easily update the reward balances of your customers. Simply download a report from our Bulk Redemption page, update the file with your balance changes, and upload the file back to us. As the file is processed, you’ll see the changes update for each user. \n        \nWe also took the opportunity to improve your experience by updating our user interface and making it faster to load.\n\n*You can read more about this feature on our [Bulk Reward Redemption guide](https://docs.referralsaasquatch.com/guides/bulk-reward-redemption/)*."
+  }
+}

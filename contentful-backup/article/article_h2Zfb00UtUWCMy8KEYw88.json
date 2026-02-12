@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "h2Zfb00UtUWCMy8KEYw88",
+    "type": "Entry",
+    "createdAt": "2018-04-26T23:16:46.348Z",
+    "updatedAt": "2023-05-26T15:55:58.741Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 4406,
+    "revision": 6,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Program Internationalization",
+    "slug": "features/program-i18n",
+    "highlights": "Translate and adapt your SaaSquatch Growth Automation Programs to support each of the languages and regions you operate in.",
+    "content": "### What is Internationalization?\nInternationalization **(i18n)** is the process of configuring a product or service to easily adapt to supporting additional languages, regions, countries, and currencies (a process called localization).\n\nBy internationalizing your product or service, the resources needed to localize it to support additional languages and regions are significantly reduced.\n\n### SaaSquatch and i18n\nThe SaaSquatch platform supports the ability to internationalize your SaaSquatch programs, enabling your to localize each of your Growth Automation campaigns for each of the languages and regions you operate in.\n\n### Locales\nThe localization for your SaaSquatch programs are powered by user locales. The SaaSquatch system uses the locale value of each user to keep track of their langauge and region in order to display your program to them using the correct messaging, in the correct language, with the correct currency. Locales can also be used to customize the rewards that are given out.\n\nThese locales (e.g. `en_GB`, `nl_NL`) are a combination of a two-letter language code and a two-letter country code, as defined in ISO 639-1 and ISO 3166-1 alpha-2 respectively.\n\n### Translation Quickstart\nThe following quickstart provides a high-level overview of the steps involved in localizing your SaaSquatch programs for each of your supported languages and regions.\n\n#### 1. Download the Source Copy/Messaging\n1. From the *Program* section in the SaaSquatch portal, select the Growth Automation program you would like to translate, and navigate to the program's *Advanced* step.\n\n2. Select the `Download Source and Translations` option. \n\n  ##### Format of Source Files\nThe provided zip file will include your default and any translated copy (if present) in the following format:\n```\nYour Program Name.zip\n├── /Emails\n|   ├── /programEmailID \n|   |   └── nl_NL.json\n|   └── programEmailID.json\n├── /Rewards\n|   ├── /referredReward \n|   |   └── nl_NL.json\n|   ├── /referrerReward \n|   |   └── nl_NL.json\n|   └── referredReward.json\n|   └── referrerReward.json\n└── /Widgets\n    ├── /programWidgetID \n    |   └── nl_NL.json \n    └── programWidgetID.json\n```\n\n  In this example the `programEmailID.json`, `programWidgetID.json`, `referredReward.json` or `referrerReward.json` files contain the default copy for the program's email, widget and rewards.\n\n#### 2. Translate Source Files\n\nUse a copy of the default email or widget messaging (found in the `programEmailID.json` or `programWidgetID.json` files) as the basis for your translations, and a copy of the default reward settings as the template for your localized reward types and amounts. \n\nIf you have previously made translations they will be included in the download, in the folder of the widget/email they are for (*e.g.* `/programEmailID`) with the file name of the locale they are for (*e.g.* `nl_NL.json`). You can choose to make edits to the existing translations/rewards you have for a specific locale, or delete the existing content and start fresh from the default file.\n\n#### 3. Package Translations\n1. Place your translated files back into the folder of the same name as the source file you translated (*e.g.* the `/signupRewardEmail` folder for the translations of `signupRewardEmail.json`).\n\n##### Example Folder Structure\nThe following example shows translations for the `fr_FR` and `en_US` locales having been placed in the folder for the program's email `/programEmailID`, widget `/programWidgetID`, and rewards `/referredReward` and `/referrerReward`.\n  ```\nYour_Program_Name.zip\n├── /Emails\n|   ├── /programEmailID  <-- Place your translated email files here\n|   |   ├── fr_FR.json\n|   |   └── en_US.json\n|   └── programEmailID.json\n├── /Rewards\n|   ├── /referredReward  <-- Place your translated referred reward files here\n|   |   ├── fr_FR.json\n|   |   └── en_US.json\n|   ├── /referrerReward  <-- Place your translated referrer reward files here\n|   |   ├── fr_FR.json\n|   |   └── en_US.json\n|   └── referredReward.json\n|   └── referrerReward.json\n└── /Widgets\n      ├── /programWidgetID  <-- Place your translated widget files here\n      |   ├── fr_FR.json\n      |   └── en_US.json \n      └── programWidgetID.json\n```\n2. Create a zip of the folder containing the `/Emails` and `/Widgets` folders.\n\n__NOTE:__ When you go to open any of the json files you will see and object that looks something like this:\n\n![internationalization error](//images.ctfassets.net/s68ib1kj8k5n/1Z9uFfE3M2u2OKssSq6e1Q/1812595a4f40e58ce6f488c9996e26cf/image__12_.png)\n\nIf you are seeing errors when you go to upload, make sure to add the highlighted line below. \n\n![internationalization error solution](//images.ctfassets.net/s68ib1kj8k5n/3R0qxoXuvHgCol9oovehCV/f0f741748122ccb17518f35781f5c447/image__13_.png)\n\n#### 4. Upload Translations\n\n<div class=\"row-fluid\">\n  <div class=\"span8\">\n    <ol><li>Back on the program's *Advanced* tab in the SaaSquatch portal, drag and drop your zipped translations onto the designated section of the page.    \n    <li>Confirm that the zip file was uploaded successfully.\n    <li>Confirm that each of the translations your included were uploaded successfully.\n    </ul>\n  </div>\n  <div class=\"span4\">\n   <div>\n<a class=\"docs-lightbox\" href=\"//images.ctfassets.net/s68ib1kj8k5n/3VS4r7notWKgSiY2a6cUQo/a58e163d7f2f9710a0fa4cea8ca67fa3/Translation_Upload.png\" data-lightbox=\"example-set\">\n<img src=\"//images.ctfassets.net/s68ib1kj8k5n/3VS4r7notWKgSiY2a6cUQo/a58e163d7f2f9710a0fa4cea8ca67fa3/Translation_Upload.png\" alt=\"Translation Upload\">\n<div><i class=\"fa fa-eye\"></i> Preview</div>\n</a>\n</div>\n\n  </div>\n</div>\n\nCongratulations! Your Growth Automation program is now localized!\n\n### Additional Resources\n>Check out our [Program Library](/program/library) for a full list of available Growth Automation programs.\n>\n>Learn more about all of the [available reward options](/feature/rewards) that are supported on the SaaSquatch Growth Automation programs."
+  }
+}

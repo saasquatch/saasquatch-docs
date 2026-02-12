@@ -1,0 +1,44 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "1mPFw5fOzbQXF6kYAIhr8H",
+    "type": "Entry",
+    "createdAt": "2020-10-19T22:43:41.470Z",
+    "updatedAt": "2020-10-19T22:50:32.042Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 14,
+    "revision": 2,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "productNews"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "title": "SaaSquatch Announces SOC 2 Type II Certification",
+    "datePublished": "2020-09-30",
+    "tags": [
+      "feature-release"
+    ],
+    "content": "We’re proud to announce that SaaSquatch has successfully completed a Service Organization Control (SOC 2®) Type II examination.\n\nOur SOC 2 certification represents a valuable addition to our suite of enterprise-grade features that support customers in even the most highly-regulated industries such as the finance, telecommunications, and education sectors.\n\nWe believe that SOC 2 compliance is a critical security requirement for any leading referral and loyalty software vendor, especially when supporting complex customer journeys or handling sensitive data.\n\nTo learn more about what a SOC 2 certification means for your referral and loyalty programs, and how it strengthens our commitment to providing a secure and trusted solution for acquiring, monetizing, and retaining your best customers, please see the official announcement on our blog [here](https://www.saasquatch.com/blog/saasquatch-announces-soc-2-certification/)."
+  }
+}

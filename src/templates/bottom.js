@@ -39,10 +39,6 @@ export function Bottom({
         <meta name="twitter:creator" content="@getSaaSquatch" />
 
         <link rel="shortcut icon" href="/favicon.ico" />
-        <link
-          rel="stylesheet"
-          href="https://i.icomoon.io/public/830a3260df/SaaSquatch/style.css"
-        />
         <style dangerouslySetInnerHTML={{__html:`[hidden]{visibility:hidden;}`}} />
       </Head>
 

@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "6kamW1Rz2wIeGyg66kywic",
+    "type": "Entry",
+    "createdAt": "2016-04-04T20:25:10.177Z",
+    "updatedAt": "2023-03-01T17:40:48.766Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 6321,
+    "revision": 17,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Developer Guide",
+    "title": "Testing - Best Practices",
+    "slug": "developer/testing",
+    "highlights": "Recommended program development process with SaaSquatch to minimize technical errors and installation deficiencies.",
+    "content": "### Test vs Live\nEach SaaSquatch Program has two *modes*: [**Live** and **Test**](/success/using-referral-saasquatch/#test-vs-live). These modes (tenants) both play an important role in the lifecycle of your program. The functionality of your Live and Test tenants are designed to be very similar so that there are as few changes as possible when transitioning from your Test to Live tenant.\n\nThe intended use of each of your tenants can be summarized as follows:\n\n<table class=\"table\">\n    <tr>\n        <th>\n            Test\n        </th>\n        <th>\n            Live\n        </th>\n    </tr>\n    <tr>\n        <td>\n            <ul>\n              <li>Design</li>\n              <li>Development</li>\n              <li>Testing</li>\n              <li>Payment System Sandbox</li>\n            </ul>\n        </td>\n        <td>\n            <ul>\n              <li>Live tenant configuration on final Production environment</li>\n              <li>Running your Live Growth Automation Program</li>\n              <li>For automated reward integrations such as gift cards with real monetary value: <strong>Live, uncancellable</strong> rewards generated and sent out to users</li>\n            </ul>\n        </td>\n    </tr>\n</table> \n\n### Example Development Process\nThe following flow chart provides an example of what a development process could look like when integrating your Growth Automation programs into your product:\n\n![Development Process](//images.contentful.com/s68ib1kj8k5n/4VuAPt2Vfau2o0eMkqQ4KQ/483cb07d3f95e4067aa171210ad7287a/Development_Process.png)\n\n#### Example Development Process Explanation\n\n<table class=\"table\">\n    <tr>\n        <th nowrap>\n            Development Stage\n        </th>\n        <th>\n            Description\n        </th>\n    </tr>\n    <tr>\n        <td nowrap>\n            1. <strong>Design</strong> \n        </td>\n        <td>Planning a software solution (to launch a Growth Automation program).</td>\n    </tr>\n    <tr>\n        <td nowrap>\n            2. <strong>Development</strong> \n        </td>\n        <td>Creation of the software solution intended to lauch a Growth Automation program.</td>\n    </tr>\n    <tr>\n        <td nowrap>\n            3. <strong>Unit (Local) Testing</strong> \n        </td>\n        <td>Testing that each of the components of the Growth Automation program functions as intended.</td>\n    </tr>\n    <tr>\n        <td nowrap>\n            4. <strong>Deploy to Staying Environment</strong> \n        </td>\n        <td>Once the program has passed initial testing it can be deployed to the staging environment.</td>\n    </tr>\n    <tr>\n        <td nowrap>\n            5. <strong>Integration (Staging) Testing</strong> \n        </td>\n        <td>Testing how the program works in conjunction with the rest of your platform.</td>\n    </tr>\n    <tr>\n        <td nowrap>\n            6. <strong>Quality Assurance</strong>  \n        </td>\n        <td>Ensuring the all the goals of the project (to launch a program) have been completed to a satisfactory level, and that the solution works as expected.</td>\n    </tr>\n    <tr>\n        <td nowrap>\n            7. <strong>Live Tenant Configuration</strong>  \n        </td>\n        <td>With the mechanics of your Growth Automation program confirmed to be working using your Test tenant you can begin the process of deploying your program to your production environment. \n        <br><br>As part of the transition from your <strong>Test ➡ Live</strong> tenant a number of pieces need to be swapped over to point to your Live tenant.\n        <br><br>The following items should be changed and checked before your program is fully configured on your Live tenant: \n        <ul>\n        <li><strong>Tenant Alias</strong> - <i>eg.</i> <code>test_alu125hh1si9w</code> ➡ <code>51hsahuilw921</code>  </li>\n        <li><strong>Tenant API key</strong>\n        <i>eg.</i> <code>TEST_BHASKh5125Las5hL125oh3VbLmPxUSs</code>➡<code>LIVE_saLhhP5ohLSS3bB115sKLA5x5UHV22m</code></li>\n        <li><strong>Copy and Messaging</strong> - The copy and messaging within the widget, share options, and emails are independently configurable between tenants. Make sure that the copy and messaging in the widget, share options, and emails is correctly configured on your live tenant before it is made available to customers.</li>\n        </ul>\n        With each of these components updated to point to your Live tenant your Live program should be ready for use.\n        </td>\n    </tr>\n    <tr>\n        <td nowrap>\n            8. <strong>Live Program</strong>  \n        </td>\n        <td>Your Live Program is now ready to be deployed from your <strong>Staging ➡ Production</strong> environment.\n        <br><br>It is recommended to run through at least one final full test of the full loop before publicizing your program. <br></br><strong>Please note:</strong> This test loop on your Live tenant, like all data on your Live tenant, cannot be deleted.\n        </td>\n    </tr>\n    <tr>\n        <td nowrap>\n            9. <strong>Optimization</strong> \n        </td>\n        <td>Launching your Growth Automation program is only the first step in running a successful program. As you begin to generate traffic you can begin to optimize your program to make it even more successful.</td>\n    </tr>\n</table> \n\n### Portal\nYour program Portal provides access to the configuration settings for both your Test and Live tenants. \n\nDetails about functionality in the portal can be found in our [Navigating the SaaSquatch Portal](/success/navigating-the-portal) article.\n\n### Debugging\n\n<div class=\"row-fluid\">\n  <div class=\"span8\"><p>Your SaaSquatch program makes dubugging on your Test tenant easier by exposing additional logging. \n\n<p>Our Squatch.js Library provides the following debugging tools to help you work out issues as you impliment your referral program:\n\n<p><a href=\"/developer/squatchjs/issue\">Error codes</a> displayed in the widget help to identify any problem as when displaying the widget.</div>\n  <div class=\"span4\">\n  <div>\n<a class=\"docs-lightbox\" href=\"//images.contentful.com/s68ib1kj8k5n/7qBm69rkhUQcEsamI6gS8U/d5fc86ddd9384b51b4a9c2bf629b1815/RS032.png\" data-lightbox=\"example-set\">\n  <img src=\"//images.contentful.com/s68ib1kj8k5n/7qBm69rkhUQcEsamI6gS8U/d5fc86ddd9384b51b4a9c2bf629b1815/RS032.png\" alt=\"RS032\">\n  <div><i class=\"fa fa-eye\"></i> Preview</div>\n</a>\n</div>\n  </div>\n</div>\n<br>\n\nAdditionally, status updates and error messages are displayed on the console to help troubleshoot as you call squatch.js methods:\n\n  ![squatch.js Console Error Example](//images.contentful.com/s68ib1kj8k5n/5t54orqmooUe4uQe2meWss/281d63d3456b459418d8bc29ccfe616a/squatch.js_Console_Error_Example.png)\n\n### Test Data\nOnly your Test tenant provides the ability to delete test data. \n\nData that **WILL** be deleted:\n- Users, accounts, and referrals\n- Analytics events\n\nThe following data **WILL NOT** be deleted:\n- Any data stored in external payment systems (e.g. Stripe/Recurly)\n- Your SaaSquatch Account (including accounts of your other team members\n- Your theme and widget customizations\n- Your program settings, like reward settings, and API keys\n\nTo access this functionality: \n- Select [Settings](/success/using-referral-saasquatch/#program-settings) under the Setup menu in the Sidebar\n- Click Delete Test Data\n- Toggle the 'I would like to delete my test data' toggle from \"No\" to \"Yes\"\n- Click **Delete**.\n\n>**Please note:** Data on the **Live** tenant cannot be deleted.\n\n### Additional Resources\nIf you would like to dive deeper into the world of Growth Automation Programs and our accompanying platform, we recommend checking out the following articles: \n\n- Learn more about the structure of our Growth Automation Platform in our [Growth Automation 101](https://docs.referralsaasquatch.com/growth/ga-101/) article.\n- Explore all of our Growth Automation Programs availble on the SaaSquatch Platform in our [Growth Automation Program Library](https://docs.referralsaasquatch.com/program/library/) article.\n- Our [Growth Automation Program Mechanisms](https://docs.referralsaasquatch.com/growth/ga-mechanisms/) provides details, examples and further detail on how to integrate the SaaSquatch platform in your product.",
+    "robotsTag": [
+      "FOLLOW",
+      "INDEX"
+    ]
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "1XVdRXYrZCcEWQ8CwAEqgW",
+    "type": "Entry",
+    "createdAt": "2018-01-18T01:56:49.246Z",
+    "updatedAt": "2023-05-17T00:00:03.562Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 9935,
+    "revision": 17,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "General Program Quickstart",
+    "slug": "growth/quickstart",
+    "coverImage": {
+      "metadata": {
+        "tags": [],
+        "concepts": []
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "s68ib1kj8k5n"
+          }
+        },
+        "id": "1kFbNUjiKAMKYQoICuEaao",
+        "type": "Asset",
+        "createdAt": "2018-01-18T01:58:31.061Z",
+        "updatedAt": "2018-01-18T01:58:31.061Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 2,
+        "revision": 1,
+        "locale": "en-US"
+      },
+      "fields": {
+        "title": "QuickstartV2",
+        "file": {
+          "url": "//images.ctfassets.net/s68ib1kj8k5n/1kFbNUjiKAMKYQoICuEaao/fc35ebedcfa908f60b3f82014d66dcff/QuickstartV2.png",
+          "details": {
+            "size": 51053,
+            "image": {
+              "width": 911,
+              "height": 214
+            }
+          },
+          "fileName": "QuickstartV2.png",
+          "contentType": "image/png"
+        }
+      }
+    },
+    "highlights": "Learn how to select, configure, and publish a new SaaSquatch Growth Automation Program in minutes.",
+    "content": "\nThe SaaSquatch Growth Automation Platform is designed to help you quickly, and easily, launch new referral and loyalty Growth Automation programs from right within the SaaSquatch portal.\n\nThe following **Quickstart Guide** provides end-to-end overview of this setup process.\n### Select a Program\n<div class=\"row-fluid\">\n  <div class=\"span8\">\n\n  <p>From the <i>Programs</i> section inside the SaaSquatch portal, select the <i>Create New</i> program option from the top left of the page. \n\n  <p>Here you are presented with a Program Library filled with different types of programs your SaaSquatch project supports. Each entry includes details on the functionality the program is designed to provide, and the data required to run the program.\n\n<p>Once you have settled on a type of program you would like to create, click the <i>Create this Program</i> option to be taken to the Program Creation Wizard which will walk you through the setup process. \n\n  </div>\n  <div class=\"span4\">\n\n  <div>\n<a class=\"docs-lightbox\" href=\"//images.ctfassets.net/s68ib1kj8k5n/7sk3j3WbELJrMXAaFIOz2z/779457084bf9b2bbda1f646feaad92bd/Create_New_Program.png\" data-lightbox=\"example-set\">\n<img src=\"//images.ctfassets.net/s68ib1kj8k5n/7sk3j3WbELJrMXAaFIOz2z/779457084bf9b2bbda1f646feaad92bd/Create_New_Program.png\" alt=\"Create New Program\">\n<div><i class=\"fa fa-eye\"></i> Preview</div>\n</a>\n</div>\n\n  </div>\n</div>\n\n<p><blockquote><h4>Can't find the right program?</h4>The SaaSquatch system is constantly expanding the library of available Growth Automation programs, and we are always looking for feedback from our customers as to what they would like to see built next.<br><br>Please <a href=\"mailto:success@referralsaasquatch.com?subject=Custom GA Program\">contact our support team</a> with the details of the program you are looking to run to see if this something we can help build.</blockquote>\n\n### Rules\n<div class=\"row-fluid\">\n  <div class=\"span8\">\n\n  <p>The rules you configure for a SaaSquatch program will be evaluated each time the program is triggered for a specific user. These <a href=\"/growth/ga-mechanisms/#program-rules\">triggers</a> are typically based on updates to user information, new user events, or time-based thresholds.\n\n<p>Each SaaSquatch program is structured differently, and therefore will have different rules for when rewards should be created and when emails should be sent. Further details about the specific rules & requirements for each program can be found on the <a href=\"/program/library/\">respective program&#39;s summary page</a>.\n\n<p>Once the criteria outlined in the program rules have been successfully met, the program will take action. This might include providing the user with a reward and/or sending them an email.\n\n  <p><a href=\"/growth/ga-mechanisms\">Learn more</a> about the role that program rules play in a Growth Automation program.\n\n  </div>\n  <div class=\"span4\">\n\n  <div>\n<a class=\"docs-lightbox\" href=\"//images.ctfassets.net/s68ib1kj8k5n/67Eipcfw1pHRh7BkSEET3u/c8a71eddddb32813c0379d5c30720391/Program_Rules_Config.png\" data-lightbox=\"example-set\">\n<img src=\"//images.ctfassets.net/s68ib1kj8k5n/67Eipcfw1pHRh7BkSEET3u/c8a71eddddb32813c0379d5c30720391/Program_Rules_Config.png\" alt=\"Program Rules Config\">\n<div><i class=\"fa fa-eye\"></i> Preview</div>\n</a>\n</div>\n\n  </div>\n</div>\n\n### Rewards\n<div class=\"row-fluid\">\n  <div class=\"span8\">\n\n  <p>Many SaaSquatch Growth Automation programs provide the ability to reward users that have successfully reached your program's configured threshold (set out in the rules section).\n\n<p>The SaaSquatch platform supports a wide range of reward types, and enables you to independnatly configure the reward(s) for each program you configure. This enables you to provide the right customer the right reward at the right time in their customer journey. \n\n<p>Learn more about the types of rewards supported on our <a href=\"/feature/rewards\">Growth Automation platform</a> and in each of our available <a href=\"/program/library\">Growth Automation programs</a>.\n  </div>\n  <div class=\"span4\">\n\n  <div>\n<a class=\"docs-lightbox\" href=\"//images.ctfassets.net/s68ib1kj8k5n/6oSpvFaYU41CR56thTFZCz/412cae77ebe2b777075d71d4ee695894/Program_Rewards_Config.png\" data-lightbox=\"example-set\">\n<img src=\"//images.ctfassets.net/s68ib1kj8k5n/6oSpvFaYU41CR56thTFZCz/412cae77ebe2b777075d71d4ee695894/Program_Rewards_Config.png\" alt=\"Program Rewards Config\">\n<div><i class=\"fa fa-eye\"></i> Preview</div>\n</a>\n</div>\n\n  </div>\n</div>\n\n### Widgets\n\n<div class=\"row-fluid\">\n  <div class=\"span8\">\n\n  <p>A number of Growth Automation programs have been built with an option for engaging program participants through the use of a widget. This widget can be configured from the Widgets page in the program setup wizard or from the Content tab.\n  <p> SaaSquatch offers two types of widgets--verified access and instant access. See our doc on <a href=\"/topics/widget-types/\">widget types</a> for more information.\n\n<p>This WYSIWYG editor provides the ability to customize the layout, messaging, and design of the widget from within the SaaSquatch portal. \n\n<p>This widget can then be displayed to program participants using our <a href=\"/developer/squatchjs/v2/\">JavaScript library</a>.  \n  </div>\n  <div class=\"span4\">\n\n  <div>\n<a class=\"docs-lightbox\" href=\"//images.ctfassets.net/s68ib1kj8k5n/2afkGfxD3bwYhZgma9rH3O/0afa45ac14132a1404bd1581e001e2b9/ui_screenshot-unedited.png\" data-lightbox=\"example-set\">\n<img src=\"//images.ctfassets.net/s68ib1kj8k5n/2afkGfxD3bwYhZgma9rH3O/0afa45ac14132a1404bd1581e001e2b9/ui_screenshot-unedited.png\" alt=\"Self Serve Widget Editor UI - Non-Annotated\">\n<div><i class=\"fa fa-eye\"></i> Preview</div>\n</a>\n</div>\n\n</div>\n</div>\n\n### Emails\n\n<div class=\"row-fluid\">\n  <div class=\"span8\">\n\n  <p>The SaaSquatch system can be configured to send program participants emails as part of their activity within the program. \n\n  <p> These emails can be useful for communicating with a user about their progress through the program, or about a reward they might have earned for successful participation in the program. \n\n  <p> The content, design, and layout of these emails can be customized directly in the SaaSquatch portal.\n\n  </div>\n  <div class=\"span4\">\n\n  <div>\n<a class=\"docs-lightbox\" href=\"//images.ctfassets.net/s68ib1kj8k5n/3BGdQQe5MQSAW6UCeS0EEM/1ad17199c3aeedae91f9e0dd62ae8f1d/Email_Editor.png\" data-lightbox=\"example-set\">\n<img src=\"//images.ctfassets.net/s68ib1kj8k5n/3BGdQQe5MQSAW6UCeS0EEM/1ad17199c3aeedae91f9e0dd62ae8f1d/Email_Editor.png\" alt=\"Email Editor\">\n<div><i class=\"fa fa-eye\"></i> Preview</div>\n</a>\n</div>\n\n</div>\n</div>\n\n### Settings \nSome growth Automation programs include addtitional program functionality and configurability that can be controlled from within the SaaSquatch portal. \n\nFor these programs (including referral, affiliate, and partner programs) these settings include configuration options for the following program components:\n\n- Referred User [landing page](/success/intro/#landing-page) and falback URL settings\n- Referrer [default share messaging](/success/share-options/#social-media-share-messages) and [Open Graph Metadata](/success/share-options/#open-graph-metadata)\n\n### Publish\n<div class=\"row-fluid\">\n  <div class=\"span8\">\n\n  <p>Once you have finished configuring your program, return to the <i>Programs</i> page in the SaaSquatch portal. From there, select the <i>Launch Program</i> option from behind that program's \"gear\" icon.\n\n<p>This will publish your program and allow your users to interact with it.\n\n <blockquote><strong>Note:</strong> If you encounter errors while launching the program, recheck that you have completed all the required fields within the program configuration.\n<br><br><i>Review</i>: Rules, Rewards & Setting pages (a landing page URL and a hosted image link for Open Graph, LinkedIn and Pinterest are mandatory)</blockquote>\n\n  </div>\n  <div class=\"span4\">\n\n  <div>\n<a class=\"docs-lightbox\" href=\"//images.ctfassets.net/s68ib1kj8k5n/4SPOSECGGzgVUaOE30m8O9/6f4b56adc6bfa52a0ae8ed7e5dd6e982/Launch_Program.png\" data-lightbox=\"example-set\">\n<img src=\"//images.ctfassets.net/s68ib1kj8k5n/4SPOSECGGzgVUaOE30m8O9/6f4b56adc6bfa52a0ae8ed7e5dd6e982/Launch_Program.png\" alt=\"Launch Program\">\n<div><i class=\"fa fa-eye\"></i> Preview</div>\n</a>\n</div>\n\n  </div>\n</div>\n\n### Analytics\n<div class=\"row-fluid\">\n  <div class=\"span12\">\n\n  <p>As users begin interacting with your Growth Automation program, this activity will be tracked by the SaaSquatch system.\n\n<p>Each type of Growth Automation program will be configured to track a different set of metrics that are relevant to the program's specific goals and user journey. \n\n<p>These aggregate analytics are then viewable either from the analytics page within the program configuration, or by filtering the overall analytics from the <i>Analytics</i> page in the Reporting section of the portal.\n\n  </div>\n\n</div>\n\n### Additional Resources\nNow that you have launched your Growth Automation program, we recommend checking out the following resources to help you get even more out of the SaaSquatch Growth Automation Platform.\n\n- Learn about the [Growth Automation platform](/growth/saasquatch-ga) that SaaSquatch provides.\n- Explore details about [each of the components](/growth/ga-mechanisms) that make up a Growth Automation program.\n- View all of the available Growth Automation programs in our [Program Library](/program/library)."
+  }
+}
