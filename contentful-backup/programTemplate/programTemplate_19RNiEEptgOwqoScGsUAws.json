@@ -1,0 +1,144 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "48ji72u659z5"
+      }
+    },
+    "id": "19RNiEEptgOwqoScGsUAws",
+    "type": "Entry",
+    "createdAt": "2017-12-05T03:33:18.323Z",
+    "updatedAt": "2024-12-02T22:31:10.170Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 625,
+    "revision": 42,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "programTemplate"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "name": "Profile Completion",
+    "icon": "Profile-Completion-Program",
+    "categories": [
+      "engage"
+    ],
+    "slug": "profile-completion-reward",
+    "summary": "Improve marketing campaigns by learning more about your users.",
+    "longDescription": "A profile completion reward program is a great way to learn more about your users, and thank them for providing more information. Simply decide what information must be filled out to earn a reward, and choose what customers receive when they’ve completed their profile.\n\nWhen customers invest time and effort into filling out their profile, they become more committed to your product or service, reducing the potential for churn. Plus, you’re equipped with the data to better personalize each user’s experience. \n\n### Example:\n\nA visual design software tool wants to provide their customers with better feature suggestions to tailor the user experience.\n\nThe company launches a profile completion program that gives users a free month’s  subscription if they fill out their entire user profile including selecting their skill level, goals, and preferred design style. \n\n### Features:\n\n* Select what user profile information must be filled out to get rewarded.\n* Specify the reward earned when a profile is completed.\n* Customize the email to notify users when they get a reward.",
+    "schema": {
+      "name": "Profile Completion Reward",
+      "rules": {
+        "type": "object",
+        "title": "When a user completes their profile, they get a reward.",
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "properties": {
+          "customFields": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "title": "Custom Field"
+            },
+            "title": "Required Custom Fields",
+            "default": [],
+            "description": "A user must have a non-empty value for these fields for their profile to be considered complete."
+          },
+          "standardFields": {
+            "type": "object",
+            "title": "Required Standard Fields",
+            "properties": {
+              "email": {
+                "type": "boolean",
+                "title": "Email Required"
+              },
+              "lastName": {
+                "type": "boolean",
+                "title": "Last Name Required"
+              },
+              "firstName": {
+                "type": "boolean",
+                "title": "First Name Required"
+              }
+            },
+            "description": "A user must have a non-empty value for these fields for their profile to be considered complete."
+          }
+        },
+        "description": "A profile will only be considered complete when all of these fields are set."
+      },
+      "emails": [
+        {
+          "key": "profileCompletionEmail",
+          "name": "Reward Created Email",
+          "defaults": "profileCompletionEmailId",
+          "description": "We send this email when a new reward is created by this program"
+        }
+      ],
+      "rewards": [
+        {
+          "key": "profileCompletionReward",
+          "name": "Profile Completion Reward",
+          "description": "This reward is given to people for completing their profile."
+        }
+      ],
+      "summary": "Reward customer for completing signup.",
+      "rulesUISchema": {
+        "ui:order": [
+          "standardFields",
+          "customFields"
+        ],
+        "customFields": {
+          "ui:options": {
+            "orderable": false
+          },
+          "ui:emptyValue": "empty"
+        },
+        "standardFields": {}
+      },
+      "longDescription": ""
+    },
+    "contentfulIdMapping": {
+      "profileCompletionEmailId": "3uksCoA6KceygWMGC24ySm"
+    },
+    "url": "https://profile-program.services.prod.ssqt.io/",
+    "logo": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Asset",
+        "id": "2A4OorghxaSSWugM4IwMAC"
+      }
+    },
+    "screenshot": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Asset",
+        "id": "4hFKDIuCi4eG8AmyGmA82k"
+      }
+    },
+    "globallyInstallable": true,
+    "installableByTenants": [
+      "test_a8xm7ngkv4g2c",
+      "test_atvfyio4abbmy",
+      "test_agngayvesirnb",
+      "test_at5aibor5ksct"
+    ],
+    "tags": [
+      "activation"
+    ]
+  }
+}

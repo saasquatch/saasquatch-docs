@@ -1,0 +1,915 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "48ji72u659z5"
+      }
+    },
+    "id": "6taRsNPGnKaKmSaiCu6CK2",
+    "type": "Entry",
+    "createdAt": "2018-10-01T23:35:24.272Z",
+    "updatedAt": "2024-12-02T22:30:40.949Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 257,
+    "revision": 58,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "programTemplate"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "name": "Referral",
+    "icon": "referral",
+    "categories": [
+      "acquire",
+      "retain"
+    ],
+    "slug": "referral-program",
+    "summary": "Get your existing users to sign-up new users.",
+    "longDescription": "### Why run this program:\n\n<span class=\"icon-sqh-chevron-down\"></span> Customer Acquisition Cost by having customers advertise to friends<br>\n<span class=\"icon-sqh-chevron-down\"></span> Churn<br>\n<span class=\"icon-sqh-chevron-up\"></span> Word of Mouth by encouraging conversations around your brand<br>\n<span class=\"icon-sqh-chevron-up\"></span> Engagement<br>\n<span class=\"icon-sqh-chevron-up\"></span> Revenue by expanding your customer base<br>\n<span class=\"icon-sqh-chevron-up\"></span> Customer Lifetime Value<br>\n<span class=\"icon-sqh-chevron-up\"></span> Traffic\n\n### Example:\n\nA company's main product starts at a cost of $600 and lasts customers 10 years. It is trying to increase revenue through new customers.\n\nThe company launches a referral program. When a customer refers a new user who spends at least $600, the referring customer is rewarded with a $55 gift card.\n\nIn the first 3 months, this program had 283 referrals that ended in a purchase and caused over $100,000 in revenue to be generated.\n\n### Features:\n\n* Convert a referral on their first purchase. \\*\n* Set a minimum value for a purchase to convert a referral.\n* Set a maximum number of rewards a referral can get.\n* Choose if referred user will get a reward. If they will, it can be on referral or on their first purchase. \\*\n* Choose a user event which can cancel the reward from a referral.\n* Customize share links for referrals.\n* Customize emails for starting a referral and when rewards are given.\n* Customize widgets for both sides of a referral to monitor referrals.\n* Customize social messaging.\n\n\\* Advanced settings are available to convert a referral on a custom field or event.",
+    "schema": {
+      "name": "Referral Program",
+      "rules": {
+        "self": {
+          "name": "referral_rules_schema",
+          "format": "jsonschema",
+          "vendor": "referral-saasquatch",
+          "version": "2.0.0"
+        },
+        "type": "object",
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "properties": {
+          "version": {
+            "enum": [
+              "2.0.0"
+            ],
+            "type": "string",
+            "title": "Version of the current schema",
+            "default": "2.0.0",
+            "description": "The version property allows the jsonata migration script to perform a rules update when required"
+          },
+          "retraction": {
+            "type": "object",
+            "title": "Advanced Reward Rules",
+            "required": [
+              "retractionEnabled"
+            ],
+            "properties": {
+              "retractionEnabled": {
+                "enum": [
+                  0,
+                  1
+                ],
+                "type": "integer",
+                "title": "Enable automatic reward cancellation",
+                "enumNames": [
+                  "No",
+                  "Yes"
+                ]
+              }
+            },
+            "dependencies": {
+              "retractionEnabled": {
+                "oneOf": [
+                  {
+                    "properties": {
+                      "retractionEnabled": {
+                        "enum": [
+                          0
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "required": [
+                      "retractionEventKey",
+                      "retractionType",
+                      "retractionFilter"
+                    ],
+                    "properties": {
+                      "retractionType": {
+                        "enum": [
+                          0,
+                          1,
+                          2
+                        ],
+                        "type": "integer",
+                        "title": "Retract referral rewards for:",
+                        "enumNames": [
+                          "Both Referrer and Referred",
+                          "Referred user only",
+                          "Referrer only"
+                        ]
+                      },
+                      "retractionFilter": {
+                        "enum": [
+                          0,
+                          1
+                        ],
+                        "type": "integer",
+                        "title": "Trigger reward cancellation using",
+                        "enumNames": [
+                          "Custom event only",
+                          "Custom event and filter"
+                        ]
+                      },
+                      "retractionEnabled": {
+                        "enum": [
+                          1
+                        ]
+                      },
+                      "retractionEventKey": {
+                        "type": "string",
+                        "title": "Event key",
+                        "pattern": "^(?!purchase$).*$",
+                        "description": "retraction"
+                      }
+                    },
+                    "dependencies": {
+                      "retractionFilter": {
+                        "oneOf": [
+                          {
+                            "properties": {
+                              "retractionFilter": {
+                                "enum": [
+                                  0
+                                ]
+                              }
+                            }
+                          },
+                          {
+                            "required": [
+                              "retractionCustomField",
+                              "retractionCustomFieldOperandValue"
+                            ],
+                            "properties": {
+                              "retractionFilter": {
+                                "enum": [
+                                  1
+                                ]
+                              },
+                              "retractionCustomField": {
+                                "type": "string",
+                                "title": "Custom event field name"
+                              },
+                              "retractionCustomFieldOperator": {
+                                "enum": [
+                                  0,
+                                  1,
+                                  2
+                                ],
+                                "type": "integer",
+                                "title": "Cancel rewards when custom event field value is",
+                                "default": "equal to",
+                                "enumNames": [
+                                  "equal to",
+                                  "greater than or equal to",
+                                  "less than or equal to"
+                                ]
+                              },
+                              "retractionCustomFieldOperandValue": {
+                                "type": "string",
+                                "title": "Custom event field value"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "conversionRule": {
+            "type": "object",
+            "title": "Conversion Rules",
+            "required": [
+              "selectedRule",
+              "rewardedUser"
+            ],
+            "properties": {
+              "JSONata": {
+                "type": "string",
+                "title": "",
+                "default": "",
+                "description": ""
+              },
+              "rewardedUser": {
+                "enum": [
+                  "referrerOnly",
+                  "both"
+                ],
+                "type": "string",
+                "title": "Who do you want to reward?",
+                "enumNames": [
+                  "Referrer Only",
+                  "Both Referrer and Referred"
+                ]
+              },
+              "selectedRule": {
+                "enum": [
+                  "customFieldEval",
+                  "customEvent"
+                ],
+                "type": "string",
+                "title": "When do you want to reward the Promoter?",
+                "enumNames": [
+                  "Custom Field",
+                  "Custom Event"
+                ]
+              }
+            },
+            "dependencies": {
+              "rewardedUser": {
+                "oneOf": [
+                  {
+                    "properties": {
+                      "pendingUser": {
+                        "enum": [
+                          0,
+                          1
+                        ],
+                        "type": "integer",
+                        "title": "Would you like to set a refund period?",
+                        "enumNames": [
+                          "No",
+                          "Yes"
+                        ]
+                      },
+                      "rewardedUser": {
+                        "enum": [
+                          "referrerOnly"
+                        ]
+                      }
+                    },
+                    "dependencies": {
+                      "pendingUser": {
+                        "oneOf": [
+                          {
+                            "properties": {
+                              "pendingUser": {
+                                "enum": [
+                                  0
+                                ]
+                              }
+                            }
+                          },
+                          {
+                            "properties": {
+                              "pendingUser": {
+                                "enum": [
+                                  1
+                                ]
+                              },
+                              "pendingPeriod": {
+                                "$ref": "#/definitions/pendingPeriod"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "required": [
+                      "rewardReferred"
+                    ],
+                    "properties": {
+                      "rewardedUser": {
+                        "enum": [
+                          "both"
+                        ]
+                      },
+                      "rewardReferred": {
+                        "enum": [
+                          "referral",
+                          "conversion"
+                        ],
+                        "type": "string",
+                        "title": "When do you want to reward the Referred Friend?",
+                        "enumNames": [
+                          "When they are referred",
+                          "On first conversion"
+                        ]
+                      }
+                    },
+                    "dependencies": {
+                      "rewardReferred": {
+                        "oneOf": [
+                          {
+                            "properties": {
+                              "pendingUser": {
+                                "enum": [
+                                  0,
+                                  1
+                                ],
+                                "type": "integer",
+                                "title": "Would you like to set a refund period?",
+                                "enumNames": [
+                                  "Nobody",
+                                  "Only for Promoter"
+                                ]
+                              },
+                              "rewardReferred": {
+                                "enum": [
+                                  "referral"
+                                ]
+                              }
+                            },
+                            "dependencies": {
+                              "pendingUser": {
+                                "oneOf": [
+                                  {
+                                    "properties": {
+                                      "pendingUser": {
+                                        "enum": [
+                                          0
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "properties": {
+                                      "pendingUser": {
+                                        "enum": [
+                                          1
+                                        ]
+                                      },
+                                      "pendingPeriod": {
+                                        "$ref": "#/definitions/pendingPeriod"
+                                      }
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          },
+                          {
+                            "properties": {
+                              "pendingUser": {
+                                "enum": [
+                                  0,
+                                  1,
+                                  2,
+                                  3
+                                ],
+                                "type": "integer",
+                                "title": "Would you like to set a refund period?",
+                                "enumNames": [
+                                  "Nobody",
+                                  "Only for Promoter",
+                                  "Only for Influenced User",
+                                  "For Both users"
+                                ]
+                              },
+                              "rewardReferred": {
+                                "enum": [
+                                  "conversion"
+                                ]
+                              }
+                            },
+                            "dependencies": {
+                              "pendingUser": {
+                                "oneOf": [
+                                  {
+                                    "properties": {
+                                      "pendingUser": {
+                                        "enum": [
+                                          0
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "properties": {
+                                      "pendingUser": {
+                                        "enum": [
+                                          1,
+                                          2,
+                                          3
+                                        ]
+                                      },
+                                      "pendingPeriod": {
+                                        "$ref": "#/definitions/pendingPeriod"
+                                      }
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "selectedRule": {
+                "oneOf": [
+                  {
+                    "properties": {
+                      "selectedRule": {
+                        "enum": [
+                          "customFieldEval"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "required": [
+                      "conversionEventKey"
+                    ],
+                    "properties": {
+                      "selectedRule": {
+                        "enum": [
+                          "customEvent"
+                        ]
+                      },
+                      "conversionEventKey": {
+                        "type": "string",
+                        "title": "What event linked to the Referred Friend will trigger a reward?",
+                        "description": ""
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "referrerRewardRules": {
+            "type": "object",
+            "title": "Referrer Reward Rules",
+            "required": [
+              "maxRewards"
+            ],
+            "properties": {
+              "maxRewards": {
+                "enum": [
+                  "unlimited",
+                  "specific"
+                ],
+                "type": "string",
+                "title": "How many rewards is the Promoter allowed to earn?",
+                "enumNames": [
+                  "unlimited rewards",
+                  "specific times"
+                ]
+              }
+            },
+            "dependencies": {
+              "maxRewards": {
+                "oneOf": [
+                  {
+                    "maxRewards": {
+                      "enum": [
+                        "unlimited"
+                      ]
+                    }
+                  },
+                  {
+                    "required": [
+                      "maxRewards",
+                      "rewardLimit"
+                    ],
+                    "properties": {
+                      "maxRewards": {
+                        "enum": [
+                          "specific"
+                        ]
+                      },
+                      "rewardLimit": {
+                        "type": "number",
+                        "title": "How many times should each user be able to get a reward?"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "makeObjectNotNull": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        },
+        "definitions": {
+          "pendingPeriod": {
+            "type": "object",
+            "required": [
+              "duration"
+            ],
+            "properties": {
+              "duration": {
+                "type": "string",
+                "title": "Duration",
+                "description": ""
+              }
+            }
+          }
+        }
+      },
+      "emails": [
+        {
+          "key": "referralStarted",
+          "name": "Referral Started",
+          "defaults": "referralStartedEmailId",
+          "description": "We send this email when a new reward is created by this program"
+        },
+        {
+          "key": "referralCompleted",
+          "name": "Referral Completed",
+          "defaults": "referralCompletedEmailId",
+          "description": "We send this email when a referral is completed"
+        },
+        {
+          "key": "referredRewardReceived",
+          "name": "Referred User Rewarded",
+          "defaults": "referredRewardReceivedEmailId",
+          "description": "We send this email when a user gets referred and rewarded"
+        },
+        {
+          "key": "rewardLimitReached",
+          "name": "Referral Completed (Reached Reward Limit)",
+          "defaults": "rewardLimitReachedEmailId",
+          "description": "We send this email when a referrer reaches the max number of rewards."
+        }
+      ],
+      "rewards": [
+        {
+          "key": "referrerReward",
+          "name": "Referrer Reward",
+          "description": "The reward given to users that have referred a friend."
+        },
+        {
+          "key": "referredReward",
+          "name": "Referred Reward",
+          "description": "The reward given to new users that have been referred."
+        }
+      ],
+      "sharing": {
+        "enabled": true,
+        "linksConfig": {
+          "defaults": "linkConfigId"
+        }
+      },
+      "summary": "Reward people for making referrals",
+      "trigger": {
+        "eventKeys": []
+      },
+      "widgets": [
+        {
+          "key": "referrerWidget",
+          "name": "In-app referral widget",
+          "defaults": "referrerWidgetId",
+          "description": "Widget displayed to a user who has referred friends",
+          "supportsInstantAccess": false
+        },
+        {
+          "key": "websiteReferralWidget",
+          "name": "Website referral widget",
+          "defaults": "websiteReferralWidgetId",
+          "description": "The website referrer widget allows participants to get instant access to their share link without providing full login credentials. ",
+          "supportsInstantAccess": true
+        },
+        {
+          "key": "friendWidget",
+          "name": "Friend widget",
+          "defaults": "friendWidgetId",
+          "description": "Widget displayed to a referred friend",
+          "supportsInstantAccess": true
+        }
+      ],
+      "requirements": [
+        {
+          "key": "conversionTrigger",
+          "name": "Conversion Trigger",
+          "query": null,
+          "description": "This is used to validate that a program's conversion trigger is functioning before launch.",
+          "longDescription": null
+        }
+      ],
+      "rulesUISchema": {
+        "version": {
+          "ui:widget": "hidden"
+        },
+        "ui:order": [
+          "conversionRule",
+          "referrerRewardRules",
+          "retraction",
+          "*"
+        ],
+        "retraction": {
+          "ui:order": [
+            "retractionEnabled",
+            "retractionEventKey",
+            "retractionFilter",
+            "retractionType",
+            "*"
+          ],
+          "ui:groups": [
+            "retraction",
+            {
+              "ui:options": {
+                "color": "#FFF"
+              },
+              "ui:template": "bgstripe",
+              "Retraction Group": [
+                "retractionEnabled",
+                "retractionEventKey",
+                "retractionFilter",
+                "retractionCustomField",
+                "retractionCustomFieldOperator",
+                "retractionCustomFieldOperandValue",
+                "retractionType",
+                "*"
+              ]
+            }
+          ],
+          "retractionType": {
+            "ui:widget": "RadioAsCards",
+            "ui:options": {
+              "ruleOptions": [
+                {
+                  "key": 0,
+                  "icon": "people_pair",
+                  "title": "Promoter and Referred Friend",
+                  "description": "Retract rewards from both the promoter and the referred friend"
+                },
+                {
+                  "key": 2,
+                  "icon": "person_arrows",
+                  "title": "Promoter",
+                  "description": "Only retract rewards from the Promoter"
+                },
+                {
+                  "key": 1,
+                  "icon": "person_audience",
+                  "title": "Referred Friend",
+                  "description": "Only retract rewards from the Referred Friend"
+                }
+              ]
+            }
+          },
+          "retractionFilter": {
+            "ui:widget": "radio"
+          },
+          "retractionEnabled": {
+            "ui:widget": "RadioAsCards",
+            "ui:options": {
+              "ruleOptions": [
+                {
+                  "key": 0,
+                  "icon": "retract_event",
+                  "title": "No action can cancel a reward",
+                  "description": "There's no action that the Referred user can take that should cancel any rewards that have been given. Rewards can still be cancelled manually."
+                },
+                {
+                  "key": 1,
+                  "icon": "block_gift",
+                  "title": "Cancel rewards on an action",
+                  "description": "I want to automatically cancel rewards based on a specified action taken by the Referred Friend"
+                }
+              ]
+            }
+          },
+          "retractionEventKey": {
+            "ui:widget": "SelectKeyWidget",
+            "ui:options": {
+              "isRetraction": true
+            }
+          }
+        },
+        "conversionRule": {
+          "JSONata": {
+            "ui:widget": "TierJSONataEditor",
+            "ui:options": {
+              "rewardKey": "referrerReward",
+              "displayLabel": false
+            }
+          },
+          "ui:order": [
+            "rewardedUser",
+            "selectedRule",
+            "conversionEventKey",
+            "JSONata",
+            "rewardReferred",
+            "pendingUser",
+            "pendingPeriod",
+            "*"
+          ],
+          "ui:groups": [
+            "rewardedUser",
+            {
+              "ui:template": "bgstripe",
+              "Conversion Group": [
+                "selectedRule",
+                "conversionEventKey",
+                "JSONata",
+                "*"
+              ]
+            },
+            {
+              "ui:options": {
+                "color": "#FFF"
+              },
+              "ui:template": "bgstripe",
+              "Conversion Group 2": [
+                "rewardReferred"
+              ]
+            },
+            {
+              "ui:options": {
+                "color": "#FFF"
+              },
+              "ui:template": "bgstripe",
+              "Conversion Group 3": [
+                "pendingUser",
+                "pendingPeriod"
+              ]
+            }
+          ],
+          "ui:options": {
+            "color": "rgb(245, 246, 248)"
+          },
+          "pendingUser": {
+            "ui:widget": "RadioAsCards",
+            "ui:options": {
+              "isDynamic": true,
+              "ruleOptions": [
+                {
+                  "key": 0,
+                  "icon": "gift",
+                  "title": "No",
+                  "description": "Rewards will be given right away."
+                },
+                {
+                  "key": 1,
+                  "icon": "person_arrows",
+                  "title": "Only for Promoter",
+                  "description": "Rewards will be delayed for only the Promoter."
+                },
+                {
+                  "key": 2,
+                  "icon": "person_audience",
+                  "title": "Only for Influenced User",
+                  "description": "Rewards will be delayed for only the Influenced User."
+                },
+                {
+                  "key": 3,
+                  "icon": "people_pair",
+                  "title": "For Both users",
+                  "description": "Rewards with be delayed for both the Promoter and the Influenced User."
+                }
+              ]
+            }
+          },
+          "rewardedUser": {
+            "ui:widget": "RadioAsCards",
+            "ui:options": {
+              "ruleOptions": [
+                {
+                  "key": "referrerOnly",
+                  "icon": "person_arrows",
+                  "title": "Promoter",
+                  "description": "Only reward the Promoter."
+                },
+                {
+                  "key": "both",
+                  "icon": "people_pair",
+                  "title": "Promoter and Referred Friend",
+                  "description": "Reward both the Promoter and the Referred Friend."
+                }
+              ]
+            }
+          },
+          "selectedRule": {
+            "ui:widget": "RadioAsCards",
+            "ui:options": {
+              "ruleOptions": [
+                {
+                  "key": "customEvent",
+                  "icon": "hand_tap_filled",
+                  "title": "Referred Friend performs an action",
+                  "description": "When the Referred Friend performs an action tracked by an event, such as a purchase."
+                },
+                {
+                  "key": "customFieldEval",
+                  "icon": "id_card",
+                  "title": "Based on Referred Friend's custom criteria",
+                  "example": "Example: Rewarding based on Purchase Count being greater than 3.",
+                  "description": "When a Referred Friend's field meets your set criteria."
+                }
+              ]
+            }
+          },
+          "pendingPeriod": {
+            "duration": {
+              "ui:title:": "Duration",
+              "ui:widget": "Duration",
+              "ui:options": {
+                "validate": {
+                  "P0Y0M0D": ""
+                },
+                "doNotUseToggle": true
+              },
+              "ui:description": "Time that it takes for rewards to expire after they're issued: "
+            }
+          },
+          "rewardReferred": {
+            "ui:widget": "RadioAsCards",
+            "ui:options": {
+              "color": "#FFF",
+              "ruleOptions": [
+                {
+                  "key": "referral",
+                  "icon": "add_user_circle",
+                  "title": "When they join the referral program",
+                  "description": "When they are referred and signup into your referral program, using a share link or a code."
+                },
+                {
+                  "key": "conversion",
+                  "icon": "people_pair",
+                  "title": "At the same time as the Promoter",
+                  "description": "When the Promoter gets their first reward, the Referred Friend will also be rewarded."
+                }
+              ]
+            }
+          },
+          "conversionEventKey": {
+            "ui:widget": "SelectKeyWidget"
+          }
+        },
+        "referrerRewardRules": {
+          "maxRewards": {
+            "ui:widget": "RadioAsCards",
+            "ui:options": {
+              "ruleOptions": [
+                {
+                  "key": "unlimited",
+                  "icon": "infinity",
+                  "title": "Unlimited",
+                  "description": "There is no limit on referrals made or rewards earned by the Promoter."
+                },
+                {
+                  "key": "specific",
+                  "icon": "spinning_numbers",
+                  "title": "Specific number of rewards",
+                  "description": "The promoter can refer any number of friends, BUT you set the maximum number of rewards they can earn. Useful for stacking % discount rewards"
+                }
+              ]
+            }
+          },
+          "makeObjectNotNull": {
+            "ui:widget": "hidden"
+          }
+        }
+      }
+    },
+    "contentfulIdMapping": {
+      "linkConfigId": "5lj5BASI4E8QW2G8Iuy6w2",
+      "friendWidgetId": "4RmfT4Lwl9Wm0kSybnEMaa",
+      "referrerWidgetId": "6yBgNNPZ04sIG0MysayqOe",
+      "referralStartedEmailId": "73NWxKCaNaaym8cYuCCgiS",
+      "websiteReferralWidgetId": "5xw5awBanSILwPzT1DhGbU",
+      "referralCompletedEmailId": "1vrj0n3PfCqIKQyiyKmcYq",
+      "rewardLimitReachedEmailId": "2r0iN96sgwyUmOmuy008kY",
+      "referredRewardReceivedEmailId": "1HdPyyn3fCWIQ4WM2QOsog"
+    },
+    "url": "https://referral-program.services.prod.ssqt.io/",
+    "logo": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Asset",
+        "id": "36btBx8h5u8sGK42GGKcmY"
+      }
+    },
+    "screenshot": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Asset",
+        "id": "y3za3Vl3BQUaU0y4WGSgi"
+      }
+    },
+    "globallyInstallable": false,
+    "installableByTenants": [
+      "test_acm2od98u6r0z"
+    ]
+  }
+}

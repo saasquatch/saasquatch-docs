@@ -3,16 +3,11 @@ import path from "path";
 import parser from "swagger-parser";
 import yaml from "js-yaml";
 import resolveAllOf from "json-schema-resolve-allof";
-import contentful from "contentful";
 import fs from "mz/fs";
 import globby from "globby";
 import matter from "gray-matter";
 
-// Product Space utilities (still using Contentful until migrated)
-import productSpaceContentfulpagifier from "./metalsmith/utils/productSpaceContentfulpagifier";
-import installguidepagifier from "./metalsmith/utils/installguidepagifier";
 import { Bottom } from "./src/templates/bottom";
-import resolveI18n from "./metalsmith/utils/resolveI18n";
 
 /**
  * Map of legacy SWIG to REACT templates
@@ -97,19 +92,25 @@ async function getRawFiles() {
  */
 async function getProductNews() {
   const paths = await globby(["content/product-news/**/*.md"]);
-  
+
   /** @type {any[]} */
   const items = await Promise.all(
     paths.map(async (p) => {
       const source = await fs.readFile(p, { encoding: "utf8" });
       const parsed = matter(source);
+      // Convert datePublished to ISO string if it's a Date object (YAML parses dates automatically)
+      let datePublished = parsed.data.datePublished;
+      if (datePublished instanceof Date) {
+        datePublished = datePublished.toISOString().split("T")[0];
+      }
       return {
         ...parsed.data,
+        datePublished,
         content: parsed.content,
       };
-    })
+    }),
   );
-  
+
   // Sort by datePublished descending
   return items.sort((a, b) => {
     const dateA = a.datePublished ? new Date(a.datePublished).getTime() : 0;
@@ -124,7 +125,7 @@ async function getProductNews() {
  */
 async function getBreakingChanges() {
   const paths = await globby(["content/breaking-changes/**/*.md"]);
-  
+
   /** @type {any[]} */
   const items = await Promise.all(
     paths.map(async (p) => {
@@ -134,9 +135,9 @@ async function getBreakingChanges() {
         ...parsed.data,
         content: parsed.content,
       };
-    })
+    }),
   );
-  
+
   // Sort by deadline descending
   return items.sort((a, b) => {
     const dateA = a.deadline ? new Date(a.deadline).getTime() : 0;
@@ -151,14 +152,14 @@ async function getBreakingChanges() {
  */
 async function getIntegrations() {
   const paths = await globby(["content/integrations/**/*.md"]);
-  
+
   /** @type {any[]} */
   const items = await Promise.all(
     paths.map(async (p) => {
       const source = await fs.readFile(p, { encoding: "utf8" });
       const parsed = matter(source);
       const data = parsed.data;
-      
+
       return {
         ...data,
         fields: data,
@@ -167,10 +168,55 @@ async function getIntegrations() {
         id: data.id,
         template: "intergrationLander.html",
       };
-    })
+    }),
   );
-  
-  return items.filter((d) => d.tags && d.tags.some((i) => i === "in-directory"));
+
+  return items.filter(
+    (d) => d.tags && d.tags.some((i) => i === "in-directory"),
+  );
+}
+
+/**
+ * Load programs from local markdown files
+ * @returns {Promise<any[]>}
+ */
+async function getPrograms() {
+  const paths = await globby(["content/programs/**/*.md"]);
+
+  /** @type {any[]} */
+  const items = await Promise.all(
+    paths.map(async (p) => {
+      const source = await fs.readFile(p, { encoding: "utf8" });
+      const parsed = matter(source);
+      const data = parsed.data;
+
+      // Structure to match what programLibrary.tsx expects
+      return {
+        slug: data.slug,
+        title: data.title,
+        highlights: data.highlights,
+        contents: parsed.content,
+        date: data.date,
+        id: data.id,
+        sectionType: data.sectionType,
+        template: data.template,
+        logo: data.logo,
+        screenshot: data.screenshot,
+        tags: data.tags,
+        // Provide fields object for programLibrary.tsx compatibility
+        fields: {
+          name: data.title,
+          summary: data.highlights,
+          icon: data.icon,
+          globallyInstallable: data.globallyInstallable,
+          slug: data.slug?.replace("program/", ""),
+          tags: data.tags,
+        },
+      };
+    }),
+  );
+
+  return items.filter((p) => p.fields.globallyInstallable);
 }
 
 /**
@@ -313,26 +359,6 @@ export default {
 };
 
 /**
- * Load all the entries from a Contentful space
- *
- */
-async function getContentful(opts) {
-  var client = createContentfulClient(opts.accessKey, opts.spaceId);
-  const response = await client.sync({
-    initial: true,
-    resolveLinks: true,
-  });
-  return response.entries;
-}
-
-function createContentfulClient(accessToken, spaceId) {
-  return contentful.createClient({
-    space: spaceId,
-    accessToken: accessToken,
-  });
-}
-
-/**
  *  Most of the magic happens here.
  *
  *
@@ -342,32 +368,15 @@ function createContentfulClient(accessToken, spaceId) {
  *
  */
 async function getRoutes() {
-  const expectEnv = (env) => {
-    const value = process.env[env];
-    if (!value) throw new Error(`${env} environment variable should be set`);
-    return value;
-  };
-
-  // Product Space still uses Contentful (to be migrated separately)
-  const contentfulProductSpaceId = expectEnv("CONTENTFUL_PRODUCT_SPACEID");
-  const contentfulProduceAccessKey = expectEnv("CONTENTFUL_PRODUCT_ACCESS_KEY");
-
   const spec = await getSwagger();
-  
-  // Load content from local markdown files (migrated from Docs Space)
+
+  // Load all content from local markdown files
   const productNews = await getProductNews();
   const breakingChanges = await getBreakingChanges();
   const integrations = await getIntegrations();
+  const programs = await getPrograms();
 
   const guides = await getYaml("metadata/guides.yaml");
-
-  const contentfulProduct = await getContentful({
-    spaceId: contentfulProductSpaceId,
-    accessKey: contentfulProduceAccessKey,
-  });
-  const programs = contentfulProduct
-    .map(productSpaceContentfulpagifier)
-    .filter((e) => e);
 
   const rawFiles = await getRawFiles();
 
@@ -452,28 +461,7 @@ async function getRoutes() {
     },
   ];
 
-  const contentfulProductPages = programs.map(legacyPagifierToStatic);
-
-  const installGuides = contentfulProduct
-    .map(installguidepagifier)
-    .filter((e) => e)
-    .map(legacyPagifierToStatic);
-
-  return [
-    ...rawFiles,
-    ...contentfulProductPages,
-    ...installGuides,
-    ...staticPages,
-  ];
-}
-
-// TODO: Update all the pagifiers to incorporate this functionality directly there
-function legacyPagifierToStatic(entry) {
-  return {
-    path: entry.slug.toLowerCase(),
-    getData: () => ({ entry }),
-    template: getTemplate(entry.template),
-  };
+  return [...rawFiles, ...staticPages];
 }
 
 const HTTP_METHODS = [

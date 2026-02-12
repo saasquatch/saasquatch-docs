@@ -1,0 +1,91 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "48ji72u659z5"
+      }
+    },
+    "id": "9q1FZuxBRgBsBdPs1Pjdh",
+    "type": "Entry",
+    "createdAt": "2020-04-13T18:49:57.000Z",
+    "updatedAt": "2025-05-13T18:02:04.725Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 105,
+    "revision": 39,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "programTemplate"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "name": "Referral Program With Objectives",
+    "icon": "referral",
+    "categories": [
+      "acquire",
+      "retain"
+    ],
+    "slug": "referral-program-with-objectives-prod",
+    "summary": "Get your existing users to sign-up new users.",
+    "longDescription": "Launch a referral program to accelerate your growth by leveraging the advocacy of your top customers. Reward existing customers for referring you to new business, and acquire new leads at a fraction of the cost of traditional marketing channels. \n\nIntegrate a branded referral widget directly into your app or website to deliver a seamless experience for your customers. \n\n### Example:\n\nA CRM platform launches a referral program that rewards existing customers with a $100 invoice credit when they refer a friend who becomes a paying customer. The referred friend also receives a $100 discount on their first month.  \n\n### Features:\n\n* Reward based on custom user criteria and actions, such as when the referred friend makes a purchase or signs up for a subscription.  \n* Build a multi-objective referral sequence with a variety of conversion goals.\n* Create reward tiers for the best ROI.\n* Set a maximum number of rewards a customer can get.\n* Choose if one or both parties will receive a reward.\n* Choose under what conditions the referral reward will be cancelled. \n* Target specific customer segments.\n* Customize share links and codes for referrals.\n* Customize emails for starting a referral and when rewards are given.\n* Customize widgets for both sides of a referral to monitor referrals.\n* Customize social messaging.",
+    "installGuide": "## Setup\n\nWhen a new lead clicks on the unique share link, they should be redirected to the signup page on your website. When using the [squatch.js JavaScript library](https://docs.referralsaasquatch.com/developer/squatchjs/v2/), the referral connection will be automatically picked up if they clicked a share link.\n\nAlternatively, if the user is on iOS or Android they can be redirected using our [Branch integration](http://docs.referralsaasquatch.com/mobile/branch-metrics/) to the app store to install your app. The Branch integration stores the referral code of the person who referred them to easily build the referral connection.\n\nAfter the Referred User completes your signup process, [identify](https://docs.referralsaasquatch.com/success/core-topics/#identification) this Referred User to SaaSquatch. If you are identifying the Referred User through the [SaaSquatch REST API](https://docs.referralsaasquatch.com/api/methods/#open_user_upsert), be sure to explicitly include the Referrer’s referral code so that the referral is correctly attributed back to the Referrer.\n\n### Rules\nThe Referral Program rules let you choose when the referral qualifies for conversion and when the users will be rewarded.\n\n#### Types of conversions\nThere are two ways to trigger conversion: via receipt of qualifying purchase events and insertion/update of custom fields. The Referrer User will receive their reward when the referral is converted.\n\n##### First Purchase\nConvert the referral when the Referred User makes a purchase. You can optionally set a minimum purchase value for the event in order for an event to qualify. If the **`revenue`** field is below the minimum value, the referral will not convert.\n\n##### Custom Field\nAnother way to convert your referral is with a user-based [custom field](https://docs.referralsaasquatch.com/features/custom-user-fields/). Select the name of the field and the condition required for causing a referral.\n\nExamples:\n\n| Field Name        | Operator                 | Value               |\n| ---               | ---                      | ---                 |\n| signedUp          | equal to                 | \"yes\"               |\n| testField         | less than or equal to    | 12                  |\n| myConversionField | greater than or equal to | 70                  |\n| myConversionField | equal to                 | \"myConversionValue\" |\n\nThe `value` field supports numeric, boolean and string types.\n\nWhen the user is updated the program will check to see if the condition is met and convert the referral accordingly.\n\n#### Rewarding the Referred User\nThere are three settings for rewarding the referred user:\n\n##### Never\nThe referred user will not be rewarded. \n\n##### When they are referred\nThe Referred User will be rewarded when the referral is started. This most likely means that the Referred User will be rewarded before the Referrer (such as upon sign-up or check-out), but note that it is possible for the referral to convert at the same moment it is created depending on your conversion rules. \n\nFor example, you might want to provide the Referred User with a discount to use when shopping and then reward the Referrer once the Referred User has completed  a purchase.\n\n##### On conversion\nThe Referred User will be rewarded when the referral converts, at the same time as the Referrer.\n\n#### Referrer reward limit\nYou can optionally set a reward limit for the Referrer. When a user reaches the reward limit for the program, they will receive an email explaining that no more rewards will be given. After the limit is reached, the user may continue to refer others, but they will not be rewarded when those referrals convert (the Referred Users are still eligible for rewards).\n\n#### Retracting referrals\nAnother feature of the Referral Program is the ability to retract referral rewards after they have already been issued. This is optional, but you may want to do it for a variety of reasons, such as if a customer refunds their purchase or if they cancel their subscription. Referral retraction is triggered by a [custom event](https://docs.referralsaasquatch.com/growth/ga-mechanisms/#user-events). You may set either just an event key or an event key with a filter.\n\nIf you are using an event key only, all events matching the key set in the rules will cause a retraction.\n\nWhen using an event key with a filter, the program will check for the existence of a field in the event along with some condition. This is similar to the custom field conversion method outlined above.\n\nExamples:\n\n| Field Name        | Operator                 | Value               |\n| ---               | ---                      | ---                 |\n| userCancelled     | equal to                 | true                |\n| userCancelled     | equal to                 | \"yes\"               |\n| testField         | less than or equal to    | 12                  |\n| myRetractionField | greater than or equal to | 70                  |\n| myRetractionField | equal to                 | \"myRetractionValue\" |\n\nLike custom field conversions, the `value` field supports numeric, boolean and string types.\n\n##### Retraction settings\nIf a retraction event is recorded, the rewards can be cancelled for either the Referred User, Referrer, or both.\n\n## Launching\nBefore launching, check the status of the `Technical Setup` area. The referral program provides a number of automated tests that can check the health of your program implementation. The results will be shown here. It is still **strongly** recommend to perform thorough manual testing of your program to ensure everything is working as intended.\n\nOnce the tests are passing, or if you are comfortable launching without them, press the `Launch` button. Your program is now live and watching for referral conversions.",
+    "schemaUrl": "https://fast.ssqt.io/npm/@saasquatch/schema@2.0.0/json/program/obj-referral-program/program-template.json",
+    "schema": {},
+    "contentfulIdMapping": {
+      "linkConfigId": "5lj5BASI4E8QW2G8Iuy6w2",
+      "friendWidgetId": "4RmfT4Lwl9Wm0kSybnEMaa",
+      "referrerWidgetId": "6yBgNNPZ04sIG0MysayqOe",
+      "referralStartedEmailId": "73NWxKCaNaaym8cYuCCgiS",
+      "websiteReferralWidgetId": "5xw5awBanSILwPzT1DhGbU",
+      "referralCompletedEmailId": "1vrj0n3PfCqIKQyiyKmcYq",
+      "rewardLimitReachedEmailId": "2r0iN96sgwyUmOmuy008kY",
+      "referredRewardReceivedEmailId": "1HdPyyn3fCWIQ4WM2QOsog"
+    },
+    "url": "https://obj-referral-program.services.prod.ssqt.io/",
+    "logo": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Asset",
+        "id": "5eKmaTWDYIysCcCY2ee2aQ"
+      }
+    },
+    "screenshot": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Asset",
+        "id": "5eKmaTWDYIysCcCY2ee2aQ"
+      }
+    },
+    "globallyInstallable": true,
+    "installableByTenants": [
+      "test_abzxg88g30tn2",
+      "test_afmd21072q61x",
+      "test_aqvgb7n9s5uqz",
+      "test_azyxwz9s2o4us",
+      "test_arufqs1wqgtn8",
+      "test_agvu4yg8zrkxt",
+      "test_ajwxwjo1r5zm6",
+      "arhjq80gz6q0c",
+      "test_aqxbqn8o3ryg9",
+      "ajsj13r3rgrs7",
+      "test_auyk6hrs6rng3",
+      "test_alx0rkcx6f86v",
+      "a8des32l0uyix"
+    ]
+  }
+}

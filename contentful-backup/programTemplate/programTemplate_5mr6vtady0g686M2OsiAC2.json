@@ -1,0 +1,105 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "48ji72u659z5"
+      }
+    },
+    "id": "5mr6vtady0g686M2OsiAC2",
+    "type": "Entry",
+    "createdAt": "2017-10-26T17:39:27.147Z",
+    "updatedAt": "2024-12-02T22:31:43.121Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 138,
+    "revision": 28,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "programTemplate"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "name": "Regional Signup",
+    "icon": "Regional-Signup",
+    "categories": [
+      "acquire"
+    ],
+    "slug": "regional-signup",
+    "summary": "Reward new signups in a specific region to accelerate expansion.",
+    "longDescription": "Reward new signups in a specific region to accelerate expansion into new markets, or strengthen your user base in existing areas. \n\n### Example:\n\nA ride-sharing company is trying to expand into new markets and increase adoption across the country. \n\nThe company launches a Regional Signup Program that offers a $15 credit to any new user in the state of Arizona. \n\n### Features:\n\n* Set the location(s) where a first time signup will trigger a reward.\n* Specify the reward earned when signup is completed.\n* Customize the email to notify users when they get a reward.",
+    "schema": {
+      "name": "Geo-Signup Program",
+      "rules": {
+        "type": "object",
+        "properties": {
+          "locations": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "title": "When a user signs up for the first time in the following location(s), they get a reward."
+          }
+        }
+      },
+      "emails": [
+        {
+          "key": "geoRewardEmail",
+          "name": "Reward Earned Email",
+          "defaults": "lsoxIrxJ9QAgIqgy0mIQo",
+          "description": "New users receive this email after they have signed up from a specified Country, State or City and their reward has been added to their account."
+        }
+      ],
+      "rewards": [
+        {
+          "key": "geoReward",
+          "name": "Regional Signup Reward",
+          "description": "New users earn this reward when they signup from a specificed Country, State or City."
+        }
+      ],
+      "summary": "PLACEHOLDER",
+      "rulesUISchema": {
+        "locations": {
+          "ui:field": "GeopickerWidget"
+        }
+      },
+      "longDescription": "PLACEHOLDER"
+    },
+    "url": "https://region-signup-program.services.prod.ssqt.io/",
+    "logo": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Asset",
+        "id": "5pkUG29Mk0iKSkswsooYSW"
+      }
+    },
+    "screenshot": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Asset",
+        "id": "1ARUrQBr7aYQEiAyGcCIS8"
+      }
+    },
+    "globallyInstallable": true,
+    "installableByTenants": [
+      "test_a8xm7ngkv4g2c"
+    ],
+    "tags": [
+      "acquisition"
+    ]
+  }
+}

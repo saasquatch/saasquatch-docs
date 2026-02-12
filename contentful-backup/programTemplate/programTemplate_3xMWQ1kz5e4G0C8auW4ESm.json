@@ -1,0 +1,781 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "48ji72u659z5"
+      }
+    },
+    "id": "3xMWQ1kz5e4G0C8auW4ESm",
+    "type": "Entry",
+    "createdAt": "2018-12-05T19:53:45.920Z",
+    "updatedAt": "2024-12-02T22:32:40.665Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 110,
+    "revision": 31,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "programTemplate"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "name": "Partner",
+    "icon": "Partner-Program",
+    "categories": [
+      "acquire",
+      "retain"
+    ],
+    "slug": "partner-program",
+    "summary": "Team up with brand champions to boost sales and acquire new users.",
+    "longDescription": "If you’re looking for more ways to find new clients, a partner program lets you link up with third-party advocates such as other businesses, affiliates, or influencers to help widen your reach and amplify your message.\n\nThis helps you strengthen your sales force and lower acquisition costs by letting brand champions, corporate partners and resellers sell for you, in exchange for a commission or other reward.\n\n### Example:\n\nA project management SaaS platform runs a partner program inviting users to sell their product to other businesses in exchange for a percentage commission.\n\nCandidates apply online to outline their goals and describe what makes them a good fit for the partnership. Once approved, partners commit to delivering at least four customers per year in exchange for cash payouts, discounts, and other incentives.\n\n### Features:\n\n* Automatically reward partners through commissions, points, or a custom reward of your choosing.\n* Let partners log in to a branded portal to track the status of their referrals.\n* Manage your spending with refund periods so partners aren’t overpaid when your customers are refunded.\n* Set a time period during which partners can earn rewards.\n* Customize the email sent to any referred user that receives a reward.\n* Customize the widget or portal for partners to track their rewards.\n* Customize the social messaging for partners to use.\n* Set up W-9 Tax Compliance (United States).",
+    "schema": {
+      "name": "Partner Program",
+      "rules": {
+        "self": {
+          "name": "partner_rules_schema",
+          "format": "jsonschema",
+          "vendor": "referral-saasquatch",
+          "version": "2.0.0"
+        },
+        "type": "object",
+        "$schema": "http://json-schema.org/draft-06/schema#",
+        "required": [
+          "rewardedUser"
+        ],
+        "properties": {
+          "version": {
+            "enum": [
+              "3.0.0"
+            ],
+            "type": "string",
+            "title": "Version of the current schema",
+            "default": "3.0.0",
+            "description": "The version property allows the jsonata migration script to perform a rules update when required"
+          },
+          "rewardedUser": {
+            "enum": [
+              "referrerOnly",
+              "both"
+            ],
+            "title": "Who do you want to reward?",
+            "enumNames": [
+              "Referrer Only",
+              "Both Referrer and Referred"
+            ]
+          },
+          "partnerReward": {
+            "type": "object",
+            "title": "Partner Reward Rules",
+            "required": [
+              "JSONata",
+              "isDynamic",
+              "eventKey",
+              "revenueField"
+            ],
+            "properties": {
+              "JSONata": {
+                "type": "string",
+                "title": "Enter Conversion Criteria"
+              },
+              "eventKey": {
+                "type": "string",
+                "title": "What event linked to the Influenced Customer will trigger a Partner reward?"
+              },
+              "isDynamic": {
+                "enum": [
+                  true,
+                  false
+                ],
+                "type": "boolean",
+                "title": "Partner will earn commission-based rewards"
+              },
+              "refundWindow": {
+                "enum": [
+                  0,
+                  1
+                ],
+                "type": "integer",
+                "title": "Purchase Refund Period",
+                "default": 0,
+                "enumNames": [
+                  "Give rewards immediately",
+                  "Delay rewards"
+                ]
+              },
+              "revenueField": {
+                "type": "string",
+                "title": "What event field holds the value used to calculate commission rewards?"
+              }
+            },
+            "dependencies": {
+              "isDynamic": {
+                "oneOf": [
+                  {
+                    "properties": {
+                      "isDynamic": {
+                        "enum": [
+                          false
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "required": [
+                      "defaultCurrency",
+                      "currencyField",
+                      "revenueDenomination"
+                    ],
+                    "properties": {
+                      "isDynamic": {
+                        "enum": [
+                          true
+                        ]
+                      },
+                      "currencyField": {
+                        "type": "string",
+                        "title": "What event field holds the currency?"
+                      },
+                      "defaultCurrency": {
+                        "$ref": "#/definitions/currency"
+                      },
+                      "minimumCommission": {
+                        "type": "number",
+                        "minimum": 0.01,
+                        "multipleOf": 0.01
+                      },
+                      "revenueDenomination": {
+                        "enum": [
+                          "dollars",
+                          "cents"
+                        ],
+                        "type": "string",
+                        "title": "What is the denomination of your revenue value?"
+                      }
+                    }
+                  }
+                ]
+              },
+              "refundWindow": {
+                "oneOf": [
+                  {
+                    "properties": {
+                      "refundWindow": {
+                        "enum": [
+                          0
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "properties": {
+                      "duration": {
+                        "type": "string",
+                        "title": "Refund window duration:"
+                      },
+                      "refundEvent": {
+                        "enum": [
+                          false,
+                          true
+                        ],
+                        "type": "boolean",
+                        "title": "Whether or not to enable refunding based on an event"
+                      },
+                      "refundWindow": {
+                        "enum": [
+                          1
+                        ]
+                      }
+                    },
+                    "dependencies": {
+                      "refundEvent": {
+                        "oneOf": [
+                          {
+                            "properties": {
+                              "refundEvent": {
+                                "enum": [
+                                  false
+                                ]
+                              }
+                            }
+                          },
+                          {
+                            "required": [
+                              "refundEventKey",
+                              "refundEventOrderId",
+                              "purchaseEventOrderId"
+                            ],
+                            "properties": {
+                              "refundEvent": {
+                                "enum": [
+                                  true
+                                ]
+                              },
+                              "refundEventKey": {
+                                "type": "string",
+                                "title": "What event linked to the Influenced Customer will trigger the cancellation of a Partner's reward?"
+                              },
+                              "refundEventOrderId": {
+                                "type": "string",
+                                "title": "What refund event field holds the order ID?"
+                              },
+                              "purchaseEventOrderId": {
+                                "type": "string",
+                                "title": "What purchase event field holds the order ID?"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "definitions": {
+          "currency": {
+            "enum": [
+              "Do Not Reward",
+              "USD",
+              "AED",
+              "AFN",
+              "ALL",
+              "AMD",
+              "ANG",
+              "AOA",
+              "ARS",
+              "AUD",
+              "AWG",
+              "AZN",
+              "BAM",
+              "BBD",
+              "BDT",
+              "BGN",
+              "BHD",
+              "BIF",
+              "BMD",
+              "BND",
+              "BOB",
+              "BOV",
+              "BRL",
+              "BSD",
+              "BTN",
+              "BWP",
+              "BYR",
+              "BZD",
+              "CAD",
+              "CDF",
+              "CHE",
+              "CHF",
+              "CHW",
+              "CLF",
+              "CLP",
+              "CNY",
+              "COP",
+              "COU",
+              "CRC",
+              "CUC",
+              "CUP",
+              "CVE",
+              "CZK",
+              "DJF",
+              "DKK",
+              "DOP",
+              "DZD",
+              "EGP",
+              "ERN",
+              "ETB",
+              "EUR",
+              "FJD",
+              "FKP",
+              "GBP",
+              "GEL",
+              "GHS",
+              "GIP",
+              "GMD",
+              "GNF",
+              "GTQ",
+              "GYD",
+              "HKD",
+              "HNL",
+              "HRK",
+              "HTG",
+              "HUF",
+              "IDR",
+              "ILS",
+              "INR",
+              "IQD",
+              "IRR",
+              "ISK",
+              "JMD",
+              "JOD",
+              "JPY",
+              "KES",
+              "KGS",
+              "KHR",
+              "KMF",
+              "KPW",
+              "KRW",
+              "KWD",
+              "KYD",
+              "KZT",
+              "LAK",
+              "LBP",
+              "LKR",
+              "LRD",
+              "LSL",
+              "LYD",
+              "MAD",
+              "MDL",
+              "MGA",
+              "MKD",
+              "MMK",
+              "MNT",
+              "MOP",
+              "MRU",
+              "MUR",
+              "MVR",
+              "MWK",
+              "MXN",
+              "MXV",
+              "MYR",
+              "MZN",
+              "NAD",
+              "NGN",
+              "NIO",
+              "NOK",
+              "NPR",
+              "NZD",
+              "OMR",
+              "PAB",
+              "PEN",
+              "PGK",
+              "PHP",
+              "PKR",
+              "PLN",
+              "PYG",
+              "QAR",
+              "RON",
+              "RSD",
+              "RUB",
+              "RWF",
+              "SAR",
+              "SBD",
+              "SCR",
+              "SDG",
+              "SEK",
+              "SGD",
+              "SHP",
+              "SLL",
+              "SOS",
+              "SRD",
+              "SSP",
+              "STN",
+              "SVC",
+              "SYP",
+              "SZL",
+              "THB",
+              "TJS",
+              "TMT",
+              "TND",
+              "TOP",
+              "TRY",
+              "TTD",
+              "TWD",
+              "TZS",
+              "UAH",
+              "UGX",
+              "USN",
+              "UYI",
+              "UYU",
+              "UZS",
+              "VEF",
+              "VND",
+              "VUV",
+              "WST",
+              "XAF",
+              "XCD",
+              "XDR",
+              "XOF",
+              "XPF",
+              "XSU",
+              "XUA",
+              "YER",
+              "ZAR",
+              "ZMW",
+              "ZWL"
+            ],
+            "type": "string",
+            "title": "Default Reward Currency",
+            "default": "Do Not Reward"
+          }
+        },
+        "dependencies": {
+          "rewardedUser": {
+            "oneOf": [
+              {
+                "rewardedUser": {
+                  "enum": [
+                    "referrerOnly"
+                  ]
+                }
+              },
+              {
+                "required": [
+                  "referredReward"
+                ],
+                "properties": {
+                  "rewardedUser": {
+                    "enum": [
+                      "both"
+                    ]
+                  },
+                  "referredReward": {
+                    "enum": [
+                      "referral",
+                      "conversion"
+                    ],
+                    "type": "string",
+                    "title": "How do you want to reward the Influenced Customer?",
+                    "enumNames": [
+                      "When they are referred",
+                      "On first conversion"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "emails": [
+        {
+          "key": "referralCompleted",
+          "name": "Referral Completed",
+          "defaults": "referralCompletedEmailId",
+          "description": "We send this email to a Partner every time they earn a fixed/commission reward."
+        },
+        {
+          "key": "referredRewardReceived",
+          "name": "Referred User Rewarded",
+          "defaults": "referredRewardReceivedEmailId",
+          "description": "We send this email when a user has been referred and rewarded."
+        }
+      ],
+      "rewards": [
+        {
+          "key": "partnerReward",
+          "name": "Partner Reward",
+          "description": "The reward given to partners for a qualified purchase."
+        },
+        {
+          "key": "referredReward",
+          "name": "Influenced Customer Reward",
+          "description": "The reward given to new users that have been influenced."
+        }
+      ],
+      "sharing": {
+        "enabled": true,
+        "linksConfig": {
+          "defaults": "linksConfigId"
+        }
+      },
+      "summary": "Reward people for making referrals",
+      "trigger": {
+        "eventKeys": [
+          "purchase"
+        ]
+      },
+      "widgets": [
+        {
+          "key": "partnerWidget",
+          "name": "Partner Widget",
+          "defaults": "partnerWidgetId",
+          "description": "Widget displayed to a user who has referred friends"
+        }
+      ],
+      "rulesUISchema": {
+        "version": {
+          "ui:widget": "hidden"
+        },
+        "ui:order": [
+          "rewardedUser",
+          "partnerReward",
+          "referredReward",
+          "*"
+        ],
+        "ui:groups": [
+          "rewardedUser",
+          "partnerReward",
+          "referredReward"
+        ],
+        "rewardedUser": {
+          "ui:widget": "RadioAsCards",
+          "ui:options": {
+            "ruleOptions": [
+              {
+                "key": "referrerOnly",
+                "icon": "person_audience",
+                "title": "Partner",
+                "description": "Only reward the Partner."
+              },
+              {
+                "key": "both",
+                "icon": "people_pair",
+                "title": "Partner and Influenced Customer",
+                "description": "Reward both the Partner and the Influenced Customer."
+              }
+            ]
+          }
+        },
+        "partnerReward": {
+          "JSONata": {
+            "ui:widget": "WindowJSONataEditor",
+            "ui:options": {
+              "displayLabel": false,
+              "conversionPath": "partnerReward.eventKey"
+            }
+          },
+          "duration": {
+            "ui:widget": "Duration",
+            "ui:options": {
+              "validate": {
+                "P0Y0M0D": ""
+              },
+              "doNotUseToggle": true
+            }
+          },
+          "eventKey": {
+            "ui:widget": "SelectKeyWidget",
+            "ui:options": {
+              "color": "#FFF"
+            }
+          },
+          "isDynamic": {
+            "ui:title": "How are you going to reward your Partners?",
+            "ui:widget": "RadioAsCards",
+            "ui:options": {
+              "ruleOptions": [
+                {
+                  "key": false,
+                  "icon": "gift",
+                  "title": "With a fixed reward.",
+                  "description": "Pick one reward that is given to the Partner when the Influenced Customer makes a qualifying purchase."
+                },
+                {
+                  "key": true,
+                  "icon": "percent",
+                  "title": "By Commission",
+                  "description": "Give a commission percentage to the Partner when the Influenced Customers makes a qualifying purchase."
+                }
+              ]
+            }
+          },
+          "ui:groups": [
+            {
+              "ui:template": "bgstripe",
+              "Is Dynamic Group": [
+                "isDynamic"
+              ]
+            },
+            {
+              "ui:template": "bgstripe",
+              "Partner Reward Group": [
+                "eventKey",
+                "revenueField",
+                "JSONata",
+                "*"
+              ]
+            },
+            {
+              "ui:template": "bgstripe",
+              "Currency Group": [
+                "revenueDenomination",
+                "currencyField",
+                "defaultCurrency"
+              ]
+            },
+            {
+              "ui:template": "bgstripe",
+              "Minimun Commission Group": [
+                "minimumCommission"
+              ]
+            },
+            {
+              "ui:template": "bgstripe",
+              "Refund Group": [
+                "refundWindow",
+                "duration",
+                "refundEvent",
+                "refundEventKey",
+                "refundEventOrderId",
+                "purchaseEventOrderId"
+              ]
+            }
+          ],
+          "refundEvent": {
+            "ui:title": "Send an event to trigger a refund or cancel a Partner's reward",
+            "ui:widget": "Switch",
+            "ui:description": "Refund or cancel a reward for Partners who no longer qualify"
+          },
+          "refundWindow": {
+            "ui:title": "Would you like to delay giving your Partners their rewards until after a refund window has passed?",
+            "ui:widget": "RadioAsCards",
+            "ui:options": {
+              "ruleOptions": [
+                {
+                  "key": 0,
+                  "icon": "retract_event",
+                  "title": "Give rewards immediately",
+                  "description": "Rewards will be available immediately"
+                },
+                {
+                  "key": 1,
+                  "icon": "calendar",
+                  "title": "Delay rewards",
+                  "description": "Delay giving rewards if you offer a refund window."
+                }
+              ],
+              "defaultValue": 0
+            },
+            "ui:emptyValue": null,
+            "ui:description": "Refund detection does not apply to Fuel Tank or Gift Card rewards."
+          },
+          "revenueField": {
+            "ui:placeholder": "revenue"
+          },
+          "currencyField": {
+            "ui:placeholder": "currency"
+          },
+          "refundEventKey": {
+            "ui:widget": "SelectKeyWidget"
+          },
+          "defaultCurrency": {
+            "ui:title": "Advanced default reward currency?",
+            "ui:description": "Commission rewards are given in the currency of your purchase event. If you only sell in one currency, and want to reward in that currency even if not provided, set this to your currency. If you do not want to reward when currency is not provided, set to Do Not Reward."
+          },
+          "minimumCommission": {
+            "ui:title": "Would you like to set a minimum commission value?",
+            "ui:widget": "CardsWithInputs",
+            "ui:options": {
+              "color": "#FFF",
+              "ruleOptions": [
+                {
+                  "icon": "block_gift",
+                  "title": "No minimum commission",
+                  "cardValue": "",
+                  "description": "Always calculate the partner reward from the commission percent"
+                },
+                {
+                  "icon": "spinning_numbers",
+                  "title": "Set a minimum commission",
+                  "subInput": {
+                    "widget": "InputWidget",
+                    "options": {
+                      "inputType": "number"
+                    }
+                  },
+                  "description": "The minimum commission value (in dollars) will be..."
+                }
+              ],
+              "defaultValue": 0
+            },
+            "ui:description": "A minumum commission is rewarded instead of the calculated commission when the minimum commission is greater."
+          },
+          "refundEventOrderId": {
+            "ui:placeholder": "order_id"
+          },
+          "revenueDenomination": {
+            "ui:widget": "RadioAsCards",
+            "ui:options": {
+              "ruleOptions": [
+                {
+                  "key": "dollars",
+                  "icon": "bill",
+                  "title": "Dollars",
+                  "description": "The revenue value for your user event is in dollars."
+                },
+                {
+                  "key": "cents",
+                  "icon": "credit",
+                  "title": "Cents",
+                  "description": "The revenue value for your user event is in cents."
+                }
+              ]
+            }
+          },
+          "purchaseEventOrderId": {
+            "ui:placeholder": "order_id"
+          }
+        },
+        "referredReward": {
+          "ui:widget": "RadioAsCards",
+          "ui:options": {
+            "color": "#FFF",
+            "ruleOptions": [
+              {
+                "key": "referral",
+                "icon": "add_user_circle",
+                "title": "When they are connected to the Partner.",
+                "description": "When they click on the Partners link or by entering their referral code into your app, the Influenced Customer will be rewarded with."
+              },
+              {
+                "key": "conversion",
+                "icon": "people_pair",
+                "title": "On their first qualifying purchase",
+                "description": "When the Influencend Customer makes their first qualifying purchase, the Influenced Customer will be rewarded with."
+              }
+            ]
+          }
+        }
+      }
+    },
+    "contentfulIdMapping": {
+      "linksConfigId": "4j4MwIn2aQqsyOIUqyyOaa",
+      "partnerWidgetId": "5cHyx1bkPY42QC0ikak6E",
+      "referralCompletedEmailId": "1vrj0n3PfCqIKQyiyKmcYq",
+      "referredRewardReceivedEmailId": "1HdPyyn3fCWIQ4WM2QOsog"
+    },
+    "url": "https://partner-program.services.prod.ssqt.io/",
+    "logo": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Asset",
+        "id": "38Lr65M61WYMIEQKqoyI6q"
+      }
+    },
+    "screenshot": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Asset",
+        "id": "30eZTqQhhSKS2cucMaEgcE"
+      }
+    },
+    "globallyInstallable": true,
+    "installableByTenants": [
+      "test_avxqn8tccqj0e",
+      "test_agngayvesirnb",
+      "test_albfhvjzcz0ph",
+      "test_a8xm7ngkv4g2c",
+      "test_anqwjreyb0yyq",
+      "ajfim9wgkvh5a",
+      "test_agvu4yg8zrkxt"
+    ]
+  }
+}

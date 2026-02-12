@@ -1,0 +1,1034 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "48ji72u659z5"
+      }
+    },
+    "id": "2IIu5xKgFLQ3QJiMYDlbZW",
+    "type": "Entry",
+    "createdAt": "2019-12-20T23:05:49.693Z",
+    "updatedAt": "2024-12-02T22:46:05.394Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 115,
+    "revision": 40,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "programTemplate"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "name": "Points Rewards",
+    "icon": "referral",
+    "slug": "points-program",
+    "summary": "Give points to your users for making purchases.",
+    "longDescription": "Launch a points program to encourage valuable customer behavior by creating formulas that determine exactly how many points are awarded for each type of action, and what points can be redeemed for. \n\nEngage customers across the entire lifecycle by stacking multiple triggers that give people different point amounts for different kinds of actions.\n\nWhen users are rewarded with points for shopping and other profitable behavior, the positive reinforcement turns these actions into a habit and builds loyalty with your brand. \n\n### Example:\n\nAn online video game platform lets users earn points by making purchases, playing with friends, or completing missions in various games. Points can be redeemed for rewards like exclusive games, discounts, or in-app items.\n\nThis boosts engagement and expands their network of loyal gamers. \n\n### Features:\n\n* Reward a set number of points for specific actions such as downloading your app or referring a friend. \n* Reward a dynamic number of points based upon the value of an action such as the amount of a purchase.\n* Reward points for a variety of different actions in the same program. \n* Customize the widget for customers to track their points earnings. \n* Define the period of time during which points can be earned. ",
+    "schema": {
+      "name": "Points Program",
+      "rules": {
+        "self": {
+          "name": "points_rules_schema",
+          "format": "jsonschema",
+          "vendor": "saasquatch",
+          "version": "3.0.0"
+        },
+        "type": "object",
+        "$schema": "http://json-schema.org/draft-06/schema#",
+        "required": [
+          "goals"
+        ],
+        "properties": {
+          "goals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/goal"
+            },
+            "maxItems": 100,
+            "minItems": 1
+          },
+          "version": {
+            "enum": [
+              "3.0.0"
+            ],
+            "type": "string",
+            "title": "Version of the current schema",
+            "default": "3.0.0",
+            "description": "The version property allows the jsonata migration script to perform a rules update when required"
+          },
+          "programWindow": {
+            "type": "string",
+            "title": "Program window"
+          }
+        },
+        "definitions": {
+          "goal": {
+            "type": "object",
+            "required": [
+              "key",
+              "name",
+              "trigger"
+            ],
+            "properties": {
+              "key": {
+                "type": "string",
+                "pattern": "^[a-zA-Z0-9\\-_]*$"
+              },
+              "name": {
+                "type": "string",
+                "default": "Default Goal Name"
+              },
+              "actions": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/action"
+                },
+                "maxItems": 100
+              },
+              "trigger": {
+                "type": "object",
+                "required": [
+                  "triggerType"
+                ],
+                "properties": {
+                  "triggerType": {
+                    "enum": [
+                      "eventTrigger",
+                      "criteriaTrigger"
+                    ],
+                    "type": "string",
+                    "enumNames": [
+                      "Event Trigger",
+                      "Criteria Trigger"
+                    ]
+                  }
+                },
+                "dependencies": {
+                  "triggerType": {
+                    "oneOf": [
+                      {
+                        "required": [
+                          "eventKeys"
+                        ],
+                        "properties": {
+                          "condition": {
+                            "type": "string",
+                            "default": "select = \"\" ? true"
+                          },
+                          "eventKeys": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "maxItems": 100,
+                            "minItems": 1
+                          },
+                          "triggerType": {
+                            "enum": [
+                              "eventTrigger"
+                            ]
+                          }
+                        }
+                      },
+                      {
+                        "properties": {
+                          "condition": {
+                            "type": "string",
+                            "default": "select = \"\" ? true"
+                          },
+                          "edgeFields": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "triggerType": {
+                            "enum": [
+                              "criteriaTrigger"
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "action": {
+            "type": "object",
+            "required": [
+              "actionType",
+              "name",
+              "key"
+            ],
+            "properties": {
+              "key": {
+                "type": "string",
+                "pattern": "^[a-zA-Z0-9\\-_]*$"
+              },
+              "name": {
+                "type": "string",
+                "default": "Default Action Name"
+              },
+              "condition": {
+                "type": "string"
+              },
+              "actionType": {
+                "enum": [
+                  "tieredRewardsAndEmail",
+                  "rewardAndEmail",
+                  "email",
+                  "exchangeReward",
+                  "retraction"
+                ],
+                "type": "string",
+                "enumNames": [
+                  "Tiered Rewards and Email",
+                  "Reward and Email",
+                  "Email",
+                  "Exchange Reward",
+                  "Retraction"
+                ]
+              }
+            },
+            "dependencies": {
+              "actionType": {
+                "oneOf": [
+                  {
+                    "required": [
+                      "rewardTiers"
+                    ],
+                    "properties": {
+                      "actionType": {
+                        "enum": [
+                          "tieredRewardsAndEmail"
+                        ]
+                      },
+                      "rewardTiers": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/definitions/rewardTier"
+                        },
+                        "maxItems": 100
+                      },
+                      "overrideEmailKey": {
+                        "type": "string",
+                        "pattern": "^[a-zA-Z0-9\\-_]*$"
+                      }
+                    }
+                  },
+                  {
+                    "required": [
+                      "reward"
+                    ],
+                    "properties": {
+                      "reward": {
+                        "$ref": "#/definitions/reward"
+                      },
+                      "actionType": {
+                        "enum": [
+                          "rewardAndEmail"
+                        ]
+                      },
+                      "overrideEmailKey": {
+                        "type": "string",
+                        "pattern": "^[a-zA-Z0-9\\-_]*$"
+                      },
+                      "overrideRewardKey": {
+                        "type": "string",
+                        "pattern": "^[a-zA-Z0-9\\-_]*$"
+                      }
+                    }
+                  },
+                  {
+                    "properties": {
+                      "actionType": {
+                        "enum": [
+                          "email"
+                        ]
+                      },
+                      "overrideEmailKey": {
+                        "type": "string",
+                        "pattern": "^[a-zA-Z0-9\\-_]*$"
+                      }
+                    }
+                  },
+                  {
+                    "required": [
+                      "subType"
+                    ],
+                    "properties": {
+                      "subType": {
+                        "enum": [
+                          "rewards",
+                          "event"
+                        ],
+                        "enumNames": [
+                          "Reward Retraction",
+                          "Event Retraction"
+                        ]
+                      },
+                      "actionType": {
+                        "enum": [
+                          "retraction"
+                        ]
+                      }
+                    },
+                    "dependencies": {
+                      "subType": {
+                        "oneOf": [
+                          {
+                            "required": [
+                              "retractedRewardKeys"
+                            ],
+                            "properties": {
+                              "subType": {
+                                "enum": [
+                                  "rewards"
+                                ]
+                              },
+                              "retractedRewardKeys": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "pattern": "^[a-zA-Z0-9\\-_]*$"
+                                },
+                                "maxItems": 100,
+                                "uniqueItems": true
+                              }
+                            }
+                          },
+                          {
+                            "required": [
+                              "sourceEventKey",
+                              "sourceEventFilter"
+                            ],
+                            "properties": {
+                              "subType": {
+                                "enum": [
+                                  "event"
+                                ]
+                              },
+                              "sourceEventKey": {
+                                "type": "string"
+                              },
+                              "sourceEventFilter": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "required": [
+                      "sourceUnit",
+                      "sourceValue",
+                      "globalRewardKey",
+                      "repeatExchange"
+                    ],
+                    "properties": {
+                      "actionType": {
+                        "enum": [
+                          "exchangeReward"
+                        ]
+                      },
+                      "sourceUnit": {
+                        "type": "string"
+                      },
+                      "sourceValue": {
+                        "type": "string"
+                      },
+                      "repeatExchange": {
+                        "enum": [
+                          "no-repeat",
+                          "repeat-max"
+                        ],
+                        "type": "string",
+                        "enumNames": [
+                          "Do not repeat",
+                          "Repeat as many times as possible"
+                        ]
+                      },
+                      "globalRewardKey": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "reward": {
+            "type": "object",
+            "required": [
+              "rewardType"
+            ],
+            "properties": {
+              "expiryExpr": {
+                "type": "string"
+              },
+              "rewardType": {
+                "enum": [
+                  "static",
+                  "dynamic"
+                ],
+                "type": "string",
+                "enumNames": [
+                  "Static Reward",
+                  "Dynamic Reward"
+                ]
+              },
+              "pendingExpr": {
+                "type": "string"
+              }
+            },
+            "dependencies": {
+              "rewardType": {
+                "oneOf": [
+                  {
+                    "properties": {
+                      "rewardType": {
+                        "enum": [
+                          "static"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "required": [
+                      "value",
+                      "unit"
+                    ],
+                    "properties": {
+                      "unit": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "string"
+                      },
+                      "rewardType": {
+                        "enum": [
+                          "dynamic"
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "rewardTier": {
+            "type": "object",
+            "required": [
+              "condition",
+              "reward",
+              "key"
+            ],
+            "properties": {
+              "key": {
+                "type": "string",
+                "pattern": "^[a-zA-Z0-9\\-_]*$"
+              },
+              "reward": {
+                "$ref": "#/definitions/reward"
+              },
+              "condition": {
+                "type": "string"
+              },
+              "overrideRewardKey": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "emails": [],
+      "rewards": [],
+      "summary": "Give rewards for user loyalty",
+      "trigger": {
+        "eventKeys": []
+      },
+      "widgets": [
+        {
+          "key": "pointsWidget",
+          "name": "Points Widget",
+          "defaults": "pointsWidgetId",
+          "description": "Widget that displays points balance for a user"
+        }
+      ],
+      "requirements": [
+        {
+          "key": "conversionTrigger",
+          "name": "Conversion Trigger",
+          "query": null,
+          "description": "This is used to validate that a program's conversion trigger is functioning before launch.",
+          "longDescription": null
+        },
+        {
+          "key": "uniqueKeys",
+          "name": "Unique Keys",
+          "query": null,
+          "description": "This is used to validate that a program's unique keys are all unique.",
+          "longDescription": null
+        },
+        {
+          "key": "validJsonata",
+          "name": "Valid JSONata",
+          "query": null,
+          "description": "This is used to validate that a program's rules contain valid JSONata expressions.",
+          "longDescription": null
+        }
+      ],
+      "rulesUISchema": {
+        "goals": {
+          "items": {
+            "key": {
+              "ui:title": "Goal Key",
+              "ui:widget": "KeyInput",
+              "ui:options": {
+                "generator": "parent.name",
+                "namespace": "p2.key"
+              },
+              "ui:description": "Once saved the goal key cannot be changed."
+            },
+            "name": {
+              "ui:widget": "hidden"
+            },
+            "actions": {
+              "items": {
+                "key": {
+                  "ui:title": "Action Key",
+                  "ui:widget": "KeyInput",
+                  "ui:options": {
+                    "generator": "parent.name",
+                    "namespace": "p2.key"
+                  },
+                  "ui:description": "Once saved the action key cannot be changed."
+                },
+                "name": {
+                  "ui:widget": "hidden"
+                },
+                "reward": {
+                  "unit": {
+                    "ui:title": "Unit",
+                    "ui:widget": "JSONataUnit"
+                  },
+                  "value": {
+                    "ui:title": "Value",
+                    "ui:widget": "JSONataAmount",
+                    "ui:options": {
+                      "generator": "parent.unit"
+                    }
+                  },
+                  "ui:order": [
+                    "key",
+                    "rewardType",
+                    "unit",
+                    "value",
+                    "expiryExpr",
+                    "pendingExpr"
+                  ],
+                  "expiryExpr": {
+                    "ui:title": "Reward Expiration",
+                    "ui:widget": "JSONataDate",
+                    "ui:options": {
+                      "dateLabel": "Fixed Date",
+                      "emptyLabel": "Never expires",
+                      "formulaLabel": "Formula",
+                      "durationLabel": "Duration",
+                      "dateDescription": "Expire the reward on a set date.",
+                      "emptyDescription": "No expiry date will be set on the reward",
+                      "formulaDescription": "Set when the reward expires using a custom formula.",
+                      "durationDescription": "Expire the reward after a set period of time."
+                    },
+                    "ui:description": "Choose if and when the reward expires."
+                  },
+                  "rewardType": {
+                    "ui:title": "Reward",
+                    "ui:widget": "RadioAsCards",
+                    "ui:options": {
+                      "ruleOptions": [
+                        {
+                          "key": "static",
+                          "icon": "hand_money",
+                          "title": "Fixed Reward",
+                          "description": "The reward given always has the same value."
+                        },
+                        {
+                          "key": "dynamic",
+                          "icon": "sparkles",
+                          "title": "Dynamic Reward",
+                          "description": "Create a custom reward with a dynamic value and/or unit."
+                        }
+                      ]
+                    }
+                  },
+                  "pendingExpr": {
+                    "ui:title": "Reward Pending",
+                    "ui:widget": "JSONataDate",
+                    "ui:options": {
+                      "dateLabel": "Fixed Date",
+                      "emptyLabel": "Immediately available",
+                      "formulaLabel": "Formula",
+                      "durationLabel": "Duration",
+                      "dateDescription": "Keep the reward as pending until a set date.",
+                      "emptyDescription": "The reward will be immediately available to the user",
+                      "formulaDescription": "Set the time a reward should be kept as pending using a custom formula.",
+                      "durationDescription": "Keep the reward as pending for a set period of time."
+                    },
+                    "ui:description": "Choose if and for how long a reward should be marked as pending before it is given."
+                  }
+                },
+                "subType": {
+                  "ui:title": "Retraction Type",
+                  "ui:widget": "RadioAsCards",
+                  "ui:options": {
+                    "ruleOptions": [
+                      {
+                        "key": "rewards",
+                        "icon": "retract_reward",
+                        "title": "Reward Retraction",
+                        "description": "Retract specific rewards"
+                      },
+                      {
+                        "key": "event",
+                        "icon": "retract_event",
+                        "title": "Event Retraction",
+                        "description": "Retract the rewards caused by a specific event"
+                      }
+                    ]
+                  }
+                },
+                "ui:order": [
+                  "name",
+                  "key",
+                  "actionType",
+                  "condition",
+                  "email",
+                  "sourceUnit",
+                  "sourceValue",
+                  "globalRewardKey",
+                  "repeatExchange",
+                  "*"
+                ],
+                "condition": {
+                  "ui:title": "Action Criteria",
+                  "ui:widget": "JSONataCondition",
+                  "ui:options": {
+                    "text": {
+                      "title": "Condition",
+                      "addRule": "Add Rule",
+                      "invalidText": "This action condition uses custom logic and may not complete on the goals first time or every time. Switch to the advanced editor to make changes.",
+                      "addCondition": "Add Condition",
+                      "everyTimeText": "Perform this action every time the participant triggers this goal and meets the conditions in this rule.",
+                      "firstTimeText": "Perform this action if the participant hasn't completed this goal before and they meet the conditions in this rule.",
+                      "emptyStateButton": "Add Rule"
+                    },
+                    "grouped": true,
+                    "generator": "p3.trigger.eventKey[0]",
+                    "goalIsFirstTime": true,
+                    "canCreateCalculatedField": true
+                  },
+                  "ui:description": "Only perform this action if the following rules are satisfied. Build your rules using custom fields, calculated fields, goals, and more. "
+                },
+                "actionType": {
+                  "ui:title": "Action Type",
+                  "ui:widget": "RadioAsCards",
+                  "ui:options": {
+                    "columns": 2,
+                    "ruleOptions": [
+                      {
+                        "key": "tieredRewardsAndEmail",
+                        "icon": "podium_star",
+                        "title": "Tiered Rewards and Email",
+                        "description": "Give a tiered reward and send an email to the user."
+                      },
+                      {
+                        "key": "rewardAndEmail",
+                        "icon": "gift",
+                        "title": "Reward and Email",
+                        "description": "Give a reward and send an email to the user."
+                      },
+                      {
+                        "key": "email",
+                        "icon": "mail",
+                        "title": "Email",
+                        "description": "Send an email to the user."
+                      },
+                      {
+                        "key": "exchangeReward",
+                        "icon": "exchange",
+                        "title": "Exchange Reward",
+                        "description": "Exchange a reward unit for a predefined reward."
+                      },
+                      {
+                        "key": "retraction",
+                        "icon": "block_gift",
+                        "title": "Retraction",
+                        "description": "Retract rewards or events."
+                      }
+                    ]
+                  }
+                },
+                "sourceUnit": {
+                  "ui:title": "Source Unit",
+                  "ui:widget": "JSONataUnit",
+                  "ui:description": "The reward unit exchanged."
+                },
+                "rewardTiers": {
+                  "items": {
+                    "key": {
+                      "ui:title": "Tier Key",
+                      "ui:widget": "UUIDWidget",
+                      "ui:options": {
+                        "visible": true
+                      }
+                    },
+                    "reward": {
+                      "unit": {
+                        "ui:title": "Unit",
+                        "ui:widget": "JSONataUnit"
+                      },
+                      "value": {
+                        "ui:title": "Value",
+                        "ui:widget": "JSONataAmount",
+                        "ui:options": {
+                          "generator": "parent.unit"
+                        }
+                      },
+                      "ui:order": [
+                        "key",
+                        "rewardType",
+                        "unit",
+                        "value",
+                        "expiryExpr",
+                        "pendingExpr"
+                      ],
+                      "expiryExpr": {
+                        "ui:title": "Reward Expiration",
+                        "ui:widget": "JSONataDate",
+                        "ui:options": {
+                          "dateLabel": "Fixed Date",
+                          "emptyLabel": "Never expires",
+                          "formulaLabel": "Formula",
+                          "durationLabel": "Duration",
+                          "dateDescription": "Expire the reward on a set date.",
+                          "emptyDescription": "No expiry date will be set on the reward",
+                          "formulaDescription": "Set when the reward expires using a custom formula.",
+                          "durationDescription": "Expire the reward after a set period of time."
+                        },
+                        "ui:description": "Choose if and when the reward expires."
+                      },
+                      "rewardType": {
+                        "ui:title": "Reward",
+                        "ui:widget": "RadioAsCards",
+                        "ui:options": {
+                          "ruleOptions": [
+                            {
+                              "key": "static",
+                              "icon": "hand_money",
+                              "title": "Fixed Reward",
+                              "description": "The reward given will always have the same value."
+                            },
+                            {
+                              "key": "dynamic",
+                              "icon": "sparkles",
+                              "title": "Dynamic Reward",
+                              "description": "Create a custom reward with a dynamic value and/or unit."
+                            }
+                          ]
+                        }
+                      },
+                      "pendingExpr": {
+                        "ui:title": "Reward Pending",
+                        "ui:widget": "JSONataDate",
+                        "ui:options": {
+                          "dateLabel": "Fixed Date",
+                          "emptyLabel": "Immediately available",
+                          "formulaLabel": "Formula",
+                          "durationLabel": "Duration",
+                          "dateDescription": "Keep the reward as pending until a set date.",
+                          "emptyDescription": "The reward will be immediately available to the user",
+                          "formulaDescription": "Set the time a reward should be kept as pending using a custom formula.",
+                          "durationDescription": "Keep the reward as pending for a set period of time."
+                        },
+                        "ui:description": "Choose if and for how long a reward should be marked as pending before it is given."
+                      },
+                      "overrideEmailKey": {
+                        "ui:widget": "hidden"
+                      },
+                      "overrideRewardKey": {
+                        "ui:widget": "hidden"
+                      }
+                    },
+                    "ui:order": [
+                      "key",
+                      "rewardType",
+                      "condition",
+                      "unit",
+                      "value",
+                      "expiryExpr",
+                      "pendingExpr",
+                      "*"
+                    ],
+                    "condition": {
+                      "ui:title": "Reward Condition",
+                      "ui:widget": "JSONataCondition",
+                      "ui:options": {
+                        "text": {
+                          "title": "Condition",
+                          "addRule": "Add Rule",
+                          "addCondition": "Add Condition",
+                          "emptyStateButton": "Add Rule"
+                        },
+                        "grouped": true,
+                        "generator": "p5.trigger.eventKey[0]",
+                        "canCreateCalculatedField": true
+                      },
+                      "ui:description": "This reward will only be given if this condition is met."
+                    },
+                    "overrideRewardKey": {
+                      "ui:widget": "hidden"
+                    }
+                  },
+                  "ui:options": {
+                    "name": "reward",
+                    "title": "Reward Tiers",
+                    "editText": "Edit",
+                    "stepIcon": "gift",
+                    "themeColor": "#f5a841",
+                    "defaultName": "Tier",
+                    "description": "Users will be given the reward from the first tier where the reward condition is met.",
+                    "collapseText": "Done",
+                    "addButtonText": "Add Reward",
+                    "stepIconStyle": "font-size:16px;margin-left:-2px;margin-top:2px;"
+                  },
+                  "ui:ArrayFieldTemplate": "MultiStepTemplate"
+                },
+                "sourceValue": {
+                  "ui:title": "Source Value",
+                  "ui:widget": "JSONataAmount",
+                  "ui:options": {
+                    "generator": "parent.sourceUnit"
+                  },
+                  "ui:description": "The amount of source units exchanged."
+                },
+                "dependencies": {
+                  "ui:title": "Dependencies"
+                },
+                "repeatExchange": {
+                  "ui:title": "Repeat Exchange",
+                  "ui:description": "Optionally repeat the exchange until the user runs out of the source unit or has less than the source value required."
+                },
+                "sourceEventKey": {
+                  "ui:title": "Source Event Key",
+                  "ui:widget": "SelectKeyWidget",
+                  "ui:description": "Select which event's rewards are eligible for retraction."
+                },
+                "globalRewardKey": {
+                  "ui:title": "Destination Reward",
+                  "ui:widget": "GlobalRewardSelector",
+                  "ui:description": "Select the reward to exchange the source for."
+                },
+                "overrideEmailKey": {
+                  "ui:widget": "hidden"
+                },
+                "overrideRewardKey": {
+                  "ui:widget": "hidden"
+                },
+                "sourceEventFilter": {
+                  "ui:title": "Source Event Filter",
+                  "ui:widget": "JSONataConditionObject",
+                  "ui:options": {
+                    "text": {
+                      "title": "Rules",
+                      "addRule": "Add Rule",
+                      "addCondition": "Add Condition",
+                      "emptyStateButton": "Add Rule"
+                    },
+                    "grouped": true,
+                    "generator": "parent.sourceEventKey"
+                  },
+                  "ui:description": "Retract rewards caused by events that match the configured filter."
+                },
+                "retractedRewardKeys": {
+                  "ui:title": "Retracted Reward Keys",
+                  "ui:options": {
+                    "list": "rewards",
+                    "label": "name",
+                    "value": "key"
+                  },
+                  "ui:ArrayFieldTemplate": "IntrospectionKeyWidget"
+                }
+              },
+              "ui:options": {
+                "name": "action",
+                "title": "Goal Actions",
+                "editText": "Edit",
+                "stepIcon": "rocket",
+                "themeColor": "#f5a841",
+                "description": "Decide what happens after the goal is completed by setting up Actions.",
+                "collapseText": "Done",
+                "addButtonText": "Add Action",
+                "stepIconStyle": "font-size:16px;margin-left:-2px;margin-top:2px;"
+              },
+              "ui:ArrayFieldTemplate": "MultiStepTemplate"
+            },
+            "trigger": {
+              "ui:order": [
+                "triggerType",
+                "eventKeys",
+                "edgeFields",
+                "condition",
+                "*"
+              ],
+              "condition": {
+                "ui:title": "Goal Criteria",
+                "ui:widget": "JSONataCondition",
+                "ui:options": {
+                  "text": {
+                    "title": "Condition",
+                    "addRule": "Add Rule",
+                    "invalidText": "This goal condition uses custom logic and may not complete on first time or every time. Switch to the advanced editor to make changes.",
+                    "addCondition": "Add Condition",
+                    "everyTimeText": "Complete this goal every time the participant triggers this goal and meets the conditions in this rule.",
+                    "firstTimeText": "Complete this goal if the participant hasn't completed it before and they meet the conditions in this rule.",
+                    "emptyStateButton": "Add Rule"
+                  },
+                  "grouped": true,
+                  "generator": "parent.eventKey[0]",
+                  "goalIsFirstTime": true,
+                  "canCreateCalculatedField": true
+                },
+                "ui:description": "After the goal is triggered, only consider this goal complete when at least one of the following rules is satisfied. Build your rules using data from custom fields, calculated fields, goals and more."
+              },
+              "eventKeys": {
+                "ui:title": "Event Keys",
+                "ui:description": "Trigger this goal when one of the selected events occurs.",
+                "ui:ArrayFieldTemplate": "EventKeyArrayWidget"
+              },
+              "edgeFields": {
+                "ui:title": "Triggering user fields",
+                "ui:description": "Select user.segments and/or any user fields to trigger this goal when they are updated on a participant. If nothing is selected, then this goal will be triggered when any segment or user field is updated.",
+                "ui:ArrayFieldTemplate": "EdgeTriggerSection"
+              },
+              "triggerType": {
+                "ui:title": "What triggers this goal?",
+                "ui:widget": "RadioAsCards",
+                "ui:options": {
+                  "ruleOptions": [
+                    {
+                      "key": "eventTrigger",
+                      "icon": "hand_tap_filled",
+                      "title": "User performs an action",
+                      "description": "When the user performs an action tracked by an event, such as a purchase. "
+                    },
+                    {
+                      "key": "criteriaTrigger",
+                      "icon": "id_card",
+                      "title": "User’s fields & segments",
+                      "description": "When a user field, custom field, calculated field, or segment on the user’s profile is updated and meets your set criteria"
+                    }
+                  ]
+                }
+              }
+            },
+            "ui:order": [
+              "*",
+              "actions"
+            ]
+          },
+          "ui:options": {
+            "name": "goal",
+            "title": "Program Goals",
+            "editText": "Edit",
+            "stepIcon": "target",
+            "themeColor": "#f5a841",
+            "description": "Goals can be completed in any order.",
+            "collapseText": "Done",
+            "addButtonText": "Add Goal",
+            "stepIconStyle": "font-size:23px;margin-left:-10px;margin-top:-1px;"
+          },
+          "ui:ArrayFieldTemplate": "MultiStepTemplate"
+        },
+        "version": {
+          "ui:widget": "hidden"
+        },
+        "ui:order": [
+          "programWindow",
+          "goals",
+          "*"
+        ],
+        "programWindow": {
+          "ui:help": "Users can only earn rewards between these dates. The window is inclusive of the selected start and end dates. Time is set in your local time",
+          "ui:widget": "DateRange",
+          "ui:options": {
+            "allowHistoricStartDate": false
+          }
+        }
+      }
+    },
+    "contentfulIdMapping": {
+      "pointsWidgetId": "4IeO49Pwuj9GTBcdBhBnLD",
+      "pointsRewardReceivedEmailId": "23S8h2fgKnDqhIVZkdingf"
+    },
+    "url": "https://points-program.services.prod.ssqt.io/",
+    "logo": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Asset",
+        "id": "3YIwcGzTsIIE4KseoCUE2E"
+      }
+    },
+    "screenshot": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Asset",
+        "id": "3GezpVJrnY3uQfiQ3ZEIOW"
+      }
+    },
+    "globallyInstallable": true,
+    "installableByTenants": [
+      "test_agvu4yg8zrkxt",
+      "test_aqvgb7n9s5uqz",
+      "test_abzxg88g30tn2",
+      "test_aebg0q26ma4dc",
+      "test_albfhvjzcz0ph",
+      "test_asv63xtts9y41",
+      "test_ae0xajgyjqagk",
+      "test_acjpdfeek4jfn",
+      "akfck9hpjyq7k",
+      "test_auyk6hrs6rng3",
+      "test_albfhvjzcz0ph",
+      "test_ap2255y19gte1",
+      "test_autz0nqdni3x1",
+      "as4auazinrz7y",
+      "avzeqyz12wzjm",
+      "test_at2ulvy0eh9z7",
+      "awf0vma2w6bc9",
+      "test_ay9tzegqvxs5t",
+      "a7jyb2mek1j5d",
+      "test_atzqd37hvovdf",
+      "test_ajwxwjo1r5zm6",
+      "arhjq80gz6q0c"
+    ]
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "48ji72u659z5"
+      }
+    },
+    "id": "1tB8lEg6L6Y8Eauo6SuwsK",
+    "type": "Entry",
+    "createdAt": "2017-10-26T22:51:36.147Z",
+    "updatedAt": "2020-01-14T21:43:59.789Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 28,
+    "revision": 4,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "programTemplate"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "name": "Test Program",
+    "slug": "test-program",
+    "summary": "A test program for testing. Always returns a reward.",
+    "longDescription": "A test program for testing. Always returns a reward. Test Change.",
+    "schema": {
+      "name": "test",
+      "rules": {
+        "type": "object",
+        "title": "Person",
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "required": [
+          "firstName",
+          "lastName"
+        ],
+        "properties": {
+          "lastName": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          }
+        }
+      },
+      "emails": [
+        {
+          "key": "testRewardEmail",
+          "name": "Test Reward Email",
+          "defaults": {
+            "meta": {
+              "subject": "You got a reward!",
+              "fromName": "{{companyName}}",
+              "fromAddress": "referral@mail.saasquat.ch"
+            },
+            "content": {
+              "cta": {
+                "link": "",
+                "text": "",
+                "enabled": false
+              },
+              "bodyContent": "The test worked, you got a reward!",
+              "headerImage": "{{assets 'images/email/program-reward-header.png'}}",
+              "footerContent": "reward!",
+              "headerContent": "You got a reward!"
+            }
+          },
+          "description": "We send this email when a new reward is created by this program"
+        }
+      ],
+      "rewards": [
+        {
+          "key": "testReward",
+          "name": "Test Reward",
+          "description": "This reward is given to people when they do anything at all."
+        }
+      ],
+      "summary": "A test program for testing. Always returns a reward.",
+      "longDescription": "A test program for testing. Always returns a reward."
+    },
+    "url": "https://testing-program.herokuapp.com/",
+    "logo": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Asset",
+        "id": "5pkUG29Mk0iKSkswsooYSW"
+      }
+    },
+    "screenshot": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Asset",
+        "id": "1ARUrQBr7aYQEiAyGcCIS8"
+      }
+    },
+    "globallyInstallable": false,
+    "installableByTenants": [
+      "test_apqdxu77ojijm"
+    ],
+    "tags": [
+      "Beta"
+    ]
+  }
+}

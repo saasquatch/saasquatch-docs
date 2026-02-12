@@ -1,0 +1,275 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "48ji72u659z5"
+      }
+    },
+    "id": "3O0ms4xvTyi6qmUEw2uQqw",
+    "type": "Entry",
+    "createdAt": "2017-12-05T03:55:24.570Z",
+    "updatedAt": "2024-12-02T22:32:08.601Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 168,
+    "revision": 30,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "programTemplate"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "name": "Birthday & Anniversary",
+    "icon": "Birthday-Program",
+    "categories": [
+      "engage",
+      "retain",
+      "reactivate"
+    ],
+    "slug": "birthday-program",
+    "summary": "Engage with loyal customers on their birthday or a specific anniversary with a special reward.",
+    "longDescription": "Celebrating a customer’s birthday or anniversary is a simple and effective way to recognize each customer individually and personalize their experience.\n\nA birthday or anniversary reward is the perfect yearly opportunity to re-engage inactive customers and continue to reward loyal ones.\n\n### Example:\n\nAn online retailer wants to show their appreciation to loyal customers by offering a discount during their birthday month.\n\nThe company launches a Birthday & Anniversary Program to send a $25 credit to users one week before their birthday.\n\n### Features:\n\n* Choose how many days before their birthday or anniversary to give a reward.\n* Choose whether to reward based on date or month.\n* Set as a one-time reward or give a gift every year.\n* Target specific customer segments.\n* Customize the email to notify users when their reward is ready to use. ",
+    "installGuideUrl": "https://docs.referralsaasquatch.com/program/birthday-program/setup-guide/",
+    "installGuide": "# Birthday & Anniversary Program Setup Guide\n\n## Setup\n\nThe Birthday & Anniversary program evaluates users eligible to earn rewards with a custom field. By default this custom field is **`birthday`**. This field **must** be an [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date without the year for customers to  successfully  evaluated. Follow the `--MM-DD` format.\n\nEx. June 10, 1980 = `--06-10`\n\nPlease refer to [our documentation](https://docs.referralsaasquatch.com/features/custom-user-fields/) for more information about custom fields and SaaSquatch.\n\n### Rules\n\nOnce your users are set up to be evaluated by the program, you can choose your program rules. This section contains an outline of the available rules for the Birthday & Anniversary program.\n\n![Program Setup Screen](//images.ctfassets.net/1th1ybv0b2n4/GQgM51rDeucRYNPSgZ8hk/dcfc2062261e4187cb9061c07dd04b20/Screen_Shot_2019-07-15_at_12.33.30_pm.png)\n\n#### *Reward Users this many days before their Birthday or Anniversary*\n\nThis rule lets you determine if customers should be rewarded either on the actual date, or at the beginning of their birth/anniversary month. If you choose to reward customers on their date, you also have the option to set how many days before you want to issue the reward. \n\n__This value must be no less than 0 and no greater than 365.__\n\n#### *Begin Rewarding Mode*\n\nIf you select the ‘Anniversary Month’ option, you have a choice of when existing customers are rewarded after the program launches. Options include: \n\n* Immediately after the program launches\n\n* On the first day of the next month\n\nIf set to \"Immediately after the program is activated\", all customers with a date in the current month are rewarded when the program launches. For subsequent months, customers with a date in the current month receive rewards on the first day of that month.\n\nIf set to \"On the first day of the next month,\" customers with a date in the current month aren't rewarded. The reward cycle begins on the first day of the month after the program launches.\n\n#### *One-time or recurring rewards*\n\nUse this rule to determine whether customers are rewarded every year on their date, or just one time (ie. their next birthday only).\n\n## Launching\n\nWhen you have set up your program and are sending the configured `customFields`,  you can use our automated program validation feature to ensure that everything is setup and running. We still **strongly** recommend manually testing the program to ensure everything is working as intended.\n\nAfter your program is thoroughly tested, you’re ready to go! Activate your program by pressing the `Launch` button in the portal and start evaluating customers to be rewarded.",
+    "schema": {
+      "name": "Birthday & Anniversary Program",
+      "rules": {
+        "type": "object",
+        "title": "Program Rules",
+        "$schema": "http://json-schema.org/draft-06/schema#",
+        "required": [
+          "customFieldName"
+        ],
+        "properties": {
+          "recurring": {
+            "enum": [
+              0,
+              1
+            ],
+            "type": "integer",
+            "title": "Reward users:",
+            "default": 1,
+            "enumNames": [
+              "Only on their next anniversary date / month",
+              "Every year on their anniversary date / month"
+            ]
+          },
+          "rewardRules": {
+            "type": "object",
+            "title": "Reward Rules",
+            "properties": {
+              "rewardRulesType": {
+                "enum": [
+                  0,
+                  1
+                ],
+                "type": "integer",
+                "title": "Reward users based on their:",
+                "default": 0,
+                "enumNames": [
+                  "Anniversary Day",
+                  "Anniversary Month"
+                ]
+              }
+            },
+            "dependencies": {
+              "rewardRulesType": {
+                "oneOf": [
+                  {
+                    "properties": {
+                      "offset": {
+                        "type": "integer",
+                        "title": "Reward users this many days before their anniversary:",
+                        "default": 0,
+                        "maximum": 365,
+                        "minimum": 0
+                      },
+                      "rewardRulesType": {
+                        "enum": [
+                          0
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "properties": {
+                      "firstDayOnly": {
+                        "enum": [
+                          0,
+                          1
+                        ],
+                        "type": "integer",
+                        "title": "Begin rewarding:",
+                        "enumNames": [
+                          "Immediately after the program is activated",
+                          "On the first day of the next month"
+                        ]
+                      },
+                      "rewardRulesType": {
+                        "enum": [
+                          1
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "customFieldName": {
+            "type": "string",
+            "title": "User custom field",
+            "default": "birthday"
+          },
+          "userSegmentation": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "title": "Segment Names"
+            },
+            "title": "Segment"
+          },
+          "rewardExpiryReminder": {
+            "enum": [
+              0,
+              1
+            ],
+            "type": "integer",
+            "title": "Remind users when their reward is close to expiring",
+            "default": 0,
+            "enumNames": [
+              "No",
+              "Yes"
+            ]
+          }
+        },
+        "dependencies": {
+          "rewardExpiryReminder": {
+            "oneOf": [
+              {
+                "properties": {
+                  "rewardExpiryReminder": {
+                    "enum": [
+                      0
+                    ]
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "rewardReminderDays": {
+                    "type": "integer",
+                    "title": "Number of days before expiry date",
+                    "default": 3,
+                    "maximum": 30,
+                    "minimum": 1
+                  },
+                  "rewardExpiryReminder": {
+                    "enum": [
+                      1
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "emails": [
+        {
+          "key": "birthdaySummaryEmail",
+          "name": "Birthday/Anniversary Summary",
+          "defaults": "birthdaySummaryEmailId",
+          "description": "We send this email to notify a user of their birthday or anniversary reward."
+        }
+      ],
+      "rewards": [
+        {
+          "key": "birthdayReward",
+          "name": "Birthday/Anniversary Reward",
+          "description": "This reward is given to people on their birthday or anniversary."
+        }
+      ],
+      "summary": "Reward customers for their birthday or anniversary.",
+      "trigger": {
+        "eventKeys": []
+      },
+      "requirements": [
+        {
+          "key": "customFieldFormat",
+          "name": "Users' Birthday/Anniversary Information",
+          "query": null,
+          "description": "A code snippet that sends us your users' birthday or anniversary information",
+          "longDescription": null
+        }
+      ],
+      "rulesUISchema": {
+        "ui:order": [
+          "rewardRules",
+          "recurring",
+          "rewardExpiryReminder",
+          "*",
+          "customFieldName",
+          "userSegmentation"
+        ],
+        "recurring": {
+          "ui:widget": "radio"
+        },
+        "rewardRules": {
+          "firstDayOnly": {
+            "ui:widget": "radio"
+          },
+          "rewardRulesType": {
+            "ui:widget": "radio"
+          }
+        },
+        "userSegmentation": {
+          "ui:help": "Select which existing user segment(s) you would like to be enrolled in this program. Leave blank if you would not like to use user segmentation.",
+          "ui:field": "SegmentSelectWidget",
+          "ui:title": "User segments",
+          "ui:options": {
+            "displayLabel": "true"
+          }
+        },
+        "rewardExpiryReminder": {
+          "ui:widget": "hidden"
+        }
+      },
+      "longDescription": ""
+    },
+    "contentfulIdMapping": {
+      "birthdaySummaryEmailId": "6C4JdhUM1uL2Pma6tVgzwc"
+    },
+    "url": "https://birthday-program.services.prod.ssqt.io/",
+    "logo": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Asset",
+        "id": "6KHeJyRDIA46YSmokGOKg6"
+      }
+    },
+    "screenshot": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Asset",
+        "id": "6GAEqmo45qcCE84kCgWiK"
+      }
+    },
+    "globallyInstallable": true
+  }
+}
