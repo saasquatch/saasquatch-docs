@@ -8,11 +8,11 @@ date: 2022-05-16
 ---
 
 > **Please note:** This article relates to the custom theming functionality for our classic referral programs. Theming, design, and message changes for programs on our Growth Automation platform are available directly within the SaaSquatch admin portal within the configuration for each specific program.
-> 
->Please contact support@referralsaasquatch.com if you have any further questions about customizing the design of your program.
+>
+> Please contact support@referralsaasquatch.com if you have any further questions about customizing the design of your program.
 
 Once you've made changes to a theme and pushed those changes to your remote git repository, you'll want to publish those changes to your tenants to see how they look in a live environment. To publish themes,
-use the saasquatch-cli. The [saasquatch-cli](https://github.com/saasquatch/saasquatch-cli) is a command-line tool for interacting with your Referral SaaSquatch account. It 
+use the saasquatch-cli. The [saasquatch-cli](https://github.com/saasquatch/saasquatch-cli) is a command-line tool for interacting with your Referral SaaSquatch account. It
 is distributed as a [node.js](http://nodejs.org/) package via [npm](https://www.npmjs.com/package/saasquatch-cli).
 
 <div class="bs-callout bs-callout-info">
@@ -49,5 +49,5 @@ squatch publish -t test_alu125hh1si9w -k TEST_BHASKh5125Las5hL125oh3VbLmPxUSs
 <div class="bs-callout bs-callout-warning">
   <h4>squatch renamed</h4>
   As of v1.0.0 the executable was renamed from `saasquatch-cli` to `squatch`. To make sure you're always using the latest version, you can update
-  the installed version with `npm update -g saasquatch-cli`. The node package and github repo names and core functionality are unchanged.
+  the installed version with `npm update -g saasquatch-cli`. The node package and GitHub repo names and core functionality are unchanged.
 </div>
