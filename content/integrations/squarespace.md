@@ -13,6 +13,6 @@ keyFeatures:
 moreInfo:
   - "[Squarespace Quickstart Guide](/guides/squarespace)"
   - "[Drag-and-Drop Integration Configuration](/guides/integration-quickstart)"
-template: intergrationLander.html
+template: integrationLander.html
 contentType: integration
 ---

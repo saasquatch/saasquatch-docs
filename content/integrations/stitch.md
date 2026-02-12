@@ -15,6 +15,6 @@ keyFeatures:
 moreInfo:
   - "[Stitch Integration Guide](/developer/stitch/quickstart)"
   - "[Stitch Docs](https://www.stitchdata.com/integrations/referral-saasquatch/?utm_source=saasquatch&utm_medium=partner-social)"
-template: intergrationLander.html
+template: integrationLander.html
 contentType: integration
 ---

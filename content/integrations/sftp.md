@@ -10,6 +10,6 @@ keyFeatures:
   - Automate the import of bulk data from external systems
 moreInfo:
   - "[SFTP Configuration Guide](/integrations/sftp)"
-template: intergrationLander.html
+template: integrationLander.html
 contentType: integration
 ---

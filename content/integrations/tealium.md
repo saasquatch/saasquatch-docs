@@ -13,6 +13,6 @@ keyFeatures:
 moreInfo:
   - "[Tealium Tag Manager Quickstart Guide](/guides/tealium)"
   - "[Drag-and-Drop Integration Configuration](/guides/integration-quickstart)"
-template: intergrationLander.html
+template: integrationLander.html
 contentType: integration
 ---

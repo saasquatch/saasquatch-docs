@@ -13,6 +13,6 @@ keyFeatures:
   - "Uses a native integration built by SaaSquatch directly on Recurly's API "
 moreInfo:
   - "[Recurly Tech Installation Guide](/developer/recurly)"
-template: intergrationLander.html
+template: integrationLander.html
 contentType: integration
 ---

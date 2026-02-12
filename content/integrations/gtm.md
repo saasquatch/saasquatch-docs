@@ -13,6 +13,6 @@ keyFeatures:
 moreInfo:
   - "[Google Tag Manager Quickstart Guide](/guides/using-gtm)"
   - "[Drag-and-Drop Integration Configuration](/guides/integration-quickstart)"
-template: intergrationLander.html
+template: integrationLander.html
 contentType: integration
 ---

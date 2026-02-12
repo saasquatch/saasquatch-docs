@@ -17,6 +17,6 @@ moreInfo:
   - "[Salesforce Integration FAQ](/salesforce/faq)"
   - "[Salesforce Integration Install Guide](/salesforce/install-guide)"
   - "[Salesforce Integration User Guide](/salesforce/user-guide)"
-template: intergrationLander.html
+template: integrationLander.html
 contentType: integration
 ---

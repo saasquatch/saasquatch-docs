@@ -15,6 +15,6 @@ keyFeatures:
 moreInfo:
   - "[Branch Metrics Quickstart](/mobile/branch-metrics)"
   - "[Branch Metrics Tech Reference](/mobile/branch-metrics/reference)"
-template: intergrationLander.html
+template: integrationLander.html
 contentType: integration
 ---

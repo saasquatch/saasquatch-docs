@@ -14,6 +14,6 @@ keyFeatures:
 moreInfo:
   - "[Gift Card Rewards](/success/gift-card-rewards)"
   - "[Connect your Tango Card account to SaaSquatch](/tangocard-connection)"
-template: intergrationLander.html
+template: integrationLander.html
 contentType: integration
 ---

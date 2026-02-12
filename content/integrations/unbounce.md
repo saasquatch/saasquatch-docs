@@ -13,6 +13,6 @@ keyFeatures:
 moreInfo:
   - "[Unbounce Quickstart Guide](/guides/unbounce)"
   - "[Drag-and-Drop Integration Configuration](/guides/integration-quickstart)"
-template: intergrationLander.html
+template: integrationLander.html
 contentType: integration
 ---

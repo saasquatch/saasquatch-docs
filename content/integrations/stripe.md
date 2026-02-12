@@ -13,6 +13,6 @@ keyFeatures:
   - Uses a native integration built by SaaSquatch directly on Stripe Connect
 moreInfo:
   - "[Stripe Install Guide](/developer/stripe-v2-install-guide)"
-template: intergrationLander.html
+template: integrationLander.html
 contentType: integration
 ---

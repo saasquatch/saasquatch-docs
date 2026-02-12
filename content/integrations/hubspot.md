@@ -17,6 +17,6 @@ moreInfo:
   - "[Integrating SaaSquatch with HubSpot](/integrations/hubspot/integrating-with-saasquatch)"
   - "[Sending Data from HubSpot Forms to SaaSquatch](/integrations/hubspot/sending-data-from-hubspot-forms)"
   - "[HubSpot Integration Behaviors](/integrations/hubspot/integration-behaviours)"
-template: intergrationLander.html
+template: integrationLander.html
 contentType: integration
 ---

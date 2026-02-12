@@ -16,6 +16,6 @@ moreInfo:
   - "[Automated Cash Payouts with PayPal](/integrations/paypal/cash-payouts)"
   - "[Setting up Cash Payout with PayPal](/integrations/paypal/setting-up-cash-payouts)"
   - "[Cash Payouts Reward Statuses](/integrations/paypal/reward-statuses)"
-template: intergrationLander.html
+template: integrationLander.html
 contentType: integration
 ---

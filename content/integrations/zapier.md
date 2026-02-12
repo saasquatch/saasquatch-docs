@@ -11,6 +11,6 @@ keyFeatures:
   - Track actions in other platform, trigger programs in SaaSquatch
 moreInfo:
   - "[Zapier Quickstart Guide](/integrations/zapier)"
-template: intergrationLander.html
+template: integrationLander.html
 contentType: integration
 ---

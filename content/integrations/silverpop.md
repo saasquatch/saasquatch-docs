@@ -11,6 +11,6 @@ keyFeatures:
   - Ensures deliverability through your existing email systems
 moreInfo:
   - "[Guide to Email](/topics/email/#ibm-watson-marketing)"
-template: intergrationLander.html
+template: integrationLander.html
 contentType: integration
 ---

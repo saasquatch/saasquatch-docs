@@ -15,6 +15,6 @@ keyFeatures:
 moreInfo:
   - "[AppsFlyer Quickstart](/mobile/appsflyer)"
   - "[AppsFlyer Tech Reference](/mobile/appsflyer/reference)"
-template: intergrationLander.html
+template: integrationLander.html
 contentType: integration
 ---
