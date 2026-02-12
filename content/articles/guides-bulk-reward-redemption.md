@@ -54,4 +54,4 @@ Upload your Available Balance Report with current reward balances back into SaaS
 3. Click "Rewards" in the upper header of your SaaSquatch account.
 4. Click "Bulk Redeem" in the lower header.
 5. Under Section 3, Click "Select & Upload". 
-6. Select your updated Avaialble Balance Report from your computer to import it into SaaSquatch. 
+6. Select your updated Available Balance Report from your computer to import it into SaaSquatch. 
