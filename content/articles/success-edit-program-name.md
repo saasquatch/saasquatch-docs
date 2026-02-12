@@ -19,7 +19,7 @@ tags:
 3. Once you have located the program you want to rename, click on the pencil icon to the right-hand side of the program's name. 
 ![Manage Programs](/assets/images/contentful/Screenshot_2021-03-05_1.31.36_PM_2bHeJleIn8kUCg75eqz2Zp.png)
 
-3. You should now be able to modify the disaply name of your program. 
+3. You should now be able to modify the display name of your program. 
 ![Edit Program Name](/assets/images/contentful/Screenshot_2021-03-05_1.33.30_PM_6FSxSixYabYiuatD19GYH5.png)
 
 4. Click on the orange checkmark button to save your edits.
