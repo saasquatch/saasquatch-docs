@@ -11,7 +11,7 @@ The SaaSquatch Android SDK gives you complete control of the look and feel of yo
 
 With our SDK you can register your users with SaaSquatch, track users referrals, and fetch user information such referral codes, referral links, and rewards. You can also use as much or as little of the SDK as you like.
 
-Our mobile SDK has been designed to be part of a hybrid mobile device implimentation. Client-side SDK elements are used in conjuction with server-side REST API functionality for the most complete, and secure, solution.
+Our mobile SDK has been designed to be part of a hybrid mobile device implementation. Client-side SDK elements are used in conjunction with server-side REST API functionality for the most complete, and secure, solution.
 
 The nature of the hybrid combination of mobile client and server for our SDK means that there are certain limitations to be aware of. Please read through the documentation for the SDK carefully to understand the capabilities of the SDK. 
 
