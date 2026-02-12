@@ -33,7 +33,7 @@ To get started with [Stencil](https://stenciljs.com/), there’s some excellent 
 
 Once you’re done building your component, you’re ready to deploy it to NPM and start using it in your SaaSquatch widget.
 
-> Contact support@saasquatch.com for a verion of our widget starter. A pre-built npm package template with helpful examples and boilerplate. 
+> Contact support@saasquatch.com for a version of our widget starter. A pre-built npm package template with helpful examples and boilerplate. 
 
 ### Editability 
 Editability is an important part of developing web components for SaaSquatch. You can utilize the power of the SaaSquatch widget editor and make changes to your components without having to edit your HTML. 
