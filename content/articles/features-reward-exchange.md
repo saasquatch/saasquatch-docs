@@ -13,7 +13,7 @@ robotsTag:
 
 Reward Exchange is a feature that empowers your participants to exchange reward units they’ve earned for different rewards or other reward units, such as exchanging Points for a gift card. Most loyalty programs offer a set list of predetermined rewards chosen by the business. Integrating more choices into your rewards program can be exactly what you need to boost participation and build customer loyalty.
 
-![Screenshot of reward exchange option](https://res.cloudinary.com/saasquatch/image/upload/v1648662177/squatch-assets/Screenshot_2022-03-30_103003.png)
+![Screenshot of reward exchange option](/assets/images/reward-exchange/reward-exchange-option.png)
 
 To use Reward Exchange in your program, you can set up one or several reward exchange options and choose the rules around:
 
@@ -60,7 +60,7 @@ By default, any participant can see a reward exchange option. You can choose to 
 
 You can also set rules to determine which of your participants can use the exchange option. Participants with a Silver level might see that customers with a Gold level get more favorable exchange options, for example, which can motivate them to increase their engagement.
 
-![Screenshot of unavailable exchange option](https://res.cloudinary.com/saasquatch/image/upload/v1648577466/squatch-assets/Screenshot_2022-03-29_104539.png)
+![Screenshot of unavailable exchange option](/assets/images/reward-exchange/unavailable-exchange-option.png)
 
 ## Participant experience
 
