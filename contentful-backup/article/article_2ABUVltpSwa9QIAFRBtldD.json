@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "2ABUVltpSwa9QIAFRBtldD",
+    "type": "Entry",
+    "createdAt": "2022-11-30T00:00:03.236Z",
+    "updatedAt": "2023-07-28T17:52:31.396Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 111,
+    "revision": 5,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Automated Cash Payouts with PayPal",
+    "slug": "integrations/paypal/cash-payouts",
+    "highlights": "SaaSquatch’s integration with PayPal lets you reward your participants with cash in any currency supported by PayPal. ",
+    "content": "## Feature overview\nSaaSquatch’s integration with PayPal lets you give referral program participants who live in [eligible countries](https://developer.paypal.com/docs/payouts/standard/reference/country-feature/) with cash in [any currency supported by PayPal](https://developer.paypal.com/docs/reports/reference/paypal-supported-currencies/).  Cash payouts are W-9 compliant, and the setup process requires just a few steps for you and your participants. The only information we require from your participants is the email associated with their PayPal account. \n\nTo get started, you need a business PayPal account with access to the PayPal Developer website. After you connect your business PayPal account with SaaSquatch, you can choose the reward units that you want to be paid out via PayPal and then set up a regular payout schedule. Any Credit reward unit with a PayPal-supported currency is eligible. \n\n![Reward Unit Creation page](//images.ctfassets.net/s68ib1kj8k5n/fhhK9ZBdxl274WkUdtydI/1ccc1062a6bbce59b93f822ec289f1fd/image.png)\n\n> __Note:__ Clients are responsible for any currency conversion and [transaction fees](https://www.paypal.com/ca/webapps/mpp/merchant-fees) charged by PayPal. Not all currencies are eligible for conversion—check out PayPal’s [currency conversion documentation](https://developer.paypal.com/docs/payouts/standard/reference/currency-conversion/) for more details.\n\nReady to begin? See our doc on [Setting Up Cash Payouts with PayPal](/integrations/paypal/setting-up-cash-payouts).\n\n### Required client information\nTo use PayPal for cash payouts, you need a business PayPal account. SaaSquatch only supports connecting with one business PayPal account at a time. If you want to connect SaaSquatch with a different account, then we recommend either:\n- Pausing payouts temporarily\n- Waiting until your most recent batch of payouts is complete \n\nWe obtain information from PayPal by listening for webhooks associated with your \nPayPal account. If you change to a different account, then SaaSquatch will no longer authorize or process any webhooks from PayPal that are linked to the previous account. This means that the status of rewards in progress won’t be recorded or updated in SaaSquatch.\n\n### Required participant information\nCash payouts integrate with your widgets and microsites, making them easy for your participants to use. All your participants need to do is enter their PayPal email into your company’s [verified access](/topics/widget-types/#verified-access-widgets) program widget or microsite. We store the email address they provide as a custom field called `paypalEmail` that can be viewed on the participant’s profile. \n\nIf participants don’t provide their PayPal information to SaaSquatch, then their rewards will remain unredeemed and you’ll need to pay them out manually. We recommend communicating to your participants that they need to provide their PayPal email address to receive rewards.\n\n## Cash payouts functionalities\n\n### Scheduled payout dates\nAutomated cash payouts occur at regular intervals that you define as part of the setup process. The redemption interval can be set to days, weeks, or months. For monthly redemption, you can choose between payouts on the first or last day of the month, or a custom date in between.\n\nWe use the time zone settings for your tenant to determine when you’ve arrived at your next payout date. On your scheduled date, we  submit your payout batches to PayPal, and PayPal attempts to make the payments. The specific time of day can vary. \n\n### Payout batches\nOn your scheduled payout date, SaaSquatch will initiate a payout to any participants with a PayPal email that have accrued eligible rewards. \n\nWe group all of the individual payout items into currency-specific batches of up to 500 payout items so that they’re easier for you to track. For example, if your participants are being rewarded in USD, GBP, and CAD, then we submit separate batches for each currency to PayPal. You can view all of the batches we submitted in the Admin Portal by going to the Payout History section of the PayPal integration dashboard. \n\nThe overall payout for your scheduled payout date is limited to 15,000 payout items across all batches. If there are more than 15,000 items, then the ones remaining will be postponed until the next payout date.  \n\n> __Note:__ Each reward a participant earns is added to the batch as a separate payout item. If participants earn multiple rewards during a payout period, then each reward is submitted separately to PayPal and is subject to their transaction fee policy.\n\n## U.S. W-9 tax compliance for cash payouts\nParticipants residing in the U.S. are required by law to report their earnings if their annual rewards total more than $600. We’ve implemented a W-9 compliance feature that you can enable for your account to help—see [W-9 Compliance](/features/w-9-compliance/) for general information and setup instructions. ",
+    "robotsTag": [
+      "FOLLOW"
+    ],
+    "canonicalUrl": "<link rel=\"canonical\" href=\"URL from Contentful response\"/>"
+  }
+}

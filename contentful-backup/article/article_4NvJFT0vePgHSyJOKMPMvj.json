@@ -1,0 +1,52 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "4NvJFT0vePgHSyJOKMPMvj",
+    "type": "Entry",
+    "createdAt": "2019-02-20T23:17:45.895Z",
+    "updatedAt": "2021-11-04T18:14:25.879Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 8041,
+    "revision": 13,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Bulk Reward Redemption",
+    "slug": "guides/bulk-reward-redemption",
+    "highlights": "SaaSquatch allows you to process batch reward redemption for your Referral or Loyalty program. ",
+    "content": "When looking to provide manual rewards to your participants in bulk you can use the Available balance report. \n\n### Download Available Balance Report\nThe Available Balance Report lists all customers with available reward balances in your project. This list can be used to manually fulfill rewards within your external system. \n\n1. Head to your SaaSquatch account.\n2. In the upper right corner of your SaaSquatch account select either your Live or Test tenant.\n3. Click \"Rewards\" in the upper header of your SaaSquatch account.\n4. Click \"Bulk Redeem\" in the lower header.\n5. Under Section 1, Select which units you would like to filter on your Available Balance Report. \n6. Click \"Request Report\". \n7. Your report will download to your computer. \n8. You can use this report to manually fulfill rewards in your external system.\n\n### Update Available Balance Report\nAfter manually fulfilling rewards in your external system you will need to update the Available Balance Report. This will allow SaaSquatch to know which participants have had their rewards fulfilled.\n\n1. Using a spreadsheet application open the Available Balance Report. \n2. For each user you have manually fulfilled a reward for, update the valueToRedeem column. \n3. Save the Available Balance Report in .CSV format.\n\n> valueToRedeem can only be positive numbers. \n\n#### Redemption Notes\n\n- Reward balances need to be redeemed in the same units (*e.g*. `CENTS` or `CASH/USD`) that the balance is shown in (*i.e.* Dollars cannot be redeemed in amounts of cents).\n- Only changes to the `valueToRedeem` field will be processed during an import.  \n- Individual rewards within a reward balance will be redeemed in order of when they expire (`dateExpires`), and then when they were made available to the user (`dateGiven`). \n- Only rewards with a status of `AVAILABLE` will be redeemed.\n- Fractions of the fractional unit will be truncated on redemption (*e.g.* redemption for \"10.556 USD\" will only redeem \"10.55 USD\").\n\n### Upload the Updated Available Balance Report\nUpload your Available Balance Report with current reward balances back into SaaSquatch. This will ensure SaaSquatch knows and displays the correct information for each participant.\n\n1. Head to your SaaSquatch account.\n2. In the upper right corner of your SaaSquatch account select the same tenant you downloaded the Available Balance Report from.\n3. Click \"Rewards\" in the upper header of your SaaSquatch account.\n4. Click \"Bulk Redeem\" in the lower header.\n5. Under Section 3, Click \"Select & Upload\". \n6. Select your updated Avaialble Balance Report from your computer to import it into SaaSquatch. \n",
+    "tags": [
+      "Bulk reward",
+      "redemption ",
+      "bulk",
+      "rewards",
+      "manual rewards",
+      "manual fufillment"
+    ],
+    "seoDescription": "How to manually perform bulk reward redemption for participant's of your referral and loyalty programs..."
+  }
+}

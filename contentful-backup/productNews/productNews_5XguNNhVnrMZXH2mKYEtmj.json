@@ -1,0 +1,44 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "5XguNNhVnrMZXH2mKYEtmj",
+    "type": "Entry",
+    "createdAt": "2020-12-10T19:28:30.370Z",
+    "updatedAt": "2022-06-07T22:35:35.496Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 40,
+    "revision": 11,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "productNews"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "title": "Introducing the SaaSquatch + AppsFlyer Integration",
+    "datePublished": "2020-12-10",
+    "tags": [
+      "feature-release"
+    ],
+    "content": "Our new [AppsFlyer integration](https://docs.saasquatch.com/mobile/appsflyer/) helps you provide additional attribution, personalization, and analytics for mobile app referral programs by using AppsFlyer's OneLinks.\n\n### Key Integration Features:\n\n- __Boost conversion rates:__ Improve all aspects of your mobile app referral experience, including downloading, installing, and sharing.\n- __Create a frictionless user experience:__ Seamlessly direct referred users on mobile devices to download your app.\n- __Attribute each mobile referral and signup:__ Track Referred Users through the app store using AppsFlyer deferred deep linking and attribution data.\n\n**Ready to level up your mobile referral programs? Read our official announcement [here](https://www.saasquatch.com/blog/saasquatch-appsflyer-integration/)!**"
+  }
+}

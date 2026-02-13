@@ -1,0 +1,224 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "48ji72u659z5"
+      }
+    },
+    "id": "4GYESfoX5uqKuYuC2CgWAS",
+    "type": "Entry",
+    "createdAt": "2017-12-01T17:25:51.799Z",
+    "updatedAt": "2024-12-02T22:28:11.064Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 146,
+    "revision": 33,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "programTemplate"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "name": "Win Back",
+    "icon": "sqtch-prgrm-winback",
+    "categories": [
+      "reactivate"
+    ],
+    "slug": "win-back-program",
+    "summary": "Reactivate idle users with special offers.",
+    "longDescription": "A win back program re-engages lapsed or quiet customers by offering a reward if they do a specific action, such as re-activating a subscription or completing a new purchase.\n\nThis can be used to target old customers who haven’t made a purchase in a certain number of days or months, people who expressed interest but never bought, or even those who have explicitly cancelled their subscription. \n\n### Example:\n\nA company that delivers groceries to customers on a weekly basis wants to increase revenue by ensuring that orders are consistent.\n\nThe company launches a win back program to send a $10 credit to a customer if they haven't placed an order in the last month.\n\n### Features:\n\n* Set the amount of time after last purchase/cancellation to reward a user.\n* Choose to reward customers one time or every time they haven’t purchased within your time frame.\n* Target specific customer segments.\n* Customize the email sent to users when their reward is ready to use.",
+    "schema": {
+      "name": "Win Back Program",
+      "rules": {
+        "type": "object",
+        "title": "Program Rules",
+        "$schema": "http://json-schema.org/draft-06/schema#",
+        "required": [
+          "inactiveDuration",
+          "lastActionDateType"
+        ],
+        "properties": {
+          "rewardRules": {
+            "type": "object",
+            "title": "Reward Rules",
+            "required": [
+              "recurring"
+            ],
+            "properties": {
+              "recurring": {
+                "enum": [
+                  0,
+                  1
+                ],
+                "type": "integer",
+                "title": "Reward users:",
+                "default": 0,
+                "enumNames": [
+                  "Once",
+                  "Every time they meet the criteria"
+                ]
+              }
+            }
+          },
+          "earliestDate": {
+            "type": "string",
+            "title": "Reward existing users who completed a purchase after this date"
+          },
+          "inactiveDuration": {
+            "type": "string",
+            "title": "Reward users this long after their last purchase or custom event"
+          },
+          "userSegmentation": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "title": "Segment Names"
+            },
+            "title": "Segment",
+            "options": {
+              "disable_array_reorder": true
+            }
+          },
+          "lastActionDateType": {
+            "enum": [
+              0,
+              1
+            ],
+            "type": "integer",
+            "title": "Evaluate users last activity based on:",
+            "default": 0,
+            "enumNames": [
+              "Last purchase date",
+              "Custom"
+            ]
+          }
+        },
+        "dependencies": {
+          "lastActionDateType": {
+            "oneOf": [
+              {
+                "properties": {
+                  "lastActionDateType": {
+                    "enum": [
+                      0
+                    ]
+                  }
+                }
+              },
+              {
+                "required": [
+                  "lastActionCustomFieldName"
+                ],
+                "properties": {
+                  "lastActionDateType": {
+                    "enum": [
+                      1
+                    ]
+                  },
+                  "lastActionCustomFieldName": {
+                    "type": "string",
+                    "title": "Custom Field Name"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "emails": [
+        {
+          "key": "rewardEmail",
+          "name": "Reward Email",
+          "defaults": "1UI9b0Bo2AOOcY60MSs8g8",
+          "description": "We send this email to notify a user of their reward"
+        }
+      ],
+      "rewards": [
+        {
+          "key": "winbackReward",
+          "name": "Win Back Reward",
+          "description": "The reward given to users who have been inactive for the set amount of time"
+        }
+      ],
+      "summary": "Reward users after they have been inactive for a certain period of time",
+      "trigger": {
+        "eventKeys": []
+      },
+      "rulesUISchema": {
+        "ui:order": [
+          "lastActionDateType",
+          "*",
+          "inactiveDuration",
+          "earliestDate",
+          "rewardRules",
+          "userSegmentation"
+        ],
+        "rewardRules": {
+          "recurring": {
+            "ui:widget": "radio"
+          }
+        },
+        "earliestDate": {
+          "ui:widget": "date"
+        },
+        "inactiveDuration": {
+          "ui:widget": "Duration",
+          "ui:options": {
+            "doNotUseToggle": true
+          }
+        },
+        "userSegmentation": {
+          "ui:help": "Select which existing user segment(s) you would like to be enrolled in this program. (optional)",
+          "ui:field": "SegmentSelectWidget"
+        },
+        "lastActionDateType": {
+          "ui:widget": "radio"
+        },
+        "inactiveDurationType": {
+          "ui:widget": "radio"
+        }
+      },
+      "longDescription": ""
+    },
+    "url": "https://winback-program.services.prod.ssqt.io/",
+    "logo": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Asset",
+        "id": "1c8pBfdADm0m2eKikYsqaw"
+      }
+    },
+    "screenshot": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Asset",
+        "id": "66tzLV4hd6446GoYMsGiYQ"
+      }
+    },
+    "globallyInstallable": true,
+    "installableByTenants": [
+      "test_a8xm7ngkv4g2c",
+      "test_agngayvesirnb",
+      "test_at5aibor5ksct",
+      "test_apqdxu77ojijm"
+    ],
+    "tags": [
+      "retention"
+    ]
+  }
+}

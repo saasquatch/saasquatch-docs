@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "2iqgARsCRaemqqyggi80K2",
+    "type": "Entry",
+    "createdAt": "2016-09-14T21:57:48.392Z",
+    "updatedAt": "2023-02-28T18:42:54.919Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 4214,
+    "revision": 12,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Developer Guide",
+    "title": "API Open Endpoints",
+    "slug": "api/openendpoints",
+    "highlights": "Open Endpoints are API Calls designed for simplified use of the SaaSquatch REST API functionality in client applications like the Mobile widget and SDK.",
+    "content": "### Use Cases\n\nThe primary use case for the Open Endpoints is in **client-server** interactions such as through a mobile app. These actions typically involve looking up information about a referred user or who referred them.\n\nSome examples include:\n- [Lookup a referral code](/api/methods/#open_validate_code) after app install to display a dialog about who referred them\n- [Register a new user](/api/methods/#open_create_user) in the referral program\n- [Lookup share links](/api/methods/#open_get_user) to display a custom sharing dialog\n- [Lookup referrals](/api/methods/#open_list_referrals) to display a list of referred friends\n\n### Authentication Options\nThe Open Enpoints provide flexible authentication options: \n- *Authenticated* - For Open Endpoint calls that reqire authentication there are two options:\n  - *JWT* - JWTs can be used for requests that require authentication. \n  - *API Key* - Your tenant's API key can also be used for requests that require authentication. \n- *Unauthenticated* - Some Open Endpoints do not require any form of authentication.\n\n#### Authentication Requirements by Method\n\nThe following table summarizes the Open Endpoint methods that are available for use, and their required level of authentication:\n\n<table style=\"white-space: nowrap\" class=\"table\">\n<thead>\n<tr>\n    <th >\n        Open Endpoint method\n    </th>\n    <th>\n        Authentication required\n    </th>\n</tr>\n</thead>\n<tbody>\n<tr>\n    <td class=\"docs-monospace\"><a href=\"/api/methods#open_create_user\">Create a user</a></td>\n    <td>\n        Requires Write Token or API key\n    </td>\n</tr>\n<tr>\n    <td class=\"docs-monospace\"><a href=\"/api/methods#open_user_upsert\">Upsert a user</a></td>\n    <td>\n        Requires Write Token or API key\n    </td>\n</tr>\n<tr>\n    <td class=\"docs-monospace\"><a href=\"/api/methods#open_get_user\">Lookup a user</a></td>\n    <td>\n        Requires Read Token or API key\n    </td>\n</tr>\n<tr>\n    <td class=\"docs-monospace\"><a href=\"/api/methods#open_get_user_by_code\">Lookup a user by referral code</a></td>\n    <td>\n        No authentication required.\n    </td>\n</tr>\n<tr>\n    <td class=\"docs-monospace\"><a href=\"/api/methods#open_validate_code\">Lookup a referral code</a></td>\n    <td>\n        No authentication required.\n    </td>\n</tr>\n<tr>\n    <td class=\"docs-monospace\"><a href=\"/api/methods#open_apply_code\">Apply a referral code</a></td>\n    <td>\n        Requires Write Token or API key.\n    </td>\n</tr>\n<tr>\n    <td class=\"docs-monospace\"><a href=\"/api/methods#open_list_referrals\">List referrals</a></td>\n    <td>\n        Requires Read Token or API key.\n    </td>\n</tr>\n</tbody>\n</table>\n\n### Authentication with JWT\nAuthentication with JWTs should be used in **client-server**, not server-server communication.\n\nThe SaaSquatch API accepts two types of JWTs: *read tokens* and *write tokens*. Read tokens are intended to validate a request to lookup information about an existing user/account while write tokens are intended to be used when adding or updating information about a user/account. \n\nThe format of the JWT payloads required for read and write tokens are outlined below:\n\n<table class=\"table\">\n<tr>\n    <th>\n        Read Token Payload\n    </th>\n    <th>\n        Write Token Payload\n    </th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td>\n  The payload of a read token is based on the <code>user id</code> and <code>account id</code>:\n  <pre><code class=\"lang-json\">{\n  \"user\": {\n      \"id\": \"adfgafdg\",\n      \"accountId\": \"adfklajdnrerereACdsedf\"\n    },\n    \"exp\": 1462327764 //optional date in seconds since the epoch\n}</code></pre>\n  </td>\n  <td>\n    The payload of a write token can contain the complete user object:\n  <pre><code class=\"lang-json\">{\n  \"user\": {\n      \"id\": \"adfgafdg\",\n      \"accountId\": \"adfklajdnrerereACdsedf\",\n      \"email\": \"bob@example.com\",\n      \"firstName\": \"Bob\",\n      \"lastName\": \"Testerson\", //optional\n      \"locale\": \"en_US\", //optional\n      \"referralCode\": \"BOBTESTERSON\", //optional\n      \"imageUrl\": \"\" //optional\n    },\n    \"exp\": 1462327764 //optional date in seconds since the epoch\n}</code></pre>\n</td>\n</tr>\n</tbody>\n</table>\n\n#### Building the JWT\n> The process for building the JWT is outlined on our [JSON Web Tokens page](/topics/json-web-tokens).\n\nMake sure you that you are trying to sign the correct format of the payload (Read Token vs Write Token) for your specific Open Endpoint API call.\n\n### Authentication with API Key\nAuthentication with your API key should be done when conducting **server-server** communication.\n\n> Authenticating Open Endpoint calls with an API key is done in the same way as with our standard API calls, details for which can be found in [API Authentication](/api/authentication/)."
+  }
+}

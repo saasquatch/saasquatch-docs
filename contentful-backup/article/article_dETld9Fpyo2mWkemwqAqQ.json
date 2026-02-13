@@ -1,0 +1,88 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "dETld9Fpyo2mWkemwqAqQ",
+    "type": "Entry",
+    "createdAt": "2016-08-31T22:43:31.607Z",
+    "updatedAt": "2023-02-28T18:50:48.537Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 790,
+    "revision": 14,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Security Management System",
+    "slug": "success/referral-security",
+    "coverImage": {
+      "metadata": {
+        "tags": [],
+        "concepts": []
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "s68ib1kj8k5n"
+          }
+        },
+        "id": "5qA2Act0LSmwMkmWa8wAcA",
+        "type": "Asset",
+        "createdAt": "2017-09-15T23:55:38.150Z",
+        "updatedAt": "2017-09-15T23:55:38.150Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 2,
+        "revision": 1,
+        "locale": "en-US"
+      },
+      "fields": {
+        "title": "rs-3-tiered-security short",
+        "file": {
+          "url": "//images.ctfassets.net/s68ib1kj8k5n/5qA2Act0LSmwMkmWa8wAcA/401110b596df05a7f6f4f009810b8610/rs-3-tiered-security_short.png",
+          "details": {
+            "size": 35739,
+            "image": {
+              "width": 875,
+              "height": 250
+            }
+          },
+          "fileName": "rs-3-tiered-security_short.png",
+          "contentType": "image/png"
+        }
+      }
+    },
+    "highlights": "SaaSquatch's Security Management System protects you from unwanted referral activity through a wide range of advanced security algorithms.",
+    "content": "><span class=\"label\">Classic only</span> **Note:** This page details a feature currently only available for our Classic referral programs. \n\n### What is our Security Management System?\nThe rewards offered as part of your referral program can be the target of unwanted or fraudulent activity. Our Security Management System automatically protects your referral program against suspicious involvement. Our system actively monitors all incoming referrals and analyzes them against a range of criteria to check for potentially unauthorized activity. Along with this intelligent referral moderation, you have the ability to change a wide range of settings allowing you to customize how you want your referral program to work. \n### What does our Security Management System detect?\nOur Security Management System employs advanced algorithms to check incoming referrals for: \n- Similar Name\n- Similar Email Address\n- Same IP Address\n- High Rate of Referrals \n- Temporary Email Address Domains\n\n### How do I use it?\nYou referral program’s default referral moderation settings will check for fraudulent activity and highlight that activity to you on the Security page in the portal, but take no direct action. You can then choose whether or not you would like to allow our advanced fraud management system to act on potentially fraudulent referrals.\n\nFor a simple and secure referral program select the option to have referrals that have been flagged as potentially fraudulent set to pending. This change is found on the General tab of the Program Security page’s Security Options. \n\n<div class=\"row-fluid\">\n<div class=\"span8\"><div>\n<a class=\"docs-lightbox\" href=\"//images.ctfassets.net/s68ib1kj8k5n/14xOJOkJ5b4XKPQi0EHFd9/f96f12e76257b5ea6569887320dc1479/Screen_Shot_2019-10-03_at_3.50.53_PM.png\" data-lightbox=\"example-set\">\n<img src=\"//images.ctfassets.net/s68ib1kj8k5n/14xOJOkJ5b4XKPQi0EHFd9/f96f12e76257b5ea6569887320dc1479/Screen_Shot_2019-10-03_at_3.50.53_PM.png\" alt=\"Security Options\"><div><i class=\"fa fa-eye\"></i> Preview</div>\n  </div>\n\n  </div>\n  <div class=\"span4\">\n  <div>\n  <a class=\"docs-lightbox\" href=\"//images.ctfassets.net/s68ib1kj8k5n/6IJLKES6qIeio2qUaCkmSg/d86571793de0effe6adda75282fd8747/General_Security_Options_-_Pending.png\" data-lightbox=\"example-set\"><img src=\"//images.ctfassets.net/s68ib1kj8k5n/6IJLKES6qIeio2qUaCkmSg/d86571793de0effe6adda75282fd8747/General_Security_Options_-_Pending.png\" alt=\"General Security Options - Pending\">\n<div><i class=\"fa fa-eye\"></i> Preview</div>\n</div>\n    </div>\n  </div>\n\n### Additional Resources\nMore information about changes you can make to the Security Management System for your referral program, in-depth details about the mechanics of the process our fraud system goes through, the specifics of the criteria being checked, and how to build your own additional referral moderation functionality can be found in our developer documentation on our [Security Management System](/developer/referral-security).\n\nTo learn more about Referral Program Fraud Prevention, Detection, and Response take a look at our [in-depth article](/fraud-and-security/) on each of these security topics.",
+    "seoDescription": "Learn how SaaSquatch's Security Management System protects you from unwanted referral activity through a wide range of advanced security algorithms."
+  }
+}

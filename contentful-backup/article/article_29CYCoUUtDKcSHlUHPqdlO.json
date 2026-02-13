@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "29CYCoUUtDKcSHlUHPqdlO",
+    "type": "Entry",
+    "createdAt": "2023-02-07T18:31:17.928Z",
+    "updatedAt": "2023-02-07T21:23:03.246Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 156,
+    "revision": 7,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Managing Microsite Registration Form Submissions",
+    "slug": "building-programs/microsites/registration-forms",
+    "highlights": "When participants register for your SaaSquatch microsite, send the information to Salesforce to keep track of potential leads and inform targeted email campaigns.",
+    "content": "## Overview\n\nWhen participants register for your program through your microsite, we collect and store their registration data in the SaaSquatch Admin Portall. You can view the collected data under __Data > Forms__ and use it to perform different actions, like:\n- Creating or updating a lead or contacct in Salesforce, if you have this integration set up\n- Notifying a [team member](/learning-saasquatch/admin-portal/team-member-roles) when someone signs up through your microsite\n- Adding newly-registered participants to a specific [user segment](/features/user-segmentation/)\n\nThis guide shows you how to set up an action that sends data submitted to your form directly to Salesforce, using the example of creating a Lead. We also cover how to set rules about submission handling and view all submissions to your form. \n\n## Creating a Salesforce lead from registration form data \n\n> __Before you begin__: You'll need an existing microsite and an active Salesforce integration to continue with this process. If you're not sure whether your organization has a Salesforce integration set up, then check the __Settings__ page for integration information.\n\n<ol> \n\t<li> Open your forms settings.\n\t\t<ol> \n\t\t\t<li> Sign in to the SaaSquatch Admin Portal. </li>\n\t\t\t<li> Go to <strong>Data > Forms </strong>. This page displays a list of all forms you've created in this tenant, including the microsite registration form. </li>\n\t\t\t<li> Open the <img src=\"//images.ctfassets.net/s68ib1kj8k5n/2E83V00eBHdtuTlxNuzovQ/ad04f7d7f12fb87fe2e7aaf06f5a8541/More_menu.png\"> More menu for the Microsite Registration form. </li>\n\t\t\t<li> Click <strong>Edit</strong> to open the Update Form page. </li>\n\t\t</ol>\n\t</li>\n<details> \n<summary> Troubleshooting: The list of forms doesn't include a Microsite Registration form</summary>\n  Make sure that:\n  <ul>\n    <li>You have <a href=\"https://docs.saasquatch.com/building-programs/microsites/microsites-overview\">created a microsite</a> on this tenant.</li>\n    <li>Your microsite has a registration page. If it doesn't, then you'll need to <a href=\"https://docs.saasquatch.com/building-programs/microsites/customizing-microsites#create-a-new-layout-or-page\">add a new page</a> and apply the Registration Page template.\n    </li>\n  </ul>\n</details> \n\t<li> Start a new lead submission action.\n\t\t<ol>\n\t\t\t<li> Click the pencil icon under the <strong>Submit actions</strong> heading.</li>\n\t\t\t<li> Click <strong> + Add Action</strong>. </li>\n\t\t\t<li> Select the <strong>Lead submit</strong> action type. </li>\n\t\t</ol>\n\t</li>\n\t<li> Create a filter under <strong>Filter records</strong> to help our system identify whether a matching Lead or Contact already exists in Salesforce. If we do find a matching record, we'll update it instead of creating a duplicate Lead.\n\t\t<ol>\n\t\t\t<li>Enter the name of the Salesforce field in the <strong>Field</strong> box.</li>\n\t\t\t<li>Enter the name of the SaaSquatch field in the <strong>Equals</strong> box. All SaaSquatch fields start with <code>data.</code> (including the period).</li>\n\t\t</ol>\n    <details><summary>Example</summary> To filter records in Salesforce by email, enter <code>Email</code> in the <strong>Field</strong> box and <code>data.email</code> in the <strong>Equals</strong> box. This will map the email from your form submission to the Email field on Salesforce objects for filtering.</details>\n\t</li>\n\t<li>Under <strong>Create or update a Lead</strong>, map your Salesforce and SaaSquatch data fields to decide which information SaaSquatch sends to Salesforce.\n\t\t<ol>\n\t\t\t<li>Enter the name of the Salesforce field in the <strong>Field</strong> box.</li>\n\t\t\t<li>Enter the name of the SaaSquatch field in the <strong>Value</strong> box. All SaaSquatch fields start with <code>data.</code> (including the period).</li>\n\t\t</ol>\n    <details><summary>Example</summary> To send the participant's email address to Salesforce, enter <code>Email</code> in the <strong>Field</strong> box and <code>data.email</code> in the <strong>Value</strong> box. This will map the email field from your form to the Email field in Salesforce.</details>\n\t</li>\n\t<li>Under <strong>Update a Contact</strong>, map your Salesforce and SaaSquatch fields so that we know what to update in Salesforce when we find a matching record.\n\t\t<ol>\n\t\t\t<li>Enter the name of the Salesforce field in the <strong>Field</strong> box.</li>\n\t\t\t<li>Enter the name of the SaaSquatch field in the <strong>Equals</strong> box. All SaaSquatch fields start with <code>data.</code> (including the period).</li>\n\t\t</ol>\n    <details><summary>Example</summary> To update the participant's email address in Salesforce, enter <code>Email</code> in the <strong>Field</strong> box and <code>data.email</code> in the <strong>Value</strong> box.</details>\n\t</li>\n\t<li>Click <strong>+ Add Action</strong> if you want to do anything else with the data.</li>\n\t<li>Click <strong>Save</strong>.</li>\n\t<li>Click <strong>Update</strong> at the bottom of the page to save your changes.</li>\n</ol>\n\n## Setting submission handling rules\n\nYou can set submission handling rules for your form so that someone on your team is notified whenever there’s a new submission attempt. This can be useful if you want to track when you receive new participants, or get notified when someone attempted to register but the submission failed.\n\nYou also have the option to automatically add or remove newly-updated participants from a specific user segment, e.g., \"Affiliates,\" \"Leads,\" or another category.\n\nThe steps below are optional.\n\n<ol> \n\t<li> Open your forms settings.\n\t\t<ol> \n\t\t\t<li> Sign in to the SaaSquatch Admin Portal. </li>\n\t\t\t<li> Go to <strong>Data > Forms </strong>. This page displays a list of all forms you've created in this tenant, including the microsite registration form. </li>\n\t\t\t<li> Open the <img src=\"//images.ctfassets.net/s68ib1kj8k5n/2E83V00eBHdtuTlxNuzovQ/ad04f7d7f12fb87fe2e7aaf06f5a8541/More_menu.png\"> More menu for the Microsite Registration form. </li>\n\t\t\t<li> Click <strong>Edit</strong> to open the Update Form page. </li>\n\t\t</ol>\n\t</li>\n\t<li> Choose who receives an email when:\n\t\t<ul>\n\t\t\t<li>Someone signs up successfully</li>\n\t\t\t<li>An attempted submission fails</li>\n\t\t</ul>\n\t</li>\n\t<li>Choose the user segment (if any) that the participant should be added to after registering.</li>\n\t<li>(Advanced) Map user upsert fields, if you want participant fields to be set to specific values or static data during registration.\n\t\t<ul>\n\t\t\t<li><strong>Note</strong> You’ll need to write a JSONata expression to do user upsert field mapping.</li>\n\t\t</ul>\n\t</li>\n</ol>\n\n## Viewing submissions to your form\n\nYou can see the details of all attempted submissions on the __Forms__ page. Each individual submission will show a status of either `Success` or `Failed`. We recommend consulting this page if you need to troubleshoot why a submission to the form failed, or why one of your submission actions didn’t go through to Salesforce as intended.\n\n<ol>\n\t<li> Sign in to the SaaSquatch Admin Portal. </li>\n\t<li> Go to <strong>Data > Forms </strong>.</li>\n\t<li> Click <strong>View Submissions</strong>.</li>\n\t<li> Open the <img src=\"//images.ctfassets.net/s68ib1kj8k5n/2E83V00eBHdtuTlxNuzovQ/ad04f7d7f12fb87fe2e7aaf06f5a8541/More_menu.png\"> More menu for the Microsite Registration form.</li>\n\t<li> Click <strong>View Details</strong>.</li>\n\t<li> Review the <strong>Actions</strong> to see the history of events for this submission. \n\t\t<ul>\n\t\t\t<li> <strong>Note:</strong> If you have set up a submission action to send the registration information to Salesforce, then the Actions history shows details about how Salesforce handled the data. </li>\n\t\t</ul>\n\t</li>\n</ol>\n",
+    "robotsTag": [
+      "FOLLOW"
+    ],
+    "canonicalUrl": "<link rel=\"canonical\" href=\"URL from Contentful response\"/>"
+  }
+}

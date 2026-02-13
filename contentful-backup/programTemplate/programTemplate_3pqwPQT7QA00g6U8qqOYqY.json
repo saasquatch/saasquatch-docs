@@ -1,0 +1,129 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "48ji72u659z5"
+      }
+    },
+    "id": "3pqwPQT7QA00g6U8qqOYqY",
+    "type": "Entry",
+    "createdAt": "2017-12-05T04:00:54.795Z",
+    "updatedAt": "2024-02-15T19:12:15.737Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 129,
+    "revision": 29,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "programTemplate"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "name": "Repeat Purchase Offer Program",
+    "slug": "repeat-purchase",
+    "summary": "Reward customers for making multiple purchases.",
+    "longDescription": "### Use Cases\n\nThe Repeat Purchase Offer Reward Program is perfect for: \n\n- Encouraging users to make multiple purchases\n- Increasing customer activation \n- Rewarding customer loyalty\n\n\n### Quickstart\n\n1. Select the number of purchases required for a customer to receive a reward. \n \n2. Choose a value and type of reward you would like to provide to the eligible customer. \n \n3. Configure the email sent to customers who successfully earned a reward for their repeat purchasing. (This email can also be disabled)\n \n4. Enable the program from the Program Management screen.\n\n### How it works\nWhen a participant makes a purchase it is registered in the [SaaSquatch system](https://docs.referralsaasquatch.com/developer/squatchjs/). \n\nThe SaaSquatch system monitors whether this user made the required number of purchases set in the Program Reward Rules. If the customer has purchased the required number of times, they are notified by email (if enabled) that the reward has been added to their account balance and is available for their use. \n\n### Required User Information\nThe *Repeat Purchase Offer Program* relies on a [custom user field](https://docs.referralsaasquatch.com/features/custom-user-fields/), typically called `purchaseNumber`, to know how many purchases a user has made. With this information the program is able to evaluate whether they should receive a reward for the number of purchase they have made (i.e. get an extra reward after their 6th purchase).\n\n### Supported Rewards\nSaaSquatch's API-based programs provide the power and flexibility to customize the type of reward that you would like to provide to customers who have purchased the required number of times. These include:\n- Dollar Credit\n- Percent Discount\n- Points\n- <span style=\"display: inline-block; background-color:#f89406;\" class=\"label\">New</span> Custom Reward Code Fueltank\n- Arbitrary Rewards\n\n### Example Email\n\n![Repeat Purchase](//images.contentful.com/1th1ybv0b2n4/3EbfFuPl0QuaU86iQO8cco/acfceb96d5f7635c0ad5b170ad8aec5d/Repeat_Purchase.png)",
+    "schema": {
+      "name": "Repeat Purchase Offer Reward",
+      "rules": {
+        "type": "object",
+        "title": "When a user makes X number of purchases, send a reward.",
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "required": [
+          "purchaseNumber",
+          "customField"
+        ],
+        "properties": {
+          "customField": {
+            "type": "string",
+            "title": "Name of Custom Field",
+            "default": "purchaseNumber",
+            "description": "Enter the name of the custom field where you will store the number of purchases the customer has made."
+          },
+          "purchaseNumber": {
+            "type": "integer",
+            "title": "Number of Purchases",
+            "default": 2,
+            "description": "Enter the number of purchases required to trigger a reward."
+          },
+          "continuousReward": {
+            "type": "boolean",
+            "title": "Select if you would like to continously reward after every X purchases."
+          }
+        }
+      },
+      "emails": [
+        {
+          "key": "repeatPurchaseOfferEmail",
+          "name": "Reward Created Email",
+          "defaults": "repeatPurchaseOfferEmailId",
+          "description": "We send this email when a new reward is created by this program"
+        }
+      ],
+      "rewards": [
+        {
+          "key": "repeatPurchaseOfferReward",
+          "name": "Repeat Purchase Offer Reward",
+          "description": "This reward is given to people when they make multiple purchases."
+        }
+      ],
+      "summary": "Reward customers for making multiple purchases.",
+      "rulesUISchema": {
+        "ui:order": [
+          "customField",
+          "purchaseNumber",
+          "continuousReward"
+        ],
+        "customField": {},
+        "purchaseNumber": {
+          "ui:widget": "updown"
+        },
+        "continuousReward": {}
+      },
+      "longDescription": ""
+    },
+    "contentfulIdMapping": {
+      "repeatPurchaseOfferEmailId": "5PMzK5e5b2U8U4MGEK6oOW"
+    },
+    "url": "https://repeat-purchase-program.services.prod.ssqt.io/",
+    "logo": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Asset",
+        "id": "7oeNj29iCWiEamyaGUYMmi"
+      }
+    },
+    "screenshot": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Asset",
+        "id": "5dafgckoNaiACG2EQ6QEAc"
+      }
+    },
+    "globallyInstallable": false,
+    "installableByTenants": [
+      "test_a8xm7ngkv4g2c",
+      "test_agngayvesirnb",
+      "test_at5aibor5ksct",
+      "test_acm2od98u6r0z"
+    ],
+    "tags": [
+      "activation"
+    ]
+  }
+}

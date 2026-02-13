@@ -1,0 +1,97 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "5YFjHxdPYgZcA7D0ish6je",
+    "type": "Entry",
+    "createdAt": "2022-03-07T22:03:24.185Z",
+    "updatedAt": "2022-03-07T22:03:24.185Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 17,
+    "revision": 1,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "integration"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "title": "SFTP Import Integration",
+    "integrationName": "SFTP Import",
+    "slug": "sftp",
+    "logo": {
+      "metadata": {
+        "tags": [],
+        "concepts": []
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "s68ib1kj8k5n"
+          }
+        },
+        "id": "4xcpmocHGJyM8qFVSsmFhP",
+        "type": "Asset",
+        "createdAt": "2022-03-07T21:59:57.632Z",
+        "updatedAt": "2022-03-07T21:59:57.632Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 4,
+        "revision": 1,
+        "locale": "en-US"
+      },
+      "fields": {
+        "title": "SFTP Import",
+        "description": "",
+        "file": {
+          "url": "//images.ctfassets.net/s68ib1kj8k5n/4xcpmocHGJyM8qFVSsmFhP/da4f20bca7d2a811abbebb07299f5f72/Group_20.png",
+          "details": {
+            "size": 4991,
+            "image": {
+              "width": 400,
+              "height": 400
+            }
+          },
+          "fileName": "Group_20.png",
+          "contentType": "image/png"
+        }
+      }
+    },
+    "integrationDescription": "SFTP is a secure standard for transfering files. The SFTP Import Integration allows you to upload import files to a SaaSquatch-managed SFTP server for bulk processing.",
+    "highlights": "The SFTP Import Integration allows you to upload import files to a SaaSquatch-managed SFTP server for bulk processing.",
+    "keyFeatures": [
+      "Automate the import of bulk data from external systems"
+    ],
+    "moreInfo": [
+      "[SFTP Configuration Guide](/integrations/sftp)"
+    ],
+    "tags": [
+      "in-directory"
+    ]
+  }
+}

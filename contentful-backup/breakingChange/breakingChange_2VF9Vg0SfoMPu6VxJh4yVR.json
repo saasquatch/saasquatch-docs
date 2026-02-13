@@ -1,0 +1,42 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "2VF9Vg0SfoMPu6VxJh4yVR",
+    "type": "Entry",
+    "createdAt": "2021-01-25T06:25:33.011Z",
+    "updatedAt": "2021-01-25T06:25:33.011Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 53,
+    "revision": 1,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "breakingChange"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "deadline": "2021-03-01",
+    "title": "Internet Explorer 11 End of Life",
+    "description": "As of today, Jan 25 2021, we will stop developing new feature to be compatible with Internet Explorer 11. After March 1, 2021 we will be removing support for Internet Explorer 11 in our products and services. This means that we will not put in any engineering effort to ensure that the SaaSquatch portal, our widgets, emails, documentation, or website will work with Internet Explorer 11. We may specifically warn, block or redirect anyone using an unsupported browser to information about how they can upgrade. It is recommended that organizations using Internet Explorer 11 upgrade to a newer browser such as Edge, Firefox or Chrome.",
+    "timeline": "gantt\n    IE 11 End of Life :a1, 2021-01-24, 2021-03-01"
+  }
+}

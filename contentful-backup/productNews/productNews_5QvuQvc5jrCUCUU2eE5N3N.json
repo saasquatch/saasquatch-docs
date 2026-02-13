@@ -1,0 +1,45 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "5QvuQvc5jrCUCUU2eE5N3N",
+    "type": "Entry",
+    "createdAt": "2020-01-06T22:36:40.698Z",
+    "updatedAt": "2020-01-06T22:36:40.698Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 8,
+    "revision": 1,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "productNews"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "title": "Program Setup Flow",
+    "datePublished": "2019-05-08",
+    "tags": [
+      "feature-release",
+      "product-update"
+    ],
+    "content": "Our customers spoke up and we listened: Welcome to our newly designed **Program Setup Flow**!\n        \nWe set out to create a way for admins and marketers to easily configure and launch new programs on their own. When creating a new program, you will now be led step-by-step through the process to ensure that all required components are set up and ready to go. \n        \nWhile these changes will make the platform more accessible, they are just the beginning as we strive to make SaaSquatch your go-to for customer loyalty and incentive programs."
+  }
+}

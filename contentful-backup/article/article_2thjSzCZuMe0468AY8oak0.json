@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "2thjSzCZuMe0468AY8oak0",
+    "type": "Entry",
+    "createdAt": "2019-03-15T22:31:52.481Z",
+    "updatedAt": "2023-05-17T00:00:04.011Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 9634,
+    "revision": 12,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Program Mechanisms",
+    "slug": "growth/ga-mechanisms",
+    "highlights": "An overview of the key functional pieces that make up a SaaSquatch Growth Automation program. ",
+    "content": "While the features, goals, and intended audience of each program can be extremely varied, there are a number of core functional components that are included in every program. This article outlines what each of these components are, and how they work together to make each program function.\n\n### User Events\nOne of the foundational pieces of the SaaSquatch platform is the ability to pass SaaSquatch User Events about the activity of participants within your product.\n\n<div class=\"bs-callout bs-callout-default no-anchor\">\n  <h4>Definition</h4>\nCustom User Events are pieces of information you choose to send the SaaSquatch system (using our API or Javascript library) regarding the activity of your customers within your business. \n</div>\n\nAny time a user interacts with your system, you would send SaaSquatch an event with details about this interaction. \n\nSome examples of User Events to send to SaaSquatch include:\n- [Purchases](/developer/purchase-object/) or Transactions\n- Subscription Creation/Update/Removal\n- Mailing List Subscription\n\nWith each of these (and any other events you pass over), the more information you provide with the User Event, the more granual control is available in the SaaSquatch system when processing these events. \n\nThese events are then leveraged to update user information and trigger actions within your running programs. \n\n> __Note:__ Events older than 2 years are not accessible via API or visible on the Participants page in the Admin Portal. However, you can continue to access historical data by running an [event export report](/running-programs/creating-an-event-export-report). \n\n#### Custom Fields\n\nAn alternative means for collecting the information of your users is through Custom User Fields. These are fields specified as part of the user object and can also be used to trigger conversion and fulfillment in programs. For more information, refer to our [Custom User Fields page](/features/custom-user-fields).\n\n### Program Rules\n<div class=\"row-fluid\">\n  <div class=\"span8\">\n  <p>\n\nEach time a User Event or Custom Field is sent to SaaSquatch, the system evaluates this event/field against each of your configured programs. If the event/field and its contents, match the configured program rules, then that will trigger further action by the SaaSquatch system.\n\n<p>SaaSquatch programs are able to perform actions (e.g. send emails, generate rewards) based on these configured criteria. See to the right for a simple reward-focused flowchart based off of the idea of a 'purchase' event, and below for a general overview of the many flows possible with programs:\n\n  </div>\n  <div class=\"span4\">\n\n  <div>\n<a class=\"docs-lightbox\" href=\"//images.ctfassets.net/s68ib1kj8k5n/17iquWY0xEaA9CSjAXvy0F/f7a34a7ed2fd0c470fb3eb4688d31b5f/Program_Rules.png\" data-lightbox=\"example-set\">\n<img src=\"//images.ctfassets.net/s68ib1kj8k5n/17iquWY0xEaA9CSjAXvy0F/f7a34a7ed2fd0c470fb3eb4688d31b5f/Program_Rules.png\" alt=\"Program Rules\">\n  <div><i class=\"fa fa-eye\"></i> Preview</div>\n</a>\n</div>\n\n  </div>\n</div>\n\n![Generic Program Flowchart](//images.ctfassets.net/s68ib1kj8k5n/2IY64iikwWAF92FEgTg3G4/9f4c168b79ac4b510e64193313840f88/Generic_Program_Flowchart.png)\n\n> Curious about pre-configured rule options? **Check out our [Growth Automation program library](/program/library/) for more information on what each turnkey program can do.**\n\n### Widgets\n<div class=\"row-fluid\">\n  <div class=\"span8\">\n  <p>\n\nDriving user engagement with each of your Growth Automation programs is an important component of increasing participation. One of the most powerful ways to drive this engagement is through the use of visual pieces displayed to your users within your product/behind your web login.\n\n<p>Powered by our <a href=\"/developer/squatchjs\">squatch.js Javascript Library</a>, the SaaSquatch system provides widgets for a number of our Growth Automation programs (e.g. referrals, partners, affiliates), including both verified access and instant access widgets. See our doc on <a href=\"/topics/widget-types/\">widget types</a> for more information.\n\n  <p>These widgets can be placed on a page, or underneath a button within your product/behind your login, and provide an easy way to facilitate this engagment. The messaging, layout, and design of these widgets can be customized to match your brand, and the type of program they are being used to drive engagement for. \n\n  </div>\n  <div class=\"span4\">\n\n  <div>\n<a class=\"docs-lightbox\" href=\"//images.ctfassets.net/s68ib1kj8k5n/2afkGfxD3bwYhZgma9rH3O/0afa45ac14132a1404bd1581e001e2b9/ui_screenshot-unedited.png\" data-lightbox=\"example-set\">\n<img src=\"//images.ctfassets.net/s68ib1kj8k5n/2afkGfxD3bwYhZgma9rH3O/0afa45ac14132a1404bd1581e001e2b9/ui_screenshot-unedited.png\" alt=\"Self Serve Widget Editor UI - Non-Annotated\">\n  <div><i class=\"fa fa-eye\"></i> Preview</div>\n</a>\n</div>\n\n  </div>\n</div>\n\n### Emails\n<div class=\"row-fluid\">\n  <div class=\"span8\">\n\n<p>The SaaSquatch system is able to send out notification emails to participants in each of your SaaSquatch Growth Automation programs. From within the SaaSquatch portal you can preview, modify, and edit these notification email templates.\n\n<p>Each of these email templates can be customized in our drag-and-drop email editor, where you can adjust the layout, design, messaging, and images in each of the program’s available email templates. \n\n <p> Learn more about the email functionality available in the SaaSquatch system in our <a href=\"/topics/email\">email guide</a>.\n\n  </div>\n  <div class=\"span4\">\n\n  <div>\n<a class=\"docs-lightbox\" href=\"//images.ctfassets.net/s68ib1kj8k5n/3BGdQQe5MQSAW6UCeS0EEM/1ad17199c3aeedae91f9e0dd62ae8f1d/Email_Editor.png\" data-lightbox=\"example-set\">\n<img src=\"//images.ctfassets.net/s68ib1kj8k5n/3BGdQQe5MQSAW6UCeS0EEM/1ad17199c3aeedae91f9e0dd62ae8f1d/Email_Editor.png\" alt=\"Email Editor\">\n  <div><i class=\"fa fa-eye\"></i> Preview</div>\n</a>\n</div>\n\n  </div>\n</div>\n\n### Rewards\n<div class=\"row-fluid\">\n  <div class=\"span7\">\n  <p>The SaaSquatch system is also able to provide rewards to successful program participants. These rewards can be used to rewards specific behaviour within your product/platform, or encourage future activity by the user. \n\n   <p>The SaaSquatch system offers a wide range of reward options to cater to different business models, cutomer segments, and stages of the customer lifecycle. \n\n<p>Learn more about the <a href=\"/feature/rewards\">available reward options</a> on our Growth Automation platform, and in each of our <a href=\"/program/library\">available programs</a>. \n\n  </div>\n  <div class=\"span5\">\n\n  <div>\n<a class=\"docs-lightbox\" href=\"//images.ctfassets.net/s68ib1kj8k5n/6oSpvFaYU41CR56thTFZCz/412cae77ebe2b777075d71d4ee695894/Program_Rewards_Config.png\" data-lightbox=\"example-set\">\n<img src=\"//images.ctfassets.net/s68ib1kj8k5n/6oSpvFaYU41CR56thTFZCz/412cae77ebe2b777075d71d4ee695894/Program_Rewards_Config.png\" alt=\"Program Rewards Config\">\n  <div><i class=\"fa fa-eye\"></i> Preview</div>\n</a>\n</div>\n\n  </div>\n</div>\n"
+  }
+}

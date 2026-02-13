@@ -1,0 +1,103 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "3vaQQNQAdFPwq0zctkIRvt",
+    "type": "Entry",
+    "createdAt": "2019-12-04T23:10:29.654Z",
+    "updatedAt": "2022-03-10T21:31:45.103Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 22,
+    "revision": 3,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "integration"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "title": "Salesforce Software Integration",
+    "integrationName": "Salesforce",
+    "slug": "salesforce",
+    "logo": {
+      "metadata": {
+        "tags": [],
+        "concepts": []
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "s68ib1kj8k5n"
+          }
+        },
+        "id": "6lanuIP3dr7CaMAXnjFit6",
+        "type": "Asset",
+        "createdAt": "2019-12-04T23:21:53.802Z",
+        "updatedAt": "2019-12-04T23:21:53.802Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 12,
+        "revision": 1,
+        "locale": "en-US"
+      },
+      "fields": {
+        "title": "Salesforce Integration",
+        "file": {
+          "url": "//images.ctfassets.net/s68ib1kj8k5n/6lanuIP3dr7CaMAXnjFit6/ec0d742b72e09235769d1d84dc8e8668/salesforce-integration.png",
+          "details": {
+            "size": 10251,
+            "image": {
+              "width": 225,
+              "height": 150
+            }
+          },
+          "fileName": "salesforce-integration.png",
+          "contentType": "image/png"
+        }
+      }
+    },
+    "integrationDescription": "Salesforce is the world's leading cloud CRM. SaaSquatch is a managed package built on the Force.com that lets you track your referrals in Salesforce.",
+    "highlights": "Looking for Salesforce software integration? SaaSquatch is a managed package that lets you track your referrals in Salesforce.",
+    "keyFeatures": [
+      "Extends Salesforce with custom objects to track referrals and rewards",
+      "Native on the Force.com platform; works with Salesforce reports, triggers, validations, assignments, and approvals",
+      "Works with Salesforce Lightning and Salesforce One",
+      "Uses a native integration built by SaaSquatch directly on Salesforce",
+      "Uses the Professional, Enterprise and Unlimited editions"
+    ],
+    "moreInfo": [
+      "[Salesforce Integration FAQ](/salesforce/faq)",
+      "[Salesforce Integration Install Guide](/salesforce/install-guide)",
+      "[Salesforce Integration User Guide](/salesforce/user-guide)"
+    ],
+    "guideLink": "/salesforce/faq",
+    "tags": [
+      "in-directory"
+    ]
+  }
+}

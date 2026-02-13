@@ -1,0 +1,45 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "2PQNvCcGOcBgQtsGlBPgNY",
+    "type": "Entry",
+    "createdAt": "2020-01-06T21:49:52.380Z",
+    "updatedAt": "2023-02-28T18:01:52.155Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 18,
+    "revision": 5,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "productNews"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "title": "Custom Events",
+    "datePublished": "2019-08-23",
+    "tags": [
+      "feature-release",
+      "product-update"
+    ],
+    "content": "<div class=\"row-fluid\">\n  <div class=\"span7\">\n    <p>\n      The quest to build a flexible and robust Growth Automation platform took a\n      big step forward today as we launched the ability to convert referrals\n      based on Custom Events.Your programs can now be set up to trigger on a\n      custom event, such as user actions like “subscription renewal” or “product\n      upgrade.” Simply follow these steps to create your own Custom Event driven\n      Referral Program:\n    </p>\n    <ol>\n      <li>Create a new Referral Program</li>\n      <li>\n        In the Rules section, change ‘Convert referral on’ to “Custom Event” and\n        enter in your event key (eg. <code>subscription</code>)\n      </li>\n      <li>\n        You can also set it to convert on a custom event field value by\n        specifying the field value name (eg. <code>status</code>) and the field\n        value that will cause the conversion (eg. <code>renewed</code>).\n      </li>\n    </ol>\n  </div>\n  <div class=\"span5\">\n    <a href=\"https://www.saasquatch.com/wp-content/uploads/2019/09/Custom-Events.png\" target=\"_blank\"><img src=\"https://www.saasquatch.com/wp-content/uploads/2019/09/Custom-Events.png\" alt=\"custom-events\"/></a>\n  </div>\n</div>\n"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "6Ah3MNHZBGdWwz5YLuiRXh",
+    "type": "Entry",
+    "createdAt": "2020-03-26T15:53:40.411Z",
+    "updatedAt": "2020-05-06T18:23:50.158Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 967,
+    "revision": 7,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "breakingChange"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "deadline": "2020-07-08",
+    "title": "Short domain IP address migration",
+    "description": "We are moving the service that powers custom domains for share links (e.g. `ssqt.co`). As part of this migration customers will be required to update their DNS settings to a CNAME instead of a static IP. This migration will enable the use of automatic SSL certificate management as well HTTPS for custom short domains.\n\n__Migration Path__\n\nCustomers will be required to update their DNS settings by no later than __Wednesday, July 8th 2020__.\n\nThere are two different migration paths.\n\n- __Subdomains__ (e.g. `referral.example.com`) will need to be migrated to point at a CNAME record at `ssqt.co`\n- __Apex domains__ (e.g. `example.com`) will need to contact the support team for the new IP addresses.\n\nFor more details check out our updated [custom short domain guide](https://docs.referralsaasquatch.com/customshortdomainguide/).\n\n\n__Timeline of steps:__\n\n- __Transition Window__ -- The existing shortener will be available to give everyone a chance to update their DNS settings.\n- __Deadline__ --- All domains should have been migrated. The existing shortener will be shut down.",
+    "timeline": "gantt\n\tTransition Window   :2020-04-08, 91d\n\tDeadline            :2020-07-08, 1d\n\tTraffic Draining    :7d"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "2RgObdamKQAey6o28QyEEm",
+    "type": "Entry",
+    "createdAt": "2016-04-04T22:32:10.169Z",
+    "updatedAt": "2018-12-12T20:38:44.489Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 7,
+    "revision": 2,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "faq"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "question": "I have more questions, what should I do?",
+    "answer": "We know that you may still have questions and we want to hear from you. Email us at <a href=\"mailto:hello@saasquat.ch?Subject=More%20Questions\">hello@saasquat.ch</a> and we will get back to you as fast as we can."
+  }
+}

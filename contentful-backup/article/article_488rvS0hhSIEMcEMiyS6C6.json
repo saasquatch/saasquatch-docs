@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "488rvS0hhSIEMcEMiyS6C6",
+    "type": "Entry",
+    "createdAt": "2017-06-07T17:50:25.419Z",
+    "updatedAt": "2023-05-17T14:29:09.092Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 7494,
+    "revision": 15,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Fuel Tank Rewards",
+    "slug": "features/rewards-fuel-tank",
+    "highlights": "Provide your Growth Automation Program participants with Custom Reward Codes.",
+    "content": "SaaSquatch’s fuel tank feature is a simplified way of handing out rewards using unique coupon codes. Your referral and loyalty program participants can redeem these codes for rewards—including discounts, credits and other reward types. \n\nCoupon codes can be added, deleted or managed through the Admin Portal. You can also track which coupon has been given to which program participant, and cancel their reward if needed.\n\nClients supply the coupon codes for the fuel tank. You can either create these codes on your own, or use your existing ecommerce  or billing platform to create them for you. Many major ecommerce and billing platforms—including Shopify, WooCommerce, Magento, BigCommerce and Recurly—can generate codes in bulk and will allow you to export them. \n\nFuel tank rewards can be incorporated into [instant access widgets](/topics/widget-types#instant-access-widgets), [verified access widgets](/topics/widget-types#verified-access-widgets) and [microsites](/building-programs/microsites/microsites-overview).\n\n<img src=\"//images.ctfassets.net/s68ib1kj8k5n/6NzMBClsWO145iuMZjRgxX/0a6a06fcce5f586cd85d751497d31aad/coupon_code_example.png\" alt=\"Coupon code example\" width=\"25%\" height=\"25%\">\n\n## Create a fuel tank reward\n\nFuel tank rewards can be set up as program-specific rewards or as rewards that can be reused across multiple programs. We recommend setting up a reusable reward in the Reward Catalog.\n\n1. In the Admin Portal, go to __Rewards > Catalog__.\n2. Select __Create Reward__.\n3. Name the reward.\n4. Select the __Fuel Tank__ reward type.\n5. Use the __fueltank type__ dropdown list to choose a discount or credit reward.\n6. Set a discount percent, or credit amount and reward unit.\n7. Select the access type.\n8. Save the reward.\n\n## Add coupon codes\n\n> An example import .CSV file for fuel tank reward coupon codes is available [here](https://assets.contentful.com/s68ib1kj8k5n/4JaVWQPdI48Ey600sGOQUQ/a8cb4afbaddfc4bb0f7e7827bbe26889/example_fueltank_import.csv).\n\nFor fuel tank rewards to work, clients need to provide SaaSquatch with unique coupon codes. You can generate the codes with many ecommerce platforms, or create them yourself.  \n\nCodes are uploaded to the Admin Portal under __Rewards > Code Manager__. We recommend using our [sample .CSV file](https://assets.contentful.com/s68ib1kj8k5n/4JaVWQPdI48Ey600sGOQUQ/a8cb4afbaddfc4bb0f7e7827bbe26889/example_fueltank_import.csv) as a starting point, although you can also upload an `.xlsx`, `.ods`, `.tsv`, or `.txt` file (newline separated only). All codes you want to import should be in the same column, and be the only contents of that column. \n\nEach code can contain up to 64 characters. Any combination of these characters is allowed: \n- Capital and lowercase letters A-Z\n- Numbers 0-9\n- Hyphen (`-`)\n- Underscore (`_`)\n\n![example fuel tank codes](//images.ctfassets.net/s68ib1kj8k5n/4d1fXrabQ1LSmdwC3mrXxG/08d0fb41030c842da1fbbeeb07c7b7a8/example_fuel_tank_codes.png)\n\n## Participant experience\nCoupon codes can be incorporated into your referral or loyalty program’s widget or microsite, and used to reward your participants and any friends they refer. \n\nReferrers typically earn rewards when a referral they’ve made converts. After a successful conversion, the referrer is automatically notified via email. Then, they receive a unique coupon code that they can redeem for a reward.  \n\nFor referred friends, the code is typically intended to be used during their initial checkout. You can set up a friend widget that shows the discount code within your program’s landing page, or during checkout to ensure the referred user receives their reward at the correct time. \n\nIn loyalty programs, fuel tank coupon codes can be used as an incentive or reward.  When a loyalty participant completes a purchase or payment, they can be given a coupon code to use toward their next purchase. \n"
+  }
+}

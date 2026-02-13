@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "5q9jyvyN9HCiV8hwEF1qwx",
+    "type": "Entry",
+    "createdAt": "2023-03-01T23:00:09.925Z",
+    "updatedAt": "2023-03-02T15:52:27.050Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 185,
+    "revision": 5,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Setting Up a Domain",
+    "slug": "building-programs/participant-experiences/configuring-a-custom-domain",
+    "highlights": "We've made it simpler to customize your brand's presence with personalized domains. Use our self-serve setup flow to assign a domain you own to all your major participant touchpoints—from emails and share links to your microsite.",
+    "content": "> __Before you begin:__ You will need assistance from the person who manages your domain to verify ownership and adjust your DNS settings.\n\nSaaSquatch can use root domains or subdomains that you own for your program’s share links, microsite and emails. After a domain has been set up, it’s available for use in your live and test tenants. We prioritize the live tenant if there’s a conflict between the two. \n\nAny [full access](/learning-saasquatch/admin-portal/team-member-roles) team member can add and manage new domains, use them for your program, or manage team member [logins and single sign-on (SSO)](/learning-saasquatch/admin-portal/single-sign-on). Program managers can only use domains set up by others.\n\nTo set up a domain, you'll need to:\n1. Add a domain on the __Organization Settings__ page.\n2. Verify that you own the domain and update your DNS settings.\n3. Use the domain in your microsite, emails or share links.\n    - __Note__: A domain that's used for your microsite can't be reused for share links.\n\n## 1. Add the domain\nFull access team members start the process of adding a domain from the __Organization Settings__ page.\n\n1. Sign in to the SaaSquatch Admin Portal.\n2. Go to the __Organization Settings__ page by clicking on your company's initials to the left of the tenant selection dropdown.\n    - __Note__: The setup flow is also accessible anywhere you can use the domain, including within the email editor, microsite editor, and general settings page.\n3. Click __Add Domain__ to go to the domain setup page. Both root domains and subdomains are accepted.\n4. Enter the name of the domain you want to use.\n5. Select one or more domain configurations.\n    - __Note__: Skip this step if you just want to verify that you own the domain. You can return later to configure the domain for email or hosting, if you change your mind.\n6. Click __Next__. \n\nNext, verify that you own the domain and update your DNS records. This step is required before you can start to use the domain for your programs.\n\n## 2. Update your DNS records\n__Before you begin__: Ownership verification is required before you can use this domain in your programs. You will need assistance from the person who manages your domain.\n\n1. Verify ownership of the domain by creating or updating a TXT record with the values on-screen.\n2. Follow the on-screen instructions to update your DNS settings for hosting authentication, email authentication or both.\n3. Return to this page 48 hours after updating your DNS settings and click __Check Status__ to confirm that setup is complete. \n    - __Important__: This step is required before you can start to use your domain. If setup still isn’t complete after 48 hours, then reach out to our [Support team](mailto:support@saasquatch.com) for help with troubleshooting.  \n4. Click __Finish__.\n\n## 3. Use your domain\nFull access team members and program managers can now use this domain for the microsite, emails or share links.\n\n__Tip__: As a best practice, we recommend using a root domain for your main website and subdomains for your share links and microsite. While either a root domain or a subdomain is acceptable for emails, many clients prefer using a root domain for better brand recognition.   \n\n### Using a domain for a microsite\n> __Important:__ Domains used for microsites can’t be reused for share links. Microsites can't use the same domain on both your live and test tenant.\n\nAdding a domain to your microsite will replace the default `saasquatch.app` domain. \n\n1. Go to the __Content__ page.\n2. Click __Edit Settings__ on the microsite card.\n3. Make sure site hosting is turned on.\n4. Click __Edit__ to the right of the __Hosted domain__ heading.\n5. Select your domain from the dropdown list.\n    - __Note for program managers__: If you don't see the domain you expected, then contact a full access team member to make sure the domain setup process was completed.\n6. Click __Save__.\n\n### Using a domain for emails\nAdding a domain to your emails will replace the default email address, `referral@mail.saasquat.ch`.\n\n1. Go to the __Content__ page.\n2. Click __Edit emails__ on the emails card to open the editor.\n3. Click the name of the email you want to add the domain to.\n4. Close the menu to view the editing canvas.\n5. Click __Edit__ to the right of the __Contact Information__ heading.\n6. Select your domain from the __From address__ dropdown menu.\n7. Click __Save__. \n\n### Using a domain for share links\n> __Important__: Domains used for share links can't be reused for microsites. You can use this domain for both your live and test tenant. We prioritize your live tenant if there’s a conflict between the two. \n\nAdding a domain to your share links will replace the default `.ssqt.co` domain when users send their referral share links. \n\n1. Go to the __Settings__ page.\n2. Click the __General__ tab.\n3. Select your domain from the __Primary share link domain__ dropdown menu.\n    - __Note__: If you want to set up secondary share links too, then contact our Support team for more information. Secondary share links allow you to add more domains for other brands in your company.\n4. Click __Save__.",
+    "robotsTag": [
+      "FOLLOW"
+    ],
+    "canonicalUrl": "<link rel=\"canonical\" href=\"URL from Contentful response\"/>"
+  }
+}

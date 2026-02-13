@@ -1,0 +1,101 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "2YhpPPR76NRLFXhSn8I82I",
+    "type": "Entry",
+    "createdAt": "2019-12-04T23:13:04.103Z",
+    "updatedAt": "2020-08-27T17:42:34.309Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 19,
+    "revision": 3,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "integration"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "title": "Branch Metrics Software Integration",
+    "integrationName": "Branch",
+    "slug": "branch-metrics",
+    "logo": {
+      "metadata": {
+        "tags": [],
+        "concepts": []
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "s68ib1kj8k5n"
+          }
+        },
+        "id": "2JQ76joxW94dJ7rPZ4EVIf",
+        "type": "Asset",
+        "createdAt": "2019-12-04T23:22:57.012Z",
+        "updatedAt": "2019-12-04T23:22:57.012Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 8,
+        "revision": 1,
+        "locale": "en-US"
+      },
+      "fields": {
+        "title": "Branch Integration",
+        "file": {
+          "url": "//images.ctfassets.net/s68ib1kj8k5n/2JQ76joxW94dJ7rPZ4EVIf/483ea68bf61bf803b4984e0075f597cb/branch-integration.png",
+          "details": {
+            "size": 6487,
+            "image": {
+              "width": 220,
+              "height": 147
+            }
+          },
+          "fileName": "branch-integration.png",
+          "contentType": "image/png"
+        }
+      }
+    },
+    "integrationDescription": "Branch Metrics is a free mobile attribution platform. SaaSquatch integrates with Branch Metrics to provide a better user experience, additional attribution, personalization and analytics by using Branch's deep links.",
+    "highlights": "Looking for Branch Metrics software integration? SaaSquatch provides additional referral program attribution, personalization and analytics.",
+    "keyFeatures": [
+      "Improve all aspects of your mobile app referral experience; downloading, installing, and sharing.",
+      "Seamlessly direct Referred Users on mobile to download your app.",
+      "Automatically generated App Links (for Android) and Universal Links (for iOS).",
+      "Track Referred Users through the app store using Branch Deep Linking data."
+    ],
+    "moreInfo": [
+      "[Branch Metrics Quickstart](/mobile/branch-metrics)",
+      "[Branch Metrics Tech Reference](/mobile/branch-metrics/reference)"
+    ],
+    "guideLink": "/mobile/branch-metrics",
+    "tags": [
+      "in-directory"
+    ]
+  }
+}

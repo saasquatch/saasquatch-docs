@@ -1,0 +1,98 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "1q9MvTP5T5wKRwu3F1nCjw",
+    "type": "Entry",
+    "createdAt": "2019-12-05T02:41:43.907Z",
+    "updatedAt": "2019-12-05T02:51:41.512Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 15,
+    "revision": 2,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "integration"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "title": "Squarespace Referral Software Integration",
+    "integrationName": "Squarespace",
+    "slug": "squarespace",
+    "logo": {
+      "metadata": {
+        "tags": [],
+        "concepts": []
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "s68ib1kj8k5n"
+          }
+        },
+        "id": "GKcQEJ2afAJO3U76bldrr",
+        "type": "Asset",
+        "createdAt": "2019-12-05T02:49:23.640Z",
+        "updatedAt": "2019-12-05T02:49:23.640Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 6,
+        "revision": 1,
+        "locale": "en-US"
+      },
+      "fields": {
+        "title": "Squarespace Integration",
+        "file": {
+          "url": "//images.ctfassets.net/s68ib1kj8k5n/GKcQEJ2afAJO3U76bldrr/6f71ad4776231f131d127d7562a91fcd/squarespace-integration.png",
+          "details": {
+            "size": 12379,
+            "image": {
+              "width": 450,
+              "height": 300
+            }
+          },
+          "fileName": "squarespace-integration.png",
+          "contentType": "image/png"
+        }
+      }
+    },
+    "highlights": "Looking for Squarespace referral software integration? Referral SaaSquatch enables you to easily install your referral program on your Squarespace site.",
+    "integrationDescription": "Referral SaaSquatch's Squarespace integration leverages your existing Squarespace website to install your referral program without editing any code.",
+    "keyFeatures": [
+      "Drag-and-Drop code snippet install",
+      "Leverage your existing Squarespace website",
+      "No editing of website code required",
+      "Completely configure your referral program through the SaaSquatch Portal."
+    ],
+    "moreInfo": [
+      "[Squarespace Quickstart Guide](/guides/squarespace)",
+      "[Drag-and-Drop Integration Configuration](/guides/integration-quickstart)"
+    ],
+    "guideLink": "/guides/squarespace"
+  }
+}

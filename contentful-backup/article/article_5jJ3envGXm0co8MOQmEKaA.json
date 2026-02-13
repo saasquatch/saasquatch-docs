@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "5jJ3envGXm0co8MOQmEKaA",
+    "type": "Entry",
+    "createdAt": "2017-04-05T18:31:43.698Z",
+    "updatedAt": "2018-12-03T22:59:50.110Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 13,
+    "revision": 2,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Designer Guide",
+    "title": "Crowdin Integration",
+    "slug": "themes/integrations/crowdin",
+    "highlights": "SaaSquatch internationalization integrates easily with [Crowdin](http://crowdin.com) to automatically manage your translations. \n    This article describes how to use the Crowdin CLI to translate your custom theme.",
+    "content": "### Setting up Crowdin\n\nThe easiest way to use Crowdin to manage internationalization is using the [Crowdin CLI tool](https://crowdin.com/page/cli-tool).\nFirst, you should create a new project in Crowdin for translating the strings from your\nSaaSquatch referral program's custom theme.\n\nOnce you're set up with a Crowdin project, you need to set up your custom theme to work with\nthe Crowdin CLI tool.\n\nTo use the Crowdin CLI tool, you need to have a config file located at `/crowdin.yaml`.\nThis file tells Crowdin where to look to find the translations for the source\nfiles like `messages.properties`.\n\n\n```\n>> crowdin.yaml\n\nproject_identifier: my-project\napi_key: b90f5b5fb249147728578ed71d21c4bf\nbase_path: /home/ubuntu/workspace/      # Your local machine...\n\nfiles:\n  - source: '/i18n/messages.properties'\n    translation: '/i18n/%file_name%_%two_letters_code%.properties'\n```\n\nExample file layout:\n\n```\n├── /assets\n├── /templates\n├── /i18n\n|   └── messages.properties\n├── crowdin.yaml\n└── Readme.md\n```\n\n\n### Use the Crowdin CLI to upload sources and download translations\n\nTo upload `messages.properties` into Crowdin for translation,\nwe need to use the command `crowdin-cli upload sources`. This will push the latest version of \n`messages.properties` from your local repo to Crowdin.\n\nOnce in Crowdin, you can either translate the strings yourself, use machine\ntranslation or pay professional translators to do the work.\n\nAfter translation, use the `crowdin-cli download translations` command to download the new versions of the\nstrings from Crowdin into your local repo.\n\nCommit those new string to git and deploy the new version to SaaSquatch.\n\n```\ncrowdin-cli upload sources\n\n... do translations\n\ncrowdin-cli download translations\ngit commit\ngit push\nsquatch deploy\n```\n\nAfter you've downloaded the new versions, you should have many new files \nlocated in the i18n folder.\n\n```\n├── /assets\n├── /templates\n├── /i18n\n|   ├── messages.properties <-- uploaded\n|   ├── messages_de.properties <-- downloaded\n|   ├── messages_ko.properties <-- downloaded\n|   └── messages_ja.properties <-- downloaded\n├── crowdin.yaml\n└── Readme.md\n```\n\nTo check that the project pulled in successfully, use the `crowdin-cli list sources` command.\n\n```\n/messages.properties\n```\n\nOr to confirm the location of the translation files, use `crowdin-cli list translations`.\n\n```\n/i18n/messages_de.properties\n/i18n/messages_ko.properties\n/i18n/messages_ja.properties\n```"
+  }
+}

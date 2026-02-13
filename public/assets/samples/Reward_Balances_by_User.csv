@@ -1,0 +1,5 @@
+userId,accountId,type,unit,amount,totalAssignedCredit,totalRedeemedCredit,totalExpiredCredit,email,firstName,lastName,referralCode,imageUrl,firstSeenIP,lastSeenIP,dateCreated,referralSource,locale
+abc_123,abc_123,CREDIT,POINT,0,0,0,10,bob@example.com,Bob,Doe,BOBDOE,,,,1560195664015,UNKNOWN,
+abc_123,abc_123,CREDIT,CENTS,1000,1000,0,0,bob@example.com,Bob,Doe,BOBDOE,,,,1560195664015,UNKNOWN,
+abc_124,abc_124,PCT_DISCOUNT,%,75,,,,john@example.com,John,Doe,JOHNDOE,,,,1560198002697,UNKNOWN,
+abc_125,abc_125,CREDIT,CENTS,1500,0,1000,500,jim@example.com,Jim,Doe,JIMDOE,,,,1560198002697,UNKNOWN,

@@ -1,0 +1,51 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "3pheuTHcWY3whAxbk2Koi8",
+    "type": "Entry",
+    "createdAt": "2021-06-25T22:20:57.629Z",
+    "updatedAt": "2023-08-09T18:04:00.071Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 151,
+    "revision": 15,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Bulk Event Import",
+    "slug": "guides/event-import",
+    "highlights": "The SaaSquatch portal provides a quick and easy way to import events within our system. ",
+    "content": "### Importing an Event\nImported events link to a user and can trigger both conversion and non-conversion goals.\n\n1. Head to your SaaSquatch account.\n2. In the upper right corner of your SaaSquatch account select either your Live or Test tenant.\n3. Click \"Analytics\" in the upper header of your SaaSquatch account.\n4. Select the \"Reports\" tab in the secondary header.\n5. Click \"Import\" on the right side of the Your Reports page.\n6. Select \"User Events\" from the Import Type.\n7. Click \"Select & Upload\" and choose the file to import.\n8. Click \"Start Import\" to begin the import. \n9. When the import completes a confirmation email is sent.\n\n> Event imports may take up to 30 minutes depending on queue and file size.\n\n### Upload Format & Recommendations\n- SaaSquatch accepts event imports submitted in `.csv` or `.jsonl` file formats. \n- Fields are case sensitive\n- It is recommended that each import does not exceed 500,000 entries. \n- Please reference our [sample CSV file](https://assets.ctfassets.net/s68ib1kj8k5n/20lD8Gua3EtW8qIahBvciz/152fd3cfaa3f0ee4076a6729bc8d4164/userEventSample.csv) and [sample JSONL file](https://assets.ctfassets.net/s68ib1kj8k5n/2IPDDkVhCgDBPyQrRANfb9/d38643fba660ca1412b7d85f1b7c0f41/userEventSample.jsonl).\n\n#### Standard Fields\n<table class=\"table\">\n<thead>\n<tr>\n<th>Field</th>\n<th>Type</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td class=\"docs-monospace\">accountId</td>\n<td><span class=\"label\">Required </span> <span class=\"muted docs-monospace\">string</span></td>\n<td>The unique identifier of the Account that this user belongs to.</td>\n</tr>\n<tr>\n<td class=\"docs-monospace\">userId</td>\n<td><span class=\"label\">Required </span> <span class=\"muted docs-monospace\">string</span></td>\n<td>The unique identifier provided for this user.</td>\n</tr>\n<tr>\n<td class=\"docs-monospace\">event.key</td>\n<td><span class=\"label\">Required </span> <span class=\"muted docs-monospace\">string</span></td>\n<td>The unique identifier for the type of event. EX: purchase or refund.</td>\n</tr>\n<tr>\n<td class=\"docs-monospace\">event.dateTriggered</td>\n<td><span class=\"muted docs-monospace\">integer</span></td>\n<td>The timestamp in milliseconds when this event was triggered.</td>\n</tr>\n<tr>\n<td class=\"docs-monospace\">event.fields</td>\n<td><span class=\"muted docs-monospace\">object</span></td>\n<td>A collection of fields with event specific information.</td>\n</tr>\n</tbody>\n</table>\n\n#### Event Fields\nEvents sent to SaaSquatch can contain a wide array of fields. This includes event specific information to interface with programs and third party integrations. \n\nFor example, a 'purchase' event would have 'revenue' and 'currency' fields. \n\nWhen importing an event using .csv, these fields would be represented as: `event.fields.revenue` and `event.fields.currency`.\n\n#### Add more Event Fields\n\nTo add more fields to an imported event, use the following format:\n\n  __CSV__: `event.fields.yourEventFieldName` \n\n  __JSON__: `\"event\":{ \"key\":\"yourEventKey\", \"fields\":{\"yourEventFieldName\":\"yourEventFieldValue\"}}`\n\n### Results\nWe notify you by email when your import is complete. If you want to review the results of the import, you can go to **Analytics > Reports** and select **Create Report** to get started. \n\n> **Please Note:** Download links will expire after 30 days.\n\n#### Successful Upload\nIf the import completes successfully, a file with the event information of those that were successfully imported will be generated and emailed to you. \n\nThe file will contain the following fields.\n<table class=\"table\">\n<thead>\n<tr>\n<th>Field</th>\n<th>Type</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td class=\"docs-monospace\">user.accountId</td>\n<td><span class=\"muted docs-monospace\">string</span></td>\n<td>The unique identifier of the Account that this user belongs to.</td>\n</tr>\n<tr>\n<td class=\"docs-monospace\">user.id</td>\n<td><span class=\"muted docs-monospace\">string</span></td>\n<td>The unique identifier provided for this user.</td>\n</tr>\n<tr>\n<td class=\"docs-monospace\">event.id</td>\n<td><span class=\"muted docs-monospace\">string</span></td>\n<td>The unique identifier given to the event created in SaaSquatch.</td>\n</tr>\n<tr>\n<td class=\"docs-monospace\">event.key</td>\n<td><span class=\"muted docs-monospace\">string</span></td>\n<td>The unique identifier for the type of event. EX: purchase or refund.</td>\n</tr>\n<tr>\n<td class=\"docs-monospace\">event.dateTriggered</td>\n<td><span class=\"muted docs-monospace\">integer</span></td>\n<td>The timestamp in milliseconds when this event was triggered.</td>\n</tr>\n<tr>\n<td class=\"docs-monospace\">event.dateReceived</td>\n<td><span class=\"muted docs-monospace\">integer</span></td>\n<td>The timestamp in milliseconds when SaaSquatch received this event.</td>\n</tr>\n  <tr>\n<td class=\"docs-monospace\">event.dateProcessed</td>\n<td><span class=\"muted docs-monospace\">integer</span></td>\n<td>The timestamp in milliseconds when SaaSquatch processed this event.</td>\n</tr>\n<tr>\n<td class=\"docs-monospace\">event.fields</td>\n<td><span class=\"muted docs-monospace\">object</span></td>\n<td>The collection of fields containing event specific information.</td>\n</tr>\n</tbody>\n</table>\n\n#### Errors\nIf any non-fatal errors are encountered during the import, then a second results file will also be generated (in addition to the file with the successfully uploaded records). \nThe errors file includes entries for each error that occurred, including the row number of the record (from the initial import file) that failed, and any associated error messages:\n\n<table class=\"table\">\n<thead>\n<tr>\n    <th class=\"docs-monospace\">\n        recordNumber\n    </th>\n    <th class=\"docs-monospace\">\n        message\n    </th>\n    <th class=\"docs-monospace\">\n        apiErrorCode\n    </th>\n      <th class=\"docs-monospace\">\n        statusCode\n    </th>\n</tr>\n</thead>\n<tbody>\n\n  <tr>\n  <td class=\"docs-monospace\">2</td>\n  <td>\nThis request requires a valid non-empty id\n  </td>\n  <td class=\"docs-monospace\">BAD_REQUEST</td>\n  <td class=\"docs-monospace\">400</td>\n</tr> \n\n</tbody>\n</table>\n\nPlease contact support@referralsaasquatch.com for additional questions.\n",
+    "tags": [
+      "import",
+      "events",
+      "bulk events",
+      "triggers",
+      "bulk event import"
+    ],
+    "seoDescription": "Import event information into your referral or loyalty program using our bulk event import..."
+  }
+}

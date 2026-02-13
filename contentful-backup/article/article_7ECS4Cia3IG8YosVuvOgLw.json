@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "7ECS4Cia3IG8YosVuvOgLw",
+    "type": "Entry",
+    "createdAt": "2019-12-05T18:16:17.280Z",
+    "updatedAt": "2023-02-28T18:55:59.342Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 486,
+    "revision": 19,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Developer Guide",
+    "title": "Zapier Integration Install Guide",
+    "slug": "integrations/zapier",
+    "highlights": "SaaSquatch’s integration with Zapier will allow you to build Zaps around different actions in your Growth Automation Programs as well as use Zaps to trigger actions in your SaaSquatch programs, such as creating users and rewards, or triggering events.",
+    "content": "![SaaSquatch + Zapier - feature 2022](//images.ctfassets.net/s68ib1kj8k5n/7w2ucQVljuZ3I3AYyqXsrs/94cac28710265b20d3dac5a099b298f8/Vector.png)\n\n### Using SaaSquatch as a Trigger for Zaps\n\nYou can configure Zaps to trigger when the following events occur in your SaaSquatch tenant:\n\n- **New User** Triggers when a new user is created.\n- **New Reward** Triggers when a user receives a reward.\n- **Referral Started** Triggers when a user is referred.\n- **Reward Balance** Triggers when a user's reward balance changes.\n\n<div class=\"row-fluid\">\n<div class=\"span8\">\n<img src=\"//images.ctfassets.net/s68ib1kj8k5n/3dhAR13w3aRzRBUz1ibsJh/f31e6b3601797db2d5d8bb50ffc7cbf2/1.gif\" alt=\"SaaSquatch &lt;&gt; Zapier 1\">\n</div>\n</div>\n\n#### To create a Zap using SaaSquatch as a trigger:\n\n1. Login to your Zapier account and click on the “Create Zap” button.\n2. Search for and select “SaaSquatch” from the “App Event” section.\n3. Choose the type of event that you would like to trigger your Zap from the dropdown menu. Click “Continue”.\n4. Under “Choose Account” you will be prompted to sign in to SaaSquatch. If you already have a connection to SaaSquatch you can select that instead of signing in. Click “Continue”.\n    - __Note:__ Make sure a Zapier administrator account links to SaaSquatch to ensure that your changes go through.\n5. Next you will need to select a tenant. You should see at least two listed: [Test and Live](https://docs.referralsaasquatch.com/developer/testing/#test-vs-live). We highly recommend you build your Zap in your Test tenant first. Once you have confirmed it is working as intended, then switch it to Live. Click “Continue”.\n6. If you want to review the data that Zapier pulls from SaaSquatch, click the “Test & Review” button. Otherwise, if you want to proceed with making the Zap, you can click “Test & Continue”.\n7. Finish setting up your Zap by creating the actions it will  perform when the trigger is activated.\n\n### Using Zapier to perform actions in SaaSquatch\n\nYou can also use Zaps from Zapier to perform the following actions in your SaaSquatch tenant using data pulled from previous step(s):\n\n- **Create User** Creates a new user.\n- **Upsert User** Modifies the fields of an existing user, or creates a user if the specified user does not exist.\n- **Create Event** Creates a new user event.\n- **Create Reward** Creates a reward for a user.\n- **Lookup User** Lookup a user by Account ID and User ID. Returns all known information about the user. Optionally, create a new user if one isn’t found.\n\n<div class=\"row-fluid\">\n<div class=\"span8\">\n<img src=\"//images.ctfassets.net/s68ib1kj8k5n/6ZeaOnYW8o3yDtsi8TLINa/50dcb924a1db106736a0bf044eca795f/2.gif\" alt=\"SaaSquatch &lt;&gt; Zapier 2\">\n</div>\n</div>\n\n#### To create a Zap that performs an action in SaaSquatch:\n\n1. Login to your Zapier account and click on the “Create Zap” button.\n2. Configure the first step(s) of your Zap.\n3. Create an Action step and search for and select “SaaSquatch” from the “App Event” section.\n4. Choose the type of action event that you would like to perform from the dropdown menu. Click “Continue”.\n5. Under “Choose Account” you will be prompted to sign in to SaaSquatch. If you already have a connection to SaaSquatch you can select that connection instead of signing in. Click “Continue”.\n6. Next you will need to select a tenant. You should see at least two listed: [Test and Live](https://docs.referralsaasquatch.com/developer/testing/#test-vs-live). We highly recommend you build your Zap in your Test tenant first. Once you have confirmed it is working as intended, then switch it to Live. Click “Continue”.\n7. You are then prompted to populate fields for the action event that you have chosen. You can choose to use static data or data collected from previous steps in your app.\n> Note: you may need to click on the “Refresh Fields” button to get the specific fields based on what you have selected.\n8. Once you have set up the fields, proceed with testing the event.\n> Note: Performing tests will make real API calls to your SaaSquatch tenant, this can cause your tenant to be polluted with test data. It is recommended that Zaps be tested carefully on your test tenant.\n9. When you are ready to go live, turn on your Zap!\n\n### Connecting SaaSquatch with Zapier\n\nTo connect SaaSquatch with Zapier, you will need to authenticate your SaaSquatch account from within Zapier. Zapier will prompt you to do so when you use SaaSquatch as a Trigger or Action.\n\n> Note: This is the same information you use to log into the [SaaSquatch Portal](https://docs.referralsaasquatch.com/success/using-referral-saasquatch/) to see your programs and program settings.\n\nTo manage your connections from within Zapier, login to your Zapier account and select the ‘My Apps’ page from the side bar. From there you are able to add and remove connections to the SaaSquatch platform.\n\n### Zap History\n\nYou can review all the actions a Zap has performed by navigating to the “Zap History” page, or by clicking the “History” option from Zap itself. This is a great page for troubleshooting and reviewing your Zaps to ensure everything is functioning as designed.\n\nFor every task performed, Zapier will record the response received from SaaSquatch on the Zap History page.\n\nYou should regularly check your “Zap History” page on Zapier. Any error messages sent from SaaSquatch to Zapier will be stored here. If you notice an event wasn’t completed in SaaSquatch, you should isolate and review the associated task in your Zap History. There you will find any messages from SaaSquatch that may explain why the task didn’t complete.\n\n### Some Zap Ideas\n\n##### SaaSquatch as a Trigger:\n\n- Send a Slack message to your internal team every time a referral converts.\n- Create a new spreadsheet row in a Google Sheets doc for each new referral that comes in\n- Set up Mailchimp to send out an email to a new referral participant using that user’s share links and/or referral codes\n- Use Typeform to automatically send out a survey link to participants after they receive a reward.\n- Setup automated reward fulfillment in PayPal or Stripe.\n- Attributing Referrals using a CRM like Hubspot or Zoho.\n\n##### SaaSquatch as an Action:\n\n- Pull in order details from Shopify or Square and send out purchase events to SaaSquatch.\n- Pass through user upserts, events and custom fields from your CRM like Hubspot or Zoho.\n- Attributing Referrals in SaaSquatch from a CRM\n- Referral conversion or reward triggering based on events from another platform"
+  }
+}

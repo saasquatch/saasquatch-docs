@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "5EylbgKi4SW7CEO9YJERkw",
+    "type": "Entry",
+    "createdAt": "2022-09-29T14:08:18.375Z",
+    "updatedAt": "2023-05-11T18:06:40.635Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 58,
+    "revision": 3,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Customizing Microsite Lifecycle Emails",
+    "slug": "building-programs/microsites/customizing-microsite-lifecycle-emails",
+    "highlights": "Two lifecycle emails are created for your microsite during the auto setup process:\n- User verification\n- Password reset\n\nYou can leave these as-is, edit them, or create entirely new emails to send your users for these situations. ",
+    "content": "## Add a new email\n1. Open the microsite editor.\n2. Click __Email Templates__ in the left sidebar menu.\n3. Click __Create new email template__ in the Emails tab.\n4. Enter your email template ID.\n5. Click __Create__.\n    - You’ll be redirected to the email editor.\n6. Make your changes.\n    - __Note:__ If you want someone on your team to receive a copy of each email that's sent to a participant, then you can adjust the __BCC field__ setting in the email editor. \n8. Click __Save__.\n\n## Edit an email template\n1. Open the microsite editor.\n2. Click __Email Templates__ in the left sidebar menu.\n3. Click the name of the email you want to edit.\n    - You’ll be redirected to the email editor.\n4. Make your changes.\n    - __Note:__ If you want someone on your team to receive a copy of each email that's sent to a participant, then you can adjust the __BCC field__ setting in the email editor. \n5. Click __Save__.\n\n## Replace a lifecycle email\nYou can decide which email templates are used for the lifecycle emails by adjusting your microsite settings in the Admin Portal.\n\n1. Return to the __Content__ tab in the Admin Portal.\n2. In the Microsite card, click __Edit Settings__.\n3. Under the Participant Login heading, find the Lifecycle Emails section and click __Change Templates__ on the right.\n4. Use the dropdown menus to select the email you want to send out for verification or password resets.\n5. Click __Save__.\n",
+    "robotsTag": [
+      "FOLLOW"
+    ],
+    "canonicalUrl": "<link rel=\"canonical\" href=\"URL from Contentful response\"/>"
+  }
+}

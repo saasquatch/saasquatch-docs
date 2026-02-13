@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "Qv9utsEpoG0Ag6g4qui4K",
+    "type": "Entry",
+    "createdAt": "2016-04-04T22:25:14.520Z",
+    "updatedAt": "2016-04-04T22:25:14.520Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 4,
+    "revision": 1,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "faq"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "question": "Does Referral SaaSquatch work with foreign currencies?",
+    "answer": "Yes. We work with any currency that your subscription provider works with. We will charge you in USD at the conversion rate available to us on the day of your invoice."
+  }
+}

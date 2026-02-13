@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "6W6kcgYKl3KsiHC49O6uBa",
+    "type": "Entry",
+    "createdAt": "2021-04-29T23:01:13.010Z",
+    "updatedAt": "2023-02-09T18:43:36.894Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 285,
+    "revision": 12,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Managing W-9 Compliance for Participants",
+    "slug": "features/managing-w-9-compliance-for-participants",
+    "highlights": "SaaSquatch can help you track which of your participants have provided you a valid W-9 Tax form. ",
+    "content": "The United States requires a W-9 Tax form when a company gives over $599.99 USD of rewards to an individual in a calendar year. \n\nLearn more about SaaSquatch's W-9 Compliance Functionality here: [W-9 Compliance](/features/w-9-compliance) \n\nTo activate W-9 compliance functionality for your program contact your Launch Manager or Solutions Architect. \n\n### Marking a Participant’s W-9 Form as Collected\n\n1. Head to your SaaSquatch account.\n2. In the upper right corner of your SaaSquatch account select either your Live or Test tenant.\n3. Click \"Participants\" in the upper header of your SaaSquatch account.\n4. Find the specific participant you would like to mark W-9 Collected for. Click their name.\n5. Click the \"Tax Compliance\" tab under their Referred by code information. \n6. Click \"Mark as collected\" and confirm they have provided you a valid W-9 Form. \n7. The Participant is now marked as having a valid W-9 Form. They can earn over $599.99 USD in rewards each year. \n\n> Any historical rewards pending due to W-9 not being collected will become available. There will no longer be a $599.99 USD reward limit for current and future tax years.\n\n![W-9 mark as collected](//images.ctfassets.net/s68ib1kj8k5n/4eRxrUZAZIzITcLreJ14Wp/c71d0e0006b63557aec34e21a22afbfd/w-9_1.png)\n\n### Marking a Participant’s W-9 Form as Not Collected\n\nYou can change the collection status of a participant's W-9 Form. \n\n1. Head to your SaaSquatch account.\n2. In the upper right corner of your SaaSquatch account select either your Live or Test tenant.\n3. Click \"Participants\" in the upper header of your SaaSquatch account.\n4. Find the specific participant you would like to mark W-9 Collected for. Click their name.\n5. Click the \"Tax Compliance\" tab under their Referred by code information. \n6. Click \"Mark as not collected\"\n7. The partipant is no longer considered to have a valid W-9 Tax form. \n\n> Changing a participant's W-9 status from \"Collected\" to \"Not Collected\" will not retroactively move participant's earned rewards to Pending (Regardless of if they are over $599.99USD/per calendar year). Future rewards will be follow W-9 compliance. \n\n![W-9 mark as not collected](//images.ctfassets.net/s68ib1kj8k5n/3HabVybt1sHXB1wI6pkcUq/805634df1a3fc2b83a59cd30f550f307/w-9_2.png)\n\n### Check Participant's W-9 Form Status\nYou can check a partipant's W-9 form collection status and see the amount of rewards earned in a calendar year. \n\n1. Head to your SaaSquatch account.\n2. In the upper right corner of your SaaSquatch account select either your Live or Test tenant.\n3. Click \"Participants\" in the upper header of your SaaSquatch account.\n4. Find the specific participant you would like to mark W-9 Collected for. Click their name.\n5. Click the \"Tax Compliance\" tab under their Reffered by code information.\n6. Here you can view their W-9 Form collection status and a breakdown of Rewards earned per calendar year. \n\n### Exporting the US W-9 tax status of all users\nSaaSquatch provides a US W-9 Tax Report, which provides information on all users and makes it possible to identify:\n\n- Which users have not yet submitted a W-9 form\n- Users who have hit their tax year limit, and have pending rewards\n- The total amount of taxable rewards received in previous years\n\nTo access the report:\n\n1. Head to your SaaSquatch account.\n2. In the upper right corner of your SaaSquatch account select either your Live or Test tenant.\n3. Click \"Analytics\", then \"Reports\".\n4. Click \"Create Report\".\n5. Select the \"US W-9 tax report\"\n6. Choose the output format - both Excel and CSV are supported\n7. Click \"Create Report\"\n\n![W-9 tax report](//images.ctfassets.net/s68ib1kj8k5n/1e2SkhE88kqX4NI6JZpkdX/805986899076d2701a0986cac02467cd/w-9_3.png)\n\nThe resulting report will contain the following columns:\n<table class=\"table\"><thead><tr><th>CSV</th><th>Excel</th><th>Description</th></tr></thead><tbody><tr><td class=\"docs-monospace\">userId</td><td class=\"docs-monospace\">User ID</td><td>The user's ID.</td></tr><tr><td class=\"docs-monospace\">accountId</td><td class=\"docs-monospace\">Account ID</td><td>The user's account ID.</td></tr><tr><td class=\"docs-monospace\">email</td><td class=\"docs-monospace\">Email</td><td>The user's email address.</td></tr><tr><td class=\"docs-monospace\">firstName</td><td class=\"docs-monospace\">First Name</td><td>The user's first name.</td></tr><tr><td class=\"docs-monospace\">lastName</td><td class=\"docs-monospace\">Last Name</td><td>The user's lastName.</td></tr><tr><td class=\"docs-monospace\">dateUsTaxFormSubmitted</td><td class=\"docs-monospace\">Date US Tax Form Submitted - YYYY-MM-DD</td><td>The date that the user submitted their W-9 form. This will be blank if they have not yet submitted a W-9 form.</td></tr><tr><td class=\"docs-monospace\">year</td><td class=\"docs-monospace\">Year</td><td>The tax year that this row pertains to, or the value \"PENDING\" if this row indicates a user's pending reward value and count.</td></tr><tr><td class=\"docs-monospace\">value</td><td class=\"docs-monospace\">US Taxable Value in Cents</td><td>The total US taxable value of rewards earned in cents.</td></tr><tr><td class=\"docs-monospace\">valueInDollars</td><td class=\"docs-monospace\">US Taxable Value in Dollars</td><td>The total US taxable value of rewards earned in dollars.</td></tr><tr><td class=\"docs-monospace\">count</td><td class=\"docs-monospace\">Reward Count</td><td>The number of rewards that contribute to this row's US Taxable Value</td></tr></tbody></table>"
+  }
+}

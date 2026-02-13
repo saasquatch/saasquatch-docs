@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "6Uxs7fYWk0CaIuKuiy4oIu",
+    "type": "Entry",
+    "createdAt": "2016-04-04T22:23:15.726Z",
+    "updatedAt": "2018-12-12T20:41:35.358Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 21,
+    "revision": 2,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "faq"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "question": "How do you define a participant?",
+    "answer": "A participant is an identified customer who is registered with our system and has a referral link and/or code generated for them. We suggest adding up the total number of customers you work with in one month to determine how many participants you need from our system."
+  }
+}

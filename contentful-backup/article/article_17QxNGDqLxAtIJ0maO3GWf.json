@@ -1,0 +1,50 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "17QxNGDqLxAtIJ0maO3GWf",
+    "type": "Entry",
+    "createdAt": "2021-11-25T23:49:07.651Z",
+    "updatedAt": "2022-01-06T17:09:08.735Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 240,
+    "revision": 3,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Developer Guide",
+    "title": "Adding Custom Landing Page Parameters",
+    "slug": "adding-custom-landing-page-parameters",
+    "highlights": "The guide explains how to add custom url parameters to your referral landing page url within the SaaSquatch system.",
+    "content": "## Referral Program Landing Page URL Parameters\nWhen building a referral program with SaaSquatch, you will need to specify a landing page. This is where a referred user will end up after clicking on a share link for your referral program.\n\nOur system also adds several URL Parameters to the landing page URL. These Parameters are for UTM-based analytics, as well as the referral program itself. Read about the URL Parameters that get added here.\n\nYou can also add your own URL Parameters to the landing page URL. These can be for discount codes, custom analytic tracking or program logic on the page itself. Parameters can be added via the program configuration, or by adding them straight to SaaSquatch Share Links.\n\n## Adding URL Parameters via Program Configuration\nThe SaaSquatch system will pass through any parameters included when setting the landing page URL.  For example, a landing page URL of `www.example.com/landingpage?discountCode=REFERRED20` will become:\n\n### How-to add URL parameters to a landing page URL\n1. Navigate to the [SaaSquatch Admin Portal](https://app.referralsaasquatch.com/portal/ \"SaaSquatch Admin Portal Login Page\").\n2. Click on the Referral Program you would like to edit.\n3. Scroll down to the **Landing Page** section and click on the \"Edit\" button.\n4. Add the custom URL parameters to the landing page URL and click \"Save\".\n\n## Adding URL Parameters via Share Links\nYou can also add parameters to a share link and they will pass through to the landing page URL itself. This is useful for email campaigns, tracking sales reps and adding discount codes.\n\nFor Example:\n1. The original landing page is `www.example.com/landingpage`\n\n2. Add `?salesRep=BOB` to the Share Link: `http://ssqt.co/mznBbXg?salesRep=BOB`\n\n3. When the landing page loads, it will be: \n`http://www.example.com/landingpage?salesRep=BOB&utm_source=invite&utm_medium=link&utm_campaign=saasquatch&rscode=ALEXREFERRED287&rsShareMedium=UNKNOWN&rsEngagementMedium=UNKNOWN`\n\nIt is also possible to override a referral program's default landing page. To do this, add the `rsLandingPage` parameter with an alternate page on the same domain:\n1. The original landing page is `www.example.com/landingpage`\n\n2. Add `?rsLandingPage=https://www.example.com/newlandingpage` to the Share Link: `http://ssqt.co/mznBbXg?rsLandingPage=https://www.example.com/newlandingpage`\n\n3. When the landing page loads, it will be: \n`http://www.example.com/newlandingpage?utm_source=invite&utm_medium=link&utm_campaign=saasquatch&rscode=ALEXREFERRED287&rsShareMedium=UNKNOWN&rsEngagementMedium=UNKNOWN`\n\n## Good To Knows\n- It is not possible to add variable values to the parameters. One value needs to be hard-coded and will be added to every landing page provided to referred users.\n- A URL Parameter added here will not override the default behaviour of the SaaSquatch system for the same parameter. For example, adding `utm_campaign=referralProgram` will not override the default value of `utm_campaign=saasqautch`.\n- When passing through an alternate landing page URL using `rsLandingPAge`, it needs to be on the same subdomain and domain as the original landing page. For example, substituting refer.example.com/landingpage will not work as an alternate for www.example.com/landingpage.",
+    "tags": [
+      "url param",
+      "URL ",
+      "URL parameters ",
+      "Landing page"
+    ],
+    "seoDescription": "Add custom URL parameters to the referred user landing page for your referral program..."
+  }
+}

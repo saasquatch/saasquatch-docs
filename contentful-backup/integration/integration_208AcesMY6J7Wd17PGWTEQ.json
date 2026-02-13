@@ -1,0 +1,103 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "208AcesMY6J7Wd17PGWTEQ",
+    "type": "Entry",
+    "createdAt": "2019-12-05T02:40:42.335Z",
+    "updatedAt": "2023-04-14T22:25:05.846Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 27,
+    "revision": 4,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "integration"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "title": "Hubspot Referral Software Integration",
+    "integrationName": "Hubspot",
+    "slug": "hubspot",
+    "logo": {
+      "metadata": {
+        "tags": [],
+        "concepts": []
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "s68ib1kj8k5n"
+          }
+        },
+        "id": "1J4Y8q1YZwbi0H7MrjRI1K",
+        "type": "Asset",
+        "createdAt": "2019-12-05T02:50:10.748Z",
+        "updatedAt": "2019-12-05T02:50:10.748Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 6,
+        "revision": 1,
+        "locale": "en-US"
+      },
+      "fields": {
+        "title": "Hubspot Integration",
+        "file": {
+          "url": "//images.ctfassets.net/s68ib1kj8k5n/1J4Y8q1YZwbi0H7MrjRI1K/bb797595d984150d1b8f940d1fad79b7/hubspot-integration.png",
+          "details": {
+            "size": 20423,
+            "image": {
+              "width": 450,
+              "height": 300
+            }
+          },
+          "fileName": "hubspot-integration.png",
+          "contentType": "image/png"
+        }
+      }
+    },
+    "integrationDescription": "Our native HubSpot integration automatically shares participant referral data between the two platforms. By connecting your SaaSquatch participants to contacts in HubSpot, you’ll be able to run powerful customer marketing programs that reward behaviors tied to your sales or marketing process.",
+    "highlights": "Looking for Hubspot referral software integration? Referral SaaSquatch leverages your Hubspot setup to install your referral program to your Hubspot pages.",
+    "keyFeatures": [
+      "See your contacts' SaaSquatch referral history within their HubSpot contact record",
+      "Automatically track referrals using a HubSpot lead capture form",
+      "Easily include a contact's unique referral code, share link and message links in your HubSpot email marketing campaigns",
+      "Trigger rewards when a HubSpot deal changes status"
+    ],
+    "moreInfo": [
+      "[HubSpot Integration Overview](/integrations/hubspot/overview)",
+      "[Integrating SaaSquatch with HubSpot](/integrations/hubspot/integrating-with-saasquatch)",
+      "[Sending Data from HubSpot Forms to SaaSquatch](/integrations/hubspot/sending-data-from-hubspot-forms)",
+      "[HubSpot Integration Behaviors](/integrations/hubspot/integration-behaviours)"
+    ],
+    "guideLink": "/integrations/hubspot/integrating-with-saasquatch",
+    "tags": [
+      "in-directory"
+    ]
+  }
+}

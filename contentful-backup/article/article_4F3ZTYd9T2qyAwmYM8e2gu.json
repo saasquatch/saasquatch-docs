@@ -1,0 +1,44 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "4F3ZTYd9T2qyAwmYM8e2gu",
+    "type": "Entry",
+    "createdAt": "2018-04-26T23:16:52.356Z",
+    "updatedAt": "2023-02-28T18:55:59.281Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 6170,
+    "revision": 14,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "User Segmentation",
+    "slug": "features/user-segmentation",
+    "highlights": "Create and manage intelligent segments of participants for your SaaSquatch programs. Improve personalization and ROI by using these segments to accurately promote each program to the correct group of users.",
+    "content": "## About user segmentation\nUser segmentation is the process of dividing your userbase into groups based on shared characteristics.\n\n<div class=\"row-fluid\">\n  <div class=\"span6\">\n    <p>Common segmentation criteria include demographic factors like:\n      <ul><li>Age\n<li>Sex/Gender\n<li>Location\n<li>Job Industry\n  <li>Place of employment\n  <li>Income\n  </ul>\n<p>You might also segment users based on a number of characteristics related to their relationship with your business like:\n<ul><li>Membership status\n<li>Subscription plan tier\n<li>Last purchase date\n<li>Signup date\n<li>Device\n  </ul>\n  </div>\n  <div class=\"span6\">\n  <img src=\"//images.ctfassets.net/s68ib1kj8k5n/4Qabf0HKzuIWmiWqiYiWUA/c4c475f0810fb14010fddeeacf670604/segment_user_cloud.png\" alt=\"segment user cloud\">\n  </div>\n</div>\n\nBy segmenting your users you can better understand their interests, follow their activity, and more accurately provide value that matches their needs.\n\n## Managing user segments\nIn the SaaSquatch Admin Portal, you can create new user segments, add individual participants to user segments, add participants to user segments in bulk, and remove participants from user segments.\n\n### Creating a user segment\n\n1. Log on to the SaaSquatch Admin Portal.\n2. In the upper left corner of your SaaSquatch account, select either your __Live__ or __Test__ tenant.\n3. Click __Data__ in the top menu bar.\n4. Click the __Segments__ tab. \n5. Click the __plus symbol (+)__ to the right of the segment section. \n6. Type the name of the segment you would like to add. \n7. Click __Add__ to create that segment. \n\nYour new segment has been created. \n\n### Adding a single participant to a user segment\n\n1. Log on to the SaaSquatch Admin Portal.\n2. In the upper left corner of your SaaSquatch account, select either your __Live__ or __Test__ tenant.\n3. Click __Participants__ in the top menu bar of your SaaSquatch account.\n4. Find the specific participant you would like to add to a user segment.\n5. Click that user to load their user overview. \n6. In the bottom left of the user overview, click __Add Segment__. \n7. Select the user segment you would like to include this participant in. \n\nAll done. The user is now within that user segment. \n\n### Adding participants to user segments in bulk \n\n1. Log on to the SaaSquatch Admin Portal.\n2. In the upper left corner of your SaaSquatch account, select either your __Live__ or __Test__ tenant.\n3. Click __Data__ in the top menu bar of your SaaSquatch account.\n4. Click the __Segments__ tab.\n5. Find the name of the segment to which you want to add users.\n6. Click __Add Users__ to the right side of the row under the Participants column. \n7. Choose the import type __Users__. \n8. Using the example CSV, create a list of all participants you would like to be included in a specific User Segment. \n9. Click __Select & Upload__ to choose the CSV file you have created and upload it to SaaSquatch. \n10. From the dropdown menu choose which user segment to add the specific participants to. \n11. Click __Start Import__ to assign the specific partipants to the selected User Segment. \n\nThrough the SaaSquatch portal you can make changes to a [bulk list of users](/guides/user-import) to add or remove them from segments in your SaaSquatch project.\n\n### Removing a single participant from a user segment\n\n1. Log on to the SaaSquatch Admin Portal.\n2. In the upper left corner of your SaaSquatch account, select either your __Live__ or __Test__ tenant.\n3. Click __Participants__ in the top menu bar of your SaaSquatch account.\n4. Find the specific participant you would like to remove from a user segment.\n5. Click that user to load their user overview. \n6. In the bottom left of the user overview, click the __x__ to the right of the segment you would like to remove the participant from. \n\nThe participant has been removed from the selected user segment. \n\n## SaaSquatch API and squatch.js segmentation\nThe SaaSquatch REST API and squatch.js Javascript library can also be used to programatically manage which segments users are a member of.\n\nThis functionality can be accessed by including one or more of the following \"Operations\" (a combination of the name of the segment and an operator) in the user object of the API call or squatch.js method. \n\n### Operators\nThe following operators are the basis for the User Segmentation \"Operations\" used to manage which segments a user is a member of.\n<table class=\"table\">\n<thead>\n<tr>\n    <th >\n        Operator\n    </th>\n    <th>\n        Description\n    </th>\n    <th>\n        Example\n    </th>\n</tr>\n</thead>\n<tbody>\n<tr>\n    <td class=\"docs-monospace\">Add</td>\n    <td>\n        Providing just the segment key will attempt to add the user to the segment. If the user is already part of the segment then no action will be taken.\n    </td>\n    <td><code>mySegmentKey</code> </td>\n</tr>\n<tr>\n    <td class=\"docs-monospace\">Delete</td>\n    <td>\n        Including the segment key with a <code>~</code> in front of it will inform the SaaSquatch system to remove the user from the segment. If the user is already not part of the segment then no action will be taken.\n    </td>\n    <td><code>~mySegmentKey</code> </td>\n</tr>\n  <tr>\n    <td class=\"docs-monospace\">Clear</td>\n    <td>\n        Including a <code>*</code> key, with a <code>~</code> in front of it, will inform the SaaSquatch system to remove the user from all segments they are currently part of. \n    </td>\n    <td><code>~*</code> </td>\n</tr>\n</tbody>\n</table>\n\n### Operations\nThe following Operations, built using the available Operators, enable you to manage which segments a user is a member of.\n\n<table class=\"table\">\n<thead>\n<tr>\n    <th >\n        Operation\n    </th>\n    <th>\n        Description\n    </th>\n    <th>\n        Example\n    </th>\n</tr>\n</thead>\n<tbody>\n<tr>\n    <td class=\"docs-monospace\">Add</td>\n    <td>\n        Adds a user to a segment. Any other existing segments will be retained.\n    </td>\n    <td><code>{ \n  \"id\" : \"abc_123\", ...\n  \"segments\" : [\"A\"] \n}</code> </td>\n</tr>\n<tr>\n    <td class=\"docs-monospace\">Set</td>\n    <td> Set the segment(s) for a user. Any other existing segments will be removed.<br><br> \n      <strong>NOTE: Ordering does matter!</strong> To perform a <code>set</code> operation, the clear Operator (<code>~*</code>) should be included first.\n    </td>\n    <td><code>{ \n  \"id\" : \"abc_123\", ...\n  \"segments\" : [\"~*\",\"A\" ] \n}</code></td>\n</tr>\n<tr>\n    <td class=\"docs-monospace\">Remove</td>\n    <td>\n        Remove a user from a segment. Any other existing segments will be retained.\n    </td>\n    <td><code>{ \n  \"id\" : \"abc_123\", ...\n  \"segments\" : [\"~A\"] \n}</code></td>\n</tr>\n  <tr>\n    <td class=\"docs-monospace\">Clear</td>\n    <td>\n        Clear all segments configured for a user.\n    </td>\n    <td><code>{ \n  \"id\" : \"abc_123\", ...\n  \"segments\" : [\"~*\"] \n}</code></td>\n</tr>\n\n</tbody>\n</table>\n\n> You can find further details about using these Operations in our squatch.js Javascript library and SaaSquatch API methods in our [documentation](/api/methods/#open_user_upsert).\n",
+    "seoDescription": "How to segment users in your referral and loyalty program to provide unique rewards to a subset of your participants..."
+  }
+}

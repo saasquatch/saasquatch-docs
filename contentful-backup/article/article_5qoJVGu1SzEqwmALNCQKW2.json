@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "5qoJVGu1SzEqwmALNCQKW2",
+    "type": "Entry",
+    "createdAt": "2022-10-31T20:54:55.990Z",
+    "updatedAt": "2023-05-17T00:00:03.799Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 155,
+    "revision": 6,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Designer Guide",
+    "title": "SaaSquatch Components",
+    "slug": "/building-programs/participant-experiences/saasquatch-components",
+    "content": "Components are the individual building blocks, like hero images and task cards, that make up your widget or microsite. All of our current templates are powered by our mint and bedrock components libraries. \n\nThe table below shows the components you can use to build your participant experience, as well as how we group them in our visual editor for widgets and microsites. If you want to learn more about our widget and microsite templates and component libraries, then check out our doc on [participant experiences](/features/end-user-experiences).\n\n> Important: If your widget still uses our legacy vanilla components package, then you won't see the categories and components below. [Manually upgrade](/features/end-user-experiences#mint-components) to our current mint components library to begin using our newest features and participant experiences.\n\n<table class=\"table table-hover\">\n\t<tr>\n\t\t<th style=\"width:35%\">Category</th>\n\t\t<th style=\"width:65%\">Components</th>\n\t</tr>\n\t<tr>\n\t\t<td>Advanced</td>\n\t\t<td>\n\t\t\t<ul>\n\t\t\t\t<li>Conditional section on segment</li>\n\t\t\t\t<li>Conditional section on custom field</li>\n\t\t\t\t<li>Program section</li>\n\t\t\t</ul>\n\t\t</td>\n\t</tr>\n\t<tr>\n\t\t<td>Statistics (use only for verified access widgets and microsites)</td>\n\t\t<td>\n\t\t\t<ul>\n\t\t\t\t<li>Points balance</li>\n\t\t\t\t<li>Gift card earned</li>\n\t\t\t\t<li>Referrals</li>\n\t\t\t\t<li>Container with three stats</li>\n\t\t\t</ul>\n\t\t</td>\n\t</tr>\n\t<tr>\n\t\t<td>Common Components</td>\n\t\t<td>\n\t\t\t<ul>\n\t\t\t\t<li>Brand container</li>\n\t\t\t\t<li>Two column hero image</li>\n\t\t\t\t<li>Overlay hero image</li>\n        <li>Image</li>\n        <li>Link button</li>\n        <li>Logout Current User</li>\n\t\t\t\t<li>Program explainer</li>\n\t\t\t\t<li>Program explainer step</li>\n\t\t\t\t<li>Program timeline</li>\n\t\t\t\t<li>Timeline entry</li>\n\t\t\t\t<li>User name display</li>\n\t\t\t</ul>\n\t\t</td>\n\t</tr>\n\t<tr>\n\t\t<td>Rewards (use only for verified access widgets and microsites)</td>\n\t\t<td>\n\t\t\t<ul>\n\t\t\t\t<li>Task card feed</li>\n        <li>Reward exchange</li>\n\t\t\t\t<li>Reward table</li>\n\t\t\t\t<li>Reward table customer note column</li>\n\t\t\t\t<li>Reward table date column</li>\n\t\t\t\t<li>Rewards table reward column</li>\n\t\t\t\t<li>Reward table source column</li>\n\t\t\t\t<li>Reward table status column</li>\n\t\t\t\t<li>One time task card</li>\n\t\t\t\t<li>Repeatable task card</li>\n\t\t\t\t<li>Event sending task card</li>\n\t\t\t</ul>\n\t\t</td>\n\t</tr>\n\t<tr>\n\t\t<td>Microsite components (use only for microsites)</td>\n\t\t<td>\n\t\t\t<ul>\n\t\t\t\t<li>Form checkbox field</li>\n\t\t\t\t<li>Form dropdown field</li>\n\t\t\t\t<li>Form input field</li>\n\t\t\t\t<li>Form name fields</li>\n\t\t\t\t<li>Sidebar item</li>\n\t\t\t\t<li>Form password field</li>\n\t\t\t</ul>\n\t\t</td>\n\t</tr>\n  \t<tr>\n\t\t<td>Sharing</td>\n\t\t<td>\n\t\t\t<ul>\n        <li>Coupon Code</li>\n\t\t\t\t<li>Facebook share button</li>\n\t\t\t\t<li>Twitter share button</li>\n\t\t\t\t<li>Email share button</li>\n\t\t\t\t<li>Web share sheet share button</li>\n\t\t\t\t<li>LinkedIn share button</li>\n\t\t\t\t<li>SMS share button</li>\n\t\t\t\t<li>Facebook Messenger share button</li>\n\t\t\t\t<li>WhatsApp share button</li>\n\t\t\t\t<li>Line Messenger share button</li>\n\t\t\t\t<li>Pinterest share button</li>\n\t\t\t\t<li>Share code</li>\n\t\t\t\t<li>Share link</li>\n\t\t\t</ul>\n\t\t</td>\n\t</tr>\n\t<tr>\n\t\t<td>Layout</td>\n\t\t<td>\n\t\t\t<ul>\n\t\t\t\t<li>Two column hero layout</li>\n\t\t\t\t<li>Row layout container</li>\n\t\t\t\t<li>Column layout container</li>\n\t\t\t\t<li>Tab</li>\n\t\t\t\t<li>Generic tab group</li>\n\t\t\t\t<li>Titled section</li>\n\t\t\t</ul>\n\t\t</td>\n\t</tr>\n\t<tr>\n\t\t<td>Referrals (use only for verified access widgets and microsites)</td>\n\t\t<td>\n\t\t\t<ul>\n\t\t\t\t<li>Referral card</li>\n\t\t\t\t<li>Referral table</li>\n\t\t\t\t<li>Referral table date column</li>\n\t\t\t\t<li>Referral table rewards column</li>\n\t\t\t\t<li>Referral table status column</li>\n\t\t\t\t<li>Referral table user column</li>\n\t\t\t</ul>\n\t\t</td>\n\t</tr>\n  <tr>\n    <td>PayPal Components</td>\n    <td>\n      <ul>\n        <li>PayPal Account Details</li>\n        <li>Referral Table Rewards Column</li>\n        <li>Reward Table Status Column</li>\n      </ul>\n    </td>\n  </tr>\n\t<tr>\n\t\t<td>Typography</td>\n\t\t<td>\n\t\t\t<ul>\n\t\t\t\t<li>Paragraph</li>\n\t\t\t\t<li>Heading 1</li>\n\t\t\t\t<li>Heading 2</li>\n\t\t\t\t<li>Heading 3</li>\n\t\t\t\t<li>Heading 4</li>\n\t\t\t</ul>\n\t\t</td>\n\t</tr>\n</table>\n",
+    "seoDescription": "Components are the individual building blocks, like hero images and task cards, that make up your widget or microsite. All of our current templates are powered by our mint and bedrock components libraries. Learn more about the various components you can use to create your participant experience. ",
+    "robotsTag": [
+      "FOLLOW"
+    ],
+    "canonicalUrl": "<link rel=\"canonical\" href=\"URL from Contentful response\"/>"
+  }
+}

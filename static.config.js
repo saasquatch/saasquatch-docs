@@ -3,15 +3,11 @@ import path from "path";
 import parser from "swagger-parser";
 import yaml from "js-yaml";
 import resolveAllOf from "json-schema-resolve-allof";
-import contentful from "contentful";
 import fs from "mz/fs";
 import globby from "globby";
+import matter from "gray-matter";
 
-import contentfulpagifier from "./metalsmith/utils/contentfulpagifier";
-import productSpaceContentfulpagifier from "./metalsmith/utils/productSpaceContentfulpagifier";
-import installguidepagifier from "./metalsmith/utils/installguidepagifier";
 import { Bottom } from "./src/templates/bottom";
-import resolveI18n from "./metalsmith/utils/resolveI18n";
 
 /**
  * Map of legacy SWIG to REACT templates
@@ -21,8 +17,8 @@ const TEMPLATES = {
   "faqCategory.html": "src/containers/FaqCategory",
   "fullpage.html": "src/containers/Fullpage",
   "hasTableOfContents.html": "src/containers/HasTOC",
-  "intergrationLander.html": "src/containers/IntegrationLander",
-  "intergrationLanderIntro.html": "src/containers/IntegrationLanderIntro",
+  "integrationLander.html": "src/containers/IntegrationLander",
+  "integrationLanderIntro.html": "src/containers/IntegrationLanderIntro",
   "pages/rscode.html": "src/containers/RsCode",
   "pages/program.html": "src/containers/Program",
   "pages/branchReference.html": "src/containers/single/BranchMetrics",
@@ -50,7 +46,11 @@ function getTemplate(legacy) {
  * Read files from the `content` directy, & parse the frontmatter
  */
 async function getRawFiles() {
-  const paths = await globby(["content/**/*"]);
+  const paths = await globby([
+    "content/**/*",
+    // Exclude Contentful exports (raw JSON)
+    "!content/contentful/**",
+  ]);
 
   const all = await Promise.all(
     paths
@@ -61,8 +61,6 @@ async function getRawFiles() {
         fpath: p,
       })),
   );
-
-  const matter = require("gray-matter");
 
   return all
     .map(({ source, fpath }) => {
@@ -86,6 +84,139 @@ async function getRawFiles() {
       };
     })
     .filter((x) => x);
+}
+
+/**
+ * Load product news items from local markdown files
+ * @returns {Promise<any[]>}
+ */
+async function getProductNews() {
+  const paths = await globby(["content/product-news/**/*.md"]);
+
+  /** @type {any[]} */
+  const items = await Promise.all(
+    paths.map(async (p) => {
+      const source = await fs.readFile(p, { encoding: "utf8" });
+      const parsed = matter(source);
+      // Convert datePublished to ISO string if it's a Date object (YAML parses dates automatically)
+      let datePublished = parsed.data.datePublished;
+      if (datePublished instanceof Date) {
+        datePublished = datePublished.toISOString().split("T")[0];
+      }
+      return {
+        ...parsed.data,
+        datePublished,
+        content: parsed.content,
+      };
+    }),
+  );
+
+  // Sort by datePublished descending
+  return items.sort((a, b) => {
+    const dateA = a.datePublished ? new Date(a.datePublished).getTime() : 0;
+    const dateB = b.datePublished ? new Date(b.datePublished).getTime() : 0;
+    return dateB - dateA;
+  });
+}
+
+/**
+ * Load breaking changes from local markdown files
+ * @returns {Promise<any[]>}
+ */
+async function getBreakingChanges() {
+  const paths = await globby(["content/breaking-changes/**/*.md"]);
+
+  /** @type {any[]} */
+  const items = await Promise.all(
+    paths.map(async (p) => {
+      const source = await fs.readFile(p, { encoding: "utf8" });
+      const parsed = matter(source);
+      return {
+        ...parsed.data,
+        content: parsed.content,
+      };
+    }),
+  );
+
+  // Sort by deadline descending
+  return items.sort((a, b) => {
+    const dateA = a.deadline ? new Date(a.deadline).getTime() : 0;
+    const dateB = b.deadline ? new Date(b.deadline).getTime() : 0;
+    return dateB - dateA;
+  });
+}
+
+/**
+ * Load integrations from local markdown files
+ * @returns {Promise<any[]>}
+ */
+async function getIntegrations() {
+  const paths = await globby(["content/integrations/**/*.md"]);
+
+  /** @type {any[]} */
+  const items = await Promise.all(
+    paths.map(async (p) => {
+      const source = await fs.readFile(p, { encoding: "utf8" });
+      const parsed = matter(source);
+      const data = parsed.data;
+
+      return {
+        ...data,
+        fields: data,
+        contents: parsed.content,
+        date: data.date,
+        id: data.id,
+        template: "intergrationLander.html",
+      };
+    }),
+  );
+
+  return items.filter(
+    (d) => d.tags && d.tags.some((i) => i === "in-directory"),
+  );
+}
+
+/**
+ * Load programs from local markdown files
+ * @returns {Promise<any[]>}
+ */
+async function getPrograms() {
+  const paths = await globby(["content/programs/**/*.md"]);
+
+  /** @type {any[]} */
+  const items = await Promise.all(
+    paths.map(async (p) => {
+      const source = await fs.readFile(p, { encoding: "utf8" });
+      const parsed = matter(source);
+      const data = parsed.data;
+
+      // Structure to match what programLibrary.tsx expects
+      return {
+        slug: data.slug,
+        title: data.title,
+        highlights: data.highlights,
+        contents: parsed.content,
+        date: data.date,
+        id: data.id,
+        sectionType: data.sectionType,
+        template: data.template,
+        logo: data.logo,
+        screenshot: data.screenshot,
+        tags: data.tags,
+        // Provide fields object for programLibrary.tsx compatibility
+        fields: {
+          name: data.title,
+          summary: data.highlights,
+          icon: data.icon,
+          globallyInstallable: data.globallyInstallable,
+          slug: data.slug?.replace("program/", ""),
+          tags: data.tags,
+        },
+      };
+    }),
+  );
+
+  return items.filter((p) => p.fields.globallyInstallable);
 }
 
 /**
@@ -228,26 +359,6 @@ export default {
 };
 
 /**
- * Load all the entries from a Contentful space
- *
- */
-async function getContentful(opts) {
-  var client = createContentfulClient(opts.accessKey, opts.spaceId);
-  const response = await client.sync({
-    initial: true,
-    resolveLinks: true,
-  });
-  return response.entries;
-}
-
-function createContentfulClient(accessToken, spaceId) {
-  return contentful.createClient({
-    space: spaceId,
-    accessToken: accessToken,
-  });
-}
-
-/**
  *  Most of the magic happens here.
  *
  *
@@ -257,54 +368,15 @@ function createContentfulClient(accessToken, spaceId) {
  *
  */
 async function getRoutes() {
-  const expectEnv = (env) => {
-    const value = process.env[env];
-    if (!value) throw new Error(`${env} environment variable should be set`);
-    return value;
-  };
-
-  const contentfulDocsSpaceId = expectEnv("CONTENTFUL_DOCS_SPACEID");
-  const contentfulDocsAccessKey = expectEnv("CONTENTFUL_DOCS_ACCESS_KEY");
-  const contentfulProductSpaceId = expectEnv("CONTENTFUL_PRODUCT_SPACEID");
-  const contentfulProduceAccessKey = expectEnv("CONTENTFUL_PRODUCT_ACCESS_KEY");
-
   const spec = await getSwagger();
-  const entries = await getContentful({
-    spaceId: contentfulDocsSpaceId,
-    accessKey: contentfulDocsAccessKey,
-  });
 
-  const filterForType = (type) => {
-    return (acc, entryRaw) => {
-      const entry = resolveI18n(entryRaw);
-      let fields = entry.fields;
-      if (type !== entry.sys.contentType.sys.id) {
-        return acc;
-      }
-      const newsItem = fields;
-      return [...acc, newsItem];
-    };
-  };
-
-  // Sorted list of news items
-  const productNews = entries
-    .reduce(filterForType("productNews"), [])
-    .sort((a, b) => a.datePublished > b.datePublished);
-
-  // Sorted list of news items
-  const breakingChanges = entries
-    .reduce(filterForType("breakingChange"), [])
-    .sort((a, b) => a.deadline > b.deadline);
+  // Load all content from local markdown files
+  const productNews = await getProductNews();
+  const breakingChanges = await getBreakingChanges();
+  const integrations = await getIntegrations();
+  const programs = await getPrograms();
 
   const guides = await getYaml("metadata/guides.yaml");
-
-  const contentfulProduct = await getContentful({
-    spaceId: contentfulProductSpaceId,
-    accessKey: contentfulProduceAccessKey,
-  });
-  const programs = contentfulProduct
-    .map(productSpaceContentfulpagifier)
-    .filter((e) => e);
 
   const rawFiles = await getRawFiles();
 
@@ -315,11 +387,6 @@ async function getRoutes() {
       (r) => r.path.includes("squatchjs/issue") && !r.path.includes("template"),
     )
     .map((r) => r.getData().entry);
-
-  const integrations = entries
-    .map(contentfulpagifier)
-    .filter((x) => x)
-    .filter((d) => d.tags && d.tags.some((i) => i == "in-directory"));
 
   const staticPages = [
     {
@@ -393,34 +460,8 @@ async function getRoutes() {
       template: "src/containers/single/running-programs",
     },
   ];
-  const contentfulPages = entries
-    .map(contentfulpagifier)
-    .filter((e) => e)
-    .map(legacyPagifierToStatic);
 
-  const contentfulProductPages = programs.map(legacyPagifierToStatic);
-
-  const installGuides = contentfulProduct
-    .map(installguidepagifier)
-    .filter((e) => e)
-    .map(legacyPagifierToStatic);
-
-  return [
-    ...rawFiles,
-    ...contentfulPages,
-    ...contentfulProductPages,
-    ...installGuides,
-    ...staticPages,
-  ];
-}
-
-// TODO: Update all the pagifiers to incorporate this functionality directly there
-function legacyPagifierToStatic(entry) {
-  return {
-    path: entry.slug.toLowerCase(),
-    getData: () => ({ entry }),
-    template: getTemplate(entry.template),
-  };
+  return [...rawFiles, ...staticPages];
 }
 
 const HTTP_METHODS = [

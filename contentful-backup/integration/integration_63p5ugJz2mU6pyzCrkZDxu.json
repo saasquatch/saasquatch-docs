@@ -1,0 +1,98 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "63p5ugJz2mU6pyzCrkZDxu",
+    "type": "Entry",
+    "createdAt": "2019-12-05T02:39:30.035Z",
+    "updatedAt": "2023-07-21T06:38:36.851Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 19,
+    "revision": 3,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "integration"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "title": "Google Tag Manager Referral Software Integration",
+    "integrationName": "Google Tag Manager",
+    "slug": "gtm",
+    "logo": {
+      "metadata": {
+        "tags": [],
+        "concepts": []
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "s68ib1kj8k5n"
+          }
+        },
+        "id": "7CaznglhwLW8kZ4l9NvJy1",
+        "type": "Asset",
+        "createdAt": "2019-12-05T02:49:40.105Z",
+        "updatedAt": "2019-12-05T02:49:40.105Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 14,
+        "revision": 1,
+        "locale": "en-US"
+      },
+      "fields": {
+        "title": "Google Tag Manager Integration",
+        "file": {
+          "url": "//images.ctfassets.net/s68ib1kj8k5n/7CaznglhwLW8kZ4l9NvJy1/d8f4b8508835876315d5a884a7e7209b/gtm-integration.png",
+          "details": {
+            "size": 11069,
+            "image": {
+              "width": 450,
+              "height": 300
+            }
+          },
+          "fileName": "gtm-integration.png",
+          "contentType": "image/png"
+        }
+      }
+    },
+    "integrationDescription": "Google Tag Manager helps you manage website tags all in one place. Referral SaaSquatch's GTM integration leverages your existing GTM setup to install your referral program without needing to edit your website.",
+    "highlights": "Looking for Google Tag Manager referral software integration? Referral SaaSquatch leverages GTM to install your referral program without editing your website.",
+    "keyFeatures": [
+      "Drag-and-Drop code snippet install",
+      "Leverage existing Google Tag Manager setup",
+      "No webpage editing required",
+      "Completely configure your referral program through the SaaSquatch Portal"
+    ],
+    "moreInfo": [
+      "[Google Tag Manager Quickstart Guide](/guides/using-gtm)",
+      "[Drag-and-Drop Integration Configuration](/guides/integration-quickstart)"
+    ],
+    "guideLink": "/guides/using-gtm"
+  }
+}

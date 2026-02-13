@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "4kzluRkCl262o82E0GW6qA",
+    "type": "Entry",
+    "createdAt": "2017-04-05T18:31:44.290Z",
+    "updatedAt": "2018-12-12T20:29:53.854Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 12,
+    "revision": 2,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Designer Guide",
+    "title": "Internationalization",
+    "slug": "themes/internationalization",
+    "highlights": "Internationalization (i18n) allows any custom theme to be translated into any number of languages.\n    Some customers have run their referral program in 11 parallel languages, all managed\n    through the Referral SaaSquatch custom theme engine.",
+    "content": " - Internationalization\n - Internationalisierung\n - 国际化\n - 국제화\n - интернационализация\n - միջազգայնացման\n\nInternationalization is the process of translating your referral program into multiple languages,\nand uses custom themes to manage all the strings, HTML and CSS attached. Internationalization uses 5 parts, as follows:\n\n - The `locale` widget parameter (see [Squatch.js](/squatchjs) and [Mobile widget](/mobile/widget))\n - The `locale` template field (see [Template field reference](/themes/fields))\n - The `i18n` handlebars helper (see [i18n Helper reference](/themes/i18n-helper))\n - Java `.properties` files (see [i18n Helper reference](/themes/i18n-helper))\n - Translation service integrations (e.g. [Transifex](/themes/integrations/transifex) and [Crowdin](/themes/integrations/crowdin))\n\n\n### A Simple Example\n\nSay we wanted to translated a single string like `Give a free month to a friend`.\n\nSomewhere this would be in your custom theme, like so:\n\n```\n<h3>\n    Give a free month to a friend\n</h3>\n```\n\nThis would need to use the `i18n` helper.\n\n```\n<h3>\n    {{i18n \"callToAction\"}}\n</h3>\n```\n\n```nohighlight\n>> messages.properties\n\ncallToAction = Give a free month to a friend\n```\n\nThen to translate the file, we'd just need to include a separate .properties file.\nFor example, if your loaded Squatch.js or the mobile webview using `locale=fr`,\nit would use the messages from the `messages_fr.properties` file.\n\n```nohighlight\n>> messages_fr.properties\n\ncallToAction = Donnez un mois gratuit à un ami\n```\n\nSo, the final rendered result in French would look like so:\n\n```\n<h3>\n    Donnez un mois gratuit à un ami\n</h3>\n```"
+  }
+}

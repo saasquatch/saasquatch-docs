@@ -1,0 +1,44 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "21XpZNiG7QwuH127mJKGGf",
+    "type": "Entry",
+    "createdAt": "2020-01-28T22:08:12.736Z",
+    "updatedAt": "2023-02-27T23:38:24.115Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 132,
+    "revision": 4,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "productNews"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "title": "Referral Program Reward Tiers",
+    "datePublished": "2020-01-28",
+    "tags": [
+      "feature-release"
+    ],
+    "content": "At SaaSquatch, we know that one size doesn’t fit all when it comes to referral rewards. This is why our brand new tiered referral program functionality supports the flexibility you need to get the results you desire.\n\nIf you’re looking for a way to get a better ROI, boost program engagement, and automatically personalize each reward, it’s time to set up referral reward tiers.\n#### What is a tiered referral program?\nA tiered referral program is a structured referral program that lets you configure different rewards for different kinds of referrals.\n#### What kind of tiers can I set up?\nCreate tiered referral programs that trigger the best rewards based on your own custom rules like:\n- What the referred friend buys\n- Who makes the referral\n- How the referred friend interacts with your product\n\nFor example, create a tiered referral program to reward promoters with a $5 credit if their referred friend spends $50, and a $10 credit if their friend spends over $100.\n\n<div>\n<a class=\"docs-lightbox\" href=\"//images.ctfassets.net/s68ib1kj8k5n/2UNPMDJtxwA9wLJ8opWm6x/83eabad48b56f31848a7aadbfd25a5a3/saasquatch-tiers-referral.gif\" data-lightbox=\"example-set\">\n<img src=\"//images.ctfassets.net/s68ib1kj8k5n/2UNPMDJtxwA9wLJ8opWm6x/83eabad48b56f31848a7aadbfd25a5a3/saasquatch-tiers-referral.gif\" alt=\"Tiers Referral Program\">\n  <div><i class=\"fa fa-eye\"></i> Preview</div>\n</a>\n</div>\n\n[Click here](https://www.saasquatch.com/blog/introducing-referral-reward-tiers/) for even more ways you can use referral tiers to boost program results. \n\nPlease note: Referral reward tiers are available as part of our Growth Automation platform, and not currently available for Classic referral programs. "
+  }
+}

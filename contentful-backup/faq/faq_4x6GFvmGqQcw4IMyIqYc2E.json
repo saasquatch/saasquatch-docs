@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "4x6GFvmGqQcw4IMyIqYc2E",
+    "type": "Entry",
+    "createdAt": "2016-04-04T22:17:19.420Z",
+    "updatedAt": "2016-04-04T22:17:31.596Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 7,
+    "revision": 2,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "faq"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "question": "What is Referral SaaSquatch?",
+    "answer": "Referral SaaSquatch is a customer referral platform that lets companies track and reward referrals from their customers.\n\nWith Referral SaaSquatch, you can create a fully customizable referral program right inside your product. We handle everything from tracking referrals and fraud detection to analytics and payment system integrations."
+  }
+}

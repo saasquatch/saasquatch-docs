@@ -7,31 +7,37 @@ import Markdown from "../components/Markdown";
 
 export default function render() {
   const { entry } = useRouteData();
-  const { fields } = entry;
+  // Support both old Contentful format (entry.fields.answers) and new local format (entry.answers)
+  const answers = entry.fields?.answers || entry.answers || [];
 
   return (
     <PageHeader {...entry}>
       <>
         <ul className="js-faq-list">
-          {fields.answers.map(faq => (
-            <li>
-              <a href={"#" + slug(faq.fields.question)}>
-                {faq.fields.question}
-              </a>
-            </li>
-          ))}
+          {answers.map((faq: any, index: number) => {
+            const question = faq.fields?.question || faq.question;
+            return (
+              <li key={index}>
+                <a href={"#" + slug(question)}>{question}</a>
+              </li>
+            );
+          })}
         </ul>
 
         <hr />
 
-        {fields.answers.map(faq => (
-          <div className="docs-faq-question" id={slug(faq.fields.question)}>
-            <h3>{faq.fields.question}</h3>
-            <p>
-              <Markdown source={faq.fields.answer} />
-            </p>
-          </div>
-        ))}
+        {answers.map((faq: any, index: number) => {
+          const question = faq.fields?.question || faq.question;
+          const answer = faq.fields?.answer || faq.answer;
+          return (
+            <div className="docs-faq-question" id={slug(question)} key={index}>
+              <h3>{question}</h3>
+              <p>
+                <Markdown source={answer} />
+              </p>
+            </div>
+          );
+        })}
       </>
     </PageHeader>
   );

@@ -1,0 +1,161 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "48ji72u659z5"
+      }
+    },
+    "id": "3IiB33BJagMkCgUquCs80Y",
+    "type": "Entry",
+    "createdAt": "2017-12-05T04:04:11.101Z",
+    "updatedAt": "2024-12-02T22:30:22.886Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 191,
+    "revision": 42,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "programTemplate"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "name": "Signup",
+    "icon": "sqtch-prgrm-signup-rwd",
+    "categories": [
+      "acquire"
+    ],
+    "slug": "signup-reward",
+    "summary": "Encourage new users to signup.",
+    "longDescription": "Encourage new users to try your product or service by offering a special reward upon signup. \n\nThis can be leveraged to increase sales or engagement during the holidays or any special event with unique and exclusive incentives. \n\n### Example:\n\nAn e-learning subscription platform is ready to scale up their customer base at the start of the school year.\n\nThe company launches a signup program that gives a free month premium subscription for brand new signups during the month of September. \n\n### Features:\n\n* Specify the conditions that will cause users to be rewarded.\n* Specify the reward earned when signup is completed.\n* Customize the email to notify users when they get a reward.",
+    "schema": {
+      "name": "Signup Reward Program",
+      "rules": {
+        "type": "object",
+        "title": "When a user signs up they get a reward.",
+        "properties": {
+          "JSONata": {
+            "type": "string"
+          },
+          "version": {
+            "enum": [
+              "2.0.0"
+            ],
+            "type": "string",
+            "title": "Version of the current schema",
+            "default": "2.0.0",
+            "description": "The version property allows the jsonata migration script to perform a rules update when required"
+          },
+          "rewardType": {
+            "enum": [
+              0,
+              1
+            ],
+            "type": "integer",
+            "title": "Choose when you want to reward your users.",
+            "default": 0,
+            "enumNames": [
+              "Only new users",
+              "Any user who meets the condition"
+            ]
+          }
+        },
+        "definitions": {}
+      },
+      "emails": [
+        {
+          "key": "signupRewardEmail",
+          "name": "Reward Created Email",
+          "defaults": "signupRewardEmailId",
+          "description": "We send this email when a new reward is created by this program"
+        }
+      ],
+      "rewards": [
+        {
+          "key": "signupReward",
+          "name": "Signup Reward",
+          "description": "New users earn this reward when they signup."
+        }
+      ],
+      "summary": "When a user signs up for the first time, they get a reward.",
+      "rulesUISchema": {
+        "JSONata": {
+          "ui:widget": "TierJSONataEditor",
+          "ui:options": {
+            "orderable": false,
+            "rewardKey": "signupReward",
+            "lhsHeading": "What conditions will cause users to be rewarded?",
+            "isSingleTier": true,
+            "noFilterMessage": "If you don't add any filters, then any updated user who meets the below condition will be rewarded."
+          }
+        },
+        "version": {
+          "ui:widget": "hidden"
+        },
+        "rewardType": {
+          "ui:widget": "RadioAsCards",
+          "ui:options": {
+            "isDynamic": true,
+            "ruleOptions": [
+              {
+                "key": 0,
+                "icon": "add_user_circle",
+                "title": "New Users",
+                "description": "Reward new users when they sign up and meet the reward criteria."
+              },
+              {
+                "key": 1,
+                "icon": "person_arrows",
+                "title": "All Eligible Users",
+                "description": "Reward any user who is created or updated and meets the reward criteria."
+              }
+            ]
+          }
+        }
+      },
+      "longDescription": ""
+    },
+    "contentfulIdMapping": {
+      "signupRewardEmailId": "2JKTUOwZqgqgU0YYeqwUMs"
+    },
+    "url": "https://signup-program.services.prod.ssqt.io/",
+    "logo": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Asset",
+        "id": "6MmTtRNbH2SWewkCoM082s"
+      }
+    },
+    "screenshot": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Asset",
+        "id": "Ep4VndfWyyIkmicguIcSQ"
+      }
+    },
+    "globallyInstallable": true,
+    "installableByTenants": [
+      "test_a8xm7ngkv4g2c",
+      "test_atvfyio4abbmy",
+      "test_agngayvesirnb",
+      "test_at5aibor5ksct"
+    ],
+    "tags": [
+      "acquisition"
+    ]
+  }
+}

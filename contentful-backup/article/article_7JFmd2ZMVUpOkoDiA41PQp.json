@@ -1,0 +1,46 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "7JFmd2ZMVUpOkoDiA41PQp",
+    "type": "Entry",
+    "createdAt": "2024-01-10T13:43:19.108Z",
+    "updatedAt": "2024-01-10T13:43:19.108Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 49,
+    "revision": 1,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Create and Publish a Program Draft",
+    "slug": "building-programs/programs/create-and-publish-a-program-draft",
+    "content": "If you want to make adjustments to your live referral program without pausing it, then you can create a program draft. Drafts allow you to holistically review and publish changes made to your program design and customer touchpoints, including: \n- Program rules and rewards\n- Program emails and widgets\n- Landing page configuration\n- Social messaging\n\n> __Note:__ Translations aren’t included in program drafts. If your program draft included modifications to customer touchpoints like a program email or widget, then you can [update your translations](/features/program-i18n) after publication. \n\n## Create a program draft\nEach program can have one active draft at a time. Any changes you make are automatically saved to your draft and must be published to take effect.\n\n### Program rules\n1. From the left navigation menu, go to __Programs__ and select the program you want to edit.\n2. In the program rules, make any changes to your:\n    - Goals and actions\n    - Program-specific rewards\n        - Note: Global rewards are not included in program drafts. If your program uses a global reward, then any changes you make to that reward will go live right away. \n    - Landing page configuration\n    - Social messaging details\n\nYour changes will be automatically added to the program draft. \n\n### Program content\n1. From the left navigation menu, select __Content__.\n2. Open the content editor:\n    - On the *Widgets* card, select __Edit widgets__.\n    - On the *Emails* card, select __Edit emails__.\n3. Below the *Program widgets* or *Program emails* heading in the slideout menu, select the item you want to change.\n    - For help modifying your widget or email, see our documentation on [customizing widgets](/designer/widget-editor) and [emails](/designer/email-editor). \n4. After you make your changes, select __Save Draft__ in the top navigation bar. Your changes will be added to your program draft. \n\n## Publish a program draft\nTeam members with the Full Access or Program Manager role can create, update, discard, or publish program drafts. If you’re a Full Access team member and don’t want your Program Managers to be able to publish drafts, then reach out to our [Support team](mailto:support@saasquatch.com) to adjust your user permissions.\n\n1. From the left navigation menu, select open your program rules or select __Content__. \n2. In the top navigation bar, select __Publish draft__. \n    - A message will appear that summarizes the areas you changed. Please note that individual changes can’t be removed from your draft. \n3. Select __Publish__ to push all changes through to your live program immediately. Additional testing prior to publication isn’t available at this time. ",
+    "robotsTag": [
+      "FOLLOW"
+    ],
+    "canonicalUrl": "<link rel=\"canonical\" href=\"URL from Contentful response\"/>"
+  }
+}

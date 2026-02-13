@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "581GsiWjn4gKR571QGQaWv",
+    "type": "Entry",
+    "createdAt": "2019-11-06T22:24:54.732Z",
+    "updatedAt": "2023-10-18T20:53:39.400Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 2891,
+    "revision": 18,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Designer Guide",
+    "title": "Email Template Merge Tags",
+    "slug": "designer/short-tags",
+    "highlights": "In SaaSquatch, you can use Merge Tags when designing email communications to ensure that your message is personalized and dynamic.",
+    "content": "<p>Merge tags allow the SaaSquatch system to populate your program’s transactional emails with dynamic information about:</p>\n<ul>\n<li>Your participants</li>\n<li>Rewards they earn</li>\n<li>People they refer</li>\n<li>Personal share links and message links</li>\n</ul>\n<div>\n<a class=\"docs-lightbox\" href=\"//images.ctfassets.net/s68ib1kj8k5n/2wIqSsVO3X5tv7koGNQvnl/9ed3fc3ad3c1fa2147b45bee124fe8a7/Screen_Shot_2019-10-11_at_9.40.08_AM.png\" data-lightbox=\"example-set\"><img src=\"//images.ctfassets.net/s68ib1kj8k5n/2wIqSsVO3X5tv7koGNQvnl/9ed3fc3ad3c1fa2147b45bee124fe8a7/Screen_Shot_2019-10-11_at_9.40.08_AM.png\" alt=\"Email in Editor\">  <div><i class=\"fa fa-eye\"></i> Preview</div>\n</a>\n<a class=\"docs-lightbox\" href=\"//images.ctfassets.net/s68ib1kj8k5n/6awp6mrTQFHi2NDyBqTguH/9f57246452da9b51bee66795764caa19/Screen_Shot_2019-10-11_at_9.58.01_AM.png\" data-lightbox=\"example-set\"><img src=\"//images.ctfassets.net/s68ib1kj8k5n/6awp6mrTQFHi2NDyBqTguH/9f57246452da9b51bee66795764caa19/Screen_Shot_2019-10-11_at_9.58.01_AM.png\" alt=\"Email in Inbox\">  <div><i class=\"fa fa-eye\"></i> Preview</div>\n</a>\n</div>\n\n## Available merge tags\n\n<table class=\"table table-hover\"\n\t<thead>\n\t\t<td style=\"width:15%\">Category</td>\n\t\t<td style=\"width:25%\">Merge tag</td>\n\t\t<td style=\"width:30%\">Description</td>\n\t\t<td style=\"width:30%\">Example</td>\n\t</thead>\n\t<tr>\n\t\t<td rowspan=\"4\">Participant information</td>\n\t\t<td><code>{{user.firstName}}</code></td>\n\t\t<td>The first name of the participant viewing the email.</td>\n\t\t<td rowspan=\"2\"><code>{{user.firstName}} {{user.lastName}}</code>, you’ve earned a reward!</td>\n\t</tr>\n\t<tr>\n\t\t<td><code>{{user.lastName}}</code>\n\t\t<td>The last name of the participant viewing the email.</td>\n\t</tr>\n\t<tr>\n\t\t<td><code>{{user.referralCode}}</code></td>\n\t\t<td>The participant's referral code. </td>\n\t\t<td>Your personal referral code is <code>{{user.referralCode}}</code>.</td>\n\t</tr>\n\t<tr>\n\t\t<td><code>{{user.customFields.xxx}}</code></td>\n\t\t<td>Use this tag to reference any participant information that you’ve included as a custom field. This example shows a merge that populates with the name of the company for which the participant works.</td>\n\t\t<td>Share your referral information with your colleagues at <code>{{user.customFields.companyName}}</code>.</td>\n\t</tr>\n\t<tr>\n\t\t<td>Client information</td>\n\t\t<td><code>{{tenant.settings.companyName}}</code></td>\n\t\t<td>Your company’s name, as listed on the <strong>Settings > General</strong> page. </td>\n\t\t<td>Welcome to <code>{{tenant.settings.companyName}}</code>’s Advocate program.</td>\n\t</tr>\n\t<tr>\n\t\t<td rowspan=\"6\">Reward details</td>\n\t\t<td><code>{{reward.prettyValue}}</code></td>\n\t\t<td>The value of the reward in a formatted manner (e.g., $15.00).</td>\n\t\t<td>Get <code>{{reward.prettyValue}}</code> off your next order.</td>\n\t</tr>\n\t<tr>\n\t\t<td><code>{{reward.unit}}</code></td>\n\t\t<td>The unit of the reward (e.g., Point or Month).</td>\n\t\t<td>You’ve received a <code>{{reward.unit}}</code> for referring your friend, <code>{{referral.referredUser.firstName}}</code>!</td>\n\t</tr>\n\t<tr>\n\t\t<td><code>{{reward.name}}</code></td>\n\t\t<td>The name of the reward as seen in the Reward Catalog.</td>\n\t\t<td>Congratulations on your reward of <code>{{reward.name}}</code>!</td>\n\t</tr>\n\t<tr>\n\t\t<td><code>{{formatDate reward.dateGiven \"dd/MM/yyyy\"}}</code></td>\n\t\t<td>The date that the reward was fulfilled. The date format is adjustable.</td>\n\t\t<td rowspan=\"2\">You earned a <code>{{reward.name}}</code> on  <code>{{formatDate reward.dateGiven \"dd/MM/yyyy\"}}</code>. Make sure to redeem it before it expires on {{formatDate reward.dateExpires \"dd/MM/yyyy\"}}!</td>  \n\t</tr>\n\t<tr>\n\t\t<td><code>{{formatDate reward.dateExpires \"dd/MM/yyyy\"}}</code></td>\n\t\t<td>The date that the reward will expire, if an expiry has been set in your program rules. The date format is adjustable.</td>\n\t</tr>\n\t<tr>\n\t\t<td><code>{{reward.fuelTankCode}}</code></td>\n\t\t<td>The fuel tank reward code, if you are using this feature.</td>\n\t\t<td>Use code <code>{{reward.fuelTankCode}}</code> to apply your discount to your next purchase.</td>\t\n\t</tr>\n\t<tr>\n\t\t<td rowspan=\"4\">Referral-specific information</td>\n\t\t<td><code>{{referral.referrerUser.firstName}}</code></td>\n\t\t<td>The first name of the person who made the referral.</td>\n\t\t<td rowspan=\"4\"><code>{{referral.referrerUser.firstName}}</code> <code>{{referral.referrerUser.lastName}}</code>, your friend <code>{{referral.referredUser.firstName}}</code> <code>{{referral.referredUser.lastName}}</code> has signed up! \n\t</tr>\n\t<tr>\n\t\t<td><code>{{referral.referrerUser.lastName}}</code></td>\n\t\t<td>The last name of the person who made the referral.</td>\n\t</tr>\n\t<tr>\n\t\t<td><code>{{referral.referredUser.firstName}}</code></td>\n\t\t<td>The first name of the referred participant.</td>\n\t</tr>\n\t<tr>\n\t\t<td><code>{{referral.referredUser.lastName}}</code></td>\n\t\t<td>The last name of the referred participant.</td>\n\t</tr>\n\t<tr>\n\t\t<td rowspan=\"7\">Share links and message links</td>\n\t\t<td><code>{{user.email}}</code></td>\n\t\t<td>Generates the message link that is sent out in referral emails.</td>\n\t\t<td>Share via <code>{{user.email}}</code>.</td>\n\t</tr>\n\t<tr>\n\t\t<td><code>{{user.shareLink}}</code></td>\n\t\t<td>The participant’s main share link. This shows up as <code>UNKNOWN</code> in Analytic reports. This link is meant for the participant to copy and provide to other people, rather than to click on themselves.</td>\t\n\t\t<td>Provide this share link to your friends: <code>{{user.shareLink}}</code>\n\t</tr>\n\t<tr>\n\t\t<td><code>{{user.facebook}}</code></td>\n\t\t<td>The participant's message link for Facebook.</td>\n\t\t<td>Share on <code>{{user.facebook}}</code>.</td>\n\t</tr>\n\t<tr>\n\t\t<td><code>{{user.fbmessenger}}</code></td>\n\t\t<td>The participant's message link for Facebook Messenger.</td>\n\t\t<td>Share on <code>{{user.fbmessenger}}</code>.</td>\n\t</tr>\n\t<tr>\n\t\t<td><code>{{user.twitter}}</code></td>\n\t\t<td>The participant's message link for X.</td>\n\t\t<td>Share on <code>{{user.twitter}}</code>.</td>\n\t</tr>\n\t<tr>\n\t\t<td><code>{{user.linkedin}}</code></td>\n\t\t<td>The participant's message link for LinkedIn.</td>\n\t\t<td>Share on <code>{{user.linkedin}}</code>.</td>\n\t</tr>\n\t<tr>\n\t\t<td><code>{{user.sms}}</code></td>\n\t\t<td>The participant's message link for texting.</td>\n\t\t<td>Share via <code>{{user.sms}}</code>.</td>\n\t</tr>\n</table>\n"
+  }
+}

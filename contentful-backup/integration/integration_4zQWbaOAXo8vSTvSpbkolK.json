@@ -1,0 +1,102 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "4zQWbaOAXo8vSTvSpbkolK",
+    "type": "Entry",
+    "createdAt": "2019-12-04T23:09:01.565Z",
+    "updatedAt": "2021-05-12T23:28:03.041Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 35,
+    "revision": 7,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "integration"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "title": "Segment Software Integration",
+    "integrationName": "Segment",
+    "slug": "segment",
+    "logo": {
+      "metadata": {
+        "tags": [],
+        "concepts": []
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "s68ib1kj8k5n"
+          }
+        },
+        "id": "4WAnPRXEeTebAvBx5XSS7w",
+        "type": "Asset",
+        "createdAt": "2019-12-04T23:28:20.984Z",
+        "updatedAt": "2019-12-04T23:28:20.984Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 7,
+        "revision": 1,
+        "locale": "en-US"
+      },
+      "fields": {
+        "title": "Segment Integration",
+        "file": {
+          "url": "//images.ctfassets.net/s68ib1kj8k5n/4WAnPRXEeTebAvBx5XSS7w/2a673fbfa3f2e63a5b632f120923a3f8/segment-integration.png",
+          "details": {
+            "size": 11646,
+            "image": {
+              "width": 450,
+              "height": 300
+            }
+          },
+          "fileName": "segment-integration.png",
+          "contentType": "image/png"
+        }
+      }
+    },
+    "integrationDescription": "Segment allows you to easily manage integrations with multiple analytics services. By tracking events and users via Segment’s API and libraries, you can send your product’s data to all of your analytics/marketing platforms, with minimal instrumentation code.",
+    "highlights": "Looking for Segment software integration? SaaSquatch works with Segment to analyse and share customer data across platforms.",
+    "articleContent": "<p style=\"max-width: 600px; margin: 0 auto;\">![Segment Integrations](//images.ctfassets.net/s68ib1kj8k5n/1HGYnMmUl5dxcFvWnsqlN3/95d15f9a4b81a6c11afe7669ddf1564b/Segment_Integrations.png)</p>\n\n#### 1. Send data from SaaSquatch as a [source / stream in Segment](/integrations/segment-v2/stream)\nThe [Segment Source](/integrations/segment-v2/stream) can assist with use cases such as tracking referral codes in other systems, triggering other workflows when referrals happen, triggering fulfillment processes for loyalty credits or rewards, and so on. \n\n#### 2. Send data to SaaSquatch as a [destination / subscription in Segment](/integrations/segment-v2/subscription).\nThe [Segment destination](/integrations/segment-v2/subscription) makes it faster and easier to get user data into SaaSquatch. This data can be used to achieve things such as registering users, tracking users, converting referrals, and triggering loyalty programs. \n\nThe Segment destination consumes data sent from Segment to the SaaSquatch APIs for [tracking events](/api/methods/#trackEvent) and [upserting users](/api/methods/#create_user).\n\n<table class=\"table\" style=\"max-width: 400px;\">\n<thead>\n<tr>\n<th>Segment</th>\n<th>SaaSquatch</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Identify</td>\n<td><a href=\"/api/methods#open_user_upsert\">Upsert User</a></td>\n</tr>\n<tr>\n<td>Track</td>\n<td><a href=\"/api/methods/#trackEvent\">Track User Event</a> and <a href=\"/api/methods#open_user_upsert\">Upsert User</a></td>\n</tr>\n</tbody>\n</table>\n\nFor a detailed mapping of fields and installation instructions, see our [Subscription Tech Reference](/integrations/segment-v2/subscription).\n",
+    "keyFeatures": [
+      "Implement SaaSquatch using Segment's javascript library",
+      "Works with API and Payment Provider programs",
+      "Identify, attribute, and convert referrals",
+      "Display the Referral Widget in Popup or Embedded mode"
+    ],
+    "moreInfo": [
+      "[Segment Quickstart Guide](/developer/segment/quickstart)",
+      "[Segment Tech Reference](/developer/segment)"
+    ],
+    "guideLink": "/segment",
+    "tags": [
+      "in-directory"
+    ]
+  }
+}

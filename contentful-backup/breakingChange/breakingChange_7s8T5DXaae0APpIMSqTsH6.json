@@ -1,0 +1,41 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "7s8T5DXaae0APpIMSqTsH6",
+    "type": "Entry",
+    "createdAt": "2022-07-22T17:52:16.057Z",
+    "updatedAt": "2022-07-29T17:16:23.522Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 41,
+    "revision": 3,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "breakingChange"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "deadline": "2022-10-17",
+    "title": "Changes to event retention period coming October 2022",
+    "description": "We’re making some changes to how we handle event retention. \n\nAll the events that you send us about your users are stored in multiple locations. We use fast database lookups to serve queries about events in our API and our Admin Portal, and duplicate this data into long-term database storage for analytics. Currently there are no restrictions on how long events remain available for fast lookups. \n\nStarting October 17, 2022, this is changing—events older than two years will only be retained in long-term storage.\n\n__Impacts to you__\n1. Events older than two years will no longer be accessible via API or visible in the Participants page in the Admin Portal. \n2. Reward retraction and refunds will only be possible if the reward you want to retract/refund is based on an event less than two years old. Because retractions/refunds require the original event, they can't be processed using the copy of the event that remains in long-term storage.\n\n__New report available for historical data__\n\nDon’t worry—your older data isn’t going anywhere! We’ve created a new report type to make sure you can still access your historical data. You’ll now be able to run an Event Export report and download event data in CSV or JSONL format.\n\nThe new report will be available starting October 17. Here’s how to run it: \n1. Go to the SaaSquatch Admin Portal.\n2. Click __Analytics__ in the top menu bar.\n3. Click the __Reports__ tab.\n4. Click the __Create Report__ button.\n5. Under the Choose a Report Type heading, click __User Event Export__.\n6. Add filters or custom parameters if needed.\n7. Click __Create Report__. And that’s it! \n\nHave questions? We’re here to help. Contact us at [support@saasquatch.com](mailto:support@saasquatch.com). "
+  }
+}

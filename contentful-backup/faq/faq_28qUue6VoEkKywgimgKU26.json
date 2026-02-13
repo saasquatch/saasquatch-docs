@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "28qUue6VoEkKywgimgKU26",
+    "type": "Entry",
+    "createdAt": "2016-04-04T22:15:29.325Z",
+    "updatedAt": "2018-12-03T23:21:56.164Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 579,
+    "revision": 3,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "faq"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "question": "How should I promote my referral program?",
+    "answer": "If nobody knows about your referral program, then it won't be a success. When you launch your referral program, you should design a strategy to promote the program to your customers: make it __easy to discover__ by placing it in highly visible places, make it __easy to find__ when people are seeking it out, and __target happy moments__ in your customer journey.\n\nA good place to start is our [Promoting Your Referral Program Webinar](https://attendee.gotowebinar.com/recording/4633109273020290561)."
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "5Lj5hDHT8W8sK44Ga2eIUG",
+    "type": "Entry",
+    "createdAt": "2017-02-16T17:42:00.881Z",
+    "updatedAt": "2023-06-28T20:15:26.975Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 2887,
+    "revision": 14,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Managing Existing Rewards",
+    "slug": "guides/manage-rewards",
+    "highlights": "How to manage a participant's existing rewards through the SaaSquatch Portal.",
+    "content": "## Overview\nIn the Admin Portal, you can manually redeem available rewards on behalf of a participant and, in some cases, cancel rewards they've earned.   \n\nRewards are stored at the account level in the SaaSquatch system. This means that if there are multiple users in the same account, they will share a pool of rewards. In other words, redeeming or cancelling a reward from one user in a shared account's profile will apply to the balance for everyone in the account. \n\n> More information about the implications of this type of program configuration can be found in our [Shared vs. Solo Accounts](/shared-vs-solo-accounts) article.\n\n## Redeem rewards\nRewards in a participant's account can be marked as redeemed through the SaaSquatch portal, through [Bulk Reward Redemption](/guides/bulk-reward-redemption/), and through the [REST API](/api/methods/#debit_balance). Marking a reward as redeemed indicates to the SaaSquatch system that the reward has been fulfilled and should no longer be part of the account's available reward balance.\n\nTo **redeem a reward** through the SaaSquatch portal:\n\n1. In the Admin Portal, go to the __Participants__ page.\n2. Find the participant you want to redeem a reward for.\n3. Select the participant's name to open their participant profile.\n4. From the *Rewards List*, select the three-dot menu to the to the right of the reward you want to redeem.\n5. Select __Redeem Reward__.\n6. Enter the amount of the reward that you would like to redeem. You can redeem part or all of the available reward.\n7. Select __Redeem__.\n\n## Cancel rewards\nIn alignment with our event retention policy, reward retraction and refunds will only be possible if the reward you want to retract/refund is based on an event *less than two years old*. Because retractions/refunds require the original event, they can't be processed using the copy of the event that remains in long-term storage.  However, you can continue to access historical data by running an [event export report](/running-programs/creating-an-event-export-report).\n\n### Canceling a previously redeemed reward\n>  **Important:** Rewards that have already been redeemed from a SaaSquatch account **cannot** be canceled. \n\nThis can be especially important to programs configured to automatically redeem rewards from an account (*e.g.* through a gift card integration, payment provider integration, or an automated API integration you have configured). \n\n<span class=\"label\">Classic only</span> The ability to manually approve rewards can be acomplished using our referral program Security Management System by setting all incoming referrals to [default to pending](/developer/referral-security/#default-status).\n\n### Canceling an unredeemed reward\n\n1. In the Admin Portal, go to the __Participants__ page.\n2. Find the participant you want to redeem a reward for.\n3. Select the participant's name to open their participant profile.\n4. From the *Rewards List*, select the three-dot menu to the to the right of the reward you want to redeem.\n5. Select __Cancel Reward__.\n6. Confirm that you want to cancel the reward.\n\n## Manage pending rewards\nRewards are usually shown as pending only when a pending period was set up during reward configuration. Rewards subject to a pending period automatically become available when the pending period is over.\n\nFor clients using our W-9 Compliance feature, rewards may also be put in a pending state due to their tax implications. Rewards that are pending because of W-9 compliance are only be made available after the participant is marked as having submitted a W-9 tax form. \n\nFor more information, read our article on [W-9 Compliance](/features/w-9-compliance) and [Managing W-9 Tax Compliance for Participants](/features/managing-w-9-compliance-for-participants).\n"
+  }
+}

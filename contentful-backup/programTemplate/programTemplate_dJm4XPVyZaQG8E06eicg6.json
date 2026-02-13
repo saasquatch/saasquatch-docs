@@ -1,0 +1,632 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "48ji72u659z5"
+      }
+    },
+    "id": "dJm4XPVyZaQG8E06eicg6",
+    "type": "Entry",
+    "createdAt": "2019-01-02T22:31:14.757Z",
+    "updatedAt": "2024-12-02T22:29:50.061Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 86,
+    "revision": 16,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "programTemplate"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "name": "VIP",
+    "icon": "sqtch-prgrm-vip-rwrd",
+    "categories": [
+      "engage",
+      "retain"
+    ],
+    "slug": "vip-program",
+    "summary": "Set a spending goal and reward your users when they reach it.",
+    "longDescription": "A VIP loyalty rewards program helps you identify, track, and reward the top customers of your product or service, ultimately increasing brand awareness and advocacy to encourage purchases from both frequent and first-time buyers.\n\nVIP programs make your customers feel special as they reach an elite status with your brand. This new social status, combined with unique rewards attainable by only a select few, incentivizes customers to remain loyal brand advocates.\n\n### Example:\n\nA company is trying to increase their customers' average order amount from $150 to $200.\n\nThe company launches a VIP program that offers a $25 store credit to any customer who spends over $200 in a single month.\n\n### Features:\n\n* Specify a timeframe for earning rewards and achieving VIP status.  \n* Define the action(s) that must be completed to earn the reward. \n* Rewards can be earned only when the goal is reached the first time, or every time the goal is reached.\n* Target specific customer segments.\n* Customize the email to notify users when they get a reward.\n* Customize the widget for users to track progress and rewards.",
+    "schema": {
+      "name": "VIP Program",
+      "rules": {
+        "type": "object",
+        "title": "Program Rules",
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "properties": {
+          "userWindow": {
+            "type": "object",
+            "title": "Track User Activity",
+            "properties": {
+              "userWindowType": {
+                "enum": [
+                  0,
+                  1
+                ],
+                "type": "integer",
+                "title": "When should your program track user activity?",
+                "default": 0,
+                "enumNames": [
+                  "For the program duration",
+                  "For a limited amount of time"
+                ]
+              }
+            },
+            "dependencies": {
+              "userWindowType": {
+                "oneOf": [
+                  {
+                    "required": [
+                      "startDate",
+                      "duration"
+                    ],
+                    "properties": {
+                      "duration": {
+                        "type": "integer",
+                        "title": "Duration (in days) for tracking a user's activity",
+                        "minimum": 1
+                      },
+                      "startDate": {
+                        "type": "string",
+                        "title": "Custom field for tracking start date"
+                      },
+                      "userWindowType": {
+                        "enum": [
+                          1
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "properties": {
+                      "userWindowType": {
+                        "enum": [
+                          0
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "rewardRules": {
+            "type": "object",
+            "title": "Reward Rules",
+            "required": [
+              "isRecurring",
+              "rewardGoal"
+            ],
+            "properties": {
+              "rewardRulesType": {
+                "enum": [
+                  1,
+                  0
+                ],
+                "type": "integer",
+                "title": "Reward users for:",
+                "default": 1,
+                "enumNames": [
+                  "Amount Spent",
+                  "Custom Goal (Advanced)"
+                ]
+              }
+            },
+            "dependencies": {
+              "rewardRulesType": {
+                "oneOf": [
+                  {
+                    "properties": {
+                      "rewardGoal": {
+                        "type": "number",
+                        "title": "Reward users when they spend",
+                        "minimum": 1
+                      },
+                      "isRecurring": {
+                        "enum": [
+                          0,
+                          1
+                        ],
+                        "type": "integer",
+                        "title": "Reward users",
+                        "default": 0,
+                        "enumNames": [
+                          "One time",
+                          "Every time they spend the required amount"
+                        ]
+                      },
+                      "defaultCurrency": {
+                        "$ref": "#/definitions/currency",
+                        "title": "Only reward purchase made in"
+                      },
+                      "rewardRulesType": {
+                        "enum": [
+                          1
+                        ]
+                      }
+                    },
+                    "dependencies": {
+                      "isRecurring": {
+                        "oneOf": [
+                          {
+                            "$ref": "#/definitions/emailType"
+                          },
+                          {
+                            "properties": {
+                              "isRecurring": {
+                                "enum": [
+                                  0
+                                ]
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "required": [
+                      "customEventKey",
+                      "customEventField"
+                    ],
+                    "properties": {
+                      "rewardGoal": {
+                        "type": "number",
+                        "title": "Reward users when the goal value equals",
+                        "minimum": 1
+                      },
+                      "isRecurring": {
+                        "enum": [
+                          0,
+                          1
+                        ],
+                        "type": "integer",
+                        "title": "Reward users",
+                        "default": 0,
+                        "enumNames": [
+                          "One time",
+                          "Every time they complete the goal"
+                        ]
+                      },
+                      "customEventKey": {
+                        "type": "string",
+                        "title": "Custom Event Key"
+                      },
+                      "rewardRulesType": {
+                        "enum": [
+                          0
+                        ]
+                      },
+                      "customEventField": {
+                        "type": "string",
+                        "title": "Custom Event Field Name"
+                      }
+                    },
+                    "dependencies": {
+                      "isRecurring": {
+                        "oneOf": [
+                          {
+                            "$ref": "#/definitions/emailType"
+                          },
+                          {
+                            "properties": {
+                              "isRecurring": {
+                                "enum": [
+                                  0
+                                ]
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "programWindow": {
+            "type": "string",
+            "title": "Program Duration",
+            "default": "0"
+          },
+          "userSegmentation": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "title": "Segment Names"
+            },
+            "title": "Segment",
+            "options": {
+              "disable_array_reorder": true
+            }
+          }
+        },
+        "definitions": {
+          "currency": {
+            "enum": [
+              "USD",
+              "CAD",
+              "AED",
+              "AFN",
+              "ALL",
+              "AMD",
+              "ANG",
+              "AOA",
+              "ARS",
+              "AUD",
+              "AWG",
+              "AZN",
+              "BAM",
+              "BBD",
+              "BDT",
+              "BGN",
+              "BHD",
+              "BIF",
+              "BMD",
+              "BND",
+              "BOB",
+              "BOV",
+              "BRL",
+              "BSD",
+              "BTN",
+              "BWP",
+              "BYR",
+              "BZD",
+              "CDF",
+              "CHE",
+              "CHF",
+              "CHW",
+              "CLF",
+              "CLP",
+              "CNY",
+              "COP",
+              "COU",
+              "CRC",
+              "CUC",
+              "CUP",
+              "CVE",
+              "CZK",
+              "DJF",
+              "DKK",
+              "DOP",
+              "DZD",
+              "EGP",
+              "ERN",
+              "ETB",
+              "EUR",
+              "FJD",
+              "FKP",
+              "GBP",
+              "GEL",
+              "GHS",
+              "GIP",
+              "GMD",
+              "GNF",
+              "GTQ",
+              "GYD",
+              "HKD",
+              "HNL",
+              "HRK",
+              "HTG",
+              "HUF",
+              "IDR",
+              "ILS",
+              "INR",
+              "IQD",
+              "IRR",
+              "ISK",
+              "JMD",
+              "JOD",
+              "JPY",
+              "KES",
+              "KGS",
+              "KHR",
+              "KMF",
+              "KPW",
+              "KRW",
+              "KWD",
+              "KYD",
+              "KZT",
+              "LAK",
+              "LBP",
+              "LKR",
+              "LRD",
+              "LSL",
+              "LYD",
+              "MAD",
+              "MDL",
+              "MGA",
+              "MKD",
+              "MMK",
+              "MNT",
+              "MOP",
+              "MRU",
+              "MUR",
+              "MVR",
+              "MWK",
+              "MXN",
+              "MXV",
+              "MYR",
+              "MZN",
+              "NAD",
+              "NGN",
+              "NIO",
+              "NOK",
+              "NPR",
+              "NZD",
+              "OMR",
+              "PAB",
+              "PEN",
+              "PGK",
+              "PHP",
+              "PKR",
+              "PLN",
+              "PYG",
+              "QAR",
+              "RON",
+              "RSD",
+              "RUB",
+              "RWF",
+              "SAR",
+              "SBD",
+              "SCR",
+              "SDG",
+              "SEK",
+              "SGD",
+              "SHP",
+              "SLL",
+              "SOS",
+              "SRD",
+              "SSP",
+              "STN",
+              "SVC",
+              "SYP",
+              "SZL",
+              "THB",
+              "TJS",
+              "TMT",
+              "TND",
+              "TOP",
+              "TRY",
+              "TTD",
+              "TWD",
+              "TZS",
+              "UAH",
+              "UGX",
+              "USN",
+              "UYI",
+              "UYU",
+              "UZS",
+              "VEF",
+              "VND",
+              "VUV",
+              "WST",
+              "XAF",
+              "XCD",
+              "XDR",
+              "XOF",
+              "XPF",
+              "XSU",
+              "XUA",
+              "YER",
+              "ZAR",
+              "ZMW",
+              "ZWL"
+            ],
+            "type": "string",
+            "title": "Default Reward Currency",
+            "default": "USD"
+          },
+          "emailType": {
+            "properties": {
+              "isRecurring": {
+                "enum": [
+                  1
+                ]
+              },
+              "rewardEmailType": {
+                "enum": [
+                  1,
+                  0
+                ],
+                "type": "integer",
+                "title": "Send users a reward email:",
+                "default": 1,
+                "enumNames": [
+                  "Only once per rewardable transaction",
+                  "Every time they earn a reward"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "emails": [
+        {
+          "key": "rewardEmail",
+          "name": "Reward",
+          "defaults": "rewardEmailId",
+          "description": "We send this email when a user has successfully achieved a goal and earned a reward."
+        }
+      ],
+      "rewards": [
+        {
+          "key": "vipReward",
+          "name": "VIP Reward",
+          "description": "The reward given to users for a total purchase value."
+        }
+      ],
+      "summary": "Reward customer for purchases.",
+      "trigger": {
+        "eventKeys": []
+      },
+      "widgets": [
+        {
+          "key": "vipWidget",
+          "name": "VIP Widget",
+          "defaults": "vipWidgetId",
+          "description": "Widget displayed to a user who is a VIP"
+        }
+      ],
+      "rulesUISchema": {
+        "currency": {
+          "ui:widget": "SelectCurrencyWidget"
+        },
+        "ui:order": [
+          "programWindow",
+          "userWindow",
+          "rewardRules",
+          "userSegmentation"
+        ],
+        "userWindow": {
+          "startDate": {
+            "ui:help": "This field will be used as the start date for tracking a user's activity. Values must be in ISO 8601 timestamp format (e.g. 2020-05-18T22:53:30Z)."
+          },
+          "userWindowType": {
+            "ui:widget": "RadioAsCards",
+            "ui:options": {
+              "ruleOptions": [
+                {
+                  "key": 0,
+                  "icon": "infinity",
+                  "title": "For the program duration",
+                  "description": "Track the activity of your users while your program is active. If set above, this will be equal to your program duration."
+                },
+                {
+                  "key": 1,
+                  "icon": "hourglass",
+                  "title": "For a limited amount of time within the program duration",
+                  "description": "Track the activity of your users for a limited amount of time specific to each user. (e.g. User actions are only valid within the first 30 days after they signup)"
+                }
+              ]
+            }
+          }
+        },
+        "rewardRules": {
+          "isRecurring": {
+            "ui:widget": "RadioAsCards",
+            "ui:options": {
+              "ruleOptions": [
+                {
+                  "key": 0,
+                  "icon": "gift",
+                  "title": "One time",
+                  "description": "Reward your users only once for reaching the goal."
+                },
+                {
+                  "key": 1,
+                  "icon": "gift",
+                  "title": "Every time they complete the goal",
+                  "description": "Reward your users every time they reach the goal."
+                }
+              ]
+            }
+          },
+          "customEventKey": {
+            "ui:help": "Enter the event key for the event that is triggered when a user completes the desired action."
+          },
+          "rewardRulesType": {
+            "ui:widget": "RadioAsCards",
+            "ui:options": {
+              "ruleOptions": [
+                {
+                  "key": 1,
+                  "icon": "bill",
+                  "title": "Amount Spent",
+                  "description": "Track and reward users for the dollars they have spent."
+                },
+                {
+                  "key": 0,
+                  "icon": "target",
+                  "title": "Custom Goal (Advanced)",
+                  "description": "Customize the goal to match the activity of your users. Eg. Reward them after a certain number of bookings."
+                }
+              ]
+            }
+          },
+          "customEventField": {
+            "ui:help": "Enter the event field name that is used to increment the goal value"
+          }
+        },
+        "programWindow": {
+          "ui:widget": "CardsWithInputs",
+          "ui:options": {
+            "ruleOptions": [
+              {
+                "icon": "infinity",
+                "title": "Unlimited",
+                "cardValue": "0",
+                "description": "Your program will be active for as long as it is live."
+              },
+              {
+                "icon": "calendar",
+                "title": "Fixed Dates",
+                "subInput": {
+                  "widget": "DateRange",
+                  "options": {
+                    "allowHistoricStartDate": false
+                  }
+                },
+                "description": "Your program will only be active between these dates. Time will be set in your local time."
+              }
+            ],
+            "defaultValue": "0"
+          }
+        },
+        "userSegmentation": {
+          "ui:help": "Select which existing user segment(s) you would like to be enrolled in this program. Leave blank if you would not like to use user segmentation.",
+          "ui:field": "SegmentSelectWidget",
+          "ui:title": "User segments",
+          "ui:options": {
+            "displayLabel": "true"
+          }
+        }
+      },
+      "longDescription": ""
+    },
+    "contentfulIdMapping": {
+      "vipWidgetId": "qDE385ETaqeXtPpanXrmh",
+      "rewardEmailId": "2yJatH8cgw0qky6UIAI28K",
+      "summaryEmailId": "3rZMvP0avcf5BvIHldQkfd"
+    },
+    "url": "https://vip-program.services.prod.ssqt.io/",
+    "logo": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Asset",
+        "id": "3YIwcGzTsIIE4KseoCUE2E"
+      }
+    },
+    "screenshot": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Asset",
+        "id": "3YIwcGzTsIIE4KseoCUE2E"
+      }
+    },
+    "globallyInstallable": true,
+    "installableByTenants": [
+      "test_avxqn8tccqj0e",
+      "test_agngayvesirnb",
+      "test_a8xm7ngkv4g2c",
+      "test_anqwjreyb0yyq"
+    ]
+  }
+}

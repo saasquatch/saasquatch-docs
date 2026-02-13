@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "5Z0hXKNtW8WmuY0s24aEEu",
+    "type": "Entry",
+    "createdAt": "2019-03-15T20:18:37.924Z",
+    "updatedAt": "2023-02-28T18:50:48.520Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 4318,
+    "revision": 5,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "SaaSquatch Growth Automation Platform",
+    "slug": "growth/saasquatch-ga",
+    "highlights": "How the SaaSquatch approach to Growth Automation extends the frontiers of marketing.",
+    "content": "This guide provides an outline of how the SaaSquatch Growth Automation Platform enables you to leverage the [fundamental values of Growth Automation](/growth/ga-101) to grow your Customer Lifetime Value. \n\nConsisting of three parts, this guide includes all the resources you need to use our Growth Automation platform and skyrocket the success of your business.\n### Growth Automation and Referral Marketing\n<div class=\"row-fluid\">\n  <div class=\"span8\">\n<p>As a business, customer lifetime value is no doubt among your top goals. SaaSquatch helps you achieve these goals by recognizing the importance of interacting with your users on an individual level and providing consistent but ever-evolving programs that entice customers to remain with you over a lifetime.  \n\n<p>Referral marketing has long been a foundational piece in user engagement and lead generation, but not all customer programs are created equal. \n\n<p>Our Growth Automation platform will allow you to grow those leads into dynamic and individualized relationships with your customer base.\n\n  <p>Our Growth Automation platform provides a <strong>single, affordable solution for marketers to engage with their customers directly and with more relevance</strong> than previously possible in an innovative streamlined flow. \n\n  </div>\n  <div class=\"span4\">\n\n  <div>\n  <div>\n<a class=\"docs-lightbox\" href=\"//images.ctfassets.net/s68ib1kj8k5n/7vVHmq3bTfGCqdRDH0nw6L/492fa1bbda42b9da0e385932e93c742c/Screen_Shot_2019-09-16_at_1.40.43_PM.png\" data-lightbox=\"example-set\">\n<img src=\"//images.ctfassets.net/s68ib1kj8k5n/7vVHmq3bTfGCqdRDH0nw6L/492fa1bbda42b9da0e385932e93c742c/Screen_Shot_2019-09-16_at_1.40.43_PM.png\" alt=\"GA - Create New Program\">\n<div><i class=\"fa fa-eye\"></i> Preview</div>\n</a>\n</div>\n\n  </div>\n</div>\n\n<div class=\"row-fluid\">\n  <div class=\"span12\">\n    <p>With <a href=\"/program/library/\">all new program types</a> such as <i>First Purchase</i>, <i>Signup Reward</i>, <i>Profile Completion Reward</i>, <i>Days Since Last Purchase</i>, <i>Regional Signup</i>, <i>Birthday Program</i>, and more, including any custom events of your choice, you're able to configure as many reward programs as there are unique milestones in your customer lifecycle. \n\n<p>To learn more about how <strong>Growth Automation can maximize usage of modern marketing techniques</strong>, <a href=\"/growth/ga-101\">click here</a> to see our GA-101 primer.\n</div>\n</div>\n\n### Unlimited Flexibility \nYour business is extremely varied in what it offers to customers, so we've built our Growth Automation platform to be **extremely flexible and capable of supporting a wide range of possibilities** with regards to when you can reward users. \n\nIf none of the above offered turnkey programs suit your needs, we can help you design a custom program that rewards your customers on a milestone of your choice. By using our infinitely adaptable API library, you'll be able to send us varied information about your customers' activity within your business -- as much or as little as you want -- information that is processed by our system in a way that automatically signals when a user should receive a reward. \n\nWe call this information [custom events](/growth/ga-mechanisms/#custom-events), and they can be anything you like -- from account information updates to an abritrary action performed by your users within your system. Once a user hits the required amount, or type of event, that will have already been passed through to SaaSquatch upon completion, they will be immediately rewarded without requiring any further action. \n\nThese events are entirely adjustable; you can ask our system to reward on a specific accumulation of a type of event or on receipt of a specific type of event. You can even pass additional events for use in future Growth Automation programs you may want to run based on user account history.   \n\n### The Loyalty Lexicon\nGrowth Automation is about **more than just referrals** -- it's about learning the language of your users. While our usual [core topics](/success/core-topics/) might still be in play depending on the configuration of your program, Growth Automation focuses on the customer, not the process. What does this mean, exactly? Let's take an in-depth look at one of our template programs: [*Win Back Program*.](/program/win-back-program/)\n\n<br/>\n<div class=\"row-fluid\">\n  <div class=\"span8\">\n<p>The premise of this program is simple; we want to: re-engage past customers; reduce customer churn; increase customer spending frequency; and promote new services. There's no referral widget, no share-links or codes involved, just settings you enter once (and adjust at your leisure) to indicate when a user should receive a reward.\n\n<p>As you will have been <a href=\"/growth/ga-mechanisms/#user-events\">passing user information</a> to SaaSquatch from the beginning, no additional information is required from you. But what about encouraging new customers to sign up and start engaging with your product, so you can first learn more about their ongoing needs?\n  </div>\n  <div class=\"span4\">\n\n  <div>\n  <div>\n<a class=\"docs-lightbox\" href=\"//images.ctfassets.net/s68ib1kj8k5n/3BG5Y19az4J6eyKWSud7lf/462a9366a6607301119425d963ad8519/Screen_Shot_2019-09-16_at_1.54.26_PM.png\" data-lightbox=\"example-set\">\n<img src=\"//images.ctfassets.net/s68ib1kj8k5n/3BG5Y19az4J6eyKWSud7lf/462a9366a6607301119425d963ad8519/Screen_Shot_2019-09-16_at_1.54.26_PM.png\" alt=\"Win Back Program\">\n<div><i class=\"fa fa-eye\"></i> Preview</div>\n</a>\n</div>\n\n  </div>\n</div>\n\n<div class=\"row-fluid\">\n  <div class=\"span8\">\n<p>Our <a href=\"/program/profile-completion-reward/\">Profile Completion Reward Program</a> encourages your users to fully integrate themselves with your product or interface after initial signup, providing you an easy and unobtrusive way to collect data to use for any programs you might want to run going forward.\n\n  <p>You're able to request any fields you want to be mandatory, as well the ability to create any number of custom fields that might not already be provided by us. With just the check of a box, you can reward customers for simply sharing details they may already be entering anyway -- it's a win-win.\n  </div>\n  <div class=\"span4\">\n\n  <div>\n  <div>\n<a class=\"docs-lightbox\" href=\"//images.ctfassets.net/s68ib1kj8k5n/3yvk0LKvPqOnrQ2jOqRWoO/4b1a658420d230797b3c80eb8afcf511/Screen_Shot_2019-09-16_at_1.45.55_PM.png\" data-lightbox=\"example-set\">\n<img src=\"//images.ctfassets.net/s68ib1kj8k5n/3yvk0LKvPqOnrQ2jOqRWoO/4b1a658420d230797b3c80eb8afcf511/Screen_Shot_2019-09-16_at_1.45.55_PM.png\" alt=\"Profile Completion - Set-up\">\n<div><i class=\"fa fa-eye\"></i> Preview</div>\n</a>\n</div>\n\n  </div>\n</div>\n\n### Additional Resources\nThe [Growth Automation 101](/growth/ga-101) article provides the basics of what Growth Automation offers.\n\n>The [next part of this guide](/growth/ga-mechanisms) outlines the core components that are unique to a Growth Automation program. Familiarizing yourself with these pieces will allow you to build an extremely flexible custom program. \n\nMore about how your users will interact with your Growth Automation program can be found in our [Growth Automation Customer Lifecycle](/growth/customer-lifecycle) article."
+  }
+}

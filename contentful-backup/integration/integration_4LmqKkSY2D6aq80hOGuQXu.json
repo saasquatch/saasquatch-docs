@@ -1,0 +1,96 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "4LmqKkSY2D6aq80hOGuQXu",
+    "type": "Entry",
+    "createdAt": "2019-12-04T23:07:46.184Z",
+    "updatedAt": "2020-08-24T17:39:50.697Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 18,
+    "revision": 3,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "integration"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "title": "IBM Watson Marketing Integration",
+    "integrationName": "IBM Watson",
+    "slug": "silverpop",
+    "logo": {
+      "metadata": {
+        "tags": [],
+        "concepts": []
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "s68ib1kj8k5n"
+          }
+        },
+        "id": "3L5Asfbc01P14WpvvXTiN5",
+        "type": "Asset",
+        "createdAt": "2019-12-04T23:24:53.425Z",
+        "updatedAt": "2019-12-04T23:24:53.425Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 12,
+        "revision": 1,
+        "locale": "en-US"
+      },
+      "fields": {
+        "title": "Ibm Watson Integration",
+        "file": {
+          "url": "//images.ctfassets.net/s68ib1kj8k5n/3L5Asfbc01P14WpvvXTiN5/c80f39c1b044f7bd44ef6cdbb10d0e5e/ibm-integration.png",
+          "details": {
+            "size": 22183,
+            "image": {
+              "width": 355,
+              "height": 137
+            }
+          },
+          "fileName": "ibm-integration.png",
+          "contentType": "image/png"
+        }
+      }
+    },
+    "integrationDescription": "IBM Watson Marketing is an email marketing automation platform. SaaSquatch supports integration with IBM Watson Marketing for sending notification emails.",
+    "highlights": "Looking for IBM Watson Marketing software integration (formerly Silverpop)? SaaSquatch supports integration with IBM Watson Marketing for automated notification emails.",
+    "keyFeatures": [
+      "Sends notification emails through your IBM Watson Marketing account",
+      "Centralizes your email templates and analytics in IBM Watson Marketing",
+      "Ensures deliverability through your existing email systems"
+    ],
+    "moreInfo": [
+      "[Guide to Email](/topics/email/#ibm-watson-marketing)"
+    ],
+    "guideLink": "/topics/email/#ibm-watson-marketing"
+  }
+}

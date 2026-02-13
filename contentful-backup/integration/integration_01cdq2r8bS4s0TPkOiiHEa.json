@@ -1,0 +1,102 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "01cdq2r8bS4s0TPkOiiHEa",
+    "type": "Entry",
+    "createdAt": "2022-11-23T02:11:54.901Z",
+    "updatedAt": "2022-11-24T14:24:49.954Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 20,
+    "revision": 4,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "integration"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "title": "PayPal Payouts",
+    "integrationName": "PayPal Payouts",
+    "slug": "paypal-payouts",
+    "logo": {
+      "metadata": {
+        "tags": [],
+        "concepts": []
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "s68ib1kj8k5n"
+          }
+        },
+        "id": "6ab4r3LG2ER9KjdAY0vnDk",
+        "type": "Asset",
+        "createdAt": "2022-11-23T02:06:39.157Z",
+        "updatedAt": "2022-11-23T02:06:39.157Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 4,
+        "revision": 1,
+        "locale": "en-US"
+      },
+      "fields": {
+        "title": "PayPal logo",
+        "description": "",
+        "file": {
+          "url": "//images.ctfassets.net/s68ib1kj8k5n/6ab4r3LG2ER9KjdAY0vnDk/730b2b7c7db15eb5fe1d5133b22363bc/Type_PayPal_logo.svg",
+          "details": {
+            "size": 5015,
+            "image": {
+              "width": 124,
+              "height": 30
+            }
+          },
+          "fileName": "Type_PayPal_logo.svg",
+          "contentType": "image/svg+xml"
+        }
+      }
+    },
+    "integrationDescription": "Millions of people use PayPal everyday to send and receive money. Our PayPal integration builds on PayPal's security, efficiency and convenience to allow you to pay out your rewards automatically.",
+    "keyFeatures": [
+      "Payout rewards automatically using PayPal Cash Payouts connect to your PayPal business account",
+      "Configure reward units from your tenant to be paid out",
+      "Flexible scheduling options allow you to customize when you want payouts to happen",
+      "Notification emails are sent in the event of an error occurring during payout"
+    ],
+    "moreInfo": [
+      "[Automated Cash Payouts with PayPal](/integrations/paypal/cash-payouts)",
+      "[Setting up Cash Payout with PayPal](/integrations/paypal/setting-up-cash-payouts)",
+      "[Cash Payouts Reward Statuses](/integrations/paypal/reward-statuses)"
+    ],
+    "guideLink": "/integrations/paypal/setting-up-cash-payouts",
+    "tags": [
+      "in-directory"
+    ]
+  }
+}

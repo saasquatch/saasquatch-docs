@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "6OowKhu9j22M4scykoQAM6",
+    "type": "Entry",
+    "createdAt": "2016-04-04T22:25:31.221Z",
+    "updatedAt": "2018-12-12T20:31:48.699Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 58,
+    "revision": 4,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "faq"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "question": "Does Referral SaaSquatch offer volume discounts?",
+    "answer": "Happily! Our Enterprise tier is available for larger more complex solutions. Email us at <a href=\"mailto:sales@saasquat.ch?subject=Enterprise%20Plans\">sales@saasquat.ch</a>."
+  }
+}

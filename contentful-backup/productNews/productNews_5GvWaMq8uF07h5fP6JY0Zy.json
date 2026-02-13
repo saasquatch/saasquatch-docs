@@ -1,0 +1,45 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "5GvWaMq8uF07h5fP6JY0Zy",
+    "type": "Entry",
+    "createdAt": "2020-01-06T22:54:26.974Z",
+    "updatedAt": "2023-02-28T18:04:13.567Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 20,
+    "revision": 4,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "productNews"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "title": "Internationalization for Growth Automation Programs",
+    "datePublished": "2018-03-06",
+    "tags": [
+      "feature-release",
+      "product-update"
+    ],
+    "content": "<div class=\"row-fluid\">\n  <div class=\"span9\">\n    <p>\n      <bold>Upload your own translations for program emails and widgets based on\n        locale.</bold>\n      This new feature is now available for all Growth Automation programs and\n      provides the ability to upload your own customized sets of translations\n      for both program emails and widgets.\n    </p>\n    <p>\n      From the “Advanced” tab in your program configuration/set-up, upload and\n      download your translation sets using simple zip files, either\n      individually, or in bulk.\n    </p>\n    <p>\n      To learn more about this new feature or Growth Automation programs,\n      <a href=\"mailto:sales@referralsaasquatch.com\">contact our sales team</a>.\n    </p>\n    <p>\n      Already a SaaSquatch customer? This feature is currently in Beta. Please\n      <a href=\"mailto:support@referralsaasquatch.com?subject=Growth%20Automation\">contact our support team</a>\n      to learn more about how to enroll in our Growth Automation Beta program.\n    </p>\n  </div>\n  <div class=\"span3\">\n    <div>\n      <a class=\"docs-lightbox\" href=\"//images.ctfassets.net/s68ib1kj8k5n/7IGoBjYBWgQ86sIYs6mkEK/86ddd7498ae25262da4570c2cbc397e1/program_i18n_import.png\" data-lightbox=\"example-set\">\n        <img src=\"//images.ctfassets.net/s68ib1kj8k5n/7IGoBjYBWgQ86sIYs6mkEK/86ddd7498ae25262da4570c2cbc397e1/program_i18n_import.png\"\n          alt=\"program i18n import\"\n        />\n        <div><i class=\"fa fa-eye\"></i>Preview</div>\n      </a>\n    </div>\n  </div>\n</div>\n"
+  }
+}

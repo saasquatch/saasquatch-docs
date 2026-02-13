@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "5ujDy1w12gUkE8A2woewOO",
+    "type": "Entry",
+    "createdAt": "2018-12-03T23:41:46.820Z",
+    "updatedAt": "2023-11-22T17:24:55.110Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 2901,
+    "revision": 4,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Developer Guide",
+    "title": "Understanding Sharelinks",
+    "slug": "/developer/sharelinks",
+    "highlights": "Learn about the different types of sharelinks that are available for each of your referral program's participants, and how they can be utilized to drive extremely detailed and accurate analytics data.",
+    "content": "By default, each user in your SaaSquatch referral programs have a series of links assigned to them designed to: \n\n1. Direct Referred Users who click on the link to your referral program Landing Page for a specific program.\n2. Let the SaaSquatch system add the correct [cookie](/developer/squatchjs/cookies/) to the Referred User's browser to help attribute the referral back to the correct Referrer for that program.\n3. Track the Engagement and [Share mediums](https://docs.saasquatch.com/success/share-options#social-media-share-messages) used by the Referrer. \n\n> - The Engagement medium is the method you use to show a user's share information to them.\n>  - The Share medium is the method used by the Referrer to distribute their share information to their Referred Users.\n\n## The sharelink object\n> Sharelinks are contained in an object that groups the links by Engagement medium.\n\nMaking the correct sharelink available in the right place in your referral program will mean that your program's analytics are able to provide a more detailed breakdown of where Referrers and Referred Users are interacting with your referral program. \n\nThis information can be used to help understand and [optimize your programs](https://docs.saasquatch.com/success/referral-program-optimization).\n\n### Retrieving the sharelink object\nA few methods can be used to retrieve a user's sharelinks:\n\n- Via the SaaSquatch administrative portal, on the participant's *Codes and Links* tab (see image below).\n- Via the REST API, by using either the [Lookup a user](https://docs.saasquatch.com/api/methods#open_get_user) or [Lookup a user's share URLs](https://docs.saasquatch.com/api/methods#open_get_shareurls) calls.\n- Via the [GraphQL API](https://docs.saasquatch.com/graphql/reference), using the `user.shareLinks` query.\n\n![Screenshot 2023-11-20 at 3.12.23 PM](//images.ctfassets.net/s68ib1kj8k5n/2NjBAndeJyzbegE1Kv2dlu/af677863ad4bf97402a15f953feb6084/Screenshot_2023-11-20_at_3.12.23_PM.png)\n\n### Sharelink object example\n> You can see that the example below groups the sharelinks by Engagement medium and provides a full array of share medium links for each engagement type.\n\n<table class=\"table table-hover\">\n  <tr>\n    <th>Engagement Medium</th>\n    <th>Details</th>\n  </tr>\n  <tr>\n    <td>POPUP</td>\n    <td>Shown to users <a href=\"https://saasquatch.github.io/squatch-js/classes/PopupWidget.html\">via a <code>PopupWidget</code></a>.</td>\n  </tr>\n    <tr>\n    <td>EMBED</td>\n    <td>Shown to users <a href=\"https://saasquatch.github.io/squatch-js/classes/EmbedWidget.html\">via an <code>EmbedWidget</code></a>.</td>\n  </tr>\n    <tr>\n    <td>HOSTED</td>\n    <td>Shown to users <a href=\"https://saasquatch.github.io/squatch-js/classes/WidgetApi.html#render\">via a \"Hosted\" Widget</a>.</td>\n  </tr>\n    <tr>\n    <td>cleanShareLink</td>\n    <td>Shown on the <a href=\"https://docs.saasquatch.com/success/using-referral-saasquatch#participants\">user's participant profile in the SaaSquatch adminstrative portal</a>.</td>\n  </tr>\n    <tr>\n    <td>UNKNOWN</td>\n    <td>Set of sharelinks retrieved for a user <a href=\"https://docs.saasquatch.com/features/reports#user-details-report\">via a User Details Report</a>.</td>\n  </tr>\n    <tr>\n    <td>EMAIL</td>\n    <td>Shown to users <a href=\"https://docs.saasquatch.com/designer/email-editor\">via program notification emails</a>.</td>\n  </tr>\n    <tr>\n    <td>MOBILE</td>\n    <td>Shown to users <a href=\"https://docs.saasquatch.com/mobile\">via the mobile SDKs.</td>\n  </tr>\n</table>\n\n```\n{\n  \"POPUP\": {\n    \"FACEBOOK\": \"http://ssqt.co/m9xLQfw\",\n    \"TWITTER\": \"http://ssqt.co/mMxLQfw\",\n    \"EMAIL\": \"http://ssqt.co/moxLQfw\",\n    \"DIRECT\": \"http://ssqt.co/m5xLQfw\",\n    \"LINKEDIN\": \"http://ssqt.co/m7xLQfw\",\n    \"SMS\": \"http://ssqt.co/maxLQfw\",\n    \"FBMESSENGER\": \"http://ssqt.co/mhxLQfw\",\n    \"WHATSAPP\": \"http://ssqt.co/mFxLQfw\",\n    \"LINEMESSENGER\": \"http://ssqt.co/mDxLQfw\",\n    \"PINTEREST\": \"http://ssqt.co/RzxLQfw\",\n    \"UNKNOWN\": \"http://ssqt.co/mBxLQfw\"\n  },\n  \"EMBED\": {\n    \"FACEBOOK\": \"http://ssqt.co/mwxLQfw\",\n    \"TWITTER\": \"http://ssqt.co/mcxLQfw\",\n    \"EMAIL\": \"http://ssqt.co/mJxLQfw\",\n    \"DIRECT\": \"http://ssqt.co/mQxLQfw\",\n    \"LINKEDIN\": \"http://ssqt.co/mHxLQfw\",\n    \"SMS\": \"http://ssqt.co/m2xLQfw\",\n    \"FBMESSENGER\": \"http://ssqt.co/mgxLQfw\",\n    \"WHATSAPP\": \"http://ssqt.co/mZxLQfw\",\n    \"LINEMESSENGER\": \"http://ssqt.co/mxxLQfw\",\n    \"PINTEREST\": \"http://ssqt.co/mfxLQfw\",\n    \"UNKNOWN\": \"http://ssqt.co/mXxLQfw\"\n  },\n  \"HOSTED\": {\n    \"FACEBOOK\": \"http://ssqt.co/muxLQfw\",\n    \"TWITTER\": \"http://ssqt.co/mSxLQfw\",\n    \"EMAIL\": \"http://ssqt.co/mlxLQfw\",\n    \"DIRECT\": \"http://ssqt.co/mtxLQfw\",\n    \"LINKEDIN\": \"http://ssqt.co/mYxLQfw\",\n    \"SMS\": \"http://ssqt.co/mqxLQfw\",\n    \"FBMESSENGER\": \"http://ssqt.co/mKxLQfw\",\n    \"WHATSAPP\": \"http://ssqt.co/mrxLQfw\",\n    \"LINEMESSENGER\": \"http://ssqt.co/mWxLQfw\",\n    \"PINTEREST\": \"http://ssqt.co/RmxLQfw\",\n    \"UNKNOWN\": \"http://ssqt.co/mAxLQfw\"\n  },\n  \"cleanShareLink\": \"http://ssqt.co/mzxLQfw\",\n  \"UNKNOWN\": {\n    \"FACEBOOK\": \"http://ssqt.co/mmxLQfw\",\n    \"TWITTER\": \"http://ssqt.co/mRxLQfw\",\n    \"EMAIL\": \"http://ssqt.co/mLxLQfw\",\n    \"DIRECT\": \"http://ssqt.co/mvxLQfw\",\n    \"LINKEDIN\": \"http://ssqt.co/m6xLQfw\",\n    \"SMS\": \"http://ssqt.co/mkxLQfw\",\n    \"FBMESSENGER\": \"http://ssqt.co/m0xLQfw\",\n    \"WHATSAPP\": \"http://ssqt.co/mIxLQfw\",\n    \"LINEMESSENGER\": \"http://ssqt.co/m8xLQfw\",\n    \"PINTEREST\": \"http://ssqt.co/mpxLQfw\",\n    \"UNKNOWN\": \"http://ssqt.co/mzxLQfw\"\n  },\n  \"EMAIL\": {\n    \"FACEBOOK\": \"http://ssqt.co/mTxLQfw\",\n    \"TWITTER\": \"http://ssqt.co/mGxLQfw\",\n    \"EMAIL\": \"http://ssqt.co/mbxLQfw\",\n    \"DIRECT\": \"http://ssqt.co/mPxLQfw\",\n    \"LINKEDIN\": \"http://ssqt.co/m1xLQfw\",\n    \"SMS\": \"http://ssqt.co/mOxLQfw\",\n    \"FBMESSENGER\": \"http://ssqt.co/m4xLQfw\",\n    \"WHATSAPP\": \"http://ssqt.co/mixLQfw\",\n    \"LINEMESSENGER\": \"http://ssqt.co/myxLQfw\",\n    \"PINTEREST\": \"http://ssqt.co/RLxLQfw\",\n    \"UNKNOWN\": \"http://ssqt.co/mVxLQfw\"\n  },\n  \"MOBILE\": {\n    \"FACEBOOK\": \"http://ssqt.co/mnxLQfw\",\n    \"TWITTER\": \"http://ssqt.co/mCxLQfw\",\n    \"EMAIL\": \"http://ssqt.co/mExLQfw\",\n    \"DIRECT\": \"http://ssqt.co/mexLQfw\",\n    \"LINKEDIN\": \"http://ssqt.co/m3xLQfw\",\n    \"SMS\": \"http://ssqt.co/mNxLQfw\",\n    \"FBMESSENGER\": \"http://ssqt.co/mUxLQfw\",\n    \"WHATSAPP\": \"http://ssqt.co/msxLQfw\",\n    \"LINEMESSENGER\": \"http://ssqt.co/mdxLQfw\",\n    \"PINTEREST\": \"http://ssqt.co/RRxLQfw\",\n    \"UNKNOWN\": \"http://ssqt.co/mjxLQfw\"\n  }\n```\n"
+  }
+}

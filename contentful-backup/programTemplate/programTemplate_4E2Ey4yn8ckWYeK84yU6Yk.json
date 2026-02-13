@@ -1,0 +1,188 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "48ji72u659z5"
+      }
+    },
+    "id": "4E2Ey4yn8ckWYeK84yU6Yk",
+    "type": "Entry",
+    "createdAt": "2018-06-01T21:15:07.522Z",
+    "updatedAt": "2024-02-15T18:54:48.294Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 112,
+    "revision": 7,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "programTemplate"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "name": "Login Reward Program",
+    "slug": "login-reward-program",
+    "summary": "Reward customers the next time they login to your product.",
+    "longDescription": "### Use Cases\n\nThe Login Reward Program is perfect for: \n\n- Reactivating customers\n- Improving customer adoption rates\n- Driving customer product engagement \n\n### Quickstart\n\n1. Select the claim window for which you would like to offer rewards. \n \n2. Choose a value and reward type you would like to provide to the user for successfully logging in. \n \n3. Configure the email sent to customers who successfully earned a reward. (This email can also be disabled)\n \n4. Enable the program from the Program Management screen.\n\n### How it works\nThe Login Reward Program allow you to reward users who log into your product or service within a given time window. \n\nEngage with these inactive users by sending them an email offering them a reward if they log into your product or service.\n\nWhen a user logs into your product within the given time window, a reward will be added to their account in the SaaSquatch system, and an email can be configured to be sent to them letting them know that they have earned a reward.\n\nThis reward can then be fulfilled through either your existing reward fulfillment process, or through additional steps you put in place for this program. \n\n### Required User Information\nThe Login Reward Program relies on the squatch.js Javascript Library or mobile SDK user upsert to be able to recognize that a user has opened/engaged with your product.  \n\nMaking sure to run this upsert method behind each time a user logs into your product will allow the program to correctly evaluate whether the user has opened/engaged with your product.\n\nIn order to be able to send the successful program participant an email informing them that they have earned a reward, please include the users email in the upsert.\n\n### Supported Rewards\nThis program provides the power and flexibility to customize the type of reward that you would like to provide to participants who complete their profile. These include:\n- Dollar Credit\n- Percent Discount\n- Points\n- Custom Reward Code Fuel Tank\n- Arbitrary Rewards\n\n### Example Email\n\n![login-reward-program-example-email](//images.ctfassets.net/48ji72u659z5/1imZkoJyTM2CAcQIsMK0iC/859b0fd6b88537d3992415386fd89aef/login-reward-program-example-email.png)\n",
+    "schema": {
+      "name": "Login Reward Program",
+      "rules": {
+        "type": "object",
+        "title": "Login Reward Rules",
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "properties": {
+          "eventWindow": {
+            "type": "object",
+            "title": "Program Eligibility Window",
+            "required": [
+              "dateRange"
+            ],
+            "properties": {
+              "dateRange": {
+                "type": "string",
+                "title": "Date Range",
+                "description": "Select the date/time period within which eligible users will earn a reward for logging into your product."
+              }
+            },
+            "description": "Select the date/time period within which eligible users will earn a reward for logging into your product."
+          },
+          "segmentation": {
+            "$ref": "#/definitions/segmentdef",
+            "title": "Set Segmentation Rules."
+          }
+        },
+        "definitions": {
+          "segmentdef": {
+            "type": "object",
+            "title": "Segment Definitions",
+            "required": [
+              "segmentFlag"
+            ],
+            "properties": {
+              "segmentFlag": {
+                "enum": [
+                  false,
+                  true
+                ],
+                "type": "boolean",
+                "title": "Would you like to use segmentation?"
+              }
+            },
+            "dependencies": {
+              "segmentFlag": {
+                "oneOf": [
+                  {
+                    "properties": {
+                      "segmentFlag": {
+                        "enum": [
+                          false
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "required": [
+                      "segmentNames"
+                    ],
+                    "properties": {
+                      "segmentFlag": {
+                        "enum": [
+                          true
+                        ]
+                      },
+                      "segmentNames": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "title": "Segment Names"
+                        },
+                        "title": "Segment Names",
+                        "options": {
+                          "disable_array_reorder": true
+                        },
+                        "minItems": 1
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "emails": [
+        {
+          "key": "loginRewardEmail",
+          "name": "Reward Created Email",
+          "defaults": "4xTZNSh5qE0eoUeUUMgOAk",
+          "description": "We send this email when a new reward is created by this program"
+        }
+      ],
+      "rewards": [
+        {
+          "key": "loginReward",
+          "name": "Login Reward",
+          "description": "This reward is given to people for who visit your platform within a specific time period."
+        }
+      ],
+      "summary": "Reward customer for visiting your platform.",
+      "rulesUISchema": {
+        "eventWindow": {
+          "dateRange": {
+            "ui:widget": "TimeIntervalWidget",
+            "ui:options": {
+              "label": false
+            }
+          }
+        },
+        "segmentation": {
+          "segmentFlag": {
+            "ui:widget": "radio"
+          },
+          "segmentNames": {
+            "ui:help": "Select which existing user segment(s) you would like to be enrolled in this program.",
+            "ui:field": "SegmentSelectWidget"
+          }
+        }
+      },
+      "longDescription": ""
+    },
+    "url": "https://login-program.services.prod.ssqt.io/",
+    "logo": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Asset",
+        "id": "4EGncCZvQIKaOUGmyKMUIo"
+      }
+    },
+    "screenshot": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Asset",
+        "id": "2CFvwETWjeMg28CIGAAACI"
+      }
+    },
+    "globallyInstallable": false,
+    "installableByTenants": [
+      "test_agngayvesirnb",
+      "test_atzqd37hvovdf",
+      "test_asmhxnffb9cml",
+      "test_avxqn8tccqj0e",
+      "test_acm2od98u6r0z"
+    ]
+  }
+}

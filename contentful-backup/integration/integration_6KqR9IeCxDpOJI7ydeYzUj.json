@@ -1,0 +1,98 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "6KqR9IeCxDpOJI7ydeYzUj",
+    "type": "Entry",
+    "createdAt": "2019-12-05T02:45:02.515Z",
+    "updatedAt": "2019-12-05T02:50:59.742Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 17,
+    "revision": 2,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "integration"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "title": "Weebly Referral Software Integration",
+    "integrationName": "Weebly",
+    "slug": "weebly",
+    "logo": {
+      "metadata": {
+        "tags": [],
+        "concepts": []
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "s68ib1kj8k5n"
+          }
+        },
+        "id": "3bkb71loRYeJrCZLxL1j9t",
+        "type": "Asset",
+        "createdAt": "2019-12-05T02:48:44.401Z",
+        "updatedAt": "2019-12-05T02:48:44.401Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 6,
+        "revision": 1,
+        "locale": "en-US"
+      },
+      "fields": {
+        "title": "Weebly Integration",
+        "file": {
+          "url": "//images.ctfassets.net/s68ib1kj8k5n/3bkb71loRYeJrCZLxL1j9t/ecc9c47d2238f619059c1c0f7a5478a0/weebly-integration.png",
+          "details": {
+            "size": 16599,
+            "image": {
+              "width": 450,
+              "height": 300
+            }
+          },
+          "fileName": "weebly-integration.png",
+          "contentType": "image/png"
+        }
+      }
+    },
+    "highlights": "Looking for Weebly referral software integration? Referral SaaSquatch enables you to install your referral program on your Weebly website without editing code.",
+    "integrationDescription": "Referral SaaSquatch's Weebly integration leverages your existing Weebly website to install your referral program without editing any code.",
+    "keyFeatures": [
+      "Drag-and-Drop code snippet install",
+      "Leverage your existing Weebly website",
+      "No editing of website code required",
+      "Completely configure your referral program through the SaaSquatch Portal"
+    ],
+    "moreInfo": [
+      "[Weebly Quickstart Guide](/guides/weebly)",
+      "[Drag-and-Drop Integration Configuration](/guides/integration-quickstart)"
+    ],
+    "guideLink": "/guides/weebly"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "22b2epSeT2qs8KyYKCsOCu",
+    "type": "Entry",
+    "createdAt": "2017-01-05T16:53:11.050Z",
+    "updatedAt": "2022-10-17T11:30:03.471Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 5289,
+    "revision": 32,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Manual User Actions: Add a User, Reward, Referral or Event",
+    "slug": "guides/one-time",
+    "highlights": "How to Add a User, Reward, Referral or Event Manually. ",
+    "content": "The [SaaSquatch portal](/success/navigating-the-portal/) allows you to add  one-off Participants, Rewards, Referrals or Events. \n\nAdding data manually will trigger any program automation such as goals and rewards. \n\n> __A note on events and rewards:__ Events older than 2 years are not accessible via API or visible on the Participants page in the Admin Portal. However, you can continue to access historical data by running an [event export report](/running-programs/creating-an-event-export-report). Reward retraction and refunds will only be possible if the reward you want to retract/refund is based on an event less than two years old. Because retractions/refunds require the original event, they can't be processed using the copy of the event that remains in long-term storage.\n\n### Add a User\n1. Head to your SaaSquatch account.\n2. In the upper right corner of your SaaSquatch account select either your Live or Test tenant.\n3. Click \"Participants\" in the upper header of your SaaSquatch account.\n4. Click \"Add User\" on the right side of the Participants page.\n5. Fill out the new User's information. \n6. Click \"Add\" to save the new user. \n\n> The Referable checkbox is checked by Default and allows the new user to be referred by another user. Uncheck the Referable checkbox for users that should not be referred. \n\nNeed to add a large amount of users at once? Learn about [Bulk user imports](https://docs.saasquatch.com/guides/user-import/).\n\n### Add a Single Reward\n1. Head to your SaaSquatch account.\n2. In the upper right corner of your SaaSquatch account select either your Live or Test tenant.\n3. Click \"Participants\" in the upper header of your SaaSquatch account.\n4. Find the specific participant you would like to add a reward to. Click their name.\n5. In the participant's profile, Click the + button on the right side of the reward section.\n6. Choose from a Pre-configured or Unit-based Reward.\n8. Click \"Add\" to add the reward for that participant.\n\n#### Reward Details:\n1. Select the type of reward. In most cases you will want to select the reward your program is already set up to distribute, making the notification for this manual reward compatible with the messaging of your program and the widget displayed to the customer.\n2. Input the reward amount can then be customized.\n3. If you would like to issue a type of reward not covered by the available pre-configured options, please refer to [custom rewards](#custom-rewards) below.\n\n#### Custom Rewards:\nOur One-time Rewards functionality also supports giving out rewards of a type other than your *Program Default*, Percentage, Dollar, or Time, including those of a custom type. These *Custom Rewards* could be anything from a free car-wash to a branded T-shirt.\n\n>#### Compatibility Warning\n>We recommend contacting our support team before you apply a custom reward to a user. Our support team can help you make sure that:\n>- The reward you are looking to give out is compatible with your referral program's specific setup. \n>- That the customer has the best experience receiving the custom reward.\n\n### Create a Referral Attribution\n#### Find Referrer's Code\n1. Navigate to the Participant section in the Referral SaaSquatch Portal.\n2. In the search Box, enter the **Referrer**'s name, email, or SaaSquatch User ID.\n3. When you find the Referrer in the search results, click on their name to be taken to their profile.\n4. Select the Referral program you're wanting to use from the *Program* drop-down menu to the right of their name.\n5. The user's custom referral code will be located in the *Code* section just below the *Program* drop-down. You can click the icon to the right of the referral code to copy it. \n\n![Obtain Referral Code](//images.contentful.com/s68ib1kj8k5n/51FqkKVqyobGMtTrJjfvmA/1572f65ae801903a463b350769521044/Screen_Shot_2021-08-31_at_2.10.16_PM.png)\n\n#### Apply Referrer's Code to Referred User\n1. After following steps 1-3 above for the **Referred User**, scroll to the list of referrals for the participant.\n2. Click on the plus (+) button to the right.\n3. Enter the referral code of the Referrer into the field. Make sure you are entering the Referrer's code into the Referred User's participant page for the attribution to be associated correctly, ensuring that any applicable rewards are also consistent. \n5. Click the \"Add\" button.\n\n![Add Referral](//images.ctfassets.net/s68ib1kj8k5n/r22GpB0WJegzSqw1t8xZm/6cc5aee136ffd35c3e2e2df8c26194fd/Screen_Shot_2019-08-07_at_12.45.45_pm.png)\n\n### Add an Event Manually\n1. Head to your SaaSquatch account.\n2. In the upper right corner of your SaaSquatch account select either your Live or Test tenant.\n3. Click \"Participants\" in the upper header of your SaaSquatch account.\n4. Find the specific participant you would like to add a reward to. Click their name.\n5. In the participant's profile, Click the + button on the right side of the Event section.\n6. Select \"Event Type\" From the dropdown menu. \n7. Enter all Required fields.\n8. Click \"Add\" to add the Event for that participant.\n\n> All purchase amounts, regardless of Currency entered, are converted into USD for the dashboard. It is important to select the correct currency for the purchase to ensure the analytics remain accurate.\n",
+    "seoDescription": "Manually perform actions for your Referral & Loyalty programs including adding a User, Reward, Referral and Events.."
+  }
+}

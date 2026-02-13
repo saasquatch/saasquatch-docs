@@ -1,0 +1,98 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "7Ax3hTrvVaNUJiNanEf2mc",
+    "type": "Entry",
+    "createdAt": "2019-12-05T02:43:54.575Z",
+    "updatedAt": "2019-12-05T02:51:14.261Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 15,
+    "revision": 2,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "integration"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "title": "Unbounce Referral Software Integration",
+    "integrationName": "Unbounce",
+    "slug": "unbounce",
+    "logo": {
+      "metadata": {
+        "tags": [],
+        "concepts": []
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "s68ib1kj8k5n"
+          }
+        },
+        "id": "5NUIuTAVOjNiiJUWuQeZNW",
+        "type": "Asset",
+        "createdAt": "2019-12-05T02:50:21.824Z",
+        "updatedAt": "2019-12-05T02:50:21.824Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 5,
+        "revision": 1,
+        "locale": "en-US"
+      },
+      "fields": {
+        "title": "Unbounce Integration",
+        "file": {
+          "url": "//images.ctfassets.net/s68ib1kj8k5n/5NUIuTAVOjNiiJUWuQeZNW/1d3c56c910ba3f8d062d9ab646911f6a/unbounce-integration.png",
+          "details": {
+            "size": 7887,
+            "image": {
+              "width": 540,
+              "height": 360
+            }
+          },
+          "fileName": "unbounce-integration.png",
+          "contentType": "image/png"
+        }
+      }
+    },
+    "highlights": "Looking for Unbounce referral software integration? Referral SaaSquatch uses your Unbounce landing pages to install your referral program without editing code.",
+    "integrationDescription": "Referral SaaSquatch's Unbounce integration leverages your existing Unbounce website and landing pages to install your referral program without editing any code.",
+    "keyFeatures": [
+      "Drag-and-Drop code snippet install",
+      "Leverage your existing Unbouce website",
+      "No editing of website code required",
+      "Completely configure your referral program through the SaaSquatch Portal"
+    ],
+    "moreInfo": [
+      "[Unbounce Quickstart Guide](/guides/unbounce)",
+      "[Drag-and-Drop Integration Configuration](/guides/integration-quickstart)"
+    ],
+    "guideLink": "/guides/unbounce"
+  }
+}

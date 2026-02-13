@@ -1,0 +1,44 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "3rmRo7JrkHJ70xexoY6n6p",
+    "type": "Entry",
+    "createdAt": "2020-01-06T22:24:59.989Z",
+    "updatedAt": "2020-01-06T22:24:59.989Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 27,
+    "revision": 1,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "productNews"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "title": "New Referral Feed",
+    "datePublished": "2019-06-06",
+    "tags": [
+      "product-update"
+    ],
+    "content": "We've redesigned the Referral Feed page to allow for easier and more effective monitoring of your referral programs and their activity. **New features include:**\n\n#### Your Referral Activity In One Place  \nView your most recently active referrals with information on the referring user, referred user, referral status and when the referral data was last updated.\n        \n#### Powerful Filtering\nBetter understand how your program is performing by using our quick filters to refine your referral feed based on referral status, program type, and date range. \n\n#### See Key Details and Manage Referrals\nDrill down on specific users and referrals with easy navigation to participant profiles and referral data. Click on either the referrer or referee’s name to review and manage their individual referral activity and rewards.  "
+  }
+}

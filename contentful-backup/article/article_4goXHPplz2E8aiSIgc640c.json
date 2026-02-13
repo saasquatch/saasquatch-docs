@@ -1,0 +1,87 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "4goXHPplz2E8aiSIgc640c",
+    "type": "Entry",
+    "createdAt": "2018-04-03T22:50:52.755Z",
+    "updatedAt": "2023-02-28T18:52:15.634Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 8760,
+    "revision": 8,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Program Reward Options",
+    "slug": "feature/rewards",
+    "coverImage": {
+      "metadata": {
+        "tags": [],
+        "concepts": []
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "s68ib1kj8k5n"
+          }
+        },
+        "id": "2ezqLR5uo4Eqsi4aoyOa6c",
+        "type": "Asset",
+        "createdAt": "2018-04-03T22:50:40.295Z",
+        "updatedAt": "2018-04-03T22:50:40.295Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 2,
+        "revision": 1,
+        "locale": "en-US"
+      },
+      "fields": {
+        "title": "Program Rewards Banner",
+        "file": {
+          "url": "//images.ctfassets.net/s68ib1kj8k5n/2ezqLR5uo4Eqsi4aoyOa6c/3e412a80da8e9bf31c77da91cf576ae5/Program_Rewards_Banner.png",
+          "details": {
+            "size": 25876,
+            "image": {
+              "width": 875,
+              "height": 225
+            }
+          },
+          "fileName": "Program Rewards Banner.png",
+          "contentType": "image/png"
+        }
+      }
+    },
+    "highlights": "Learn about the wide range of reward options available on each SaaSquatch Growth Automation program.",
+    "content": "Each SaaSquatch project provides the power and flexibility to customize the type of rewards that you provide your users with. \n\n>**Using our integration with Recurly or Stripe?**<br>\n> <span class=\"label\">Classic only</span> The SaaSquatch Stripe and Recurly integrations support the ability to provide Dollar Credit and Percentage Discount rewards. Full details about reward options for our direct integrations with payment providers can be found in our documentation for  [Stripe](/stripe/) and [Recurly](/recurly/).\n\n### Gift Card Rewards\nThe SaaSquatch Gift Card Integration enables you to automatically reward successful participants with digital gift cards.\n\nWith our [Tango Card](/success/gift-card-rewards) integration, you are able to select your program's configured reward from a wide range of available regional and international brands.\n\nGift cards can be a great reward option for users who are not directly paying for your product (*e.g.* company pays the bill), or when you want to give the user the flexibility to choose the reward that provides them the most value (like with Tango Card's Reward Link). \n\nLearn more about our [Gift Card integration](/success/gift-card-rewards).\n\n### Reward Codes (Fuel Tank)\n\n<div class=\"row-fluid\">\n  <div class=\"span7\">\n\n  <p>Provide your participants with Custom Reward Codes (Fuel Tank).\n\n<p>The SaaSquatch system can be configured to automatically provide a successful program participant with a Custom Reward Code at the correct time and place in their lifecycle. \n\n  <p>The SaaSquatch Custom Reward Fuel Tank provides a simplified way of handing out rewards, easy management of each code and reward, and can be configured to work with a wide range of eCommerce platforms like Shopify, WooCommerce, Magento, and BigCommerce.\n\n<p>Find out more about our <a href=\"/features/rewards-fuel-tank/\">Custom Rewards Fuel Tank</a> functionality.\n\n  </div>\n  <div class=\"span5\">\n\n  <div>\n<a class=\"docs-lightbox\" href=\"//images.ctfassets.net/s68ib1kj8k5n/mxWv4Ov4OGCo2kM2qyWQA/45562fe9bffd42fe8089d80f2881529f/Manage_Used_Referred_User_Codes.png\" data-lightbox=\"example-set\">\n<img src=\"//images.ctfassets.net/s68ib1kj8k5n/mxWv4Ov4OGCo2kM2qyWQA/45562fe9bffd42fe8089d80f2881529f/Manage_Used_Referred_User_Codes.png\" alt=\"Manage Used Referred User Codes\">\n<div><i class=\"fa fa-eye\"></i> Preview</div>\n</a>\n</div>\n\n  </div>\n</div>\n\n### Account Credit Rewards\n\n<div class=\"row-fluid\">\n  <div class=\"span7\">\n<p>Provide participants in your SaaSquatch program with Account Credit rewards.\n\n<p>Leveraging your existing account credit system, these rewards can be provided seamlessly to users through their account in your product.\n\n<p>Account credit rewards are a great way to incentivize users to continue engaging with, and making purchases through, your product.\n\n<p>For example, with products that have a subscription or transactional business model, users would be able to apply their reward towards another month/year of service, or as a discount on their next purchase.\n\n</div>\n  <div class=\"span5\">\n  <img src=\"//images.ctfassets.net/s68ib1kj8k5n/Gxzx69Bp84I22yo08oACY/b60186156474ce03f690a938bf691d9c/account_credit_rewards.png\" alt=\"account credit rewards\">\n  </div>\n</div>\n\n### Percentage Discount Rewards\n\n<div class=\"row-fluid\">\n  <div class=\"span7\">\n<p>Provide participants in your SaaSquatch program with rewards in the form of a percentage discount. \n\n<p>Leveraging your existing account credit system, these rewards can be provided seamlessly to users through their account in your product.\n\n<p>Percentage discount rewards are great as an alternative to using fixed-value account credits. \n\n<p>For example, with business models that offer a number of different pricing tiers, percentage discount rewards provide the flexibility for users to choose which product/plan to purchase as the reward's value will scale with the value of their purchase.\n\n</div>\n  <div class=\"span5\">\n  <img src=\"//images.ctfassets.net/s68ib1kj8k5n/2KviCjp2hiYOy0gy4mYgE0/7c051fb03c3ee4c6ea4c0d08519bb34d/percent_discount_rewards.png\" alt=\"percent discount rewards\">\n  </div>\n</div>\n\n### Reward Points\n\n<div class=\"row-fluid\">\n  <div class=\"span12\">\n\n<p>The SaaSquatch system supports the ability to provide your users with rewards in the form of points.\n\n<p>Points can be a great reward option when your platform/product offers a range of features, upgrades, or add-ons which people can put their points towards.\n\n<p>Points can also be a viable substitute to offering account credit in situations where there can't be a monetary value for the rewards.\n\n<p>These points can also be configured to match your own custom points system naming structure.\n\n</div>\n</div>\n\n### Free Time Rewards\n<div class=\"row-fluid\">\n  <div class=\"span7\">\n\n<p>Your SaaSquatch program can be configured to provide participants with rewards they can use towards free time in your product.\n\n<p>This type of reward is particularily helpful in subscription-based products, with monthly and/or yearly billing, and which have a number of plans at different price-points.\n\n<p>For example, offering a reward in the form of a free month of service can provide the flexibility for users to choose which product/plan to purchase (and on which billing cycle) as the reward's value will scale with the value of their purchase.\n\n<p>These rewards can be configured in units of <code>days</code>, <code>months</code>, or even <code>quarters</code>.\n\n</div>\n  <div class=\"span5\">\n  <img src=\"//images.ctfassets.net/s68ib1kj8k5n/6ua2g6VKgwsuwwKeg2Wkew/7fa759d10a8a31ae8528eec61f7fb94b/free_time_rewards.png\" alt=\"free time rewards\">\n  </div>\n</div>\n\n### Custom Rewards\n<div class=\"row-fluid\">\n  <div class=\"span7\">\n\n<p>The SaaSquatch system can also be configured to provide rewards in nearly any other custom unit. \n\n<p>Would you like to give out a product you make, a gift basket, or even some company swag (like a T-shirt)? All of these reward options, and many more, can be configured as the reward for your SaaSquatch program.\n\n<blockquote>Not sure if your type of reward you are looking to provide will work with SaaSquatch?<br> <a href=\"mailto:sales@referralsaasquatch.com\">Our sales team</a> will be more than happy to help answer any questions you have about the types of rewards you are looking to offer.</blockquote>\n\n</div>\n  <div class=\"span5\">\n  <img src=\"//images.ctfassets.net/s68ib1kj8k5n/33mAMvmEDmmGQ6CGAGSCIe/750d4e5ed65ae35cedb102b286c249ff/arbitrary-reward2.png\" alt=\"arbitrary-reward2\">\n  </div>\n</div>\n\n### Additional Information\n\n#### Cancellability\nAll reward types other than gift card integrated rewards can be cancelled using the SaaSquatch API, or through the SaaSquatch Admin portal, if they have not already been redeemed.\n\nMore information about Cancelling existing rewards can be found in our guide on [Managing Existing Rewards](/guides/manage-rewards/#cancel-rewards), or in our [API docs](/api/methods/#cancel_reward).\n\n>**Cancelling Percent Discount Rewards**<br>\n>For referral programs using percentage discount rewards, if the Referred User's subscription is cancelled in SaaSquatch before the end of the discount period, the Referrer's reward will also be marked as cancelled.\n\n#### Discount duration\nFor reoccurring rewards (like percentage discount rewards) the SaaSquatch platform keeps track of the duration that the discount is valid for.\n\nUsing this, you can configure your system to query the SaaSquatch platform to check whether a particular user has a valid discount.\n\nThese discount durations are based on your program's reward setting, which can can be configured through the SaaSquatch Portal. For percentage discount rewards, the duration can be configured as 1, 3, 6, or 12 months, or unlimited.\n\n#### W-9 Compliance\nThe SaaSquatch Growth Automation Platform offers W-9 Compliance for our programs and rewards. When configured, it prevents participants who have not submitted a W-9 Tax Form from receiving in excess of $600 USD of rewards during a tax year. More information can be found in our article on [W-9 Compliance](/features/w-9-compliance) and [Configuring your Reward Catalog for W-9 Compliance](/features/configuring-your-reward-catalog-for-w-9).\n"
+  }
+}

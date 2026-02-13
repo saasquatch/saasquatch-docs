@@ -1,0 +1,45 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "JX4Tw61OpqxYKXOwPTZKe",
+    "type": "Entry",
+    "createdAt": "2020-01-06T22:20:52.723Z",
+    "updatedAt": "2023-02-28T18:01:00.770Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 54,
+    "revision": 3,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "productNews"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "title": "Detailed Participants Page Update",
+    "datePublished": "2019-07-05",
+    "tags": [
+      "feature-release",
+      "product-update"
+    ],
+    "content": "<div class=\"row-fluid\">\n  <div class=\"span6\">\n    <p>\n      We have rebuilt our Participants page from the ground up to provide\n      quicker access to critical information about all registered users within\n      SaaSquatch.\n    </p>\n    <p>\n      The addition of valuable data such as <bold>Generated Revenue</bold> and\n      <bold>Converted Referrals</bold> combined with the ability to sort and\n      filter the list allows you to quickly drill down and analyze your\n      participants with unprecedented depth. With a single click of a button,\n      you can easily see who your top referrers are, who is driving the most\n      traffic to your site, and even who has generated the most revenue.\n    </p>\n  </div>\n  <div class=\"span5\">\n    <img src=\"https://www.saasquatch.com/wp-content/uploads/2019/08/Participants-Page.gif\" alt=\"part-update\"/>\n  </div>\n</div>\n\nAlong with **Flags** and **Date** Added, the following columns are now also included in the Participants List:\n\n* **Traffic**\n\nThe number of people who have clicked on the participant’s share links\n\n* **Referrals**\n\nNumber of referrals started by this participant’s sharelinks\n\n* **Converted Referrals**\n\nThe number of successfully converted (completed) referrals made by this participant’s sharelinks\n\n* **Goals**\n\nNumber of times this user has achieved a program goal\n\n* **Generated Revenue**\n\nThe amount of revenue generated directly by this user through any of your programs."
+  }
+}

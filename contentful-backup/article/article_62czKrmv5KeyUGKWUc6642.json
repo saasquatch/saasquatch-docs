@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "62czKrmv5KeyUGKWUc6642",
+    "type": "Entry",
+    "createdAt": "2016-07-20T04:35:39.301Z",
+    "updatedAt": "2018-12-05T22:19:39.741Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 20,
+    "revision": 4,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Fulfillment",
+    "slug": "topics/fulfillment",
+    "highlights": "**Fulfillment** is the process of making sure people can use the rewards they earn. People can earn rewards from referring their friends, and in some cases can get a reward just from being referred. Rewards can be discounts, credit, gift cards, points and many other things. To make sure these rewards are more than just a record in the Referral SaaSquatch database, there needs to be some way to fulfill them. Sometimes this just means rewards have a coupon code that can be used in other systems, sometimes SaaSquatch keeps track of a balance that is deducted by another system, and other times it means there's an automated synchronization process to apply discounts in payment systems. Referral SaaSquatch supports manual, automated and semi-automated fulfillment options and even has turnkey connectors that handle fulfillment automatically for you.",
+    "content": "<div class=\"bs-callout bs-callout-default\">\n  <h4>Definition</h4>\n  Fulfillment is the process of making sure people can use the rewards they earn from referrals.\n</div>\n\n\n### Pro & Enterprise Options\n\nFulfillment automation can be one of the biggest challenges of running a referral program. The Pro and Enterprise plans of Referral SaaSquatch come with a lot of flexibility\nto help make this process and streamlined as possible for companies with the challenges of enterprises and high volume accounts.\n\n - Coupon codes limits\n - SaaSquatch credit tracking\n - Discount synchronizing\n - Turnkey connectors\n - Gift card automation\n - Voucher automation\n - Coupon upload\n - Batch CSVs\n - Synchronizations jobs\n\n \n### Tech Guide\n\nFor details on implementing fulfillment, see our [developer center guide on fulfillment](/developer/fulfillment)."
+  }
+}

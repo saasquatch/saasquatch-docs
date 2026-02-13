@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "1ps0E2KGabtQZsuU8niM7w",
+    "type": "Entry",
+    "createdAt": "2021-09-21T20:22:29.636Z",
+    "updatedAt": "2022-09-28T14:02:53.728Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 221,
+    "revision": 8,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Create Rewards & Reward Units",
+    "slug": "create-rewards-and-reward-units",
+    "highlights": "You can create different Rewards and Reward Units for your programs to give your customers exactly what they're after.",
+    "content": "## Create a new Reward \n1. Head to your SaaSquatch account.\n2. In the upper right corner of your SaaSquatch account select either your Live or Test tenant.\n3. Click \"Rewards\" in the upper header of your SaaSquatch account.\n4. Click \"Catalog\" in the lower header. \n5. Click \"Create  Reward\" on the right side of the Reward Catalog section.\n6. Enter the Name for the new reward. \n7. Select a Reward Type: \n    * __Discount__ - Provides a percentage discount\n    * __Credit__ - Provides a specific amount of a reward unit. \n    * __Fuel Tank__ - Provides a credit or discount from a pool of finite rewards. [Learn More](https://docs.saasquatch.com/features/rewards-fuel-tank/)\n    * __Gift Card__ - Provides a gift card through Tango Card. \n8. Click \"Save\" to save the Reward and add it to your Reward Catalog. [Learn More](https://docs.saasquatch.com/tangocard-connection/)\n\n> Rewards Created in your tenant would not be available in another tenant. If you have created a reward in your test tenant, be sure to also create it in your live tenant.\n\n## Create a Credit Reward Unit\nWhen rewarding credit, you need to define what the the credit gives the participant. \n\n1. Head to your SaaSquatch account.\n2. In the upper right corner of your SaaSquatch account select either your Live or Test tenant.\n3. Click \"Rewards\" in the upper header of your SaaSquatch account.\n5. Click \"Reward Units\" in the lower header.\n6. Select a Reward Unit Type: \n    * __Cash__ - Provides a cash reward of a specific currency.\n    * __Credit__ - Provides a monetary credit reward.\n    * __Months__ - Provides free months of your subscription service.\n    * __Points__ - Provides points that can be exchanged for a range of products.\n    * Custom - Define a custom reward unit type. \n7. Enter the Name of the Reward Unit. \n8. Click \"Create Unit\" to Save and add the unit to your Reward Unit Catalog. \n\n> Reward Units Created in your tenant would not be available in another tenant. If you have created a reward in your test tenant, be sure to also create it in your live tenant.\n",
+    "tags": [
+      "Rewards"
+    ],
+    "seoDescription": "How to create a new Reward or Reward unit for your Referral or Loyalty Program... "
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "6AlvRAtWuoQ82cf0vTpQHa",
+    "type": "Entry",
+    "createdAt": "2019-12-04T23:49:43.252Z",
+    "updatedAt": "2023-02-21T21:17:30.532Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 34,
+    "revision": 8,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "integration"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "title": "Stripe Software Integration",
+    "integrationName": "Stripe",
+    "slug": "stripe",
+    "logo": {
+      "metadata": {
+        "tags": [],
+        "concepts": []
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "s68ib1kj8k5n"
+          }
+        },
+        "id": "euVWUVNzVHyrUl54ip3tW",
+        "type": "Asset",
+        "createdAt": "2019-12-05T02:00:23.829Z",
+        "updatedAt": "2019-12-05T02:00:23.829Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 9,
+        "revision": 1,
+        "locale": "en-US"
+      },
+      "fields": {
+        "title": "Stripe Integration",
+        "file": {
+          "url": "//images.ctfassets.net/s68ib1kj8k5n/euVWUVNzVHyrUl54ip3tW/b21b817658b996e2882028b2ffb3cd7f/stripe-integration.png",
+          "details": {
+            "size": 7124,
+            "image": {
+              "width": 450,
+              "height": 300
+            }
+          },
+          "fileName": "stripe-integration.png",
+          "contentType": "image/png"
+        }
+      }
+    },
+    "integrationDescription": "Stripe is a fantastic payment platform built for developers. SaaSquatch's Stripe integration uses Stripe Connect to automatically create new referral codes, track referred subscriptions and give people discounts.",
+    "highlights": "Looking for Stripe software integration? SaaSquatch uses Stripe Connect to create referral new codes, track subscriptions and give discounts.",
+    "keyFeatures": [
+      "Creates unique referral Coupon codes for your customers and track when those codes are used automatically.",
+      "Provide recurring discounts on your customers' invoices",
+      "Detect cancelled subscriptions to automatically update referral rewards",
+      "Uses a native integration built by SaaSquatch directly on Stripe Connect"
+    ],
+    "moreInfo": [
+      "[Stripe Install Guide](/developer/stripe-v2-install-guide)"
+    ],
+    "tags": [
+      "in-directory"
+    ]
+  }
+}

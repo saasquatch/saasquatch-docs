@@ -1,0 +1,42 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "7NsZ4fLSNOeDL9VnR87ar",
+    "type": "Entry",
+    "createdAt": "2020-06-12T21:48:41.712Z",
+    "updatedAt": "2020-06-12T21:48:41.712Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 113,
+    "revision": 1,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "breakingChange"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "deadline": "2021-06-30",
+    "title": "squatch.js v1 deprecation",
+    "description": "[squatch.js version 1](/developer/squatchjs/#squatch-js-version-1-i-class-fa-fa-html5-style-font-size-30px-color-6eb5e2-aria-hidden-true-i-) is our original Javascript library originally written in 2013 for a much different internet. At that time the browser technologies, frontend frameworks and approaches to writing libraries were very different. For example, v1 includes a library based on Flash for doing cross-domain communication with IFrames in Internet Explorer 8. The web has moved on, and it's time for us to formally deprecate Squatch.js v1.\n\nIn 2016 we wrote a new version of squatch.js (version 2) by building on the best part of the modern web and JS ecosystem. squatch.js v2 is built as a universal UMD module, is published to NPM, is written in Typescript, takes advantage of standard web APIs and ponyfills when needed, and drops support for older browsers like IE8. squatch.js v2 works with our modern [Growth Automation](/growth/saasquatch-ga/) and classic referral programs, and will continue to get support for years to come.\n\n__If you're still using squatch.js v1, you will need to migrate to squatch.js v2 by June 30, 2021.__\n\nsquatch.js v1 does not work with our new [1st party tracking cookies](/developer/squatchjs/cookies/), so we recommend making the transition as soon as possible for the most ideal referral experience.\n\nOn June 30, 2021 we will start randomly dropping a small percentage of traffic to the API endpoints that power v1, then slowly ramping up to 100% disabled.\n\nIf you are one of the few customers still using squatch.js v1 please contact our support team so they can help assist you with the transition. If you have a custom theme, it may need to be updated in the process and our support team can provide you with additional information.",
+    "timeline": "gantt\n\tdateFormat  YYYY-MM-DD\n\tGrace Period           :a1, 2020-06-12, 2021-06-30\n  Random Failures :a2, after a1  , 30d\n\tDisable     :after a2, 1d"
+  }
+}

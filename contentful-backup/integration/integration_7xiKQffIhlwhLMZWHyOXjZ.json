@@ -1,0 +1,100 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "7xiKQffIhlwhLMZWHyOXjZ",
+    "type": "Entry",
+    "createdAt": "2019-12-05T02:36:57.364Z",
+    "updatedAt": "2019-12-17T01:40:11.924Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 24,
+    "revision": 5,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "integration"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "title": "Braintree Referral Software Integration",
+    "integrationName": "Braintree",
+    "slug": "braintree",
+    "logo": {
+      "metadata": {
+        "tags": [],
+        "concepts": []
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "s68ib1kj8k5n"
+          }
+        },
+        "id": "2COfmb4zmRqgR8RubjB0uN",
+        "type": "Asset",
+        "createdAt": "2019-12-05T02:49:11.078Z",
+        "updatedAt": "2019-12-05T02:49:11.078Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 8,
+        "revision": 1,
+        "locale": "en-US"
+      },
+      "fields": {
+        "title": "Braintree Integration",
+        "file": {
+          "url": "//images.ctfassets.net/s68ib1kj8k5n/2COfmb4zmRqgR8RubjB0uN/5731a68d29d1f2c77eeb7b452c901dbf/braintree-integration.png",
+          "details": {
+            "size": 6761,
+            "image": {
+              "width": 450,
+              "height": 300
+            }
+          },
+          "fileName": "braintree-integration.png",
+          "contentType": "image/png"
+        }
+      }
+    },
+    "integrationDescription": "Braintree is a great payment layer. Referral SaaSquatch's Braintree integration uses Braintree's API and Braintree's Custom Fields to automatically track subscriptions and give discounts.",
+    "highlights": "Looking for Braintree referral software integration? Referral SaaSquatch uses Braintree's API and custom fields to track subscriptions and give discounts.",
+    "keyFeatures": [
+      "Extends Braintree with SaaSquatch referral code system",
+      "Provide recurring discounts on your customers' invoices",
+      "Detect cancelled subscriptions to automatically update referral rewards",
+      "Uses a native integration built by SaaSquatch directly on Braintree's API"
+    ],
+    "moreInfo": [
+      "[Braintree Tech Installation Guide](/developer/braintree)"
+    ],
+    "guideLink": "/developer/braintree",
+    "tags": [
+      "deprecated"
+    ]
+  }
+}

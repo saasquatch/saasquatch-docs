@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "1frCem2eUqnUi3gyNrkt8F",
+    "type": "Entry",
+    "createdAt": "2020-06-08T22:04:26.114Z",
+    "updatedAt": "2023-08-23T21:00:03.258Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 179,
+    "revision": 10,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Developer Guide",
+    "title": "Tracking Cookies",
+    "slug": "developer/squatchjs/cookies",
+    "highlights": "As of June 2020, SaaSquatch has enabled the usage of 1st Party Cookies to accommodate a wider industry shift towards the increased protection of end user privacy. ",
+    "content": "SaaSquatch uses first-party cookies for referral attribution—the process of connecting a referred participant to the person who made the referral. The cookies are based on UTM parameters passed through the URL. By placing [squatch.js](/developer/squatchjs/v2) on your landing page, it is able to read the UTM parameters and create a valid first-party cookie that’s in compliance with all browsers. \n\n## Set up first-party cookies\nWe recommend that all implementations that make use of our referral cookie adhere to the following instructions to enable usage of first-party cookies:\nMake sure your landing page and your signup page exist on the same domain\nAdd squatch.js to your landing page. This sets the first-party cookie.\nPlace squatch.js on the signup page where your users are upserted. This reads the first-party cookie. \n\nHere’s how it works:\n1. Squatch.js reads `_saasquatch` from the URL and stores a first-party cookie on the specified landing page's domain.\n2. It automatically sets the cookies field on users during an upsert.\n3. It reads the first-party cookie during use of [autofill](https://saasquatch.github.io/squatch-js/pull/58/functions/autofill.html).\n\n### Attribution Preference Hierarchy\nAs there are several ways to attribute a referred participant to a referrer, the connection will always be linked following the below scheme:\n\n1. Explicit inclusion of a `referredByCodes` either via squatch.js or the REST API will always override any identified cookie.\n2. If a referral code is not included directly with a user upsert, then squatch.js will look for the first-party cookie and make the attribution.\n3. If no first-party cookie exists and a third-party cookie is available through a compatible browser, the 3rd-party cookie will be detected and applied."
+  }
+}

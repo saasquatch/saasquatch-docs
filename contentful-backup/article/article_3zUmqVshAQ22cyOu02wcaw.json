@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "3zUmqVshAQ22cyOu02wcaw",
+    "type": "Entry",
+    "createdAt": "2017-04-05T18:31:43.791Z",
+    "updatedAt": "2017-04-05T18:31:43.791Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 9,
+    "revision": 1,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Designer Guide",
+    "title": "Internationalization (i18n) helper",
+    "slug": "themes/i18n-helper",
+    "highlights": "The i18n helper is used to swap translated strings into Handlebars templates and powers [Internationalization](/themes/internationalization). The helper loads messages from resource bundles (collections of messages files) from a messages file ([.properties files](https://en.wikipedia.org/wiki/.properties)) that matches a specified locale. These files follow the .properties standard, with the exception that they must be encoded using UTF8 instead of ISO-8859-1.",
+    "content": "### Usage\n\nThe usage syntax is as follows:\n\n```\n{{i18n \"key\" [arg1, ..., argN] [locale=\"en_CA\"] [bundle=\"messages\"]}}\n```\n\nWhere:\n\n - `key` is the name of the message\n - `[arg1, ..., argN]` are optional dynamic arguments encoded as `{0}`, `{1}` and `{N}` etc.\n - `locale` is an optional override of the locale. The locale must be of the format `language_COUNTRY` where the language code must be lowercase and the country code must be uppercase. The separator must be an underscore.\n - `bundle` is an optional override of the default resource bundle.\n\nThe locale is determined by the following steps (in order of precedence):\n\n 1. Is the `locale` helper option specified? If so, use that locale.\n 2. Is the locale defined in the theme context? If so, use that locale.\n 3. Default to the \"en\" locale.\n\nTypically, the 2nd step (locale defined in theme context) will determine the locale.\n\nLook at the `messages` bundle for the `hello` key:\n\n```\n{{i18n \"hello\"}}\n```\n\nLook at the `myMessages` bundle for the `hello` key:\n\n```\n{{i18n \"hello\" bundle=\"myMessages\"}}\n```\n\nLook at the `messages` bundle for the `hello` key using the `es_AR` locale:\n\n```\n{{i18n \"hello\" locale=\"es_AR\"}}\n```\n\nLook at the `messages` bundle for the `hello` key and bind the `{0}` parameter to \"i18n helper\":\n\n```\n{{i18n \"hello\" \"my friend\"}}\n```\n\n---\n\n### Defining resource bundles\n\nA \"resource bundle\" is simply a collection of UTF8 encoded .properties files located within the same directory.\n\n```\n├── /assets\n├── /templates\n├── /i18n\n|   ├── messages.properties\n|   ├── messages_de.properties\n|   ├── messages_ko.properties\n|   └── messages_ja.properties\n└── Readme.md\n```\n\nIt is important that you name your messages files correctly or they will not be found. Resources are named by combining the `bundle` name and the `locale`, separated by an underscore. In the event that a messages file is not found, a series of fallbacks are attempted as follows:\n\n 1. Attempt to find a messages file with the same language, but country code ommitted. For example, if the messages file \"myMessages_fr_CA.properties\" was not found, \"myMessages_fr.properties\" will be attempted next.\n\n 2. Attempt to find a messages file using the default locale. Continuing with the above example, this would mean the file \"myMessages_en.properties\" would be tried next.\n\n 3. Attempt to find the default messages file. As a last ditch attempt, the helper will try loading the message file \"messages.properties\". If this fails, rendering cannot continue and the helper will error.\n\nBy default, resource bundles are expected to be in the root theme folder. This means if you use the helper definition `{{i18n \"example\" bundle=\"myMessages\" locale=\"fr\"}}` the expected path of the associated messages file would be `/myMessages_fr.properties`.\n\nTo use a different path, just include the path as part of the bundle name. If you would like to place your resource bundle in the `i18n` subdirectory instead, the above example would be changed to `{{i18n \"example\" bundle=\"i18n/myMessages\" locale=\"fr\"}}`."
+  }
+}

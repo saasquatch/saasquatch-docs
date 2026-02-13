@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "6kpNmiIfy67c8byJIyE8Mp",
+    "type": "Entry",
+    "createdAt": "2022-09-21T18:57:32.612Z",
+    "updatedAt": "2023-08-03T18:08:18.768Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 110,
+    "revision": 15,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Calculated Fields",
+    "slug": "building-programs/custom-calculated-fields/calculated-fields",
+    "highlights": "Calculated field values can be used in setting up your program rules, allowing for a wide range of advanced program logic. ",
+    "content": "## Overview\nThrough [custom fields](https://docs.saasquatch.com/features/custom-user-fields/), you can send SaaSquatch a wide range of additional information about your participants beyond the basics required to run your program.  \n\nCalculated fields take this concept a step further.  As user and event data are received by a calculated field, the values are calculated, stored and become visible on the participant's profile. Once the calculated field is set up, its value will update dynamically as you send SaaSquatch events that meet your criteria. \n\nCalculated field values can be used in setting up your program rules, allowing for a wide range of advanced program logic. For example, a calculated field can be configured to count how many times a participant makes a purchase of at least $100 in a one-month window. Then, you can set up your program to issue special rewards to participants who make at least 3 of these $100 purchases in a month. \n\n![Calculated Fields and Program Rules](//images.ctfassets.net/s68ib1kj8k5n/3f6bnS6l2idpVnA0bpFHh9/66517e863ada7b0ecbbaa6fa254334e1/Frame_19.png)\n\n## Default calculated fields\nAll clients are supplied with four calculated fields by default. You can reference these as soon as you start setting up the rules for your program. \n\n<table class=\"table table-hover\">\n\t<tr>\n\t\t<th>Calculated field</th>\n\t\t<th>Description</th>\n\t</tr>\n\t<tr>\n\t\t<td>lastSeenDate</td>\n\t\t<td>Tracks the last time the user was upserted in SaaSquatch</td>\n\t</tr>\n\t<tr>\n\t\t<td>firstPurchaseDate</td>\n\t\t<td>Tracks the first date that we received a purchase event for this participant</td>\n\t</tr>\n\t<tr>\n\t\t<td>lastPurchaseDate</td>\n\t\t<td>Tracks the date of the participant's most recent purchase event</td>\n\t</tr>\n\t<tr>\n\t\t<td>totalPurchaseCount</td>\n\t\t<td>Tracks the total number of purchase events for this participant</td>\n\t</tr>\n</table>\n\n## User-created calculated fields\nYou can create your own calculated fields that go beyond the default ones provided by SaaSquatch.\n\n### Customization options\nWhen you set up a calculated field, you can:\n- Add a start and end date if you want the calculation to run for a limited time (e.g., January 1st to February 17th). This set time frame is called an active period. \n- Specify a recurring [tracking window](https://docs.saasquatch.com/building-programs/custom-calculated-fields/tracking-windows) for your sum and count calculations. Tracking windows can be either fixed windows (e.g., a singular calendar month or year)  or sliding windows (e.g., last 90 days).\n- Set additional constraints for when the calculation is performed by adding a filter or writing a JSONata expression\nThese options are discussed in greater detail in our article [Setting Up a Calculated Field](https://docs.saasquatch.com/building-programs/custom-calculated-fields/setting-up-a-calculated-field).\n\n> __Note:__ If your calculated field has an active period or tracking window, then values won't be updated after the calculation period ends. If your calculated field has an active period (or a tracking window, for sum/count calculations only), then values won’t be further updated after the calculation period ends. However, the values will remain visible on each participant’s profile. \n\n### Available calculations\nThere are several types of calculations that you can use when building a calculated field. \n\n<table class=\"table table-hover\">\n\t<tr>\n\t\t<th style=\"width:25%\">Calculation</th>\n\t\t<th style=\"width:35%\">Description</th>\n\t\t<th style=\"width:55%\">Example</th>\n\t</tr>\n\t<tr>\n\t\t<td>Sum</td>\n\t\t<td>Calculate the sum of the <code>{fieldname}</code> field from <code>{eventkey}</code> events</td>\n\t\t<td>Sum all purchases a referred user makes within the first 30 days after signup. Issue tiered rewards to the referrer based on the amount spent.  </td>\n\t</tr>\n\t<tr>\n\t\t<td>Count</td>\n\t\t<td>Count the number of <code>{eventkey}</code> events</td>\n\t\t<td>Reward participants when they have made more than 10 purchases.</td>\n\t</tr>\n\t<tr>\n\t\t<td>First Seen (Date)</td>\n\t\t<td>Calculate the timestamp of the first <code>{eventkey}</code> event</td>\n\t\t<td>Reward participants if they started making purchases before a certain date.</td>\n\t</tr>\n\t<tr>\n\t\t<td>Last Seen (Date)</td>\n\t\t<td>Calculate the timestamp of the last <code>{eventkey}</code> event</td>\n\t\t<td>Reward participants if their last purchase was within 5 days.</td>\n\t</tr>\n\t<tr>\n\t\t<td>First Value</td>\n\t\t<td>Calculate the value of the <code>{fieldname}</code> field from the first {eventkey} event</td>\n\t\t<td>Reward participants when they make a large first purchase.</td>\n\t</tr>\n\t</tr>\n\t\t<td>Last Value</td>\n\t\t<td>Calculate the value of the <code>{fieldname}</code> field from the most recent <code>{eventkey}</code> event</td>\n\t\t<td>Reward participants when their last payment was at least a certain value. </td>\n</table>\n\nCreate and manage calculated fields from the Data page in the Admin Portal. See [Setting Up a Calculated Field](https://docs.saasquatch.com/building-programs/custom-calculated-fields/setting-up-a-calculated-field) for help doing so. ",
+    "robotsTag": [
+      "FOLLOW"
+    ],
+    "canonicalUrl": "<link rel=\"canonical\" href=\"URL from Contentful response\"/>"
+  }
+}

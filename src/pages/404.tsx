@@ -29,7 +29,7 @@ export default () => (
         </p>
 
         <img
-          src="https://d2vi0firws6omr.cloudfront.net/img/http-404.jpg"
+          src="/assets/images/http-404.jpg"
           style={{ maxWidth: "500px", margin: "0 auto" }}
           alt="The Missing Link 404 Page"
         />

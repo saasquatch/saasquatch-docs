@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "bL29x8E23u4oYcSQciSga",
+    "type": "Entry",
+    "createdAt": "2017-04-05T18:31:43.784Z",
+    "updatedAt": "2017-04-05T18:31:43.784Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 10,
+    "revision": 1,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Designer Guide",
+    "title": "Helpers",
+    "slug": "themes/helpers",
+    "highlights": "Helpers are functions that you can use in your Handlebar template files to help generate your theme.",
+    "content": "### What is a helper?\n\nA helper is a block that helps you provide some logic in your <a href=\"/themes/templates/\">templates</a>.\n\n```\n{{#if user.imageUrl}}\n    <img src=\"{{user.imageUrl}}\" >\n{{/if}}\n```\n\n<hr/>\n\n### Handlebars.java Helpers\n\nThe Referral SaaSquatch template system is built using [Handlebars.java](http://jknack.github.io/handlebars.java/) and comes with a number of built-in helpers:\n\n * **if** - check for truthiness\n * **each** - loop through lists\n * **with** - change the context \n * **unless** - check for falsiness\n * **block** - create a block that can be overridden by subtemplates\n * **partial** - load a partial\n\n<hr/>\n\n### Referral SaaSquatch Helpers\n\nThe Referral SaaSquatch template system also includes a few custom helpers built specifically to help you run your theme.\n\n * **[assets](/themes/assets/)** - a custom helper for serving [assets](/themes/assets/)\n * **[i18n](/themes/i18n-helper/)** - a helper that for [internationalization](/themes/internationalization)\n * **[variables](/themes/variables/)** - a helper that renders a variables value\n * **squatchHead** - includes basic Javascript and CSS to make your theme function with [squatch](/squatchjs/)\n\n"
+  }
+}

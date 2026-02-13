@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "1N3jv8v50sMw4mi4YUyQmE",
+    "type": "Entry",
+    "createdAt": "2016-04-04T22:22:55.478Z",
+    "updatedAt": "2016-04-04T22:22:55.478Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 36,
+    "revision": 1,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "faq"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "question": "How do I get started?",
+    "answer": "- First you take a look at our pricing page and find the plan that best suits you.\n- Then you enter and confirm your email through our sign-up page.\n- Finally you login to the platform, pick your reward type and start customizing the widget."
+  }
+}

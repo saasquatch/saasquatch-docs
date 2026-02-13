@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "4L4RJ5V172YEgkmggASaCs",
+    "type": "Entry",
+    "createdAt": "2016-04-04T22:22:09.418Z",
+    "updatedAt": "2020-06-10T17:52:39.963Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 19,
+    "revision": 2,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "faq"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "question": "What happens when a user clicks on a sharelink?",
+    "answer": "The sharelink sends the user to our servers, on which we place a 3rd party cookie with their referral code on `app.referralsaasquatch.com`, before forwarding them to your landing page so Squatch.js can drop a 1st party cookie. <strong>We store this cookie for 365 days, but browsers may drop them earlier.</strong> This means that if a user follows the sharelink, but not signs up immediately, we can still track the referral later. Please bear in mind that if the user clears their cache or switches to a different browser, we might not be able to track the referral. See our [1st party cookie guide](/developer/squatchjs/cookies/) for more."
+  }
+}

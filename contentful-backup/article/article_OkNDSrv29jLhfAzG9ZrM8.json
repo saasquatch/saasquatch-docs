@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "OkNDSrv29jLhfAzG9ZrM8",
+    "type": "Entry",
+    "createdAt": "2022-09-21T18:53:24.073Z",
+    "updatedAt": "2023-08-03T19:21:49.500Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 61,
+    "revision": 10,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Designer Guide",
+    "title": "Edits to Calculated Fields",
+    "slug": "building-programs/custom-calculated-fields/edits-to-calculated-fields",
+    "content": "[User-created calculated fields](https://docs.saasquatch.com/building-programs/custom-calculated-fields/calculated-fields) can be edited at any time.  For all types of calculated fields, you __are__ able to edit:\n- Event used to calculate the field\n- Event field (if applicable)\n- Tracking window\n- Filters, including active period\n\nYou __are not__ able to edit the:\n- Calculated field key\n- Calculation type\n\n> If your field uses a sum or count calculation, then we recommend requesting a [recalculation](https://docs.saasquatch.com/building-programs/custom-calculated-fields/recalculation) when you make your edits. For calculated fields that use another type of calculation, recalculation isn’t possible and the below should be taken into account.\n\n<table class=\"table table-hover\">\n\t<tr>\n\t\t<th style=\"width:25%\">If</th>\n\t\t<th style=\"width:35%\">Then</th>\n\t\t<th style=\"width:60%\">Example</th>\n\t</tr>\n\t<tr>\n    <td>Field does not have a tracking window or the tracking window has been <b>removed</b></td>\n\t\t<td rowspan=\"2\">\n\t\t\t<ul>\n\t\t\t\t<li>The old field value will be retained and act as the <b>starting point</b> for the new calculation</li>\n\t\t\t\t<li>The new calculation will be used moving forward</li>\n\t\t\t</ul>\n\t\t<td rowspan=\"2\"> The field currently sums the revenue on userPurchase events. When you update it to sum revenue on purchase events instead, the existing value on a participant’s profile will be unchanged. The next time we receive a purchase event for them, the revenue amount is added to the existing value.</td>\n\t</tr>\n\t<tr>\n\t\t<td>Field has an existing tracking window but the window is <b>unchanged</b></td>\n\t</tr>\n\t<tr>\n\t\t<td>Field has an tracking window that is being <b>added to</b></td>\n\t\t<td>\n\t\t\t<ul>\n\t\t\t\t<li>The old field value will be retained only until new events come in. It will be wiped when the next matching event comes in</li>\n\t\t\t\t<li>The new configuration will be used moving forward</li>\n\t\t\t\t<li>Request a recalculation if you want to take historical data into account with the new configuration</li>\n\t\t</td>\n\t\t<td>\n\t\t\t<p>The field counts the number of purchases a participant makes. If you add a tracking window for a month, then when the next purchase event comes in, the existing value on the participant’s profile is wiped. </p>\n\t\t\t<p>A participant who made 5 purchases would have a value of 5 prior to your edits. The next time this participant makes a purchase, the old value is wiped and the field value is set to 1. </p>\n\t\t</td>\n\t</tr>\n  <tr>\n\t\t<td>Field has an existing tracking window that is being <b>edited</b></td>\n\t\t<td>\n\t\t\t<ul>\n\t\t\t\t<li>When editing an existing window on a calculation field, be sure to recalculate.</li>\n\t\t\t\t<li>Editing without recalculation can have adverse effects on the participants field value and it is best to recalculate.</li>\n\t\t</td>\n\t\t<td>\n\t\t\t<p>N/A</p>\n\t\t</td>\n\t</tr>\n\t<tr>\n\t\t<td>Field has an existing sliding window and the <b>maximum calculation value is changed</b></td>\n\t\t<td>\n\t\t\t<ul>\n\t\t\t\t<li>The new configuration will be applied to participants’ historical data when the next matching event comes in</li>\n\t\t\t\t<li>Request a recalculation to update the field value without waiting for new events </li>\n\t\t\t</ul>\n\t\t</td>\n\t\t<td>The windowed field currently counts the number of purchases a participant has made, to a maximum value of 10. When the max changes to 5 and a new purchase event comes in for that participant, the maximum of 5 will be retroactively applied  to the data within the window.</td>\n\t</tr>\n</table>\n\n> __Note:__ The value of a windowed calculated field can’t be manually overwritten via API. You will receive an error message if you send us data that would overwrite an existing value.\n",
+    "seoDescription": "Calculated fields enable you to track events as they come in, set up a calculation using event fields, and store the resulting data on a participant’s profile. User-created calculated fields can be edited at any time.",
+    "robotsTag": [
+      "FOLLOW"
+    ],
+    "canonicalUrl": "<link rel=\"canonical\" href=\"URL from Contentful response\"/>"
+  }
+}

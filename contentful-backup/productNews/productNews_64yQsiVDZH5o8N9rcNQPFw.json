@@ -1,0 +1,46 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "64yQsiVDZH5o8N9rcNQPFw",
+    "type": "Entry",
+    "createdAt": "2022-07-22T18:56:51.262Z",
+    "updatedAt": "2022-09-01T18:07:35.697Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 14,
+    "revision": 4,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "productNews"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "title": "Meet our Microsite Editor",
+    "datePublished": "2022-07-22",
+    "tags": [
+      "feature-release"
+    ],
+    "content": "We’re excited to roll out our all-new microsite editor, which makes setting up and customizing your referral microsite a breeze. Microsites are especially useful if you’re running partner, affiliate or influencer programs. \n\n#### Key Features:\n\n__An intuitive interface:__ Customize your microsite content and notification emails to reflect your brand’s personality\n\n__Flexibility:__ Add advanced conditional content or custom web components through an HTML editor\n\n__Forms platform:__ Seamlessly capture customer data, with the ability to send your data flow to Salesforce\n\n__One-click auto setup:__ Default notification emails included, to get you up and running quickly\n\nIf you already have a microsite set up and want to learn more about our customization options, check out our documentation on Customizing Microsites for help. \n\n__Note:__ Microsites are only available with select SaaSquatch plans. If your microsite was created before August 2022, you might be using an older version of our microsites feature that isn’t compatible with the new microsite editor. Please contact our Success team to see if your microsite is eligible for an upgrade.  ",
+    "ctaLink": "https://docs.saasquatch.com/building-programs/microsites/quickstart-guide/",
+    "ctaButtonText": "Learn More"
+  }
+}

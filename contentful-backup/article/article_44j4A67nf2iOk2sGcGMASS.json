@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "44j4A67nf2iOk2sGcGMASS",
+    "type": "Entry",
+    "createdAt": "2016-09-12T20:48:37.403Z",
+    "updatedAt": "2023-08-23T21:00:03.361Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 8617,
+    "revision": 19,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Developer Guide",
+    "title": "Signed Requests",
+    "slug": "developer/squatchjs/signed-requests/",
+    "highlights": "Signed requests provide an additional layer of security for your program by allowing us to validate the data sent to us and confirm it originated from you. This feature is optional, but highly recommended. ",
+    "content": "JWTs can be used to send authorized information to SaaSquatch via [squatch.js](/developer/squatchjs/) or [API](/api/authentication/). Learn more about building JWTs and including them with your calls on our [JSON Web Tokens](/topics/json-web-tokens) doc. \n\n## About signed requests\nA signed request is a chunk of data that includes a [JWT](/topics/json-web-tokens/) or [API key](/api/authentication/). We use signed requests to verify that data sent to us comes from a trusted source. If signed requests aren’t used and we receive data that includes your tenant alias, then it’s possible for this data to make unauthorized or unintended changes to your program.\n\nJWTs provide an extra layer of security when using squatch.js because they are created with your private API key. You can use signed requests when creating or updating participants, events and referrals. \n\n## Manage signed request settings\nYour *Secure Mode* settings determine which squatch.js and [Open Endpoint API](/api/openendpoints/#authentication-requirements-by-method) methods are required to be signed with a JWT or API key. To manage them, sign in to the Admin Portal, then go to __Settings > Security__ and find the *Security Settings* section. \n\n*Secure Mode* can be set to __Enabled__, __Disabled__ or __Custom__. By default, your *Secure Mode* setting is __Custom__, with all options enabled except for *Get User Widget*. \n\n> __Important__: We __highly recommend__ using signed requests to reduce your referral program's exposure to a man-in-the-middle security vulnerability. If signed requests are disabled, then more attention should be paid to your incoming referrals. \n\n### *Secure Mode* enabled\nWith Secure Mode enabled, all calls are required to be signed with a JWT or an API key to verify the contents of the request. This requirement applies regardless of whether authentication is needed for the method.\n\n### *Secure Mode* disabled\nDisabling *Secure Mode* allows you to send requests to SaaSquatch without a JWT or API key. You’ll be able to make __any__ requests through the squatch.js library and __some__ requests through Open Endpoint API calls.\n\n#### Custom *Secure Mode* \nBy default, *Secure Mode* is set to __Custom__. Custom settings allow for granular control of the methods that need to be sent with a JWT or API key. Note that some API calls may still be required to be sent with authentication, even if disabled is selected. See our [API documentation](/api/authentication/) for details. \n\n<table class=\"table table-hover\">\n    <tr>\n        <th>Option\n        </th>\n        <th>\n            Description\n        </th>\n    </tr>\n    <tr>\n        <td>\n            Create Account/User\n        </td>\n        <td>\n            Enable/Disable the ability to create or update Accounts in the SaaSquatch system without use of Signed Requests \n        </td>\n    </tr>\n    <tr>\n      <td>\n        Lookup User\n      </td>\n      <td>\n        Enable/Disable the ability to lookup users in your program(s) without use of Signed Requests  \n      </td>\n  </tr>\n  <tr>\n    <td>\n      Apply Referral Code\n    </td>\n    <td>\n      Enable/Disable the ability to apply a referral code to a user's account without use of Signed Requests \n    </td>\n  </tr>\n  <tr>\n    <td>\n      List Referrals\n    </td>\n    <td>\n      Enable/Disable the ability to list all of the referrals for a given user without use of Signed Requests \n    </td>\n    <tr>\n      <td>\n        Create/Update User\n      </td>\n      <td>\n        Enable/Disable the ability to create or update a user without use of Signed Requests\n      </td>\n  </tr>\n  <tr>\n    <td>\n      Get User Widget\n    </td>\n    <td>\n      Enable/Disable the ability to display the widget for the user without use of Signed Requests \n    </td>\n  </tr>\n  <tr>\n    <td>\n      Get Share Links\n    </td>\n    <td>\n      Enable/Disable the ability to get a user's sharelinks without use of Signed Requests \n    </td>\n  </tr>\n  <tr>\n    <td>\n      Track User Events\n    </td>\n    <td>\n      Enable/Disable the ability to sending a user event without the use of a Signed Request \n    </td>\n  </tr>\n</table>"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "GJ2JXqzWVVteYP6faYXDf",
+    "type": "Entry",
+    "createdAt": "2021-02-25T02:42:32.851Z",
+    "updatedAt": "2023-11-16T22:58:40.379Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 335,
+    "revision": 6,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Developer Guide",
+    "title": "Using a Salesforce APEX Trigger to upsert a Lead",
+    "slug": "salesforce/using-salesforce-apex-trigger-to-upsert-lead",
+    "highlights": "The SaaSquatch Managed Package for Salesforce includes a number of global classes and invocable methods that can be used to upsert users from APEX code. In this tutorial we will walk through how to create an APEX Trigger and use it to upsert users in SaaSquatch when a Lead is created in Salesforce.",
+    "content": "## Before you start\n\nThis article is written for advanced users of Salesforce that understand Apex code and are comfortable with Apex triggers. If you are new to Salesforce there are a few Trailhead modules we recommend reading to get you started.\n\n - [Apex Basics & Database - Trailhead Module](https://trailhead.salesforce.com/en/content/learn/modules/apex_database)\n - [Apex Triggers - Trailhead Module](https://trailhead.salesforce.com/content/learn/modules/apex_triggers)\n\nTo get started you will need:\n\n - The SaaSquatch for Salesforce managed package installed in your organization. If not follow the [install guide](/salesforce/install-guide/)\n - A Salesforce user with [permission to use the Developer Console](https://help.salesforce.com/articleView?id=sf.code_dev_console_opening.htm&type=5).\n\n## Create a new Trigger\n\nTo start open the __Developer Console__ from inside of Salesforce. \n\n![DeveloperConsole](//images.ctfassets.net/s68ib1kj8k5n/67cVITWpH5n2Tc0x5X7C55/56244e2c7e04043bf38264baf6cc17fc/DeveloperConsole.png)\n\nWe are going to create a new __Apex Trigger__. Create one by going to `File -> New -> Apex Trigger`\n\n![NewTrigger](//images.ctfassets.net/s68ib1kj8k5n/6I47ceTlOp4GQs6crYbrJL/c9ab49d121e8a0112ae8808ab608a1a3/NewTrigger.png)\n\nWe will be triggering on __Lead__ objects after insert. You can name the trigger something that won't conflict with other trigger names in your environment.\n\n```apex\ntrigger TutorialForSaaSquatch on Lead (after insert, after update) {\n    for (Lead lead : Trigger.new) {\n        // Iterate over each sObject\n    }\n}\n```\n\n> For this example we are triggering on Lead, but organizations may also want to trigger on Contact updates as well. That would require different code in the Apex trigger, but most of this tutorial would still apply.\n\n## Build records to insert\n\nWe're going to be building up `ReferralSaaSquatchUpsertUserByIdReq` objects to send to the SaaSquatch API. Since triggers operate on batches, we're going to create a `List` of objects to build up.\n\n```apex\ntrigger TutorialForSaaSquatch on Lead (after insert, after update) {\n    List<SaaSquatch.ReferralSaaSquatchUpsertUserByIdReq> users = new List<SaaSquatch.ReferralSaaSquatchUpsertUserByIdReq>();\n    for (Lead lead : Trigger.new) {\n        // Iterate over each sObject\n    }\n}\n```\n\nFor each Lead that has been inserted or updated in this trigger we are going to copy that data to SaaSquatch. In this example we're going to use `Email` as the unique ID in SaaSquatch. We're also to use the `immediatelyUpsertObjects` flag to make sure that the SaaSquatch User, Referral and RewardBalance custom objects get updated immediately.\n\n```apex\ntrigger TutorialForSaaSquatch on Lead (after insert, after update) {\n    List<SaaSquatch.ReferralSaaSquatchUpsertUserByIdReq> users = new List<SaaSquatch.ReferralSaaSquatchUpsertUserByIdReq>();\n    for (Lead lead : Trigger.new) {\n        // Iterate over each sObject\n        SaaSquatch.ReferralSaaSquatchUpsertUserByIdReq user = new SaaSquatch.ReferralSaaSquatchUpsertUserByIdReq();\n\n        // Uses `Email` as the ID\n        user.userId=lead.Email;\n        user.accountId=lead.Email;\n\n        // Syncs `FirstName` and `Email`\n        user.firstName=lead.FirstName;\n        user.email=lead.Email;\n\n        // Tracks who referred this person\n        user.referredByCodes=lead.CodeUsed__c;\n\n        // Tells the integration to immediately update corresponding objects in Salesforce\n        user.immediatelyUpsertObjects=true;\n        users.add(user);\n    }\n}\n```\n\n> We're using [Immediate Object Upsertion](/salesforce/immediate-object-upsertion/) in this example so that the SaaSquatch Custom Objects are updated in Salesforce as quickly as possible. Alternatively the Salesforce background sync will periodically update records if this is turned off.\n\n## Call the Invocable Method\n\nNow that we have a list of users to send to SaaSquatch, we need to call the SaaSquatch invocable method to send the data to SaaSquatch. \n\nWe're sending the `users` list to the `ReferralSaaSquatchUpsertUserById` invocable method.\n\n```apex\nSaaSquatch.ReferralSaaSquatchUpsertUserById.upsertUsers(users);\n```\n\n> For this example we're using `ReferralSaaSquatchUpsertUserById` but there are other InvocableMethods in the SaaSquatch package that may suite your use case, such as logging events and upserting based a linked standard object.\n\nThe final code should end up looking like this:\n\n```apex\ntrigger TutorialForSaaSquatch on Lead (after insert, after update) {\n    List<SaaSquatch.ReferralSaaSquatchUpsertUserByIdReq> users = new List<SaaSquatch.ReferralSaaSquatchUpsertUserByIdReq>();\n    for (Lead lead : Trigger.new) {\n        // Iterate over each sObject\n        SaaSquatch.ReferralSaaSquatchUpsertUserByIdReq user = new SaaSquatch.ReferralSaaSquatchUpsertUserByIdReq();\n\n        // Uses `Email` as the ID\n        user.userId=lead.Email;\n        user.accountId=lead.Email;\n\n        // Syncs `FirstName` and `Email`\n        user.firstName=lead.FirstName;\n        user.email=lead.Email;\n\n        // Tracks who referred this person\n        user.referredByCodes=lead.CodeUsed__c;\n\n        // Tells the integration to immediately update corresponding objects in Salesforce\n        user.immediatelyUpsertObjects=true;\n        users.add(user);\n    }\n    // Queues a callout to the SaaSquatch API\n    SaaSquatch.ReferralSaaSquatchUpsertUserById.upsertUsers(users);\n}\n```\n\n## Test the lead trigger\n\nTo test that this trigger is working:\n\n  - Save your trigger\n  - Make sure there are no alerts in the __Problems__ tab of the Developer Console\n  - Create a new Lead in Salesforce\n  - Open the [SaaSquatch Admin Portal](http://app.referralsaasquatch.com/) to confirm that a User has been created in SaaSquatch.\n\n## Conclusion\n\nIn this tutorial we walked through creating a new trigger on Lead to send data to SaaSquatch whenever data is changed in Salesforce. Since the SaaSquatch API uses batches behind the scenes this create a low-overhead and near-realtime way of synchronizing data between Salesforce and SaaSquatch in order to trigger your referral and loyalty programs.",
+    "tags": [
+      "salesforce",
+      "Guide"
+    ]
+  }
+}

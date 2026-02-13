@@ -1,0 +1,100 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "6RgX5xuNxrz34OHjuirHMw",
+    "type": "Entry",
+    "createdAt": "2019-12-04T22:47:01.265Z",
+    "updatedAt": "2022-09-28T14:05:19.517Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 31,
+    "revision": 5,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "integration"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "title": "Tango Card Software Integration",
+    "integrationName": "Tango Card",
+    "slug": "tangocard",
+    "logo": {
+      "metadata": {
+        "tags": [],
+        "concepts": []
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "s68ib1kj8k5n"
+          }
+        },
+        "id": "3iNXzSopraTDMW21LCOLlG",
+        "type": "Asset",
+        "createdAt": "2019-12-04T22:54:28.750Z",
+        "updatedAt": "2019-12-04T22:54:28.750Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 7,
+        "revision": 1,
+        "locale": "en-US"
+      },
+      "fields": {
+        "title": "Tangocard",
+        "file": {
+          "url": "//images.ctfassets.net/s68ib1kj8k5n/3iNXzSopraTDMW21LCOLlG/652eacfbfbd2258ea2971573d19cbd2a/tangocard-integration.png",
+          "details": {
+            "size": 14513,
+            "image": {
+              "width": 450,
+              "height": 300
+            }
+          },
+          "fileName": "tangocard-integration.png",
+          "contentType": "image/png"
+        }
+      }
+    },
+    "integrationDescription": "Tango Card allows you to buy, send, and track digital gift card orders. SaaSquatch's Tango Card integration enables you to automatically reward your program participants with gift cards.",
+    "highlights": "Looking for Tango Card software integration? SaaSquatch's integration enables you to automatically reward your participants with gift cards.",
+    "keyFeatures": [
+      "Hands-off reward generation, fullfillment, and redemption.",
+      "Automatically send referral participants their gift card redemption codes by email.",
+      "Use a native integration built by SaaSquatch directly on Tango Card's API"
+    ],
+    "moreInfo": [
+      "[Gift Card Rewards](/success/gift-card-rewards)",
+      "[Connect your Tango Card account to SaaSquatch](/tangocard-connection)"
+    ],
+    "guideLink": "/success/gift-card-rewards",
+    "tags": [
+      "in-directory"
+    ]
+  }
+}

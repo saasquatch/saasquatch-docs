@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "5FYyjVJ9y7b3s3Rn5Us93U",
+    "type": "Entry",
+    "createdAt": "2019-08-02T00:36:53.756Z",
+    "updatedAt": "2021-05-12T23:28:39.024Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 3664,
+    "revision": 9,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Developer Guide",
+    "title": "Segment V2",
+    "slug": "integrations/segment-v2",
+    "highlights": "V2 of the SaaSquatch for Segment integration sends data from SaaSquatch to Segment, and ingests data from Segment to help you get your referral and loyalty program installed with less development work. Everything that you can achieve with the Segment integration can also be achieved using the SaaSquatch REST API and Webhooks.",
+    "content": "### Overview\n\n> __Terminology__ In this document we will rely heavily on terminology as defined by Segment. \n\nV2 of SaaSquatch for Segment supports SaaSquatch as both a Source (Stream) and as a Destination (Subscription).\n\n![Segment Integration V2 Overview](//images.ctfassets.net/s68ib1kj8k5n/20iE1CSRrl3hudqlY4xHxL/106bd8107e2a7f02613e1de49a005800/Segment_Integrations.svg)\n\n### Destination / Subscription\n\nThe Segment destination makes it faster and easier to get user data into SaaSquatch. This data can be used to achieve things such as:\n\n- Registering users\n- Tracking users\n- Converting referrals\n- Triggering loyalty programs\n\nThe Segment destination consumes data sent from Segment to the SaaSquatch APIs for [tracking events](/api/methods/#trackEvent) and [upserting users](/api/methods/#create_user).\n\n<table class=\"table\">\n<thead>\n<tr>\n<th>Segment</th>\n<th>SaaSquatch</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Identify</td>\n<td><a href=\"/api/methods#open_user_upsert\">Upsert User</a></td>\n</tr>\n<tr>\n<td>Track</td>\n<td><a href=\"/api/methods/#trackEvent\">Track User Event</a> and <a href=\"/api/methods#open_user_upsert\">Upsert User</a></td>\n</tr>\n</tbody>\n</table>\n\nFor a detailed mapping of fields and installation instructions, see our [Subscription Tech Reference](/integrations/segment-v2/subscription).\n\n### Source / Stream\n\nThe Segment source speeds up integrating SaaSquatch with other tools in your marketing and analytics stack. This can assist with use cases such as:\n\n - Tracking referral codes in other systems\n - Triggering other workflows when referrals happen\n - Triggering fulfillment processes for loyalty credits or rewards\n\nFor a detailed mapping of fields and installation instructions, see our [Stream Tech Reference](/integrations/segment-v2/stream).\n"
+  }
+}

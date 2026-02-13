@@ -1,0 +1,3 @@
+userId,accountId,event.key,event.dateTriggered,event.fields.foo,event.fields.bar
+123,123,sampleEventOne,1624386801843,123,baz
+321,321,sampleEventTwo,1624306875820,321,baz

@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "3hlifpUwFiCASWUUUGukk0",
+    "type": "Entry",
+    "createdAt": "2016-04-04T22:11:07.857Z",
+    "updatedAt": "2016-04-04T22:11:07.857Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 496,
+    "revision": 1,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "faq"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "question": "What kind of reward should I use for my referral program?",
+    "answer": "A successful referral program depends on the right choice of incentive for both the person doing the referring and the person they have referred. Each industry has different best practices for what works; discounts, gift cards, loyalty points, banked credit, or something tangible like swag.\n\nA good place to start would be watching out best practices webinar: [How to Structure your Referral Program](https://attendee.gotowebinar.com/recording/4794104163915938049)"
+  }
+}

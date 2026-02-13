@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "5PeLlzyf2Wsh1OxHNGKR2G",
+    "type": "Entry",
+    "createdAt": "2021-04-29T23:01:06.700Z",
+    "updatedAt": "2021-04-30T18:35:47.445Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 35,
+    "revision": 6,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Configuring your Reward Catalog for W-9",
+    "slug": "features/configuring-your-reward-catalog-for-w-9",
+    "highlights": "Our W-9 Compliance feature is compatible with a wide array of different reward units, flexible enough for practically any situation on our Growth Automation Platform.\n",
+    "content": "When W-9 Compliance is configured, participants without W-9 Tax Forms will not be able to receive over $599.99 USD in rewards during the tax year. A participant's total for the tax year is calculated using the taxable value of a reward. For more information about W-9 Compliance, we recommend that you read our article about [W-9 Compliance](/features/w-9-compliance) on the SaaSquatch Growth Automation Platform.\n\n### Configuring USD Reward Units\nThe taxable value of rewards from USD reward units will be calculated automatically and added to the participants’s total for the tax year. Reward unit types such as Cash, Credit and Custom can be configured to explicitly reward USD. For example, to create a USD Credit reward unit go to Rewards -> Reward Units and click “Create Reward Unit”. Select Credit, select USD as the currency and click “Create Unit”.\n\n![USD Reward Unit Set Up](//images.ctfassets.net/s68ib1kj8k5n/7EjmjGocm9Yoi1k6fJXxrq/d8b48e787cf68a121f202e8558ea8cf8/Screenshot_2021-04-29_140001.png)\n\nThis reward unit can now be used when configuring rewards to be given manually or through a program.\n\n### Configuring Custom Reward Units\nThere are many other ways to reward participants other than directly with USD, and you might want these rewards to count towards a participant's USD total for the tax year. The US Taxable Value customization allows the configuring of a taxable value for rewards which do not directly reward USD. This can be done by creating and customizing Cash, Months, Points and Custom reward units. When a reward unit’s US Taxable Value is configured, it will be used when calculating a participant's USD total for the tax year. This also means that rewards from these reward units will be compliant with your W-9 Compliance configuration, and can be set to Pending when rewarded. When creating or editing a reward unit, configuring the US Taxable Value is possible by clicking on Advanced Settings dropdown found at the bottom of the reward unit configuration.\n\n![Advanced Setting Big](//images.ctfassets.net/s68ib1kj8k5n/5TNqXEgnbrX3KaLU9SZu9C/c35077046dbbb86fe16472ce31f0e403/Screenshot_2021-04-29_161001.png)\n\nThe US Taxable Value is a [JSONata](https://docs.jsonata.org/overview) expression that returns a value in cents and when configuring, you have access to two variables as shown below.\n\n**totalValue**: The total value of rewards earned in this unit by a participant.\n\n**count**: The number of rewards earned in this unit by a participant.\n\nFor example, if you had a POINT unit being used for rewards and wanted each POINT to count as one dollar USD for its taxable value, you could configure an expression like `100*totalValue`.\n\nThis reward unit can now be used when configuring rewards to be given manually or through a program.\n\n**Note:** If you have a USD reward unit and configure a custom US Taxable Value, the custom US Taxable Value will take precedence and be used for USD tax calculations.\n\n### Effects of Changing the US Taxable Value On Your Reward Units\nThe US Taxable Value of a reward unit may need to naturally change over time and that's okay, but before it's changed, do know that it can have active changes on a participant's tax calculations. If it is changed during a tax year, this will also change the calculations of total USD rewards for each participant who has received this reward unit. Depending on the change, this could potentially put a participant without a W-9 Tax Form over the $599.99 USD compliance limit. In this case their existing rewards will not be set to Pending but as expected, but any new rewards will be set as Pending.\n\nThere may also be the need to remove a reward unit’s US Taxable Value and this can similarly affect a participant's calculation of USD rewards for a tax year. If the US Taxable Value is removed from a non-USD reward unit, rewards using that reward unit will no longer count towards participant's USD total for the tax year. If the US Taxable Value is removed from a USD reward unit, the USD amount of the reward will be used as the taxable value.\n\n### Additional Information\nW-9 Compliance is only available on our Growth Automation platform and not available to Classic tenants. If this is an issue, please contact our Support team for information about migrating to our Growth Automation Platform.\n"
+  }
+}

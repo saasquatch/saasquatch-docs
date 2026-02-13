@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "s68ib1kj8k5n"
+      }
+    },
+    "id": "4CnB2EzrxpXi5wzByeXbRR",
+    "type": "Entry",
+    "createdAt": "2023-01-18T01:00:08.243Z",
+    "updatedAt": "2023-05-17T14:17:15.680Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 240,
+    "revision": 9,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "article"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "sectionType": "Marketer Guide",
+    "title": "Setting Up Reward Exchange Options",
+    "slug": "/building-programs/rewards/setting-up-reward-exchange",
+    "highlights": "Empower participants in your Loyalty program to exchange rewards they’ve earned for something they’ll really love. With our self-serve Reward Exchange feature, you can set up customized reward exchange options for your participants to pick from.",
+    "content": "## Overview\n[Reward Exchange](/features/reward-exchange/) is a feature that empowers your participants to exchange reward units they’ve earned for different rewards or other reward units, such as exchanging Points for a gift card. To use Reward Exchange for your program, you can set up one or several reward exchange options and choose the rules around:\n- What reward units your participants can exchange\n- What they can get in return\n- Who can see and use the exchange option\n\nFull Access and Program Manager team members can create a reward exchange option and set its rules. \n\n![Screenshot of reward exchange option](https://res.cloudinary.com/saasquatch/image/upload/v1648662177/squatch-assets/Screenshot_2022-03-30_103003.png)\n\n## 1. Create the reward exchange option\n1. Sign in to the SaaSquatch Admin Portal.\n2. Go to the **Rewards** page.\n3. Click the **Exchange** tab.\n4. Click the orange **Create exchange option** button.\n5. Enter a name for the reward exchange option.\n\nNext, set up your reward exchange rules.\n\n## 2. Set the exchange rules\nFor more information about the types of fixed and variable exchanges you can set up, see our doc on [Reward Exchange](/features/reward-exchange/#reward-exchange-options).\n1. Use the **From** dropdown list to choose the reward unit that participants can exchange.\n2. Use the **To** dropdown list to choose the reward or reward unit that participants will receive.\n    - **Tip**: You can create new reward units or rewards within the dropdown list.\n3. Set either the **Cost** or the **Exchange Rate** and **Increments** in the lowest denomination of the reward unit, e.g., cents if your reward unit is dollars.\n\n<table class=\"table table-hover\" style=\"width:100%\">\n\t<tr>\n\t\t<th style=\"width:40%\">If exchanging one reward unit for...</th>\n\t\t<th style=\"width:60%\">Then</th>\n\t</tr>\n\t<tr>\n\t\t<td>\n\t\t\t<ul>\n\t\t\t\t<li>A fixed-value reward from the catalog</li>\n\t\t\t\t<li>A set of rewards</li>\n\t\t\t</ul>\n\t\t</td>\n\t\t<td>\n\t\t\t<ol>\n\t\t\t\t<li>Set the <b>Cost</b>.</li>\n\t\t\t</ol>\n\t\t\t<p>\n\t\t\t<strong>Note</strong>: If you chose <strong>A set of rewards</strong>, then you'll need to assign a cost for each reward. Click <strong>Add fixed reward option</strong> to give your participants more choices.</p>\n\t\t</td>\n\t</tr>\n\t<tr>\n\t\t<td>\n\t\t\t<ul>\n\t\t\t\t<li>Another reward unit</li>\n\t\t\t\t<li>A variable-value reward from the catalog</li>\n\t\t\t</ul>\n\t\t</td>\n\t\t<td>\n\t\t\t<ol>\n\t\t\t\t<li>Set the <strong>Exchange Rate</strong>. This is how many of the original reward unit must be available to get one of the chosen reward or reward unit. </li>\n\t\t\t\t<li>Enter the <strong>Increments</strong>. This defines how much the cost of the next available item  increases by, and is used with the exchange rate to calculate the reward values a participant can choose from.</li>\n\t\t\t\t<li>Set the <strong>Minimum exchange</strong> and <strong>Maximum exchange</strong> values that the participant can exchange.</li>\n\t\t\t</ol>\n\t\t</td>\n\t</tr>\n</table>\nNext, set some availability criteria to determine who can see and use this reward exchange option.\n\n## 3. Set the availability rules\nThe Availability section allows you to set optional rules around who can see this reward exchange option and when they can use it. \n\n### Showing or hiding the exchange option\nBy default, this exchange option is shown to all participants. In some situations, you may want to hide a particular exchange option—for example, if you only want to show US participants an exchange that lets them turn in their Points for US Dollars. \n\nThe steps below are optional. \n<ol>\n  <li> Using the <strong>Country</strong> dropdown list, select the countries you want the exchange option to be available in.\n    <ul>\n      <li><strong>Note</strong>: This checks if participants have a <code>countryCode</code> field on their profile that matches with the countries you selected. If you would rather exclude countries, then you'll need to set additional filters with a JSONata expression.</li>\n    </ul>\n  </li>\n  <li>Set other criteria for showing or hiding the exchange option.\n    <ol>\n      <li>Click <strong>Add rule</strong>.</li>\n      <li>Use the dropdown lists to set conditions based on participants' default, custom or calculated fields.\n        <ul>\n          <li><strong>Click Switch to Advanced</strong> if you want to enter an expression using JSONata.</li>\n        </ul>\n    </ol>\n  </li>\n</ol>\n\n### Enabling or disabling the exchange option\nBy default, this exchange option is enabled for all participants who have an available balance to exchange.  You can add rules that enable the exchange option only for participants who meet specific criteria, like belonging to a Gold segment. \n\nThe steps below are optional.\n1. Click **Add Rule**.\n2. Use the dropdown menus to set conditions based on participants' default, custom or calculated fields.\n    - Click **Switch to Advanced** if you want to enter an expression using JSONata.\n\n## 4. Choose display options\nIf you don’t modify the display settings, then participants will see the default gift image along with the cost of the reward. The exchange options will be shown in the order they were created, from oldest to newest.\n\n1. Enter the name you want to be displayed to your participants.\n2. Set the display order.\n    - **Note**: To override the default display order, enter a number in this box. `1` is the highest priority and will be shown first. \n3. Enter a one- or two-sentence description.\n4. Choose an image to represent the exchange option by either:\n    - Uploading an image from your computer\n    - Pasting a URL\n\nNext, review your choices and save the reward exchange option.\n\n## 5. Review and save\nIn the final section of the setup flow, you will see a summary of your selections. \n1. Confirm that the exchange rules and eligibility criteria are accurate.\n2. Click the orange **Save** button.\n\nNext, add the Reward Exchange component to your widget or microsite so that participants can see and use your exchange option.\n\n## 6. Add the Reward Exchange component to your widget or microsite\n> **Before you begin**: Reward Exchange is only compatible with [verified access](/topics/widget-types/#verified-access-widgets) widgets or microsites that have our mint components package installed. For help adding the mint components package or checking if you have it installed, see our document on [participant experiences](/features/end-user-experiences#mint-components).\n\n1. Go to the **Content** page.\n2. Open the widget editor by clicking **Edit widgets** or the microsite editor by clicking **Edit content**.\n3. Follow our guide on customizing [program widgets](/designer/widget-editor) or [microsite layouts and pages](/building-programs/microsites/customizing-microsites) if you need help adding a new component.\n    - **Note**: The Reward Exchange component is available under the Rewards category.\n4. Save your changes.\n",
+    "robotsTag": [
+      "FOLLOW"
+    ],
+    "canonicalUrl": "<link rel=\"canonical\" href=\"URL from Contentful response\"/>"
+  }
+}
